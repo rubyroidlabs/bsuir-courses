@@ -27,25 +27,25 @@ class AsciiAnimation
       show_frame shift
       sleep frame_delay
     end
-    clear
   end
 
   def show_frame shift
     term_lines, term_columns = TermInfo.screen_size
-    clear
+    self.class.clear
     @ascii_art[shift, term_columns].last(term_lines).each {|line| puts line}
   end
 
-  def clear
+  def self.clear
     print CLEAR_ESCAPE_SEQUENCE
   end
 end
 
+Signal.trap("INT"){
+  exit
+}
+
 _, term_columns = TermInfo.screen_size
 art = AsciiArt.new File.join(__dir__,'art.txt'), term_columns
 animation = AsciiAnimation.new art
-begin
-  animation.play
-rescue SystemExit, Interrupt
-  animation.clear
-end
+at_exit { AsciiAnimation.clear }
+animation.play
