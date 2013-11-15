@@ -30,9 +30,8 @@ class AsciiAnimation
 
   def show_frame shift
     term_lines, term_columns = TermInfo.screen_size
-    lines = @ascii_art[shift, term_columns].last term_lines
     clear
-    lines.each {|line| puts line}
+    @ascii_art[shift, term_columns].last(term_lines).each {|line| puts line}
   end
 
   def clear
@@ -44,7 +43,7 @@ _, term_columns = TermInfo.screen_size
 art = AsciiArt.new File.join(__dir__,'art.txt'), term_columns
 animation = AsciiAnimation.new art
 begin
-  animation.play 0.1
+  animation.play
 rescue SystemExit, Interrupt
   animation.clear
 end
