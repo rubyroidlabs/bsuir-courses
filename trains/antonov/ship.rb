@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-#require 'pry'
 require 'terminfo'
 
 class AsciiArt
@@ -37,12 +36,12 @@ class AsciiAnimation
   end
 
   def clear
-    puts "\e[H\e[2J"
+    print "\e[H\e[2J"
   end
 end
 
 _, term_columns = TermInfo.screen_size
-art = AsciiArt.new 'art.txt', term_columns
+art = AsciiArt.new File.join(__dir__,'art.txt'), term_columns
 animation = AsciiAnimation.new art
 begin
   animation.play 0.1
