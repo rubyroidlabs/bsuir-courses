@@ -11,17 +11,19 @@ class AsciiArt
   end
 
   def length
-    @lines.map{|x| x.length}.max
+    @lines.map(&:length).max
   end
 end
 
 class AsciiAnimation
+  CLEAR_ESCAPE_SEQUENCE = "\e[H\e[2J"
+
   def initialize ascii_art
     @ascii_art = ascii_art
   end
 
   def play frame_delay=0.1
-    (0..@ascii_art.length).each do |shift|
+    0.upto(@ascii_art.length) do |shift|
       show_frame shift
       sleep frame_delay
     end
@@ -35,7 +37,7 @@ class AsciiAnimation
   end
 
   def clear
-    print "\e[H\e[2J"
+    print CLEAR_ESCAPE_SEQUENCE
   end
 end
 
