@@ -4,7 +4,7 @@ class Fish
   
 
   def initialize(row, column)
-    @matrix = Array.new(row) { Array.new(column) { |e| e = "  "} }
+    @matrix = Array.new(row) { Array.new(column) {"  "} }
   end
 
   def set_matrix(row)
@@ -13,29 +13,29 @@ class Fish
   	i = 1
 
 	#face
-	(mid + 1).upto(row - 2) { |index|
-	@matrix[index][i] = "* "
-	@matrix[row -1 - index][i] = "* "
-	i = i + 1
-	}
+	(mid + 1).upto(row - 2) do |index|
+	  @matrix[index][i] = "* "
+	  @matrix[row -1 - index][i] = "* "
+	  i +=  1
+	end
 
 	#back
-	5.times { |index|
-	@matrix[1][i] = "* "
-	@matrix[row - 2][i] = "* "
-	i = i + 1
-	}
+	5.times do |index|
+	  @matrix[1][i] = "* "
+	  @matrix[row - 2][i] = "* "
+	  i +=  1
+	end
 
 	#tail
-	(row -2).times { |index|
-	@matrix[index + 1][i] = "* "
-	@matrix[row-2 - index][i] = "* "
-	i = i + 1
-	}
+	(row -2).times do |index|
+	  @matrix[index + 1][i] = "* "
+	  @matrix[row-2 - index][i] = "* "
+	  i += 1
+	end
 
-	1.upto(row - 2) { |index|
-	@matrix[index][i] = "* "
-	}
+	1.upto(row - 2) do |index|
+	  @matrix[index][i] = "* "
+	end
 
 	#eyes
 	@matrix[5][6] = "/\\ "
@@ -52,12 +52,12 @@ class Fish
   end
  
   def print_matrix(row, column)
-  	@matrix.each { |e| 
+  	@matrix.each do |e| 
   	  Curses.setpos(row, column)
       e.each { |value| Curses.addstr(value) } 
   	  Curses.addstr("\n")  
 	  row = row + 1
-  	}
+  	end
   
   	Curses.refresh
   	sleep(0.15)
@@ -83,11 +83,11 @@ Signal.trap(2, proc { })
 fish = Fish.new(ROW, COLUMN)
 fish.set_matrix(ROW)
 
-start_x.times { |n|  
+start_x.times do |n|  
   fish.print_matrix(start_y + n % 4, start_x)
   start_x = start_x - 1
   Curses.clear
-}
+end
 
 Curses.close_screen
 
