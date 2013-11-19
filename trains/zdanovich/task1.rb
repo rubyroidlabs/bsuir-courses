@@ -4,16 +4,16 @@ class Fish
   
 
   def initialize(row, column)
-    @matrix = Array.new(row) { Array.new(column) {"  "} }
+    @matrix = Array.new(row) { Array.new(column) " " }
   end
 
   def set_matrix(row)
-  	mid = row / 2
-  	@matrix[mid][0] = "* "
-  	i = 1
+    mid = row / 2
+    @matrix[mid][0] = "* "
+    i = 1
 
 	#face
-	(mid + 1).upto(row - 2) do |index|
+    (mid + 1).upto(row - 2) do |index|
 	  @matrix[index][i] = "* "
 	  @matrix[row -1 - index][i] = "* "
 	  i +=  1
