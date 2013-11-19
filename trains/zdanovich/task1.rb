@@ -70,8 +70,8 @@ end
 ROW = 13
 COLUMN = 25
 
-start_x = 10
-start_y = 80
+start_x = 80
+start_y = 10
 Curses.init_screen
 Curses.nl
 Curses.noecho			
@@ -83,10 +83,11 @@ Signal.trap(2, proc { })
 fish = Fish.new(ROW, COLUMN)
 fish.set_matrix(ROW)
 
-start_y.times { |n|  
-  fish.print_matrix(start_x + n % 4, start_y)
-  start_y = start_y - 1
+start_x.times { |n|  
+  fish.print_matrix(start_y + n % 4, start_x)
+  start_x = start_x - 1
   Curses.clear
 }
 
 Curses.close_screen
+
