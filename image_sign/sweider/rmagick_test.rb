@@ -3,7 +3,6 @@ require 'optparse'
 
 include Magick
 
-
 options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: rmagick_test.rb [options]"
@@ -23,7 +22,7 @@ end.parse!
 
 if (options).count != 3
   p "Not all options getted! Aborted! Try -h for list of options."
-  exit
+  exit(0)
 end
 
 errors = []
@@ -31,30 +30,27 @@ errors << "Directory #{options[:work_directory]} doesn't exist. Aborted!" if !Di
 errors << "Wrong location of watermark. Aborted!" if options[:location].match("^top_left$|^top_right$|^bot_left$|^bot_right$").nil?
 errors << "Watermark wasn't found. Aborted!" if !File.exist?(options[:mark_img])
 errors << "Unsupported format of watermark! Aborted!" if options[:mark_img].split('.')[-1].match("^gif$|^jpg$|^png$").nil?
+errors << "Empty work directory. Aborted!" if !Dir.new(options[:work_directory]).any?
 
 if errors.any?
   errors.each { |e| puts e }
-  exit
+  exit(0)
 end  
 
-if !Dir.new(options[:work_directory]).any?
-  p "Empty work dir!"
-  exit
-end
-
-images = []
-Dir.foreach(options[:work_directory]) do |file|
-   next if file == "." || file == ".."
-   images << file if !file.split(".")[-1].match("^gif$|^jpg$|^png$").nil?
-end
-Dir.chdir(options[:work_directory])
 
 imgs = []
-images.each { |i| imgs << ImageList.new(i) }
+
+Dir.chdir(options[:work_directory])
+Dir.foreach(Dir.pwd) do |file|
+   p file.class
+   next if file == "." || file == ".."
+   imgs << ImagesList.new(file) if !file.split(".")[-1].match("^gif$|^jpg$|^png$").nil?
+end
+
 mark = ImageList.new("wm.jpg")
 
 imgs.each do |img|
-  scale_factor = (img.columns <= img.rows) ? (img.columns * 0.1) / mark.columns  :  (img.rows * 0.1) / mark.rows 
+  scale_factor = (img.columns <= img.rows) ? (img.columns * 0.1 / mark.columns)  :  (img.rows * 0.1 / mark.rows) 
   scaled_mark = mark.scale(scale_factor)
   x_offset, y_offset = 0
   case options[:location]
@@ -72,8 +68,8 @@ imgs.each do |img|
     y_offset = img.rows * 0.95 - scaled_mark.rows
   end
       
-  img.composite!(scaled_mark, x_offset, y_offset, OverCompositeOp)
-        .write(img.inspect.split(" ")[0][1..-1])
+  img.composite!(scaled_mark, x_offset, y_offset, OverCompositeOp).write(img.filename)
 end
 
-exit
+exit(0)
+
