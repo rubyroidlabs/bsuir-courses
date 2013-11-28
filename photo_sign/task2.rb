@@ -1,4 +1,4 @@
-require_relative 'Parser'
+require_relative 'parser'
 
 require 'mini_magick'
 
