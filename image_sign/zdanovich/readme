@@ -1,0 +1,2 @@
+doesn't create new folder! just rewrite photoes
+example : ruby task2.rb -i 20 -p bottom,left -d /etc -s "OLOLO O" -c yellow
