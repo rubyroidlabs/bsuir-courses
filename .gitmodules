@@ -13,3 +13,6 @@
 [submodule "2015/AleksSenkou"]
 	path = 2015/AleksSenkou
 	url = https://github.com/AleksSenkou/rubyroid_labs
+[submodule "2015/vahotm-git"]
+	path = 2015/vahotm-git
+	url = git@github.com:vahotm/ROR-Homeworks.git
