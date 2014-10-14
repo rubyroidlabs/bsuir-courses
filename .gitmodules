@@ -1,0 +1,15 @@
+[submodule "2015/tkarpesh/1"]
+	path = 2015/tkarpesh/1
+	url = https://github.com/tkarpesh/courses-task1
+[submodule "2015/vahotm"]
+	path = 2015/vahotm
+	url = https://github.com/vahotm/ROR-Homeworks
+[submodule "2015/EugeneArt/1"]
+	path = 2015/EugeneArt/1
+	url = https://github.com/EugeneArt/animation
+[submodule "2015/Socucius/1"]
+	path = 2015/Socucius/1
+	url = https://github.com/Socucius/Train
+[submodule "2015/AleksSenkou"]
+	path = 2015/AleksSenkou
+	url = https://github.com/AleksSenkou/rubyroid_labs
