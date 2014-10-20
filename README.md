@@ -52,12 +52,6 @@ grep a 1.txt
 => abc
 ```
 
-```
-grep a 1.txt 
-=> aa
-=> abc
-```
-
 
 ```
 grep -A 1 ab 1.txt 
