@@ -16,3 +16,21 @@
 [submodule "2015/vahotm-git"]
 	path = 2015/vahotm-git
 	url = git@github.com:vahotm/ROR-Homeworks.git
+[submodule "2015/ddzyanis/1"]
+	path = 2015/ddzyanis/1
+	url = https://github.com/ddzyanis/Ruby_animation
+[submodule "2015/Rewerson"]
+	path = 2015/Rewerson
+	url = https://github.com/Rewerson/BSUIROR
+[submodule "2015/EragonBY"]
+	path = 2015/EragonBY
+	url = https://github.com/EragonBY/Ruby
+[submodule "2015/Neyr129"]
+	path = 2015/Neyr129
+	url = https://github.com/Neyr129/Curses
+[submodule "2015/Wrenched-man/1"]
+	path = 2015/Wrenched-man/1
+	url = https://github.com/Wrenched-man/ascii-player
+[submodule "2015/DenPhaser"]
+	path = 2015/DenPhaser
+	url = https://github.com/DenPhaser/Rubyroid_DrawPointsVeryRandomMuchEpicWow
