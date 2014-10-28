@@ -34,3 +34,30 @@
 [submodule "2015/DenPhaser"]
 	path = 2015/DenPhaser
 	url = https://github.com/DenPhaser/Rubyroid_DrawPointsVeryRandomMuchEpicWow
+[submodule "2015/tkarpesh/2"]
+	path = 2015/tkarpesh/2
+	url = https://github.com/tkarpesh/courses-task2
+[submodule "2015/randsina"]
+	path = 2015/randsina
+	url = git@github.com:randsina/bsuir-courses-ruby.git
+[submodule "2015/eugen0329/2"]
+	path = 2015/eugen0329/2
+	url = https://github.com/eugen0329/rgrep
+[submodule "2015/Socucius/2"]
+	path = 2015/Socucius/2
+	url = https://github.com/Socucius/my_grep
+[submodule "2015/Nazarchuk/2"]
+	path = 2015/Nazarchuk/2
+	url = https://github.com/Nazarchuk/ruby
+[submodule "2015/andreymazuro"]
+	path = 2015/andreymazuro
+	url = https://github.com/andreymazuro/bsuir-ror/
+[submodule "2015/sabjj/2"]
+	path = 2015/sabjj/2
+	url = https://github.com/sabjj/dz2/
+[submodule "2015/Unpowered"]
+	path = 2015/Unpowered
+	url = https://github.com/Unpowered/bsuiror
+[submodule "2015/vadimpetkevich"]
+	path = 2015/vadimpetkevich
+	url = https://github.com/vadimpetkevich/bsuirRoR
