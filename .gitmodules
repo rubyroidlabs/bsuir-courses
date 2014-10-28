@@ -61,3 +61,6 @@
 [submodule "2015/vadimpetkevich"]
 	path = 2015/vadimpetkevich
 	url = https://github.com/vadimpetkevich/bsuirRoR
+[submodule "2015/EugeneArt/2"]
+	path = 2015/EugeneArt/2
+	url = https://github.com/EugeneArt/grep
