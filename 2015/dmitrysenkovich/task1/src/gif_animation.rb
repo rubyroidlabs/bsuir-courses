@@ -1,5 +1,4 @@
 require "fileutils"
-
 require "asciiart"
 
 FRAMES_DIR="frames/"
@@ -25,5 +24,4 @@ def animate_gif(gif_filename)
             puts("\e[H\e[2J")
         end
     end
-    system("clear")
 end
