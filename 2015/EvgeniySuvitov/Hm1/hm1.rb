@@ -19,3 +19,5 @@ def hw
 	end
   source.close
 end
+
+hw
