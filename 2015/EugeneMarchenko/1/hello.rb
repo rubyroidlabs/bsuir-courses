@@ -1,37 +1,41 @@
 #!/usr/bin/env ruby
-require_relative 'quit'
 require "curses"
 include Curses
-require 'terminfo'
 
+picture_name = "picture"
+max_size = 0
 max_length = 0
 
-File.open("picture", "r") do |f|
-  f.each do |i|
-    if i.size >= max_length
-      max_length = i.size
-    else
-      max_length = max_length
-    end
-  end
-end
-
-
-file = File.open("picture");
+file = File.open(picture_name);
 file_array = file.to_a
-terminal_info = TermInfo.screen_size
-lines = terminal_info[0]
-columns = terminal_info[1]
-file_array_temp = Array.new(file_array)
-position = columns - max_length + 1
-
-
-loop do
-  (0..position).each do |i|
-    sleep 0.05
-    file_array_temp = file_array.map{ |item| ' '*(i%(columns-max_length + 1)) + item }
-    puts file_array_temp    
+file_array.each do |i|
+if i.size >= max_length
+    max_length = i.size
+  else
+    max_length = max_length
   end
-
-  break if quit?
+  max_size += 1
 end
+
+init_screen
+nl
+noecho
+curs_set(0)
+
+ypos = lines / 2
+xpos = cols
+
+while true do
+  file_array.each_with_index do |item, index|
+    setpos((ypos + index) - max_size/2, xpos); addstr (item)
+    refresh
+  end
+  clear
+  xpos -= 1
+  sleep 0.05
+  if xpos == 0
+    xpos = cols
+  end
+  
+end
+
