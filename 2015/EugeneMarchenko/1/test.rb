@@ -6,7 +6,7 @@ include Curses
 picture_name = "picture"
 max_size = 0
 max_length = 0
-temp_array = []
+
 s_to_array = []
 
 file = File.open(picture_name);
@@ -20,8 +20,20 @@ if i.size >= max_length
   max_size += 1
 end
 
-file_array.each do |i|
+puts "max length: #{max_length}"
+puts "max size  : #{max_size}"
+file_array.each_with_index do |var, index|
+	temp_array = []
+	var.each_char do |i|
+		temp_array << i
+		while (var.size < max_length)
+			temp_array << " "
+			#puts var.size
+		end
+		puts temp_array
+	end
+	puts temp_array.size
 	
-	
+	# puts temp_array.size
 end
 
