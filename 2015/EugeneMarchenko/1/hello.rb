@@ -2,7 +2,7 @@
 require "curses"
 include Curses
 
-picture_name = "picture"
+picture_name = "picture_test_2"
 max_size = 0
 max_length = 0
 
@@ -25,17 +25,35 @@ curs_set(0)
 ypos = lines / 2
 xpos = cols
 
-while true do
-  file_array.each_with_index do |item, index|
-    setpos((ypos + index) - max_size/2, xpos); addstr (item)
-    refresh
+
+# while true do
+  counter = 0
+  while counter < max_size
+    file_array.each_with_index do |var, index|
+      temp_array = []
+      var.each_char do |i|
+        temp_array << i
+      end
+      setpos(ypos + index, xpos - counter); addstr (temp_array[counter])
+      # puts temp_array[counter]
+      refresh
+    end
+    counter += 1
   end
   clear
-  xpos -= 1
-  sleep 0.05
-  if xpos == 0
-    xpos = cols
-  end
+  sleep 8
+
+
+
+
+  # file_array.each_with_index do |item, index|
+  #   setpos((ypos + index) - max_size/2, xpos); addstr (item)
+  #   refresh
+  # end
+  # clear
+  # xpos -= 1
+  # sleep 0.5
   
-end
+  
+# end
 
