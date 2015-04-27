@@ -31,7 +31,7 @@ class AsciiPicture
   private
 
   def in_bounds?(window, y, x)
-    return (0...window.maxy).include?(y) && (0...window.maxx).include?(x)
+    (0...window.maxy).include?(y) && (0...window.maxx).include?(x)
   end
 end
 
