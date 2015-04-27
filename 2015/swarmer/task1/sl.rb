@@ -15,11 +15,10 @@ class AsciiPicture
   def render(window)
     lines.each.with_index do |line, i|
       line.each_char.with_index do |char, j|
-        next if char == ' '
-
         cy = i + y
         cx = j + x
-        if !(0...window.maxy).include?(cy) || !(0...window.maxx).include?(cx)
+
+        if char == ' ' || !in_bounds?(window, cy, cx)
           next
         end
 
@@ -27,6 +26,12 @@ class AsciiPicture
         window.addstr(char)
       end
     end
+  end
+
+  private
+
+  def in_bounds?(window, y, x)
+    return (0...window.maxy).include?(y) && (0...window.maxx).include?(x)
   end
 end
 
