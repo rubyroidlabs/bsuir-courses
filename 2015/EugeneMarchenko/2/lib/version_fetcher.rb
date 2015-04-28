@@ -4,21 +4,22 @@ require 'json'
 
 class VersionFetcher
 
-	def initialize(name)
+	def initialize(name, *versions)
 		@name = name
-		# @version = version
+		@versions = versions
 	end
 
 	def fetch
-		result = 'curl https://rubygems.org/api/v1/search.json?query=#{@name}'
-		# puts result
+		result = `curl https://rubygems.org/api/v1/search.json?query=#{@name}`
 		json = JSON.parse(result)
-		# puts json.first
 		json.map! { |s| s["version"] }
 		puts json
-		
-
-
+		puts "*"*20
+		json.each do |i|
+			if Gem::Dependency.new('', @versions).match?('', i)
+				puts i
+			end
+		end
 	end
 	
 end
