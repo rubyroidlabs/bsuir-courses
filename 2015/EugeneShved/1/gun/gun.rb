@@ -101,6 +101,6 @@ class Gun
 
 end
 loop do
-gun = Gun.new
-gun.process
+  gun = Gun.new
+  gun.process
 end
