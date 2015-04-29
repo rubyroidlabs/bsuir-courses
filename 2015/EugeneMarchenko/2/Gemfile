@@ -1,3 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'pry'
+gem 'colorize'
+gem 'version_sorter'
+gem 'optparse'
+gem 'json'
+gem 'Dependency'
