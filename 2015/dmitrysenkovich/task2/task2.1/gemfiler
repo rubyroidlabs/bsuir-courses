@@ -1,0 +1,178 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'nokogiri'
+require 'rest-client'
+
+
+OPTIONS = ['<', '>', '<=', '>=', '~>']
+URL_QUERY = 'https://rubygems.org/search?utf8=%E2%9C%93&query='
+EXACT_GEM_NAME_NODE = 'h2.gems__gem__name'
+EXACT_GEM_VERSION_NODE = 'span.gems__gem__version'
+
+
+def validate_name(name, page)
+
+  found_exact_name = page.css(EXACT_GEM_NAME_NODE)[0].text.split()[0]
+  if not (found_exact_name && name == found_exact_name)
+    puts 'Gem with this name was not found'
+    return false
+  end
+
+  return true
+
+end
+
+
+def parse_version(version)
+
+  version_numbers = version.split('.').map{ |x| x.to_i }
+  if version_numbers.include? nil
+    puts 'Invalid version'
+    return nil
+  end
+
+  version_numbers_count = version_numbers.count
+  version_in_number = 0
+  (0...version_numbers_count).each do |i|
+    version_in_number += version_numbers[version_numbers_count - i - 1]*10**i
+  end
+
+  return version_in_number
+
+end
+
+
+def parse_option(option)
+
+  version_in_number = 0
+  option_index = [OPTIONS.index(option[0..1]), OPTIONS.index(option[0])].compact[0]
+  if not option_index
+    puts 'Invalid option. Options can be ' + OPTIONS.to_s + " version"
+    return nil
+  end
+
+
+  option_version = option[1..-1]
+  if option_index > 1
+    option_version = option[2..-1]
+  end
+  option_version_in_number = parse_version(option_version)
+
+  return option_index, option_version_in_number
+
+end
+
+
+def parse_options(options)
+
+  parsed_options = []
+  options.each do |option|
+    parsed_option = parse_option(option)
+    if not parsed_option
+      return nil
+    end
+    parsed_options.push(parsed_option)
+  end
+
+  return parsed_options
+
+end
+
+
+def validate_parsed_version(version_in_number, parsed_options)
+
+  version_fit = true
+  parsed_options.each do |parsed_option|
+    diff = version_in_number - parsed_option[1]
+    case OPTIONS[parsed_option[0]]
+    when '<'
+      if diff >= 0
+        version_fit = false
+        break
+      end
+    when '>'
+      if diff <= 0
+        version_fit = false
+        break
+      end
+    when '>='
+      if diff < 0
+        version_fit = false
+        break
+      end
+    when '<='
+      if diff > 0
+        version_fit = false
+        break
+      end
+    when '~>'
+      if diff < 0 or diff/10 > 1
+        version_fit = false
+        break
+      end
+    end
+  end
+
+  if not version_fit
+    puts "Gem with this options was not found"
+  end
+
+  return version_fit
+
+end
+
+
+def validate_version_with_options(version, options)
+
+  version_in_number = parse_version(version)
+  if not version_in_number
+    return false
+  end
+
+  parsed_options = parse_options(options)
+  if not parsed_options
+    return false
+  end
+
+  version_fit = validate_parsed_version(version_in_number, parsed_options)
+  if not version_fit
+    return false
+  end
+
+  return true
+
+end
+
+
+def main
+
+  if ARGV.count < 1 or ARGV.count > 3
+    puts 'Usage: gem_name [options]'
+    return
+  end
+
+  name = ARGV[0]
+  url = URL_QUERY + name
+  page = Nokogiri::HTML(RestClient.get(url))
+
+  name_fit = validate_name(name, page)
+  if not name_fit
+    return
+  end
+
+  version = page.css(EXACT_GEM_VERSION_NODE)[0].text
+  version_fit = true
+  if ARGV.count > 1
+    version_fit = validate_version_with_options(version, ARGV[1..-1])
+  end
+  if not version_fit
+    return
+  end
+
+  puts "Found gem name: %s, version: %s" % [name, version]
+
+end
+
+
+main
