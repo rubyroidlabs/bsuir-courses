@@ -20,7 +20,7 @@ def validate_name(name, page)
 end
 
 def parse_version(version)
-  version_numbers = version.split('.').map :to_i
+  version_numbers = version.split('.').map { |x| x.to_i }
   if version_numbers.include? nil
     puts 'Invalid version'
     return nil
