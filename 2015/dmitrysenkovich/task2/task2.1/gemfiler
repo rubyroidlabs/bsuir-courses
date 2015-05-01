@@ -2,9 +2,9 @@
 
 require 'colored'
 
-require './Diggers'
-require './Parsers'
-require './Validators'
+require './diggers'
+require './parsers'
+require './validators'
 
 def print_version(versions, fit_version_indicies, other_version_indicies)
   fit_version_indicies.each do |fit_version_index|
@@ -17,7 +17,7 @@ end
 
 def main
   if ARGV.count < 1 || ARGV.count > 3
-    puts 'Usage: gem_name [options]'
+    puts 'Usage: gemfiler gem_name [options]'
     return
   end
 

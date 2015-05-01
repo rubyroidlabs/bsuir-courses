@@ -18,7 +18,8 @@ module Diggers
 
     def self.get_found_exact_name(name)
       search_page = get_search_page(name)
-      found_exact_name = search_page.css(EXACT_GEM_NAME_NODE)[0].text.split[0]
+      exact_name_gem_node = search_page.css(EXACT_GEM_NAME_NODE)[0]
+      found_exact_name = exact_name_gem_node.text.split[0]
       found_exact_name
     end
 
@@ -29,8 +30,11 @@ module Diggers
     end
 
     def self.get_versions(name)
-      gem_page = get_gem_page(name)
-      versions = gem_page.css(VERSION_WRAP_NODE).css(VERSION_ITEM_NODE).map { |x| x.text }
+      gem_url = GEM_URL + name
+      gem_page = Nokogiri::HTML(RestClient.get(gem_url))
+      version_wrap_node = gem_page.css(VERSION_WRAP_NODE)
+      version_item_node = version_wrap_node.css(VERSION_ITEM_NODE)
+      versions = version_item_node.map { |x| x.text }
       versions
     end
   end

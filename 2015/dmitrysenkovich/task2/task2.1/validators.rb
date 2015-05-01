@@ -12,13 +12,6 @@ module Validators
   end
 
   class VersionValidator
-    def self.get_versions(name)
-      gem_url = GEM_URL + name
-      gem_page = Nokogiri::HTML(RestClient.get(gem_url))
-      versions = gem_page.css(VERSION_WRAP_NODE).css(VERSION_ITEM_NODE).map { |x| x.text }
-      versions
-    end
-
     def self.validate_parsed_version(version_in_number, parsed_options)
       version_fit = true
       parsed_options.each do |parsed_option|
