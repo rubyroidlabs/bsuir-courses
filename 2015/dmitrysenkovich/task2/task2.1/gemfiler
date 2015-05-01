@@ -3,11 +3,14 @@
 require 'rubygems'
 require 'nokogiri'
 require 'rest-client'
+require 'colored'
 
 OPTIONS = ['<', '>', '<=', '>=', '~>']
-URL_QUERY = 'https://rubygems.org/search?utf8=%E2%9C%93&query='
+SEARCH_URL = 'https://rubygems.org/search?utf8=%E2%9C%93&query='
+GEM_URL = 'https://rubygems.org/gems/'
 EXACT_GEM_NAME_NODE = 'h2.gems__gem__name'
-EXACT_GEM_VERSION_NODE = 'span.gems__gem__version'
+VERSION_WRAP_NODE = 'li.gem__version-wrap'
+VERSION_ITEM_NODE = 'a.t-list__item'
 
 def validate_name(name, page)
   found_exact_name = page.css(EXACT_GEM_NAME_NODE)[0].text.split[0]
@@ -98,30 +101,27 @@ def validate_parsed_version(version_in_number, parsed_options)
     end
   end
 
-  unless version_fit
-    puts 'Gem with this options was not found'
-  end
-
   return version_fit
 end
 
-def validate_version_with_options(version, options)
-  version_in_number = parse_version(version)
-  unless version_in_number
-    return false
-  end
-
+def validate_versions_with_options(versions, options)
   parsed_options = parse_options(options)
   unless parsed_options
-    return false
+    return nil, nil
   end
 
-  version_fit = validate_parsed_version(version_in_number, parsed_options)
-  unless version_fit
-    return false
+  fit_versions, other_versions = [], []
+  versions.each do |version|
+    version_in_number = parse_version(version)
+    version_fit = validate_parsed_version(version_in_number, parsed_options)
+    if version_fit
+      fit_versions.push(version)
+    else
+      other_versions.push(version)
+    end
   end
 
-  return true
+  return fit_versions, other_versions
 end
 
 def main
@@ -131,24 +131,28 @@ def main
   end
 
   name = ARGV[0]
-  url = URL_QUERY + name
-  page = Nokogiri::HTML(RestClient.get(url))
+  search_url = SEARCH_URL + name
+  search_page = Nokogiri::HTML(RestClient.get(search_url))
 
-  name_fit = validate_name(name, page)
+  name_fit = validate_name(name, search_page)
   unless name_fit
     return
   end
 
-  version = page.css(EXACT_GEM_VERSION_NODE)[0].text
-  version_fit = true
+  gem_url = GEM_URL + name
+  gem_page = Nokogiri::HTML(RestClient.get(gem_url))
+  versions = gem_page.css(VERSION_WRAP_NODE).css(VERSION_ITEM_NODE).map { |x| x.text }
+  fit_versions = versions, other_versions = []
   if ARGV.count > 1
-    version_fit = validate_version_with_options(version, ARGV[1..-1])
-  end
-  unless version_fit
-    return
+    fit_versions, other_versions = validate_versions_with_options(versions, ARGV[1..-1])
   end
 
-  puts format('Found gem name: %s, version: %s', name, version)
+  fit_versions.each do |fit_version|
+    puts fit_version.red
+  end
+  other_versions.each do |other_version|
+    puts other_version
+  end
 end
 
 main
