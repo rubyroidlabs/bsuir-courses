@@ -1,127 +1,18 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'nokogiri'
-require 'rest-client'
 require 'colored'
 
-OPTIONS = ['<', '>', '<=', '>=', '~>']
-SEARCH_URL = 'https://rubygems.org/search?utf8=%E2%9C%93&query='
-GEM_URL = 'https://rubygems.org/gems/'
-EXACT_GEM_NAME_NODE = 'h2.gems__gem__name'
-VERSION_WRAP_NODE = 'li.gem__version-wrap'
-VERSION_ITEM_NODE = 'a.t-list__item'
+require './Diggers'
+require './Parsers'
+require './Validators'
 
-def validate_name(name, page)
-  found_exact_name = page.css(EXACT_GEM_NAME_NODE)[0].text.split[0]
-  unless found_exact_name && name == found_exact_name
-    puts 'Gem with this name was not found'
-    return false
+def print_version(versions, fit_version_indicies, other_version_indicies)
+  fit_version_indicies.each do |fit_version_index|
+    puts versions[fit_version_index].red
   end
-
-  return true
-end
-
-def parse_version(version)
-  version_numbers = version.split('.').map { |x| x.to_i }
-  if version_numbers.include? nil
-    puts 'Invalid version'
-    return nil
+  other_version_indicies.each do |other_version_index|
+    puts versions[other_version_index]
   end
-
-  version_numbers_count = version_numbers.count
-  version_in_number = 0
-  (0...version_numbers_count).each do |i|
-    version_in_number += version_numbers[version_numbers_count - i - 1] * 10**i
-  end
-
-  return version_in_number
-end
-
-def parse_option(option)
-  version_in_number = 0
-  option_index = [OPTIONS.index(option[0..1]), OPTIONS.index(option[0])].compact[0]
-  unless option_index
-    puts 'Invalid option. Options can be ' + OPTIONS.to_s + ' version'
-    return nil
-  end
-
-  option_version = option[1..-1]
-  if option_index > 1
-    option_version = option[2..-1]
-  end
-  option_version_in_number = parse_version(option_version)
-
-  return option_index, option_version_in_number
-end
-
-def parse_options(options)
-  parsed_options = []
-  options.each do |option|
-    parsed_option = parse_option(option)
-    unless parsed_option
-      return nil
-    end
-    parsed_options.push(parsed_option)
-  end
-
-  return parsed_options
-end
-
-def validate_parsed_version(version_in_number, parsed_options)
-  version_fit = true
-  parsed_options.each do |parsed_option|
-    diff = version_in_number - parsed_option[1]
-    case OPTIONS[parsed_option[0]]
-    when '<'
-      if diff >= 0
-        version_fit = false
-        break
-      end
-    when '>'
-      if diff <= 0
-        version_fit = false
-        break
-      end
-    when '>='
-      if diff < 0
-        version_fit = false
-        break
-      end
-    when '<='
-      if diff > 0
-        version_fit = false
-        break
-      end
-    when '~>'
-      if diff < 0 || diff / 10 > 1
-        version_fit = false
-        break
-      end
-    end
-  end
-
-  return version_fit
-end
-
-def validate_versions_with_options(versions, options)
-  parsed_options = parse_options(options)
-  unless parsed_options
-    return nil, nil
-  end
-
-  fit_versions, other_versions = [], []
-  versions.each do |version|
-    version_in_number = parse_version(version)
-    version_fit = validate_parsed_version(version_in_number, parsed_options)
-    if version_fit
-      fit_versions.push(version)
-    else
-      other_versions.push(version)
-    end
-  end
-
-  return fit_versions, other_versions
 end
 
 def main
@@ -131,28 +22,25 @@ def main
   end
 
   name = ARGV[0]
-  search_url = SEARCH_URL + name
-  search_page = Nokogiri::HTML(RestClient.get(search_url))
-
-  name_fit = validate_name(name, search_page)
-  unless name_fit
+  found_exact_name = Diggers::AwesomeDigger.get_found_exact_name(name)
+  name_valid = Validators::NameValidator.validate_name(name, found_exact_name)
+  unless name_valid
     return
   end
 
-  gem_url = GEM_URL + name
-  gem_page = Nokogiri::HTML(RestClient.get(gem_url))
-  versions = gem_page.css(VERSION_WRAP_NODE).css(VERSION_ITEM_NODE).map { |x| x.text }
-  fit_versions = versions, other_versions = []
+  versions = Diggers::AwesomeDigger.get_versions(name)
+  fit_version_indicies = versions, other_version_indicies = []
   if ARGV.count > 1
-    fit_versions, other_versions = validate_versions_with_options(versions, ARGV[1..-1])
+    options = ARGV[1..-1]
+    parsed_options = Parsers::OptionParser.parse_options(options)
+    unless parsed_options
+      return
+    end
+    versions_in_numbers = Parsers::VersionParser.parse_versions(versions)
+    fit_version_indicies, other_version_indicies = Validators::VersionValidator.validate_versions(versions_in_numbers, parsed_options)
   end
 
-  fit_versions.each do |fit_version|
-    puts fit_version.red
-  end
-  other_versions.each do |other_version|
-    puts other_version
-  end
+  print_version(versions, fit_version_indicies, other_version_indicies)
 end
 
 main
