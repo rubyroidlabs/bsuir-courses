@@ -1,5 +1,23 @@
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/parameter_parser'
+require_relative '../lib/search_in_file'
 
-options = ParameterParser.parse ARGV
+ParameterParser.parse %w(--help) if ARGV.size < 1
+
+options = ParameterParser.parse(ARGV)
+# fail ArgumentError if ARGV.size > 2
+pattern = ARGV.first
+ARGV.shift
+# p pattern
+file_name = ARGV
+# p options
+# p ARGV
+# p Dir.entries('.').select { |f| !File.directory? f }
+SearchInFile.new(pattern, file_name).simple_search
+
+# p file_name
+
+
+
+
