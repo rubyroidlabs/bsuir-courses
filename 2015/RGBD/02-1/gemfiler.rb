@@ -77,8 +77,8 @@ module GemFiler
 
   def get_filter(operator, target)
     case operator
-    when "!=" then proc { |vs| vs.find_all { |v| v != target } }
-    when "", "=" then proc { |vs| vs.find_all { |v| v == target } }
+    when "!=" then proc { |vs| vs.select { |v| v != target } }
+    when "", "=" then proc { |vs| vs.select { |v| v == target } }
     when "<" then proc { |vs| vs.take_while { |v| (v <=> target) < 0 } }
     when ">=" then proc { |vs| vs.drop_while { |v| (v <=> target) < 0 } }
     when ">" then proc { |vs| vs.drop_while { |v| (v <=> target) <= 0 } }
