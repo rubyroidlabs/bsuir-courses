@@ -12,6 +12,7 @@ class Scroller
   BAND_WIDTH = 16
   COLORS = [:red, :yellow, :green, :cyan, :blue, :magenta]
   WIDTH_GAP = 0 # set to positive to allow smooth window contraction
+  SLEEP_DELAY = 0.04
 
   def initialize(text)
     @lines = Artii::Base.new(font: "roman").asciify(text + "   ").split("\n")
@@ -27,7 +28,7 @@ class Scroller
       old_width = width
       @lines.each { |l| puts decorate(l.rotate!.cycle.take(width - WIDTH_GAP)) }
       puts @screen_width
-      sleep 0.05
+      sleep SLEEP_DELAY
     end
   end
 

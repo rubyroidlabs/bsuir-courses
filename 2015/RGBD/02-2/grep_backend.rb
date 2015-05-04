@@ -101,7 +101,7 @@ class GrepBackend
     last_print = -1
     chunk_prev = [nil, 0] * @context # never accessed
     lines.each_with_index.each_slice(@context) do |chunk|
-      index_from_end = chunk.reverse_each.find_index { |l, i| @pattern.call(l) }
+      index_from_end = chunk.reverse_each.find_index { |l, _| @pattern.call(l) }
       last_found = @context - 1 - index_from_end if index_from_end
       first_print = [last_print + 1, last_found - @context].max
       last_print = [last_found + @context, @context - 1].min
