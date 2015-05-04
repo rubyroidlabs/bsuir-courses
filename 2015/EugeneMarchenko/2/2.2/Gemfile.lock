@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    OptionParser (0.5.1)
     coderay (1.1.0)
     method_source (0.8.2)
     pry (0.10.1)
@@ -13,4 +14,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  OptionParser (~> 0.5.1)
   pry

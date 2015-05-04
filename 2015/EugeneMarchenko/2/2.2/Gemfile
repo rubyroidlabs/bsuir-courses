@@ -1,3 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "pry"
+gem 'pry'
+gem 'OptionParser', '~> 0.5.1'

@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require 'pry'
+require_relative '../lib/parameter_parser'
+
+options = ParameterParser.parse ARGV
