@@ -2,6 +2,7 @@
 require 'pry'
 require_relative '../lib/parameter_parser'
 require_relative '../lib/search_in_file'
+require_relative '../lib/list_directory'
 
 ParameterParser.parse %w(--help) if ARGV.size < 1
 
@@ -9,13 +10,13 @@ options = ParameterParser.parse(ARGV)
 # fail ArgumentError if ARGV.size > 2
 pattern = ARGV.first
 ARGV.shift
-# p pattern
+p pattern
 file_name = ARGV
-# p options
-# p ARGV
+p options
+p ARGV
 # p Dir.entries('.').select { |f| !File.directory? f }
-SearchInFile.new(pattern, file_name).simple_search
-
+#SearchInFile.new(pattern, file_name).simple_search
+p ListDirectory.new.list(file_name)
 # p file_name
 
 
