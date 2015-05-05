@@ -67,3 +67,6 @@
 [submodule "2015/KaterinaSavchuk/ascii_animation"]
 	path = 2015/KaterinaSavchuk/ascii_animation
 	url = git@github.com:KaterinaSav/ascii_animation.git
+[submodule "2015/KaterinaSavchuk/gemfiler"]
+	path = 2015/KaterinaSavchuk/gemfiler
+	url = git@github.com:KaterinaSav/gemfiler.git
