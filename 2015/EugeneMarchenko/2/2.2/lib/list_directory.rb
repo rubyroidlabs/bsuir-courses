@@ -1,18 +1,20 @@
 class ListDirectory
   def list(pattern)
     result =[]
-    if pattern == ['.'] or pattern == ['*']
+    if pattern.size == 1
+      puts "Pattern size: 1"
       pattern = pattern.join
-      # p pattern
-      Dir.entries(pattern).select { |f| !File.directory? f }.each do |item|
+      Dir.entries(pattern).each do |item|
         # p item
-        next if item == '.' or item == '..'
-        result << item
+        next if item == '.' or item == '..' or File.directory?(item)
+        p item
+        result << File.realpath(item)
       end
     else
-      Dir.foreach(pattern) do |file|
-        p file
-        # result << file
+      puts "Pattern size: >1"
+      pattern.each do |item|
+        next if item == '.' or item == '..' or File.directory?(item)
+        result << File.realpath(item)
       end
     end
     result

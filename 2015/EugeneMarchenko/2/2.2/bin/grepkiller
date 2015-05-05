@@ -7,17 +7,19 @@ require_relative '../lib/list_directory'
 ParameterParser.parse %w(--help) if ARGV.size < 1
 
 options = ParameterParser.parse(ARGV)
-# fail ArgumentError if ARGV.size > 2
+# fail ArgumentError if ARGV.size != 2
 pattern = ARGV.first
 ARGV.shift
-p pattern
 file_name = ARGV
-p options
-p ARGV
-# p Dir.entries('.').select { |f| !File.directory? f }
-#SearchInFile.new(pattern, file_name).simple_search
-p ListDirectory.new.list(file_name)
+# p options
+# p ARGV
 # p file_name
+# p Dir.glob('../bin')
+# SearchInFile.new(pattern, ListDirectory.new.list(file_name)).simple_search
+# p ListDirectory.new.list(file_name)
+Dir.foreach('../.') do |file|
+  p Pathname.new.relative_path_from(file)
+end
 
 
 
