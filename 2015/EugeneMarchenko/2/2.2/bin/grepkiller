@@ -11,16 +11,51 @@ options = ParameterParser.parse(ARGV)
 pattern = ARGV.first
 ARGV.shift
 file_name = ARGV
-# p options
+p options
 # p ARGV
 # p file_name
-# p Dir.glob('../bin')
-# SearchInFile.new(pattern, ListDirectory.new.list(file_name)).simple_search
+
 # p ListDirectory.new.list(file_name)
-Dir.foreach('../.') do |file|
-  p Pathname.new.relative_path_from(file)
+list_of_files = ListDirectory.new.list(file_name)
+SearchInFile.new(pattern, list_of_files).simple_search
+
+# if options.around
+#   SearchInFile.new(pattern, list_of_files).search_around(options.around)
+# end
+
+search_string = 'a'
+filename = ['test1.txt']
+file_name.each do |item|
+  # p item
+  line_counter = 0
+  pattern_line = 5
+  # puts "File: #{filename}"
+  File.open(item) do |f|
+    # lines = f.each_line
+    # puts lines
+    f.each do |line|
+      # puts line + line_index
+      line_counter += 1
+      if line.match search_string
+        current_line = f.lineno - 1
+        counter = 0
+        while current_line - pattern_line < current_line
+          p 'inside'
+          counter2 = 0
+          f.each do |line2|
+            p line2
+            puts line2 if counter2 == current_line - pattern_line
+            counter2 += 1
+          end
+          pattern_line -= 1
+        end
+        puts "line #{line}"
+        puts "Line after matched pattern: #{f.lineno}, #{f.gets}"
+
+
+      end
+    end
+  end
 end
-
-
 
 
