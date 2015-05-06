@@ -42,6 +42,5 @@ class Interface
   end
 end
 
-
 i = Interface.new
 i.process
