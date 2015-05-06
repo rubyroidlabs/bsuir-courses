@@ -11,11 +11,12 @@ require_relative '../lib/visualizer'
 # Result: call Visualizer class to print output
 class GemVersionFilter
   def filter(array, versions)
+    v = Visualizer.new
     VersionSorter.sort(array).each do |i|
       if Gem::Dependency.new('', versions).match?('', i)
-        Visualizer.new.visualize(i, :green)
+        v.visualize(i, :green)
       else
-        Visualizer.new.visualize(i, :red)
+        v.visualize(i, :red)
       end
     end
   end
