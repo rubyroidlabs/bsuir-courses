@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require 'optparse'
 require 'ostruct'
-require 'pp'
 
 # Author::    Eugene Marchenko  (mailto:3.marchenko@gmail.com)
 # Copyright:: Copyright (c) 2015 Standalone Programmer
@@ -19,18 +18,18 @@ class ParameterParser
       opts.separator ''
 
       # Cast 'around' argument to a Integer.
-      opts.on('-A NUMBER', '--around=NUMBER', Integer, 'Search around PATTERN') do |around|
-        options.around = around
-      end
+      # opts.on('-A NUMBER', '--around=NUMBER', Integer, 'Search around PATTERN') do |around|
+      #   options.around = around
+      # end
 
       opts.on('-e PATTERN', '--regexp=PATTERN', 'use PATTERN for matching') do |regexp|
         options.regexp = regexp
       end
 
       # Boolean switch.
-      opts.on('-z', '--zipped', 'Unzip before search PATTERN') do |z|
-        options.zip = z
-      end
+      # opts.on('-z', '--zipped', 'Unzip before search PATTERN') do |z|
+      #   options.zip = z
+      # end
 
       opts.on('-R', '--recursive', 'Recursive search PATTERN in all files in specific directory') do |r|
         options.recursive = r

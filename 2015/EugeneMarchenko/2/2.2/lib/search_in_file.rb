@@ -8,32 +8,19 @@ class SearchInFile
   end
 
   def simple_search
+    # p @pattern
+    # p true
+    counter = 0
     @file_names.each do |item|
       @v.visualize_file_name(item)
       File.open(item) do |f|
         f.each do |line|
-          @v.visualize_result(line) if line.match @pattern
-        end
-      end
-    end
-  end
-
-  def search_around(around_number)
-    @file_names.each do |item|
-      line_counter = 0
-      pattern_line = around_number
-      @v.visualize_file_name(item)
-      File.open(item) do |f|
-        f.each do |line|
-          line_counter += 1
-          if line.match @pattern
-            while pattern_line > 0
-              puts line[line_counter - pattern_line]
-              pattern_line += 1
-            end
+          if line.match(@pattern)
             @v.visualize_result(line)
+            counter += 1
           end
         end
+        @v.visualize_nothing_found if counter == 0
       end
     end
   end

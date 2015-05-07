@@ -1,7 +1,7 @@
 class ListDirectory
-  def list(pattern)
+  def list(list_of_files)
     result =[]
-    pattern.each do |i|
+    list_of_files.each do |i|
       if !File.directory?(i)
         result << Pathname.new(i).realpath.to_s
       elsif i == '.'
