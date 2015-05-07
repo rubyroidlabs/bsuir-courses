@@ -9,31 +9,39 @@ require 'ostruct'
 # This class holds the parse method takes one arguments
 # Result: parsing available arguments for program to run
 class ParameterParser
-
   def self.parse(args)
     options = OpenStruct.new
-    options.library = []
+
     opt_parser = OptionParser.new do |opts|
-      opts.banner = 'Usage: grepkiller [options]'
+      opts.banner = 'Usage: grepkiller.rb [options] PATTERN FILE_NAME'
 
-      opts.on('-n GEM_NAME', '--name=GEM_NAME', 'Gem name to find') do |n|
-        options.name = n
+      opts.separator ''
+
+      # Cast 'around' argument to a Integer.
+      # opts.on('-A NUMBER', '--around=NUMBER', Integer, 'Search around PATTERN') do |around|
+      #   options.around = around
+      # end
+
+      opts.on('-e PATTERN', '--regexp=PATTERN', 'use PATTERN for matching') do |regexp|
+        options.regexp = regexp
       end
 
-      opts.on('-v VERSION1,VERSION2', '--version=VERSION1,VERSION2',
-              Array, 'Versions to find') do |list|
-        options.list = list
-        fail ArgumentError if list.size > 2
+      # Boolean switch.
+      # opts.on('-z', '--zipped', 'Unzip before search PATTERN') do |z|
+      #   options.zip = z
+      # end
+
+      opts.on('-R', '--recursive', 'Recursive search PATTERN in all files in specific directory') do |r|
+        options.recursive = r
       end
 
-      opts.on('-h', '--help', 'Prints this help') do
+      opts.on_tail('-h', '--help', 'Show this message') do
         puts opts
         exit
       end
     end
+
     opt_parser.parse!(args)
-    p options
-    p ARGV
     options
   end
 end
