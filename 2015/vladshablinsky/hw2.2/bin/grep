@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+require "optparse"
+require "zlib"
+require_relative "../lib/grepkiller"
+
+# PARSE OPTIONS
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: grep [options] PATTERN [FILE...]"
+
+  opts.on("-A num", Integer, "Print num lines of leading and trailing context \
+    surrounding each match.") do |n|
+    options[:a] = n
+  end
+
+  opts.on("-e", "Specify a pattern used during the search of the \
+    input: an input line is selected if it matches any of the specified \
+    patterns.") do
+    options[:regexp] = true
+  end
+
+  opts.on("-R", "Recursively search subdirectories") do
+    options[:recursively] = true
+  end
+
+  opts.on("-z", "Decompress file") do
+    options[:decompress] = true
+  end
+
+  opts.on("-h", "--help", "Prints this help") do
+    puts opts
+    exit
+  end
+end.parse!
+
+if ARGV.size < 2
+  puts "Check the input!"
+  exit
+end
+
+begin
+  finder = GrepKiller.new options, ARGV[0], ARGV[1..-1]
+  finder.make_grep
+rescue Exception => e
+  puts "An error occured!\n"
+  puts e.message
+end
