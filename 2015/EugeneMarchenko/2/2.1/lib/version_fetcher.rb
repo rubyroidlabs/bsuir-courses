@@ -1,30 +1,5 @@
 #!/usr/bin/env ruby
 require_relative '../lib/parameter_parser'
-<<<<<<< HEAD
-require 'json'
-
-class VersionFetcher
-
-	def initialize(name, *versions)
-		@name = name
-		@versions = versions
-	end
-
-	def fetch
-		result = `curl https://rubygems.org/api/v1/search.json?query=#{@name}`
-		json = JSON.parse(result)
-		json.map! { |s| s["version"] }
-		puts json
-		puts "*"*20
-		json.each do |i|
-			if Gem::Dependency.new('', @versions).match?('', i)
-				puts i
-			end
-		end
-	end
-	
-end
-=======
 require_relative '../lib/gem_version_filter'
 require 'json'
 
@@ -53,4 +28,3 @@ class VersionFetcher
     GemVersionFilter.new.filter(json, @versions)
   end
 end
->>>>>>> 14a84c876475a9609099f3daa249a8c74bd9dfb4

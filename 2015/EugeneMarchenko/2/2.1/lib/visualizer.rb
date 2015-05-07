@@ -1,12 +1,4 @@
 #!/usr/bin/env ruby
-<<<<<<< HEAD
-
-class Visualizer
-	
-
-end
-
-=======
 require 'colorize'
 
 # Author::    Eugene Marchenko  (mailto:3.marchenko@gmail.com)
@@ -21,4 +13,3 @@ class Visualizer
     puts "#{element}".colorize(color)
   end
 end
->>>>>>> 14a84c876475a9609099f3daa249a8c74bd9dfb4

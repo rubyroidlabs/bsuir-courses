@@ -1,10 +1,4 @@
 #!/usr/bin/env ruby
-<<<<<<< HEAD
-
-class GemVersionFilter
-	
-end
-=======
 require 'colorize'
 require 'version_sorter'
 require_relative '../lib/visualizer'
@@ -27,4 +21,3 @@ class GemVersionFilter
     end
   end
 end
->>>>>>> 14a84c876475a9609099f3daa249a8c74bd9dfb4
