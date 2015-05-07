@@ -3,6 +3,7 @@ require 'pry'
 require_relative '../lib/version_fetcher'
 require_relative '../lib/parameter_parser'
 
+<<<<<<< HEAD
 if ARGV.size < 1
   ParameterParser.parse %w[--help]
 end
@@ -12,3 +13,9 @@ VersionFetcher.new(options.name, options.list).fetch
 
 # p options.name
 # p options.list
+=======
+ParameterParser.parse %w(--help) if ARGV.size < 1
+
+options = ParameterParser.parse ARGV
+VersionFetcher.new(options.name, options.list).fetch
+>>>>>>> 14a84c876475a9609099f3daa249a8c74bd9dfb4
