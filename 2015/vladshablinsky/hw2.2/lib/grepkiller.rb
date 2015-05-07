@@ -1,5 +1,4 @@
 class GrepKiller
-
   def initialize(options, pattern, files)
     @options = options
     @pattern = pattern
@@ -20,7 +19,7 @@ class GrepKiller
 
   def match?(line)
     return @reg.match(line) if @reg
-    return line.include? @pattern
+    line.include? @pattern
   end
 
   # Print line. According to the flag that is true if the line contains match
@@ -54,38 +53,43 @@ class GrepKiller
     end
 
     return unless file
-    file.each do |line|
-      # Keep leading size equal to @a + 1
-      leading << line
-      leading.shift if leading.size > @a + 1
 
-      # If the line matches then output leading lines with the line that
-      # mathces. If it doesn't then count lines untill the "-A"-option
-      # condition is reached.
-      if match?(line)
-        #p line
-        if no_match < 0
-          # Separate results with "==" if more than one are found.
-          puts "==" if @found_anything
-          @found_anything = true
-          leading.each_with_index do |l, i|
-            print_match l, filename, i + 1 == leading.size
+    begin
+      file.each do |line|
+        # Keep leading size equal to @a + 1
+        leading << line
+        leading.shift if leading.size > @a + 1
+
+        # If the line matches then output leading lines with the line that
+        # mathces. If it doesn't then count lines untill the "-A"-option
+        # condition is reached.
+        if match?(line)
+          if no_match < 0
+            # Separate results with "==" if more than one are found.
+            puts "==" if @found_anything
+            @found_anything = true
+            leading.each_with_index do |l, i|
+              print_match l, filename, i + 1 == leading.size
+            end
+            no_match = 0
+          elsif no_match == 0
+            print_match line, filename, true
           end
-          no_match = 0
-        elsif no_match == 0
-          print_match line, filename, true
-        end
-      else
-        no_match += 1
-        if no_match <= @a && no_match > 0
-          print_match line, filename, false
-          no_match = -1 if no_match == @a
         else
-          no_match = -1
+          no_match += 1
+          if no_match <= @a && no_match > 0
+            print_match line, filename, false
+            no_match = -1 if no_match == @a
+          else
+            no_match = -1
+          end
         end
       end
+    rescue StandardError => e
+      raise e
+    ensure
+      file.close
     end
-    file.close
   end
 
   def make_grep
