@@ -5,6 +5,10 @@ class MyGrep
 
   def initialize
     parse_options
+    if @options[:A]
+      @count = ARGV.shift
+    end
+
     @pattern = ARGV.shift
   end
 
@@ -45,12 +49,16 @@ class MyGrep
 
       if reg || not_reg
         if @options[:A]
-          if index > 0
-            puts string_array[index-1]
+          (1..@count.to_i).each do |i|
+            if index-i >= 0
+              puts string_array[index-i]
+            end
           end
           puts string
-          if index < string_array.size - 1
-            puts string_array[index+1]
+          (1..@count.to_i).each do |i|
+            if index+i <= string_array.size - 1
+              puts string_array[index+i]
+            end
           end
         else
           puts string
@@ -66,12 +74,8 @@ class MyGrep
         parse_array(File.open(name).to_a)
       end
     elsif @options[:z]
-      if @options[:A]
-
-      else
-        Zlib::GzipReader.open(ARGV.shift) do |gz|
-          parse_array(gz.read.split("\n"))
-        end
+      Zlib::GzipReader.open(ARGV.shift) do |gz|
+        parse_array(gz.read.split("\n"))
       end
     else
       ARGV.each do |name|
