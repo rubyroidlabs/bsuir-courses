@@ -1,30 +1,30 @@
-require 'colorize'
 class Life
-  def initialize(size)
-    @matrix_size = size
-    @matrix = Array.new(size) do |e|
-      e = Array.new(size).map! do |t|
-        e = rand < 0.5 ? 0 : 1
+  attr_reader :matrix_w, :matrix_h
+  def initialize(height = 10, weight = height)
+    @matrix_h = height
+    @matrix_w = weight
+    @matrix = Array.new(height) do |e|
+      e = Array.new(weight).map! do |t|
+        t = rand < 0.5 ? 0 : 1
       end
     end
   end
 
-  def create_clear_matrix(size)
-    m = Array.new(size).map do |e|
-      e = Array.new(size)
-      e.map! do |t|
+  def create_clear_matrix(height, weight)
+    matrix = Array.new(height) do |e|
+      e = Array.new(weight).map! do |t|
         t = 0
       end
     end
-    m
+    matrix
   end
 
   def print_matrix
     system 'clear'
-    0.upto(@matrix_size - 1) do |i|
-      0.upto(@matrix_size - 1) do |j|
-        print "*  ".cyan if @matrix[i][j] == 1
-        print ".  ".cyan if @matrix[i][j] == 0
+    0.upto(@matrix_h - 1) do |i|
+      0.upto(@matrix_w - 1) do |j|
+        print "*  " if @matrix[i][j] == 1
+        print ".  " if @matrix[i][j] == 0
         #print "#{@matrix[i][j]}  "
       end
       puts ""
@@ -41,9 +41,9 @@ class Life
   end
 
   def do_iteration
-    temp_matrix = create_clear_matrix(@matrix_size)
-    0.upto(@matrix_size - 1) do |i|
-      0.upto(@matrix_size - 1) do |j|
+    temp_matrix = create_clear_matrix(@matrix_h, @matrix_w)
+    0.upto(@matrix_h - 1) do |i|
+      0.upto(@matrix_w - 1) do |j|
         new_elem(i, j, temp_matrix)
       end
     end
@@ -68,7 +68,7 @@ class Life
 
   def get_count_of_alive(i,j)
     count = 0
-    if i != @matrix_size - 1 && j != @matrix_size - 1
+    if i != @matrix_h - 1 && j != @matrix_w - 1
       if get_elem(i - 1, j - 1) == 1
         count += 1
       end
@@ -93,7 +93,7 @@ class Life
       if get_elem(i + 1, j) == 1
         count += 1
       end
-    elsif (j == @matrix_size - 1 && i != @matrix_size - 1) || i != @matrix_size - 1
+    elsif (j == @matrix_w - 1 && i != @matrix_h - 1) || i != @matrix_h - 1
       if get_elem(i, j - 1) == 1
         count += 1
       end
@@ -118,7 +118,7 @@ class Life
       if get_elem(i - 1, j - 1) == 1
         count += 1
       end
-    elsif (j == @matrix_size - 1 && i != @matrix_size - 1) || j != @matrix_size - 1
+    elsif (j == @matrix_w - 1 && i != @matrix_h - 1) || j != @matrix_w - 1
       if get_elem(i, j - 1) == 1
         count += 1
       end
