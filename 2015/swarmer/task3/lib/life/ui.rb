@@ -3,18 +3,21 @@ module Life
     DELAY = 0.05
 
     def self.execute
-      ui = new(load_board("glider.txt"))
+      ui = new(load_board("life/glider.txt"))
 
       loop do
         ui.render()
         sleep(DELAY)
         ui.update()
       end
-    rescue Interrupt
+    rescue Interrupt, IRB::Abort
       return
+    ensure
+      ui.close()
     end
 
-    def self.load_board(path)
+    def self.load_board(relative_path)
+      path = File.join(LIB_PATH, relative_path)
       Life::Board.from_text(File.read(path))
     end
 
@@ -39,6 +42,10 @@ module Life
 
     def update
       @board.tick()
+    end
+
+    def close
+      Curses::close_screen()
     end
   end
 end

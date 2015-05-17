@@ -2,5 +2,14 @@
 Game of Life and RSpec
 
 ## Usage
-    $ bundle install
-    $ bin/life
+    $ gem install swarmer_life
+
+In ruby:
+
+    require "life"
+    Life::UI.execute()
+
+
+
+## Why is there some much shit here?
+Powered by `bundle gem`
