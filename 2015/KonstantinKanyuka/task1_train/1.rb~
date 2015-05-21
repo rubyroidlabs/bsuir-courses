@@ -1,6 +1,0 @@
-require 'rake'
-
-def wid
-	Rake.application.terminal_width
-end
-puts wid
