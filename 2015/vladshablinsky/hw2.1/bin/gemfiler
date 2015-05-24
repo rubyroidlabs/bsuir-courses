@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+require 'pry'
+require 'optparse'
+require 'colorize'
+Dir['../lib/*.rb'].each { |f| require_relative(f) }
+
+
+# PARSE OPTIONS
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: gemfiler [GEM] [options] \"~>1.0.2\""
+
+  opts.on("-h", "--help", "Prints this help") do
+    puts opts
+    exit
+  end
+
+  opts.on("--matched-only", "Prints only mathed gems") do
+    options[:matched_only] = true
+  end
+end.parse!
+
+name, *specs = ARGV
+
+if ARGV.size < 2 || name.include?(' ')
+  puts "Invalid arguments"
+  exit
+end
+
+specs.each do |spec|
+  unless spec =~ /^(>|<|>=|<=|~>|=)[ ]([0-9]+|[0-9.]+[0-9])$/
+    puts "Invalid version format"
+    exit
+  end
+end
+
+# FETCH VERSIONS
+begin
+  versions = VersionFetcher.new(name).fetch
+rescue Exception => e
+  puts e.message
+  exit
+end
+
+# FILTER VERSIONS
+result = []
+versions.each do |version|
+  result << version if VersionFilter.matches? version, specs
+end
+
+# PRINT
+ Visualizer.print versions, result, options[:matched_only]
