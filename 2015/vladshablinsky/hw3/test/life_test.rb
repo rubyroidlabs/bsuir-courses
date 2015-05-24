@@ -1,7 +1,7 @@
 require 'test/unit'
-require '../lib/life'
+require '../lib/golife'
 
-describe Life, "cells and table" do
+describe GOLife, "cells and table" do
 
   def calc(life)
     ans = 0
@@ -15,7 +15,7 @@ describe Life, "cells and table" do
   end
 
   before(:each) do
-    @life = Life.new(20, 20)
+    @life = GOLife.new(20, 20)
     @life.generate
     @life.recalc
   end
