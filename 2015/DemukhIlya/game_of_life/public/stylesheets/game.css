@@ -1,0 +1,14 @@
+div {
+	display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+}
+      
+.alive {
+	background-color: #44a40c
+}
+
+.dead {
+	background-color: #ac0b2c
+}
