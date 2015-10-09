@@ -1,0 +1,12 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    thor (0.19.1)
+    zipruby (0.3.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  thor (~> 0.19.1)
+  zipruby (~> 0.3.6)
