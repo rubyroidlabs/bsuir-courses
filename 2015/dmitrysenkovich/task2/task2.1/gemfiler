@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require 'colored'
+
+require './diggers'
+require './parsers'
+require './validators'
+
+def print_version(versions, fit_version_indicies, other_version_indicies)
+  fit_version_indicies.each do |fit_version_index|
+    puts versions[fit_version_index].red
+  end
+  other_version_indicies.each do |other_version_index|
+    puts versions[other_version_index]
+  end
+end
+
+def main
+  if ARGV.count < 1 || ARGV.count > 3
+    puts 'Usage: gemfiler gem_name [options]'
+    return
+  end
+
+  name = ARGV[0]
+  found_exact_name = Diggers::AwesomeDigger.get_found_exact_name(name)
+  name_valid = Validators::NameValidator.validate_name(name, found_exact_name)
+  unless name_valid
+    return
+  end
+
+  versions = Diggers::AwesomeDigger.get_versions(name)
+  fit_version_indicies = versions, other_version_indicies = []
+  if ARGV.count > 1
+    options = ARGV[1..-1]
+    parsed_options = Parsers::OptionParser.parse_options(options)
+    unless parsed_options
+      return
+    end
+    versions_in_numbers = Parsers::VersionParser.parse_versions(versions)
+    fit_version_indicies, other_version_indicies = Validators::VersionValidator.validate_versions(versions_in_numbers, parsed_options)
+  end
+
+  print_version(versions, fit_version_indicies, other_version_indicies)
+end
+
+main
