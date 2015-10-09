@@ -1,4 +1,5 @@
-#BOBKOV ANDREY 9.10.2015
+#Bobkov Andrey 
+#9.10.2015
 
 def n_spase(n)
   n.times { print " " }
