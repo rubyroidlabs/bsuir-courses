@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+      <title>
+        Life!
+      </title>
+
+      <style>
+
+          input {
+              font-size: 20px;
+              margin: 40px 25px;
+              width: 200px;
+              display: block;
+              border: none;
+              padding: 10px 0;
+              border-bottom: solid 1px #1abc9c;
+              -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+              transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+              background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #1abc9c 4%);
+              background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #1abc9c 4%);
+              background-position: -200px 0;
+              background-size: 200px 100%;
+              background-repeat: no-repeat;
+              color: #0e6252;
+          }
+
+          input:focus, input:valid {
+              box-shadow: none;
+              outline: none;
+              background-position: 0 0;
+          }
+
+          form{
+              display: inline-block;
+              text-align: center;
+          }
+
+          body {
+              text-align: center;
+              background-color: #f9f9f9;
+              font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          }
+
+
+      </style>
+
+      <script type="text/javascript">
+          function validate(){
+              var x = document.forms["form"]["size[x]"].value;
+              var y = document.forms["form"]["size[y]"].value;
+              if (x <= 0){
+                  alert('Ох, лол!');
+                  return false;
+              }
+              if ( y<=0 ){
+                  alert('Ох, лол!');
+                  return false;
+              }
+              return true
+          }
+      </script>
+
+    </head>
+
+    <body>
+
+      <form action="/add" method="post" name="form" onsubmit="return validate()">
+
+        <p>
+          <input type="number" placeholder="Lines" name='size[x]' required>
+        </p>
+
+        <p>
+          <input type="number" placeholder="Columns" name='size[y]' required>
+        </p>
+
+        <p>
+          <input type="submit" value="Add randomly" name='sub'>
+        </p>
+
+        <p>
+          <input type="submit" value="Add manually" name='sub'>
+        </p>
+
+      </form>
+
+    </body>
+
+</html>
