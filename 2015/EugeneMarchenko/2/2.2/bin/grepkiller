@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+require 'pry'
+require_relative '../lib/parameter_parser'
+require_relative '../lib/search_in_file'
+require_relative '../lib/list_directory'
+
+ParameterParser.parse %w(--help) if ARGV.size < 1
+
+options = ParameterParser.parse(ARGV)
+
+if options.regexp and options.recursive
+  file_name = Dir.foreach('.').map do |i|
+    File.directory?(i) ? next : i
+  end
+  list_of_files = ListDirectory.new.list(file_name.compact)
+  SearchInFile.new(options.regexp, list_of_files).simple_search
+elsif options.regexp
+  file_name = ARGV
+  list_of_files = ListDirectory.new.list(file_name)
+  SearchInFile.new(options.regexp, list_of_files).simple_search
+elsif options.recursive
+  pattern = ARGV.first
+  ARGV.shift
+  file_name = Dir.foreach('.').map do |i|
+    File.directory?(i) ? next : i
+  end
+  list_of_files = ListDirectory.new.list(file_name.compact)
+  SearchInFile.new(pattern, list_of_files).simple_search
+else
+  pattern = ARGV.first
+  ARGV.shift
+  file_name = ARGV
+  list_of_files = ListDirectory.new.list(file_name)
+  SearchInFile.new(pattern, list_of_files).simple_search
+end
+
+
+search_string = 'bb'
+filename = ['test1.txt']
+# file_name.each do |item|
+#   # p item
+#   line_counter = 0
+#   pattern_line = 1
+#   pattern_line_counter = pattern_line
+#   File.open(item) do |f|
+#     temp_array = []
+#       f.each do |line|
+#         if line.match search_string
+#           temp_array.each { |i| puts i ; temp_array = []}
+#           puts "line #{line}"
+#           # pattern_line.times do
+#             puts line.lineno.next
+#           # end
+#           # puts "Line after matched pattern: #{f.lineno}, #{f.gets}"
+#         else
+#           temp_array << line if pattern_line_counter > 0
+#           pattern_line_counter -= 1
+#         end
+#         temp_array.each { |i| puts i; temp_array = [] }
+#       end
+#       pattern_line_counter -= 1
+#       puts "temp_array = #{temp_array}"
+#
+#   end
+# end
+
+
