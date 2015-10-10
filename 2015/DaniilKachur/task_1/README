@@ -1,2 +1,0 @@
-This code convert jpeg pics to ascii and show them.
-Require gems:'asciiart', 'curses' 
