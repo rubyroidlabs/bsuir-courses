@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# @version 0.1.7
+# @version 0.1.8
 # @author S. Ivanouski
 
 class Signs
@@ -15,9 +15,7 @@ class Signs
 
   def print_sign
     @do_times.times do
-      sign1 = @sign * rand(5..@rand_max)    # generating line of signs
-      sign0 = @spaces * rand(3..@rand_max0) # generating spacing
-      puts sign0 + sign1
+      puts (@spaces * rand(3..@rand_max0)) + (@sign * rand(20..@rand_max))
       sleep @sleeping
     end
   end
@@ -25,9 +23,8 @@ end
 
 system 'clear'
 
-ziga = Signs.new('*', ' ', 30, 98, 20, 0.05)
-
-ziga.print_sign
+pic = Signs.new('*', ' ', 30, 98, 20, 0.05)
+pic.print_sign
 
 sleep 1
 system 'clear'
