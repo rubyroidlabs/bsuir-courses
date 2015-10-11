@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# @version 0.1.5
+# @version 0.1.6
 # @author S. Ivanouski
 
 class Signs
@@ -8,15 +8,15 @@ class Signs
     @sign = sign            # sign to draw
     @spaces = spaces        # spacing
     @do_times = do_times    # times to repeat drawing line
-    @rand_max = rand_max    # maximum signs in the line
-    @rand_max0 = rand_max0  # maximum pacers in the line
+    @rand_max = rand_max    # maximum signs per line
+    @rand_max0 = rand_max0  # maximum spacers per line
     @sleeping = sleeping    # time between drawing lines (sec)
   end
 
   def print_sign
     @do_times.times do
-      sign1 = @sign * rand(5..@rand_max)
-      sign0 = @spaces * rand(3..@rand_max0)
+      sign1 = @sign * rand(5..@rand_max)    # generating line with random quant. of signs
+      sign0 = @spaces * rand(3..@rand_max0) # generating spacing
       puts sign0 + sign1
       sleep @sleeping
     end
