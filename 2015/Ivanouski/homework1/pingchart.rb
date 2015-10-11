@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Ping chart
-# @version 0.1.0
+# @version 0.1.2
 # @author S.Ivanouski
 
 system 'clear'
@@ -14,7 +14,8 @@ ping_array = []
   ping_array.push var0.to_i
 end
 
-ping_array.each do |a| puts '+' + ('-' * a)
+ping_array.each do
+  |a| puts '+' + ('-' * a)
   sleep 0.05
 end
 
