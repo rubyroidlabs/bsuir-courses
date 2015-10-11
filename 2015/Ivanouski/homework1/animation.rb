@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# @version 0.1.1
+# @version 0.1.2
 # @author S. Ivanouski
 
 class Signs
@@ -20,7 +20,7 @@ class Signs
   end
 end
 
-ziga = Signs.new('=>', 27, 99, 0.1)
+ziga = Signs.new('@', 30, 98, 0.04)
 
 ziga.print_sign
 
