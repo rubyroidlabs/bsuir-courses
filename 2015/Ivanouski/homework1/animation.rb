@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# @version 0.1.4
+# @version 0.1.5
 # @author S. Ivanouski
 
 class Signs
@@ -15,8 +15,8 @@ class Signs
 
   def print_sign
     @do_times.times do
-      sign1 = @sign*rand(5..@rand_max)
-      sign0 = @spaces*rand(3..@rand_max0)
+      sign1 = @sign * rand(5..@rand_max)
+      sign0 = @spaces * rand(3..@rand_max0)
       puts sign0 + sign1
       sleep @sleeping
     end
