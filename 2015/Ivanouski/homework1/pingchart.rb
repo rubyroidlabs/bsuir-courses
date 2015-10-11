@@ -14,6 +14,8 @@ ping_array = []
   ping_array.push var0.to_i
 end
 
-ping_array.each { |a| puts '+' + ('-' * a); sleep 0.05 }
+ping_array.each do |a| puts '+' + ('-' * a)
+  sleep 0.05
+end
 
 exit 0
