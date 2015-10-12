@@ -2,7 +2,7 @@
 
 # Ping chart
 # Required: Unix-like system, head, tail, awk.
-# @version 0.2.3
+# @version 0.2.4
 # @author S.Ivanouski
 
 class String
@@ -49,7 +49,7 @@ class Ping
         linez = (' ' * (a - @y)).colorize(41)
         wait_n_clear(a)
         print ' ' + linex + liney + linez
-      when @z..Float::INFINITY then
+      else
         line0 = (' ' * (@z + 2)).colorize(41)
         wait_n_clear(a)
         print ' ' + line0
@@ -61,8 +61,9 @@ end
 system 'clear'
 
 googlecom = Ping.new('google.com', 50, 20, 40, 100, 0.1)
-googleby = Ping.new('google.by', 50, 10, 15, 50, 0.1)
 googlecom.ping_line
+
+googleby = Ping.new('google.by', 50, 10, 15, 40, 0.1)
 googleby.ping_line
 
 system 'clear'
