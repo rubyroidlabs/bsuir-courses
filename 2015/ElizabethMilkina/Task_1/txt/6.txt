@@ -1,0 +1,55 @@
+
+
+
+
+
+                                                                                                                                                         RR
+                                                                                                                                                  R,,,RR,,,,R
+                                                                                                                                                RR,,,,,,R,R,,R
+                                                                                                                                                R,,RcccR,RcR,R
+                                                                                                                                               R,,,RccccRRcccRR
+                                                                                                                                           RRRRR,,RccccccRcccR,RR  RRRRRRRRRR
+                                                                                                                                      RRRR,,,,,,,RccccRRRRRR,,,,,,,,,,,,,,,,,,,R
+                                                                                                                                    RR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,R
+                                                                                                                                   R,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,R
+                                                                                                                                  R,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,R
+                                                                                                                                   R,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RR
+                                                                                                                                   RR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RRR
+                                                                                                                          RRRcccccRRR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RR
+                                                                                                                          RcccccccRR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RRRRR
+                                                                                                                          RcccccRR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RcRR
+                                                                                                                          RcccRR,,,,,,,,,,,,RRRRR             RRRRRR   RccR
+                                                                                                    RR,,,,,,RRRRRccccRRRR RcRR,,,,,,,,,RRR,,,RR                        RcccR
+                                                                                                 RR,,,,,,,,,,,,RcccccccccRR,,,,,,,,,RRR,,,RRR                          RccccR
+                                                                                               RRR,RcccRR,,,,,RcccccccRR,,,,,,,,,,RR,,,RR                             RcccccR
+                                                                                     RRRRR,,,,,,,,,,,,,,,,,,,,,,,,,,,,RR,,,,,,,,RR,,,RR                             RRcccccR
+                                                                              RRRRR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RR,,,RRR                              RccccccR
+                                                                     RRRRR,,,,,,,,,,,,,,,,,,,,RRR,,,,,,,,,,,,,,,,,,,,,,,,,,RR,,,,,,R                               RRcccR
+                                                                 R,,,,,,,,,,,,,,,,,,,,,,,,RRRRR,,,RccRRR,,,,RR,,,,,,,,,,RR,,,,,,,R
+                                                                  RR,,,,,,,,,,,,,,RRRRRccccccccccRRR,,,,,,,,,,,,,,,,,,RR,,,,,,,RR
+                                                                 R,,,,,,,,,,,,RRRRR   RccccccRRR,,,,,,,,,,,,,,,,,,,,RR,,,,,,,,RR
+                                                                 R,R,,,,,,,,RRccccccR RcRRR,,,,,,,,,,,,,,,,,,,,,,RRR,,,,,,,,RR
+                                                                  R,,,,,RRR,RccccccccRR,,,,,,,,RRcccR,,,,,,,,,,RR,,,,,,,,,,RR
+                                                                  RR,,,,,R RcccccRRR,,,,,,,,,RcccccR,,,,,,,,,RR,,,,,,,,,,,R
+                                                                    RRR    RccRRR,,,,,,,,,,,,,RRR,,,,,,,,,,RR,,,,,,,,,,,RR
+                RRccRR                                           RccccccccRRRR,,,,,,,,,,,,,,,,,,,,,,,,,,,RR,,,,,,,,,,,RR
+    R,,,,RRR  RcccccccR      RccR         RRRR                   RcccccccRR,,,,,,,,,,,,,,,,,,,,,,,,,,,RR,,,,,,,,,,,,RR
+    RR,,,,,,,,RRccccccRR  RRcccccRR    RRcccccRR      RRcccRR   RccccccRcR,,,,,,,,,,,,,,,,,,,,,,,,,,RR,,,,,,,,,,,,RR
+       RR,,,,,,,,,,,,RRRRRcccccccccR RRcccccccccR   RccccccccR  RccccRRccR,,,,RRRRR,,,,,,,,,,,,,,,RR,,,,,,,,,,,,RR
+          RRRR,,,,,,,,,,,,,,,,RRRRRRRccccccccccccRRRcccccccccccRRccRcccR,,,RcccccccR,,,,,,,,,,,,RR,,,,,,,,,,,,RR
+               RRRR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RR,,R,,,,,,,RccccccRR,,,,,,,,,,RRR,,,,,,,,,,,,RR
+                    RRRR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RR,,,R,,,,,,,,,,RRRR,,,,,,,,,,,,RR,,,,,,,,,,,,,,R
+                           RRRR,,,,,,,,,,,,,,,,,,,,,,RRRRR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RRR,,,,,,,,,,,,,,RR
+                                 RRRRR,,,,,,,,,,,,,RcccccccR,,,,,,,,,,,,,,,,,,,,,,,,,,RR,,,,,,,,,,,,,,RRR
+                                         RRR,,,,,,,,RRRRRRR,,,,,R,,,,,,,,,,,,,,,,,,RR,,,,,,,,,,,,,,,R,,,R
+                                              RRRR,,,,,,,,,,,,,R,,,,,,,,,,,,,,,,RR,,,,,,,,,,,,,,,,RR,,,,R
+                                                    RRRR,,,,,,R,,,,,,,,,,,,,RRR,,,,,,,,,,,,,,,,RRR,,,,,R
+                                                             R,,,,,,,,,,,,RR,,,,,,,,,,,,,,,RRR,,,,,,,RR
+                                                             RR,,,,,,,,,,RR,,,,,,,,,,,,,R,,,,,,,,,,RR
+                                                           RRR,,R,,,,,,RRRR,,,,RRRRRR  R,,,,,,,,,,R
+                                                          R,,,RR,,,,,RR              RR,,,,,,,,RR
+                                                 RRRRRR,,,,RRR,,,,,,R             RR,,,,,,,,,R   RRR
+                                               R,,,R,,,,,,,,,,,,,,,R             R,,,,,,RRR,,,,,,,,,,R
+                                               R,,R,,,R,,,,,,,,,,RR               R,,,RRR,,,,,,,,,,,,R
+                                                  RR,R,,,,,RR,RR                         RRR,,,,,,,,,R
+                                                       RRR                                  RRRRRRRR
