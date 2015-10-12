@@ -16,8 +16,7 @@ def next_frame
 	system 'clear'
 	(($window_hight - $ruby_line.length) / 2).times { |i| puts ''}
 end
-
-space_line = '';
+space_line = ''
 window_width.times { space_line += ' ' }
 next_frame
 
@@ -41,4 +40,3 @@ $ruby_line.max_by { |elem| elem.size } .length.times do |i|
 end
 
 system 'clear'
-puts $ruby_line.max_by { |elem| elem.size } .length
