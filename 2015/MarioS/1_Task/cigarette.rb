@@ -21,7 +21,9 @@ class Sijka
   end
 
   def reverse_img
-    @img.map! { |line| line[0..@movement_range-1] + line[@movement_range..-1].reverse }
+    @img.map! do |line|
+      line[0..@movement_range - 1] + line[@movement_range..-1].reverse
+    end
   end
 
   def left_move
