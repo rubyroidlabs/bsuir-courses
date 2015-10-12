@@ -1,7 +1,14 @@
 #!/usr/bin/env ruby
 
-# @version 0.1.8
+# @version 0.2.0
 # @author S. Ivanouski
+
+class String
+  # colorization
+  def colorize(color_code)
+    "\e[#{color_code}m#{self}\e[0m"
+  end
+end
 
 class Signs
   def initialize(sign, spaces, do_times, rand_max, rand_max0, sleeping)
@@ -15,7 +22,7 @@ class Signs
 
   def print_sign
     @do_times.times do
-      puts (@spaces * rand(3..@rand_max0)) + (@sign * rand(20..@rand_max))
+      puts (@spaces * rand(3..@rand_max0)) + (@sign * rand(20..@rand_max)).colorize(rand(31..36))
       sleep @sleeping
     end
   end
