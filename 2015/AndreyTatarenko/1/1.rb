@@ -23,19 +23,13 @@ next_frame
 $ruby_line.length.times  { |i| space_line + $ruby_line[i] }
 
 window_width.times do
-	$ruby_line.length.times do |i|
-		out_line = (space_line + $ruby_line[i])[0..window_width - 1]
-		puts out_line
-	end
+	$ruby_line.length.times {|i| puts (space_line + $ruby_line[i])[0..window_width - 1] }
 	space_line = space_line[1..space_line.length]
 	next_frame
 end
 
 $ruby_line.max_by { |elem| elem.size } .length.times do |i|
-	$ruby_line.length.times do |j|
-		out_line = $ruby_line[j][i..$ruby_line[j].length - 1]
-		puts out_line
-  	end
+	$ruby_line.length.times { |j| puts $ruby_line[j][i..$ruby_line[j].length - 1] }
   	next_frame
 end
 
