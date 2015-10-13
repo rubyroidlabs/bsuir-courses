@@ -1,18 +1,18 @@
 
-lines = File.readlines("anim.txt")
-counter = 0;
-space = ""
+lines = File.readlines('anim.txt')
+counter = 0
+space = ''
 
-system("clear")
+system('clear')
 
 20.times do
-  space += "   "
-  lines.each do |line| 
+  space += ' ' * 3
+  lines.each do |line|
     puts space + line
     counter += 1
-    if counter > 6 
+    if counter > 6
       sleep(0.08)
-      system("clear")
+      system('clear')
       counter = 0
     end
   end
