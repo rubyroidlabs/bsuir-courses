@@ -2,7 +2,7 @@
 
 # Ping chart
 # Required: Unix-like system, head, tail, awk.
-# @version 0.2.4
+# @version 0.2.5
 # @author S.Ivanouski
 
 class String
@@ -13,13 +13,14 @@ class String
 end
 
 class Ping
-  def initialize(site, iter, x, y, z, sleeping)
+  def initialize(site, iter, x, y, z, sleeping, awk)
     @site = site          # Host to ping
     @iter = iter          # Iterations
     @x = x                # Green zone
     @y = y                # Yellow zone
     @z = z                # Red zone
     @sleeping = sleeping  # Timer
+    @awk = awk            # Column number in ping output
   end
 
   def wait_n_clear(a)
@@ -31,7 +32,7 @@ class Ping
 
   def ping_line
     @iter.times do
-      ping = `ping -c 1 #{@site} | head -2 | tail -1 | awk '{print $7}'`
+      ping = `ping -c 1 #{@site} | head -2 | tail -1 | awk '{print $#{@awk}}'`
       a = ping.delete('time=').to_i
       case a
       when 1..@x  then
@@ -60,11 +61,14 @@ end
 
 system 'clear'
 
-googlecom = Ping.new('google.com', 50, 20, 40, 100, 0.1)
+googlecom = Ping.new('google.com', 33, 20, 40, 100, 0.1, 7)
 googlecom.ping_line
 
-googleby = Ping.new('google.by', 50, 10, 15, 40, 0.1)
+googleby = Ping.new('google.by', 33, 10, 15, 40, 0.1, 7)
 googleby.ping_line
+
+vkcom = Ping.new('vk.com', 33, 40, 55, 80, 0.1, 8)
+vkcom.ping_line
 
 system 'clear'
 
