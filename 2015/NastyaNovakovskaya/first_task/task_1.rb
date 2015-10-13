@@ -44,28 +44,26 @@ FOO
 init_screen
 x = 0
 begin
-    9.times do
-        crmode
-        y = 2
-        pikachu.each_line do |row|
-          setpos(y,x)
-          addstr(row)
-          y += 1
-        end
-        sleep(0.5)
-        refresh
-
-        y = 2
-        pikachu_2.each_line do |row|
-          setpos(y,x)
-          addstr(row)
-          y += 1
-        end
-        sleep(0.5)
-        
-        refresh
-        x += 1
+  9.times do
+    crmode
+    y = 2
+    pikachu.each_line do |row|
+    setpos(y, x)
+    addstr(row)
+    y += 1
     end
+    sleep(0.5)
+    refresh
+    y = 2
+    pikachu_2.each_line do |row|
+    setpos(y, x)
+    addstr(row)
+    y += 1
+    end
+    sleep(0.5)
+    refresh
+    x += 1
+end
 ensure
   close_screen
 end
