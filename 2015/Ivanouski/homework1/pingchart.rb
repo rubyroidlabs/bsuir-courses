@@ -2,7 +2,7 @@
 
 # Ping chart
 # Required: Unix-like system, head, tail, awk.
-# @version 0.2.6
+# @version 0.2.7
 # @author S.Ivanouski
 
 class String
@@ -13,17 +13,17 @@ class String
 end
 
 class Ping
-  def initialize(site, iter, x, y, z, sleeping, awk)
-    @site = site                # Host to ping
-    @iter = iter                # Iterations
-    @x = x                      # Green zone
-    @y = y                      # Yellow zone
-    @z = z                      # Red zone
-    @sleeping = sleeping        # Timer
-    @awk = awk                  # Column number in ping output
+  def initialize(site, iter, awk, sleeping, x, y, z)
+    @site = site                  # Host to ping
+    @iter = iter                  # Iterations
+    @awk = awk                    # Column number in ping output
+    @sleeping = sleeping          # Timer
+    @x = x                        # Green zone
+    @y = y                        # Yellow zone
+    @z = z                        # Red zone
   end
 
-  def wait_n_clear(a)
+  def wait_n_clear(a) # Lambda would be better, but i don't now what is Lambda.
     sleep @sleeping
     system 'clear'
     print @site.colorize(44) + ' '
@@ -51,7 +51,7 @@ class Ping
         wait_n_clear(a)
         print ' ' + linex + liney + linez
       else
-        line0 = (' ' * (@z + 2)).colorize(41)
+        line0 = (' ' * (@z + 5)).colorize(41)
         wait_n_clear(a)
         print ' ' + line0
       end
@@ -61,13 +61,13 @@ end
 
 system 'clear'
 
-googlecom = Ping.new('google.com', 33, 20, 40, 100, 0.1, 7)
+googlecom = Ping.new('google.com', 33, 7, 0.1, 20, 40, 100)
 googlecom.ping_line
 
-googleby = Ping.new('google.by', 33, 10, 15, 40, 0.1, 7)
+googleby = Ping.new('google.by', 33, 7, 0.1, 10, 15, 40)
 googleby.ping_line
 
-vkcom = Ping.new('vk.com', 33, 40, 55, 80, 0.1, 8)
+vkcom = Ping.new('vk.com', 33, 8, 0.1, 40, 55, 80)
 vkcom.ping_line
 
 system 'clear'
