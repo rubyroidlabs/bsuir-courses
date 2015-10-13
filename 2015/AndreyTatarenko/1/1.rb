@@ -25,16 +25,16 @@ next_frame
 $ruby_line.length.times { |i| space_line + $ruby_line[i] }
 
 window_width.times do
-$ruby_line.length.times do |i| 
+  $ruby_line.length.times do |i| 
     out_str = (space_line + $ruby_line[i])[0..window_width - 1]
     puts out_str
   end
-  space_line = space_line[1..space_line.length]
+  space_line = space_line[1..space_line.length-1]
   next_frame
 end
 
 MAX_STR_LENGTH.times do |i|
-$ruby_line.length.times do |j| 
+  $ruby_line.length.times do |j| 
     out_str = $ruby_line[j][i..$ruby_line[j].length - 1]
     puts out_str
   end
