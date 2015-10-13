@@ -1,6 +1,6 @@
 #!/usr/local/bin/ruby
 
-require "curses"
+require 'curses'
 include Curses
 
 pikachu = <<-FOO
@@ -9,9 +9,9 @@ pikachu = <<-FOO
      "xxb,                   .;xxxx'
       "xxxxx,              ,;xxxxx'
        "x    ',__""""""-_,;    xx'
-        :   '          ."     "    
+        :   '          ."     "
          i'                 ,^'   
-        :                    ;    
+        :                    ;   
         |  .-.        .-.    L     
         | ' ##'      '## '   |     
         | '###'      '###'   |     
@@ -19,7 +19,7 @@ pikachu = <<-FOO
          --               -- {
         |  |   ._--_.    |  |;
         '--'             '--',       
-        '-..____________..-' 
+        '-..____________..-'
 FOO
 
 pikachu_2 = <<-FOO
@@ -37,7 +37,7 @@ pikachu_2 = <<-FOO
         |        __          |
          --               -- {
         |  |   ._--_.    |  |;
-        '--'    `--`     '--',       
+        '--'    `--`     '--',
         '-..____________..-'
 FOO
 
@@ -46,25 +46,22 @@ x = 0
 begin
     9.times do
         crmode
-
         y = 2
         pikachu.each_line do |row|
-            setpos(y,x)
-            addstr(row)
-            y+=1
+          setpos(y,x)
+          addstr(row)
+          y += 1
         end
         sleep(0.5)
         refresh
-        #getch
-        
+
         y = 2
         pikachu_2.each_line do |row|
-            setpos(y,x)
-            addstr(row)
-            y += 1
+          setpos(y,x)
+          addstr(row)
+          y += 1
         end
         sleep(0.5)
-
         
         refresh
         x += 1
