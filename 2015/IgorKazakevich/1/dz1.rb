@@ -67,11 +67,10 @@ stick[3] = %(
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''
 )
 
-
 loop do
-	4.times do |step|
-		puts stick[step]
-		sleep 0.5
-		system "clear"
-	end
+4.times do |step|
+puts stick[step]
+sleep 0.5
+system "clear"
+end
 end
