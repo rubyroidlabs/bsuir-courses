@@ -1,8 +1,8 @@
-#everything will stop working if you change the size of the console
+# everything will stop working if you change the size of the console
 ARGV[0] ? counter_exe = ARGV[0].to_i : counter_exe = 1
 MAGIC_NUMBER = 104
 i = 0
-space = ' ' 
+space = ' '
 image = []
 direction = 0
 Dir['*.txt'].each do |name|
