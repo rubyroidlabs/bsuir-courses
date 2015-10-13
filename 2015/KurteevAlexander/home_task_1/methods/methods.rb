@@ -1,6 +1,6 @@
 require 'curses'
 Curses.init_screen
-def max_Size_engime
+def max_Size_engine
 	@maxsize = 0
 	0.upto(ENGINE_FIRST.size-1) do |i|
 		@l=ENGINE_FIRST[i].size

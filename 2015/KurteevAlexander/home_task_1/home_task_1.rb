@@ -2,7 +2,7 @@ require 'curses'
 Dir["./constants/*.rb"].each {|file| require file }
 Dir["./methods/*.rb"].each {|file| require file }
 Curses.init_screen
-mxsize = max_Size_engime
+mxsize = max_Size_engine
 engine = [].push(ENGINE_FIRST, ENGINE_SECOND, ENGINE_THIRD, ENGINE_SECOND)
 begin
 	Curses.clear
