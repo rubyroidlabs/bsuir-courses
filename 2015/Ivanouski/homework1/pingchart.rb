@@ -2,7 +2,7 @@
 
 # Ping chart
 # Required: Unix-like system, head, tail, awk.
-# @version 0.2.7
+# @version 0.2.8
 # @author S.Ivanouski
 
 class String
@@ -63,9 +63,6 @@ system 'clear'
 
 googlecom = Ping.new('google.com', 33, 7, 0.1, 20, 40, 100)
 googlecom.ping_line
-
-googleby = Ping.new('google.by', 33, 7, 0.1, 10, 15, 40)
-googleby.ping_line
 
 vkcom = Ping.new('vk.com', 33, 8, 0.1, 40, 55, 80)
 vkcom.ping_line
