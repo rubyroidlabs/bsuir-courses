@@ -29,7 +29,7 @@ window_width.times do
     out_str = (space_line + $ruby_line[i])[0..window_width - 1]
     puts out_str
   end
-  space_line = space_line[1..space_line.length-1]
+  space_line = space_line[1..space_line.length - 1]
   next_frame
 end
 
