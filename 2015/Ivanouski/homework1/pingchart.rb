@@ -2,7 +2,7 @@
 
 # Ping chart
 # Required: Unix-like system, head, tail, awk.
-# @version 0.2.5
+# @version 0.2.6
 # @author S.Ivanouski
 
 class String
@@ -14,13 +14,13 @@ end
 
 class Ping
   def initialize(site, iter, x, y, z, sleeping, awk)
-    @site = site          # Host to ping
-    @iter = iter          # Iterations
-    @x = x                # Green zone
-    @y = y                # Yellow zone
-    @z = z                # Red zone
-    @sleeping = sleeping  # Timer
-    @awk = awk            # Column number in ping output
+    @site = site                # Host to ping
+    @iter = iter                # Iterations
+    @x = x                      # Green zone
+    @y = y                      # Yellow zone
+    @z = z                      # Red zone
+    @sleeping = sleeping        # Timer
+    @awk = awk                  # Column number in ping output
   end
 
   def wait_n_clear(a)
