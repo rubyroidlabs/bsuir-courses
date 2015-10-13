@@ -1,6 +1,3 @@
-# Bobkov Andrey 
-# 9.10.2015
-
 def n_spase(n)
   n.times { print ' ' }
 end
@@ -30,12 +27,11 @@ def trucs(n)
   puts '   (0)|    ===***** (0)(0)| -  o               (0)(0)(0)| '
 end
 
-
-system ("clear")
+system ('clear')
 i = 21
-21.times {
+21.times do
   trucs(i)
   sleep(0.2)
-  system ("clear")
+  system ('clear')
   i -= 1  
-}
+end
