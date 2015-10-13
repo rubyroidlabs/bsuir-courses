@@ -1,58 +1,41 @@
-#Bobkov Andrey 
-#9.10.2015
+# Bobkov Andrey 
+# 9.10.2015
 
 def n_spase(n)
-  n.times { print " " }
+  n.times { print ' ' }
 end
 
 def trucs(n)
- if n%2==0 
   n_spase(n)
-  puts "                  _______________________________________ "
+  puts '                  _______________________________________ '
   n_spase(n)
-  puts "                  | XXXXX    XX   XX  XXXXX    XX    XX  |"
+  puts '                  | XXXXX    XX   XX  XXXXX    XX    XX  |'
   n_spase(n)
-  puts "             /    | XX  XX   XX   XX  XX  XX    XX  XX   |"
+  puts '             /    | XX  XX   XX   XX  XX  XX    XX  XX   |'
   n_spase(n)
-  puts "            /---, | XXXXX    XX   XX  XXXXX       XX     |"
+  puts '            /---, | XXXXX    XX   XX  XXXXX       XX     |'
   n_spase(n)
-  puts "       -----# ==| | XX XX    XX   XX  XX   XX     XX     |"
+  puts '       -----# ==| | XX XX    XX   XX  XX   XX     XX     |'
   n_spase(n)
-  puts "       | :) # ==| | XX  XX    XXXXX   XXXXXXX     XX     |"
+  puts '       | :) # ==| | XX  XX    XXXXX   XXXXXXX     XX     |'
   n_spase(n)
-  puts "  -----'----#   | |______________________________________|"
+  if n%2==0 
+  puts '  ----- ----#   | |______________________________________|'
+  else
+  puts '  ----- ----#   | |_________________________THE_BEST!!!__|'
+  end 
   n_spase(n)
-  puts "  |)___()  '#   |____====____   \____________________    |"
+  puts '  |)___()   #   |____====____   \____________________    |'
   n_spase(n)
-  puts "   (0)|    ===***** (0)(0)| -  o              '(0)(0)(0)| "
- else 
-   n_spase(n)
-   puts "                  _______________________________________ "
-   n_spase(n)
-   puts "                  | XXXXX    XX   XX  XXXXX    XX    XX  |"
-   n_spase(n)
-   puts "             /    | XX  XX   XX   XX  XX  XX    XX  XX   |"
-   n_spase(n)
-   puts "            /---, | XXXXX    XX   XX  XXXXX       XX     |"
-   n_spase(n)
-   puts "       -----# ==| | XX XX    XX   XX  XX   XX     XX     |"
-   n_spase(n)
-   puts "       | :) # ==| | XX  XX    XXXXX   XXXXXXX     XX     |"
-   n_spase(n)
-   puts "  -----'----#   | |_________________________THE_BEST!!!__|"
-   n_spase(n)
-   puts "  |)___()  '#   |____====____   \____________________    |"
-   n_spase(n)
-   puts "   (0)|    ===***** (0)(0)| -  o              '(0)(0)(0)| "
- end
+  puts '   (0)|    ===***** (0)(0)| -  o               (0)(0)(0)| '
 end
 
 
-puts "\e[H\e[2J"
+system ("clear")
 i = 21
 21.times {
   trucs(i)
   sleep(0.2)
-  puts "\e[H\e[2J"
+  system ("clear")
   i -= 1  
 }
