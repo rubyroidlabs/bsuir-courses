@@ -9,14 +9,15 @@ class Animation
 
 	def show_anim
 		5.downto(1) do
-			anim_arr.each do |x| 
-				puts x 
+			anim_arr.each do |x|
+				puts x
 				sleep(0.15)
 				system("clear")
 			end
 		end
 	end
 end
+
 
 keyboard_smash = ["MMMMMM_______________________________________________________________________________________MMMMMMM
 MMMMM_____________________________MMMMMMM______________________________________________________MMMMM
