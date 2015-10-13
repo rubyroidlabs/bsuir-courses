@@ -1,0 +1,34 @@
+system "clear"
+
+count=0
+
+animation1 = []
+
+animation1[0] = %Q(-_-_-_-_-_-_-  ,------, )
+animation1[1] = %Q(_-_-_-_-_-_-_~|   /|_/| )
+animation1[2] = %Q(-_-_-_-_-_-_-~|__( ^. ^))
+animation1[3] = %Q(_-_-_-_-_-_-_   ""  ""  )
+
+animation2 = []
+
+animation2[0] = %Q(_-_-_-_-_-_-_  ,------, )
+animation2[1] = %Q(-_-_-_-_-_-_-~|   /|_/| )
+animation2[2] = %Q(_-_-_-_-_-_-_~|__( ^ .^))
+animation2[3] = %Q(-_-_-_-_-_-_- ""  ""    )
+
+loop do
+  system "clear"
+  count+=1
+  if count%2==0
+    puts animation1
+    animation1.map! do |s|
+      " "+s
+    end
+  else
+    puts animation2
+    animation2.map! do |s|
+      " "+s
+    end
+  end
+  sleep (0.1)
+end
