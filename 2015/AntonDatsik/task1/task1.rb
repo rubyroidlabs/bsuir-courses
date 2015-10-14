@@ -72,4 +72,3 @@ while shift_coord < 70
 
   shift_coord += 1
 end
-
