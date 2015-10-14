@@ -132,12 +132,11 @@ frame[5] = "
               <====|====>
                    U"
 
-k = 0;
-while k<70 do
+
+10.times do
   frame.each do |i|
     puts i
-    k += 1
     sleep 0.05
     system 'clear'
-    end
+  end
 end
