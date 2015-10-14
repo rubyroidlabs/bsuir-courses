@@ -4,13 +4,13 @@ loop do
   until count == 4
     pic.each do |item|
       system 'clear'
-        case count
-          when 1
-            item.insert(0, '  ')
-          when 2, 3
-            item.insert(0, '    ')
-            pic[1].insert(0, '  ') if count == 2
-        end
+      case count
+        when 1
+          item.insert(0, '  ')
+        when 2, 3
+          item.insert(0, '    ')
+          pic[1].insert(0, '  ') if count == 2
+      end
       puts item
       item.insert(0, '    ') if count == 0
       count += 1
