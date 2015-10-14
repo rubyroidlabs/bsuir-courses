@@ -20,7 +20,7 @@ while k > 0 do
     k.times do
       print ':'
     end
-    print arr[j][i]
+    print arr[j][0]
     r.times do
       print ':'
     end
