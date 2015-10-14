@@ -1,5 +1,7 @@
 system 'clear'
+
 animation = []
+
 animation[1] = '(\°-°)\               ┬─┬'
 animation[2] = '(╯°O°)╯FUS          ┬─┬'
 animation[3] = '(╯°O°)╯FUS ROH      ┬─┬'
@@ -11,6 +13,7 @@ animation[8] = '(\°-°)\                             ︵  ┻━┻'
 animation[9] = '(\°-°)\                                    ┬─┬'
 animation[10] = '(\°-°)\                                     ︵  ┻━┻'
 animation[11] = '(\°-°)\                                            ┬─┬'
+
 2.times do
 	animation.each do |animation|
 		puts animation
