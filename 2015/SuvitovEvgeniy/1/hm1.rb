@@ -9,7 +9,7 @@ def hw
 	while i < 20
 		j = 0
 		while j < 26
-			pict[j].insert(0,'_')
+			pict[j].insert(0, '_')
 			j += 1
 		end
 		i += 1
@@ -18,7 +18,6 @@ def hw
 		sleep 0.2
 	end
 	source.close
-	puts ""
 end
 
 hw
