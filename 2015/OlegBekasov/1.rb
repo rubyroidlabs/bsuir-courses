@@ -18,14 +18,15 @@ relax1[6] = [' /   \\    /   \\/   \\/   \\/   \\']
 relax1[7] = [' \\___/    \\___/\\___/\\___/\\___/']
 system 'clear'
 loop do
-  relax0.each do |i|
-    puts i
-  end
-    sleep 0.3
-    system 'clear'
-  relax1.each do |i|
-    puts i
-  end
-    sleep 0.3
-    system 'clear'
+	relax0.each do |i|
+		puts i
+	end
+	sleep 0.3
+	system 'clear'
+	relax1.each do |i|
+		puts i
+	end
+	sleep 0.3
+	system 'clear'
 end
+
