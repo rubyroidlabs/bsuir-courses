@@ -509,9 +509,9 @@ AA```````````````````````````````AAAAAAA```````````````````````````AA`
 "
 
 loop do
-    ascii.each do |i|
-        puts i
-        sleep 0.3
-        system "clear"
-    end
+  ascii.each do |i|
+    puts i
+    sleep 0.3
+    system 'clear'
+  end
 end
