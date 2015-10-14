@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 ascii = []
 ascii << '___________                        _________                      __  .__    .__                 '
 ascii << '\__    ___/__.__.______   ____    /   _____/ ____   _____   _____/  |_|  |__ |__| ____    ____   '
@@ -9,7 +8,7 @@ ascii << '          \/     |__|        \/          \/             \/     \/     
 strlen = ascii[0].length - 1
 strlen.downto(0) do
   |seenlen|
-  system "clear"
+  system 'clear'
   0.upto(5) do
     |strnum|
     seenlen.upto(strlen) do
@@ -23,7 +22,7 @@ end
 
 1.upto(40) do
   |distance|
-  system "clear"
+  system 'clear'
   0.upto(5) do
     |strnum|
     0.upto(distance) do
