@@ -57,6 +57,7 @@ class Animator
     ensure
       Curses.close_screen
     end
+    true
   end
 end
 
