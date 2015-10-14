@@ -12,6 +12,6 @@
 		a.map! do |space|
 			' '+space
 		end
-		break if i == 70
+		break if i == 71
 		sleep 0.03
 	end
