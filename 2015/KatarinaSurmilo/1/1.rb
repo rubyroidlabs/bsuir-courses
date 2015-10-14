@@ -10,7 +10,7 @@ end
 
 sortedFns.each do |filename|
   path = "#{Dir.pwd}/frames/#{filename}"
-  frame = File.readlines(path).join 
+  frame = File.readlines(path).join
   frames.push frame
 end
 
