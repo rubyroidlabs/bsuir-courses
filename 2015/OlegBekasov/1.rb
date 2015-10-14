@@ -5,7 +5,7 @@ relax0[2] = [ '       |    |    |    |     \\' ]
 relax0[3] = [ '       |    |    |    |      \\' ]
 relax0[4] = [ '       |    |    |    |       \\' ]
 relax0[5] = [ '      _|_  _|_  _|_  _|_      _\\_' ]
-relax0[6] = [ '     /   \\/   \\/   \\/   \\    /   \\' ] 
+relax0[6] = [ '     /   \\/   \\/   \\/   \\    /   \\' ]
 relax0[7] = [ '     \\___/\\___/\\___/\\___/    \\___/' ]
 relax1 = [ ]
 relax1[0] = [ '     _________________________' ]
@@ -23,5 +23,5 @@ sleep 0.3
 system 'clear' 
 relax1.each { |i| puts i }
 sleep 0.3
-system 'clear' 	
+system 'clear'
 end
