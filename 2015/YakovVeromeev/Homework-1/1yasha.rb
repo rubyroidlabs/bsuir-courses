@@ -6,13 +6,10 @@ ascii << '  |    |  \___  ||  |_> )  ___/   /        (  <_> )  Y Y  \  ___/|  | 
 ascii << '  |____|  / ____||   __/ \___  > /_______  /\____/|__|_|  /\___  >__| |___|  /__|___|  /\___  /  '
 ascii << '          \/     |__|        \/          \/             \/     \/          \/        \//_____/   '
 strlen = ascii[0].length - 1
-strlen.downto(0) do
-  |seenlen|
+strlen.downto(0) do |seenlen|
   system 'clear'
-  0.upto(5) do
-    |strnum|
-    seenlen.upto(strlen) do
-      |symbol|
+  0.upto(5) do |strnum|
+    seenlen.upto(strlen) do |symbol|
       print ascii[strnum][symbol]
     end
     puts ' '
@@ -20,11 +17,9 @@ strlen.downto(0) do
   sleep(1.0 / 20.0)
 end
 
-1.upto(40) do
-  |distance|
+1.upto(40) do |distance|
   system 'clear'
-  0.upto(5) do
-    |strnum|
+  0.upto(5) do |strnum|
     0.upto(distance) do
       print ' '
     end
