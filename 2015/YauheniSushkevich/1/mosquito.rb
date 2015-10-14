@@ -35,8 +35,8 @@ def mosquito.fly
 end
 
 def mosquito.appear
-  cols = `stty size`.split.map { |x| x.to_i }.reverse[0]
-  (cols).downto(cols - width) do |i|
+  cols = `stty size`.split.map(&:to_i).reverse[0]
+  cols.downto(cols - width) do |i|
     self.each do |frame|
       frame.split("\n").each do |string|
         puts ' ' * i + string[0, cols - i]
