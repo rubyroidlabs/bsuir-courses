@@ -1,5 +1,5 @@
 def my_clear
-	puts "\e[2J"
+	puts "\e[2j"
 end
 
 def hw
