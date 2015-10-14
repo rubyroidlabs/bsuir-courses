@@ -25,7 +25,7 @@ class Car
     k = 0
     prng = Random.new
 
-    while k < @image.length do
+    while k < @image.length
       Curses.setpos(y + k, x)
       if k.between?(9, 12)
         temp_Str = String.new(' ')
@@ -37,7 +37,7 @@ class Car
           temp_Str.concat(' ')
         end
 
-        while i > rand_Val do
+        while i > rand_Val
           temp_Str.concat(@particle)
           i -= 1
         end
@@ -63,7 +63,7 @@ shift_coord = 0
 Y = Curses.lines / 2
 X = Curses.cols / 2
 
-while shift_coord < 70 do
+while shift_coord < 70
   if 	X - shift_coord > 0
     car.print(Y, X - shift_coord)
     sleep(0.05)
