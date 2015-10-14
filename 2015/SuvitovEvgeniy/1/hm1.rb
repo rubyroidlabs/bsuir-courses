@@ -17,7 +17,7 @@ def hw
 		puts pict
 		sleep 0.2
 	end
-  source.close
+	source.close
 end
 
 hw
