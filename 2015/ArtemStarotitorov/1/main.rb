@@ -50,14 +50,13 @@ class Animator
         Curses.addstr(@gun.to_s)
         Curses.setpos(coordy_of_cartridge, coordx_of_cartridge)
         Curses.addstr(@cartridge.to_s)
-        coordx_of_cartridge += 1
+        coordx_of_cartridge += 10
         Curses.refresh
-        sleep 0.02
+        sleep 0.1
       end
     ensure
       Curses.close_screen
     end
-    true
   end
 end
 
