@@ -9,7 +9,7 @@ loop do
     puts mass
     sleep 0.1
     puts "\e[H\e[2J"
-    i += 1
+    i + 1
   end
   g = 2
   while g < WIDTH
