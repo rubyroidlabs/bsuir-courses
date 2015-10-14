@@ -23,15 +23,13 @@ class Image
   end
 
   def to_s
-    result = ""
+    result = ''
     height.times { |i| result += @picture[i] }
     result
   end
-
 end
 
 class Animator
-
   def initialize
     @gun = Image.new('gun.txt')
     @cartridge = Image.new('cartridge.txt')
@@ -60,7 +58,6 @@ class Animator
       Curses.close_screen
     end
   end
-
 end
 
 animator = Animator.new
