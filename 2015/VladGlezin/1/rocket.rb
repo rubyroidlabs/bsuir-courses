@@ -1,20 +1,21 @@
 class Animation
-    def initialize(arr)
+  def initialize(arr)
     @anim_arr = arr
+  end
+
+  def animate
+    n = @anim_arr.length
+    i = 0
+    while i < n
+      puts @anim_arr[i]
+      sleep(1.0 / (i += 1))
+      system('clear')
     end
-    def animate
-        n = @anim_arr.length
-        i = 0
-        while i < n
-            puts @anim_arr[i]
-            sleep(1.0/(i+=1))
-            system("clear")
-        end
-    end
+  end
 end
 
 animation_arr = [
-'
+  '
 
 
   /\/\/\                           _/**\_
