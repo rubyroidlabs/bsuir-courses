@@ -18,7 +18,6 @@ def hw
 		sleep 0.2
 	end
 	source.close
-	puts ""
 end
 
 hw
