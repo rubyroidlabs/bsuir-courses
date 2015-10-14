@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# @version 0.2.2
+# @version 0.2.3
 # @author S. Ivanouski
 
 class String
@@ -19,9 +19,9 @@ class Signs
   end
 
   def print_sign
-      l = ((`tput lines`).to_i - 1)
-      h = ((`tput cols`).to_i - 5)
-      l.times do
+    l = ((`tput lines`).to_i - 1)
+    h = ((`tput cols`).to_i - 5)
+    l.times do
       spacing = @spaces * rand(5..@max)
       signing = @sign * rand(20..(h - @max))
       puts spacing + signing.colorize(rand(31..36))
