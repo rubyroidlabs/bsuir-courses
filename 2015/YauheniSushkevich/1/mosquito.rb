@@ -32,7 +32,7 @@ end
 def mosquito.fly
   system 'clear'
   (cols - width).downto(0) do |i|
-    self.each do |frame|
+    each do |frame|
       frame.split("\n").each do |string|
         puts ' ' * i + string
       end
@@ -43,7 +43,7 @@ end
 
 def mosquito.appear
   cols.downto(cols - width) do |i|
-    self.each do |frame|
+    each do |frame|
       frame.split("\n").each do |string|
         puts ' ' * i + string[0, cols - i]
       end
@@ -54,7 +54,7 @@ end
 
 def mosquito.disappear
   0.upto(width) do |i|
-    self.each do |frame|
+    each do |frame|
       frame.split("\n").each do |string|
         puts string[i, string.length]
       end
