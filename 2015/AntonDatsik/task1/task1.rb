@@ -2,8 +2,7 @@ require 'curses'
 
 class Car
   def initialize()
-  @image = [
-    "                                $$$$$$$$$$$$$$$$$$$$$$$        ",
+  @image = ["                                $$$$$$$$$$$$$$$$$$$$$$$        ",
     "                               $$$$$_____$$_____$$____$$       ",
     "                             $$$$$_______$$______$$____$$      ",
     "                           $$$$$_________$$_______$$____$$     ",
@@ -26,7 +25,7 @@ class Car
 
   def print(y, x)
     k = 0
-		prng = Random.new
+    prng = Random.new
 
     while (k < @image.length) do
       Curses.setpos(y + k, x)
