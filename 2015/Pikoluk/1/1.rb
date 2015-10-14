@@ -1,4 +1,4 @@
-system("clear")
+system ('clear')
 
 puts'                                          /~\\                           '
 puts'                                         ( oo|                           '
@@ -15,7 +15,7 @@ puts'                      /=\\/=\\/=\\          | | |                        '
 puts'                      [_][_][_]         /_]_[_\\                         '
 
 sleep 0.1
-system("clear")
+system ('clear')
 
 puts'                                          /~\\                       '
 puts'                                         ( oo|                       '
@@ -32,7 +32,7 @@ puts'                      [_][_][_]          | | |                        '
 puts'                                        /_]_[_\\                      '
 
 sleep 0.1
-system("clear")
+system ('clear')
 
 puts'                                          /~\\                           '
 puts'                         ___             ( oo|                           '
@@ -66,7 +66,7 @@ puts'                                         | | |                        '
 puts'                                        /_]_[_\\                         '
 
 sleep 0.1
-system("clear")
+system ('clear')
 
 puts'                         ___              /~\\                           '
 puts'                        / ()\\           |oo  )                          '
@@ -83,7 +83,7 @@ puts'                                         | | |                        '
 puts'                                        /_]_[_\\                         '
 
 sleep 0.5
-system("clear")
+system ('clear')
 
 puts'                         ___              /~\\                           '
 puts'                        / ()\\           |oo  )                           '
@@ -100,7 +100,7 @@ puts'                                         | | |                        '
 puts'                                        /_]_[_\\                         '
 
 sleep 0.1
-system("clear")
+system ('clear')
 
 
 puts'                         ___              /~\\                           '
@@ -118,7 +118,7 @@ puts'                                         | | |                        '
 puts'                                        /_]_[_\\                         '
 
 sleep 0.1
-system("clear")
+system ('clear')
 
 puts'                                          /~\\                           '
 puts'                         ___             |oo )                           '
@@ -135,7 +135,7 @@ puts'                                         | | |                        '
 puts'                                        /_]_[_\\                         '
 
 sleep 0.1
-system("clear")
+system ('clear')
 
 puts'                                          /~\\                          '
 puts'                                         |oo )                          '
@@ -152,7 +152,7 @@ puts'                      [_][_][_]          | | |                        '
 puts'                                        /_]_[_\\                         '
 
 sleep 0.1
-system("clear")
+system ('clear')
 
 puts'                                          /~\\                           '
 puts'                                         |oo )                           '
