@@ -82,7 +82,7 @@ puts '                                         []|[]                      '
 puts '                                         | | |                      '
 puts '                                        /_]_[_\\                    '
 
-sleep 0.5
+sleep 0.6
 system ('clear')
 
 puts '                         ___              /~\\                      '
