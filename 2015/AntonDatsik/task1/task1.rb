@@ -28,21 +28,21 @@ class Car
     while k < @image.length do
       Curses.setpos(y + k, x)
       if k.between?(9,12)
-        tempStr = String.new(" ")
-        randVal = prng.rand(0..4)
+        temp_Str = String.new(" ")
+        rand_Val = prng.rand(0..4)
         i = 1
-        tempStr.concat(@image[k])
-        if i < randVal
+        temp_Str.concat(@image[k])
+        if i < rand_Val
           i += 3
-          tempStr.concat(" ")
+          temp_Str.concat(" ")
         end
 
-        while i > randVal do
-          tempStr.concat(@particle)
+        while i > rand_Val do
+          temp_Str.concat(@particle)
           i -= 1
         end
 
-        Curses.addstr(tempStr)
+        Curses.addstr(temp_Str)
       else
         Curses.addstr(@image[k])
       end
@@ -52,13 +52,11 @@ class Car
 
     Curses.refresh
   end
-
 end
-
 car = Car.new
 Curses.init_screen
 Curses.nl
-Curses.noecho		
+Curses.noecho
 Curses.curs_set(0)
 
 shift_coord = 0
