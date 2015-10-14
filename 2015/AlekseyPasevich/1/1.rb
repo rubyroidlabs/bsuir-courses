@@ -9,6 +9,7 @@ cup2=source.to_a
   puts "\e[2J"
   puts cup2
   sleep 0.2
-  end
+end
 puts "\e[2J"
 source.close
+end
