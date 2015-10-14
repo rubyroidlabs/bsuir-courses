@@ -2,7 +2,7 @@
 
 i = 13
 
-t.times do
+i.times do
   system 'clear'
   if i > 0
     i.times { puts '' }
