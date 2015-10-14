@@ -13,7 +13,7 @@ def go
       while i<21
         cls
         file_arr1[i].insert(0, '─')
-        i = i + 1 
+        i = i + 1
       end
       puts file_arr1
       sleep 0.2
@@ -28,7 +28,7 @@ def go
       puts file_arr2
       sleep 0.1
       it = it + 1
-  	end
-  end	
+    end
+  end
 end
 go
