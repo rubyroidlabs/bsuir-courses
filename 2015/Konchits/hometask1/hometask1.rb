@@ -1,8 +1,8 @@
-def cls #method cls
+def cls # method cls
   puts "\e[H\e[2J"
 end
 
-def go #method go
+def go # method go
   file1 = File.open('1.txt')
   file_arr1 = file1.to_a
   file2 = File.open('2.txt')
