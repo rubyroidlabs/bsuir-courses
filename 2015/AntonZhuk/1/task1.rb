@@ -22,10 +22,10 @@ i=0
 while i < 45
 
   for j in 0..14
-    puts st[j] = " " + st[j]
+    puts st[j] = ' ' + st[j]
   end
   sleep(0.0416)
-  system "clear"
+  system 'clear'
 
   i+=1
 end
@@ -36,6 +36,6 @@ while i > 0
     puts st[j]=st[j][1,st[j].length]
   end
   sleep(0.0416)
-  system "clear"
+  system 'clear'
   i-=1
 end
