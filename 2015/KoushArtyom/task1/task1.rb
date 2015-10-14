@@ -8,7 +8,7 @@ animation[5] = '(╯°O°)╯                    ┬─┬'
 animation[6] = '(\°-°)\                     ︵  ┻━┻'
 animation[7] = '(\°-°)\                            ┬─┬'
 animation[8] = '(\°-°)\                             ︵  ┻━┻'
-animation[9] = '(\°-°)\                                    ┬─┬' 
+animation[9] = '(\°-°)\                                    ┬─┬'
 animation[10] = '(\°-°)\                                     ︵  ┻━┻'
 animation[11] = '(\°-°)\                                            ┬─┬'
 2.times do
