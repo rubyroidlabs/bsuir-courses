@@ -5,24 +5,24 @@ def colorization(input_text, indicator)
     case indicator
     when 1
       if input_text[i] == '%'
-        print input_text[i].red #output element red light
+        print input_text[i].red # output element red light
       else
         print input_text[i]
       end
     when 2, 4
       if input_text[i] == '@'
-        print input_text[i].yellow #output element yellow light
+        print input_text[i].yellow # output element yellow light
       else
         print input_text[i]
       end
     when 3
       if input_text[i] == '&'
-        print input_text[i].green #output element green light
+        print input_text[i].green # output element green light
       else
-        print input_text[i] #output element default light
+        print input_text[i] # output element default light
       end
     else
-      print input_text[i] #output element default light
+      print input_text[i] # output element default light
     end
   end
 end
