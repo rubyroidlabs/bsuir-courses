@@ -1,9 +1,9 @@
 image = []
 b = 'OK'
-a=''
+a = ''
 
 (1..9).each { |i|
-  file = File.open("txt/#{i.to_s}.txt", 'r')
+  file = File.open('txt/'+i.to_s+'.txt', 'r')
   image[i] = file.read
 }
 
@@ -15,20 +15,19 @@ while a.chomp != b
   end
 end
 
-(1..2).each {
-  (1..9).each { |i|
+(1..2).each
+  (1..9).each do |i|
     puts image[i]
     sleep(0.15)
     system 'clear'
-  }
-  (7..9).each { |j|
+  end
+  (7..9).each do |j|
     puts image[j]
     sleep(0.15)
     system 'clear'
-  }
-  (7..9).each { |k|
+  end
+  (7..9).each do |k|
     puts image[k]
     sleep(0.15)
     system 'clear'
-  }
-}
+  end
