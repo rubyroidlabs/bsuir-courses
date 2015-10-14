@@ -3,12 +3,12 @@ require 'colorize'
 
 def symbol_color(string_file)
   string_file.size.times do |i|
-    if string_file[i] == '█'
-      print string_file[i].red
+    if string_file[i] == '█' 
+      print string_file[i].red # print fast car
     elsif string_file[i] == '▞'
-      print string_file[i].green
+      print string_file[i].green # print border
     else
-      print string_file[i].blue
+      print string_file[i].blue # print slow car
     end
   end
 end
