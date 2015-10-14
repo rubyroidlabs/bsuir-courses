@@ -3,7 +3,7 @@ def my_clear
 end
 
 def hw
-	source = File.open("oslik.txt")
+	source = File.open('oslik.txt')
 	pict = source.to_a
 	i = 0
 	while i < 20
