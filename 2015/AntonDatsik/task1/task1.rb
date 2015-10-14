@@ -1,7 +1,7 @@
 require 'curses'
 
 class Car
-  def initialize()
+  def initialize
   @image = ["                                $$$$$$$$$$$$$$$$$$$$$$$        ",
     "                               $$$$$_____$$_____$$____$$       ",
     "                             $$$$$_______$$______$$____$$      ",
@@ -19,7 +19,6 @@ class Car
     "             $$$$$_$$$                           $$$$$$_$$$    ",
     "               $$$$$$                               $$$$$$     "]
 
-
     @particle = ' *'
   end
 
@@ -27,19 +26,19 @@ class Car
     k = 0
     prng = Random.new
 
-    while (k < @image.length) do
+    while k < @image.length do
       Curses.setpos(y + k, x)
       if k.between?(9,12)
         tempStr = String.new(" ")
         randVal = prng.rand(0..4)
         i = 1
         tempStr.concat(@image[k])
-        if (i < randVal)
+        if i < randVal
           i += 3
           tempStr.concat(" ")
         end
 
-        while (i > randVal) do
+        while i > randVal do
           tempStr.concat(@particle)
           i -= 1
         end
@@ -57,7 +56,7 @@ class Car
 
 end
 
-car = Car.new()
+car = Car.new
 Curses.init_screen
 Curses.nl
 Curses.noecho		
@@ -76,4 +75,3 @@ while shift_coord < 70 do
 
   shift_coord += 1
 end
-
