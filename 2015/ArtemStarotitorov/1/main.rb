@@ -37,18 +37,16 @@ class Animator
     @offsety_of_cartridge = 1
     @gun_string = @gun.to_s
     @cartridge_string = @cartridge.to_s
-    @width_of_cartridge = @cartridge.width
-    @height_of_gun = @gun.height
   end
 
   def animate
     Curses.init_screen
     coordx_of_gun = 0
-    coordy_of_gun = (Curses.lines - @height_of_gun) / 2
+    coordy_of_gun = (Curses.lines - @gun.height) / 2
     coordx_of_cartridge = coordx_of_gun + @offsetx_of_cartridge
     coordy_of_cartridge = coordy_of_gun + @offsety_of_cartridge
     begin
-      while coordx_of_cartridge < Curses.cols - @width_of_cartridge
+      while coordx_of_cartridge < Curses.cols - @cartridge.width
         Curses.clear
         Curses.setpos(coordy_of_gun, coordx_of_gun)
         Curses.addstr(@gun_string)
