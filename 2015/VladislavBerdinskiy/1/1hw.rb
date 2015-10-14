@@ -132,7 +132,6 @@ frame[5] = "
               <====|====>
                    U"
 
-
 10.times do
   frame.each do |i|
     puts i
