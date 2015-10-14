@@ -49,7 +49,7 @@ puts'                                         | | |                        '
 puts'                                        /_]_[_\\                         '
 
 sleep 0.1
-system("clear")
+system ('clear')
 
 puts'                         ___              /~\\                           '
 puts'                        / ()\\            ( oo|                          '
