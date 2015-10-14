@@ -1,7 +1,6 @@
 require 'io/console'
-
 animation = 
-%Q[`````````````````````````/\\``````````/\,
+%[`````````````````````````/\\``````````/\,
 `````````````````````````(`\\````````//`),
 ``````````````````````````\`\\``````//`/,
 ```````````````````````````\_\\||||//_/`,
@@ -35,11 +34,10 @@ end
 
 loop do|a|
   animation_length.upto(limit_size) do |b|
-    animation.map! {|e| e.rjust(e.length + 1)}
+    animation.map! {|e | e.rjust(e.length + 1)}
 	sleep_and_clear
 	puts animation
   end
-  
   limit_size.downto(animation_length) do |c|
 	animation.map! {|e| e.slice!(1..-1)}
 	sleep_and_clear
