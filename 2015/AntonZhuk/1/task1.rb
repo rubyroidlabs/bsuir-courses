@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 
 st=Array.new
 st[0] = '               ▀▀▀               '
