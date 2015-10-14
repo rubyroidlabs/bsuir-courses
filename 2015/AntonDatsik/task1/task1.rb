@@ -27,7 +27,7 @@ class Car
 
     while k < @image.length do
       Curses.setpos(y + k, x)
-      if k.between?(9,12)
+      if k.between?(9, 12)
         temp_Str = String.new(" ")
         rand_Val = prng.rand(0..4)
         i = 1
