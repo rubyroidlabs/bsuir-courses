@@ -16,18 +16,18 @@ while a.chomp != b
 end
 
 (1..2).each
-  (1..9).each do |i|
-    puts image[i]
-    sleep(0.15)
-    system 'clear'
-  end
-  (7..9).each do |j|
-    puts image[j]
-    sleep(0.15)
-    system 'clear'
-  end
-  (7..9).each do |k|
-    puts image[k]
-    sleep(0.15)
-    system 'clear'
-  end
+(1..9).each do |i|
+  puts image[i]
+  sleep(0.15)
+  system 'clear'
+end
+(7..9).each do |j|
+  puts image[j]
+  sleep(0.15)
+  system 'clear'
+end
+(7..9).each do |k|
+  puts image[k]
+  sleep(0.15)
+  system 'clear'
+end
