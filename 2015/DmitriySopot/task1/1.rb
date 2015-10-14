@@ -29,7 +29,7 @@ limit_size = winsize[1] - winsize[1] % animation_length
 
 def sleep_and_clear
 	sleep 0.06
-system "clear"
+system 'clear'
 end
 loop do|a|
   animation_length.upto(limit_size) do |b|
