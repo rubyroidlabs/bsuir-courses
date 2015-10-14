@@ -1,5 +1,5 @@
 # !/usr/bin/env ruby
-# v. 2.1
+# v. 2
 class Rocket
   def initialize(a, b, i, str) # Initializing variables
     @a, @b, @i, @str = a, b, i, str
@@ -12,13 +12,6 @@ class Rocket
   def boom # Variables for ending explosion
     @@a1 = "#{'o' * 10}\n"
     @@a2 = "#{'o' * 2}" + '-BOOM-' + "#{'o' * 2}\n"
-    $c = a * 3 + '>' + b * 5 + '=>'
-  end
-
-  def boom # Variables for ending explosion
-    $a1 = "#{'o' * 10}\n"
-    $a2 = "#{'o' * 2}" + '-BOOM-' + "#{'o' * 2}\n"
->>>>>>> a76e8de1dcaed30772ecaa045c71f192e80a8725
   end
 
   def animate(i, str) # Animate rocket
