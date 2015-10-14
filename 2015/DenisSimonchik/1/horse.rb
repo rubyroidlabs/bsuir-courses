@@ -7,7 +7,7 @@ temp1 = Array.new(horse_arr_1)
 temp2 = Array.new(horse_arr_2)
 (0..SIZE).each do |i|
   system "clear"
-  puts temp1  
+  puts temp1
   sleep 0.02
   system "clear"
   puts temp2
