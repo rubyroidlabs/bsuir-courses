@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# @version 0.2.1
+# @version 0.2.2
 # @author S. Ivanouski
 
 class String
@@ -11,19 +11,19 @@ class String
 end
 
 class Signs
-  def initialize(sign, spaces, do_times, max, max0, sleeping)
+  def initialize(sign, spaces, max, sleeping)
     @sign = sign            # sign to draw
     @spaces = spaces        # spacing
-    @do_times = do_times    # times to repeat drawing line
-    @max = max              # maximum signs per line
-    @max0 = max0            # maximum spacers per line
+    @max = max            # maximum spacers per line
     @sleeping = sleeping    # time between drawing lines (sec)
   end
 
   def print_sign
-    @do_times.times do
-      spacing = @spaces * rand(5..@max0)
-      signing = @sign * rand(20..@max)
+      l = ((`tput lines`).to_i - 1)
+      h = ((`tput cols`).to_i - 5)
+      l.times do
+      spacing = @spaces * rand(5..@max)
+      signing = @sign * rand(20..(h - @max))
       puts spacing + signing.colorize(rand(31..36))
       sleep @sleeping
     end
@@ -32,7 +32,7 @@ end
 
 system 'clear'
 
-pic = Signs.new('*', ' ', 36, 130, 20, 0.05)
+pic = Signs.new('*', ' ', 20, 0.05)
 pic.print_sign
 
 sleep 2
