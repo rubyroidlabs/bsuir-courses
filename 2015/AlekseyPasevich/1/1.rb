@@ -12,4 +12,3 @@ cup2=source.to_a
 end
 puts "\e[2J"
 source.close
-end
