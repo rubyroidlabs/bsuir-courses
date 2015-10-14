@@ -1,7 +1,6 @@
-#!/usr/bin/env ruby
-#v. 2.1
+# !/usr/bin/env ruby
+# v. 2.1
 class Rocket
-
   def initialize(a, b, i, str) # Initializing variables
     @a, @b, @i, @str = a, b, i, str
   end
