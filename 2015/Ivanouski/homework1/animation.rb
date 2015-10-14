@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# @version 0.2.3
+# @version 0.2.4
 # @author S. Ivanouski
 
 class String
@@ -14,7 +14,7 @@ class Signs
   def initialize(sign, spaces, max, sleeping)
     @sign = sign            # sign to draw
     @spaces = spaces        # spacing
-    @max = max            # maximum spacers per line
+    @max = max              # maximum spacers per line
     @sleeping = sleeping    # time between drawing lines (sec)
   end
 
