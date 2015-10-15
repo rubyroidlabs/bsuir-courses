@@ -1,5 +1,5 @@
 class Animation
-	def anim_arr=(arr)
+  def anim_arr= (arr)
     @anim_arr = arr
   end
 
@@ -7,15 +7,15 @@ class Animation
     @anim_arr
   end
 
-	def show_anim
-		5.downto(1) do
-			anim_arr.each do |x|
-				puts x
-				sleep(0.15)
-				system("clear")
-			end
-		end
-	end
+  def show_anim
+    5.downto(1) do
+      anim_arr.each do |x|
+        puts x
+        sleep(0.15)
+        system("clear")
+        end
+    end
+  end
 end
 
 keyboard_smash = ["MMMMMM_______________________________________________________________________________________MMMMMMM
@@ -143,5 +143,5 @@ MMMM____________MM______MM_____MMM_____MMMMM__MMM__________________________MMMM_
 MMMM____________MMM____MMMM____MMM______________________________________________________________MMMM"]
 
 a = Animation.new
-a.anim_arr=(keyboard_smash)
+a.anim_arr = (keyboard_smash)
 a.show_anim
