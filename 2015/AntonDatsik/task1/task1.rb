@@ -53,22 +53,31 @@ class Car
     Curses.refresh
   end
 end
-car = Car.new
-Curses.init_screen
-Curses.nl
-Curses.noecho
-Curses.curs_set(0)
 
-shift_coord = 0
-Y = Curses.lines / 2
-X = Curses.cols / 2
-
-while shift_coord < 70
-  if 	X - shift_coord > 0
-    car.print(Y, X - shift_coord)
-    sleep(0.05)
-    Curses.clear
+class Animator
+  def initialize
+    @car = Car.new
+    Curses.init_screen
+    Curses.nl
+    Curses.noecho
+    Curses.curs_set(0)
   end
 
-  shift_coord += 1
+  def animate
+    shift_coord = 0
+    y = Curses.lines / 2
+    x = Curses.cols / 2
+
+    while shift_coord < 70
+      if  x - shift_coord > 0
+        @car.print(y, x - shift_coord)
+        sleep(0.05)
+        Curses.clear
+      end
+
+      shift_coord += 1
+    end
+  end
 end
+
+Animator.new.animate
