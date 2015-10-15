@@ -1,6 +1,8 @@
 frames = []
 
-sorted_filepathes = Dir[File.expand_path('frames/*.txt')].sort_by {|filepath| filepath.split('/').last.to_i }
+sorted_filepathes = Dir[File.expand_path('frames/*.txt')].sort_by do |filepath| 
+  filepath.split('/').last.to_i
+end
 
 sorted_filepathes.each do |filepath|
   frame = File.readlines(filepath).join
@@ -11,6 +13,6 @@ end
   frames.each do |frame|
     puts frame
     sleep 0.2
-    system "clear"
+    system ('clear')
   end
 end
