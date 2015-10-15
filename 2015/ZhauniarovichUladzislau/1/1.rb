@@ -34,17 +34,17 @@
     print `clear`
     0.upto(galaxy.size - 1) do |height|
       0.upto(galaxy[height].size - 1) do |width|
-        (1).times do
+      (1).times do
           print ' '
-        end
+      end
         case
         when (height < y - i || height > y + i) then
           print ''
         when (width > x + j) then
           print ''
         when (height >= y - i && height <= y + i) &&
-        (width >= x - j && width <= x + j) then
-        print galaxy[height][width]
+          (width >= x - j && width <= x + j) then
+          print galaxy[height][width]
       end
     end
     puts ''
