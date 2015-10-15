@@ -1,4 +1,4 @@
-require'curses'
+require 'curses'
 include Curses
 
 frame1 = '
@@ -11,7 +11,6 @@ frame1 = '
    /   \    /   \/   \/   \/   \
    \___/    \___/\___/\___/\___/'
 
-
 frame2 = '
          _____________________
         |_____________________|
@@ -21,11 +20,11 @@ frame2 = '
         _|_  _|_  _|_  _|_      _\_
        /   \/   \/   \/   \    /   \
        \___/\___/\___/\___/    \___/'
-                                                                                            
+
 Curses.init_screen
 begin
     curs_set 0
-    while true
+    loop do
         clear
         addstr(frame1)  
         refresh
