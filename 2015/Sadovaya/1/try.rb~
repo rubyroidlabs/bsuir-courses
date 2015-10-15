@@ -1,10 +1,9 @@
-10.times {
-  for i in 1..8
-    IO.foreach("text#{i}.txt") do |line|
+5.times do
+  7.times do |i|
+    IO.foreach("pict#{i}.txt") do |line|
       puts line
     end
     sleep 0.2
-    system("clear")
+    system('clear')
   end
-}
-
+end
