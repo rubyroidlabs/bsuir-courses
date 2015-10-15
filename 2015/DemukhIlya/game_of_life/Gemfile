@@ -1,0 +1,10 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+# gem "rails"
+gem 'sinatra'
+gem 'rspec'
+
+group :development do
+  gem 'pry'
+end

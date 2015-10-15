@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+Dir['../lib/*.rb'].each { |f| require_relative f }
+
+opts = Options.new(ARGV)
+
+if opts.options[:zipped]
+  finder = Finder.new(Unzipper.unzip(opts.files.first))
+else
+  finder = Finder.new(opts.files)
+end
+
+case
+when opts.options[:amount]
+  finder.find_with_amount(opts.pattern).each { |line| puts line }
+when opts.options[:regexp]
+  finder.find_using_regexp(opts.pattern).each { |line| puts line }
+else
+  finder.find(opts.pattern).each { |line| puts line }
+end
