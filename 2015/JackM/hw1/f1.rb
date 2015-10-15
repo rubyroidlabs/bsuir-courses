@@ -29,5 +29,5 @@ while k > 0 do
   end
   j = 0
   sleep 0.057
-  system "clear"
+  system 'clear'
 end
