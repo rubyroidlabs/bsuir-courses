@@ -1,16 +1,16 @@
 
-r2d2str = File.open('r2d2.txt') { |file| file.read }
-backgroundStr = File.open('background.txt') { |file| file.read }
-r2d2 = r2d2str.split(/\n/)
-background = backgroundStr.split(/\n/)
+r2d2_str = File.open('r2d2.txt', &:read)
+background_str = File.open('background.txt', &:read)
+r2d2 = r2d2_str.split(/\n/)
+background = background_str.split(/\n/)
 
 DISTANCE = 45
 pic = []
 
 loop do
   r2d2.length.upto(DISTANCE) do
-    r2d2.map! { |r2d2Line| r2d2Line.rjust(r2d2Line.length + 1) }
-    pic = backgroundStr.split(/\n/)
+    r2d2.map! { |r2d2_line| r2d2_line.rjust(r2d2_line.length + 1) }
+    pic = background_str.split(/\n/)
     sleep 0.03
     system 'clear'
 
@@ -24,8 +24,8 @@ loop do
   end
 
   DISTANCE.downto(r2d2.length) do
-    r2d2.map! { |r2d2Line| r2d2Line.slice!(1..-1) }
-    pic = backgroundStr.split(/\n/)
+    r2d2.map! { |r2d2_line| r2d2_line.slice!(1..-1) }
+    pic = background_str.split(/\n/)
     sleep 0.03
     system 'clear'
 
