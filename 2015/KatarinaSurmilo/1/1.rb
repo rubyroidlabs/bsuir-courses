@@ -1,6 +1,6 @@
 frames = []
 
-sorted_filepathes = Dir[File.expand_path('frames/*.txt')].sort_by do |filepath| 
+sorted_filepathes = Dir[File.expand_path('frames/*.txt')].sort_by do |filepath|
   filepath.split('/').last.to_i
 end
 
