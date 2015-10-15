@@ -24,7 +24,7 @@ begin
 	window = win_init(HEIGHT, WIDTH)
 	frame = Array.new(10) { |i| i =  AsciiArt.new("jp/#{i}.jpeg")}
 
-	while gets.chunk != 'q'
+	while true
 		frame.each do |i|
 			show_pict window, i.to_ascii_art(width: WIDTH)
 			sleep 0.01
@@ -32,5 +32,5 @@ begin
 	end
 
 	ensure
-		close_screen
+		close_screene
 end
