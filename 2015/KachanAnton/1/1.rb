@@ -43,7 +43,7 @@ loop do
   end
   sleep 0.05
   i += 1
-  if i == 35
+  if i == 36
     system 'clear'
     break loop
   end
