@@ -39,24 +39,24 @@
         end
         case
         when (height < y - i || height > y + i) then
-         print ''
-       when (width > x + j) then
-        print ''
-      when (height >= y - i && height <= y + i) &&
+          print ''
+        when (width > x + j) then
+          print ''
+        when (height >= y - i && height <= y + i) &&
         (width >= x - j && width <= x + j) then
         print galaxy[height][width]
       end
     end
     puts ''
-  end
+    end
 
-  if (i <= y)
-    i += 1
-    puts i
-  end
-  if (j <= x)
-    j += 2
-    puts j
-  end
-  sleep 0.15
+    if (i <= y)
+      i += 1
+      puts i
+    end
+    if (j <= x)
+      j += 2
+      puts j
+    end
+    sleep 0.15
   end
