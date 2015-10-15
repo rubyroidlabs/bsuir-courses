@@ -1,8 +1,8 @@
 cols = `tput cols`.to_i
 shift_t = 2
 car = [
- '   *****  '.split(''), '   *   *  '.split(''), '****   ***'.split(''),
- '*        *'.split(''), '**********'.split(''), '  **   ** '.split('')
+  '   *****  '.split(''), '   *   *  '.split(''), '****   ***'.split(''),
+  '*        *'.split(''), '**********'.split(''), '  **   ** '.split('')
 ]
 cols.downto(-car.max.size)  do  |shift|
   background = Array.new(10) { Array.new(cols) { ' ' } }
