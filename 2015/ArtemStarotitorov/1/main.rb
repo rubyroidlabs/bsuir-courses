@@ -47,18 +47,32 @@ class Animator
     coordy_of_cartridge = coordy_of_gun + @offsety_of_cartridge
     begin
       while coordx_of_cartridge < Curses.cols - @cartridge.width
-        Curses.clear
-        Curses.setpos(coordy_of_gun, coordx_of_gun)
-        Curses.addstr(@gun_string)
-        Curses.setpos(coordy_of_cartridge, coordx_of_cartridge)
-        Curses.addstr(@cartridge_string)
+        draw_frame(coordx_of_gun, coordy_of_gun, coordx_of_cartridge, coordy_of_cartridge)
         coordx_of_cartridge += 10
-        Curses.refresh
         sleep 0.1
       end
     ensure
       Curses.close_screen
     end
+  end
+
+  private
+
+  def draw_frame(coordx_of_gun, coordy_of_gun, coordx_of_cartridge, coordy_of_cartridge)
+    Curses.clear
+    draw_gun(coordx_of_gun, coordy_of_gun)
+    draw_cartridge(coordx_of_cartridge, coordy_of_cartridge)
+    Curses.refresh
+  end
+
+  def draw_gun(coordx, coordy)
+    Curses.setpos(coordy, coordx)
+    Curses.addstr(@gun.to_s)
+  end
+
+  def draw_cartridge(coordx, coordy)
+    Curses.setpos(coordy, coordx)
+    Curses.addstr(@cartridge.to_s)
   end
 end
 
