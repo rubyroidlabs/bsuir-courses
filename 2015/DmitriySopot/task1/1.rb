@@ -21,11 +21,11 @@ animation =
 ``````|_|``|_|````````|_||,
 ```````\_\``\_\````````\_\\].split
 
-  winsize = IO.console.winsize
+   winsize = IO.console.winsize
 
-  animation_length = animation.min.length
+   animation_length = animation.min.length
 
-  limit_size = winsize[1] - winsize[1] % animation_length
+   limit_size = winsize[1] - winsize[1] % animation_length
   def sleep_and_clear
     sleep 0.06
    system 'clear'
