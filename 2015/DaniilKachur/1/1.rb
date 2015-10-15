@@ -24,10 +24,10 @@ begin
   window = win_init(HEIGHT, WIDTH)
   frame = Array.new(10) { |i| AsciiArt.new("jp/#{i}.jpeg") }
 
-  while true
+  loop do
     frame.each do |i|
       show_pict window, i.to_ascii_art(width: WIDTH)
       sleep 0.01
     end
-  end
+  end 
 end
