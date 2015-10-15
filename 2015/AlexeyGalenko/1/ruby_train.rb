@@ -47,7 +47,7 @@ end
 
 #Path through left wall
 i = 0
-while i != l do
+while i != l
     k = i/ 3 % 6
     train[4] = wheels[k][0]
     train[5] = wheels[k][1]	
