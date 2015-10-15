@@ -1,4 +1,5 @@
-  sun = "11..................................................11
+  sun =
+  "11..................................................11
   10()     .     . .  .  .    O  .     .     .       .10
   9.  .    .    . .   .  .    .  .    .     .        . 9
   8.   .    .   . .   .  .   .  .    .     .        .  8
@@ -37,14 +38,14 @@
           print ' '
         end
         case
-  	when (height < y - i || height > y + i) then
-  	  print ''
-          when (width > x + j) then
-            print ''
-          when (height >= y - i && height <= y + i) &&
-  	(width >= x - j && width <= x + j) then
-  	  print galaxy[height][width]
-        end
+        when (height < y - i || height > y + i) then
+         print ''
+       when (width > x + j) then
+        print ''
+      when (height >= y - i && height <= y + i) &&
+        (width >= x - j && width <= x + j) then
+        print galaxy[height][width]
+      end
     end
     puts ''
   end
