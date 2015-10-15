@@ -33,18 +33,18 @@ loop do
   puts space + srt4_car
   puts space + srt5_car
   puts space + srt6_car
-if (i % 2 == 0)
-  puts space + srt7_car
-  puts space + srt8_car
+  if (i % 2 == 0)
+    puts space + srt7_car
+    puts space + srt8_car
   end
-if(i % 2 != 0)
-  puts space + srt7chg_car
-  puts space + srt8chg_car
+  if (i % 2 != 0)
+    puts space + srt7chg_car
+    puts space + srt8chg_car
   end
   sleep 0.05
   i += 1
-if i == 35
-  system 'clear'
-  break loop
+  if i == 35
+    system 'clear'
+    break loop
   end
 end
