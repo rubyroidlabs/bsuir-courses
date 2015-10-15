@@ -15,9 +15,9 @@ animation[10] = '(\°-°)\                                     ︵  ┻━┻'
 animation[11] = '(\°-°)\                                            ┬─┬'
 
 2.times do
-	animation.each do |a|
-		puts a
-		sleep 0.5
-		system 'clear'
-	end
+  animation.each do |a|
+    puts a
+    sleep 0.5
+    system 'clear'
+  end
 end
