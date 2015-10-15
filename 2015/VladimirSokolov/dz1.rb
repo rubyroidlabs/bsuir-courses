@@ -138,5 +138,5 @@ while i < 5
     sleep(0.5)
     system 'clear'
   end
-i += 1
+  i += 1
 end
