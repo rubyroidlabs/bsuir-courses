@@ -38,7 +38,7 @@ animation =
   end
   limit_size.downto(animation_length) do |c|
     animation.map! { |e| e.slice!(1..-1) }
-  sleep_and_clear
+    sleep_and_clear
   puts animation
   end
 end
