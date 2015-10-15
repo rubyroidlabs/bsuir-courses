@@ -22,27 +22,27 @@ sun ="11..................................................11
 10'  * /    /   .'  |   `.   .    .    `.`-'     `-.10
 11   ,'    /    |   |    |    .    `.    `.    *    11"
 
-galaxy= sun.split("\n")
+galaxy = sun.split("\n")
 i = 0
 j = 0
-y = galaxy.size/2
-x = (galaxy[y].size+1)/2
+y = galaxy.size / 2
+x = (galaxy[y].size + 1) / 2
 puts x
 puts y
-until ( i>y && j>x)
+until ( i > y && j > x)
 print `clear`
-0.upto(galaxy.size-1) do |height|
-	0.upto(galaxy[height].size-1) do |width|
+0.upto(galaxy.size - 1) do |height|
+	0.upto(galaxy[height].size - 1) do |width|
 	(1).times do
 	print ' '
 	end	
 	case 
-	when (height<y-i || height > y+i) 
+	when (height < y - i || height > y + i) 
 		then print ''
-	when	(width>x+j)
+	when	(width > x + j)
 		then
 		print ''
-		when (height>=y-i && height <=y+i) &&(width>=x-j && width<=x+j)
+		when (height >= y - i && height <= y + i) &&(width >= x - j && width <= x + j)
 		then 
 		print galaxy[height][width]
 		end
@@ -51,11 +51,11 @@ print `clear`
 end
 
 if (i <= y) then 
-i+=1  
+i += 1  
 puts i 
 end
 if (j <= x) then 
-j+=2
+j += 2
 puts j 
 end
 sleep 0.15

@@ -43,20 +43,20 @@ print `clear`
 		then
 		print ''
 		when (height >= y - i && height <= y + i) &&(width >= x - j && width <= x + j)
-		then 
+		then
 		print galaxy[height][width]
 		end
 	end
-	puts ""	
+	puts ""
 end
 
-if (i <= y) then 
-i += 1  
-puts i 
+if (i <= y) then
+i += 1
+puts i
 end
-if (j <= x) then 
+if (j <= x) then
 j += 2
-puts j 
+puts j
 end
 sleep 0.15
 end
