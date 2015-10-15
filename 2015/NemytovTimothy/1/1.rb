@@ -1,4 +1,4 @@
-train = [
+train = [  
 ['                                                              '],
 ['  FFFFFF  U     U  CCCCCCC  K  KK      GGGGGG   GGGGGG        '],
 ['  F       U     U  C        KKK        G        G             '],
@@ -6,7 +6,7 @@ train = [
 ['  F        U   U   C        KKK        G    G   G    G        '],
 ['  F        UUUUU   CCCCCCC  K  KK      GGGGGG   GGGGGG        ']]
 
-train.map! {|x| x = x[0].split(//)}#Useless assignment to variable - x.Use 2 (not 1) spaces for indentation.
+train.map! { |x| x[0].split(//) }
 
 while true
   system 'clear'
