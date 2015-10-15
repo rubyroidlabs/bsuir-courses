@@ -17,18 +17,18 @@ im2[4] = '~~~~~~~~~~~~~~|---------   '
 dig = 0
 
 loop do
-    dig += 1
-    if dig % 2 == 0
-    	puts im1
-    	im1.map! do |a|
-    		" " + a
-    	end
-    else
-    	puts im2
-    	im2.map! do |a|
-    		" " + a
-    	end
+  dig += 1
+  if dig % 2 == 0
+    puts im1
+    im1.map! do |a|
+      " " + a
     end
-    sleep (0.05)
-    system 'clear'
+  else
+    puts im2
+    im2.map! do |a|
+      " " + a
+    end
+  end
+  sleep (0.05)
+  system 'clear'
 end
