@@ -30,7 +30,4 @@ begin
 			sleep 0.01
 		end
 	end
-
-	ensure
-		close_screene
 end
