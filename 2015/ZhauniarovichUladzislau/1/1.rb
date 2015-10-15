@@ -30,21 +30,22 @@ x = (galaxy[y].size + 1) / 2
 puts x
 puts y
 until i > y && j > x
-print `clear`
-0.upto(galaxy.size - 1) do |height|
-	0.upto(galaxy[height].size - 1) do |width|
+  print `clear`
+  0.upto(galaxy.size - 1) do |height|
+    0.upto(galaxy[height].size - 1) do |width|
 	(1).times do
-	print ' '
+	  print ' '
 	end
 	case
 	when (height < y - i || height > y + i) then
 	  print ''
 	when (width > x + j) then
 	  print ''
-	when (height >= y - i && height <= y + i) &&(width >= x - j && width <= x + j) then
+	when (height >= y - i && height <= y + i) && 
+	(width >= x - j && width <= x + j) then
 	  print galaxy[height][width]
-	end
-	end
+    end
+  end
 	puts ''
 end
 
