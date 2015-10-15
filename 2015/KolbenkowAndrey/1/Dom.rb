@@ -1,6 +1,6 @@
-rubystr = ":RUBY:"
+rubystr = ':RUBY:'
 rubynone = ' ' * 3
-lolstr = "L"
+lolstr = 'L'
 lolnone = ' '
  20.times do 
  system('clear')
@@ -20,7 +20,7 @@ puts "            #{lolstr}    /         №"
 puts "           #{lolnone}O#{lolnone}===        [] №_"
 puts "            #{lolstr}    №            /"
 puts "                   №__________/"
-puts "                ____I____I____/"
+puts "                  ____I____I____/"
 puts "\n\t\t\ RUBY COPTER!!!"
   sleep(0.1)            
   end
