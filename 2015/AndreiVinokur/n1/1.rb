@@ -330,7 +330,7 @@ loop do
     sleep 0.1
     system 'clear'
   end
-  skeleton.reverse.each do |i|
+  skeleton.reverse_each do |i|
     puts i
     sleep 0.1
     system 'clear'
