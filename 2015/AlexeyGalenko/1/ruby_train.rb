@@ -28,7 +28,7 @@ i = n
 empty = "#{' '*n}"
 #Path from right wall to left
 while i != 0
-    k = (i+n)/3%6
+    k = (i + n)/3%6
     train[4] = wheels[k][0]
     train[5] = wheels[k][1]
     for j in 0..5   	
@@ -48,7 +48,7 @@ end
 #Path through left wall
 i = 0
 while i != l
-    k = i/ 3 % 6
+    k = i/3%6
     train[4] = wheels[k][0]
     train[5] = wheels[k][1]	
     for j in 0..5
