@@ -31,7 +31,7 @@ animation =
    system 'clear'
   end
   loop do|a|
-  animation_length.upto(limit_size) do |a|
+  animation_length.upto(limit_size) do |b|
   animation.map! {|e| e.rjust(e.length + 1)}
   sleep_and_clear
   puts animation
