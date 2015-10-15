@@ -8,5 +8,5 @@ def max_size_engine
       @maxsize = @l
     end
   end
-  @maxsize 
+  @result = @maxsize 
 end
