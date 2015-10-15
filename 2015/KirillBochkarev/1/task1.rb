@@ -21,12 +21,12 @@ loop do
     if dig % 2 == 0
     	puts im1
     	im1.map! do |a|
-    		" "+a
+    		" " + a
     	end
     else
     	puts im2
     	im2.map! do |a|
-    		" "+a
+    		" " + a
     	end
     end
     sleep (0.05)
