@@ -133,12 +133,10 @@ pic[3] = %(──────────█────────────
 ───────────██████████─────────────)
 i = 0
 while i < 5
-0.upto(3)  do |k|
-puts pic[k]
-sleep(0.5)
-system 'clear'
-end
+  0.upto(3) do |k|
+    puts pic[k]
+    sleep(0.5)
+    system 'clear'
+  end
 i += 1
 end
-
-
