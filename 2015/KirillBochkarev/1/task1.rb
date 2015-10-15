@@ -30,5 +30,5 @@ loop do
     	end
     end
     sleep (0.05)
-    system "clear"
+    system 'clear'
 end
