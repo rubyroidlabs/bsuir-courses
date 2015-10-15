@@ -9,7 +9,7 @@ train = [#Use 2 spaces for indentation in an array, relative to the start of the
 
 train.map! {|x| x = x[0].split(//)}#Useless assignment to variable - x.Use 2 (not 1) spaces for indentation.
 
-while (true)# do # while without do ? 
+while (true)
     system 'clear'
     train.each do |x|
         puts x.join# Use 2 (not 1) spaces for identation
