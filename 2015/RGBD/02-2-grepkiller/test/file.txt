@@ -1,0 +1,11 @@
+bbc
+long list
+some words
+abc
+list
+chars
+password
+shdir
+ziro
+man man
+test

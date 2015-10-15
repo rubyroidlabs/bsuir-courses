@@ -1,0 +1,114 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'zip'
+
+def parse_cmd_args(argv)
+  neighbor_count = 0
+  pattern = ''
+  filenames = []
+  to_unpack = {}
+  until argv.empty?
+    case argv[0]
+    when '-A'
+      argv.shift
+      neighbor_count = argv.shift.to_i
+    when '-e'
+      argv.shift
+      pattern = argv.shift
+      unless pattern
+        pattern = ''
+      end
+    when '-R'
+      argv.shift
+      directory_name = argv.shift
+      if directory_name
+        filenames = Dir[File.join(directory_name, '**', '*')].reject { |p| File.directory? p }
+      end
+    when '-z'
+      argv.shift
+      filename = argv.shift
+      if filename
+        filenames.push(filename)
+        to_unpack[filename] = true
+      end
+    when /'^-'/
+      puts 'Invalid option passed'
+      break
+    end
+    if pattern.empty? && argv[0] && !argv[0].include?('-')
+      pattern = argv.shift
+    end
+    if argv[0] && !argv[0].include?('-')
+      filename = argv.shift
+      filenames.push(filename)
+    end
+  end
+  return neighbor_count, pattern, filenames, to_unpack
+end
+
+def read_zip_file_lines(filename)
+  lines = []
+  zipfile = Zip::File.open(filename)
+  zipfile.each do |entry|
+    lines += zipfile.read(entry.name).split
+  end
+  lines
+end
+
+def read_file_lines(filename)
+  lines = []
+  f = File.open(filename, 'r')
+  if f
+    lines = f.readlines
+    f.close
+  end
+  lines
+end
+
+def read_lines(filename, to_unpack)
+  lines = []
+  if to_unpack
+    lines = read_zip_file_lines(filename)
+  else
+    lines = read_file_lines(filename)
+  end
+  lines
+end
+
+def find_pattern_in_lines(lines, pattern, neighbor_count)
+  found_lines = []
+  lines_count = lines.count
+  (0...lines_count).each do |i|
+    if lines[i] =~ /#{pattern}/
+      min_index = [0, i - neighbor_count].max
+      max_index = [lines_count - 1, i + neighbor_count].min
+      found_lines += lines[min_index..max_index]
+    end
+  end
+  found_lines
+end
+
+def find_pattern(neighbor_count, pattern, filenames, to_unpack)
+  lines_to_print = []
+  filenames.each do |filename|
+    lines = read_lines(filename, to_unpack[filename])
+    found_lines = find_pattern_in_file_lines(lines, pattern, neighbor_count)
+    lines_to_print += found_lines
+  end
+  lines_to_print
+end
+
+def main
+  if ARGV.count < 1
+    puts 'Usage: grep [options] PATTERN [FILE...]'
+    return
+  end
+
+  neighbor_count, pattern, filenames, to_unpack = parse_cmd_args(ARGV)
+  lines_to_print = find_pattern(neighbor_count, pattern, filenames, to_unpack)
+
+  puts lines_to_print
+end
+
+main

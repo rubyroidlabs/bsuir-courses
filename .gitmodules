@@ -1,0 +1,75 @@
+[submodule "2015/tkarpesh/1"]
+	path = 2015/tkarpesh/1
+	url = https://github.com/tkarpesh/courses-task1
+[submodule "2015/vahotm"]
+	path = 2015/vahotm
+	url = https://github.com/vahotm/ROR-Homeworks
+[submodule "2015/EugeneArt/1"]
+	path = 2015/EugeneArt/1
+	url = https://github.com/EugeneArt/animation
+[submodule "2015/Socucius/1"]
+	path = 2015/Socucius/1
+	url = https://github.com/Socucius/Train
+[submodule "2015/AleksSenkou"]
+	path = 2015/AleksSenkou
+	url = https://github.com/AleksSenkou/rubyroid_labs
+[submodule "2015/vahotm-git"]
+	path = 2015/vahotm-git
+	url = git@github.com:vahotm/ROR-Homeworks.git
+[submodule "2015/ddzyanis/1"]
+	path = 2015/ddzyanis/1
+	url = https://github.com/ddzyanis/Ruby_animation
+[submodule "2015/Rewerson"]
+	path = 2015/Rewerson
+	url = https://github.com/Rewerson/BSUIROR
+[submodule "2015/EragonBY"]
+	path = 2015/EragonBY
+	url = https://github.com/EragonBY/Ruby
+[submodule "2015/Neyr129"]
+	path = 2015/Neyr129
+	url = https://github.com/Neyr129/Curses
+[submodule "2015/Wrenched-man/1"]
+	path = 2015/Wrenched-man/1
+	url = https://github.com/Wrenched-man/ascii-player
+[submodule "2015/DenPhaser"]
+	path = 2015/DenPhaser
+	url = https://github.com/DenPhaser/Rubyroid_DrawPointsVeryRandomMuchEpicWow
+[submodule "2015/tkarpesh/2"]
+	path = 2015/tkarpesh/2
+	url = https://github.com/tkarpesh/courses-task2
+[submodule "2015/randsina"]
+	path = 2015/randsina
+	url = git@github.com:randsina/bsuir-courses-ruby.git
+[submodule "2015/eugen0329/2"]
+	path = 2015/eugen0329/2
+	url = https://github.com/eugen0329/rgrep
+[submodule "2015/Socucius/2"]
+	path = 2015/Socucius/2
+	url = https://github.com/Socucius/my_grep
+[submodule "2015/Nazarchuk/2"]
+	path = 2015/Nazarchuk/2
+	url = https://github.com/Nazarchuk/ruby
+[submodule "2015/andreymazuro"]
+	path = 2015/andreymazuro
+	url = https://github.com/andreymazuro/bsuir-ror/
+[submodule "2015/sabjj/2"]
+	path = 2015/sabjj/2
+	url = https://github.com/sabjj/dz2/
+[submodule "2015/Unpowered"]
+	path = 2015/Unpowered
+	url = https://github.com/Unpowered/bsuiror
+[submodule "2015/vadimpetkevich"]
+	path = 2015/vadimpetkevich
+	url = https://github.com/vadimpetkevich/bsuirRoR
+[submodule "2015/EugeneArt/2"]
+	path = 2015/EugeneArt/2
+	url = https://github.com/EugeneArt/grep
+[submodule "2015/KaterinaSavchuk/ascii_animation"]
+	path = 2015/KaterinaSavchuk/ascii_animation
+	url = git@github.com:KaterinaSav/ascii_animation.git
+[submodule "2015/KaterinaSavchuk/gemfiler"]
+	path = 2015/KaterinaSavchuk/gemfiler
+	url = git@github.com:KaterinaSav/gemfiler.git
+[submodule "2015/KaterinaSavchuk/grep"]
+	path = 2015/KaterinaSavchuk/grep
+	url = git@github.com:KaterinaSav/grep.git

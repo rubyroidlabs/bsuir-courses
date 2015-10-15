@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+      <title>
+        Life!
+      </title>
+
+      <style>
+
+          select {
+              font-size: 20px;
+              margin: 15px 15px;
+              width: 40px;
+              display: block;
+              border: none;
+              padding: 5px 0;
+              border-bottom: solid 1px #1abc9c;
+              -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+              transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+              background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #1abc9c 4%);
+              background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #1abc9c 4%);
+              background-position: -100px 0;
+              background-size: 100px 100%;
+              background-repeat: no-repeat;
+              color: #0e6252;
+          }
+
+          select:focus, select:valid {
+              box-shadow: none;
+              outline: none;
+              background-position: 0 0;
+          }
+
+          input {
+              font-size: 20px;
+              margin: 15px 15px;
+              width: 40px;
+              display: inline-block;
+              border: none;
+              padding: 5px 0;
+              border-bottom: solid 1px #1abc9c;
+              -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+              transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+              background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #1abc9c 4%);
+              background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #1abc9c 4%);
+              background-position: -100px 0;
+              background-size: 100px 100%;
+              background-repeat: no-repeat;
+              color: #0e6252;
+          }
+
+          input:focus, input:valid {
+              box-shadow: none;
+              outline: none;
+              background-position: 0 0;
+          }
+
+          form{
+              display: inline-block;
+              text-align: center;
+          }
+
+          body {
+              text-align: center;
+              background-color: #f9f9f9;
+              font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          }
+
+      </style>
+
+    </head>
+
+    <body>
+
+        <form action="/add" method="post" name="form"  id="form">
+
+          <div>
+            <table>
+              <% 0.upto(@sizes[0] - 1) do |i| %>
+                  <tr>
+                    <% 0.upto(@sizes[1] - 1) do |j| %>
+                        <td>
+                          <select form="form" name="size[]" required>
+                            <option>0</option>
+                            <option>1</option>
+                          </select>
+                    <% end %>
+                    </td>
+              <% end %>
+              </tr>
+            </table>
+
+            <input type="submit" value="Add" name="adding">
+
+          </div>
+
+        </form>
+
+    </body>
+
+</html>

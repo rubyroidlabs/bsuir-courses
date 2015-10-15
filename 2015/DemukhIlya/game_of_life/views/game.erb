@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= "Game state #{state}" %></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/game.css">
+  </head>
+  <body>
+    <% game.field.each.with_index do |row, i| %>
+      <% row.each.with_index do |cell, j| %>
+        <div class="<%= game.cell_is(i, j) %>"></div>
+      <% end %>
+      <br>
+    <% end %>
+    <a href="/"><button>New Game</button></a>
+    <a href="<%= "/game/#{state.to_i + 1}" %>"><button>Next</button></a>
+  </body>
+</html>

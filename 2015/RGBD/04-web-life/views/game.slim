@@ -1,0 +1,12 @@
+form action="/game/step" method="post"
+  table
+    - @game.state.shape[0].times do |row|
+      tr
+        - @game.state.shape[1].times do |col|
+          td
+            input type="checkbox" name="c[#{row}][#{col}]" checked=("checked" if @game.state[col, row] > 0)
+  input type="submit" value="Step"
+div
+  a href="/new" New Game
+  br
+  a href="/game/seed" Random Seed
