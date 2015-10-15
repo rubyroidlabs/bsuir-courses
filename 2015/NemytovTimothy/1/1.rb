@@ -1,4 +1,4 @@
-train = [  
+train = [
 ['                                                              '],
 ['  FFFFFF  U     U  CCCCCCC  K  KK      GGGGGG   GGGGGG        '],
 ['  F       U     U  C        KKK        G        G             '],
@@ -8,7 +8,7 @@ train = [
 
 train.map! { |x| x[0].split(//) }
 
-while true
+loop do
   system 'clear'
   train.each do |x|
     puts x.join
