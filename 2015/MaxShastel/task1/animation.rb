@@ -20,13 +20,11 @@ class Animation
         if tmp_pict[i].nil?
           tmp_pict[i] += ' '
         else
-
           tmp = tmp_pict[i].slice! 0
           if !tmp.nil?
             @output[i] += tmp
           end
         end
-
       end
       puts @output
       sleep pause
