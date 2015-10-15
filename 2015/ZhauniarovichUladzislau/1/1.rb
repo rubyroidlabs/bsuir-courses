@@ -43,8 +43,8 @@
     when (width > x + j) then
       print ''
     when (height >= y - i && height <= y + i) &&
-           (width >= x - j && width <= x + j) then
-           print galaxy[height][width]
+      (width >= x - j && width <= x + j) then
+      print galaxy[height][width]
     end
     end
     puts ''
