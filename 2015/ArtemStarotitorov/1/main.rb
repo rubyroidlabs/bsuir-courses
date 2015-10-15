@@ -50,7 +50,7 @@ class Animator
     begin
       while coordx_of_cartridge < Curses.cols - @width_of_cartridge
         draw_frame(coordx_of_gun, coordy_of_gun,
-        coordx_of_cartridge, coordy_of_cartridge)
+          coordx_of_cartridge, coordy_of_cartridge)
         coordx_of_cartridge += 10
         sleep 0.1
       end
