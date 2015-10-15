@@ -1,5 +1,5 @@
 class Animation
-  def anim_arr= (arr)
+  def anim_arr=(arr)
     @anim_arr = arr
   end
 
@@ -12,8 +12,8 @@ class Animation
       anim_arr.each do |x|
         puts x
         sleep(0.15)
-        system("clear")
-        end
+        system('clear')
+      end
     end
   end
 end
