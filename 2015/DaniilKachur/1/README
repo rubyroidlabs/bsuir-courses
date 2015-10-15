@@ -1,0 +1,5 @@
+This code convert jpeg pics to ascii and show them. 
+It looks like ascii animation.
+
+Require gems:	'asciiart'
+				'curses' 
