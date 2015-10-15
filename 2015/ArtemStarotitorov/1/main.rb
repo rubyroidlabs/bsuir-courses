@@ -58,6 +58,7 @@ class Animator
       Curses.close_screen
     end
   end
+
   private
 
   def draw_frame(coordx_of_gun, coordy_of_gun,
