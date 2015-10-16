@@ -28,5 +28,5 @@ begin
       show_pict window, i.to_ascii_art(width: WIDTH)
       sleep 0.01
     end
-  end 
+  end
 end
