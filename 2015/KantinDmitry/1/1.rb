@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-text = ['                       *     ,MMM8&&&.            *    ',
+text = [
+'                       *     ,MMM8&&&.            *    ',
 '                            MMMM88&&&&&    .           ',
 '                           MMMM88&&&&&&&               ',
 '               *           MMM88&&&&&&&&               ',
@@ -20,16 +21,16 @@ text = ['                       *     ,MMM8&&&.            *    ',
 '            |  |  |  | ) ) |  |  |  |  |  |  |  |  |  |',
 '            |  |  |  |(_(  |  |  |  |  |  |  |  |  |  |',
 '            |  |  |  |  |  |  |  |  |  |  |  |  |  |  |',
-'            |  |  |  |  |  |  |  |  |  |  |  |  |  |  |' ]
+'            |  |  |  |  |  |  |  |  |  |  |  |  |  |  |']
 
-direction = 1;
+direction = 1
 5.times do
 15.times do
   system 'clear'
   text.each do |string|
     puts(string)
     if (direction == 0)
-       string.slice!(0)
+      string.slice!(0)
     else
       string.insert(0, ' ')
   end
