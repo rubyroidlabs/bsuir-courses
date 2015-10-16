@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby
 require 'asciiart'
 require 'curses'
 include Curses
@@ -18,12 +19,10 @@ end
 init_screen
 begin
   crmode
-
   WIDTH = 60
   HEIGHT = WIDTH + 35
   window = win_init(HEIGHT, WIDTH)
   frame = Array.new(10) { |i| AsciiArt.new("jp/#{i}.jpeg") }
-
   loop do
     frame.each do |i|
       show_pict window, i.to_ascii_art(width: WIDTH)
@@ -31,3 +30,4 @@ begin
     end
   end 
 end
+
