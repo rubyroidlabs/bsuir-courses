@@ -8,15 +8,15 @@ require_relative './lib/simpleEncoder.rb'
 require 'colored'
 # animation engine
 class Bear
- def initialize(ii = 10)
+ def initialize(ii = 1)
   @ii = ii
  end
  def anim
-  s0 = ' '
+  s0 = " "
   i = 1
   loop do
    system 'clear'
-   s0 += ' '
+   s0 += " "
    puts (s0 + $s1 + "\n" + s0 + $s2 + "\n" + s0 + $s3).red
    puts (s0 + $s4 + "\n" + s0 + $s5 + "\n" + s0 + $s6).green
    sleep 0.05
