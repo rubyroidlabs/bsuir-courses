@@ -26,17 +26,17 @@ text = [
 
 direction = 1
 5.times do
-15.times do
-  system 'clear'
-  text.each do |string|
-  puts(string)
-    if (direction == 0)
-      string.slice!(0)
-    else
-      string.insert(0, ' ')
+  15.times do
+    system 'clear'
+    text.each do |string|
+      puts(string)
+      if (direction == 0)
+        string.slice!(0)
+      else
+        string.insert(0, ' ')
+      end
     end
+  sleep(0.05)
   end
-sleep(0.05)
-end
 direction ^= 1
 end
