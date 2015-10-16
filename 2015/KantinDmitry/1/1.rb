@@ -34,8 +34,8 @@ direction = 1
       string.slice!(0)
     else
       string.insert(0, ' ')
+    end
   end
-end
 sleep(0.05)
 end
 direction ^= 1
