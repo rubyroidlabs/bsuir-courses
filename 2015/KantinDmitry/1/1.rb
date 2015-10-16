@@ -29,7 +29,7 @@ direction = 1
 15.times do
   system 'clear'
   text.each do |string|
-    puts(string)
+  puts(string)
     if (direction == 0)
       string.slice!(0)
     else
