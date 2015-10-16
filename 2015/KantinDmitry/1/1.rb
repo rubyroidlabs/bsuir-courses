@@ -24,8 +24,8 @@ text = [
   '            |  |  |  |  |  |  |  |  |  |  |  |  |  |  |'
 ]
 
-direction = 1
-5.times do
+  direction = 1
+  5.times do
   15.times do
     system 'clear'
     text.each do |string|
@@ -38,5 +38,5 @@ direction = 1
     end
   sleep(0.05)
   end
-direction ^= 1
-end
+  direction ^= 1
+  end
