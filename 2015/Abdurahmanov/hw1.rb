@@ -19,7 +19,7 @@ class Bear
    s0 += '  '
    puts (s0 + $s1 + "\n" + s0 + $s2 + "\n" + s0 + $s3).red
    puts (s0 + $s4 + "\n" + s0 + $s5 + "\n" + s0 + $s6).green
-   sleep 0.05
+   sleep 0.09
    i += 1
    if i == @ii
   break loop
@@ -27,5 +27,5 @@ class Bear
   end
  end
 end
-b = Bear.new(30)
+b = Bear.new(15)
 b.anim
