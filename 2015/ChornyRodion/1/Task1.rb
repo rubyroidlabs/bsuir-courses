@@ -1,6 +1,6 @@
 class Task001
   def initialize
-    @message  = File.open('Text', 'r').read
+    @message = File.open('Text', 'r').read
     @lisa = ['', '', '']
     File.open('MonaLisa', 'r') do |f|
       f.read(407, @lisa[0])
