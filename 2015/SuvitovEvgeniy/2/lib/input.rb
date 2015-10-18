@@ -16,9 +16,9 @@ class InputParse
   end
 
   def add (x)
-    if (x.include?('>= '))
-      if (@opts.has_key?(:greatorequal))
-        if (x.delete('>= ') > @opts[:greatorequal])
+    if x.include?('>= ')
+      if @opts.has_key?(:greatorequal)
+        if x.delete('>= ') > @opts[:greatorequal]
           @opts[:greatorequal] = x.delete('>= ')
         end
       else
@@ -26,9 +26,10 @@ class InputParse
       end
       return
     end
-    if (x.include?('<= '))
-      if (@opts.has_key?(:loworequal))
-        if (x.delete('<= ') < @opts[:loworequal])
+
+    if x.include?('<= ')
+      if @opts.has_key?(:loworequal)
+        if x.delete('<= ') < @opts[:loworequal]
           @opts[:loworequal] = x.delete('<= ')
         end
       else
@@ -36,10 +37,11 @@ class InputParse
       end
       return
     end
-    if (x.include?('~> '))
+
+    if x.include?('~> ')
       add('>=' + x.delete('~>'))
       temp_array = x.delete('~> ').split('.')
-      if (temp_array.size > 1)
+      if temp_array.size > 1
         temp_array[-1] = '0'
         temp_char = temp_array[-2].to_i
         temp_char += 1
@@ -50,11 +52,12 @@ class InputParse
         temp_array[-1] = temp_char.to_s
       end
       add('< ' + temp_array.join('.'))
-      return 
+      return
     end
-    if (x.include?('> '))
-      if (@opts.has_key?(:great))
-        if (x.delete('> ') > @opts[:great])
+
+    if x.include?('> ')
+      if @opts.has_key?(:great)
+        if x.delete('> ') > @opts[:great]
           @opts[:great] = x.delete('> ')
         end
       else
@@ -62,9 +65,10 @@ class InputParse
       end
       return
     end
-    if (x.include?('< '))
-      if (@opts.has_key?(:low))
-        if (x.delete('< ') < @opts[:low])
+
+    if x.include?('< ')
+      if @opts.has_key?(:low)
+        if x.delete('< ') < @opts[:low]
           @opts[:low] = x.delete('< ')
         end
       else
@@ -72,7 +76,8 @@ class InputParse
       end
       return
     end
-    if (@opts.has_key?(:equal))
+    
+    if @opts.has_key?(:equal)
       raise
     else
       @opts[:equal] = x

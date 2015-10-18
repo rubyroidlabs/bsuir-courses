@@ -8,7 +8,7 @@ class Filter
 
   def print()
     @versions.each do |x|
-      if (checkVersion?(x))
+      if checkVersion?(x)
         puts x.red
       else
         puts x
