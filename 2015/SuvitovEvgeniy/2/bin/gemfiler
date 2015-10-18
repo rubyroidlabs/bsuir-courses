@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require 'pry'
+
+Dir["../lib/*.rb"].each {|x| require_relative(x)}
+begin
+  if ARGV.size < 2
+    raise ArgummentError
+  end
+
+  inputParser = InputParse.new(ARGV)
+  opts = inputParser.parse
+  versions = Fetcher.new(inputParser.getName()).fetch
+  Filter.new(versions, opts).print
+rescue
+  puts "Need more arguments!"
+end
