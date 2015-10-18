@@ -11,11 +11,11 @@ class InputParse
     @opts
   end
 
-  def getName()
+  def getName
     @args[0]
   end
 
-  def add (x)
+  def add(x)
     if x.include?('>= ')
       if @opts.has_key?(:greatorequal)
         if x.delete('>= ') > @opts[:greatorequal]
@@ -26,7 +26,6 @@ class InputParse
       end
       return
     end
-
     if x.include?('<= ')
       if @opts.has_key?(:loworequal)
         if x.delete('<= ') < @opts[:loworequal]
@@ -37,7 +36,6 @@ class InputParse
       end
       return
     end
-
     if x.include?('~> ')
       add('>=' + x.delete('~>'))
       temp_array = x.delete('~> ').split('.')
@@ -54,7 +52,6 @@ class InputParse
       add('< ' + temp_array.join('.'))
       return
     end
-
     if x.include?('> ')
       if @opts.has_key?(:great)
         if x.delete('> ') > @opts[:great]
@@ -65,7 +62,6 @@ class InputParse
       end
       return
     end
-
     if x.include?('< ')
       if @opts.has_key?(:low)
         if x.delete('< ') < @opts[:low]
@@ -76,7 +72,6 @@ class InputParse
       end
       return
     end
-    
     if @opts.has_key?(:equal)
       raise
     else
