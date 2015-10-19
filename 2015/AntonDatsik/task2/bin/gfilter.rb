@@ -3,7 +3,7 @@ Dir['../lib/*.rb'].each { |file| require file }
 PAGE_URL = 'https://rubygems.org/gems/'
 CSS_STR  = 'div.versions a.t-list__item'
 
-if ARGV.length < 2 then
+if ARGV.length < 2
   puts 'Wrong number of parameters'
   exit
 end
@@ -14,8 +14,8 @@ puts 'Please wait...'
 begin
   available_versions = Page.new(PAGE_URL + require_gem).get_vertsions(CSS_STR)
   rescue Exception => e
-  puts 'Connection error!'
-  exit
+    puts 'Connection error!'
+    exit
 end
 
 suitable_versions = Filter.filter_versions(require_versions, available_versions)
