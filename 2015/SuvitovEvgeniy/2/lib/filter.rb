@@ -8,7 +8,7 @@ class Filter
 
   def print
     @versions.each do |x|
-      if checkVersion?(x)
+      if check_version?(x)
         puts x.red
       else
         puts x
@@ -16,7 +16,7 @@ class Filter
     end
   end
 
-  def checkVersion?(x)
+  def check_version?(x)
     if @options.has_key?(:equal) && (x != @options[:equal])
       return false
     end
