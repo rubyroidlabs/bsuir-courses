@@ -24,7 +24,7 @@ class Filter
   end
 
   def check_for_equal?(x)
-    if @options.has_key?(:equal) && x != @options[:equal]
+    if @options.key?(:equal) && x != @options[:equal]
       false
     else
       true
@@ -32,7 +32,7 @@ class Filter
   end
 
   def check_for_low?(x)
-    if @options.has_key?(:low) && x >= @options[:low]
+    if @options.key?(:low) && x >= @options[:low]
       false
     else
       true
@@ -40,7 +40,7 @@ class Filter
   end
 
   def check_for_great?(x)
-    if @options.has_key?(:great) && x <= @options[:great]
+    if @options.key?(:great) && x <= @options[:great]
       false
     else
       true
@@ -48,7 +48,7 @@ class Filter
   end
 
   def check_for_loworequal?(x)
-    if @options.has_key?(:loworequal) && x > @options[:loworequal]
+    if @options.key?(:loworequal) && x > @options[:loworequal]
       false
     else
       true
@@ -56,7 +56,7 @@ class Filter
   end
 
   def check_for_greatorequal?(x)
-    if @options.has_key?(:greatorequal) && x < @options[:greatorequal]
+    if @options.key?(:greatorequal) && x < @options[:greatorequal]
       false
     else
       true
