@@ -1,14 +1,14 @@
-#throws JSON::ParserError => e
-#throws ArgumentError => e
+# throws JSON::ParserError => e
+# throws ArgumentError => e
 require 'colorize'
 require 'net/http'
 require 'uri'
 require 'json'
 
-class Gem_versions_getter
-  def get_versions (name)
+class GemVersionsGetter
+  def get_versions(name)
     @json = get_versions_json (name)
-    get_versions_array (@json)
+    get_versions_array(@json)
   end
 
   private
@@ -22,7 +22,7 @@ class Gem_versions_getter
     rescue JSON::ParserError => e
       raise JSON::ParserError, result
     rescue ArgumentError => e
-      raise ArgumentError, "Gem name not found"
+      raise ArgumentError, 'Gem name not found'
     end
   end
     def get_versions_array (json)
