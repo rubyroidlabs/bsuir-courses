@@ -2,11 +2,10 @@ require_relative 'name_gem'
 
 class VersionGem
   def get_version
-    filter = ARGV[1]
     $filtered_versions = []
     $not_matched_versions = []
     $gem_versions.each do |gem|
-      if Gem::Dependency.new('', filter).match?('', gem.inner_html)
+      if Gem::Dependency.new('', ARGV[1]).match?('', gem.inner_html)
         $filtered_versions.push(gem.inner_html)
       else
         $not_matched_versions.push(gem.inner_html)
