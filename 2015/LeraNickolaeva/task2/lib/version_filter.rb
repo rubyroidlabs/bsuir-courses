@@ -1,9 +1,9 @@
 class VersionFilter
-  def initialize (versions)
+  def initialize(versions)
     @versions = versions.map { |version| Gem::Version.new(version) }
   end
 
-  def filter (specifier) # method that find right gem_versions 
+  def filter(specifier) # method that find right gem_versions 
     operator, needed_version = specifier.split
     needed_version = Gem::Version.new(needed_version)
     result = [] # array of gem_versions
