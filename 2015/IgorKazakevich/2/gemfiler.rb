@@ -6,13 +6,14 @@ require_relative './Print.rb'
 
 parameter = Parameter.new(ARGV)
 
-connection = Connection.new(parameter.getAddress())
+connection = Connection.new(parameter.getAddress)
 
-filter = Filter.new(connection.getData(), parameter.getGemVersion())
-filter.parseData()
+filter = Filter.new(connection.getData, parameter.getGemVersion)
+filter.parseData
 
-version = Version.new(filter.getFilterData(), parameter.getGemVersion(), parameter.getParameter())
-version.find()
+version = Version.new(filter.getFilterData, 
+  parameter.getGemVersion, parameter.getParameter)
+version.find
 
-print = Print.new(filter.getFilterData(), version.getFindVersions())
-print.printVersions()
+print = Print.new(filter.getFilterData, version.getFindVersions)
+print.printVersions

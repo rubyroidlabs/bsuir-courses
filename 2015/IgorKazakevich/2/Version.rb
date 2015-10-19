@@ -1,72 +1,71 @@
 class Version
-  def initialize(versions, gemVersion, parameter)
+  def initialize(versions, gem_version, parameter)
     @versions = versions
-    @gemVersion = gemVersion
+    @gem_version = gem_version
     @parameter = parameter
-    @findVersions = (0..versions.size() - 1).to_a
+    @find_versions = (0..versions.size() - 1).to_a
   end  
-
 
   def greaterEqually(p)
     index = 0
       @versions.each do |version|
-        if(version[0, @gemVersion[@parameter.index(p)].size] == @gemVersion[@parameter.index(p)])
+        if(version[0, @gem_version[@parameter.index(p)].size] == @gem_version[@parameter.index(p)])
           index = @versions.index(version)
         end
       end
-      @findVersions -= @findVersions - (0..index).to_a
-    return @findVersions
+      @find_versions -= @find_versions - (0..index).to_a
+    return @find_versions
   end
 
   def lessEqually(p)
     index = 0
     @versions.each do |version|
-      if(version[0, @gemVersion[@parameter.index(p)].size] == @gemVersion[@parameter.index(p)])
+      if(version[0, @gem_version[@parameter.index(p)].size] == @gem_version[@parameter.index(p)])
         index = @versions.index(version)
         break
       end
     end
-    @findVersions -= @findVersions - (index..(@versions.size - 1)).to_a
-    return @findVersions
+    @find_versions -= @find_versions - (index..(@versions.size - 1)).to_a
+    return @find_versions
   end
 
   def greater(p)
     index = 0
     @versions.each do |version|
-      if(version[0, @gemVersion[@parameter.index(p)].size] == @gemVersion[@parameter.index(p)])
+      if(version[0, @gem_version[@parameter.index(p)].size] == @gem_version[@parameter.index(p)])
         index = @versions.index(version)
         break
       end
     end
-    @findVersions -= @findVersions - (0..index - 1).to_a    
-    return @findVersions
+    @find_versions -= @find_versions - (0..index - 1).to_a    
+    return @find_versions
   end
   
   def less(p)
     index = 0
     @versions.each do |version|
-      if(version[0, @gemVersion[@parameter.index(p)].size] == @gemVersion[@parameter.index(p)])
+      if(version[0, @gem_version[@parameter.index(p)].size] == @gem_version[@parameter.index(p)])
         index = @versions.index(version)
         end
     end
-    @findVersions -= @findVersions - (index + 1..(@versions.size - 1)).to_a
-    return @findVersions
+    @find_versions -= @find_versions - (index + 1..(@versions.size - 1)).to_a
+    return @find_versions
   end
 
   def greaterTilde(p)
     index = 0
     @versions.each do |version|
-      if(version[0, @gemVersion[@parameter.index(p)].size] == @gemVersion[@parameter.index(p)])
+      if(version[0, @gem_version[@parameter.index(p)].size] == @gem_version[@parameter.index(p)])
         index = @versions.index(version)
       end
     end
 
-    indexTo = index 
-    while @versions[index].split('.')[1].to_i == @versions[indexTo].split('.')[1].to_i do
-      break if(indexTo == 0)
-      indexTo -= 1
+    index_to = index 
+    while @versions[index].split('.')[1].to_i == @versions[index_to].split('.')[1].to_i do
+      break if(index_to == 0)
+      index_to -= 1
     end
-    @findVersions -= @findVersions - (indexTo + 1..index).to_a
+    @find_versions -= @find_versions - (index_to + 1..index).to_a
   end   
 
   def find()
@@ -84,7 +83,7 @@ class Version
         greaterTilde(p)
       end
 
-      if(@findVersions.empty?)
+      if(@find_versions.empty?)
         puts "Version not found!"
         exit
       end
@@ -92,6 +91,6 @@ class Version
   end
 
   def getFindVersions()
-    return @findVersions
+    return @find_versions
   end
 end
