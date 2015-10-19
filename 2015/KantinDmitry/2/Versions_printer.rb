@@ -20,6 +20,6 @@ module VersionsPrinter
 
   def ver_check(condition, version)
     Gem::Dependency.new('', condition).
-      match?('', version.gsub(/[.][a-z]+\d*/,''))
+      match?('', version.gsub(/[.][a-z]+\d*/, ''))
   end
 end
