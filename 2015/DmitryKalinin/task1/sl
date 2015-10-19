@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require "curses"
+include Curses
+
+begin
+  init_screen
+  crmode
+  refresh 
+  
+  char1 = "\\"
+  char2 = "/"
+  x = 0
+  y = 0
+
+  0.upto(20) do |i|
+    setpos(x + i, y)
+    addch(char1) if i % 2 == 0
+    addch(char2) if i % 2 == 1
+    refresh
+    sleep 0.5
+    setpos(x + i - 1, y)
+    delch
+  end
+ensure
+  close_screen
+end
