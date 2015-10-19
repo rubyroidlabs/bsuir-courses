@@ -18,9 +18,9 @@ class InputParse
   def add(x)
     if x.include?('~> ')
       add_sp(x)
-    elsif x.include?('> ')
+    elsif x.include?('>')
       great(x)
-    elsif x.include?('< ')
+    elsif x.include?('<')
       low(x)
     elsif @opts.key?(:equal)
       fail
@@ -69,8 +69,9 @@ class InputParse
   end
 
   def add_sp(x)
-    add_greatorequal('>=' + x.delete('~>'))
-    temp_array = x.delete('~> ').split('.')
+    x = x.delete('~>')
+    add_greatorequal('>=' + x)
+    temp_array = x.split('.')
     if temp_array.size > 1
       add_sp_1(temp_array)
     else

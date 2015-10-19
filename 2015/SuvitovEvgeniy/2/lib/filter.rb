@@ -7,6 +7,7 @@ class Filter
   end
 
   def print
+    puts @options
     @versions.each do |x|
       if check_version?(x)
         puts x.red
