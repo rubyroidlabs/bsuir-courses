@@ -34,7 +34,7 @@ direction = 1
       string.insert(0, ' ')
     end
   end
-sleep(0.05)
+  sleep(0.05)
 end
 direction ^= 1
 end
