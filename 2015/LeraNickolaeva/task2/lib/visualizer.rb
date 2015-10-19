@@ -1,7 +1,6 @@
 require 'colored'
 
 class Visualiser
-
   def initialize(versions)
     @versions = versions
   end
