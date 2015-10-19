@@ -4,10 +4,11 @@ require 'json'
 name = ARGV[0]
 version = ARGV[1].to_s
 oper = ARGV[2].to_s
-class VersionFetcher 
+class VersionFetcher
   def initialize(name)
     @name = name
   end
+
   def fetch
     json = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
     result = []
@@ -17,7 +18,7 @@ class VersionFetcher
       end
       puts result
     rescue JSON::ParserError
-      puts "Error. Check the way of writing gem name".red
+      puts 'Error. Check the way of writing gem name'.red
     end
     result
   end
@@ -25,8 +26,9 @@ end
 
 class VersionFilter
   def initialize(result)
-   @version = result.map { |version| Gem::Version.new(version) }
+    @version = result.map { |version| Gem::Version.new(version) }
   end
+
   def filter(specifier, operator)
     needed_version = Gem::Version.new(specifier)
     results = []
@@ -58,11 +60,10 @@ class Visualizer
   end
 
   def visual
-    @result.each { |v| puts (@result.include?(v) ? v.red : v)}
+    @result.each { |v| puts (@result.include?(v) ? v.red : v) }
   end
 end
-
 res_fet = VersionFetcher.new(name).fetch
-puts "\n" 
+puts "\n"
 res_fil = VersionFilter.new(res_fet).filter(version, oper)
 Visualizer.new(res_fil).visual
