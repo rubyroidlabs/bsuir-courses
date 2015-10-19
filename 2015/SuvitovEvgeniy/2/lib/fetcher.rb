@@ -1,6 +1,5 @@
 require 'json'
 class Fetcher
-
   def initialize(name)
     @name = name
   end
