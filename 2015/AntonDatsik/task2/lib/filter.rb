@@ -11,7 +11,7 @@ class Filter
         end
       end
     rescue ArgumentError => exp
-      puts "Your parameters are wrong!"
+      puts 'Your parameters are wrong!'
       exit
     end
     result_versions

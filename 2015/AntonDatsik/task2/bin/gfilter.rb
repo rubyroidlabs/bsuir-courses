@@ -10,11 +10,11 @@ end
 require_gem = ARGV[0]
 require_versions = ARGV[1..ARGV.length - 1]
 
-puts "Please wait..."
+puts 'Please wait...'
 begin
   available_versions = Page.new(PAGE_URL + require_gem).get_vertsions(CSS_STR)
   rescue Exception => e
-  puts "Connection error!"
+  puts 'Connection error!'
   exit
 end
 
