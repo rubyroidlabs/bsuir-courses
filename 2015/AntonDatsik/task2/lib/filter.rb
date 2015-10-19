@@ -1,4 +1,4 @@
-require "set"
+require 'set'
 
 class Filter
   def self.filter_versions(require_versions, available_versions)
@@ -6,7 +6,7 @@ class Filter
     begin
       requirement = Gem::Requirement.new(require_versions)
       available_versions.each do |variable|
-        if requirement.satisfied_by?(Gem::Version.new(variable.text)) then
+        if requirement.satisfied_by?(Gem::Version.new(variable.text))
           result_versions.add(variable.text)
         end
       end

@@ -1,9 +1,7 @@
-Dir['../lib/*.rb'].each {|file| require file }
+Dir['../lib/*.rb'].each { |file| require file }
 
 PAGE_URL = 'https://rubygems.org/gems/'
 CSS_STR  = 'div.versions a.t-list__item'
-
-
 
 if ARGV.length < 2 then
   puts 'Wrong number of parameters'
