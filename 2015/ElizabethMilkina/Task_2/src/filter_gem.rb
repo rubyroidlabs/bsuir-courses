@@ -4,23 +4,14 @@ require 'colored'
 class FilterGem
   def get_filter
     puts 'Версии, удовлетворяющие условию фильтрации:'
-    if $filtered_versions.empty?
-      puts 'Таких версий нет ;('.blue
-    else
-      $filtered_versions.each do |version|
-        puts version.green
-      end
-    end
-  end
-
-  def get_not_matched
+    $filtered_versions.empty? ? (puts 'Таких версий нет ;('.blue) :
+        ($filtered_versions.each do |version|
+          puts version.green
+        end)
     puts 'Версии, не удовлетворяющие условию фильтрации:'
-    if $not_matched_versions.empty?
-      puts 'Других версий нет :)'.yellow
-    else
-      $not_matched_versions.each do |version|
-        puts version.red
-      end
-    end
+    $not_matched_versions.empty? ? (puts 'Других версий нет :)'.yellow) :
+        ($not_matched_versions.each do |version|
+          puts version.red
+        end)
   end
 end
