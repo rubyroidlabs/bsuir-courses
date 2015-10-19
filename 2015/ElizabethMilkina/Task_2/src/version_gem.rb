@@ -1,9 +1,7 @@
 require_relative 'name_gem'
 
-class Version_gem
-
+class VersionGem
   def get_version
-
     begin
       filter = ARGV[1]
       $filtered_versions = []
@@ -19,7 +17,5 @@ class Version_gem
       puts 'Проверьте правильность ввода операции и повторите.'.bold.red
       exit
     end
-
   end
-
 end

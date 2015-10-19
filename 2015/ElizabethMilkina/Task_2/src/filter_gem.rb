@@ -1,10 +1,8 @@
 require_relative 'version_gem'
 require 'colored'
 
-class Filter_gem
-
+class FilterGem
   def get_filter
-
     puts 'Версии, удовлетворяющие условию фильтрации:'
     if $filtered_versions == []
       puts 'Таких версий нет ;('.blue
@@ -13,7 +11,6 @@ class Filter_gem
         puts $filtered_versions[i].to_s.green
       end
     end
-
     puts 'Версии, не удовлетворяющие условию фильтрации:'
     if $not_matched_versions == []
       puts 'Других версий нет :)'.yellow
@@ -22,7 +19,5 @@ class Filter_gem
         puts $not_matched_versions[j].to_s.red
       end
     end
-
   end
-
 end

@@ -1,10 +1,8 @@
 require 'open-uri'
 require 'hpricot'
 
-class Name_gem
-
+class NameGem
   def get_name
-
     begin
       gem_name = ARGV[0]
       url = "https://rubygems.org/gems/#{gem_name}/versions"
@@ -17,7 +15,5 @@ class Name_gem
       puts 'Gem не найден, повторите ввод.'.bold.red
       exit
     end
-
   end
-
 end
