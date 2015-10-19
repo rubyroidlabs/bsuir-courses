@@ -15,7 +15,7 @@ class InputParse
     @args[0]
   end
 
-  def add(x) 
+  def add(x)
     if x.include?('~> ')
       add_sp(x)
     elsif x.include?('> ')
@@ -76,7 +76,6 @@ class InputParse
     else
       add_sp_2(temp_array)
     end
-    add_low('< ' + temp_array.join('.'))
   end
 
   def add_sp_1(temp_array)
@@ -84,12 +83,14 @@ class InputParse
     temp_char = temp_array[-2].to_i
     temp_char += 1
     temp_array[-2] = temp_char.to_s
+    add_low('< ' + temp_array.join('.'))
   end
 
   def add_sp_2(temp_array)
     temp_char = temp_array[-1].to_i
     temp_char += 1
     temp_array[-1] = temp_char.to_s
+    add_low('< ' + temp_array.join('.'))
   end
 
   def add_great(x)
