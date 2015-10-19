@@ -9,3 +9,4 @@ object_version = VersionGem.new
 object_version.get_version
 object_filter = FilterGem.new
 object_filter.get_filter
+object_filter.get_not_matched

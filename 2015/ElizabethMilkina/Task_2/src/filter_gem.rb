@@ -7,15 +7,18 @@ class FilterGem
     if $filtered_versions.empty?
       puts 'Таких версий нет ;('.blue
     else
-      for version in $filtered_versions
+      $filtered_versions.each do |version|
         puts version.green
       end
     end
+  end
+
+  def get_not_matched
     puts 'Версии, не удовлетворяющие условию фильтрации:'
     if $not_matched_versions.empty?
       puts 'Других версий нет :)'.yellow
     else
-      for version in $not_matched_versions
+      $not_matched_versions.each do |version|
         puts version.red
       end
     end
