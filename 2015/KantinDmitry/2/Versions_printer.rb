@@ -2,7 +2,6 @@
 require 'colorize'
 
 module VersionsPrinter
-
   module_function
 
   def output_with_condition(versions_array, condition1, condition2 = '')
