@@ -13,19 +13,20 @@ class GemVersionsGetter
 
   private
 
-  def get_versions_json (name)
+  def get_versions_json(name)
     begin
       raise ArgumentError if name.nil?
       uri = URI("https://rubygems.org/api/v1/versions/#{name}.json")
       result = Net::HTTP.get (uri)
       JSON.parse(result)
-    rescue JSON::ParserError => e
+    rescue JSON::ParserError
       raise JSON::ParserError, result
-    rescue ArgumentError => e
+    rescue ArgumentError
       raise ArgumentError, 'Gem name not found'
     end
   end
-    def get_versions_array (json)
+
+  def get_versions_array(json)
     json.map { |e| e['number'] } .uniq
   end
 end
