@@ -1,13 +1,13 @@
 class VersionFilter
-  def initialize(versions)
+  def initialize (versions)
     @versions = versions.map { |version| Gem::Version.new(version) }
   end
 
-  def filter(specifier)
+  def filter (specifier) # method that find right gem_versions 
     operator, needed_version = specifier.split
     needed_version = Gem::Version.new(needed_version)
-    result = [] #array of gem_versions
-    case operator
+    result = [] # array of gem_versions
+    case operator # choose versions depending on the input 
     when '~>'
       result = @versions.select do |version|
         version >= needed_version && version < needed_version.bump
@@ -19,6 +19,6 @@ class VersionFilter
       end
       result = result.map  &:to_s.(version)
     end
-    result #return result: gem_versions 
+    result # return result: gem_versions  
   end
 end
