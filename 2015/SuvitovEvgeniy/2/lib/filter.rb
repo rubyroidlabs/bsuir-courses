@@ -17,19 +17,7 @@ class Filter
   end
 
   def check_version?(x)
-    if @options.has_key?(:equal) && (x != @options[:equal])
-      return false
-    end
-    if @options.has_key?(:low) && (x >= @options[:low])
-      return false
-    end
-    if @options.has_key?(:great) && (x <= @options[:great])
-      return false
-    end
-    if @options.has_key?(:loworequal) && (x > @options[:loworequal])
-      return false
-    end
-    if @options.has_key?(:greatorequal) && (x < @options[:greatorequal])
+    if (@options.has_key?(:equal) && (x != @options[:equal])) || (@options.has_key?(:low) && (x >= @options[:low])) || (@options.has_key?(:great) && (x <= @options[:great])) || (@options.has_key?(:loworequal) && (x > @options[:loworequal])) || (@options.has_key?(:greatorequal) && (x < @options[:greatorequal]))
       return false
     end
     true
