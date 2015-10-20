@@ -1,15 +1,15 @@
-require "open-uri"
-require "colorize"
+require 'open-uri'
+require 'colorize'
 
 class URLParse
   @slice_range = 0..32
-  @filter_pattern = "/versions/"
+  @filter_pattern = '/versions/'
 
   def initialize(url)
     begin
       @content = URI.parse(url).read
     rescue OpenURI::HTTPError => ex
-      puts "Invalid url, try again ;("
+      puts 'Invalid url ;('
       exit
     end
   end
@@ -25,7 +25,7 @@ class URLParse
     begin
       content = URI.parse(url).read
     rescue OpenURI::HTTPError => ex
-      puts "Invalid url, try again ;("
+      puts 'Invlid url ;('
       exit
     end
     array = content.split('>').select! { |str|  str[@filter_pattern] }
@@ -36,21 +36,21 @@ end
 class InputSecure
   def self.check?(stream)
     if (stream.size > 3)
-      puts "Invlid input => stream size"
+      puts 'Invalid input => stream size'
       exit
     end
     (stream.size - 1).times do |i|
       begin
-      	Gem::Dependency.new('', stream[i+1]).match?('', '1.0.0')
+      	Gem::Dependency.new('', stream[i + 1]).match?('', '1.0.0')
       rescue ArgumentError => ex
-        puts "Invalid input => #{stream[i+1]}"
+        puts "Invalid input => #{stream[i + 1]}"
         exit
       end
 	end
 	begin
       URI.parse("https://rubygems.org/gems/#{stream[0]}/versions").read
     rescue OpenURI::HTTPError => ex
-      puts "Invalid gem name, try again ;("
+      puts 'Invalid game name ;( try again'
       exit
     end
     return true
@@ -65,7 +65,7 @@ class InputParse
   end
 
   def gem_name
-    return @gem_name
+    @gem_name
   end
 
   def option_count
@@ -81,16 +81,14 @@ class InputParse
       else 
        @stream[1]
       end
-    return filter_options
   end
 end
 
 class Filter
-  def initialize (list, filter_options)
+  def initialize(list, filter_options)
     @list = list
     if filter_options.size == 2 
-      @filter_method = lambda { |x| return true if Gem::Dependency.new('', filter_options[0]).match?('', x) && 
-                                                   Gem::Dependency.new('', filter_options[1]).match?('', x) } 
+      @filter_method = lambda { |x| return true if Gem::Dependency.new('', filter_options[0]).match?('', x) && Gem::Dependency.new('', filter_options[1]).match?('', x) } 
     else
       @filter_method = lambda { |x| return true if Gem::Dependency.new('', filter_options).match?('', x) }
     end
@@ -107,7 +105,7 @@ class Filter
   end
 end
 
-inputParse = InputParse.new(ARGV) if InputSecure.check?(ARGV)
-versions = URLParse.find_versions("https://rubygems.org/gems/#{inputParse.gem_name}/versions")
-filter = Filter.new(versions, inputParse.filter_options)
+input_parse = InputParse.new(ARGV) if InputSecure.check?(ARGV)
+versions = URLParse.find_versions("https://rubygems.org/gems/#{input_parse.gem_name}/versions")
+filter = Filter.new(versions, input_parse.filter_options)
 filter.output
