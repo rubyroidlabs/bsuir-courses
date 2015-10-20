@@ -10,4 +10,3 @@ class Page
     return @page.css(str)
   end
 end
-#
