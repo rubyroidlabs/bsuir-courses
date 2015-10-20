@@ -11,4 +11,5 @@ class Printer
     end
   end
 end
-#Newline
+
+# Newline
