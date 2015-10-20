@@ -31,13 +31,14 @@ class VersionFilter
     case operator
     when '~>'
       result = @versions.select do |version|
-        version >= needed_version && version < needed_version.bump && 
+        version >= needed_version && version < needed_version.bump &&
         version.send(operator2.to_sym, needed_version2)
       end
       result = result.map(&:to_s)
     else
       result = @versions.select do |version|
-        version.send(operator.to_sym, needed_version) && version.send(operator2.to_sym, needed_version2)
+        version.send(operator.to_sym, needed_version) &&
+        version.send(operator2.to_sym, needed_version2)
       end
       result = result.map(&:to_s)
     end
