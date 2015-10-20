@@ -22,7 +22,7 @@ class VersionFilter
     result
   end
 
-  def filter2(specifier,specifier2)
+  def filter2(specifier, specifier2)
     operator, needed_version = specifier.split
     operator2, needed_version2 = specifier2.split
     needed_version = Gem::Version.new(needed_version)

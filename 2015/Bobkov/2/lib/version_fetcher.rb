@@ -12,7 +12,7 @@ class VersionFetcher
       JSON.parse(json).each do |entry|
         result << entry.fetch('number')
       end
-    rescue JSON::ParserError => e
+    rescue JSON::ParserError
       puts json
     end
     result
