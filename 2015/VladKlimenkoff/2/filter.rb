@@ -1,6 +1,6 @@
 class Filter
-	def self.is_satisfied?(version, conditions)
-		satisfied = []
+  def self.is_satisfied?(version, conditions)
+    satisfied = []
 
     conditions.each do |condition|
       begin
@@ -16,12 +16,12 @@ class Filter
       end
     end
 
-		satisfied.each do |good_cond|
+    satisfied.each do |good_cond|
       if good_cond == false
         return false
       end
     end
     
     true
-	end
+  end
 end
