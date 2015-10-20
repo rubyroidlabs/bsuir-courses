@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+Dir['../lib/*.rb'].each{ |f| require_relative(f) }
+
+class Gemfiler
+  def self.show_filtered_versions
+    begin
+      if ARGV.length < 2 || ARGV.length > 3
+        raise ArgumentError, 'wrong number of arguments'
+        exit
+      else
+        versions = Fetcher.get_array_of_versions(ARGV[0])
+        conditions = ARGV[1..ARGV.length - 1]
+        hash = Filter.get_hash_of_filtered_versions(versions, conditions)
+        Printer.print_versions(hash)
+      end
+    rescue StandardError => exc
+      puts exc.message
+      exit
+    end
+  end
+end
+
+Gemfiler.show_filtered_versions
