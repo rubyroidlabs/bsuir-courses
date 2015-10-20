@@ -1,13 +1,13 @@
 require 'colored'
 class Print
-  def initialize(versions, findVersions)
+  def initialize(versions, find_versions)
     @versions = versions
-    @findVersions = findVersions
+    @find_versions = find_versions
   end
 
-  def printVersions()
+  def print_versions
     @versions.each do |version|
-      if(@findVersions.include? @versions.index(version))
+      if @find_versions.include? @versions.index(version)
         puts version.red
       else
         puts version

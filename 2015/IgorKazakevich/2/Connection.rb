@@ -7,7 +7,7 @@ class Connection
     exit
   end
 
-  def getData()
+  def get_data
     return @data
   end
 end

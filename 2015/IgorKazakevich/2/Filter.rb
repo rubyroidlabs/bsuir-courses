@@ -1,21 +1,21 @@
 require 'nokogiri'
 class Filter
-  def initialize(data, gemVersion)
+  def initialize(data, gem_version)
     @date = data
-    @gemVersion = gemVersion
+    @gem_version = gem_version
   end
 
-  def parseData()
+  def parse_data
     @data_html = Nokogiri::HTML(@date)
 
-    @filterData = []
+    @filter_data = []
 
     @data_html.xpath('//div//ul//li').each do |data_versions|
-      @filterData.push(data_versions.text.split(' ').first)    
+      @filter_data.push(data_versions.text.split(' ').first)
       end
   end
 
-  def getFilterData()
-    return @filterData
+  def get_filter_data
+    return @filter_data
   end
 end

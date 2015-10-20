@@ -2,10 +2,10 @@ class Parameter
   def initialize(*arg)
     @address = arg[0][0]
     @parameter = []
-    @gemVersion = []
+    @gem_version = []
 
     1.upto(arg[0].size - 1) do |element|
-      if(['>=', '<=', '~>', '<', '>'].include? arg[0][element].split(' ')[0])
+      if ['>=', '<=', '~>', '<', '>'].include? arg[0][element].split(' ')[0]
         @parameter.push(arg[0][element].split(' ')[0])
       else
         puts "Incorrectly parameters"
@@ -14,19 +14,19 @@ class Parameter
     end
 
     1.upto(arg[0].size - 1) do |element|
-      @gemVersion.push(arg[0][element].split(' ')[1])
+      @gem_version.push(arg[0][element].split(' ')[1])
     end
   end
 
-  def getAddress()
+  def get_address
     return "https://rubygems.org/gems/#{@address}/versions"
   end
 
-  def getParameter()
+  def get_parameter
     return @parameter
   end
 
-  def getGemVersion()
-    return @gemVersion
+  def get_gem_version
+    return @gem_version
   end
 end
