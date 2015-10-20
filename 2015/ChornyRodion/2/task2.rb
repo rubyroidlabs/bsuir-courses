@@ -6,12 +6,10 @@ class URLParse
   @filter_pattern = '/versions/'
 
   def initialize(url)
-    begin
-      @content = URI.parse(url).read
+    @content = URI.parse(url).read
     rescue OpenURI::HTTPError => ex
-      puts 'Invalid url ;('
-      exit
-    end
+    puts 'Invalid url ;('
+    exit
   end
 
   def find_versions
@@ -35,25 +33,25 @@ end
 
 class InputSecure
   def self.check?(stream)
-    if (stream.size > 3)
+    if stream.size > 3
       puts 'Invalid input => stream size'
       exit
     end
     (stream.size - 1).times do |i|
       begin
-      	Gem::Dependency.new('', stream[i + 1]).match?('', '1.0.0')
+        Gem::Dependency.new('', stream[i + 1]).match?('', '1.0.0')
       rescue ArgumentError => ex
         puts "Invalid input => #{stream[i + 1]}"
         exit
       end
-	end
-	begin
+    end
+    begin
       URI.parse("https://rubygems.org/gems/#{stream[0]}/versions").read
     rescue OpenURI::HTTPError => ex
       puts 'Invalid game name ;( try again'
       exit
     end
-    return true
+    true
   end
 end
 
@@ -79,7 +77,7 @@ class InputParse
       when 2
         @stream[1..2]
       else 
-       @stream[1]
+        @stream[1]
       end
   end
 end
