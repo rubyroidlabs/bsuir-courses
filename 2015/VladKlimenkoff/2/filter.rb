@@ -1,5 +1,5 @@
 class Filter
-  def self.is_satisfied?(version, conditions)
+  def self.satisfied?(version, conditions)
     satisfied = []
 
     conditions.each do |condition|
@@ -11,7 +11,7 @@ class Filter
           satisfied << false
         end
       rescue StandardError
-        puts "Incorrect arguments"
+        puts 'Incorrect arguments'
         exit
       end
     end
@@ -21,7 +21,7 @@ class Filter
         return false
       end
     end
-    
+
     true
   end
 end

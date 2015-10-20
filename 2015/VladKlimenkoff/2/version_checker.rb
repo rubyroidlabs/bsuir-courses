@@ -5,9 +5,9 @@ class VersionChecker
     versions_hash = Hash.new
 
     versions.each do |v|
-      versions_hash[v] = Filter.is_satisfied?(v, conditions)
+      versions_hash[v] = Filter.satisfied?(v, conditions)
     end
-    
+
     versions_hash
   end
 end
