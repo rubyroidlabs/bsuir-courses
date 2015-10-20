@@ -12,7 +12,7 @@ class Filter
 
     @data_html.xpath('//div//ul//li').each do |data_versions|
       @filter_data.push(data_versions.text.split(' ').first)
-      end
+    end
   end
 
   def get_filter_data
