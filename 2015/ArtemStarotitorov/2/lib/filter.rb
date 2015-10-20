@@ -6,10 +6,10 @@ class Filter
       versions.each do |v|
         hash_of_versions[v] = requirement.satisfied_by?(Gem::Version.new(v))
       end
-      hash_of_versions
     rescue StandardError => exc
       puts exc.message
       exit
     end
+    hash_of_versions
   end
 end
