@@ -7,6 +7,6 @@ class Page
   end
 
   def get_vertsions(str)
-    return @page.css(str)
+    @page.css(str)
   end
 end
