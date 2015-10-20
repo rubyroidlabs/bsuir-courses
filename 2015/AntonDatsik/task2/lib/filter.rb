@@ -17,4 +17,4 @@ class Filter
     result_versions
   end
 end
-#Final newline
+# Final newline
