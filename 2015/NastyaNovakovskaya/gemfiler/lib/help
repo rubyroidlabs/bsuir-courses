@@ -1,0 +1,8 @@
+NAME
+  gemfiler — Ruby program, that help you to find gems and their versions
+
+OPTIONS
+  Gemfiler accepts following command-line options.
+
+  -h             Prints help
+
