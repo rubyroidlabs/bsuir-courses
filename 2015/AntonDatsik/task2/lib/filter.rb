@@ -10,7 +10,7 @@ class Filter
           result_versions.add(variable.text)
         end
       end
-    rescue ArgumentError => e
+    rescue ArgumentError
       puts 'Your parameters are wrong!'
       exit
     end
