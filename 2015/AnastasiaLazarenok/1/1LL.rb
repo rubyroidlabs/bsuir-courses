@@ -13,15 +13,15 @@ a[1] =
 ```````)))\```````
 ```````\\\\`````````
 `````=======``````']
-5.times do 
+5.times do
   a.each do |x|
-  puts x
-  sleep 0.5
-  system('clear')
- end
- a.reverse_each do |x|
-  puts x
-  sleep 0.5
-  system('clear')
- end
+   puts x
+   sleep 0.5
+   system('clear')
+  end
+  a.reverse_each do |x|
+   puts x
+   sleep 0.5
+   system('clear')
+  end
 end
