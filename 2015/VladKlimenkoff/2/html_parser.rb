@@ -4,7 +4,7 @@ class HTMLParser
 	end
 
 	def get_versions
-		page = Nokogiri::HTML(open("https://rubygems.org/gems/" + @gem_name));
+		page = Nokogiri::HTML(open("https://rubygems.org/gems/" + @gem_name + "/versions"));
 		lis = page.css('li')
 		return lis.map do |li|
 			li.css('a').text
