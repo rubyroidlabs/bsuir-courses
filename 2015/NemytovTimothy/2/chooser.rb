@@ -1,7 +1,6 @@
 module Chooser
-
   public
-  
+
   def self.match_versions(versions, conditions)
     versions_hash = {}
     requirement = Gem::Requirement.new(conditions)

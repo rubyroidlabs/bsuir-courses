@@ -2,9 +2,8 @@ require 'open-uri'
 require 'nokogiri'
 
 module Parser
-
   public
-  
+
   def self.parse_str(name)
     begin
       url = "https://rubygems.org/gems/#{name}/versions"
