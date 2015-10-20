@@ -1,7 +1,6 @@
 require 'optparse'
 
 class Parser
-
   attr_reader :name,
               :version
 
@@ -18,9 +17,7 @@ class Parser
     end
 
     parser.parse!
-
     @name, *@version = ARGV
-
     if @name.nil?
       print 'Enter name of gem: '
       @name = gets.chomp
