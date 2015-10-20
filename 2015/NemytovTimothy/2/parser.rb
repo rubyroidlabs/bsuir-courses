@@ -2,7 +2,9 @@ require 'open-uri'
 require 'nokogiri'
 
 module Parser
+
   public
+  
   def self.parse_str(name)
     begin
       url = "https://rubygems.org/gems/#{name}/versions"
@@ -10,12 +12,12 @@ module Parser
       doc = Nokogiri::HTML(html)
       versions = []
       doc.css('.versions').each do |version|
-        versions  = version.css('.gem__version-wrap a').map{ |v| v.text}
+        versions = version.css('.gem__version-wrap a').map(&:text)
       end
     rescue StandardError => exc
       puts exc.message
       exit
     end
-    return versions
+    versions
   end
 end
