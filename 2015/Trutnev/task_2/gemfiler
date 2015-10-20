@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+require 'pry'
+Dir['./lib/*.rb'].each { |f| require_relative(f) }
+
+if ARGV.size <2
+	raise ArgumentError
+end
+
+name , condition=ARGV
+
+# ВЗЯТЬ ПАРАМЕТРЫ
+
+versions  = VersionFetcher.new(name).fetch
+#puts versions
+filtered_versions  = VersionFilter.new(versions,condition).filter
+Visualizer.new(versions,filtered_versions).visualize
+#binding.pry
+# ПОЙТИ И ВЗЯТЬ ВЕРСИИ ГЕМА
+# ОТФИЛЬТРОВАТЬ ВЕРСИИ
+# ВЫВЕСТИ НА ЭКРАН
+#puts ARGV.class
