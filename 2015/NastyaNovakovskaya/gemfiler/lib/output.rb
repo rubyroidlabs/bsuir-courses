@@ -26,7 +26,8 @@ class Output
     wrong_versions = []
 
     @gem_versions.each do |version|
-      check_version(version)  ? right_versions.push(version) : wrong_versions.push(version)
+      check_version(version) ? right_versions.push(version)
+                             : wrong_versions.push(version)
     end
 
     output_string = output_string + "\n right: " + right_versions.join(', ').red

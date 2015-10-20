@@ -1,8 +1,7 @@
 #!/usr/local/bin/ruby
 
-Dir[File.expand_path('./lib/*.rb')].each {|f|  require(f)}
+Dir[File.expand_path('./lib/*.rb')].each{ |f|  require(f) }
 class Gemfiler
-
   def start
     parser = Parser.new
     parser.parse
