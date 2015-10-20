@@ -1,7 +1,6 @@
 require 'json'
 
 class VersionFetcher
-
   def initialize(name)
     @name = name
   end
