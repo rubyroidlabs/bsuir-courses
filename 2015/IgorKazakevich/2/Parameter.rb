@@ -8,7 +8,7 @@ class Parameter
       if ['>=', '<=', '~>', '<', '>'].include? arg[0][element].split(' ')[0]
         @parameter.push(arg[0][element].split(' ')[0])
       else
-        puts "Incorrectly parameters"
+        puts 'Incorrectly parameters'
         exit
       end
     end
@@ -19,14 +19,14 @@ class Parameter
   end
 
   def get_address
-    return "https://rubygems.org/gems/#{@address}/versions"
+    "https://rubygems.org/gems/#{@address}/versions"
   end
 
   def get_parameter
-    return @parameter
+    @parameter
   end
 
   def get_gem_version
-    return @gem_version
+    @gem_version
   end
 end

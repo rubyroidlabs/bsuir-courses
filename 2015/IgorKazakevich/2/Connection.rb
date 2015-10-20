@@ -8,6 +8,6 @@ class Connection
   end
 
   def get_data
-    return @data
+    @data
   end
 end

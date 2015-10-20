@@ -16,6 +16,6 @@ class Filter
   end
 
   def get_filter_data
-    return @filter_data
+    @filter_data
   end
 end
