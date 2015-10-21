@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
+Dir['./*.rb'].each { |file| require file }
 
-Dir["./*.rb"].each {|file| require file}
 class Gemfiler
   attr :gem_name, :option1, :option2
 
-  def initialize(gem_name, option1, option2=nil)
+  def initialize(gem_name, option1, option2 = nil)
     @gem_name = gem_name
     @option1 = option1
     @option2 = option2
@@ -19,13 +19,13 @@ when 2
 else raise ArgumentError, "Check your parameters !"
 end
 
-r = Reciever.new
+reciever = Reciever.new
 unless ARGV[2]
-  r.recieve(gemfiler.gem_name, gemfiler.option1)
+  reciever.recieve(gemfiler.gem_name, gemfiler.option1)
 else
-  r.recieve(gemfiler.gem_name, gemfiler.option1, gemfiler.option2)
+  reciever.recieve(gemfiler.gem_name, gemfiler.option1, gemfiler.option2)
 end
-lookuper = LookUper.new(r.gem_name, r.option1, r.option2)
+lookuper = LookUper.new(reciever.gem_name, reciever.option1, reciever.option2)
 lookuper.lookup
 printer = Printer.new(lookuper.cache_array, lookuper.gem_name, lookuper.option1, lookuper.option2)
 printer.print_result
