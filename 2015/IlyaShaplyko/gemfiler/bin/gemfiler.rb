@@ -1,5 +1,5 @@
 require 'colorize'
-Dir['../lib/*.rb'].each {|file| require_relative(file)}
+Dir['../lib/*.rb'].each { |file| require_relative(file) }
 
 class Gemfiler
   attr_accessor :gem_name, :gem_version
