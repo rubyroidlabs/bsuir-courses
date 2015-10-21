@@ -14,7 +14,6 @@ class VersionFinder
       puts 'Error aquired! Please, check your network connection.'.red
       exit
     end
-
     begin
       json = JSON.parse(versions)
       json.map! { |v| v['number'] }

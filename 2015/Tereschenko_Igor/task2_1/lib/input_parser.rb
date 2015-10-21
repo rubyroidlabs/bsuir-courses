@@ -18,7 +18,7 @@ class InputParser
       @operators.values.map! do |i|
         i = Gem::Version.new(i)
       end
-      rescue ArgumentError 
+      rescue ArgumentError
         puts 'Error aquired! Please, check your version formatting.'.red
         exit
       end
