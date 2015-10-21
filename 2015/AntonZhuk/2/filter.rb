@@ -24,7 +24,7 @@ class Filter
       when param == '>=' && param2 == nil
         filtered_versions = @versions.select do |ver|
            ver >= specified
-         end
+        end
       when param == '<' && param2 == nil
         filtered_versions = @versions.select do |ver|
           ver < specified
