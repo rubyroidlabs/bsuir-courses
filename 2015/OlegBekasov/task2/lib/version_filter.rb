@@ -1,6 +1,6 @@
 module VersionFilter
   def filter(version, option1, option2)
-  	begin
+    begin
       Gem::Requirement.new(option1, option2).
         satisfied_by?(Gem::Version.new(version))
     rescue Gem::Requirement::BadRequirementError
