@@ -8,14 +8,30 @@ class VersionFilter
     needed_version = Gem::Version.new(needed_version)
     result = []
     case operator
-    when '~>'
+    when '>'
       result = @versions.select do |version|
-        version >= needed_version && version < needed_version.bump
+        version > needed_version
       end
       result = result.map(&:to_s)
-    else
+    when '>='
       result = @versions.select do |version|
-        version.send(operator.to_sym, needed_version)
+        version >= needed_version
+      end
+      result = result.map(&:to_s)
+    when '<'
+      result = @versions.select do |version|
+        version < needed_version
+      end
+      result = result.map(&:to_s)
+    when '<='
+      result = @versions.select do |version|
+        version <= needed_version
+      end
+      result = result.map(&:to_s)
+    when '~>'
+      result = @versions.select do |version|
+        version >= needed_version &&
+        version < needed_version.bump
       end
       result = result.map(&:to_s)
     end
@@ -28,17 +44,43 @@ class VersionFilter
     needed_version = Gem::Version.new(needed_version)
     needed_version2 = Gem::Version.new(needed_version2)
     result = []
-    case operator
-    when '~>'
+    case operator && operator2
+    when '>' && '<'
       result = @versions.select do |version|
-        version >= needed_version && version < needed_version.bump &&
-        version.send(operator2.to_sym, needed_version2)
+        version > needed_version &&
+        version < needed_version2
       end
       result = result.map(&:to_s)
-    else
+    when '~>' && '<'
       result = @versions.select do |version|
-        version.send(operator.to_sym, needed_version) &&
-        version.send(operator2.to_sym, needed_version2)
+        version >= needed_version &&
+        version < needed_version.bump &&
+        version < needed_version2
+      end
+      result = result.map(&:to_s)
+    when '>=' && '<'
+      result = @versions.select do |version|
+        version >= needed_version &&
+        version <= needed_version2
+      end
+      result = result.map(&:to_s)
+    when '>' && '<='
+      result = @versions.select do |version|
+        version > needed_version &&
+        version <= needed_version2
+      end
+      result = result.map(&:to_s)
+    when '~>' && '<='
+      result = @versions.select do |version|
+        version >= needed_version &&
+        version < needed_version.bump &&
+        version <= needed_version2
+      end
+      result = result.map(&:to_s)
+    when '>=' && '<='
+      result = @versions.select do |version|
+        version >= needed_version &&
+        version <= needed_version2
       end
       result = result.map(&:to_s)
     end
