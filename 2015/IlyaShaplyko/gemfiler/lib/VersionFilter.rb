@@ -6,7 +6,7 @@ class VersionFilter
 
   def filter
     begin
-      @all_versions.map do |v|
+      @all_versions.map  do |v|
         v if Gem::Dependency.new('', @gem_version).match?('', v)
       end
     rescue Gem::Requirement::BadRequirementError
