@@ -6,11 +6,11 @@ class VersionFilter
 		end
 
 	def filter
-	     #binding.pry
-	     #result = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
-	     #json = JSON.parse(result)
 	     #ALGORITM
-	     @versions
+	     versions.each do |versions|
+        filtered_versions << versions if Gem::Dependency.new('', condition).match?('', versions)
 
+	     @versions
+@filtered_versions
 	end
 end

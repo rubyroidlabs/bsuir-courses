@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+s#!/usr/bin/env ruby
 require 'pry'
 Dir['./lib/*.rb'].each { |f| require_relative(f) }
 
