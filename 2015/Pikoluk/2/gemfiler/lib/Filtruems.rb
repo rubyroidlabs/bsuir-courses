@@ -5,7 +5,6 @@ class Filtruems
   end
 
   def filter
-    begin
       @versions.map do |v|
         v if Gem::Dependency.new('', @gem_version).match?('', v)
       end
