@@ -24,7 +24,7 @@ class Printer
     @cache_array = array
     if option2
       print_cond_2
-    else print_array
+    else print_cond_1
     end
   end
 
