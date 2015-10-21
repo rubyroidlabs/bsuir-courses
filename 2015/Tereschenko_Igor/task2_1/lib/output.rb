@@ -19,9 +19,9 @@ class Parser
       end
       rescue Gem::Requirement::BadRequirementError
         puts '(╯°□°)╯︵ ┻━┻ (invalid operator)'.red
-        exit 
+        exit
       end
-    
+
     if res1.include?(false)
       return false
     else
