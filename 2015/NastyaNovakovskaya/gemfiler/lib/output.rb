@@ -18,7 +18,7 @@ class Output
   rescue Gem::Requirement::BadRequirementError
     raise Exception.new('Version format is not correct.')
   end
-  
+
   def get_string
     right = []
     wrong = []
