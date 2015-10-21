@@ -12,10 +12,10 @@ end
 
 begin
   entered_gem = Gemfiler.new(*ARGV)
-  all_versions = VersionParser.new(entered_gem.gem_name).fetch
-  if all_versions
-    filtered_versions = VersionFilter.new(all_versions,entered_gem.gem_version.dup).filter
-    ColoredOutput.new(all_versions,filtered_versions).output if filtered_versions
+  all_vers = VersionParser.new(entered_gem.gem_name).fetch
+  if all_vers
+    filtr_vers = VersionFilter.new(all_vers,entered_gem.gem_version.dup).filter
+    ColoredOutput.new(all_vers,filtr_vers).output if filtr_vers
   end
 rescue ArgumentError
   puts 'Argument Error. Input gem name and version'.green
