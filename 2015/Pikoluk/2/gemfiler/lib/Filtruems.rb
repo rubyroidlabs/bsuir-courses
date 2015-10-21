@@ -1,5 +1,4 @@
 class Filtruems
-
   def initialize(versions, gem_version)
     @versions = versions
     @gem_version = gem_version
