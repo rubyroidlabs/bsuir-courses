@@ -1,4 +1,4 @@
-Dir['../lib/*.rb'].each {|f| require_relative(f)}
+Dir['../lib/*.rb'].each { |f| require_relative(f) }
 
 name = ARGV[0].to_s
 ARGV.shift

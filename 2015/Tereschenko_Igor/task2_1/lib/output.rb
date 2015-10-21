@@ -16,11 +16,11 @@ class Parser
         res1 << false
       end
     end
-      if res1.include?(false)
-        return false
-      else
-        return true
-      end
+    if res1.include?(false)
+      return false
+    else
+      return true
+    end
   end
 
   def output

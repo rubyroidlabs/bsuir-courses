@@ -17,10 +17,10 @@ class VersionFinder
 
     begin
       json = JSON.parse(versions)
-      json.map! { |v| v["number"] }
+      json.map! { |v| v['number'] }
       rescue JSON::ParserError
         puts '(╯°□°)╯︵ ┻━┻ AAAAAAAAAAAAAARGH!!! (invalid gem name)'.red
         exit
-    end
+      end
   end
 end
