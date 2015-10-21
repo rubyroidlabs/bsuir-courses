@@ -30,7 +30,6 @@ class Output
 
     output_string = output_string + "\n right: " + right_versions.join(', ').red
     output_string = output_string + "\n wrong: " + wrong_versions.join(', ')
-
     puts output_string
   end
 end
