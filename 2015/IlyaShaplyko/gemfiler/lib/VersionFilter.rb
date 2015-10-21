@@ -8,7 +8,7 @@ class VersionFilter
     begin
       @all_vers.map do |v|
          v if Gem::Dependency.new('', @gem_version).match?('', v)
-       end
+      end
     rescue Gem::Requirement::BadRequirementError
       puts 'Error in writing gem version'.green
     end
