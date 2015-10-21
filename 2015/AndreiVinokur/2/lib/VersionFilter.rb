@@ -35,10 +35,10 @@ class VersionFilter
         end
       end
     else
-        puts 'Incorrect comparison operator'
-        puts 'Template of comparison operator: =; !=; >; <; >=; <=; ~>;'
-        exit
-      end
+      puts 'Incorrect comparison operator'
+      puts 'Template of comparison operator: =; !=; >; <; >=; <=; ~>;'
+      exit
+    end
     result
   end
 end
