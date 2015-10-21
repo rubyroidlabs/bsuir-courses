@@ -1,0 +1,10 @@
+class VersionFilter
+  def filter(versions, conditions)
+    requirement = Gem::Requirement.new(conditions)
+    version_hash = {}
+    versions.each do |version|
+      version_hash[version] = requirement.satisfied_by?(Gem::Version.new(version))
+    end
+    version_hash
+  end
+end
