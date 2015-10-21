@@ -10,7 +10,7 @@ class INPUTDATA
     @mark2 = mark2
     @gem_version = []
     @gem_range = []
-  ed
+  end
 
   def gem_data_info
     @gem_data = Gems.versions @gem_name
@@ -95,7 +95,7 @@ class INPUTDATA
               puts @gem_data[i]
             end
           end
-        end  
+        end
       end
     end
     0.upto(@gem_data_more.size - 1) do |i|
@@ -118,7 +118,7 @@ class INPUTDATA
         end
       end
     end
-  end  
+  end
 end
 
 begin
