@@ -10,5 +10,5 @@ class VersionFilter
     end
     rescue Gem::Requirement::BadRequirementError
       puts 'Error in writing gem version'.green
-    end
+  end
 end
