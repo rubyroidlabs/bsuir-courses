@@ -1,0 +1,17 @@
+require 'json'
+
+class Version_searcher
+
+  def initialize(name)
+    @name = name
+  end
+
+  def find
+    json = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
+    result = []
+    JSON.parse(json).each do |i|
+        result << i.fetch('number')
+    end
+    result
+  end
+end
