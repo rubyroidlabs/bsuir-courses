@@ -1,12 +1,11 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.1.4
+# @version 0.1.5
 # @author S. Ivanouski
 
 require 'gems'
 require 'colorize'
-#require './lib/colorizer.rb'
 require './lib/gemfilter.rb'
 require './lib/helpprinter.rb'
 require './lib/versionprinter.rb'
@@ -24,7 +23,6 @@ version1 = ARGV[2]
 operator2 = ARGV[3]
 version2 = ARGV[4]
 
-
 begin
   @versions = new_search.versions gem_name
 rescue SocketError => e
@@ -32,7 +30,7 @@ rescue SocketError => e
 end
 
 begin
-    case ARGV.size
+  case ARGV.size
   when 1
     drawer.print_all(@versions, gem_name)
   when 3
