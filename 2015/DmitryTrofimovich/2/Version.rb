@@ -56,4 +56,3 @@ class Version
     @vers_usr
   end
 end
-
