@@ -1,11 +1,11 @@
-# Look up gem data
-require 'gems'
 
+require 'gems'
+# Look up gem data
 class LookUper
-  attr :cache_array, :gem_name, :option1, :option2
+  attr_accessor :cache_array, :gem_name, :option1, :option2
 
   def initialize(gem_name, option1, option2 = nil)
-    @cache_array ||= Array.new
+    @cache_array ||= []
     @gem_name = gem_name
     @option1 = option1
     @option2 = option2
@@ -18,7 +18,7 @@ class LookUper
         @cache_array.push(value) if key == 'number'
       end
     end
-    rescue StandardError
-      puts "The gem name you entered doesn't exist"
+  rescue StandardError
+    puts "The gem name you entered doesn't exist"
   end
 end
