@@ -1,5 +1,6 @@
 require 'colorize'
 require 'versionomy'
+
 class Parser
     attr_accessor :versions
     def initialize (inversions, operators)
@@ -12,14 +13,12 @@ class Parser
 
     def match? (value) #lots of evil sorcery in this method 
         res1 = Array.new 
-        count = 0
         @operators.each do |k, v| 
-            if value.public_send(k,v)
-                res1[count] = true
+            if Gem::Dependency.new('', k + v).match?('', value)
+                res1 << true
             else
-                res1[count] = false
+                res1 << false
             end    
-            count += 1
         end
         if res1.include?(false) 
             return false

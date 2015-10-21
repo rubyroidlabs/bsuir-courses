@@ -1,6 +1,6 @@
 require 'colorize'
 
-class Input_parser
+class InputParser
     attr_accessor :gname, :operators, :correct
     
     def initialize(gname, operators)
@@ -10,11 +10,9 @@ class Input_parser
         @operators = Hash[operators]
         @operators.keys.each do |i|
             if (i != ">" && i != "<" && i != ">=" && i != "<=" && i != "~>" && i != "<~" && i != "=" && i != "!=")
-                @correct = false    #TODO mb @correct is unnecessary
-                puts "Error aquired! Please, check your comparison operator.".red
+                puts 'Error aquired! Please, check your comparison operator.'.red
                 exit 
             else
-                @correct = true
             end
         end
         begin
@@ -22,8 +20,7 @@ class Input_parser
             i = Gem::Version.new(i) 
         end    
         rescue ArgumentError #checks if version is formatted correctly
-            @correct = false
-            puts "Error aquired! Please, check your version formatting.".red
+            puts 'Error aquired! Please, check your version formatting.'.red
             exit
         end
     end   
