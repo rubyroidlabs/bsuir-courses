@@ -13,4 +13,4 @@ parse.connect
 
 filter = Filter.new(parse.get_versions)
 
-Print.new(filter.filter_data(param, version,param2,version2),parse.get_versions)
+Print.new(filter.filter_data(param, version, param2, version2), parse.get_versions)
