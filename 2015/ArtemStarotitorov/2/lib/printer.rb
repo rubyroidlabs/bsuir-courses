@@ -1,9 +1,9 @@
 require 'colorize'
 
 class Printer
-  def self.print_versions(hash_of_versions)
+  def print_versions(hash_of_versions)
     hash_of_versions.each do |k, v|
-      if v == true
+      if v
         puts k.red
       else
         puts k
