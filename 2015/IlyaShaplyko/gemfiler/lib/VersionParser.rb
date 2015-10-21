@@ -11,7 +11,7 @@ class VersionParser
     gem_data = `curl https://rubygems.org/api/v1/versions/#{gem_name}.json`
     begin
       json = JSON.parse(gem_data)
-      json.map { |s| s["number"] }
+      json.map { |s| s['number'] }
     rescue JSON::ParserError
        puts 'Error in writing gem name'.green
     end
