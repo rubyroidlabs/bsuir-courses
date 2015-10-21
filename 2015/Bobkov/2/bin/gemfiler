@@ -6,11 +6,11 @@ end
 
 name, specifier, specifier2 = ARGV
 
-unless (name =~ /\w+/) && (specifier =~ /[~><][=>]?\s*(\d+\.)*\d+/)
+unless (name =~ /\w+/) && (specifier =~ /(~>|>=|<=|<|>)\s(\d+\.)*\d+/)
   raise ArgumentError
 end
 
-if (specifier2 =~ /[<][=]?\s*(\d+\.)*\d+/)
+if (specifier2 =~ /(<|<=)\s(\d+\.)*\d+/)
   bl = true
 else
   if (specifier2 =~ /^.*/)
