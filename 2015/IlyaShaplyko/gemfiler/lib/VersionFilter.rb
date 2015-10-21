@@ -9,6 +9,6 @@ class VersionFilter
       v if Gem::Dependency.new('', @gem_version).match?('', v)
     end
   rescue Gem::Requirement::BadRequirementError
-      puts 'Error in writing gem version'.green
+    puts 'Error in writing gem version'.green
   end
 end
