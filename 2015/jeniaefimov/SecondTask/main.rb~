@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-Dir['../sourcelib/*.rb'].each{|f| require_relative(f)}
-name = ARGV[0]
-key = ARGV[1]
-
-versions = VersionFetcher.new(name).fetch
-filtered_versions = VersionFilter.new(versions).filter(key)
-Visualiser.new(versions).visualise(filtered_versions)
