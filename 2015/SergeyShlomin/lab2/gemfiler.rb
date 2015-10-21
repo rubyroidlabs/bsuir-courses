@@ -19,8 +19,8 @@ Dir[File.expand_path("..", __FILE__) +'/lib/*.rb'].each { |f| require_relative f
         end
         i+=1
       end
-      #p gem_name
-      #p input_version
+      # p gem_name
+      # p input_version
       fetched_gems = Gem_fetcher.fetch(gem_name)
       Gem_printer.new(fetched_gems, Gem_filter.new(fetched_gems, input_version).filter).print
     elsif ARGV.count  == 1
@@ -32,15 +32,15 @@ Dir[File.expand_path("..", __FILE__) +'/lib/*.rb'].each { |f| require_relative f
   end
 rescue ArgumentError => e
   puts 'ArgumentError'
-  if e.message.include? "Malformed version number string"
-    puts "incorrect gem version"
+  if e.message.include? 'Malformed version number string'
+    puts 'incorrect gem version'
   else
     puts  e.message
   end
 rescue NameError => e
   puts 'NameError'
-  if e.message.include? "uninitialized constant"
-    puts "Cannot found modules in lib"
+  if e.message.include? 'uninitialized constant'
+    puts 'Cannot found modules in lib'
   else
     puts  e.message
   end

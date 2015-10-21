@@ -1,15 +1,16 @@
-#Printer
+# Printer
 require 'colorize'
-class Gem_printer
+class GemPrinter
   def initialize(versions, select_versions)
     @versions = versions
     @select_versions = select_versions
   end
+
   def print
-    if !( @versions == nil )
+    if !(@versions == nil)
       @versions.each do |version|
         if @select_versions.include? version
-          puts version.red 
+          puts version.red
         else
           puts version
         end
