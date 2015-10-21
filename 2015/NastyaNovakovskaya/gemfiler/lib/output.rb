@@ -40,3 +40,4 @@ class Output
     puts output_string
   end
 end
+
