@@ -3,15 +3,15 @@ require 'versionomy'
 
 class Parser
     attr_accessor :versions
-    def initialize (inversions, operators)
+    def initialize(inversions, operators)
         inversions.each do |i|
             i = Versionomy.parse(i)
         end
         @versions = inversions
-        @operators = operators.sort_by {|_key, value| value}
+        @operators = operators.sort_by { |_key, value| value }
     end
 
-    def match? (value) #lots of evil sorcery in this method
+    def match? (value) 
         res1 = Array.new
         @operators.each do |k, v|
             if Gem::Dependency.new('', k + v).match?('', value)
