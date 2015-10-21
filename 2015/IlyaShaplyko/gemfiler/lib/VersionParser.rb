@@ -13,7 +13,7 @@ class VersionParser
       json = JSON.parse(gem_data)
       json.map { |s| s["number"] }
     rescue JSON::ParserError
-       puts "Error in writing gem name".green
+       puts 'Error in writing gem name'.green
     end
   end
 end
