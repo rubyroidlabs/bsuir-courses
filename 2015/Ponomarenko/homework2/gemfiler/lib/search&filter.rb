@@ -8,12 +8,11 @@ class Searcher
   end
 
   def search
-    begin
-      version_list = Gems.versions(@name)
+    version_list = Gems.versions(@name)
+    @versions = version_list.map { |details| details['number'] }
     rescue
       raise 'Cannot found gem'
     end
-    @versions = version_list.map { |details| details['number'] }
   end
 end
 
