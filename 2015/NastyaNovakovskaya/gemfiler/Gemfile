@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+# work with gems api
+gem 'gems'
+
+# add color to string
+gem 'colorize'
