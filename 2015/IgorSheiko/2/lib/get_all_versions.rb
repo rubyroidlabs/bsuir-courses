@@ -11,7 +11,7 @@ class GetAllVersions
     begin
       page = agent.get(url)
       versions = page.parser.css('.gem__version-wrap a').map(&:text)
-      rescue Mechanize::Error
+    rescue Mechanize::Error
       puts 'This rubygem could not be found.'
     end
   end

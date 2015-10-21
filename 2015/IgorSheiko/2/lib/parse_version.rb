@@ -1,5 +1,5 @@
 class ParseVersion
-  def initialize()
+  def initialize
   end
 
   def filter(operator, needed_version, all_version)
@@ -18,6 +18,6 @@ class ParseVersion
         end
       end
     end
-  true_versions
+    true_versions
   end
 end
