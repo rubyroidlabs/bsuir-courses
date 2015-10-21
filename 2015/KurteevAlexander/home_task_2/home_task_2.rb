@@ -10,7 +10,7 @@ class INPUTDATA
     @mark2 = mark2
     @gem_version = []
     @gem_range = []
-  end
+  ed
 
   def gem_data_info
     @gem_data = Gems.versions @gem_name
@@ -46,14 +46,14 @@ class INPUTDATA
   def one_range
     if @gem_range[0].match('~')
       if @gem_range[0].match('>')
-        @gem_range[0] = ">"
-        @gem_range[1] = "<"
+        @gem_range[0] = '>'
+        @gem_range[1] = '<'
         @gem_version[1] = @gem_version[0].clone
-        @next_version = @gem_version[1].split('.')
-        @gem_version[1] = @gem_version[1].sub(@next_version[1],@next_version[1].next)
+        @nt_vers = @gem_version[1].split('.')
+        @gem_version[1] = @gem_version[1].sub(@nt_vers[1],@nt_vers[1].next)
       else
-        @gem_range[0] = "<"
-        @gem_range[1] = ">"
+        @gem_range[0] = '<'
+        @gem_range[1] = '>'
       end
     else
       if @gem_range[0].match('<')
@@ -79,7 +79,7 @@ class INPUTDATA
     g = @gem_version[1].split('.')
     @gem_data_more = []
     0.upto(@gem_data_size) do |i|
-      a = @gem_data[i].split('.') 
+      a = @gem_data[i].split('.')
       a.each_with_index do |c, index|
         if c.to_i > b[index].to_i
           @gem_data_more << @gem_data[i]
@@ -90,7 +90,7 @@ class INPUTDATA
         else
           if (index == (a.size - 1))
             if @equally_1
-              puts @gem_data[i].red 
+              puts @gem_data[i].red
             else
               puts @gem_data[i]
             end
@@ -99,7 +99,7 @@ class INPUTDATA
       end
     end
     0.upto(@gem_data_more.size - 1) do |i|
-      a = @gem_data_more[i].split('.') 
+      a = @gem_data_more[i].split('.')
       a.each_with_index do |c, index|
         if c.to_i > g[index].to_i
           puts @gem_data_more[i]
