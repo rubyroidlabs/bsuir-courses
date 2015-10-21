@@ -3,7 +3,6 @@ require 'gems'
 
 class INPUTDATA
   attr :gem_namе, :mark1, :mark2
-  
   def initialize(gem_name, mark1, mark2 = nil)
     @gem_name = gem_name
     @mark1 = mark1
