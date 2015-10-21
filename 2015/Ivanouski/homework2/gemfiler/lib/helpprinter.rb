@@ -18,14 +18,14 @@ class HelpPrinter
   end
 
   def connection_error(error_messsage)
-    error = "Connection error!"
+    error = 'Connection error!'
     puts error.red
     puts error_messsage
     exit 0
   end
 
   def name_error
-    error = "Check your input!"
+    error = 'Check your input!'
     puts error.red
     print_help
   end
