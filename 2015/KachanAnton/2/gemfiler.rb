@@ -3,12 +3,12 @@ Dir[File.expand_path('./../modules/*.rb', __FILE__)].each do
 end
 
 class GemFiler
-  def self.show_versions
+  def self.show
+    if ARGV.length < 2 || ARGV.length > 3
+      puts 'Incorrect number of arguments.'
+      exit
+    end
     begin
-      if ARGV.length < 2 || ARGV.length > 3
-        raise ArgumentError, 'Incorrect number of arguments.'
-        exit
-      end
       gem = ARGV[0]
       conditions = ARGV[1..ARGV.length - 1]
       versions = GemVersions.new(gem).get_version
@@ -21,4 +21,4 @@ class GemFiler
   end
 end
 
-GemFiler.show_versions
+GemFiler.show

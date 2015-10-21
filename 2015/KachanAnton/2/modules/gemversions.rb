@@ -1,6 +1,6 @@
 require 'gems'
 class GemVersions
-  def initialize(gem)
+  def initialize(req_gem)
     begin
       Gems.configure do |config|
         config.username = 'antonn.lida@mail.ru'
@@ -11,13 +11,13 @@ class GemVersions
       puts exc.message
       exit
     end
-    @gem = gem
+    @req_gem = req_gem
     @versions_array = []
   end
 
   def get_version
     begin
-      Gems.versions(@gem).each do |vers|
+      Gems.versions(@req_gem).each do |vers|
         @versions_array << vers['number']
       end
     rescue StandardError => exc
