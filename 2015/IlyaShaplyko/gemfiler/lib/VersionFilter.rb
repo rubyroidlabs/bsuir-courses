@@ -14,4 +14,3 @@ class VersionFilter
       puts 'Error in writing gem version'.green
     end
   end
-end
