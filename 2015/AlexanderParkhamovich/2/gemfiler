@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+Dir['*.rb'].each { |f| require_relative f }
+
+begin
+  if ARGV.size < 2 
+    puts 'USE ./gemfiler <gem_name> <gem_version>'
+  else
+    versions = Searcher.get_versions ARGV.shift
+    requirements = ARGV
+    filtered = Filter.get_filtered_versions versions, requirements
+    Writer.write_to_console versions, filtered
+  end
+rescue ArgumentError => error
+  puts error.message
+  exit
+end
