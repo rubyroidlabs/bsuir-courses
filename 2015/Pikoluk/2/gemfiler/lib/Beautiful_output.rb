@@ -1,6 +1,5 @@
 require 'colorize'
 class Beautiful_output
-
   def initialize(versions, filter_versions)
     @versions = versions
     @filter_versions = filter_versions
