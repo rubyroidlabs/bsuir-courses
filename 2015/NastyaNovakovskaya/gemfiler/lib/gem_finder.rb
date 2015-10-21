@@ -25,5 +25,4 @@ class GemFinder
       @gem_versions.push(item['number'])
     end
   end
-
 end

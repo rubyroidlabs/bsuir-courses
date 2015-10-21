@@ -1,7 +1,6 @@
 require 'colorize'
 
 class Output
-
   attr_reader :name,
               :req_version,
               :gem_versions
@@ -14,7 +13,7 @@ class Output
 
   def check_version(version)
     @req_versions.all? do |item|
-      Gem::Dependency.new(@name, item).match?(@name,version)
+      Gem::Dependency.new(@name, item).match?(@name, version)
     end
   rescue Gem::Requirement::BadRequirementError
     raise Exception.new('Version format is not correct.')

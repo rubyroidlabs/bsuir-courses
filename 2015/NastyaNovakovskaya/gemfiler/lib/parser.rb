@@ -5,7 +5,6 @@ class Parser
               :version
 
   def parse
-
     parser = OptionParser.new do|opts|
       opts.banner = 'Usage: gemfiler.rb [options]'
 
@@ -26,7 +25,5 @@ class Parser
     if @version.nil?
       @version = '>= 0.0'
     end
-
   end
-
 end
