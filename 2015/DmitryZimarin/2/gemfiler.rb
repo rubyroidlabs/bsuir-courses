@@ -56,7 +56,6 @@ class GemData
     end
   end
   attr_accessor :gem_name, :params_versions, :gems_versions_mas
-
 end
 
 class Printer
