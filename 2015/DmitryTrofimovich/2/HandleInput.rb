@@ -2,13 +2,11 @@ class HandleInput
   def initialize
     @name = ARGV[0]
     @param = ARGV[1..-1]
-    begin
-      raise 'Не введено название гема' if ARGV.empty?
-      raise 'Не введены параметры для поиска' unless ARGV[1]
-      check_format_version
+    raise 'Не введено название гема' if ARGV.empty?
+    raise 'Не введены параметры для поиска' unless ARGV[1]
+    check_format_version
     rescue Exception => e
       print e.message
-    end
   end
 
   def check_format_version
