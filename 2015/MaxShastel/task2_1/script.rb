@@ -1,8 +1,8 @@
 Dir['./lib/*.rb'].each { |f| require_relative(f) }
 
 begin
-  if (ARGV.length < 2)
-    #raise RuntimeError.new('No arguments')
+  if ARGV.length < 2
+    raise RuntimeError.new('No arguments')
   else
     name = ARGV[0]
     ver = ARGV[1]
@@ -18,4 +18,3 @@ rescue RuntimeError => e
   puts e.message
   exit
 end
-

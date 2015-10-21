@@ -8,7 +8,6 @@ class RequestGemVersion
   end
 
   def find
-    begin
       result = `curl https://rubygems.org/api/v1/versions/#{name}.json`
       if result
         result = JSON.parse(result)
@@ -16,9 +15,5 @@ class RequestGemVersion
       else
         raise RuntimeError.new('Not found')
       end
-    rescue RuntimeError => e
-      puts e.message
-      exit
-    end
   end
 end
