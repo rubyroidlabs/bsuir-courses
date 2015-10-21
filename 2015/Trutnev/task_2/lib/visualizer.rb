@@ -1,5 +1,7 @@
 require 'colorize'
+
 class Visualizer
+	
 	def initialize(versions,filtered_versions)
 		@versions=versions
 		@filtered_versions=filtered_versions
