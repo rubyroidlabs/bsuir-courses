@@ -4,30 +4,46 @@ class Version
   def initialize
     @input = HandleInput.new
     @vers = Gems.versions(@input.name)
-    @vers_usr =[]
-    self.GetParam
+    @vers_usr = []
+    self.get_param
   end
 
-  def GetParam
+  def get_param
     zn_param = []
-    ver=[]
-    @input.param.each { |el| zn_param += el.split(' ')}
-    zn_param.each_slice(2) {|zn, param| @vers_usr << DeCoder(zn, param)}
+    @input.param.each { |el| zn_param += el.split(' ') }
+    zn_param.each_slice(2) { |zn, param| @vers_usr << de_coder(zn, param) }
     @vers_usr = @vers_usr[1] & @vers_usr[0] if @vers_usr.size > 1
     @vers_usr.flatten!
   end
 
-  def DeCoder zn, param
+  def de_coder( zn, param )
+    k = []
+    if zn == '>' || zn == '>='
+      k = more(zn, param)
+    else
+      k = less(zn, param)
+    end
+    k
+  end
+
+  def more ( zn, param )
     k = []
     case zn
     when '>'
-      @vers.each{ |ver| k << ver['number'] if ver['number'] > param }
+      @vers.each { |ver| k << ver['number'] if ver['number'] > param }
     when '>='
-      @vers.each{ |ver| k << ver['number'] if ver['number'] >= param }
+      @vers.each { |ver| k << ver['number'] if ver['number'] >= param }
+    end
+    k
+  end
+
+  def less ( zn, param )
+    k = []
+    case zn
     when '<='
-      @vers.each{ |ver| k << ver['number'] if ver['number'] <= param }
+      @vers.each { |ver| k << ver['number'] if ver['number'] <= param }
     when '<'
-      @vers.each{ |ver| k << ver['number'] if ver['number'] < param }
+      @vers.each { |ver| k << ver['number'] if ver['number'] < param }
     end
     k
   end
