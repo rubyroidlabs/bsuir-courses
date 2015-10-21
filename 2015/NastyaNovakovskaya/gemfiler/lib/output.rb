@@ -33,8 +33,7 @@ class Output
   end
 
   def print_result
-    output_string = 'Gem name - ' + @name + "\nVersions: "
-    
+    output_string = 'Gem name - ' + @name + "\nVersions: "   
     right, wrong = get_string
     output_string = output_string + "\n right: #{right}"
     output_string = output_string + "\n wrong: #{wrong}"
