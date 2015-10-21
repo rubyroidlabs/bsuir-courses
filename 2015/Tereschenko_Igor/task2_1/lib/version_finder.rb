@@ -21,6 +21,6 @@ class VersionFinder
             rescue JSON::ParserError
                 puts '(╯°□°)╯︵ ┻━┻ AAAAAAAAAAAAAARGH!!! (invalid gem name)'.red
                 exit
-        end
+            end
     end 
 end

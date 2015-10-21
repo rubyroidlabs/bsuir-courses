@@ -11,26 +11,26 @@ class Parser
         @operators = operators.sort_by {|_key, value| value}
     end
 
-    def match? (value) #lots of evil sorcery in this method 
-        res1 = Array.new 
-        @operators.each do |k, v| 
+    def match? (value) #lots of evil sorcery in this method
+        res1 = Array.new
+        @operators.each do |k, v|
             if Gem::Dependency.new('', k + v).match?('', value)
                 res1 << true
             else
                 res1 << false
-            end    
+            end
         end
-        if res1.include?(false) 
+        if res1.include?(false)
             return false
-        else 
+        else
             return true
-        end    
+        end
     end
-    
+
     def output
         @versions.each do |i|
-            if match?(i) == true 
-                puts i.red  
+            if match?(i) == true
+                puts i.red
             else
                 puts i
             end
