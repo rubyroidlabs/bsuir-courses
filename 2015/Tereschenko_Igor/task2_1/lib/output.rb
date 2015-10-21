@@ -9,13 +9,19 @@ class Parser
 
   def match?(value)
     res1 = Array.new
-    @operators.each do |k, v|
-      if Gem::Dependency.new('', k + v).match?('', value)
-        res1 << true
-      else
-        res1 << false
+    begin
+      @operators.each do |k, v|
+        if Gem::Dependency.new('', k + v).match?('', value)
+          res1 << true
+        else
+          res1 << false
+        end
       end
-    end
+      rescue Gem::Requirement::BadRequirementError
+        puts '(╯°□°)╯︵ ┻━┻ (invalid operator)'.red
+        exit 
+      end
+    
     if res1.include?(false)
       return false
     else

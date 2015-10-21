@@ -8,12 +8,6 @@ class InputParser
     operators.flatten!
     operators.map! &:split
     @operators = Hash[operators]
-    @operators.keys.each do |i|
-      if i != '>' && i != '<' && i != '>=' && i != '<=' && i != '~>' && i != '<~' && i != '=' && i != '!='
-        puts 'Error aquired! Please, check your comparison operator.'.red
-        exit
-      end
-    end
     begin
       @operators.values.map! do |i|
         Gem::Version.new(i)
