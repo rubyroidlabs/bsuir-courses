@@ -5,6 +5,6 @@ class ColoredOutput
   end
 
   def output
-    @all_versions.each { |vers| puts (@filtered_versions.include?(vers) ? vers.red : vers) }
+    @all_versions.each { |v| puts (@filtered_versions.include?(v) ? v.red : v) }
   end
 end
