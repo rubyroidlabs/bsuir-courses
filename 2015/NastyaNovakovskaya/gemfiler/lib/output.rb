@@ -18,18 +18,26 @@ class Output
   rescue Gem::Requirement::BadRequirementError
     raise Exception.new('Version format is not correct.')
   end
-
-  def print_result
-    output_string = 'Gem name - ' + @name + "\nVersions: "
-    right_versions = []
-    wrong_versions = []
+  
+  def get_string
+    right = []
+    wrong = []
 
     @gem_versions.each do |version|
       check_version(version) ? right.push(version) : wrong.push(version)
     end
+    result = []
+    result.push(right.join(', ').red)
+    result.push(wrong.join(', '))
+    result
+  end
 
-    output_string = output_string + "\n right: " + right_versions.join(', ').red
-    output_string = output_string + "\n wrong: " + wrong_versions.join(', ')
+  def print_result
+    output_string = 'Gem name - ' + @name + "\nVersions: "
+    
+    right, wrong = get_string
+    output_string = output_string + "\n right: #{right}"
+    output_string = output_string + "\n wrong: #{wrong}"
     puts output_string
   end
 end
