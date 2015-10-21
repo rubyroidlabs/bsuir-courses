@@ -7,8 +7,8 @@ class Colorizer
 
   def colorize
     if @filtered_versions.first[0] == @filtered_versions.last[0]
-      @filtered_versions.map { |v| puts v.red }
       puts @versions - @filtered_versions
+      @filtered_versions.map { |v| puts v.red }
     elsif @filtered_versions.first > (@versions - @filtered_versions).last
       @filtered_versions.map { |v| puts v.red }
       puts @versions - @filtered_versions
@@ -18,5 +18,7 @@ class Colorizer
     else
       puts @versions
     end
+    rescue NoMethodError
+      print "It seems there is no such version of this gem.\n"
   end
 end
