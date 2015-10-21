@@ -13,7 +13,7 @@ class VersionFinder
             rescue Curl::Err::HostResolutionError
                 puts 'Error aquired! Please, check your network connection.'.red
                 exit
-        end
+            end
 
         begin
             json = JSON.parse(versions)
