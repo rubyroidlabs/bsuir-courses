@@ -11,9 +11,9 @@ class VersionFilter
     results = []
     case operator
     when '='
-      result = needed_version
+      results = needed_version
     when '!='
-      result -= needed_version
+      results -= needed_version
     when '>'
       results = @versions.select do |version|
         needed_version < version
