@@ -7,8 +7,8 @@ class Fetcher
   def initialize(gem_name)
     @gem_name = gem_name
   end
-  
-  def fetch 
+
+  def fetch
     RestClient.get("https://rubygems.org/api/v1/versions/#{gem_name}.json")
   rescue RestClient::ExceptionWithResponse => err
     puts err.response
@@ -16,8 +16,8 @@ class Fetcher
 
   def parse(long_string)
     versions = JSON.parse(long_string)
-    versions.map { |s| s["number"] }
+    versions.map { |s| s['number'] }
   rescue JSON::ParserError
-    puts "JSON parser error"
+    puts 'JSON parser error'
   end
 end

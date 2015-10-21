@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-Dir['./lib/*.rb'].each {|f| require_relative(f)}
+Dir['./lib/*.rb'].each { |f| require_relative(f) }
 
 class Gemfiler
   attr_reader :name, :version_from, :version_to
@@ -12,16 +12,19 @@ class Gemfiler
 end
 
 def usage(s)
-    $stderr.puts(s)
-    $stderr.puts("Usage example: ./gemfiler gem_name '>= 3.1' '<4.0'")
-    exit(2)
+  $stderr.puts(s)
+  $stderr.puts("Usage example: ./gemfiler gem_name '>= 3.1' '<4.0'")
+  exit(2)
 end
 
 def check_parameters(n)
   rname = /\w+/
-  rver_from = /(>\d+.\d+.\d+|>=\d+.\d+.\d+|~>\d+.\d+.\d+.|>\d+.\d+|>=\d+.\d+|~>\d+.\d+|)/
+  rver_from = /
+  (>\d+.\d+.\d+|>=\d+.\d+.\d+|
+  ~>\d+.\d+.\d+.|>\d+.\d+|>=\d+.\d+|~>\d+.\d+|)
+  /x
   rver_to = /(<\d+.\d+.\d+|<=\d+.\d+.\d+|<\d+.\d+|<=\d+.\d+|)/
-  b = lambda {|name, num| name.match(ARGV[num]).to_s == ARGV[num]}
+  b = lambda { |name, num| name.match(ARGV[num]).to_s == ARGV[num] }
   if n == 3
     b.call(rname, 0) && b.call(rver_from, 1) && b.call(rver_to, 2)
   elsif n == 2
@@ -30,11 +33,11 @@ def check_parameters(n)
     false
   end
 end
-gi
+
 if check_parameters(ARGV.length)
   g = Gemfiler.new(*ARGV)
 else
-  usage("Wrong number parameters or wrong parameters itself")
+  usage('Wrong number parameters or wrong parameters itself')
 end
 
 f = Fetcher.new(g.name)
