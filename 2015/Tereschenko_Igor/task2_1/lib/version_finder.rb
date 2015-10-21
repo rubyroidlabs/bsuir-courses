@@ -2,10 +2,10 @@ require 'curb'
 require 'json'
 require 'colorize'
 
-class VersionFinder 
+class VersionFinder
     def initialize(name)
-        @name = name        
-    end    
+        @name = name
+    end
 
     def vget
         begin
@@ -17,10 +17,10 @@ class VersionFinder
 
         begin
             json = JSON.parse(versions)
-            json.map! { |v| v["number"] }        
+            json.map! { |v| v["number"] }
             rescue JSON::ParserError
                 puts '(╯°□°)╯︵ ┻━┻ AAAAAAAAAAAAAARGH!!! (invalid gem name)'.red
                 exit
             end
-    end 
+    end
 end

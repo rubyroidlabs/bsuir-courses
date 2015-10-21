@@ -1,6 +1,6 @@
 Dir['../lib/*.rb'].each {|f| require_relative(f)}
 
-name = ARGV[0].to_s 
+name = ARGV[0].to_s
 ARGV.shift
 
 input = InputParser.new(name, ARGV)
