@@ -2,8 +2,7 @@ require 'colorize'
 require 'gems'
 
 class INPUTDATA
- attr :gem_namе, :mark1, :mark2
-
+  attr :gem_namе, :mark1, :mark2
   def initialize(gem_name, mark1, mark2 = nil)
     @gem_name = gem_name
     @mark1 = mark1
@@ -11,7 +10,6 @@ class INPUTDATA
     @gem_version = []
     @gem_range = []
   end
-
   def gem_data_info
     @gem_data = Gems.versions @gem_name
     @gem_data_size = @gem_data.size - 1
@@ -24,7 +22,6 @@ class INPUTDATA
     @equally_1 = false
     @equally_2 = false
   end
-
   def arguments
     if ARGV.size == 2
       @gem_range << @mark1.split[0]
@@ -42,7 +39,6 @@ class INPUTDATA
       end
     end
   end
-
   def one_range
     if @gem_range[0].match('~')
       if @gem_range[0].match('>')
@@ -73,7 +69,6 @@ class INPUTDATA
     p @gem_version[1]
     p @gem_range
   end
-
   def execute
     b = @gem_version[0].split('.')
     g = @gem_version[1].split('.')
@@ -120,7 +115,6 @@ class INPUTDATA
     end
   end
 end
-
 begin
   if ARGV.empty?
     puts 'arguments are empty'
