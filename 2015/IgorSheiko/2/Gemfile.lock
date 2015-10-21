@@ -1,0 +1,12 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colored (0.7.7)
+    mechanize (2.7.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colored
+  mechanize
