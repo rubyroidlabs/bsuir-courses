@@ -4,7 +4,7 @@ require 'gems'
 class INPUT_DATA
   attr :gem_namе, :mark1, :mark2
 
-  def initialize(gem_name, mark1, mark2=nil)
+  def initialize(gem_name, mark1, mark2 = nil)
     @gem_name = gem_name
     @mark1 = mark1
     @mark2 = mark2
@@ -14,7 +14,7 @@ class INPUT_DATA
 
   def gem_data_info
     @gem_data = Gems.versions @gem_name
-    @gem_data_size =@gem_data.size - 1
+    @gem_data_size = @gem_data.size - 1
     @gem_data = @gem_data.reverse
     0.upto(@gem_data_size) do |i|
       @gem_data[i] = @gem_data[i]['number']
@@ -25,7 +25,7 @@ class INPUT_DATA
     @equally_2 = false
   end
 
-  def arguments  
+  def arguments
     if ARGV.size == 2
       @gem_range << @mark1.split[0]
       @gem_version << @mark1.split[1]
@@ -110,7 +110,7 @@ class INPUT_DATA
         else
           if (index == (a.size - 1))
             if @equally_2
-              puts @gem_data[i].red 
+              puts @gem_data[i].red
             else
               puts @gem_data[i]
             end
@@ -122,18 +122,18 @@ class INPUT_DATA
 end
 
 begin
-if ARGV.empty?
-  puts 'arguments are empty'
-elsif ARGV.size < 2
-  puts 'invalid number of elements'
-else
-  input_data = INPUT_DATA.new(ARGV[0],ARGV[1],ARGV[2])
-  input_data.arguments
-  input_data.gem_data_info
-  if ARGV.size == 2
-    input_data.one_range
+  if ARGV.empty?
+    puts 'arguments are empty'
+  elsif ARGV.size < 2
+    puts 'invalid number of elements'
+  else
+    input_data = INPUT_DATA.new(ARGV[0], ARGV[1], ARGV[2])
+    input_data.arguments
+    input_data.gem_data_info
+    if ARGV.size == 2
+      input_data.one_range
+    end
+    input_data.execute
   end
-  input_data.execute
-end
 ensure
 end
