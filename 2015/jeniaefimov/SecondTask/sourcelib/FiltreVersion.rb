@@ -4,7 +4,7 @@ class FiltreVersion
     @gem_version = gem_version
   end
 
-def filter
-  @versions.map { |v| v if Gem::Dependency.new('', @gem_version).match?('', v) }
-end
+  def filter
+    @versions.map { |v| v if Gem::Dependency.new('', @gem_version).match?('', v) }
+  end
 end
