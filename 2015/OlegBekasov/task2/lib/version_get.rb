@@ -5,7 +5,7 @@ class VersionGet
     @name = name
   end
 
-  def collect    
+  def collect
     versions = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
     begin
       JSON.parse(versions).map { |ver| ver['number'] }

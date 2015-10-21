@@ -15,6 +15,6 @@ class VersionPuts
       else
         puts version
       end
-      end
+    end
   end
 end
