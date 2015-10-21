@@ -1,0 +1,7 @@
+source 'http://rubygems.org'
+
+# Use Json for parsing gem versions
+gem 'json', '1.8.1'
+
+# Use Colorize for printing text in color
+gem 'colorize', '0.7.7'
