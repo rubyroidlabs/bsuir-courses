@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+require_relative 'classes/version.rb'
+require_relative 'classes/printer.rb'
+require_relative 'classes/gem_reader.rb'
+
+class Gemfiler
+  def initialize
+    @source = "https://rubygems.org/api/v1/versions/#{ARGV[0]}.json"
+  end
+
+  def analize
+    versions_str = GemReader.new(ARGV[0]).get_gems
+    versions = versions_str.map {|str| Version.new(str)}
+  begin
+    selected_versions = versions.select {|version| eval(get_code(versions))}
+  rescue => e
+    abort(e.inspect)
+  end
+    Printer.new.pretty_print(versions_str, selected_versions.map {|version| version.to_s})
+  end
+
+  def get_code(versions)
+    string_eval = 'true'
+    1.upto(ARGV.size - 1) do |i|
+      condition_operator = ARGV[i].split(' ')[0]
+      condition_value  = ARGV[i].split(' ')[1]
+
+      case condition_operator
+      when "~>"
+        high_version_str = condition_value.slice(0...-2)
+        high_version_str = high_version_str.succ + ".0"
+        high_version = Version.new(high_version_str)
+        string_eval += '&& version >= Version.new(\'' + condition_value + '\') && version < Version.new(\'' + high_version_str + '\') '
+      when "="
+        string_eval += '&& version == Version.new(\''+ condition_value + '\') '
+      when ">" , "<" , ">=" , "<=" , "!="
+        string_eval += '&& version' + condition_operator + ' Version.new(\'' + condition_value + '\')'
+      end
+    end
+    string_eval
+  rescue => e
+    abort(e.inspect)
+  end
+end
+
+Gemfiler.new.analize
