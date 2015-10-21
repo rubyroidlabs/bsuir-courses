@@ -1,11 +1,10 @@
 require 'gems'
 
-Dir["./*.rb"].each {|file| require file}
+Dir['./*.rb'].each { |file| require file }
 
 class Checker
 
   def initialize(name, option1, option2 = nil)
-
     @name = name
     @option1 = Gem::Dependency.new(@name.to_s, option1)
     if option2
@@ -17,7 +16,6 @@ class Checker
   end
 
   def fits?(ver)
-
     if @double
       @option1.match?(@name.to_s, ver) && @option2.match?(@name.to_s, ver)
     else

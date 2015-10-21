@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-Dir["./*.rb"].each {|file| require file}
+Dir['./*.rb'].each { |file| require file }
 class Gemfiler
   attr :gem_name, :option1, :option2
 
@@ -22,7 +22,7 @@ when 3
   g = Gemfiler.new(ARGV[0], ARGV[1], ARGV[2])
 when 2
   g = Gemfiler.new(ARGV[0], ARGV[1])
-else raise ArgumentError, "Check your parameters !"
+else raise ArgumentError, "Wrong parametrs!"
 end
 
 g.start

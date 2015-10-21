@@ -1,4 +1,4 @@
-Dir["./*.rb"].each {|file| require file}
+Dir['./*.rb'].each { |file| require file }
 
 class String
   def red
@@ -10,7 +10,6 @@ class Printer
   attr :arr, :name, :option1, :option2
 
   def initialize(array, name, option1, option2 = nil)
-
     @arr = array
     @name = name
     @option1 = option1
