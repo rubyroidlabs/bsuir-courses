@@ -8,7 +8,6 @@ class Filtrator
 
   def filter(versions)
     current_position = versions.index(@version)
-    second_part = versions[2]
     begin
       case @sign
       when '>'
@@ -20,13 +19,14 @@ class Filtrator
       when '<='
         versions[current_position...versions.size]
       when '~>'
-        # TODO: save elements after filtering
-        versions.select { |e| e[0] == @version[0] && 
-                              e[2] == @version[2] && 
-                              e[4] > @version[4] }
+        versions.select do |e|
+          e[0] == @version[0] &&
+          e[2] == @version[2] &&
+          e[4] > @version[4]
+        end
       end
     rescue ArgumentError => error
-      print error, ". It seems there is no such version of this gem. 
+      print error, ". It seems there is no such version of this gem.
                       Check out all versions: \n"
     end
   end
