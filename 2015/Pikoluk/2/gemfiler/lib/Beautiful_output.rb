@@ -7,6 +7,6 @@ class Beautiful_output
   end
 
   def write
-    @versions.each {|v| puts (@filter_versions.include?(v) ? v.red : v)}
+    @versions.each { |v| puts (@filter_versions.include?(v) ? v.red : v)}
   end
 end
