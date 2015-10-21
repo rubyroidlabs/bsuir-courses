@@ -7,12 +7,12 @@ class GemVersions
         config.password = '3163510fF'
       end
       Gems.api_key
-      @gem = gem
-      @versions_array = []
     rescue StandardError => exc
       puts exc.message
       exit
     end
+    @gem = gem
+    @versions_array = []
   end
 
   def get_version
