@@ -11,7 +11,7 @@ class Parser
         @operators = operators.sort_by { |_key, value| value }
     end
 
-    def match? (value) 
+    def match?(value) 
         res1 = Array.new
         @operators.each do |k, v|
             if Gem::Dependency.new('', k + v).match?('', value)
