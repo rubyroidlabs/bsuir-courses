@@ -12,7 +12,6 @@ class Searcher
     @versions = version_list.map { |details| details['number'] }
     rescue
       raise 'Cannot found gem'
-    end
   end
 end
 
