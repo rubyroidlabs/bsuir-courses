@@ -22,7 +22,6 @@ class Output
   def get_string
     right = []
     wrong = []
-
     @gem_versions.each do |version|
       check_version(version) ? right.push(version) : wrong.push(version)
     end
@@ -34,10 +33,10 @@ class Output
 
   def print_result
     output_string = 'Gem name - ' + @name + "\nVersions: "
-
     right, wrong = get_string
     output_string = output_string + "\n right: #{right}"
     output_string = output_string + "\n wrong: #{wrong}"
     puts output_string
   end
 end
+
