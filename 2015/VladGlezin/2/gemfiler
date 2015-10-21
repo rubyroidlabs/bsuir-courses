@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+Dir["./*.rb"].each {|file| require file}
+class Gemfiler
+  attr :gem_name, :option1, :option2
+
+  def initialize(name, option1, option2=nil)
+    @name = name
+    @option1 = option1
+    @option2 = option2
+  end
+
+  def start
+    seeker = Seeker.new(@name)
+    seeker.seek
+    printer = Printer.new(seeker.arr, @name, @option1, @option2)
+    printer.print_result
+  end
+end
+
+case ARGV.length
+when 3
+  g = Gemfiler.new(ARGV[0], ARGV[1], ARGV[2])
+when 2
+  g = Gemfiler.new(ARGV[0], ARGV[1])
+else raise ArgumentError, "Check your parameters !"
+end
+
+g.start
