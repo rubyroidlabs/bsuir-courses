@@ -1,12 +1,8 @@
 require 'colorize'
-require 'versionomy'
 
 class Parser
     attr_accessor :versions
     def initialize(inversions, operators)
-        inversions.each do |i|
-            i = Versionomy.parse(i)
-        end
         @versions = inversions
         @operators = operators.sort_by { |_key, value| value }
     end
