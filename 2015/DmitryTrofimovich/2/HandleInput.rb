@@ -6,7 +6,7 @@ class HandleInput
     raise 'Не введены параметры для поиска' unless ARGV[1]
     check_format_version
   rescue StandardError => e
-      print e.message
+    print e.message
   end
 
   def check_format_version
