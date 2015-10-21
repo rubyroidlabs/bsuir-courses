@@ -12,15 +12,13 @@ class LookUper
   end
 
   def lookup
-    begin
-      hash = Gems.versions(@gem_name)
-      hash.each do |k, v|
-        k.each do |k, v|
-          cache_array.push(v) if k == 'number'
-        end
+    hash = Gems.versions(@gem_name)
+    hash.each do |k, v|
+      k.each do |k, v|
+        cache_array.push(v) if k == 'number'
       end
-    rescue
-      puts "The gem name you entered doesn't exist"
     end
+    rescue Exception
+      puts "The gem name you entered doesn't exist"
   end
 end

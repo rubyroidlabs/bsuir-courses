@@ -27,5 +27,5 @@ else
 end
 lookuper = LookUper.new(reciever.gem_name, reciever.option1, reciever.option2)
 lookuper.lookup
-printer = Printer.new(lookuper.cache_array, lookuper.gem_name, lookuper.option1, lookuper.option2)
-printer.print_result
+printer = Printer.new(lookuper.gem_name, lookuper.option1, lookuper.option2)
+printer.print_result(lookuper.cache_array)

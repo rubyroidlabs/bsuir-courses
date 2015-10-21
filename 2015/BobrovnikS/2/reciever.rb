@@ -1,6 +1,6 @@
 # Recieves an options
 class Reciever
-  attr_accessor :gem_name , :option1, :option2
+  attr :gem_name, :option1, :option2
 
   def recieve(gem_name, option1, option2 = nil)
     @gem_name = gem_name
