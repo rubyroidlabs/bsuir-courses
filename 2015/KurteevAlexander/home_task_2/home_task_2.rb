@@ -1,8 +1,8 @@
 require 'colorize'
 require 'gems'
 
-class INPUT_DATA
-  attr :gem_namе, :mark1, :mark2
+class INPUTDATA
+ attr :gem_namе, :mark1, :mark2
 
   def initialize(gem_name, mark1, mark2 = nil)
     @gem_name = gem_name
@@ -75,11 +75,11 @@ class INPUT_DATA
   end
 
   def execute
-    b = @gem_version[0].split(".")
-    g = @gem_version[1].split(".")
+    b = @gem_version[0].split('.')
+    g = @gem_version[1].split('.')
     @gem_data_more = []
     0.upto(@gem_data_size) do |i|
-      a = @gem_data[i].split(".") 
+      a = @gem_data[i].split('.') 
       a.each_with_index do |c, index|
         if c.to_i > b[index].to_i
           @gem_data_more << @gem_data[i]
@@ -88,7 +88,7 @@ class INPUT_DATA
           puts @gem_data[i]
           break
         else
-           if (index == (a.size - 1))
+          if (index == (a.size - 1))
             if @equally_1
               puts @gem_data[i].red 
             else
@@ -99,7 +99,7 @@ class INPUT_DATA
       end
     end
     0.upto(@gem_data_more.size - 1) do |i|
-      a = @gem_data_more[i].split(".") 
+      a = @gem_data_more[i].split('.') 
       a.each_with_index do |c, index|
         if c.to_i > g[index].to_i
           puts @gem_data_more[i]
@@ -127,7 +127,7 @@ begin
   elsif ARGV.size < 2
     puts 'invalid number of elements'
   else
-    input_data = INPUT_DATA.new(ARGV[0], ARGV[1], ARGV[2])
+    input_data = INPUTDATA.new(ARGV[0], ARGV[1], ARGV[2])
     input_data.arguments
     input_data.gem_data_info
     if ARGV.size == 2
