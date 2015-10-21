@@ -6,7 +6,9 @@ class Filtruems
 
   def filter
     begin
-      @versions.map { |v| v if Gem::Dependency.new('', @gem_version).match?('', v) }
+      @versions.map do |v|
+        v if Gem::Dependency.new('', @gem_version).match?('', v)
+      end
     rescue Gem::Requirement::BadRequirementError
       puts 'Retard :) AZAZAZA'
     end
