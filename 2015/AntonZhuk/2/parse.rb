@@ -10,7 +10,7 @@ class Parse
     begin
       url = "https://rubygems.org/gems/#{@name}/versions"
       @doc = Nokogiri::HTML(open(url))
-     self.set_versions
+      self.set_versions
     rescue => ex
       puts "OH SHI!.. #{ex.class}: #{ex.message}"
     end
@@ -21,7 +21,7 @@ class Parse
     begin
       @doc.css('main li').each do |li|
       @versions.push(li.text.split.first)
-    end
+      end
     rescue => ex
       puts "Can not read document! #{ex.class}: #{ex.message}"
     end

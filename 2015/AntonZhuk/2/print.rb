@@ -10,9 +10,9 @@ class Print
   def print_result
     @versions.each do |ver|
       if @filtered_versions.include?(ver)
-         puts ver.red
+        puts ver.red
       else
-         puts ver
+        puts ver
       end
     end
   end

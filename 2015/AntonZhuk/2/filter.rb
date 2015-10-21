@@ -3,11 +3,14 @@ require_relative('parse.rb')
 class Filter
   def initialize(data)
     @versions = data.map do |ver|
-     @a = Gem::Version.new(ver)
+      @a = Gem::Version.new(ver)
     end
   end
 
-  def filter_data(param, version,param2,version2)
+  def filter_data(param,
+                  version,
+                  param2,
+                  version2)
     specified =  Gem::Version.new(version)
     specified2 = Gem::Version.new(version2)
 
@@ -16,10 +19,10 @@ class Filter
       exit
     end
 
-      filtered_versions = []
+    filtered_versions = []
     case
       when param == '>=' && param2 == nil
-         filtered_versions = @versions.select do |ver|
+        filtered_versions = @versions.select do |ver|
            ver >= specified
          end
       when param == '<' && param2 == nil
@@ -38,8 +41,6 @@ class Filter
         puts 'Incorrect parameters'
         exit
     end
-    filtered_versions.map do |ver|
-      ver.to_s
-    end
+    filtered_versions.map { |ver| ver.to_s }
   end
 end
