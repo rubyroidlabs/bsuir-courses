@@ -11,7 +11,7 @@ class Searcher
     version_list = Gems.versions(@name)
     @versions = version_list.map { |details| details['number'] }
   rescue
-      raise 'Cannot found gem'
+    raise 'Cannot found gem'
   end
 end
 
