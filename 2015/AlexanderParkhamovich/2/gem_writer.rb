@@ -10,5 +10,4 @@ class Writer
       end
     end
   end
-  
 end
