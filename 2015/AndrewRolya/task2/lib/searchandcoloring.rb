@@ -4,7 +4,7 @@ class SearchAndColoring
     @s_input_text = input_text
     @s_input_hash = input_hash
   end
-  
+
   def search_and_coloring
     @s_input_text.size.times do |i|
       result = true

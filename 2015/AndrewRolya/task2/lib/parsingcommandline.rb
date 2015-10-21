@@ -4,7 +4,7 @@ class ParsingCommandLine
     @p_hash_map = hash_map
   end
 
-  def parsing_command_line
+  def parsing_command_line # parsing command-line options
     1.upto(2) do |i|
       if !@p_argv[i].nil?
         key = /[\=\>\<\!\~]+/.match(@p_argv[i]).to_s
