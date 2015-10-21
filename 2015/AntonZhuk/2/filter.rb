@@ -21,25 +21,25 @@ class Filter
 
     filtered_versions = []
     case
-      when param == '>=' && param2 == nil
-        filtered_versions = @versions.select do |ver|
-           ver >= specified
-        end
-      when param == '<' && param2 == nil
-        filtered_versions = @versions.select do |ver|
-          ver < specified
-        end
-      when param == '~>' && param2 == nil
-        filtered_versions = @versions.select do |ver|
-          ver >= specified && ver < specified.bump
-        end
-      when param == '>=' && param2 == '<'
-        filtered_versions = @versions.select do |ver|
-          ver >= specified && ver < specified2
-        end
-      else
-        puts 'Incorrect parameters'
-        exit
+    when param == '>=' && param2 == nil
+      filtered_versions = @versions.select do |ver|
+        ver >= specified
+      end
+    when param == '<' && param2 == nil
+      filtered_versions = @versions.select do |ver|
+        ver < specified
+      end
+    when param == '~>' && param2 == nil
+      filtered_versions = @versions.select do |ver|
+        ver >= specified && ver < specified.bump
+      end
+    when param == '>=' && param2 == '<'
+      filtered_versions = @versions.select do |ver|
+        ver >= specified && ver < specified2
+      end
+    else
+      puts 'Incorrect parameters'
+      exit
     end
     filtered_versions.map { |ver| ver.to_s }
   end
