@@ -1,0 +1,7 @@
+Ruby utility which allows you to find matching gem versions.
+
+Enter your gem name and filter mask this way:
+gemfiler 'gemname' 'comparison_operator version'
+Multiple masks allowed.
+
+Network connection required.
