@@ -5,6 +5,7 @@ class GemFilter
     @input_version = input_version
     @filter_versions = []
   end
+
   def filter
     param1 = @input_version[0]
     v1 = Gem::Version.new(@input_version[1])
@@ -23,6 +24,5 @@ class GemFilter
       @filter_versions = @versions.select { |ver| ver == v1 }
     end
     @filter_versions.map! { |v| v.version }
-    return @filter_versions
   end
 end

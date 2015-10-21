@@ -14,7 +14,7 @@ class GemFetcher
       if json.empty?
         fail NameError.new "Gem #{gem_name} not found. Check <gem name> and try again."
       else
-        find_versions = json.map { |s| s["number"] }
+        find_versions = json.map { |s| s['number'] }
       end
     else
       fail NameError.new "Gem #{gem_name} not found. Check <gem name> and try again."
