@@ -5,8 +5,8 @@ class VersionFinder
       config.username = '531621@mail.com'
       config.password = 'asdasd123123'
     end
-      Gems.api_key
-      @gem = gem
+    Gems.api_key
+    @gem = gem
   end
 
   def get_vers_from_serv
