@@ -10,6 +10,5 @@ class Filtruems
       end
     rescue Gem::Requirement::BadRequirementError
       puts 'Retard :) AZAZAZA'
-    end
   end
 end
