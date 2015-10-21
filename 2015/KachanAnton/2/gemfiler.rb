@@ -8,10 +8,8 @@ class GemFiler
       puts 'Incorrect number of arguments.'
       exit
     end
-    gem = ARGV[0]
-    conditions = ARGV[1..ARGV.length - 1]
-    versions = GemVersions.new(gem).get_version
-    filter = FilterVersions.new(versions, conditions)
+    versions = GemVersions.new(ARGV[0]).get_version
+    filter = FilterVersions.new(versions, ARGV[1..-1])
     filtred_versions = filter.get_filtred_versions
     OutputVersions.output_versions(filtred_versions)
   end
