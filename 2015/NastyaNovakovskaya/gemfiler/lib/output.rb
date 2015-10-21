@@ -22,7 +22,6 @@ class Output
   def get_string
     right = []
     wrong = []
-
     @gem_versions.each do |version|
       check_version(version) ? right.push(version) : wrong.push(version)
     end
