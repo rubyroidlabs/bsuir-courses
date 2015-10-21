@@ -5,7 +5,7 @@ class HandleInput
     raise 'Не введено название гема' if ARGV.empty?
     raise 'Не введены параметры для поиска' unless ARGV[1]
     check_format_version
-    rescue Exception => e
+  rescue StandardError => e
       print e.message
   end
 
