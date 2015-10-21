@@ -1,15 +1,17 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.1.3
+# @version 0.1.4
 # @author S. Ivanouski
 
 require 'gems'
 require 'colorize'
-require './lib/colorizer.rb'
+#require './lib/colorizer.rb'
 require './lib/gemfilter.rb'
 require './lib/helpprinter.rb'
 require './lib/versionprinter.rb'
+
+$ver_array = []
 
 new_search = Gems.new()
 filtration = GemFilter.new()
@@ -21,6 +23,7 @@ operator1 = ARGV[1]
 version1 = ARGV[2]
 operator2 = ARGV[3]
 version2 = ARGV[4]
+
 
 begin
   @versions = new_search.versions gem_name
