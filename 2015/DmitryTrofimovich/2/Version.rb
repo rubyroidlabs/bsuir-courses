@@ -5,7 +5,7 @@ class Version
     @input = HandleInput.new
     @vers = Gems.versions(@input.name)
     @vers_usr = []
-    self.get_param
+    get_param
   end
 
   def get_param
@@ -16,7 +16,7 @@ class Version
     @vers_usr.flatten!
   end
 
-  def de_coder( zn, param )
+  def de_coder(zn, param)
     k = []
     if zn == '>' || zn == '>='
       k = more(zn, param)
@@ -26,7 +26,7 @@ class Version
     k
   end
 
-  def more ( zn, param )
+  def more(zn, param)
     k = []
     case zn
     when '>'
@@ -37,7 +37,7 @@ class Version
     k
   end
 
-  def less ( zn, param )
+  def less(zn, param)
     k = []
     case zn
     when '<='
@@ -56,3 +56,4 @@ class Version
     @vers_usr
   end
 end
+

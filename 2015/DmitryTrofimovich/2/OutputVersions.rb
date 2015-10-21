@@ -4,7 +4,7 @@ require_relative('Version.rb')
 class OutputVersions
   def initialize
     @ver = Version.new
-    self.output_to_terminal
+    output_to_terminal
   end
 
   def output_to_terminal

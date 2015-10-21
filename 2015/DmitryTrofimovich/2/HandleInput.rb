@@ -1,17 +1,17 @@
 class HandleInput
   def initialize
-  	begin
+    @name = ARGV[0]
+    @param = ARGV[1..-1]
+    begin
       raise 'Не введено название гема' if ARGV.empty?
       raise 'Не введены параметры для поиска' unless ARGV[1]
-      @name = ARGV[0]
-      @param = ARGV[1..-1]
-      self.CheckFormatVersion
+      self.check_format_version
     rescue Exception => e
       print e.message
-	  end
+    end
   end
 
-  def CheckFormatVersion
+  def check_format_version
     @param.each do |vers|
       unless /\A(>=|>|<|<=|~>) ([0-9]+\.)*[0-9]+\Z/ === vers.to_s
         raise 'Неверный формат версии'
