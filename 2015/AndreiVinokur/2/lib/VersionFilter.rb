@@ -1,3 +1,5 @@
+require 'json'
+
 class VersionFilter
   def initialize(versions)
     @versions = versions.map { |version| Gem::Version.new(version) }
@@ -6,39 +8,42 @@ class VersionFilter
   def filter(interval)
     operator, needed_version = interval.split
     needed_version = Gem::Version.new(needed_version)
-    result = []
+    results = []
     case operator
     when '='
       result = needed_version
     when '!='
       result -= needed_version
     when '>'
-      @versions.select do |version|
-        result << version if version > needed_version
+      results = @versions.select do |version|
+        needed_version < version
       end
+      results = results.map &:to_s
     when '<'
-      @versions.select do |version|
-        result << version if version < needed_version
+      results = @versions.select do |version|
+        needed_version > version
       end
+      results = results.map &:to_s
     when '>='
-      @versions.select do |version|
-        result << version if version >= needed_version
+      results = @versions.select do |version|
+        needed_version <= version
       end
+      results = results.map &:to_s
     when '<='
-      @versions.select do |version|
-        result << version if version <= needed_version
+      results = @versions.select do |version|
+        needed_version >= version
       end
+      results = results.map &:to_s
     when '~>'
-      result = @versions.select do |version|
-        if (version >= needed_version) && (version < needed_version.bump)
-          result << version
-        end
+      results = @versions.select do |version|
+        needed_version <= version && version < needed_version.bump
       end
+      results = results.map &:to_s
     else
         puts 'Incorrect comparison operator'
         puts 'Template of comparison operator: =; !=; >; <; >=; <=; ~>;'
         exit
       end
-    result
+    results
   end
 end

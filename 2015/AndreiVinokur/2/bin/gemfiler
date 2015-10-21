@@ -31,7 +31,5 @@ end
 
 filtered_versions = VersionFilter.new(versions).filter(interval)
 
-
-
 Visualiser.new(versions).visualise(filtered_versions)
 
