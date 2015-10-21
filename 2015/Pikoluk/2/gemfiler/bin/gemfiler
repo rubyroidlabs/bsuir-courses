@@ -1,0 +1,25 @@
+require 'rubygems'
+require 'colorize'
+require "thor"
+Dir['../lib/*.rb'].each {|f| require_relative(f)}
+
+class Gemfiler
+  attr_accessor :gem_name, :gem_version
+
+  def initialize(gem_name, gem_version)
+    @gem_name = gem_name
+    @gem_version = gem_version
+  end
+end
+
+begin
+  gemchick= Gemfiler.new(*ARGV)
+  vers = Collector.new(gemchick.gem_name).fetch
+  if vers
+    filtruems_vers = Filtruems.new(vers,gemchick.gem_version.dup).filter
+    Beautiful_output.new(vers,filtruems_vers).write if filtruems_vers
+  end
+  rescue ArgumentError
+   puts "Write gem name and version, no smoothies today"
+
+end
