@@ -40,10 +40,10 @@ class VersionFilter
       end
       results = results.map &:to_s
     else
-        puts 'Incorrect comparison operator'
-        puts 'Template of comparison operator: =; !=; >; <; >=; <=; ~>;'
-        exit
-      end
+      puts 'Incorrect comparison operator'
+      puts 'Template of comparison operator: =; !=; >; <; >=; <=; ~>;'
+      exit
+    end
     results
   end
 end
