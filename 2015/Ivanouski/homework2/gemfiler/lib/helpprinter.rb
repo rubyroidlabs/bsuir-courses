@@ -12,7 +12,7 @@ class HelpPrinter
     print "option:\t\t '>'\n"
     print "\t\t '>='\n"
     print "second option:\t '<'\n\n"
-    print "example: "
+    print 'example: '
     print "./gemfiler.rb rails '>' 4 '<' 4.2\n"
     exit 0
   end

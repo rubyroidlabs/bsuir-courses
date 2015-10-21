@@ -9,7 +9,7 @@ class VersionPrinter
 
   def print_all(versions, name)
     @name = name.blue
-    versions.each do |i|
+    versions.reverse.each do |i|
       print "#{@name} #{i["number"]} \n"
     end
   end

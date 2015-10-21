@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.1.7
+# @version 0.1.8
 # @author S. Ivanouski
 
 require 'gems'
@@ -12,10 +12,10 @@ require './lib/versionprinter.rb'
 
 $ver_array = []
 
-new_search = Gems.new()
-filtration = GemFilter.new()
-helper = HelpPrinter.new()
-drawer = VersionPrinter.new()
+new_search = Gems.new
+filtration = GemFilter.new
+helper = HelpPrinter.new
+drawer = VersionPrinter.new
 
 gem_name = ARGV[0]
 operator1 = ARGV[1]
