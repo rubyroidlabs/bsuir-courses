@@ -18,7 +18,7 @@ class Output
   rescue Gem::Requirement::BadRequirementError
     raise Exception.new('Version format is not correct.')
   end
-  
+
   def get_string
     right = []
     wrong = []
@@ -34,7 +34,7 @@ class Output
 
   def print_result
     output_string = 'Gem name - ' + @name + "\nVersions: "
-    
+
     right, wrong = get_string
     output_string = output_string + "\n right: #{right}"
     output_string = output_string + "\n wrong: #{wrong}"
