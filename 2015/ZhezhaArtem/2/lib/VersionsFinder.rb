@@ -5,16 +5,11 @@ class VersionFinder
       config.username = '531621@mail.com'
       config.password = 'asdasd123123'
     end
-    Gems.api_key
-    @gem = gem
+      Gems.api_key
+      @gem = gem
   end
 
-  def get_vers_from_serv()
-    begin
-      Gems.versions(@gem)
-      rescue StandardError => exc
-      puts exc.message
-      exit
-    end
+  def get_vers_from_serv
+    Gems.versions(@gem)
   end
 end
