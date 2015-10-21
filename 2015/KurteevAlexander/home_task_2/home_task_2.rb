@@ -46,7 +46,7 @@ class INPUTDATA
         @gem_range[1] = '<'
         @gem_version[1] = @gem_version[0].clone
         @nt_vers = @gem_version[1].split('.')
-        @gem_version[1] = @gem_version[1].sub(@nt_vers[1],@nt_vers[1].next)
+        @gem_version[1] = @gem_version[1].sub(@nt_vers[1], @nt_vers[1].next)
       else
         @gem_range[0] = '<'
         @gem_range[1] = '>'
@@ -129,5 +129,4 @@ begin
     end
     input_data.execute
   end
-ensure
 end
