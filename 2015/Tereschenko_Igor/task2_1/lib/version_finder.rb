@@ -9,8 +9,8 @@ class VersionFinder
 
   def vget
     begin
-      versions = Curl::Easy.http_get("
-      https://rubygems.org/api/v1/versions/#{@name}.json").body_str
+      adress = "https://rubygems.org/api/v1/versions/#{@name}.json"
+      versions = Curl::Easy.http_get(adress).body_str
     rescue Curl::Err::HostResolutionError
       puts 'Error aquired! Please, check your network connection.'.red
       exit
