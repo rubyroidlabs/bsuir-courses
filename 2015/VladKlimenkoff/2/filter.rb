@@ -16,12 +16,10 @@ class Filter
       end
     end
 
-    satisfied.each do |good_cond|
-      if good_cond == false
-        return false
-      end
+    if satisfied.all? { |s| s }
+      true
+    else
+      false
     end
-
-    true
   end
 end

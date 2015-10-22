@@ -7,10 +7,10 @@ class Visualizer
 
   def print
     @hash.each do |key, value|
-      if value == false
-        puts key
-      else
+      if value
         puts key.red
+      else
+        puts key
       end
     end
   end
