@@ -3,7 +3,7 @@ require 'colorize'
 class InputParser
   attr_accessor :gname, :operators, :correct
 
-  def check (*)
+  def check(*)
     @operators.values.each do |i|
       if Gem::Version.correct?(i) == false
         puts 'Error aquired! Please, check your version formatting.'.red
