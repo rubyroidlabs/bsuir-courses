@@ -2,7 +2,7 @@ require_relative './gem-version'
 
 module GemVersionsFilter
   class VersionFilterDescriptor
-    DESCRIPTOR_PATTERN = /(?<cond>>=?|~>|<=?)?\s*(?:(?<vers>\d+\.\d+\.\d+(\.\w+)?))/
+    DESC_PATTERN = /(?<cond>>=?|~>|<=?)?\s*(?:(?<vers>\d+\.\d+\.\d+(\.\w+)?))/
 
     attr_reader :version, :condition
 
@@ -23,18 +23,19 @@ module GemVersionsFilter
     end
 
     def match_tilde_range(checked_version, check_version)
-      major_vers = GemVersion.new(check_version.major + 1, 0, 0) # minor v = 0, tiny v = 0
-      minor_vers = GemVersion.new(check_version.major, 0, 0) # minor v = 0, tiny v = 0
+      major_vers = GemVersion.new(check_version.major + 1, 0, 0)
+      minor_vers = GemVersion.new(check_version.major, 0, 0)
 
       minor_vers <= checked_version && checked_version <= major_vers
     end
 
     def self.parse(expression) # '> vers', '~> vers', '<= vers'...
-      matched = DESCRIPTOR_PATTERN.match(expression)
+      matched = DESC_PATTERN.match(expression)
       version = GemVersion.parse(matched[:vers])
       condition = matched[:cond]
 
       VersionFilterDescriptor.new(version, condition)
+      
       rescue StandardError => error
         puts "Exception was handled #{error}"
     end

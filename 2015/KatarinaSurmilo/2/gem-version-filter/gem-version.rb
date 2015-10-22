@@ -1,5 +1,5 @@
 module GemVersionsFilter
-  class GemVersion 
+  class GemVersion
     VERSION_PATTERN = /(?<major>\d+)\.(?<minor>\d+)\.(?<tiny>\d+)(?:\.(?<postfix>\w+))?/
 
     attr_reader :full, :major, :minor, :tiny, :postfix, :hash_code
@@ -42,12 +42,12 @@ module GemVersionsFilter
     end
 
     def self.parse(version)
-      matched_Version = VERSION_PATTERN.match(version)
+      matched_version = VERSION_PATTERN.match(version)
 
-      major = matched_Version[:major].to_i
-      minor = matched_Version[:minor].to_i
-      tiny = matched_Version[:tiny].to_i
-      postfix = matched_Version[:postfix]
+      major = matched_version[:major].to_i
+      minor = matched_version[:minor].to_i
+      tiny = matched_version[:tiny].to_i
+      postfix = matched_version[:postfix]
 
       GemVersion.new(major, minor, tiny, postfix)
     end

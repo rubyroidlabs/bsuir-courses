@@ -22,9 +22,9 @@ module GemVersionsFilter
         http.use_ssl = true
 
         request = Net::HTTP::Get.new(uri.request_uri)
-        packages_meta_json = http.request(request).body
+        packages_json = http.request(request).body
 
-        gem_versions[gem_name] = JSON.parse(packages_meta_json).map do |pack_description|
+        gem_versions[gem_name] = JSON.parse(packages_json).map do |pack_description|
           GemVersion.parse(pack_description['number'])
         end
       end
