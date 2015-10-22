@@ -16,7 +16,7 @@ module GemVersionsFilter
       @gem_versions = {}
     end
 
-    def get_gem_versions(gem_name)
+    def get_versions(gem_name)
 
       unless gem_versions.has_key?(gem_name)
 

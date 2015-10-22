@@ -1,7 +1,6 @@
 require 'optparse'
 
 module GemVersionsFilter
-
   class ArgsParser
 
     def self.parse(cli_arguments)

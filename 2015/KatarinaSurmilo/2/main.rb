@@ -9,7 +9,7 @@ params = GemVersionsFilter::ArgsParser.parse(ARGV)
 
 if params.has_key?(:gem_name) && params.has_key?(:versions)
 
-  versions = GemVersionsFilter::GemVersions.new.get_gem_versions(params[:gem_name])
+  versions = GemVersionsFilter::GemVersions.new.get_versions(params[:gem_name])
 
   filter_descriptors = params[:versions].map do |vers_expression|
     GemVersionsFilter::VersionFilterDescriptor.parse(vers_expression)
