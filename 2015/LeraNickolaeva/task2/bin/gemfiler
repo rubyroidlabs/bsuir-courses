@@ -1,15 +1,23 @@
-Dir['../lib/*.rb'].each{ |f| require_relative(f) }
+$LOAD_PATH << File.expand_path(File.join(*%w[ .. lib ]), File.dirname(__FILE__))
+require 'version_fetcher'
+require 'version_filter'
+require 'visualizer'
 
-if ARGV.size < 2
-  raise ArgumentError
+require 'optparse'
+
+parser = OptionParser.new do|opts|
+  opts.banner = "Usage: ./gemfiler [gem_name] [gem_version]"
+  opts.on('-h') do
+    help_string = File.read('help')
+    puts help_string
+    exit
+  end
 end
+parser.parse!
 
 gem_name, gem_version = ARGV
-
-unless (gem_name =~ /\w+/) && (gem_version =~ /[~><][=>]\s*(\d+\.)*\d+/)
-  raise ArgumentError
-end
 
 versions = VersionFetcher.new(gem_name).fetch
 filtered_versions = VersionFilter.new(versions).filter(gem_version)
 Visualiser.new(versions).visualise(filtered_versions)
+
