@@ -9,12 +9,12 @@ class InputParser
     operators.map! &:split
     @operators = Hash[operators]
     begin
-      @operators.values.map! do |i|
-        Gem::Version.new(i)
+      @operators.values.each do |i|
+        if Gem::Version.correct?(i) == false
+          puts 'Error aquired! Please, check your version formatting.'.red
+          exit
+        end
       end
-      rescue ArgumentError
-        puts 'Error aquired! Please, check your version formatting.'.red
-        exit
-      end
+    end
   end
 end
