@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.2.1
+# @version 0.2.2
 # @author S. Ivanouski
 
 require 'rubygems'
@@ -21,10 +21,15 @@ class GemFiler < Thor
       print "CONNECTION ERROR!\n#{err}\n"
       exit 1
     end
-    if option2 && version2
-      GemFilter.filter_long(hash.reverse, option, version, option2, version2)
-    else
-      GemFilter.filter(hash.reverse, option, version)
+    begin
+      if option2 && version2
+        GemFilter.filter_long(hash.reverse, option, version, option2, version2)
+      else
+        GemFilter.filter(hash.reverse, option, version)
+      end
+    rescue NoMethodError => err
+      print "ERROR: This rubygem could not be found.\n#{err}\n"
+      exit 1
     end
   end
 end
