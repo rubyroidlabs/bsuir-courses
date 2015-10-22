@@ -3,5 +3,6 @@ module VersionFilter
     Gem::Requirement.new(option1, option2).
       satisfied_by?(Gem::Version.new(version))
     rescue Gem::Requirement::BadRequirementError
+    end
   end
 end
