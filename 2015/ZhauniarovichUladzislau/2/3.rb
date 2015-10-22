@@ -15,19 +15,16 @@ class VersionGetter
       raise NameError
     end
     json = JSON.parse(getgem)
-    json.map {
-    |s|
-    s["number"] 
+    json.map { |s|
+      s['number']
     }
   end
-
 end
 class Comparator
-
   def initialize(checkingcondition)
-    @sign = checkingcondition.match("[!=><~]{1,2}").to_s
+    @sign = checkingcondition.match('[!=><~]{1,2}').to_s
     @version =
-checkingcondition[@sign.size..checkingcondition.size-1]
+checkingcondition[@sign.size..checkingcondition.size - 1]
   end
   def compare(versions)
     if !versions.include?(@version)
@@ -39,13 +36,13 @@ checkingcondition[@sign.size..checkingcondition.size-1]
       when "!="
         versions - [@version]
       when ">"
-        versions[0..get_version_position(@version, versions)-1]
+        versions[0..get_version_position(@version, versions) - 1]
       when "<"
-        versions[get_version_position(@version, versions)+1..versions.size-1]
+        versions[get_version_position(@version, versions)+1..versions.size - 1]
       when ">="
         versions[0..get_version_position(@version, versions)]
       when "<="
-        versions[get_version_position(@version, versions)..versions.size-1]
+        versions[get_version_position(@version, versions)..versions.size - 1]
       when "~>"
         versions[get_version_position(get_next_version, versions)..get_version_position(@version, versions)]
       else
@@ -54,7 +51,7 @@ checkingcondition[@sign.size..checkingcondition.size-1]
   end
 
   def get_version_position(version, mas)
-    (0..mas.size-1).each do |i|
+    (0..mas.size - 1).each do |i|
       if version == mas[i]
         return i
       end
@@ -62,7 +59,7 @@ checkingcondition[@sign.size..checkingcondition.size-1]
   end
 
   def get_next_version
-    tmp_next_version = @version.split(".")
+    tmp_next_version = @version.split('.')
     tmp_next_version[-1] = '0'
     tmp_next_version[-2] = tmp_next_version[-2].to_i + 1
     tmp_next_version[-2] = tmp_next_version[-2].to_s
@@ -75,14 +72,14 @@ checkingcondition[@sign.size..checkingcondition.size-1]
 end
 
 class PrintToConsole
-
   def initialize(filtered_versions, versions)
-    @filtered_versions, @versions = filtered_versions, versions
+    @filtered_versions = filtered_versions
+    @versions = versions
   end
 
   def print
-    if @filtered_versions != nil
-      i=0;
+    if !@filtered_versions.nil?
+      i = 0;
       @versions.map do |s|
         if s == @filtered_versions[i]
           puts s.red
@@ -93,7 +90,6 @@ class PrintToConsole
       end
     end
   end
-
 end
 options = OptionParser.new do |opts|
   opts.banner = "Usage: ./2 [gem] [vers1] [vers2]
