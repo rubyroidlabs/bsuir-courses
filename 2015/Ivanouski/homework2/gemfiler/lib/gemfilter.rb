@@ -1,4 +1,4 @@
-class GemFilter
+class GemFilter                           # comment just for Hound
   def self.filter(hash, option, version)
     hash.each do |i|                      # comment just for Hound
       temp = i['number']
@@ -17,7 +17,7 @@ class GemFilter
             temp[0] == version[0]
         puts (i['number']).red            # comment just for Hound
       else
-        puts i['number']
+        puts i['number']                  # comment just for Hound
       end
     end
   end
@@ -35,7 +35,7 @@ class GemFilter
             i['number'] < version2
         puts (i['number']).red            # comment just for Hound
       else
-        puts i['number']
+        puts i['number']                  # comment just for Hound
       end
     end
   end
