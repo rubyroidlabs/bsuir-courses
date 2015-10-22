@@ -1,19 +1,13 @@
-require 'json'
+require 'gems'
 
 class AddingVersions
-  GEMS_URL = 'https://rubygems.org/api/v1/versions/'
+
   def initialize(name)
     @name = name
   end
 
   def add
-    json = `curl #{GEMS_URL}#{@name}.json`
-    result = []
-    begin
-      JSON.parse(json).each { |entry| result << entry.fetch('number') }
-    rescue JSON::ParserError
-      puts json
-    end
-    result
+    gems_array = Gems.versions @name
+    gems_array.map { |v| v['number'] }.uniq
   end
 end

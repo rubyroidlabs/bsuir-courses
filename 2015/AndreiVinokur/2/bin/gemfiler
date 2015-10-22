@@ -1,29 +1,22 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
+
 Dir['./../lib/*.rb'].each{ |f| require(f) }
 
-name, interval = ARGV
 
-if ARGV.size < 2 || ARGV.size > 3
-  puts 'Incorrect number of arguments'
-  puts 'Template: ruby gemfiler <gem_name> [\'version conditions\']'
-  exit
+check = OptionParser.new do|opts|
+  opts.banner = "Usage: ruby gemfiler [gem_name] [gem_versions]"
 end
+check.parse!
 
-unless name =~ /\w+/
-  puts 'Incorrect name of gem'
-  puts 'Template: ruby gemfiler <gem_name> [\'version conditions\']'
-  exit
-end
 
-unless interval =~ /[~><][=>]\s*(\d+\.)*\d+/
-  puts 'Incorrect interval of versions of gem'
-  puts 'Template: ruby gemfiler <gem_name> [\'version conditions\']'
-  exit
-end
+check = Check.new(ARGV)
+name = check.getName
+interval = check.getInterval
 
 begin
-versions = AddingVersions.new(name).add
+  versions = AddingVersions.new(name).add
   rescue StandardError
   puts 'Check you internet connection'
   exit
