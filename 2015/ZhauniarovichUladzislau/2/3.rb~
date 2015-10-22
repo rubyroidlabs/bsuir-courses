@@ -2,22 +2,20 @@ require 'gems'
 require 'optparse'
 require 'json'
 require 'colored'
-
-
 class VersionGetter
-
   def initialize(name)
     @name = name
   end
+
   def get
     getgem = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
     if getgem == nil
       raise NameError
     end
     json = JSON.parse(getgem)
-    json.map { |s|
+    json.map do |s|
       s['number']
-    }
+    end
   end
 end
 class Comparator
@@ -26,27 +24,29 @@ class Comparator
     @version =
 checkingcondition[@sign.size..checkingcondition.size - 1]
   end
+
   def compare(versions)
     if !versions.include?(@version)
       return nil
     end
     case @sign
-      when "="
-        [@version]
-      when "!="
-        versions - [@version]
-      when ">"
-        versions[0..get_version_position(@version, versions) - 1]
-      when "<"
-        versions[get_version_position(@version, versions)+1..versions.size - 1]
-      when ">="
-        versions[0..get_version_position(@version, versions)]
-      when "<="
-        versions[get_version_position(@version, versions)..versions.size - 1]
-      when "~>"
-        versions[get_version_position(get_next_version, versions)..get_version_position(@version, versions)]
-      else
-        raise VersionOperatorError
+    when '='
+      [@version]
+    when '!='
+      versions - [@version]
+    when '>'
+      versions[0..get_version_position(@version, versions) - 1]
+    when '<'
+      versions[get_version_position(@version, versions) + 1..versions.size - 1]
+    when '>='
+      versions[0..get_version_position(@version, versions)]
+    when '<='
+      versions[get_version_position(@version, versions)..versions.size - 1]
+    when '~>'
+      versions[get_version_position(get_next_version,
+      versions)..get_version_position(@version, versions)]
+    else
+      raise VersionOperatorError
     end
   end
 
@@ -79,7 +79,7 @@ class PrintToConsole
 
   def print
     if !@filtered_versions.nil?
-      i = 0;
+      i = 0
       @versions.map do |s|
         if s == @filtered_versions[i]
           puts s.red
