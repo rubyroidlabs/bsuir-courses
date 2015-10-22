@@ -10,7 +10,7 @@ class Gemfiler
   end
 
   def start
-    open("https://rubygems.org/")
+    open('https://rubygems.org/')
     seeker = Seeker.new(@name)
     seeker.seek
     printer = Printer.new(seeker.arr, @name, @option1, @option2)
@@ -25,7 +25,7 @@ when 3
   Gemfiler.new(ARGV[0], ARGV[1], ARGV[2]).start
 when 2
   Gemfiler.new(ARGV[0], ARGV[1]).start
-else p "Wrong parametrs!"
+else p 'Wrong parametrs!'
 end
 
 

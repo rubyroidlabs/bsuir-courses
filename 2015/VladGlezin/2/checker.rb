@@ -14,7 +14,7 @@ class Checker
       @double = false
     end
   rescue
-    p "Wrong options!"
+    p 'Wrong options!'
     exit
   end
 
