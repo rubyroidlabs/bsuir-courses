@@ -67,7 +67,7 @@ checkingcondition[@sign.size..checkingcondition.size-1]
     tmp_next_version[-2] = tmp_next_version[-2].to_i + 1
     tmp_next_version[-2] = tmp_next_version[-2].to_s
     next_version = tmp_next_version[0]
-    (1..tmp_next_version.size - 1).each do |i|
+    (1..tmp_next_version.size-1).each do |i|
       next_version += '.' + tmp_next_version[i]
     end
     next_version
@@ -86,7 +86,7 @@ class PrintToConsole
       @versions.map do |s|
         if s == @filtered_versions[i]
           puts s.red
-          i += 1
+          i+=1
         else
           puts s
         end
