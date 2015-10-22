@@ -11,7 +11,7 @@ OptionParser.new do |opts|
   STR
 end.parse!
 if ARGV.size < 1 || ARGV.size > 3
-  raise ArgumentError.new("Use ./gemfilter.rb -h for help")
+  raise ArgumentError.new('Use ./gemfilter.rb -h for help')
 end
 versions = VersionGet.new(ARGV[0]).collect
 VersionPuts.new(versions, ARGV[1], ARGV[2]).print_filtered
