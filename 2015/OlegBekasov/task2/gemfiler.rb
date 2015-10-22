@@ -10,7 +10,8 @@ OptionParser.new do |opts|
     ./gemfiler rails '>= 3.1' '< 4.0'
   STR
 end.parse!
-raise ArgumentError.new("Use ./gemfilter.rb -h for help") 
-  if ARGV.size < 1 || ARGV.size > 3
+if ARGV.size < 1 || ARGV.size > 3
+  raise ArgumentError.new("Use ./gemfilter.rb -h for help")
+end
 versions = VersionGet.new(ARGV[0]).collect
 VersionPuts.new(versions, ARGV[1], ARGV[2]).print_filtered
