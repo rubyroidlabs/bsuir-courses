@@ -13,4 +13,3 @@ class VersionFinder
     Gems.versions(@gem)
   end
 end
-

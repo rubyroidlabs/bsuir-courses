@@ -9,4 +9,3 @@ class Printer
     end
   end
 end
-
