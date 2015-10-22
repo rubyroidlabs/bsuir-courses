@@ -8,9 +8,8 @@ class FilterVersions
     filter_versions = {}
     begin
       requier = Gem::Requirement.new(@conditions)
-      @versions_array.each do |vers|
-        filter_versions[vers] = requier.satisfied_by?(Gem::Version.new(vers))
-      end
+      @versions_array.select {
+        |v| filter_versions[v] = requier.satisfied_by?(Gem::Version.new(v))}
     rescue StandardError => exc
       puts 'Server do not call'
       puts exc.message

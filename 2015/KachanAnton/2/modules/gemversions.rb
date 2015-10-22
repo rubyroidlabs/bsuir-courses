@@ -16,14 +16,6 @@ class GemVersions
   end
 
   def get_version
-    begin
-      Gems.versions(@req_gem).each do |vers|
-        @versions_array << vers['number']
-      end
-    rescue StandardError => exc
-      puts exc.message
-      exit
-    end
-    @versions_array
+    Gems.versions(@req_gem).map { |v| v['number'] }
   end
 end
