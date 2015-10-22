@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.2.0
+# @version 0.2.1
 # @author S. Ivanouski
 
 require 'rubygems'
@@ -12,8 +12,8 @@ require './lib/gemfilter.rb'
 
 class GemFiler < Thor
   desc "search GEM_NAME 'option' version",
-    "Will search for gem versions. Optional: 'second_option' other_version"
-  long_desc(File.read("gemfiler.help"))
+  "Will search for gem versions. Optional: 'second_option' other_version"
+  long_desc(File.read('README.md'))
   def search(gemname, option, version, option2 = nil, version2 = nil)
     begin
       hash = Gems.versions gemname

@@ -1,5 +1,0 @@
-Available options: '<', '>', '>=', '~>'.
-
-Second option: '<', works with '>' or '>='.
-
-Example: gemfiler.rb search rails '>=' 3.2 '<' 4
