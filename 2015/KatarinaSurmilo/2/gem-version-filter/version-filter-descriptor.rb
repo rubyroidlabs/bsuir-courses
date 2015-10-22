@@ -35,9 +35,8 @@ module GemVersionsFilter
       condition = matched[:cond]
 
       VersionFilterDescriptor.new(version, condition)
-      
-      rescue StandardError => error
-        puts "Exception was handled #{error}"
+    rescue StandardError => error
+      puts "Exception was handled #{error}"
     end
   end
 end
