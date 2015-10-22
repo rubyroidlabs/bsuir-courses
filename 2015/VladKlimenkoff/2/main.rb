@@ -6,7 +6,6 @@ require './html_parser.rb'
 require './version_checker.rb'
 require './visualizer.rb'
 
-
 parser = OptionParser.new do |opts|
   opts.banner = 'Usage: ./gemfiler <gem_name> \'[version conditions]\''
 end
