@@ -1,18 +1,13 @@
 require 'open-uri'
 require 'colorize'
+require 'gems'
+require 'optparse'
 
-require_relative 'url_parse.rb'
-require_relative 'input_secure.rb'
+require_relative 'fetcher.rb'
 require_relative 'input_parse.rb'
 require_relative 'filter.rb'
 
-if InputSecure.check?(ARGV)
-  input_parse = InputParse.new(ARGV)
-else
-  exit
-end
-
-url = "https://rubygems.org/gems/#{input_parse.gem_name}/versions"
-versions = URLParse.find_versions(url)
-filter = Filter.new(versions, input_parse.filter_options)
-filter.output
+input_parse = InputParse.new(ARGV)
+fetcher = Fetcher.new(input_parse.gem_name)
+filter = Filter.new(fetcher.find_versions, input_parse.filter_options)
+filter.colorize_output

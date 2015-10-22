@@ -2,22 +2,24 @@
 class Filter
   def initialize(list, filter_options)
     @list = list
-    @filter_method = lambda do |x|
-      filter_options.count.times do |i|
-        unless Gem::Dependency.new('', filter_options[i]).match?('', x)
-          return false
-        end
-      end
-      true
-    end
+    @filter_options = filter_options
   end
 
-  def output
-    @list.each do |element|
-      if @filter_method.call(element)
-        puts element.colorize(:green)
+  def filter(str)
+    @filter_options.count.times do |i|
+      unless Gem::Dependency.new('', @filter_options[i]).match?('', str)
+        return false
+      end
+    end
+    true
+  end
+
+  def colorize_output
+    @list.each do |str|
+      if filter(str)
+        puts str.colorize(:green)
       else
-        puts element
+        puts str
       end
     end
   end
