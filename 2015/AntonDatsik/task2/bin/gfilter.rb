@@ -1,7 +1,7 @@
 Dir['../lib/*.rb'].each { |file| require file }
 require 'optparse'
 
-PAGE_URL = 'https://rubygems.org/gems/'
+URL = 'https://rubygems.org/gems/'
 CSS_STR  = 'div.versions a.t-list__item'
 
 class GemFilter
@@ -11,15 +11,15 @@ class GemFilter
 
     puts 'Please wait...'
     begin
-      available_versions = Page.new(PAGE_URL + require_gem).get_vertsions(CSS_STR)
+      available_versions = Page.new(URL + require_gem).get_versions(CSS_STR)
     rescue StandardError
       puts 'Connection error!'
       exit
     end
 
-    suitable_versions = Filter.filter_versions(require_versions, available_versions)
+    suite_versions = Filter.filter_vers(require_versions, available_versions)
 
-    Printer.print(suitable_versions, available_versions)
+    Printer.print(suite_versions, available_versions)
   end
 end
 

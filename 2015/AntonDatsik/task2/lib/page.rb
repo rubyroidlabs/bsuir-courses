@@ -6,7 +6,7 @@ class Page
     @page = Nokogiri::HTML(open(url))
   end
 
-  def get_vertsions(str)
+  def get_versions(str)
     @page.css(str)
   end
 end

@@ -1,7 +1,7 @@
 require 'set'
 
 class Filter
-  def self.filter_versions(require_versions, available_versions)
+  def self.filter_vers(require_versions, available_versions)
     result_versions = Set.new
     begin
       requirement = Gem::Requirement.new(require_versions)
