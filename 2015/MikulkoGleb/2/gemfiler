@@ -5,7 +5,7 @@ require_relative 'classes/gem_reader.rb'
 require 'slop'
 
 class Gemfiler
-  def analize
+  def analyze
     opts = Slop.parse ARGV
     versions_str = GemReader.new(opts.arguments.shift).get_gems
     versions = versions_str.map {|str| Version.new(str)}
@@ -42,4 +42,4 @@ class Gemfiler
   end
 end
 
-Gemfiler.new.analize
+Gemfiler.new.analyze
