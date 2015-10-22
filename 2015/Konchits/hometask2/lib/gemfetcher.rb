@@ -8,7 +8,7 @@ class VersionFetcher
   def fetch
     versions = `curl https://rubygems.org/api/v1/versions/#{@gem_name}.json`
     begin
-      json = JSON.parse(versions).map { |ver| ver['number'] }
+      JSON.parse(versions).map { |ver| ver['number'] }
     rescue JSON::ParserError
       puts 'Check your internet connection!'.red
     end
