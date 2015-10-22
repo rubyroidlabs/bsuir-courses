@@ -3,7 +3,7 @@ require 'rubygems'
 require 'gems'
 require 'colorize'
 require 'byebug'
-Dir[File.expand_path('./../lib/*.rb', __FILE__)].each do { |f| require(f) }
+Dir[File.expand_path('./../lib/*.rb', __FILE__)].each { |f| require(f) }
 gem, version, version1 = ARGV
 gemfiler = VersionFinder.new(gem)
 ver = Filter.new(version, version1)
