@@ -3,6 +3,7 @@ class Filter
   def initialize(list, filter_options)
     @list = list
     @filter_options = filter_options
+    @filtered_versions = []
   end
 
   def filter(str)
@@ -14,13 +15,8 @@ class Filter
     true
   end
 
-  def colorize_output
-    @list.each do |str|
-      if filter(str)
-        puts str.colorize(:green)
-      else
-        puts str
-      end
-    end
+  def filtered_versions
+    @list.each { |str| @filtered_versions << str if filter(str) }
+    @filtered_versions
   end
 end
