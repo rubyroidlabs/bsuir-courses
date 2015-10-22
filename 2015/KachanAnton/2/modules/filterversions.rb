@@ -7,8 +7,8 @@ class FilterVersions
   def get_filtred_versions
     filt_v = {}
     begin
-      req = Gem::Requirement.new(@conditions)
-      @ver_arr.select {|v| filt_v[v] = req.satisfied_by?(Gem::Version.new(v))}
+      r = Gem::Requirement.new(@conditions)
+      @ver_arr.select { |v| filt_v[v] = r.satisfied_by?(Gem::Version.new(v)) }
     rescue StandardError => exc
       puts 'Server do not call'
       puts exc.message
