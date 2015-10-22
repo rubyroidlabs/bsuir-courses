@@ -9,7 +9,7 @@ class Fetcher
       hashes = JSON.parse(response.body)
       items = []
       hashes.each { |h| items << h['number'] }
-    rescue JSOM::ParserError
+    rescue JSON::ParserError
       puts 'Wrong name of the gem or some troubles with network connection.'
       exit
     end
