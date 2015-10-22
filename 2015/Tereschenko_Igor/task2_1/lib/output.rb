@@ -5,29 +5,29 @@ class Parser
   def initialize(inversions, operators)
     @versions = inversions
 
-      begin
-        @operators = operators.sort_by { |_key, value| value }
-        rescue ArgumentError
-          puts '(╯°□°)╯︵ ┻━┻ (invalid argumnets)'.red
-          exit
-        end
+    begin
+      @operators = operators.sort_by { |_key, value| value }
+      rescue ArgumentError
+        puts '(╯°□°)╯︵ ┻━┻ (invalid argumnets)'.red
+        exit
+      end
   end
 
   def match?(value)
     res1 = Array.new
 
-      begin
-        @operators.each do |k, v|
-          if Gem::Dependency.new('', k + v).match?('', value)
-            res1 << true
-          else
-            res1 << false
-          end
+    begin
+      @operators.each do |k, v|
+        if Gem::Dependency.new('', k + v).match?('', value)
+          res1 << true
+        else
+          res1 << false
         end
-        rescue Gem::Requirement::BadRequirementError
-          puts '(╯°□°)╯︵ ┻━┻ (invalid operator)'.red
-          exit
-        end
+      end
+      rescue Gem::Requirement::BadRequirementError
+        puts '(╯°□°)╯︵ ┻━┻ (invalid operator)'.red
+        exit
+      end
 
     if res1.include?(false)
       return false
