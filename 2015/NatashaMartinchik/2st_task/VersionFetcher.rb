@@ -8,8 +8,8 @@ class VersionFetcher
     result = []
     begin
       result = JSON.parse(json)
-      result.map &:["number"]
-      end
+      result.map &: "number"
+    end
       puts result
     rescue JSON::ParserError
       puts 'Error. Check the way of writing gem name'.red
