@@ -13,6 +13,9 @@ class Checker
     else
       @double = false
     end
+  rescue
+    p "Wrong options!"
+    exit
   end
 
   def fits?(ver)

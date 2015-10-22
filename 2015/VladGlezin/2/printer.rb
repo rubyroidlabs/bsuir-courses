@@ -1,4 +1,5 @@
 Dir['./*.rb'].each { |file| require file }
+require 'open-uri'
 
 class String
   def red
@@ -17,9 +18,9 @@ class Printer
   end
 
   def print_result
+    checker = Checker.new(@name, @option1, @option2)
     puts 'Gem: ' + @name
     puts 'Versions: '
-    checker = Checker.new(@name, @option1, @option2)
     arr.each do |ver|
       if checker.fits?(ver)
         puts ver.red

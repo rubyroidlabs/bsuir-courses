@@ -11,15 +11,14 @@ class Seeker
   end
 
   def seek
-    begin
-      temp = Gems.versions(@name)
-      temp.each do |hash|
-        hash.each do |k, v|
-          @arr.push(v) if k == 'number'
-        end
+    temp = Gems.versions(@name)
+    temp.each do |hash|
+      hash.each do |k, v|
+        @arr.push(v) if k == 'number'
       end
-    rescue
-      puts 'No such gem!'
     end
+  rescue
+    p 'No such gem!'
+    exit
   end
 end
