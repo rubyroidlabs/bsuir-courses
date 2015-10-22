@@ -1,4 +1,4 @@
-require 'open-uri'
+require "open-uri"
 require 'json'
 require 'colored'
 class VersionGet
@@ -9,7 +9,7 @@ class VersionGet
   def collect
     versions = open("https://rubygems.org/api/v1/versions/#{@name}.json").read
     begin
-      JSON.parse(versions).map { |ver| ver['number'] }
+      JSON.parse(versions).map { |ver| ver["number"] }
     rescue JSON::ParserError
       puts "#{$!}".red
     end
