@@ -8,7 +8,6 @@ class Check
 
     @name, @interval = arguments
 
-
     unless @name =~ /\w+/
       puts 'Incorrect name of gem'
       puts 'Template: ruby gemfiler <gem_name> [\'version conditions\']'
@@ -22,11 +21,11 @@ class Check
     end
   end
 
-  def getName
+  def get_Name
     @name
   end
 
-  def getInterval
+  def get_Interval
     @interval
   end
 end
