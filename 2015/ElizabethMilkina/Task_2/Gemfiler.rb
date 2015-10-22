@@ -12,6 +12,6 @@ end
 object_name = NameGem.new
 object_version = VersionGem.new
 filtered_versions, not_matched_versions = object_version.\
-get_version(object_name.get_name())
+get_version(object_name.get_name)
 object_filter = OutputGem.new
 object_filter.output(filtered_versions, not_matched_versions)
