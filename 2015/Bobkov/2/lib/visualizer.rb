@@ -6,12 +6,6 @@ class Visualiser
   end
 
   def visualise(filter)
-    @versions.each do |version|
-      if filter.include?(version)
-        puts version.red
-      else
-        puts version
-      end
-    end
+    @versions.each { |v| puts (filter.include?(v) ? v.red : v) }
   end
 end

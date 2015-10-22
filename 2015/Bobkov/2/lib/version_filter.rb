@@ -1,4 +1,4 @@
-class VersionFilter
+class Filter
   def initialize(versions)
     @versions = versions.map { |version| Gem::Version.new(version) }
   end
@@ -12,29 +12,25 @@ class VersionFilter
       result = @versions.select do |version|
         version > needed_version
       end
-      result = result.map(&:to_s)
     when '>='
       result = @versions.select do |version|
         version >= needed_version
       end
-      result = result.map(&:to_s)
     when '<'
       result = @versions.select do |version|
         version < needed_version
       end
-      result = result.map(&:to_s)
     when '<='
       result = @versions.select do |version|
         version <= needed_version
       end
-      result = result.map(&:to_s)
     when '~>'
       result = @versions.select do |version|
         version >= needed_version &&
         version < needed_version.bump
       end
-      result = result.map(&:to_s)
     end
+    result = result.map(&:to_s)
     result
   end
 
@@ -50,40 +46,35 @@ class VersionFilter
         version > needed_version &&
         version < needed_version2
       end
-      result = result.map(&:to_s)
     when '~>' && '<'
       result = @versions.select do |version|
         version >= needed_version &&
         version < needed_version.bump &&
         version < needed_version2
       end
-      result = result.map(&:to_s)
     when '>=' && '<'
       result = @versions.select do |version|
         version >= needed_version &&
         version <= needed_version2
       end
-      result = result.map(&:to_s)
     when '>' && '<='
       result = @versions.select do |version|
         version > needed_version &&
         version <= needed_version2
       end
-      result = result.map(&:to_s)
     when '~>' && '<='
       result = @versions.select do |version|
         version >= needed_version &&
         version < needed_version.bump &&
         version <= needed_version2
       end
-      result = result.map(&:to_s)
     when '>=' && '<='
       result = @versions.select do |version|
         version >= needed_version &&
         version <= needed_version2
       end
-      result = result.map(&:to_s)
     end
+    result = result.map(&:to_s)
     result
   end
 end

@@ -1,29 +1,25 @@
-Dir['./../lib/*.rb'].each{ |f| require(f) }
+require 'optparse'
 
-if ARGV.size < 2
-  raise ArgumentError
+Dir[File.expand_path('./../lib/*.rb')].each { |f| require(f) }
+# Dir[File.expand_path('./../lib/*.rb', __FILE__)].each{ |f| require(f) } # Don't WORK :(
+
+parser = OptionParser.new do|opts|
+  opts.banner = "Usage: ruby gemfiler [gem_name] [gem_versions]
+  Examples: ruby gemfiler devise '~> 2.1.3'
+            ruby gemfiler rails '>= 3.1'
+            ruby gemfiler rails '>= 3.1' '< 4.0'"
 end
+parser.parse!
 
-name, specifier, specifier2 = ARGV
-
-unless (name =~ /\w+/) && (specifier =~ /(~>|>=|<=|<|>)\s(\d+\.)*\d+/)
-  raise ArgumentError
-end
-
-if (specifier2 =~ /(<|<=)\s(\d+\.)*\d+/)
-  bl = true
-else
-  if (specifier2 =~ /^.*/)
-    raise ArgumentError
-  else
-    bl = false
-  end
-end
-
-versions = VersionFetcher.new(name).fetch
+parser = Parser.new(ARGV)
+name = parser.getName
+specifier = parser.getSp1
+specifier2 = parser.getSp2
+bl = parser.getBl
+versions = Fetcher.new(name).fetch
 if (bl == true)
-  filtered_versions = VersionFilter.new(versions).filter2(specifier,specifier2)
+  filtered_versions = Filter.new(versions).filter2(specifier,specifier2)
 else
-  filtered_versions = VersionFilter.new(versions).filter(specifier)
+  filtered_versions = Filter.new(versions).filter(specifier)
 end
 Visualiser.new(versions).visualise(filtered_versions)

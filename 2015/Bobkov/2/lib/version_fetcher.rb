@@ -1,19 +1,19 @@
+require 'open-uri'
 require 'json'
 
-class VersionFetcher
+class Fetcher
   def initialize(name)
     @name = name
   end
 
   def fetch
-    json = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
+    ver = open("https://rubygems.org/api/v1/versions/#{@name}.json").read
     result = []
     begin
-      JSON.parse(json).each do |entry|
-        result << entry.fetch('number')
+      JSON.parse(ver).each do |entry|
+        result.push(entry['number'])
       end
     rescue JSON::ParserError
-      puts json
     end
     result
   end
