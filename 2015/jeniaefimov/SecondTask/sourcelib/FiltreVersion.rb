@@ -1,10 +1,10 @@
 class FiltreVersion
-def initialize(versions, gem_version)
+def initialize(versions, gversion)
   @versions = versions
-  @gem_version = gem_version
+  @gversion = gversion
 end
 
 def filter
-  @versions.map { |v| v if Gem::Dependency.new('', @gem_version).match?('', v) }
+  @versions.map { |v| v if Gem::Dependency.new('', @gversion).match?('', v) }
 end
 end
