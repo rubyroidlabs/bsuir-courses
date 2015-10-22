@@ -5,7 +5,6 @@ class HTMLParser
   end
 
   def get_versions
-    begin
       page = Nokogiri::HTML(open(GEMS_URL + @gem_name + '/versions'))
       lis = page.css('li')
       lis.map do |li|
@@ -14,6 +13,5 @@ class HTMLParser
     rescue StandardError
       puts 'Connection error'
       exit
-    end
   end
 end
