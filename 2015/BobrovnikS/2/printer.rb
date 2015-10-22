@@ -9,7 +9,7 @@ class String
   end
 end
 
-# Handle and print gem data
+# Print gem data
 class Printer
   attr_accessor :cache_array, :gem_name, :option1, :option2
 
@@ -21,30 +21,11 @@ class Printer
   end
 
   def print_result(array)
-    @cache_array = array
+    handler = Handler.new(array, @gem_name, @option1, @option2)
     if option2
-      print_cond_2
-    else print_cond_1
-    end
-  end
-
-  def print_cond_2
-    cache_array.each do |key|
-      if Gem::Dependency.new(@gem_name.to_s, @option1).match?(@gem_name.to_s, key) && Gem::Dependency.new(@gem_name.to_s, @option2).match?(@gem_name.to_s, key)
-        puts key.red
-      else
-        puts key
-      end
-    end
-  end
-
-  def print_cond_1
-    cache_array.each do |key|
-      if Gem::Dependency.new(@gem_name.to_s, @option1).match?(@gem_name.to_s, key)
-        puts key.red
-      else
-        puts key
-      end
+      handler.print_cond_2
+    else
+      handler.print_cond_1
     end
   end
 end

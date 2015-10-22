@@ -1,31 +1,29 @@
 #!/usr/bin/env ruby
 Dir['./*.rb'].each { |file| require file }
-# Main class Gemfiler
-class Gemfiler
-  attr_accessor :gem_name, :option1, :option2
+require 'thor'
 
-  def initialize(gem_name, option1, option2 = nil)
+# Main class Gemfiler
+class Gemfiler < Thor
+  desc 'gf gem_name opt1 opt2 ...', ''
+  no_commands { attr_accessor :gem_name, :option1, :option2 }
+
+  def gf(gem_name, option1, option2 = nil)
     @gem_name = gem_name
     @option1 = option1
     @option2 = option2
+    make
+  rescue StandardError
+    puts 'Please, check your parameters !'
+  end
+
+  def make
+    r = Reciever.new
+    r.recieve(@gem_name, @option1, @option2)
+    lookuper = LookUper.new(r.gem_name, r.option1, r.option2)
+    lookuper.lookup
+    printer = Printer.new(lookuper.gem_name, lookuper.option1, lookuper.option2)
+    printer.print_result(lookuper.cache_array)
   end
 end
 
-case ARGV.length
-when 3
-  gemfiler = Gemfiler.new(ARGV[0], ARGV[1], ARGV[2])
-when 2
-  gemfiler = Gemfiler.new(ARGV[0], ARGV[1])
-else fail ArgumentError, 'Check your parameters !'
-end
-
-reciever = Reciever.new
-if !ARGV[2]
-  reciever.recieve(gemfiler.gem_name, gemfiler.option1)
-else
-  reciever.recieve(gemfiler.gem_name, gemfiler.option1, gemfiler.option2)
-end
-lookuper = LookUper.new(reciever.gem_name, reciever.option1, reciever.option2)
-lookuper.lookup
-printer = Printer.new(lookuper.gem_name, lookuper.option1, lookuper.option2)
-printer.print_result(lookuper.cache_array)
+Gemfiler.start(ARGV)

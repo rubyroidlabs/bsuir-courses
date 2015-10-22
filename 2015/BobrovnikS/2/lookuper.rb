@@ -1,5 +1,5 @@
-
 require 'gems'
+
 # Look up gem data
 class LookUper
   attr_accessor :cache_array, :gem_name, :option1, :option2
