@@ -5,12 +5,12 @@ class Parser
   def initialize(inversions, operators)
     @versions = inversions
 
-    begin
-      @operators = operators.sort_by { |_key, value| value }
-      rescue ArgumentError
-        puts '(╯°□°)╯︵ ┻━┻ (invalid argumnets)'.red
-        exit
-      end
+      begin
+        @operators = operators.sort_by { |_key, value| value }
+        rescue ArgumentError
+          puts '(╯°□°)╯︵ ┻━┻ (invalid argumnets)'.red
+          exit
+        end
   end
 
   def match?(value)

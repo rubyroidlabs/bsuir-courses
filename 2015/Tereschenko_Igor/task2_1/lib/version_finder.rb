@@ -16,12 +16,12 @@ class VersionFinder
       exit
     end
 
-    begin
-      json = JSON.parse(versions)
-      json.map! { |v| v['number'] }
-      rescue JSON::ParserError
-        puts '(╯°□°)╯︵ ┻━┻ (invalid gem name)'.red
-        exit
-      end
+      begin
+        json = JSON.parse(versions)
+        json.map! { |v| v['number'] }
+        rescue JSON::ParserError
+          puts '(╯°□°)╯︵ ┻━┻ (invalid gem name)'.red
+          exit
+        end
   end
 end
