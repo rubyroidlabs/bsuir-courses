@@ -12,6 +12,6 @@ class GemsVersions
   end
 
   def v_under_cond?(v, condition)
-    Gem::Dependency.new('', condition).match?('', v.gsub(/[.][a-z]+[0-9]/, ''))
+    Gem::Dependency.new('', condition).match?('', v.gsub(/[.][a-z]+./, ''))
   end
 end
