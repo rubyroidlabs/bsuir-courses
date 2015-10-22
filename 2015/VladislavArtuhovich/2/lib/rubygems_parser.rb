@@ -11,4 +11,4 @@ class RubyGemsParser
   rescue StandardError => e
     puts e.message.red
   end
-end 
+end
