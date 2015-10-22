@@ -26,8 +26,9 @@ class Filtrator
         end
       end
     rescue ArgumentError => error
-      print error, ". It seems there is no such version of this gem.
-                      Check out all versions: \n"
+      print error, ". It seems there is no such version of this gem." +
+      "Check out all versions: \n"
     end
   end
+
 end

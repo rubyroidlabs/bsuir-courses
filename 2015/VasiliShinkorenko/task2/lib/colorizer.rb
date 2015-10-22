@@ -6,10 +6,7 @@ class Colorizer
   end
 
   def colorize
-    if @filtered_versions.first[0] == @filtered_versions.last[0]
-      puts @versions - @filtered_versions
-      @filtered_versions.map { |v| puts v.red }
-    elsif @filtered_versions.first > (@versions - @filtered_versions).last
+    if @filtered_versions.first > (@versions - @filtered_versions).last
       @filtered_versions.map { |v| puts v.red }
       puts @versions - @filtered_versions
     elsif @filtered_versions.first < (@versions - @filtered_versions).last
