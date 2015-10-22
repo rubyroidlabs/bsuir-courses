@@ -9,12 +9,8 @@ class VersionFinder
     @gem = gem
   end
 
-  def get_vers_from_serv()
-    begin
-      Gems.versions(@gem)
-      rescue StandardError => exc
-      puts exc.message
-      exit
-    end
+  def get_vers_from_serv
+    Gems.versions(@gem)
   end
 end
+
