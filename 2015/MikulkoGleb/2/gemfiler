@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+require_relative 'classes/version.rb'
+require_relative 'classes/printer.rb'
+require_relative 'classes/gem_reader.rb'
+require 'slop'
+
+class Gemfiler
+  def analize
+    opts = Slop.parse ARGV
+    versions_str = GemReader.new(opts.arguments.shift).get_gems
+    versions = versions_str.map {|str| Version.new(str)}
+  begin
+    str_eval = get_code(versions, opts.arguments)
+    selected_versions = versions.select {|version| eval(str_eval)}
+  rescue => e
+    abort(e.inspect)
+  end
+    Printer.new.pretty_print(versions_str, selected_versions.map {|version| version.to_s})
+  end
+
+  def get_code(versions, option)
+    string_eval = 'true'
+    option.size.times do |i|
+      condition_operator = option[i].split(' ')[0]
+      condition_value  = option[i].split(' ')[1]
+
+      case condition_operator
+      when "~>"
+        high_version_str = condition_value.slice(0...-2)
+        high_version_str = high_version_str.succ + ".0"
+        high_version = Version.new(high_version_str)
+        string_eval += '&& version >= Version.new(\'' + condition_value + '\') && version < Version.new(\'' + high_version_str + '\') '
+      when "="
+        string_eval += '&& version == Version.new(\''+ condition_value + '\') '
+      when ">" , "<" , ">=" , "<=" , "!="
+        string_eval += '&& version' + condition_operator + ' Version.new(\'' + condition_value + '\')'
+      end
+    end
+    string_eval
+  rescue => e
+    abort(e.inspect)
+  end
+end
+
+Gemfiler.new.analize
