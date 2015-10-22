@@ -2,7 +2,7 @@ Dir['../lib/*.rb'].each { |file| require file }
 require 'optparse'
 
 URL = 'https://rubygems.org/gems/'
-CSS_STR  = 'div.versions a.t-list__item'
+CSS_STR = 'div.versions a.t-list__item'
 
 class GemFilter
   def self.print_versions(arguments)
