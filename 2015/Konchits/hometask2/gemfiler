@@ -1,0 +1,23 @@
+Dir['./lib/*.rb'].each { |file| require(file) }
+
+require 'optparse'
+gemfiler = OptionParser.new do|opts|
+end
+gemfiler.parse
+
+raise ArgumentError, "Check number of your arguments!".red if !(ARGV.size > 0 && ARGV.size <4)
+
+gem_name = ARGV[0]
+gem_version1 = ARGV[1]
+gem_version2 = ARGV[2]
+
+begin
+  versions = VersionFetcher.new(gem_name).fetch
+  if versions
+    filtred_versions = VersionFilter.new(versions).filter(gem_version1, gem_version2)
+    if filtred_versions
+      VersionPrinter.new(versions, filtred_versions).print
+    end
+  end
+  rescue ArgumentError
+end
