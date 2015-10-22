@@ -1,4 +1,6 @@
 source "https://rubygems.org"
 
+gem 'rubygems'
 gem 'gems'
+gem 'thor'
 gem 'colorize'

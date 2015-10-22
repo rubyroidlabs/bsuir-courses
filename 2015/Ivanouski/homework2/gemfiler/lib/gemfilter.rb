@@ -1,43 +1,52 @@
 class GemFilter
-  def filter(gems_output, op, ver)
-    gems_output.each do |i|
-      vers = i['number']
-      if op == '<' &&
-          i['number'] < ver
-        $ver_array.push (i['number']).red
-      elsif op == '>' &&
-            i['number'] > ver
-        $ver_array.push (i['number']).red
-      elsif op == '>=' &&
-            i['number'] >= ver
-        $ver_array.push (i['number']).red
-      elsif op == '~>' &&
-            i['number'] >= ver &&
-            vers[2] == ver[2] &&
-            vers[0] == ver[0]
-        $ver_array.push (i['number']).red
-      else
-        $ver_array.push i['number']
+  def self.filter(hash, option, version)
+    begin
+      hash.each do |i|
+        temp = i['number']
+        if option == '<' &&
+            i['number'] < version
+          puts (i['number']).red
+        elsif option == '>' &&
+              i['number'] > version
+          puts (i['number']).red
+        elsif option == '>=' &&
+              i['number'] >= version
+          puts (i['number']).red
+        elsif option == '~>' &&
+              i['number'] >= version &&
+              temp[2] == version[2] &&
+              temp[0] == version[0]
+          puts (i['number']).red
+        else
+          puts i['number']
+        end
       end
+    rescue NoMethodError => err
+      print "ERROR: This rubygem could not be found.\n#{err}\n"
+      exit 1
     end
   end
 
-  def filter_long(gems_output, op1, ver1, op2, ver2)
-    gems_output.each do |i|
-      vers = i['number']
-      if op1 == '>=' &&
-          op2 == '<' &&
-          i['number'] >= ver1 &&
-          i['number'] < ver2
-        $ver_array.push (i['number']).red
-      elsif op1 == '>' &&
-            op2 == '<' &&
-            i['number'] > ver1 &&
-            i['number'] < ver2
-        $ver_array.push (i['number']).red
-      else
-        $ver_array.push i['number']
+  def self.filter_long(hash, option1, version1, option2, version2)
+    begin
+      hash.each do |i|
+        if option1 == '>=' &&
+            option2 == '<' &&
+            i['number'] >= version1 &&
+            i['number'] < version2
+          puts (i['number']).red
+        elsif option1 == '>' &&
+              option2 == '<' &&
+              i['number'] > version1 &&
+              i['number'] < version2
+          puts (i['number']).red
+        else
+          puts i['number']
+        end
       end
+    rescue NoMethodError => err
+      print "ERROR: This rubygem could not be found.\n#{err}\n"
+      exit 1
     end
   end
 end

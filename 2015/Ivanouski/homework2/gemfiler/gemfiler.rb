@@ -1,49 +1,34 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.1.8
+# @version 0.2.0
 # @author S. Ivanouski
 
+require 'rubygems'
 require 'gems'
+require 'thor'
 require 'colorize'
 require './lib/gemfilter.rb'
-require './lib/helpprinter.rb'
-require './lib/versionprinter.rb'
 
-$ver_array = []
-
-new_search = Gems.new
-filtration = GemFilter.new
-helper = HelpPrinter.new
-drawer = VersionPrinter.new
-
-gem_name = ARGV[0]
-operator1 = ARGV[1]
-version1 = ARGV[2]
-operator2 = ARGV[3]
-version2 = ARGV[4]
-
-begin
-  @versions = new_search.versions gem_name
-rescue SocketError => e
-  helper.connection_error(e)
-end
-
-begin
-  case ARGV.size
-  when 1
-    drawer.print_all(@versions, gem_name)
-  when 3
-    filtration.filter(@versions, operator1, version1)
-  when 5
-    filtration.filter_long(@versions, operator1, version1, operator2, version2)
-  else
-    helper.print_help
+class GemFiler < Thor
+  desc "search GEM_NAME 'option' version",
+    "Will search for gem versions. Optional: 'second_option' other_version"
+  long_desc(File.read("gemfiler.help"))
+  def search(gemname, option, version, option2 = nil, version2 = nil)
+    begin
+      hash = Gems.versions gemname
+    rescue SocketError => err
+      print "CONNECTION ERROR!\n#{err}\n"
+      exit 1
+    end
+    if option2 && version2
+      GemFilter.filter_long(hash.reverse, option, version, option2, version2)
+    else
+      GemFilter.filter(hash.reverse, option, version)
+    end
   end
-rescue
-  helper.name_error
 end
 
-drawer.print_versions($ver_array, ARGV[0])
+GemFiler.start
 
 exit 0
