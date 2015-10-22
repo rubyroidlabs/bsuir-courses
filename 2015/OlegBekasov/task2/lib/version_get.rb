@@ -1,6 +1,6 @@
+require 'open-uri'
 require 'json'
 require 'colored'
-require "open-uri"
 class VersionGet
   def initialize(name)
     @name = name
