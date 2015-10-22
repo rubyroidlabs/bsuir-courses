@@ -9,7 +9,8 @@ class GemReader
 
   def get_gems
     response = open(@source).read
-    versions = response.scan(/"number":"[^,]+"/).map { |string| string.gsub(/"number":/, '') }
+    versions = response.scan(/"number":"[^,]+"/)
+    versions.map! { |string| string.gsub(/"number":/, '') }
     versions.map { |str| str.delete("\"") }
   rescue => e
     abort(e.inspect)

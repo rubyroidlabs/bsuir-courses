@@ -2,28 +2,27 @@
 require_relative 'classes/version.rb'
 require_relative 'classes/printer.rb'
 require_relative 'classes/gem_reader.rb'
+require 'slop'
 
 class Gemfiler
-  def initialize
-    @source = "https://rubygems.org/api/v1/versions/#{ARGV[0]}.json"
-  end
-
   def analize
-    versions_str = GemReader.new(ARGV[0]).get_gems
+    opts = Slop.parse ARGV
+    versions_str = GemReader.new(opts.arguments.shift).get_gems
     versions = versions_str.map {|str| Version.new(str)}
   begin
-    selected_versions = versions.select {|version| eval(get_code(versions))}
+    str_eval = get_code(versions, opts.arguments)
+    selected_versions = versions.select {|version| eval(str_eval)}
   rescue => e
     abort(e.inspect)
   end
     Printer.new.pretty_print(versions_str, selected_versions.map {|version| version.to_s})
   end
 
-  def get_code(versions)
+  def get_code(versions, option)
     string_eval = 'true'
-    1.upto(ARGV.size - 1) do |i|
-      condition_operator = ARGV[i].split(' ')[0]
-      condition_value  = ARGV[i].split(' ')[1]
+    option.size.times do |i|
+      condition_operator = option[i].split(' ')[0]
+      condition_value  = option[i].split(' ')[1]
 
       case condition_operator
       when "~>"
