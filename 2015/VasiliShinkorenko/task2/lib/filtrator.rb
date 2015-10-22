@@ -1,9 +1,9 @@
 require_relative 'searcher'
 
 class Filtrator
-  def initialize(version_and_sign)
-    @version = version_and_sign.match(/\s*(\d+\.)*\d+/).to_s.strip
-    @sign    = version_and_sign.match(/[!=><~]{1,2}/).to_s.strip
+  def initialize(v_and_sign)
+    @version = validate(v_and_sign, /\s*(\d+\.)*\d+/)
+    @sign    = validate(v_and_sign, /[!=><~]{1,2}/)
   end
 
   def filter(versions)
@@ -31,4 +31,7 @@ class Filtrator
     end
   end
 
+  def validate(param, regex)
+    param.match(regex).to_s.strip
+  end
 end

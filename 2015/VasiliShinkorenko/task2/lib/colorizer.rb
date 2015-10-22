@@ -2,7 +2,8 @@ require 'colorize'
 
 class Colorizer
   def initialize(versions, filtered_versions)
-    @versions, @filtered_versions = versions, filtered_versions
+    @versions = versions
+    @filtered_versions = filtered_versions
   end
 
   def colorize
