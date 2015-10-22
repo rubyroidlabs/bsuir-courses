@@ -4,7 +4,6 @@ class Parser
   attr_accessor :versions
   def initialize(inversions, operators)
     @versions = inversions
-
     begin
       @operators = operators.sort_by { |_key, value| value }
       rescue ArgumentError
@@ -15,7 +14,6 @@ class Parser
 
   def match?(value)
     res1 = Array.new
-
     begin
       @operators.each do |k, v|
         if Gem::Dependency.new('', k + v).match?('', value)
@@ -35,6 +33,7 @@ class Parser
       return true
     end
   end
+
 
   def output
     @versions.each do |i|
