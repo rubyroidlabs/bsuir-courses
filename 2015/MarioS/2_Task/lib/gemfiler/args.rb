@@ -1,3 +1,5 @@
+require 'optparse'
+
 # parse @argv
 module Gemfiler
   class Args
@@ -9,6 +11,13 @@ module Gemfiler
     end
 
     def parse
+      OptionParser.new do |opts|
+        opts.banner = 'Usage: gv.rb [gem name] [gem versions]'
+        opts.on('-h', '--help', 'Write this help') do
+          puts opts
+          exit
+        end
+      end.parse!(@argv)
       gem_name = @argv.shift
       conditions = []
       @argv.each do |condition|
@@ -21,7 +30,7 @@ module Gemfiler
 
     def validate_condition!(sign, ver)
       if sign.nil? || ver.nil? || sign !~ SIGN_FORMAT || ver !~ VER_FORMAT
-        raise 'Wrong conditions format'
+        fail 'Wrong conditions format'
       end
     end
   end
