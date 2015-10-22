@@ -1,7 +1,6 @@
-  require 'rubygems'
-  require 'mixlib/cli'
+require 'rubygems'
+require 'mixlib/cli'
 
-  class ConsoleParser
-    include Mixlib::CLI
-  end
-
+class ConsoleParser
+  include Mixlib::CLI
+end
