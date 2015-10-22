@@ -4,12 +4,10 @@ require 'json'
 require 'uri'
 
 module GemVersionsFilter
-
   GEM_API_VERS_URL = 'https://rubygems.org/api/v1/versions'
   DATA_FORMAT = 'json'
 
   class GemVersions
-    
     attr_accessor :gem_versions
 
     def initialize
@@ -17,9 +15,7 @@ module GemVersionsFilter
     end
 
     def get_versions(gem_name)
-
       unless gem_versions.has_key?(gem_name)
-
         uri = URI("#{GEM_API_VERS_URL}/#{gem_name}.#{DATA_FORMAT}")
 
         http = Net::HTTP.new(uri.host, uri.port)

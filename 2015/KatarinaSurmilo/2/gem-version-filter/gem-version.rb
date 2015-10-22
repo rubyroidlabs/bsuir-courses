@@ -1,13 +1,10 @@
 module GemVersionsFilter
-
-  class GemVersion
-    
+  class GemVersion 
     VERSION_PATTERN = /(?<major>\d+)\.(?<minor>\d+)\.(?<tiny>\d+)(?:\.(?<postfix>\w+))?/
 
     attr_reader :full, :major, :minor, :tiny, :postfix, :hash_code
 
     def initialize(major, minor, tiny, postfix = nil)
-
       @major = major
       @minor = minor
       @tiny = tiny
@@ -23,7 +20,7 @@ module GemVersionsFilter
       end
     end
 
-    #region of overloaded operator
+    # region of overloaded operator
     def ==(version)
       @hash_code == version.hash_code
     end
@@ -45,13 +42,12 @@ module GemVersionsFilter
     end
 
     def self.parse(version)
+      matched_Version = VERSION_PATTERN.match(version)
 
-      matchedVersion = VERSION_PATTERN.match(version)
-
-      major = matchedVersion[:major].to_i
-      minor = matchedVersion[:minor].to_i
-      tiny = matchedVersion[:tiny].to_i
-      postfix = matchedVersion[:postfix]
+      major = matched_Version[:major].to_i
+      minor = matched_Version[:minor].to_i
+      tiny = matched_Version[:tiny].to_i
+      postfix = matched_Version[:postfix]
 
       GemVersion.new(major, minor, tiny, postfix)
     end

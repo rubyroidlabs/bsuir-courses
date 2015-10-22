@@ -14,8 +14,8 @@ module GemVersionsFilter
       unmatched_versions = gem_versions - matched_versions # get unmatched vers
 
       {
-        matched_versions:matched_versions,
-        unmatched_versions:unmatched_versions
+        matched_versions: matched_versions,
+        unmatched_versions: unmatched_versions
       }
     end
   end
