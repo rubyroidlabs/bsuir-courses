@@ -2,7 +2,7 @@ require 'open-uri'
 require 'hpricot'
 
 class NameGem
-  def get_name()
+  def get_name
     url = "https://rubygems.org/gems/#{$opts[:name]}/versions"
     @hp = Hpricot(open(url))
     if @hp
