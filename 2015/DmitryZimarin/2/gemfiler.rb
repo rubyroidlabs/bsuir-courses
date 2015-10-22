@@ -46,11 +46,11 @@ class GemData
   def initialize
     @gem_name = ARGV[0]
     @params_versions = []
-    inin_version_mas!
+    init_version_mas!
     @gems_versions_mas = Gems.versions @gem_name
   end
 
-  def inin_version_mas!
+  def init_version_mas!
     ARGV[1..-1].each do |str|
       @params_versions.push [str.split[1], str.split[0]]
     end
@@ -76,14 +76,10 @@ class Printer
   end
 end
 
-def main
-  if ARGV.length < 2
-    p 'Wrong number of arguments'
-  else
-    temp_gem_data = GemData.new
-    printer = Printer.new
-    printer.print(temp_gem_data)
-  end
+if ARGV.length < 2
+  p 'Wrong number of arguments'
+else
+  temp_gem_data = GemData.new
+  printer = Printer.new
+  printer.print(temp_gem_data)
 end
-
-main
