@@ -4,7 +4,6 @@ require 'optparse'
 
 Dir['./../lib/*.rb'].each{ |f| require(f) }
 
-
 check = OptionParser.new do|opts|
   opts.banner = "Usage: ruby gemfiler [gem_name] [gem_versions]"
 end
@@ -25,4 +24,3 @@ end
 filtered_versions = VersionFilter.new(versions).filter(interval)
 
 Visualiser.new(versions).visualise(filtered_versions)
-
