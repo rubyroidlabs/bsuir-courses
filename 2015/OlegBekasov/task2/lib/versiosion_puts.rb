@@ -1,4 +1,4 @@
-require_relative 'version_filter.rb'
+require_relative "version_filter.rb"
 require 'colored'
 class VersionPuts
   extend VersionFilter
