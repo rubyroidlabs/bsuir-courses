@@ -21,11 +21,11 @@ class Check
     end
   end
 
-  def get_Name
+  def get_name
     @name
   end
 
-  def get_Interval
+  def get_interval
     @interval
   end
 end
