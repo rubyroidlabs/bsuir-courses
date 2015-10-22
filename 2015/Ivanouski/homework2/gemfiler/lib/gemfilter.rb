@@ -3,15 +3,15 @@ class GemFilter
     hash.each do |i|
       temp = i['number']
       if option == '<' &&
-        i['number'] < version
-        puts (i['number']).red
-      elsif option == '>' &&            # comment just for Hound
+         i['number'] < version
+        puts (i['number']).red           # comment just for Hound
+      elsif option == '>' &&
             i['number'] > version
-        puts (i['number']).red
-      elsif option == '>=' &&           # comment just for Hound
+        puts (i['number']).red           # comment just for Hound
+      elsif option == '>=' &&
             i['number'] >= version
-        puts (i['number']).red
-      elsif option == '~>' &&           # comment just for Hound
+        puts (i['number']).red           # comment just for Hound
+      elsif option == '~>' &&
             i['number'] >= version &&
             temp[2] == version[2] &&
             temp[0] == version[0]
@@ -25,15 +25,15 @@ class GemFilter
   def self.filter_long(hash, option1, version1, option2, version2)
     hash.each do |i|
       if option1 == '>=' &&
-        option2 == '<' &&
-        i['number'] >= version1 &&      # comment just for Hound
-        i['number'] < version2
-        puts (i['number']).red
+         option2 == '<' &&
+         i['number'] >= version1 &&
+         i['number'] < version2
+        puts (i['number']).red            # comment just for Hound
       elsif option1 == '>' &&
             option2 == '<' &&
-            i['number'] > version1 &&   # comment just for Hound
+            i['number'] > version1 &&
             i['number'] < version2
-        puts (i['number']).red
+        puts (i['number']).red            # comment just for Hound
       else
         puts i['number']
       end

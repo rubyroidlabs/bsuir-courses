@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.2.2
+# @version 0.2.3
 # @author S. Ivanouski
 
 require 'rubygems'
