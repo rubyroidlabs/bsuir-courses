@@ -34,7 +34,6 @@ class Parser
     end
   end
 
-
   def output
     @versions.each do |i|
       if match?(i) == true
