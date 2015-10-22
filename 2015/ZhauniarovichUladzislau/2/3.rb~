@@ -43,8 +43,9 @@ checkingcondition[@sign.size..checkingcondition.size - 1]
     when '<='
       versions[get_version_position(@version, versions)..versions.size - 1]
     when '~>'
-      versions[get_version_position(get_next_version,
+      versions[[get_version_position(get_next_version,
       versions)..get_version_position(@version, versions)]
+      ]	
     else
       raise VersionOperatorError
     end
@@ -91,7 +92,7 @@ class PrintToConsole
     end
   end
 end
-options = OptionParser.new do |opts|
+OptionParser.new do |opts|
   opts.banner = "Usage: ./2 [gem] [vers1] [vers2]
   Example: ./2 thor '>= 0.10' '<0.14'"
 end.parse!
