@@ -1,5 +1,5 @@
 require 'colorize'
-class Shower
+class Show
   def initialize(versions, after_filter)
     @versions = versions
     @after_filter = after_filter

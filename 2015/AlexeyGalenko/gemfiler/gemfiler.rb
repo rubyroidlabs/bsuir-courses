@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+require 'slop'
+
 Dir['./lib/*.rb'].each { |f| require_relative(f) }
 
 class Gemfiler
@@ -17,25 +19,27 @@ def usage(s)
   exit(2)
 end
 
-def check_parameters(n)
+opts = Slop.parse do |o|
+  o.string '...'
+end
+p = opts.arguments
+
+def check_parameters(p)
+  n = p.size
   rname = /\w+/
-  rver_from = /
-  (>\d+.\d+.\d+|>=\d+.\d+.\d+|
-  ~>\d+.\d+.\d+.|>\d+.\d+|>=\d+.\d+|~>\d+.\d+|)
-  /x
-  rver_to = /(<\d+.\d+.\d+|<=\d+.\d+.\d+|<\d+.\d+|<=\d+.\d+|)/
-  b = lambda { |name, num| name.match(ARGV[num]).to_s == ARGV[num] }
+  r = /(<|<=|>=|>|~>)(\d+.\d+.\d+|\d+.\d+)/
+  b = lambda { |name, num| name.match(p[num]).to_s == p[num] }
   if n == 3
-    b.call(rname, 0) && b.call(rver_from, 1) && b.call(rver_to, 2)
+    b.call(rname, 0) && b.call(r, 1) && b.call(r, 2)
   elsif n == 2
-    b.call(rname, 0) && b.call(rver_from, 1)
+    b.call(rname, 0) && b.call(r, 1)
   else
     false
   end
 end
 
-if check_parameters(ARGV.length)
-  g = Gemfiler.new(*ARGV)
+if check_parameters(p)
+  g = Gemfiler.new(*p)
 else
   usage('Wrong number parameters or wrong parameters itself')
 end
@@ -45,5 +49,5 @@ versions_string = f.fetch
 if versions_string
   versions = f.parse(versions_string)
   after_filter = Filter.new(versions, g.version_from, g.version_to).filter
-  Shower.new(versions, after_filter).show if after_filter
+  Show.new(versions, after_filter).show if after_filter
 end
