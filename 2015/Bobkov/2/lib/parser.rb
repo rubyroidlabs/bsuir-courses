@@ -3,10 +3,10 @@ class Parser
 
   def initialize(arguments)
     parser = OptionParser.new do|opts|
-    opts.banner = "Usage: ruby gemfiler [gem_name] [gem_versions]
-      Examples: ruby gemfiler devise '~> 2.1.3'
-                ruby gemfiler rails '>= 3.1'
-                ruby gemfiler rails '>= 3.1' '< 4.0'"
+      opts.banner = "Usage: ruby gemfiler [gem_name] [gem_versions]
+        Examples: ruby gemfiler devise '~> 2.1.3'
+                  ruby gemfiler rails '>= 3.1'
+                  ruby gemfiler rails '>= 3.1' '< 4.0'"
     end
     parser.parse!
 
