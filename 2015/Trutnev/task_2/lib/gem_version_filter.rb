@@ -1,30 +1,27 @@
 class VersionFilter
+  attr_reader :versions
+
   def initialize(versions)
     @versions = versions.map { |version| Gem::Version.new(version) }
   end
 
-  def filter(specifier)
-    (operator, needed_version) = specifier.split
+  def filter(condition)
+    result = []
+    operator, needed_version = condition.split
 
     needed_version = Gem::Version.new(needed_version)
 
-    result = []
-
     case operator
     when '~>'
-      result = @versions.select do |version|
+      result = versions.select do |version|
         version >= needed_version && version < needed_version.bump
       end
-
-      result = result.map { |version| version.to_s }
     else
-      result = @versions.select do |version|
-        version.send(operator.to_sym, needed_version)
+      result = versions.select do |version|
+        version.send(operator, needed_version)
       end
-
-      result = result.map { |version| version.to_s }
     end
 
-    result
+    result.map { |version| version.to_s }
   end
 end
