@@ -9,10 +9,10 @@ class Client
 
   def get_response
     HTTParty.get(@uri).to_s
-    rescue SocketError
-      abort('Check your internet connection!'.red)
-    rescue JSON::ParserError
-      abort('This is no such gem on rubygems.org!'.red)
+  rescue SocketError
+    abort('Check your internet connection!'.red)
+  rescue JSON::ParserError
+    abort('This is no such gem on rubygems.org!'.red)
   end
 
   def get_gem_list

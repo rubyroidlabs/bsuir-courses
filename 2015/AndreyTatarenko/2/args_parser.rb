@@ -4,7 +4,7 @@ require './dependency_analysis.rb'
 class ArgsParser
   def initialize(args)
     @quantity_of_args = 2..3
-    if !@quantity_of_args.include?(args.size)
+    unless @quantity_of_args.include?(args.size)
       abort('Incorrect quantity of arguments!'.red)
     else
       @gem_name = args.first
