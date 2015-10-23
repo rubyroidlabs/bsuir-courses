@@ -4,12 +4,12 @@ require './dependency_analysis.rb'
 class ArgsParser
   def initialize(args)
     @quantity_of_args = 2..3
-    unless @quantity_of_args.include?(args.size)
-      abort('Incorrect quantity of arguments!'.red)
-    else
+    if @quantity_of_args.include?(args.size)
       @gem_name = args.first
       args.delete_at(0)
-      @gem_dependencies = DependencyAnalysis.new.parse(args)
+      @gem_dependencies = DependencyAnalysis.new(args).parse
+    else
+      abort('Incorrect quantity of arguments!'.red)
     end
   end
 
