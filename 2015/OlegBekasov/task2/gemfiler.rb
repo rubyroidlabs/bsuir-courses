@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'optparse'
+require 'colored'
 Dir[File.expand_path(('./../lib/*.rb'), __FILE__)].each { |file| require file }
 OptionParser.new do |opts|
   opts.banner = <<-STR
@@ -10,8 +11,9 @@ OptionParser.new do |opts|
     ./gemfiler rails '>= 3.1' '< 4.0'
   STR
 end.parse!
-if ARGV.size < 1 || ARGV.size > 3
-  raise ArgumentError.new('Use ./gemfilter.rb -h for help')
+raise ArgumentError.new('Use ./gemfilter.rb -h for help'.red) if ARGV.size < 1
+begin
+  versions = VersionGet.new(ARGV[0]).collect
+  VersionPuts.new(versions, ARGV[1], ARGV[2]).print_filtered
+rescue
 end
-versions = VersionGet.new(ARGV[0]).collect
-VersionPuts.new(versions, ARGV[1], ARGV[2]).print_filtered
