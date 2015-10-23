@@ -8,7 +8,9 @@ gem_name, requirement1, requirement2 = parser.cli_arguments
 parser.set_name(gem_name)
 
 param1, version1 = Gem::Requirement:: parse(requirement1)
+if requirement2 != nil
 param2, version2 = Gem::Requirement:: parse(requirement2)
+end
 
 parser.connect
 
