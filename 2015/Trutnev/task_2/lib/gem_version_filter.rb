@@ -22,6 +22,6 @@ class VersionFilter
       end
     end
 
-    result.map { |version| version.to_s }
+    result.map(&:to_s)
   end
 end

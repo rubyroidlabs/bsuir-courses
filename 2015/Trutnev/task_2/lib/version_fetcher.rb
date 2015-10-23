@@ -13,8 +13,6 @@ class VersionFetcher
 
     response = JSON.parse(raw)
 
-    versions = response.map { |v| v['number'] }
+    response.map { |v| v['number'] }
   end
 end
-
-

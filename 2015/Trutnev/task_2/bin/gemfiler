@@ -17,4 +17,3 @@ versions = VersionFetcher.new(name).fetch
 filtered_versions = VersionFilter.new(versions).filter(condition)
 
 Visualizer.new(versions, filtered_versions).visualize
-
