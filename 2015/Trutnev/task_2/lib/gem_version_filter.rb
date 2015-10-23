@@ -1,5 +1,4 @@
 class VersionFilter
-
   def initialize(versions)
     @versions = versions.map { |version| Gem::Version.new(version) }
   end

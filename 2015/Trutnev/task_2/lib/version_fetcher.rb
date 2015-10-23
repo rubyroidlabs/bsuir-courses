@@ -1,24 +1,22 @@
 require 'json'
+
 class VersionFetcher
+  def initialize(name)
+    @name=name
+  end
 
-	def initialize(name)
-		@name=name
-	end
-
-def fetch
-     #binding.pry
-     json = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
-     result = []
-      begin
+  def fetch
+    json = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
+    result = []
+    begin
       JSON.parse(json).each do |entry|
         result << entry.fetch('number')
       end
     rescue JSON::ParserError => e
-    #puts e.mesage
       puts json
     end
     result
   end
 end
 
-  
+
