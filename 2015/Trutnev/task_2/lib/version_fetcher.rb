@@ -1,24 +1,19 @@
 require 'json'
+require 'rest_client'
 
 class VersionFetcher
+  attr_reader :name
+
   def initialize(name)
     @name = name
   end
 
   def fetch
-    json = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
+    raw = RestClient.get "https://rubygems.org/api/v1/versions/#{name}.json"
 
-    result = []
+    response = JSON.parse(raw)
 
-    begin
-      JSON.parse(json).each do |entry|
-        result << entry.fetch('number')
-      end
-    rescue JSON::ParserError => e
-      puts json
-    end
-
-    result
+    versions = response.map { |v| v['number'] }
   end
 end
 

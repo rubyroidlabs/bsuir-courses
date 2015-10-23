@@ -2,12 +2,13 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorize (0.7.7)
+    netrc (0.7.9)
+    rest_client (1.8.3)
+      netrc (~> 0.7.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   colorize
-
-BUNDLED WITH
-   1.10.6
+  rest_client
