@@ -23,22 +23,22 @@ opts = Slop.parse do |o|
   o.string '...'
 end
 p = opts.arguments
+s = p.size
 
-def check_parameters(p)
-  n = p.size
+def check_parameters(p, s)
   rname = /\w+/
   r = /(<|<=|>=|>|~>)(\d+.\d+.\d+|\d+.\d+)/
   b = lambda { |name, num| name.match(p[num]).to_s == p[num] }
-  if n == 3
+  if s == 3
     b.call(rname, 0) && b.call(r, 1) && b.call(r, 2)
-  elsif n == 2
+  elsif s == 2
     b.call(rname, 0) && b.call(r, 1)
   else
     false
   end
 end
 
-if check_parameters(p)
+if check_parameters(p, s)
   g = Gemfiler.new(*p)
 else
   usage('Wrong number parameters or wrong parameters itself')
