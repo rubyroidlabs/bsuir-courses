@@ -15,6 +15,7 @@ end
 
 pre_parser.parse!
 
+unless ARGV.empty?
 args_parser = ArgsParser.new(ARGV)
 gem_name = args_parser.gem_name
 gem_dependencies = args_parser.gem_dependencies
@@ -23,5 +24,6 @@ response = Client.new(gem_name)
 gem_versions = response.get_gem_list
 
 GemAnalysis.new(gem_versions,gem_dependencies).out
-
-
+else
+  puts "Try ./gemfiler --help -h"
+end
