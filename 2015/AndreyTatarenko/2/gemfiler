@@ -1,114 +1,19 @@
 #!/usr/bin/env ruby
 require 'rubygems'
-require 'colorize'
-require 'json'
-require 'httparty'
+require 'optparse'
+require './client.rb'
+require './args_parser.rb'
+require './gem_analysis.rb'
 
-class DependencyAnalysis
-  def initialize
-    @pattern  = /^(~>|>=|<)/
-    @hash = {}
-  end
+pre_parser = OptionParser.new do |opts|
+  opts.banner = 'Usage: ./gemfiler [gem_name] [dependencies]'
 
-  def parse(args)
-    args.each do |arg|
-      @parameter = ''
-      if !arg.match(@pattern).nil?
-        @parameter = arg.match(@pattern)[0]
-      else
-        abort('No correct parameter in arg'.red)
-      end
-      @version = arg[@parameter.length+1..arg.length-1]
-      abort('Incorrect version'.red) unless Gem::Version.correct?(@version)
-      @hash[@parameter] = @version
-    end
-
-    unless @hash.size == args.size
-      if @hash.has_key?('~>')
-        abort('Only one pessimistic constraint can be!'.red)
-      else
-        abort('Duplicates in dependencies'.red)
-      end
-    end
-    @hash
+  opts.on('-h') do
+    puts "Example: ./gemfiler colorize '~> 0.5.7'"
   end
 end
 
-class ArgsParser
-  def initialize(args)
-    @quantity_of_args = 2..3
-    if args.empty?
-      abort ('Enter the arguments'.red)
-    elsif !@quantity_of_args.include?(args.size)
-      abort('Incorrect quantity of arguments!'.red)
-    else
-      @gem_name = args.first
-      args = args[args.index(@gem_name)+1..args.size-1]
-      @gem_dependencies = DependencyAnalysis.new.parse(args)
-    end
-  end
-
-  def gem_name
-    @gem_name
-  end
-
-  def gem_dependencies
-    @gem_dependencies
-  end
-end
-
-class Client
-  def initialize(gem_name)
-    @uri = "https://rubygems.org/api/v1/versions/#{gem_name}.json"
-  end
-
-  def get_response
-    begin
-      HTTParty.get(@uri).to_s
-    rescue SocketError
-      abort('Check your internet connection!'.red)
-    rescue JSON::ParserError
-      abort('This is no such gem on rubygems.org!'.red)
-    end
-  end
-
-  def get_gem_list
-    get_response.scan(/(?<=\"number\"\=\>\").*?(?=\")/)
-  end
-end
-
-class GemAnalysis
-  def initialize(versions_list, dependencies)
-    @versions_list = versions_list
-    @quanity_of_params = dependencies.size
-    if  @quanity_of_params == 2
-      @low_ver = Gem::Version.new(dependencies['>='])
-      @hight_ver = Gem::Version.new(dependencies['<'])
-    else
-      dependencies.each_pair {|param, vers| @param_ver = param + vers}
-    end
-  end
-
-  def out
-    @versions_list.each do |ver|
-      case @quanity_of_params
-        when 1
-          if Gem::Dependency.new('', @param_ver).match?('', ver)
-            puts ver.red
-          else
-            puts ver
-          end
-        when 2
-          @vers = Gem::Version.new(ver)
-          if (@vers < @hight_ver)&&(@vers >= @low_ver)
-            puts ver.red
-          else
-            puts ver
-          end
-      end
-    end
-  end
-end
+pre_parser.parse!
 
 args_parser = ArgsParser.new(ARGV)
 gem_name = args_parser.gem_name
