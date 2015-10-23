@@ -1,22 +1,18 @@
-require_relative('parse.rb')
+require_relative('parser.rb')
 require_relative('filter.rb')
 require_relative('print.rb')
-require_relative('console_parser')
 
-# Осторожно! Может пойти кровь из глаз! Мне рально стыдно
-str = ConsoleParser.new
-str.parse_options
-name, limitation1, limitation2 = str.cli_arguments
+parser = Parser.new
+parser.parse_options
+gem_name, requirement1, requirement2 = parser.cli_arguments
+parser.set_name(gem_name)
 
-_version = limitation1.to_s.split.last
-param = limitation1.to_s.split.first
-_version2 = limitation2.to_s.split.last
-param2 = limitation2.to_s.split.first
-puts name, param, _version, param2, _version2
-parse = Parse.new(name)
-parse.connect
+param1, version1 = Gem::Requirement:: parse(requirement1)
+param2, version2 = Gem::Requirement:: parse(requirement2)
 
-filter = Filter.new(parse.get_versions)
+parser.connect
 
-Print.new(filter.filter_data(param, _version, param2, _version2),
-          parse.get_versions)
+filter = Filter.new(parser.get_versions)
+
+Print.new(filter.filter_data(param1, version1, param2, version2),
+          parser.get_versions)

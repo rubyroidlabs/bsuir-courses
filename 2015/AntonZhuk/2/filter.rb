@@ -1,4 +1,4 @@
-require_relative('parse.rb')
+require_relative('parser.rb')
 
 class Filter
   def initialize(data)
@@ -7,14 +7,13 @@ class Filter
     end
   end
 
-  def filter_data(param,
-                  version,
-                  param2,
-                  version2)
+  def filter_data(param, version,
+                  param2, version2)
+
     specified =  Gem::Version.new(version)
     specified2 = Gem::Version.new(version2)
 
-    if !@versions.include?(specified)
+    if !@versions.include?(specified) || !@versions.include?(specified2)
       puts 'Incorrect version!'
       exit
     end
@@ -41,6 +40,6 @@ class Filter
       puts 'Incorrect parameters'
       exit
     end
-    filtered_versions.map { |ver| ver.to_s }
+    filtered_versions.map(&:to_s)
   end
 end
