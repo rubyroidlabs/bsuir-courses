@@ -1,5 +1,5 @@
 class GemFilter
-  def self.filter(hash, option, version) # What about branch condition?
+  def self.filter(hash, option, version)
     hash.each do |i|
       temp = i['number']
       if option == '<' && i['number'] < version
@@ -12,7 +12,7 @@ class GemFilter
             temp[2] == version[2] && temp[0] == version[0]
         puts (i['number']).red
       else
-        puts i['number'] # I put it here, b'cause Hound is a Gangstar. Yep!
+        puts i['number']
       end
     end
   end
@@ -30,7 +30,7 @@ class GemFilter
             i['number'] > version1 && i['number'] < version2
         puts (i['number']).red
       else
-        puts i['number'] # The real gangstar Hound loves me not!
+        puts i['number']
       end
     end
   end
