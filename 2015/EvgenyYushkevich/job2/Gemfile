@@ -1,0 +1,11 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+# console args parser
+gem 'slop'
+
+# let it color!
+gem 'colored'
+
+# gems API
+gem 'gems'
