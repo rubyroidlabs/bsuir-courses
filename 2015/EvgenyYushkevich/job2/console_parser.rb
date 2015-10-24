@@ -13,7 +13,7 @@ class ConsoleParser
     @bound2 = opts.arguments[2]
 
     if @name.nil?
-      #raise Exception.new('Empty gem name')
+      # raise Exception.new('Empty gem name')
       puts 'Empty gem name'.green
       puts 'Use: ./gemfiler [gem_name] [bound_1] [bound_2]'.green
       puts 'Default gem versions are >= 1.0'.green
@@ -25,12 +25,15 @@ class ConsoleParser
       puts 'Empty required gem version. Using default: >= 0.0'.green
     end
   end
+
   def get_name
     @name
   end
+
   def get_bound1
     @bound1
   end
+  
   def get_bound2
     @bound2
   end

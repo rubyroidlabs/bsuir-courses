@@ -5,8 +5,9 @@ class Parser
   def get_versions(gem_name)
     begin
       arr1 = Gems.versions(gem_name)
-      if arr1 == 'This rubygem could not be found.' #server gives this response if gem doesn't exist
-        #raise Exception.new('Invalid gem name.')
+      # server gives this response if gem doesn't exist
+      if arr1 == 'This rubygem could not be found.'
+        # raise Exception.new('Invalid gem name.')
         puts 'Invalid gem name.'.blue
         exit
       end
@@ -20,6 +21,4 @@ class Parser
     end
     versions_array
   end
-
-
 end
