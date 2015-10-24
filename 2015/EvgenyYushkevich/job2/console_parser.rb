@@ -3,14 +3,18 @@ require 'slop'
 
 class ConsoleParser
   def initialize
-    opts = Slop.parse do |o|
+    @opts = Slop.parse do |o|
       o.string '...'
       o.string '...', default: '>= 0.0'
       o.string '...'
     end
-    @name = opts.arguments[0]
-    @bound1 = opts.arguments[1]
-    @bound2 = opts.arguments[2]
+    ending_init
+  end
+
+  def ending_init
+    @name = @opts.arguments[0]
+    @bound1 = @opts.arguments[1]
+    @bound2 = @opts.arguments[2]
 
     check_name
     check_bounds
