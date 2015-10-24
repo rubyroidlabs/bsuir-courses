@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'slop'
+require './parser.rb'
+require './console_parser.rb'
+require './version_picker.rb'
+
+class Gemfiler
+  cp = ConsoleParser.new
+  name = cp.get_name
+  bound1 = cp.get_bound1
+  bound2 = cp.get_bound2
+  parsed = Parser.new.get_versions(name)
+  picker = VersionPicker.new(name, parsed, bound1, bound2)
+  picker.print_all
+end
