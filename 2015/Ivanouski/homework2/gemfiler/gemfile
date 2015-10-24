@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'rubygems'
-gem 'gems'
-gem 'thor'
-gem 'colorize'
+require 'rubygems'
+require 'gems'
+require 'docopt'
+require 'colorize'

@@ -1,5 +1,5 @@
 class GemFilter
-  def self.filter(hash, option, version)
+  def self.filter(hash, option, version) # What about branch condition?
     hash.each do |i|
       temp = i['number']
       if option == '<' && i['number'] < version
@@ -17,7 +17,7 @@ class GemFilter
     end
   end
 
-  def self.filter_long(hash, option1, version1, option2, version2)
+  def self.filter2(hash, option1, version1, option2, version2)
     hash.each do |i|
       if option1 == '>=' && option2 == '<' &&
          i['number'] >= version1 && i['number'] < version2

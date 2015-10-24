@@ -1,39 +1,69 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.2.9
+# @version 0.3.0
 # @author S. Ivanouski
 
 require 'rubygems'
 require 'gems'
-require 'thor'
+require 'docopt'
 require 'colorize'
 require './lib/gemfilter.rb'
 
-class GemFiler < Thor
-  desc "search GEM_NAME 'option' version",
-  "Will search for gem versions. Optional: 'second_option' other_version"
-  long_desc(File.read('README.md'))
-  def search(gemname, option, version, option2 = nil, version2 = nil)
-    begin
-      hash = Gems.versions gemname
-    rescue SocketError => err
-      print "CONNECTION ERROR!\n#{err}\n"
-      exit 1
-    end
-    begin
-      if option2 && version2
-        GemFilter.filter_long(hash.reverse, option, version, option2, version2)
-      else
-        GemFilter.filter(hash.reverse, option, version)
-      end
-    rescue NoMethodError => err
-      print "ERROR: This rubygem could not be found.\n#{err}\n"
-      exit 1
+doc =<<EOF
+Usage:
+  #{__FILE__} <gemname> <'option version'>
+  #{__FILE__} <gemname> <'option version'> <'option2 version2'>
+
+  Option:
+  -h         Show this help
+EOF
+
+begin
+  arguments = Docopt::docopt(doc)
+rescue Docopt::Exit => e
+  puts e.message
+  exit
+end
+
+class GemFiler
+  def initialize(gemname, option, option2 = nil)
+    @gemname =  gemname
+    @option = option[0..1]
+    @version = option[3..8]
+    @option2 = option2
+  end
+
+  def new_serch
+    hash = Gems.versions @gemname
+    hash = hash.reverse
+  end
+
+  def printout(hash)
+    if @option2
+      GemFilter.filter2(hash, @option, @version, @option2[0], @option2[2..7])
+    else
+      GemFilter.filter(hash, @option, @version)
     end
   end
 end
 
-GemFiler.start
+gemfiler = GemFiler.new(arguments["<gemname>"],
+                        arguments["<'option version'>"],
+                        arguments["<'option2 version2'>"],)
+
+begin
+  get_hash = gemfiler.new_serch
+rescue SocketError => err
+  print "CONNECTION ERROR!\n#{err}\n"
+  exit 1
+end
+
+begin
+  gemfiler.printout(get_hash)
+rescue NoMethodError => err
+  print "ERROR: This rubygem could not be found.\n#{err}\n"
+  exit 1
+end
 
 exit 0
