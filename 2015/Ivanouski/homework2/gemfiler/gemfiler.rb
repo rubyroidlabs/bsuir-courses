@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.3.4
+# @version 0.3.5
 # @author S. Ivanouski
 
 require 'rubygems'
@@ -25,7 +25,11 @@ class GemFiler
 
   def printout(hash)
     if @option2
-      GemFilter.filter2(hash, @option, @version, @option2[/<?/], @option2[/\d.+/])
+      GemFilter.filter2(hash,
+                        @option,
+                        @version,
+                        @option2[/<?/],
+                        @option2[/\d.+/])
     else
       GemFilter.filter(hash, @option, @version)
     end
@@ -48,15 +52,14 @@ rescue Docopt::Exit => e
   exit
 end
 
-
 if arguments["<'option version'>"] =~ />=|~>|>|</ ||
-   ( arguments["<'option version'>"] =~ />=|~>|>|</ &&
-   arguments["<'option2 version2'>"] =~ /</ )
+   (arguments["<'option version'>"] =~ />=|~>|>|</ &&
+   arguments["<'option2 version2'>"] =~ /</)
   gemfiler = GemFiler.new(arguments['<gemname>'],
                           arguments["<'option version'>"],
                           arguments["<'option2 version2'>"],)
 else
-  Helper.input_error("Wrong option!")
+  Helper.input_error('Wrong option!')
 end
 
 begin
