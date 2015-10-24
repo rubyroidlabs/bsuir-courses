@@ -26,7 +26,7 @@ class GemFilter
             i['number'] > version1 && i['number'] < version2
         puts (i['number']).red
       else
-        puts i['number']
+        puts i['number'] # The real gangstar Hound loves me not!
       end
     end
   end
