@@ -1,4 +1,4 @@
-require './version.rb'
+require "./version.rb"
 
 class VersionPicker
   def initialize(name, versions, bound1, bound2)
@@ -10,8 +10,11 @@ class VersionPicker
   end
 
   def matches(vers)
-    Gem::Dependency.new('', @bound1).match?('', vers) &&
-        Gem::Dependency.new('', @bound2).match?('', vers) ? true : false
+    if Gem::Dependency.new('', @bound1).match?('', vers) && Gem::Dependency.new('', @bound2).match?('', vers)
+      true
+    else
+      false
+    end
   rescue Gem::Requirement::BadRequirementError
     # raise Exception.new('Incorrect versions format.')
     puts 'Incorrect versions format.'.blue
@@ -20,8 +23,11 @@ class VersionPicker
 
   def check_all
     @versions.each do |elem|
-      matches(elem) ? @vers_obj_arr.push(Version.new(elem, true)) 
-      : @vers_obj_arr.push(Version.new(elem, false))
+      if matches(elem)
+        @vers_obj_arr.push(Version.new(elem, true))
+      else
+        @vers_obj_arr.push(Version.new(elem, false))
+      end
     end
   end
 
