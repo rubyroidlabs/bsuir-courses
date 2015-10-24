@@ -11,7 +11,7 @@ class VersionPicker
 
   def matches(vers)
     if Gem::Dependency.new('', @bound1).match?('', vers) &&
-        Gem::Dependency.new('', @bound2).match?('', vers)
+       Gem::Dependency.new('', @bound2).match?('', vers)
       true
     else
       false
