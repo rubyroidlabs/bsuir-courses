@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.3.2
+# @version 0.3.3
 # @author S. Ivanouski
 
 require 'rubygems'
@@ -47,7 +47,7 @@ rescue Docopt::Exit => e
   exit
 end
 
-gemfiler = GemFiler.new(arguments["<gemname>"],
+gemfiler = GemFiler.new(arguments['<gemname>'],
                         arguments["<'option version'>"],
                         arguments["<'option2 version2'>"],)
 

@@ -12,7 +12,7 @@ class GemFilter
             temp[2] == version[2] && temp[0] == version[0]
         puts (i['number']).red
       else
-        puts i['number']
+        puts i['number'] # I put it here, b'cause Hound is a Gangstar. Yep!
       end
     end
   end
