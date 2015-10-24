@@ -17,7 +17,11 @@ class GemFilter
     end
   end
 
-  def self.filter2(hash, option1, version1, option2, version2)
+  def self.filter2(hash,
+                   option1,
+                   version1,
+                   option2,
+                   version2)
     hash.each do |i|
       if option1 == '>=' && option2 == '<' &&
          i['number'] >= version1 && i['number'] < version2
