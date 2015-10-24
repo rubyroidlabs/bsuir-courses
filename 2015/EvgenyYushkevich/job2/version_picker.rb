@@ -1,4 +1,4 @@
-require "./version.rb"
+require './version.rb'
 
 class VersionPicker
   def initialize(name, versions, bound1, bound2)

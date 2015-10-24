@@ -33,7 +33,7 @@ class ConsoleParser
   def get_bound1
     @bound1
   end
-  
+
   def get_bound2
     @bound2
   end
