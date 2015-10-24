@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.3.0
+# @version 0.3.2
 # @author S. Ivanouski
 
 require 'rubygems'
@@ -12,14 +12,14 @@ require './lib/gemfilter.rb'
 
 class GemFiler
   def initialize(gemname, option, option2 = nil)
-    @gemname =  gemname
+    @gemname = gemname
     @option = option[0..1]
     @version = option[3..8]
     @option2 = option2
   end
 
   def new_serch
-    hash = (Gems.versions @gemname).reverse
+    (Gems.versions @gemname).reverse
   end
 
   def printout(hash)
