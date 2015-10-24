@@ -10,7 +10,28 @@ require 'docopt'
 require 'colorize'
 require './lib/gemfilter.rb'
 
-doc =<<EOF
+class GemFiler
+  def initialize(gemname, option, option2 = nil)
+    @gemname =  gemname
+    @option = option[0..1]
+    @version = option[3..8]
+    @option2 = option2
+  end
+
+  def new_serch
+    hash = (Gems.versions @gemname).reverse
+  end
+
+  def printout(hash)
+    if @option2
+      GemFilter.filter2(hash, @option, @version, @option2[0], @option2[2..7])
+    else
+      GemFilter.filter(hash, @option, @version)
+    end
+  end
+end
+
+doc = <<EOF
 Usage:
   #{__FILE__} <gemname> <'option version'>
   #{__FILE__} <gemname> <'option version'> <'option2 version2'>
@@ -26,28 +47,6 @@ rescue Docopt::Exit => e
   exit
 end
 
-class GemFiler
-  def initialize(gemname, option, option2 = nil)
-    @gemname =  gemname
-    @option = option[0..1]
-    @version = option[3..8]
-    @option2 = option2
-  end
-
-  def new_serch
-    hash = Gems.versions @gemname
-    hash = hash.reverse
-  end
-
-  def printout(hash)
-    if @option2
-      GemFilter.filter2(hash, @option, @version, @option2[0], @option2[2..7])
-    else
-      GemFilter.filter(hash, @option, @version)
-    end
-  end
-end
-
 gemfiler = GemFiler.new(arguments["<gemname>"],
                         arguments["<'option version'>"],
                         arguments["<'option2 version2'>"],)
@@ -58,7 +57,6 @@ rescue SocketError => err
   print "CONNECTION ERROR!\n#{err}\n"
   exit 1
 end
-
 begin
   gemfiler.printout(get_hash)
 rescue NoMethodError => err
