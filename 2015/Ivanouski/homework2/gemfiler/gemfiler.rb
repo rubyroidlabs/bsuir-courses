@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # gemfiler
-# @version 0.3.3
+# @version 0.3.4
 # @author S. Ivanouski
 
 require 'rubygems'
@@ -9,12 +9,13 @@ require 'gems'
 require 'docopt'
 require 'colorize'
 require './lib/gemfilter.rb'
+require './lib/helper.rb'
 
 class GemFiler
   def initialize(gemname, option, option2 = nil)
     @gemname = gemname
-    @option = option[0..1]
-    @version = option[3..8]
+    @option = option[/>=?|~>?|>?|<?/]
+    @version = option[/\d.+/]
     @option2 = option2
   end
 
@@ -24,7 +25,7 @@ class GemFiler
 
   def printout(hash)
     if @option2
-      GemFilter.filter2(hash, @option, @version, @option2[0], @option2[2..7])
+      GemFilter.filter2(hash, @option, @version, @option2[/<?/], @option2[/\d.+/])
     else
       GemFilter.filter(hash, @option, @version)
     end
@@ -47,21 +48,26 @@ rescue Docopt::Exit => e
   exit
 end
 
-gemfiler = GemFiler.new(arguments['<gemname>'],
-                        arguments["<'option version'>"],
-                        arguments["<'option2 version2'>"],)
+
+if arguments["<'option version'>"] =~ />=|~>|>|</ ||
+   ( arguments["<'option version'>"] =~ />=|~>|>|</ &&
+   arguments["<'option2 version2'>"] =~ /</ )
+  gemfiler = GemFiler.new(arguments['<gemname>'],
+                          arguments["<'option version'>"],
+                          arguments["<'option2 version2'>"],)
+else
+  Helper.input_error("Wrong option!")
+end
 
 begin
   get_hash = gemfiler.new_serch
 rescue SocketError => err
-  print "CONNECTION ERROR!\n#{err}\n"
-  exit 1
+  Helper.connection_error(err)
 end
 begin
   gemfiler.printout(get_hash)
-rescue NoMethodError => err
-  print "ERROR: This rubygem could not be found.\n#{err}\n"
-  exit 1
+rescue NoMethodError, ArgumentError => err
+  Helper.input_error(err)
 end
 
 exit 0
