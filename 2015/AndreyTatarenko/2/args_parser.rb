@@ -7,7 +7,7 @@ class ArgsParser
     if @quantity_of_args.include?(args.size)
       @gem_name = args.first
       args.delete_at(0)
-      @gem_dependencies = DependencyAnalysis.new(args).parse
+      @gem_dependencies = DependencyAnalysis.new(ARGV).get_dependencies
     else
       abort('Incorrect quantity of arguments!'.red)
     end

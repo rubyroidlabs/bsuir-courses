@@ -5,24 +5,41 @@ require 'colorize'
 
 class DependencyAnalysis
   def initialize(args)
+
     @pattern = /^(~>|>=|<)/
-    @hash = {}
+    @parameters = []
+    @versions = []
+    @args_quantity = args.size
     args.each do |arg|
       begin
-        @parameter = arg[@pattern,0]
-        @version = arg[@parameter.length + 1..arg.length - 1]
-        @hash.store(@parameter,@version)
+        @parameters << arg[@pattern,0]
+        @versions << arg[@parameters.last.length + 1..arg.length - 1]
       rescue
         abort('No correct parameter in arg'.red)
       end
     end
+
   end
 
-  def parse
-      @hash.each_value do |version|
-        abort('Incorrect version'.red) unless Gem::Version.correct?(@version)
+  def get_dependencies
+    depends = parse_result
+    if depends.size == @args_quantity
+      depends
+    else
+      abort('Avoid duplicated dependence'.red)
+    end
+    depends
+  end
+
+  def parse_result
+    depends = {}
+    @args_quantity.times do |i|
+      if Gem::Version.correct?(@versions[i])
+        depends.store(@parameters[i],@versions[i])
+      else
+        abort('Incorrect version'.red)
       end
-    abort('Avoid duplicated dependence'.red) unless @hash.size == args.size
-    @hash
+    end
+    depends
   end
 end
