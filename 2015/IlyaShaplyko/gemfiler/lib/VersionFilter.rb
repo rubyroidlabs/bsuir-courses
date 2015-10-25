@@ -5,12 +5,10 @@ class VersionFilter
   end
 
   def filter
-    begin
-      @all_vers.map do |v|
+      @all_vers.select do |v|
         v if Gem::Dependency.new('', @gem_version).match?('', v)
       end
     rescue Gem::Requirement::BadRequirementError
       puts 'Error in writing gem version'.green
-    end
   end
 end
