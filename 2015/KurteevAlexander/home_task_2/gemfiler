@@ -1,0 +1,15 @@
+#!/usr/bin/ruby
+Dir['./lib/*.rb'].each { |file| require_relative file }
+begin
+if ARGV.size < 2
+  raise 'Incorrect number of arguments.'
+end
+parser = Parser.new
+parser.searcher
+print_result = Print_Result.new(parser.processed_list)
+print_result.printer
+rescue
+  puts "Error: #{$!.instpect}"
+end
+
+
