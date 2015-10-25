@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+load 'vers_colorize'
+load 'vers_filter'
+load 'versions'
+require 'optparse'
+
+class InputData
+  def data
+    OptionParser.new do |opts|
+      opts.banner = "Usage: ./gemfiler [options]"
+    end
+    ARGV
+  end
+end
+
+name = InputData.new.data[0]
+all_inp_data = InputData.new.data
+arr_of_vers = Versions.new(name).vers
+filtered_vers = VersFilter.new(all_inp_data, arr_of_vers).array_len
+VersColorize.new(arr_of_vers, filtered_vers).vers_colorize

@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'colorize'
+
+class VersColorize
+  def initialize(arr_of_vers, filtered_vers)
+    @arr_of_vers = arr_of_vers
+    @filtered_vers = filtered_vers
+  end
+
+  def vers_colorize
+    @arr_of_vers.each { |ver| puts @filtered_vers.include?(ver) ? ver.colorize(:red) : ver }
+  end
+end
