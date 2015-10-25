@@ -17,3 +17,4 @@ class Filter
     filtered.map(&:to_s)
   end
 end
+
