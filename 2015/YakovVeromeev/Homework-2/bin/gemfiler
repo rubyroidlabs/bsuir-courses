@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+Dir["../source/*.rb"].each do |file|
+	require_relative file
+	puts file
+end
+
+unless ARGV.size == 2
+  raise Argument_Number_Error
+end
+
+name, param = ARGV
+
+versions = Finder.search(name)
+filtered = Filter.filter(versions, param)
+Display.display(versions, filtered)
