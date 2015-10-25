@@ -1,7 +1,7 @@
 require 'mechanize'
 
 class VersionFetcher
-  def initialize(name)
+  def initialize name
     @name = name
   end
 
@@ -16,4 +16,3 @@ class VersionFetcher
     end
   end
 end
-
