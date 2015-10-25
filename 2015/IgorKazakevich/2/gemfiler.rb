@@ -1,20 +1,14 @@
-require_relative './Parameter.rb'
-require_relative './Connection.rb'
-require_relative './Filter.rb'
-require_relative './Version.rb'
-require_relative './Print.rb'
+require_relative './parameter_parser.rb'
+require_relative './version.rb'
+require_relative './print.rb'
 
-parameter = Parameter.new(ARGV)
-parameter_search = parameter.get_parameter
-version_search = parameter.get_gem_version
+parser = ParameterParser.new()
+parser.parse
 
-connection = Connection.new(parameter.get_address)
-
-filter = Filter.new(connection.get_data, version_search)
-filter.parse_data
-
-version = Version.new(filter.get_filter_data, version_search, parameter_search)
+version = Version.new(parser.instance_variable_get(:@filter_data),
+  parser.instance_variable_get(:@requirements))
 version.find
 
-print = Print.new(filter.get_filter_data, version.get_find_versions)
+print = Print.new(parser.instance_variable_get(:@filter_data),
+  version.instance_variable_get(:@find_versions))
 print.print_versions
