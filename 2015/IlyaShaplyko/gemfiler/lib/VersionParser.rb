@@ -9,7 +9,7 @@ class VersionParser
   def fetch
     versions = Gems.versions gem_name
     versions.map { |s| s['number'] }
-    rescue
+  rescue
       raise 'Input correct gem name'
   end
 end
