@@ -1,8 +1,6 @@
-require 'json'
 require 'mechanize'
 
 class VersionFetcher
-
   def initialize(name)
     @name = name
   end
@@ -12,8 +10,9 @@ class VersionFetcher
     agent = Mechanize.new
     begin
       page = agent.get(result)
-      versions = page.parser.css('.gem__version-wrap a').map(&:text)
-      rescue Mechanize::Error
+      page.parser.css('.gem__version-wrap a').map(&:text)
+    rescue Mechanize::Error
+      puts 'This rubygem could not be found.'
     end
-end
+  end
 end
