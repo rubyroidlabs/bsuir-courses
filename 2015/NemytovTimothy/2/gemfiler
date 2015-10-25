@@ -2,11 +2,17 @@
 require_relative 'chooser.rb'
 require_relative 'parser.rb'
 require_relative 'colorizer.rb'
+require 'optparse'
 
-if ARGV.size < 2
-  puts 'Incorrect number of arguments'
-else
-  versions = Parser.parse_str(ARGV[0]) #Exception not null
-  versions_matched = Chooser.match_versions(versions, ARGV.slice(1, ARGV.size - 1).to_a)
-  Colorizer.colorize_matched(versions_matched)
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: ./gemfiler [gem_name] [gem_versions]"
+  opts.on('-h') do
+    help_string = "I can't help you, sorry"
+    puts help_string
+    exit
+  end
 end
+parser.parse!
+versions = Parser.parse_str(ARGV[0])
+versions_matched = Chooser.match_versions(versions, ARGV.slice(1, ARGV.size - 1).to_a)
+Colorizer.colorize_matched(versions_matched)
