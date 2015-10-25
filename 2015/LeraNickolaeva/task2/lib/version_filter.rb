@@ -14,7 +14,7 @@ class VersionFilter
           result = result.map(&:to_s).(version)
         end
       else
-        if  version.send(operator.to_sym, needed_version)
+        if version.send(operator.to_sym, needed_version)
           result = result.map(&:to_s).(version)
         end
       end
