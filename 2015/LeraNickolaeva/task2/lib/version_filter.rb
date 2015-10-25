@@ -1,8 +1,9 @@
 class VersionFilter
-  def initialize(versions)
+  def initialize (versions)
     @versions = versions.map { |version| Gem::Version.new(version) }
   end
-  def filter(specifier)
+
+  def filter (specifier)
     operator, needed_version = specifier.split
     needed_version = Gem::Version.new(needed_version)
     result = []
@@ -17,7 +18,7 @@ class VersionFilter
           result = result.map  &:to_s.(version)
         end
       end
-      result
     end
+    result
   end
 end
