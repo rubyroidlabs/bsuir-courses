@@ -14,7 +14,6 @@ class Filter
         version.send(operator.to_sym, needed)
       end
     end
-    filtered.map { |version| version.to_s }
+    filtered.map(&:to_s)
   end
-  
 end
