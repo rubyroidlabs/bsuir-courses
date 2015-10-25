@@ -3,9 +3,9 @@ require 'slop'
 class ParsingCommandLine
   def initialize
     @opts = Slop.parse do |o|
-    o.string '...'
+      o.string '...'
     end
-  @conditions = Array.new
+    @conditions = Array.new
   end
 
   def opts_count
@@ -13,7 +13,7 @@ class ParsingCommandLine
   end
 
   def get_gem_name
-  	@opts.arguments[0]
+    @opts.arguments[0]
   end
 
   def parsing_command_line

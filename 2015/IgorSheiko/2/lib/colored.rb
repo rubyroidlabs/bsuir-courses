@@ -2,8 +2,8 @@ require 'colorize'
 
 class ColoredOutput
   def initialize(all_version, true_version)
-    @all_version = all_version.map { |version| version.to_s }
-    @true_version = true_version.map { |version| version.to_s }
+    @all_version = all_version.map(&:to_s)
+    @true_version = true_version.map(&:to_s)
   end
 
   def colored_output

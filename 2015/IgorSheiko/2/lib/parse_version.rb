@@ -16,6 +16,6 @@ class ParseVersion
         end
       end
     end
-  true_versions
+    true_versions
   end
 end
