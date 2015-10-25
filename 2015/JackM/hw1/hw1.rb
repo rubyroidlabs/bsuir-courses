@@ -13,10 +13,17 @@ arr = [[':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::'],
 j = 0
 k = 100
 r = 0
+<<<<<<< HEAD:2015/JackM/hw1/hw1.rb
 while k > 0 do
   k -= 3
   r += 3
   while j < 12 do
+=======
+while k > 0
+  k -= 3
+  r += 3
+  while j < 12
+>>>>>>> 33d22b3e52ba96135e70fdfa3c3252dc8fcb4a37:2015/JackM/hw1/f1.rb
     k.times do
       print ':'
     end
@@ -29,5 +36,10 @@ while k > 0 do
   end
   j = 0
   sleep 0.057
+<<<<<<< HEAD:2015/JackM/hw1/hw1.rb
   system "clear"
 end
+=======
+  system 'clear'
+end
+>>>>>>> 33d22b3e52ba96135e70fdfa3c3252dc8fcb4a37:2015/JackM/hw1/f1.rb
