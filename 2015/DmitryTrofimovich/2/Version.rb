@@ -2,9 +2,9 @@ require 'gems'
 
 class Version
   attr_reader :gem_versions, :user_versions
-  
   def initialize(name, params)
-    @name, @params = name, params
+    @name = name
+    @params = params
     @gem_versions = get_list_versions
     @user_versions = []
     get_versions
@@ -24,7 +24,7 @@ class Version
   def get_versions
     zn_param = []
     @params.each { |el| zn_param += el.split(' ') }
-    zn_param.each_slice(2) do |zn, required_version| 
+    zn_param.each_slice(2) do |zn, required_version|
       @user_versions << get_users_versions(zn, required_version)
     end
     @user_versions = @user_versions[1] & @user_versions[0] if @user_versions[1]
@@ -33,7 +33,7 @@ class Version
 
   def get_users_versions(zn, required_version)
     usr_vers = []
-    @gem_versions.each do |version| 
+    @gem_versions.each do |version|
       usr_vers << version if version.send(zn.to_sym, required_version)
     end
     usr_vers
