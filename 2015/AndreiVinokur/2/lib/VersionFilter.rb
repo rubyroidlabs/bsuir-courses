@@ -5,45 +5,31 @@ class VersionFilter
     @versions = versions.map { |version| Gem::Version.new(version) }
   end
 
-  def filter(interval)
+  def getVersion(interval)
     operator, needed_version = interval.split
     needed_version = Gem::Version.new(needed_version)
     results = []
     case operator
-    when '='
-      results = needed_version
-    when '!='
-      results -= needed_version
-    when '>'
-      results = @versions.select do |version|
-        needed_version < version
-      end
-      results = results.map &:to_s
-    when '<'
-      results = @versions.select do |version|
-        needed_version > version
-      end
-      results = results.map &:to_s
-    when '>='
-      results = @versions.select do |version|
-        needed_version <= version
-      end
-      results = results.map &:to_s
-    when '<='
-      results = @versions.select do |version|
-        needed_version >= version
-      end
-      results = results.map &:to_s
     when '~>'
-      results = @versions.select do |version|
-        needed_version <= version && version < needed_version.bump
+      result = @versions.select do |version|
+        version >= needed_version && version < needed_version.bump
       end
-      results = results.map &:to_s
+      result = result.map { |version| version.to_s }
     else
-      puts 'Incorrect comparison operator'
-      puts 'Template of comparison operator: =; !=; >; <; >=; <=; ~>;'
-      exit
+      result = @versions.select do |version|
+        version.send(operator.to_sym, needed_version)
+      end
+      result = result.map { |version| version.to_s }
     end
-    results
+  end
+
+  def filter(interval1, interval2)
+    needed_version1 = VersionFilter.new(@versions).getVersion(interval1)
+    unless interval2 == nil
+      needed_version2 = VersionFilter.new(@versions).getVersion(interval2)
+      result = needed_version1 & needed_version2
+    else
+      result = needed_version1
+    end
   end
 end
