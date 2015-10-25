@@ -13,7 +13,7 @@ class Parser
     @gem_list_size = @gem_list.size - 1
     @processed_list = []
   end
-  
+
   def color_check(color, index)
     if @color[index] == nil
       @color[index] = color
