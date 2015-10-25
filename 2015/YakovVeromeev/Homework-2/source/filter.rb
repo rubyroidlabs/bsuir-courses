@@ -6,7 +6,7 @@ class Filter
     filtered = []
     if operator == '~>'
       filtered = versions.select do |version|
-        version >= needed && version < needed.bump
+      version >= needed && version < needed.bump
       end
     end
     else
