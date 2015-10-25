@@ -1,10 +1,10 @@
 require 'colorize'
 
-class Print_Result
+class PrintResult
   def initialize(processed_list)
     @processed_list = processed_list
   end
-  
+
   def printer
     if @processed_list.size == 0
       raise 'Incorrect interval.'
