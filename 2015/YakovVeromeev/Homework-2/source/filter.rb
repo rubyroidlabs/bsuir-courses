@@ -1,5 +1,4 @@
 class Filter
-
   def self.filter(versions, parametr)
     versions = versions.map { |version| Gem::Version.new(version) }
     operator, needed = parametr.split
@@ -8,6 +7,7 @@ class Filter
     if operator == '~>'
       filtered = versions.select do |version|
         version >= needed && version < needed.bump
+      end
     end
     else
       filtered = versions.select do |version|
