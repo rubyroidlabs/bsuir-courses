@@ -6,8 +6,8 @@ class VersionFilter
 
   def filter
     @all_vers.select do |v|
-        v if Gem::Dependency.new('', @gem_version).match?('', v)
-      end
+      v if Gem::Dependency.new('', @gem_version).match?('', v)
+    end
     rescue Gem::Requirement::BadRequirementError
       puts 'Error in writing gem version'.green
   end
