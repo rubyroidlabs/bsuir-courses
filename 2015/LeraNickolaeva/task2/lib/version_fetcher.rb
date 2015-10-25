@@ -16,3 +16,4 @@ class VersionFetcher
     end
   end
 end
+
