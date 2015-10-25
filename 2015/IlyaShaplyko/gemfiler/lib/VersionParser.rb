@@ -10,6 +10,6 @@ class VersionParser
     versions = Gems.versions gem_name
     versions.map { |s| s['number'] }
   rescue
-      raise 'Input correct gem name'
+    raise 'Input correct gem name'
   end
 end
