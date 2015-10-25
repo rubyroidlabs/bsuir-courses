@@ -1,6 +1,13 @@
+require 'optparse'
 Dir['./lib/*.rb'].each { |file| require(file) }
 
 raise ArgumentError, "Check number of your arguments!".red if !(ARGV.size > 0 && ARGV.size <4)
+
+gemfiler = OptionParser.new do|opts|
+  opts.banner = "Usage: ./gemfiler gem_name 'gem_versions'"
+end
+gemfiler.parse
+
 
 gem_name = ARGV[0]
 gem_version1 = ARGV[1]
