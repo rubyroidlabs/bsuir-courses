@@ -13,7 +13,7 @@ class Filter
     specified =  Gem::Version.new(version)
     specified2 = Gem::Version.new(version2)
 
-    if version2 != nil
+    if !version2.nil?
       if !@versions.include?(specified) || !@versions.include?(specified2)
         puts 'Incorrect version!'
         exit
