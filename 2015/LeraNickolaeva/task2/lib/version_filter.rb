@@ -11,11 +11,11 @@ class VersionFilter
       case operator
       when '~>'
         if version >= needed_version && version < needed_version.bump
-          result = result.map  &:to_s.(version)
+          result = result.map(&:to_s).(version)
         end
       else
         if  version.send(operator.to_sym, needed_version)
-          result = result.map  &:to_s.(version)
+          result = result.map(&:to_s).(version)
         end
       end
     end
