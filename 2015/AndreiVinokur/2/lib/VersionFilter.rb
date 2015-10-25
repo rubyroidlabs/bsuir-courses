@@ -8,7 +8,6 @@ class VersionFilter
   def get_version(interval)
     operator, needed_version = interval.split
     needed_version = Gem::Version.new(needed_version)
-    result = []
     case operator
     when '~>'
       result = @versions.select do |version|
@@ -24,13 +23,12 @@ class VersionFilter
   end
 
   def filter(interval1, interval2)
-    results = []
     needed_version1 = VersionFilter.new(@versions).get_version(interval1)
-    if interval2 != nil
+    if !interval2.nil?
       needed_version2 = VersionFilter.new(@versions).get_version(interval2)
-      results = needed_version1 & needed_version2
+      needed_version1 & needed_version2
     else
-      results = needed_version1
+      needed_version1
     end
   end
 end
