@@ -1,7 +1,6 @@
 require 'gems'
 
 class AddingVersions
-
   def initialize(name)
     @name = name
   end
