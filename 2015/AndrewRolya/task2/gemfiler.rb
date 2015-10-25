@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
-Dir['./lib/*.rb'].each { |f| require_relative(f) }
+Dir[File.expand_path('./../lib/*.rb', __FILE__)].each { |f| require(f) }
 
-if ARGV.count < 2
-  raise ArgumentError.new('Incorrect number of arguments')
+class GemFiler
+  pcl = ParsingCommandLine.new
+  if pcl.get_count_arguments < 2
+    raise ArgumentError.new('Incorrect number of arguments')
+  end
+  hash_with_conditions = pcl.get_conditions
+  versions_gems = ParsingPage.new(pcl.get_name).parsing_page
+  SearchAndColoring.new(versions_gems,hash_with_conditions).search_and_coloring
 end
-condition_with_value = Hash.new { '' }
-set_versions = ParsingPage.new(ARGV[0]).parsing_page
-condition_with_value = ParsingCommandLine.new(ARGV, condition_with_value).parsing_command_line
-SearchAndColoring.new(set_versions, condition_with_value).search_and_coloring

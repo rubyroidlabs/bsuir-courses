@@ -5,7 +5,12 @@ class ParsingPage
   end
 
   def parsing_page
-    source_text = open("https://rubygems.org/gems/#{@p_name_gem}/versions").read
+    begin
+      source_text = open("https://rubygems.org/gems/#{@p_name_gem}/versions").read
+    rescue OpenURI::HTTPError => e
+       puts "Invalid name of gem (Error)"
+       exit
+    end
     selection = source_text.scan(/versions\/\w.+"/)
     selection.size.times do |i|
       selection[i] = Gem::Version.new(selection[i][/\d[\d.\w]*/])
