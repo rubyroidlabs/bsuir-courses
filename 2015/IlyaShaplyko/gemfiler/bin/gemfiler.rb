@@ -4,7 +4,7 @@ require 'optparse'
 Dir['../lib/*.rb'].each { |file| require_relative(file) }
 
 parser = OptionParser.new do |opts|
-  opts.banner = "Usage: ./gemfiler.rb [gem_name] [gem_version]"
+  opts.banner = 'Usage: ./gemfiler.rb [gem_name] [gem_version]'
 end
 parser.parse!
 gem_name, gem_version = ARGV
