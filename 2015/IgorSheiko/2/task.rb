@@ -1,14 +1,12 @@
-Dir['./lib/*.rb'].each { |f| require_relative(f) }
+Dir[File.expand_path('./../lib/*.rb', __FILE__)].each { |f| require(f) }
+require 'optparse'
 
-if ARGV.count < 2
+a = ParsingCommandLine.new
+if a.opts_count < 2
   raise ArgumentError.new('Invalid count argument')
 end
-gem_version = []
-ARGV.each do |argument|
-  gem_version << argument
-end
-gem_version.shift
-gem_name = ARGV[0]
+gem_version = a.parsing_command_line
+gem_name = a.get_gem_name
 versions = GetAllVersions.new(gem_name).get_all_versions
 versions = versions.map { |version| Gem::Version.new(version) }
 true_versions = versions

@@ -3,6 +3,7 @@ GEM
   specs:
     colored (0.7.7)
     mechanize (2.7.3)
+    slop (4.2.0)
 
 PLATFORMS
   ruby
@@ -10,3 +11,4 @@ PLATFORMS
 DEPENDENCIES
   colored
   mechanize
+  slop
