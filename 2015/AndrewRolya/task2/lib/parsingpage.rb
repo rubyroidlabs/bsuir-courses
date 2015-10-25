@@ -1,15 +1,15 @@
 require 'open-uri/cached'
 class ParsingPage
   def initialize(name_gem)
-    @p_name_gem = name_gem
+    @name_gem = name_gem
   end
 
   def parsing_page
     begin
-      source_text = open("https://rubygems.org/gems/#{@p_name_gem}/versions").read
-    rescue OpenURI::HTTPError => e
-       puts "Invalid name of gem (Error)"
-       exit
+      source_text = open("https://rubygems.org/gems/#{@name_gem}/versions").read
+    rescue OpenURI::HTTPError 
+      puts 'Invalid name of gem (Error)'
+      exit
     end
     selection = source_text.scan(/versions\/\w.+"/)
     selection.size.times do |i|

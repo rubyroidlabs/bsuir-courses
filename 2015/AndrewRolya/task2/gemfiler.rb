@@ -8,5 +8,5 @@ class GemFiler
   end
   hash_with_conditions = pcl.get_conditions
   versions_gems = ParsingPage.new(pcl.get_name).parsing_page
-  SearchAndColoring.new(versions_gems,hash_with_conditions).search_and_coloring
+  SearchAndColoring.new(versions_gems, hash_with_conditions).search_and_coloring
 end
