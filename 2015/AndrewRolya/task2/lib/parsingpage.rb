@@ -7,7 +7,7 @@ class ParsingPage
   def parsing_page
     begin
       source_text = open("https://rubygems.org/gems/#{@name_gem}/versions").read
-    rescue OpenURI::HTTPError 
+    rescue OpenURI::HTTPError
       puts 'Invalid name of gem (Error)'
       exit
     end
