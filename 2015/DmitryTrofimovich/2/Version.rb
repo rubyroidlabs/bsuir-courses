@@ -1,58 +1,41 @@
 require 'gems'
-require_relative('HandleInput.rb')
+
 class Version
-  def initialize
-    @input = HandleInput.new
-    @vers = Gems.versions(@input.name)
-    @vers_usr = []
-    get_param
+  attr_reader :gem_versions, :user_versions
+  
+  def initialize(name, params)
+    @name, @params = name, params
+    @gem_versions = get_list_versions
+    @user_versions = []
+    get_versions
   end
 
-  def get_param
+  def get_list_versions
+    g_ver = []
+    if Gems.info(@name).class == String
+      raise ArgumentError.new(Gems.info(@name))
+    end
+    Gems.versions(@name).each do |ver|
+      g_ver << ver['number'].scan(/[0-9.]+/)
+    end
+    g_ver.flatten
+  end
+
+  def get_versions
     zn_param = []
-    @input.param.each { |el| zn_param += el.split(' ') }
-    zn_param.each_slice(2) { |zn, param| @vers_usr << de_coder(zn, param) }
-    @vers_usr = @vers_usr[1] & @vers_usr[0] if @vers_usr.size > 1
-    @vers_usr.flatten!
-  end
-
-  def de_coder(zn, param)
-    k = []
-    if zn == '>' || zn == '>='
-      k = more(zn, param)
-    else
-      k = less(zn, param)
+    @params.each { |el| zn_param += el.split(' ') }
+    zn_param.each_slice(2) do |zn, required_version| 
+      @user_versions << get_users_versions(zn, required_version)
     end
-    k
+    @user_versions = @user_versions[1] & @user_versions[0] if @user_versions[1]
+    @user_versions.flatten!
   end
 
-  def more(zn, param)
-    k = []
-    case zn
-    when '>'
-      @vers.each { |ver| k << ver['number'] if ver['number'] > param }
-    when '>='
-      @vers.each { |ver| k << ver['number'] if ver['number'] >= param }
+  def get_users_versions(zn, required_version)
+    usr_vers = []
+    @gem_versions.each do |version| 
+      usr_vers << version if version.send(zn.to_sym, required_version)
     end
-    k
-  end
-
-  def less(zn, param)
-    k = []
-    case zn
-    when '<='
-      @vers.each { |ver| k << ver['number'] if ver['number'] <= param }
-    when '<'
-      @vers.each { |ver| k << ver['number'] if ver['number'] < param }
-    end
-    k
-  end
-
-  def vers
-    @vers
-  end
-
-  def vers_usr
-    @vers_usr
+    usr_vers
   end
 end

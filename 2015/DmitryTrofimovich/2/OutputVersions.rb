@@ -1,18 +1,17 @@
 require 'colored'
-require_relative('Version.rb')
 
 class OutputVersions
-  def initialize
-    @ver = Version.new
+  def initialize(gem_versions, user_versions)
+    @gem_versions, @user_versions = gem_versions, user_versions
     output_to_terminal
   end
 
   def output_to_terminal
-    @ver.vers.each do |v|
-      if @ver.vers_usr.include?(v['number'])
-        p v['number'].red
-      else
-        p v['number']
+    @gem_versions.each do |version|
+      if @user_versions.include?(version)
+        p version.red
+      else 
+        p version
       end
     end
   end
