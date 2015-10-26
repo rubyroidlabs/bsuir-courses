@@ -7,9 +7,12 @@ class Finder
     json = `curl https://rubygems.org/api/v1/versions/#{name}.json`
     # but we are interested only in numbers of them
     JSON::parse(json).each { |current| versions << current.fetch('number') }
-    # if gem name is wrong we do not get any hashes and array of versions will be empty
+    # if gem name is wrong we do not get any hashes
+    #and array of versions will be empty
     raise Wrong_Gem_name if versions.empty?
-    # it's needed because latest versions are placed at the top of array, though it-s not very beautiful to watch
+    # reverse is needed because
+    # latest versions are placed at the top of array
+    # and it-s not very beautiful to watch
     versions.reverse
   end
 end
