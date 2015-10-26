@@ -5,18 +5,10 @@ class VersionGem
     filtered_versions = []
     not_matched_versions = []
     gem_versions.each do |gem|
-      if Gem::Dependency.new('', command[0]).match?('', gem.inner_html)
-        if command.length == 2
-          if Gem::Dependency.new('', command[1]).match?('', gem.inner_html)
-            filtered_versions.push(gem.inner_html)
-          else
-            not_matched_versions.push(gem.inner_html)
-          end
-        else
-          filtered_versions.push(gem.inner_html)
-        end
+      if Gem::Dependency.new('', command).match?('', gem)
+        filtered_versions.push(gem)
       else
-        not_matched_versions.push(gem.inner_html)
+        not_matched_versions.push(gem)
       end
     end
     return filtered_versions, not_matched_versions
