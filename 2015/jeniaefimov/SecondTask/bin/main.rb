@@ -2,7 +2,7 @@
 
 require 'colorize'
 require 'thor'
-Dir['../sourcelib/*.rb'].each { |f| require_relative(f) }
+Dir['../sourcelib/*.rb'].each { |f| require_relative(f) } #include all libraries
 
 class FindGem
   attr_accessor :name, :key
