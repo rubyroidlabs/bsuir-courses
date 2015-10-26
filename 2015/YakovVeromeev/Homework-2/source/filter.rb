@@ -9,7 +9,6 @@ class Filter
       filtered = versions.select do |version|
       version >= needed && version < needed.bump # ~> 1.2 means > 1.2 and <2.0
       end
-    end
     else
       filtered = versions.select do |version|
         version.send(operator.to_sym, needed) # tha same as version >= needed if operator == '>='
