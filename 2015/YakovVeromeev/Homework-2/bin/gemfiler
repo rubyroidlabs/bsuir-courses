@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+Dir["../source/*.rb"].each do |file| # incluse all source code files form ../source/
+  require_relative file
+end
+
+unless ARGV.size == 2
+  raise Argument_Number_Error # check if application accepted wrong number of arguments
+end
+
+name, param = ARGV
+
+versions = Finder.search(name) # versions of the gem
+filtered = Filter.filter(versions, param) # versions that fetch proviso
+Display.display(versions, filtered) # displaing the versions on the screen
