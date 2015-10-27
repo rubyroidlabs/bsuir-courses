@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+Dir['./*.rb'].each { |file| require file }
+require 'thor'
+
+# Main class Gemfiler
+class Gemfiler < Thor
+  desc 'gf gem_name opt1 opt2 ...', ''
+  no_commands { attr_accessor :gem_name, :option1, :option2 }
+
+  def gf(gem_name, option1, option2 = nil)
+    @gem_name = gem_name
+    @option1 = option1
+    @option2 = option2
+    make
+  rescue StandardError
+    puts 'Please, check your parameters !'
+  end
+
+  def make
+    r = Reciever.new
+    r.recieve(@gem_name, @option1, @option2)
+    lookuper = LookUper.new(r.gem_name, r.option1, r.option2)
+    lookuper.lookup
+    printer = Printer.new(lookuper.gem_name, lookuper.option1, lookuper.option2)
+    printer.print_result(lookuper.cache_array)
+  end
+end
+
+Gemfiler.start(ARGV)
