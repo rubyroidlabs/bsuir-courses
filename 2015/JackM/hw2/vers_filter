@@ -53,11 +53,14 @@ class VersFilter
     filtered_vers = Array.new
     second_num = (@vers_array[index].split'.')[1]
     while arr == second_num do
+      break if @vers_array[index] == nil
       second_num = (@vers_array[index].split'.')[1]
       filtered_vers << @vers_array[index]
       index += 1
     end
-    filtered_vers.delete(filtered_vers.last)
+    if @vers_array != nil do
+      filtered_vers.delete(filtered_vers.last)
+    end
     filtered_vers
   end
 
