@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+class VersFilter
+  def initialize(inp_array, vers_array)
+    @inp_array = inp_array
+    @vers_array = vers_array
+  end
+
+  def array_len
+    if @inp_array.length < 3
+      math_elem = @inp_array[1].split[0]
+      case
+        when math_elem == '>='
+        then func1
+        when math_elem == '~>'
+        then func2
+        else func
+      end
+    else func3
+    end
+  end
+
+  def func # input data => '3.2'
+    index = @vers_array.index(@inp_array[1])
+    if index == nil
+      puts 'Error: Check version number.'
+      exit
+    end
+    @vers_array[index]
+  end
+
+  def func1 # input data => '>= 3.2'
+    index = @vers_array.index(@inp_array[1].split[1])
+    if index == nil
+      puts 'Error: Check version number.'
+      exit
+    end
+    filtered_vers = Array.new
+    while index < @vers_array.length do
+      filtered_vers << @vers_array[index]
+      index += 1
+    end
+    filtered_vers
+  end
+
+  def func2 # input data => '~> 2.2.2'
+    arr = (@inp_array[1].split[1].split'.')[1]
+    index = @vers_array.index("#{@inp_array[1].split[1]}")
+    if index == nil
+      puts 'Error: Check version number.'
+      exit
+    end
+    filtered_vers = Array.new
+    second_num = (@vers_array[index].split'.')[1]
+    while arr == second_num do
+      second_num = (@vers_array[index].split'.')[1]
+      filtered_vers << @vers_array[index]
+      index += 1
+    end
+    filtered_vers.delete(filtered_vers.last)
+    filtered_vers
+  end
+
+  def func3 # input data => '>= 3.5' '< 4.0'
+    index1 = @vers_array.index(@inp_array[1].split[1])
+    index2 = @vers_array.index(@inp_array[2].split[1])
+    if index1 == nil
+      puts 'Error: Check first version number.'
+      exit
+    end
+    if index2 == nil
+      func1
+      puts 'Incorrect second version number.'
+    end
+    filtered_vers = Array.new
+    while index1 < index2 do
+      filtered_vers << @vers_array[index1]
+      index1 += 1
+    end
+    filtered_vers
+  end
+end
