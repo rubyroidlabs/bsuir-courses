@@ -8,7 +8,7 @@ class RequestGemVersion
   end
 
   def find
-      result = `curl https://rubygems.org/api/v1/versions/#{name}.json`
+  result = `curl https://rubygems.org/api/v1/versions/#{name}.json`
       if result
         result = JSON.parse(result)
         result.map { |s| s['number'] }
