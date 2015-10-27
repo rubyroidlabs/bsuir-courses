@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+Dir['./../lib/*.rb'].each{ |f| require(f) }
+
+data = Check.new(ARGV)
+
+begin
+  versions = AddingVersions.new(data.name).add
+  rescue StandardError
+  puts 'Check you internet connection'
+  exit
+end
+
+filtered_versions = VersionFilter.new(versions).filter(data.interval1, data.interval2)
+Visualiser.new(versions).visualise(filtered_versions)
