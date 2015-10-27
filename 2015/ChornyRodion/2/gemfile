@@ -1,0 +1,4 @@
+source "https://rubygems.org" do
+  gem "open-uri"
+  gem "colorize"
+end
