@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+Dir[File.expand_path('../../lib/*.rb', __FILE__)].each { |f| require(f) }
+require 'optparse'
+
+class Gemfiler
+  def initialize
+    @fetcher = Fetcher.new
+    @filter = Filter.new
+    @printer = Printer.new
+  end
+
+  def show_filtered_versions(argv)
+    begin
+      if argv.length < 2 || argv.length > 3
+        raise ArgumentError
+        exit
+      else
+        versions = @fetcher.get_array_of_versions(argv[0])
+        conditions = argv[1..argv.length - 1]
+        hash = @filter.get_hash_of_filtered_versions(versions, conditions)
+        @printer.print_versions(hash)
+      end
+    rescue ArgumentError
+      puts 'Wrong number of arguments.'
+      exit
+    end
+  end
+end
+
+parser = OptionParser.new do |opts|
+  opts.banner = 'Usage: ./gemfiler [name_of_gem] [conditions_of_filtration]'
+end
+arguments = parser.parse!
+Gemfiler.new.show_filtered_versions(arguments)
