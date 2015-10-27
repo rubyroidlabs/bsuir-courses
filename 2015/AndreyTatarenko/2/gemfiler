@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'optparse'
+require './client.rb'
+require './args_parser.rb'
+require './gem_analysis.rb'
+
+pre_parser = OptionParser.new do |opts|
+  opts.banner = 'Usage: ./gemfiler [gem_name] [dependencies]'
+
+  opts.on('-h') do
+    puts "Example: ./gemfiler colorize '~> 0.5.7'"
+  end
+end
+
+pre_parser.parse!
+
+unless ARGV.empty?
+args_parser = ArgsParser.new(ARGV)
+gem_name = args_parser.gem_name
+gem_dependencies = args_parser.gem_dependencies
+
+response = Client.new(gem_name)
+gem_versions = response.get_gem_list
+
+GemAnalysis.new(gem_versions,gem_dependencies).out
+else
+  puts "Try ./gemfiler --help -h"
+end
