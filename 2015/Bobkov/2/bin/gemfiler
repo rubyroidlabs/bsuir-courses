@@ -1,0 +1,12 @@
+require 'optparse'
+
+Dir[File.expand_path('../../lib/*.rb', __FILE__)].each{ |f| require(f) }
+
+p = Parser.new(ARGV)
+versions = Fetcher.new(p.name).fetch
+if (p.bl == true)
+  filtered_versions = Filter.new(versions).filter2(p.specifier,p.specifier2)
+else
+  filtered_versions = Filter.new(versions).filter(p.specifier)
+end
+Visualiser.new(versions).visualise(filtered_versions)
