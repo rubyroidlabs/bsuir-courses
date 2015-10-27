@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+Dir['./lib/*.rb'].each { |f| require(f) }
+
+if ARGV.size < 2
+  raise ArgumentError
+end
+
+name, condition = ARGV
+
+unless (name =~ /\w+/) && (condition =~ /[~><][=>]\s*(\d+\.)*\d+/)
+  raise ArgumentError
+end
+
+versions = VersionFetcher.new(name).fetch
+
+filtered_versions = VersionFilter.new(versions).filter(condition)
+
+Visualizer.new(versions, filtered_versions).visualize
