@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+Dir['./*.rb'].each { |file| require file }
+class Gemfiler
+  attr :gem_name, :option1, :option2
+
+  def initialize(name, option1, option2=nil)
+    @name = name
+    @option1 = option1
+    @option2 = option2
+  end
+
+  def start
+    open('https://rubygems.org/')
+    seeker = Seeker.new(@name)
+    seeker.seek
+    printer = Printer.new(seeker.arr, @name, @option1, @option2)
+    printer.print_result
+    rescue
+      p 'No connection to rubygems.org'
+  end
+end
+
+case ARGV.length
+when 3
+  Gemfiler.new(ARGV[0], ARGV[1], ARGV[2]).start
+when 2
+  Gemfiler.new(ARGV[0], ARGV[1]).start
+else p 'Wrong parametrs!'
+end
+
+
