@@ -1,22 +1,18 @@
 #!/usr/bin/env ruby
 
 require 'colorize'
-require 'thor'
+require 'optparse'
 Dir['../sourcelib/*.rb'].each { |f| require_relative(f) }
 
-class FindGem
-  attr_accessor :name, :key
-
-  def initialize(name, key)
-    @name = name
-    @key = key
-  end
+parser = OptionParser.new do |opts|
+  opts.banner = 'Usage: ./check.rb[name][key]'
 end
+parser.parse!
+name, key = ARGV
 
-firstgem = FindGem.new(ARGV[0], ARGV[1])
-versions = FindVersion.new(firstgem.name).find
+versions = FindVersion.new(name).find
 if versions
-  filter_versions = FiltreVersion.new(versions, firstgem.key.dup).filter
+  filter_versions = FiltreVersion.new(versions, key.dup).filter
   if filter_versions
     PrintVersion.new(versions, filter_versions).write
   end
