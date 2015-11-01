@@ -6,8 +6,13 @@ class Judge
   def estimate(comment)
     positive = negative = 0
 
-    @keywords['positive'].each { |word| positive += Unicode::downcase(comment).scan(word).count}
-    @keywords['negative'].each { |word| negative += Unicode::downcase(comment).scan(word).count}
+    @keywords['positive'].each do |word|
+      positive += Unicode::downcase(comment).scan(word).count
+    end
+
+    @keywords['negative'].each do
+      |word| negative += Unicode::downcase(comment).scan(word).count
+    end
 
     positive <=> negative
   end

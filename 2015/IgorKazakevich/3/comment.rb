@@ -17,8 +17,7 @@ class Comment
     agent.get(HELPER_ADDRESS).links.each do |link|
       return link.click if link.text.include? @teacher.split('.').first
     end
-
-    return false
+    false
   end
 
   def find
@@ -34,7 +33,7 @@ class Comment
       search('.content//p').each do |comment|
         text_comments.push(comment.text)
       end
-      
+
     text_comments
   end
 

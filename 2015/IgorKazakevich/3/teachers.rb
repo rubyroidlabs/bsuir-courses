@@ -15,9 +15,9 @@ class Teachers
 
   def connect_to_bsuir
     agent = Mechanize.new
-    search_form = agent.get(BSUIR_ADDRESS).form_with(:name => BSUIR_FORM)
+    search_form = agent.get(BSUIR_ADDRESS).form_with(name: BSUIR_FORM)
 
-    search_form.field_with(:name => BSUIR_FIELD).value = @group
+    search_form.field_with(name: BSUIR_FIELD).value = @group
 
     agent.submit(search_form, search_form.buttons.first)
   end
