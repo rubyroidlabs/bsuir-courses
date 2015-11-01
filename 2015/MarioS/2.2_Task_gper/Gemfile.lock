@@ -1,0 +1,12 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorize (0.7.5)
+    rubyzip (1.1.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorize
+  rubyzip (= 1.1.6)
