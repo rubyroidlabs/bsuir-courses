@@ -10,7 +10,7 @@ class BsuirHelper
     @list = @page.links_with(href: LECTOR_SEARCH_FORM_BH)
     @list.each_with_index do |lect, ind|
       @fio = lect.to_s.split
-      @name = @fio[0] + "\s"+ @fio[1][0] + ".\s" + @fio[2][0] + '.'
+      @name = @fio[0] + "\s" + @fio[1][0] + ".\s" + @fio[2][0] + '.'
       @link = BSUIR_HELPER_LINK + lect.uri.to_s
       @lector_list_bh[ind] = { link: @link, name: @name }
     end
