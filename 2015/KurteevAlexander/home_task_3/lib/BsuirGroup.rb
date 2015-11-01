@@ -17,7 +17,7 @@ class BsuirGroup
     parse_group
     @list = @page.links_with(href: LECTOR_SEARCH_FORM)
     EXTRALS.times { @list.pop }
-    @list.each_with_index { |lect, ind| @lector_list[ind] = lect.to_s}
+    @list.each_with_index { |lect, ind| @lector_list[ind] = lect.to_s }
     @lector_list.uniq!.sort!
   end
 end

@@ -1,7 +1,7 @@
 BSUIR_LINK = 'http://www.bsuir.by/schedule/schedule.xhtml'
 GROUP_FORM = 'studentGroupTab:studentGroupForm'
 GROUP_BOX = 'studentGroupTab:studentGroupForm:searchStudentGroup'
-BSUIR_HELPER_LECTORS_LINK = "http://bsuir-helper.ru/lectors"
+BSUIR_HELPER_LECTORS_LINK = 'http://bsuir-helper.ru/lectors'
 BSUIR_HELPER_LINK = 'http://bsuir-helper.ru'
 INTERNET_CHECK_LINK = 'http://www.bsuir.by/schedule/schedule.xhtml'
 EXTRALS = 5

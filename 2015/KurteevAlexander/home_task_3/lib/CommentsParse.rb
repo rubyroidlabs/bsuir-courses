@@ -13,9 +13,9 @@ class CommentsParse
   end
 
   def parser
-    @lector_list.each_with_index do | current_lector, index|
-      @lector_list_bh.each_with_index do |current_lector_bh, index_bh|
-        if current_lector == current_lector_bh[:name]       
+    @lector_list.each do |current_lector|
+      @lector_list_bh.each do |current_lector_bh|
+        if current_lector == current_lector_bh[:name]
           puts current_lector_bh[:name].red
           @page = open(current_lector_bh[:link])
           @hp = Hpricot(@page)
