@@ -1,4 +1,4 @@
-require "unicode_utils"
+require 'unicode_utils'
 
 class GoodOrBad
   attr_reader :how
@@ -10,7 +10,7 @@ class GoodOrBad
 
   def know(text)
     text = UnicodeUtils.downcase(text)
-    i=0
+    i = 0
     @yml['negative'].each do |n|
       if text.include?(n)
         i -= 1
@@ -21,12 +21,12 @@ class GoodOrBad
         i += 1
       end
     end
-    if i>0
+    if i > 0
       @how = 'positive'
-    elsif i<0
-     @how = 'negative'
+    elsif i < 0
+      @how = 'negative'
     else
-     @how = 'nil'
+      @how = 'nil'
     end
   end
 end

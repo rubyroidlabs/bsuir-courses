@@ -18,7 +18,7 @@ class GetName
     end
     allname.uniq!
     allname
-    rescue SocketError
+  rescue SocketError
     puts 'Check your internet connection'
     exit
   end

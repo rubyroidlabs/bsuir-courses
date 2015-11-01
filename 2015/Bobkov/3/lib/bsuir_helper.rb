@@ -7,16 +7,16 @@ class Bsuirlectors
   def find
     agent = Mechanize.new
     goodbad = GoodOrBad.new
-    page = agent.get("http://bsuir-helper.ru/lectors")
+    page = agent.get('http://bsuir-helper.ru/lectors')
     puts "#{@lname} #{@fn} #{@mn}"
     puts '====='
     page.links.each do |link|
-      lname, fn, mn = link.text.sub("ё", "е").split
+      lname, fn, mn = link.text.sub('ё', 'е').split
       if lname == @lname && fn[0] == @fn[0] && mn[0] == @mn[0]
         review = link.click
         rw = review.search(".//div[@class='comment odd clear-block']")
         rw1 = review.search(".//div[@class='comment even clear-block']")
-        rw1.each { |temp| rw.push(temp)}
+        rw1.each { |temp| rw.push(temp) }
         rw.each do |review_meta|
           begin
             @feedback0 = false
@@ -33,7 +33,7 @@ class Bsuirlectors
     end
     if @feedback0 == true
       puts 'Не найдено отзывов'
-    end 
+    end
     puts
   end
 end
