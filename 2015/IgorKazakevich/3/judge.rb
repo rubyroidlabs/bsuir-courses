@@ -10,8 +10,8 @@ class Judge
       positive += Unicode::downcase(comment).scan(word).count
     end
 
-    @keywords['negative'].each do
-      |word| negative += Unicode::downcase(comment).scan(word).count
+    @keywords['negative'].each do |word|
+      negative += Unicode::downcase(comment).scan(word).count
     end
 
     positive <=> negative
