@@ -1,5 +1,6 @@
 require 'colorize'
 require 'zlib'
+require 'pry'
 
 module Grep
   class Searcher
@@ -23,22 +24,25 @@ module Grep
     end
 
     def verification_pattern(content, fname, pattern = @conditions[:pattern])
-      amount = @conditions[:amount]
       scope = []
       unless content.nil?
         content.each_with_index do |line, index|
-          if /#{pattern}/ =~ line
-            if (index - amount) < 0
-              scope << (content[0..index + amount].join).green
-            else
-              scope << (content[index - amount..index + amount].join).green
-            end
-          end
+          scope << analize_scope(content, index) if /#{pattern}/ =~ line
         end
       end
       @find_content << { fname: fname, content: scope } unless scope.empty?
     rescue
       puts "File #{fname} have unreadable format\n".red
+    end
+
+    def analize_scope(content, index)
+      amount = @conditions[:amount]
+      if (index - amount) < 0
+        scope = (content[0..index + amount].join).green
+      else
+        scope = (content[index - amount..index + amount].join).green
+      end
+      scope
     end
 
     def open_file(fname)

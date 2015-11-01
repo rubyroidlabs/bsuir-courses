@@ -8,6 +8,14 @@ module Grep
 
     def parse_argv
       @conditions = { amount: 0 }
+      opt_parse
+      @conditions[:pattern] = @args.shift
+      @conditions[:fnames] = @args.shift.split unless @args.first.nil?
+      validate_coditions
+      @conditions
+    end
+
+    def opt_parse
       OptionParser.new do |opts|
         opts.banner = 'Usage: PATTERN + FILE + [options]'
         opts.separator '*You can set the PATTERN in RegExp format'
@@ -24,15 +32,11 @@ module Grep
           @conditions[:zname] = zname
         end
       end.parse!(@args)
-      @conditions[:pattern] = @args.shift
-      @conditions[:fnames] = @args.shift.split unless @args.first.nil?
-      validate_coditions
-      @conditions
     end
 
     def validate_coditions
       if @conditions[:pattern].nil? ||
-          (@conditions[:fnames].nil? && @conditions[:zname].nil?)
+         (@conditions[:fnames].nil? && @conditions[:zname].nil?)
         fail 'Wrong conditions format.Use -h for help.'.red
       end
     end
