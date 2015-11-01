@@ -11,6 +11,7 @@ class Teachers
         exit
       end
     end.arguments[0]
+    @page_table = connect_to_bsuir
   end
 
   def connect_to_bsuir
@@ -25,11 +26,13 @@ class Teachers
   def find_teachers
     @teachers = Array.new
 
-    connect_to_bsuir.parser.xpath('//div//td//a[@href]').each do |l|
-      @teachers.push(l.text.split(' ')[0] + 
-                    ' ' + l.text.split(' ')[1] + 
-                    l.text.split(' ')[2])
+    @page_table.parser.xpath('//div//td//a[@href]').each do |l|
+      @teachers.push(correct_name(l.text))
     end
     @teachers.uniq!
+  end
+
+  def correct_name(name)
+    name.split(' ')[0] + ' ' + name.split(' ')[1] + name.split(' ')[2]
   end
 end
