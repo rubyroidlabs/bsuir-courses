@@ -7,7 +7,7 @@ class YmlAnalysis
     @keywords = YAML.load(File.read('../keywords.yml'))
   end
 
-  def analyze (comment)
+  def analyze(comment)
     positive = 0
     negative = 0
 

@@ -1,8 +1,7 @@
 require 'mechanize'
 
 class CommentFetcher
-
-  def get_comments (name)
+  def get_comments(name)
     comments = Array.new
     agent = Mechanize.new
     @page = agent.get('http://www.bsuir-helper.ru/lectors')
