@@ -12,7 +12,9 @@ class ReviewsParse
       surname, fstname, dadname = name.split 
       link = page.link_with(:text  =>
         %r{#{surname}\s+#{fstname[0]}[а-я]+\s+#{dadname[0]}[а-я]+})
-      unless link.nil?
+      if link.nil?
+        reviews[name] = nil
+      else
         comments_link = link.click
         comments = {}
         comments_link.search('.comment').each do |n|
@@ -21,8 +23,6 @@ class ReviewsParse
           comments[date] = comment
         end
         reviews[name] = comments
-      else
-        reviews[name] = nil
       end
     end
     reviews
