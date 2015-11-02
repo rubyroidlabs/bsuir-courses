@@ -4,11 +4,11 @@ class ReviewsPrint
     @reviews = reviews
   end
 
-  def rev_show
+  def show
     @reviews.each do |name, comments|
       puts name.colorize(:light_blue)
       puts '==============='
-      if comments.nil? || comments.empty?
+      if comments.empty?
         puts 'Не найдено отзывов'.colorize(:light_red)
         puts ''
       else
