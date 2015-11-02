@@ -1,8 +1,7 @@
 require 'mechanize'
 require 'colorize'
 
-NOT_NAMES = ['Поиск по группе', 'Расширенный поиск:', 'Печать', 'iis-support@bsuir.by',
-            'Скачать Android версию расписания.', 'disp@bsuir.by', 'API', 'О нас']
+NOT_NAMES = ['Поиск по группе', 'Расширенный поиск:', 'Печать', 'iis-support@bsuir.by', 'Скачать Android версию расписания.', 'disp@bsuir.by', 'API', 'О нас']
 
 class TeacherListFetcher
   attr_reader :teacher_list

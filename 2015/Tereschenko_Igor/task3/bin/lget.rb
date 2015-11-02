@@ -31,8 +31,7 @@ begin
           puts i.white
         end
       end
-      rescue
-
+    rescue
     end
   end
 end
