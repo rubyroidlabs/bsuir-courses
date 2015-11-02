@@ -12,7 +12,7 @@ bsuir = Geter.new
 
 begin
   teachers = bsuir.get_bsuir("#{URL_SCHEDULE}#{data.group[0]}")
-	rescue StandardError
+rescue StandardError
   puts 'Check you internet connection'
   exit
 end
@@ -20,11 +20,11 @@ end
 data.found(teachers)
 
 url_reviews = teachers.map do |teacher|
-	bsuir.search_helper("#{URL_HELP}#{teacher}")
+bsuir.search_helper("#{URL_HELP}#{teacher}")
 end
 
 reviews = url_reviews.map do |comm|
-	bsuir.get_reviews(comm)
+bsuir.get_reviews(comm)
 end
 
 analyz = reviews.map { |i| Analyzer.new(i) }
