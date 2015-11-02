@@ -5,6 +5,8 @@ class BsuirGroup
     @agent = Mechanize.new
     @page = @agent.get(BSUIR_LINK)
     @form = @page.form(GROUP_FORM)
+  rescue
+    raise 'Failed intetnet connection'
   end
 
   def parse_group
@@ -16,8 +18,12 @@ class BsuirGroup
   def page_parse
     parse_group
     @list = @page.links_with(href: LECTOR_SEARCH_FORM)
-    EXTRALS.times { @list.pop }
-    @list.each_with_index { |lect, ind| @lector_list[ind] = lect.to_s }
-    @lector_list.uniq!.sort!
+    EXTRALS.times { @list.pop }+
+    unless @list.pop
+      raise 'Group not found'
+    else
+      @list.each_with_index { |lect, ind| @lector_list[ind] = lect.to_s }
+      @lector_list.uniq!.sort!
+    end
   end
 end
