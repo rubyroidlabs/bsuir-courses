@@ -1,17 +1,15 @@
 require 'mechanize'
 
 class Searcher
-  
   def initialize
     @mechanize = Mechanize.new
   end
 
   def search_for_teachers(group)
-    
     page = @mechanize.get('http://www.bsuir.by/schedule/schedule.xhtml?id='.concat(group))
-    teachers = Set.new()
+    teachers = Set.new
 
-    page.links_with(:href => /schedule/).each do |link|
+    page.links_with(href: /schedule/).each do |link|
       temp_page = link.click
       str = temp_page.search('span.h2')[1].text
       str.slice!(0, 15)
@@ -23,8 +21,7 @@ class Searcher
   def search_for_comments(teacher)
     page = @mechanize.get('http://bsuir-helper.ru/lectors')
     result_array = []
-    
-    page.links_with(:href => /lectors/).each do |link|
+    page.links_with(href: /lectors/).each do |link|
       if link.text.split(' ') == teacher.split(' ')
         comment_page = link.click
 
@@ -39,9 +36,7 @@ class Searcher
           dates.push(d.text)
         end
 
-        for i in 0..dates.length - 1 do
-          result_array.push(dates[i].concat(': '.concat(comments[i])))
-        end
+        dates.each_index { |i| result_array.push(dates[i].concat(': '.concat(comments[i]))) }
       end
     end
     result_array
