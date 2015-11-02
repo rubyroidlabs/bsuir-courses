@@ -30,6 +30,6 @@ teachers_list.each do |teacher|
       parser_yaml.execute(comments[counter])
     end
   else
-    puts "Не найдено отзывов"
+    puts 'Не найдено отзывов'
   end
 end

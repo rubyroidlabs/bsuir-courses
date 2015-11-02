@@ -19,7 +19,7 @@ class ParserSheduleGroup
     page.links_with(:href => /schedule/).each do |link|
       links_list[link.text] = link
     end
-    links_list.each do |key, value|
+    links_list.each do |_key, value|
       page_intermediate = value.click
       teachers_list.push page_intermediate.search("//input[@class = 'ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all']").attribute('value').value
     end
