@@ -17,12 +17,12 @@ end
 group_number = opts.arguments[0]
 parser = ParserSheduleGroup.new(group_number)
 teachers_list = parser.proffessors_list
-parser = ParserLectors.new()
-parser_yaml = ParserYaml.new()
+parser = ParserLectors.new
+parser_yaml = ParserYaml.new
 teachers_list.each do |teacher|
   comments = parser.search_comments(teacher)
   puts teacher
-  puts "====="
+  puts '=' * 5
   if comments != []
     dates = parser.search_dates
     for counter in 0..comments.length-1
