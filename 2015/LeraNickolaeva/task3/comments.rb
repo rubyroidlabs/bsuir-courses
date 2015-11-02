@@ -6,7 +6,7 @@ class Comments
 
   def connection
     agent = Mechanize.new
-    agent.get("http://bsuir-helper.ru/lectors").links.each do |link|
+    agent.get('http://bsuir-helper.ru/lectors').links.each do |link|
       return link.click if link.text.include? @teacher.split('.').first
     end
     false

@@ -26,9 +26,10 @@ class Print
        end
       puts
     end
-  else
-    puts 'Sorry, comments are not found'
-    puts
-    return
+    else
+      puts 'Sorry, comments are not found'
+      puts
+      return
   end
 end
+
