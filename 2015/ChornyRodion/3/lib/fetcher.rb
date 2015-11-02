@@ -91,9 +91,11 @@ class Fetcher
   end
 
   def link_checking(link)
-    @mechanize.get(link)
+    begin
+      @mechanize.get(link)
     rescue SocketError
       raise StandartError 'Connection problems, try later'
+    end
   end
 
   def empty?(str1, str2)

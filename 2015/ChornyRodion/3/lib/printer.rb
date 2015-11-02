@@ -3,9 +3,7 @@
 # gem Sentimental works only with enlish text
 class Printer
   def initialize(comments_hash)
-    @comments_hash = comments_hash.each do |_name, comments|
-      comments.map do { |comment| comment.strip! }
-    end
+    @comments_hash = comments_hash
     data = retrieve_data('data.yaml')
     @translator = MicrosoftTranslator::Client.new(data['id'], data['secret'])
     Sentimental.load_defaults
