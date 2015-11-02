@@ -10,7 +10,7 @@ module Grep
       @conditions = { amount: 0 }
       opt_parse
       @conditions[:pattern] = @args.shift
-      @conditions[:fnames] = @args.shift.split unless @args.first.nil?
+      @conditions[:fnames] ||= @args.shift.split unless @args.first.nil?
       validate_coditions
       @conditions
     end
@@ -26,7 +26,7 @@ module Grep
           @conditions[:fnames] = files
         end
         opts.on('-R', 'Recursion in the current directory') do |_|
-          @conditions[:fnames] = Dir.glob('*')
+          @conditions[:fnames] = Dir.glob('*').select { |f| File.file?(f) }
         end
         opts.on('-z zname', String, 'Gzip file for search') do |zname|
           @conditions[:zname] = zname
