@@ -15,23 +15,16 @@ class ReviewsParse
       if link.nil?
         reviews[name] = nil
       else
-        comments = comments_search(link)
+        comments_link = link.click
+        comments = {}
+        comments_link.search('.comment').each do |n|
+          date = n.search('.comment-date').text
+          comment = n.search('.content').text
+          comments[date] = comment
+        end
         reviews[name] = comments
       end
     end
     reviews
-  end
-
-  private
-
-  def comments_search(link)
-    comments = {}
-    comments_link = link.click
-    comments_link.search('.comment').each do |n|
-      date = n.search('.comment-date').text
-      comment = n.search('.content').text
-      comments[date] = comment
-    end
-    comments
   end
 end
