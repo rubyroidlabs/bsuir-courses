@@ -14,11 +14,11 @@ end.parse!
 
 begin
   tf = TeacherListFetcher.new(ARGV[0])
-  list = tf.get_list
+  tf.get_list
   cf = CommentFetcher.new
   ya = YmlAnalysis.new
 
-  list.each do |o|
+  tf.teacher_list.each do |o|
     puts o.blue
     puts '====='
     begin
