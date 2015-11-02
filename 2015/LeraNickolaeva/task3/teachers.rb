@@ -1,4 +1,4 @@
-SHEDULE_PAGE = "http://www.bsuir.by/schedule/schedule.xhtml"
+SHEDULE_PAGE = 'http://www.bsuir.by/schedule/schedule.xhtml'
 
 class Teachers
   def initialize
@@ -7,7 +7,7 @@ class Teachers
 
   def connection
     agent = Mechanize.new
-    search_form = agent.get(format(SHEDULE_PAGE,@num_group))
+    search_form = agent.get(format(SHEDULE_PAGE, @num_group))
     agent.submit(search_form, search_form.buttons.first)
   end
 
@@ -19,4 +19,3 @@ class Teachers
     @teachers.uniq!
   end
 end
-

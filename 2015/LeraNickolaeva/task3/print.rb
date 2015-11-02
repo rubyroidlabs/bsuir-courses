@@ -32,4 +32,3 @@ class Print
     return
   end
 end
-
