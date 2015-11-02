@@ -9,7 +9,12 @@ require 'optparse'
 class Solution
   def initialize
     cnf = YAML::load(File.open('../config.yml'))
-    @translator = MicrosoftTranslator::Client.new(cnf['ID_CLIENT'], cnf['API_KEY'])
+    begin
+      @translator = MicrosoftTranslator::Client.new(cnf['ID_CLIENT'], cnf['API_KEY'])
+    rescue StandardError => exc
+      puts exc.message
+      exit
+    end
     @analyser = SentimentLib::Analyzer.new
     @searcher = Searcher.new
   end

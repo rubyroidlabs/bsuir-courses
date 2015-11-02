@@ -6,7 +6,12 @@ class Searcher
   end
 
   def search_for_teachers(group)
-    page = @mechanize.get('http://www.bsuir.by/schedule/schedule.xhtml?id='.concat(group))
+    begin
+      page = @mechanize.get('http://www.bsuir.by/schedule/schedule.xhtml?id='.concat(group))
+    rescue StandardError => exc
+      puts exc.message
+      exit
+    end
     teachers = Set.new
 
     page.links_with(href: /schedule/).each do |link|
@@ -19,7 +24,12 @@ class Searcher
   end
 
   def search_for_comments(teacher)
-    page = @mechanize.get('http://bsuir-helper.ru/lectors')
+    begin
+      page = @mechanize.get('http://bsuir-helper.ru/lectors')
+    rescue StandardError => exc
+      puts exc.message
+      exit
+    end
     result_array = []
     page.links_with(href: /lectors/).each do |link|
       if link.text.split(' ') == teacher.split(' ')
