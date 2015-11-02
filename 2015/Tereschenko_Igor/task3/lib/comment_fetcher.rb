@@ -1,7 +1,6 @@
 require 'mechanize'
 
 class CommentFetcher
-
   def initialize
     agent = Mechanize.new
     @page = agent.get('http://www.bsuir-helper.ru/lectors')

@@ -1,8 +1,6 @@
 require 'mechanize'
 require 'colorize'
 
-NOT_NAMES = ['Поиск по группе', 'Расширенный поиск:', 'Печать', 'iis-support@bsuir.by', 'Скачать Android версию расписания.', 'disp@bsuir.by', 'API', 'О нас']
-
 class TeacherListFetcher
   attr_reader :teacher_list
 
@@ -25,10 +23,9 @@ class TeacherListFetcher
   def get_list
     agent = Mechanize.new
     page = agent.get("http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}")
-    page.links.each do |i|
-      unless NOT_NAMES.include? i.to_s.strip
-        @teacher_list << i.text
-      end
+    page.links_with(:href => /schedule/).each do |i|
+      i.to_s.strip
+      @teacher_list << i.text
     end
     parse_list
   end
