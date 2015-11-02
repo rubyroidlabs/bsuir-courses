@@ -1,19 +1,17 @@
 require 'mechanize'
 
 class Geter
-	def initialize
+def initialize
 		@agent = Mechanize.new
-	end
+end
 
-	def get_bsuir(url_bsuir)
-		schedule = @agent.get(url_bsuir)
-		teachers = []
-		schedule.parser.css('.scheduleStyle').each do |showing|
-			teachers = showing.css('tr td a').children.map do |c|
-				c.to_s
-		end
-	end
-	teachers = teachers.uniq.map { |el| el.gsub(/\s[а-яА-Я][.]/, '') }
+def get_bsuir(url_bsuir)
+	schedule = @agent.get(url_bsuir)
+	teachers = []
+	schedule.parser.css('.scheduleStyle').each do |showing|
+		teachers = showing.css('tr td a').children.map &:to_s
+end
+teachers = teachers.uniq.map { |el| el.gsub(/\s[а-яА-Я][.]/, '') }
 end
 
 def search_helper(url_helper)
