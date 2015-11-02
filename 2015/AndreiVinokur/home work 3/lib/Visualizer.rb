@@ -2,8 +2,8 @@ require 'colored'
 require 'rubygems'
 
 class Visualiser
-  LINE = "----------------------------------------------------------------"
-  DOUBLE_LINE = "================================================================"
+  LINE = "------------------------------------------------------------"
+  DOUBLE_LINE = "============================================================"
   def initialize(teachers, reviews, analyz_reviews, analyz_review_teacher)
     @teachers = teachers
     @reviews = reviews
