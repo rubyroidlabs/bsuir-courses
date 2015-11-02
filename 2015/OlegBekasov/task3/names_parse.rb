@@ -17,6 +17,6 @@ class NamesParse
     names.uniq.sort
   rescue SocketError
       puts 'Check your internet connection'.colorize(:red)
-      exit 
+      exit
   end
 end

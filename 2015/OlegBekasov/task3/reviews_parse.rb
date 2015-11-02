@@ -21,7 +21,7 @@ class ReviewsParse
           comments[date] = comment
         end
         reviews[name] = comments
-      else 
+      else
         reviews[name] = nil
       end
     end
