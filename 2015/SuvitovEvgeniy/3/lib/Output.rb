@@ -6,9 +6,9 @@ class Output
 
   def print
     count = 0
-    @review.split.each do |x|
-      count -= 1 if @words['negative'].include?(x.delete(',.!'))
-      count += 1 if @words['positive'].include?(x.delete(',.!'))
+    @review.delete(',.!').split.each do |x|
+      count -= 1 if @words['negative'].include?(x)
+      count += 1 if @words['positive'].include?(x)
     end
     if count > 0
       puts @review.green
