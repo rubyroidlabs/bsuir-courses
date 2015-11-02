@@ -8,7 +8,7 @@ class Output
     count = 0
     @review.delete(',.!').split.each do |x|
       if @words['negative'].include?(x)
-        count -= 1 
+        count -= 1
       elsif @words['positive'].include?(x)
         count += 1
       end
