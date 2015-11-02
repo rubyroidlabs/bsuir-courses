@@ -13,7 +13,7 @@ class BsuirTeachersParser
     docs.each { |doc| teachers << doc.text }
     if teachers[0].nil?
       puts 'Группа не найдена'
-      raise ArgumentError
+      fail ArgumentError
     end
     teachers = teachers.uniq
     teachers

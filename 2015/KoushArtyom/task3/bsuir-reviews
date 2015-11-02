@@ -13,11 +13,12 @@ parser.parse!
 group = ARGV
 if group[0].nil?
   puts "Использование: ./bsuir-reviews [номер_группы]"
+  abort
 end
 group = group[0].to_s
 if group.length != 6
   puts 'Номер группы должен состоять из 6 цифр'
-  raise ArgumentError
+  fail ArgumentError
 end
 keywords = YAML.load_file('./keywords.yml')
 

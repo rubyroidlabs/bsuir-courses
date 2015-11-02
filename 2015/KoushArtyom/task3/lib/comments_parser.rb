@@ -28,7 +28,7 @@ class CommentsParser
   def normalize_comments(comments)
     comments.map(&:text).reject(&:empty?).map do |comment|
       comment.gsub!(/(\n|\'|\")/, ' ')
-      comment = UnicodeUtils.downcase(comment)
+      UnicodeUtils.downcase(comment)
     end
   end
 end
