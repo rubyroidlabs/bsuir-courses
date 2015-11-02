@@ -37,7 +37,7 @@ class Fetcher
     names_hash = {}
     page = link_checking 'http://bsuir-helper.ru/lectors'
     names.each do |name|
-      page.links_with(href: /lectors/).each do |link| 
+      page.links_with(href: /lectors/).each do |link|
         names_hash[name] = link.uri if link.text[surname(name)]
       end
     end
@@ -50,8 +50,12 @@ class Fetcher
     link = link_checking "http://bsuir-helper.ru#{link}"
     dates = []
     comments = []
-    link.search('div.comment div.content').each { |comment| comments << comment.text }
-    link.search('div.comment div.submitted span.comment-date').each { |date| dates << date.text }
+    link.search('div.comment div.content').each do |comment|
+      comments << comment.text
+    end
+    link.search('div.comment div.submitted span.comment-date').each do |date|
+      dates << date.text
+    end
     comments = merge_elements dates, comments
     @comments[name] = comments
   end
