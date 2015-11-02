@@ -13,7 +13,7 @@ class NamesParse
       puts 'Check group number'.colorize(:red)
       exit
     end
-    names.map! { |name| name.text }
+    names.map! &:text
     names.uniq.sort
   rescue SocketError
     puts 'Check your internet connection'.colorize(:red)
