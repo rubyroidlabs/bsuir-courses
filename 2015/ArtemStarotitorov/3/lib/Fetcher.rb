@@ -31,6 +31,7 @@ class Fetcher
   end
 
   private
+
   def fill_array_of_professors!(page, professors)
     page.links_with(href: /schedule/).each do |link|
       professors << find_fullname_of_professor(link)
