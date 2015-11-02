@@ -16,7 +16,7 @@ else
     puts 'A group with this number has not found'
   else
     list_of_surnames.each do |x|
-      reviews = Review_Parser.new(x).parse
+      reviews = ReviewParser.new(x).parse
       puts x
       puts '===='.red
       puts

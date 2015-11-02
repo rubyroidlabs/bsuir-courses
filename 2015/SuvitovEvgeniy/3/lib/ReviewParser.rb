@@ -12,7 +12,8 @@ class ReviewParser
     agent = Mechanize.new
     @@page ||= agent.get('http://bsuir-helper.ru/lectors')
     @@page.links.each do |link|
-      next if !link.text.include?(@surname) || !link.text.split[1].include?(first_letter_name) || !link.text.split[2].include?(first_letter_patron)
+      next if !link.text.include?(@surname) ||
+              !link.text.split[1].include?(first_letter_name) || !link.text.split[2].include?(first_letter_patron)
       page1 = link.click
       page1.search('div.clear-block').each do |x|
         @dates << x.search('span.comment-date').text
