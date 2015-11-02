@@ -7,8 +7,11 @@ class Output
   def print
     count = 0
     @review.delete(',.!').split.each do |x|
-      count -= 1 if @words['negative'].include?(x)
-      count += 1 if @words['positive'].include?(x)
+      if @words['negative'].include?(x)
+        count -= 1 
+      elsif @words['positive'].include?(x)
+        count += 1
+      end
     end
     case count <=> 0
     when 1
