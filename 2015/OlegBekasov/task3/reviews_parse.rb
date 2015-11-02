@@ -12,8 +12,8 @@ class ReviewsParse
       surname, fstname, dadname = name.split
       link = page.link_with(:text  =>
         %r{#{surname}\s+#{fstname[0]}[а-я]+\s+#{dadname[0]}[а-я]+})
-        comments = comments_search(link)
-        reviews[name] = comments
+      comments = comments_search(link)
+      reviews[name] = comments
     end
     reviews
   end
