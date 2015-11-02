@@ -2,15 +2,15 @@ require 'mechanize'
 require 'colorize'
 require 'unicode'
 
-Dir[File.expand_path('../lib/*.rb', __FILE__)].each{ |f| require(f) }
+Dir[File.expand_path('../lib/*.rb', __FILE__)].each { |f| require(f) }
 
 group_number = ARGV[0]
-if (group_number == '-h' || group_number == nil)
-  abort ("To start program write like this: ruby bsuir-review.rb {group_number}".red)
+if group_number == '-h' || group_number == nil
+  abort ('To start program write like this: ruby bsuir-review.rb { group_number }'.red)
 end
 
 begin
-  sch =  ScheduleParser.new
+  sch = ScheduleParser.new
   teachers_list = Array.new
   comments = Array.new
   teacher_info = Hash.new
@@ -21,9 +21,9 @@ begin
   teachers_list.each do |teacher|
     comments = helper_parser.get_teacher_comments(teacher)
     if comments == -1
-      teacher_info.merge!({teacher => "No comments"})
+      teacher_info.merge!({ teacher => 'No comments' })
     else 
-      teacher_info.merge!({teacher => comments})
+      teacher_info.merge!({ teacher => comments })
     end
   end
 
@@ -48,7 +48,7 @@ begin
   end
 
 rescue SocketError
-    puts 'Error. Check your Internet connection'.red
+  puts 'Error. Check your Internet connection'.red
 rescue ArgumentError => ex
-     puts 'Error. Check command line arguments!'.red
+  puts 'Error. Check command line arguments!'.red
 end
