@@ -7,7 +7,7 @@ class BsuirHelperParser
     if teacher_id != nil
       teacher_url = HELPER_URL + teacher_id
     else
-      teacher_url = 'Not found'
+      teacher_url = "Not found"
     end
     teacher_url
   end
@@ -44,7 +44,7 @@ class BsuirHelperParser
     comment_blocks.each do |comment_block|
       comment = comment_block.search('div.content p').text
       time = comment_block.search('span.comment-date').text
-      comments.push('#{time}: #{comment}')
+      comments.push("#{time}: #{comment}")
     end
     comments
   end
