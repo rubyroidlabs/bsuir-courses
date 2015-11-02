@@ -16,20 +16,20 @@ class CommentsParse
     result_array = []
     page.search(search_param).each_with_index do |current, ind|
       current = current.text.delete("\n")
-      result_array[ind] = current 
+      result_array[ind] = current
     end
     result_array
   end
 
   def parser
-    @lector_list.each_with_index do | current_lector, index|
-      @lector_list_bh.each_with_index do |current_lector_bh, index_bh|
-        if current_lector == current_lector_bh[:name]       
+    @lector_list.each do | current_lector |
+      @lector_list_bh.each do |current_lector_bh |
+        if current_lector == current_lector_bh[:name]
           puts current_lector_bh[:name].colorize(:blue)
           @agent = Mechanize.new
-          @page =@agent.get(current_lector_bh[:link])
+          @page = @agent.get(current_lector_bh[:link])
           pros = @page.search(COMMENT_BLOCK)
-          @time =searchinfo(pros, COMMENT_TIME)
+          @time = searchinfo(pros, COMMENT_TIME)
           @comments = searchinfo(pros, COMMENT_TEXT)
           unless @time.empty?
             @comments.each_with_index do |current_comment, index|
@@ -53,7 +53,7 @@ class CommentsParse
   def emotioncounter(comment, word, tone)
     @counter = 0
     word[tone].each do |current_tone|
-      if comment.match(current_tone)# || current_tone.upcase)
+      if comment.match(current_tone)
         @counter += 1
       end
     end

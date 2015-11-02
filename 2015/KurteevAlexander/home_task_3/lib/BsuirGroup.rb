@@ -18,8 +18,8 @@ class BsuirGroup
   def page_parse
     parse_group
     @list = @page.links_with(href: LECTOR_SEARCH_FORM)
-    EXTRALS.times { @list.pop }+
-    unless @list.pop
+    EXTRALS.times { @list.pop }
+    if !@list.pop
       raise 'Group not found'
     else
       @list.each_with_index { |lect, ind| @lector_list[ind] = lect.to_s }
