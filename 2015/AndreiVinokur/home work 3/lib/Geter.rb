@@ -19,7 +19,7 @@ class Geter
 	def search_helper(url_helper)
 		search  = @agent.get(url_helper)
 		search.parser.css('.box dt a').each do |showing|
-				return showing['href']
+			return showing['href']
 		end
 	end
 
@@ -27,14 +27,7 @@ class Geter
 		reviews = @agent.get(url_reviews)
 		reviews.parser.css('.comment .content p').map do |showing|
 			showing.children.each { |c| c.remove if c.name == 'br' || c.name == 'p' }
-					comment = showing.text.strip
-		end
-	end
-
-	def get_img(url_reviews)
-		reviews = @agent.get(url_reviews)
-		reviews.parser.css('.field-item .odd a').map do |showing|
-				puts showing['href']
+			comment = showing.text.strip
 		end
 	end
 end

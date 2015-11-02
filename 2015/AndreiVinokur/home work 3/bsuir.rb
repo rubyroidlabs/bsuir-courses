@@ -22,10 +22,6 @@ url_reviews = teachers.map do |teacher|
 	bsuir.search_helper("#{URL_HELP}#{teacher}")
 end
 
-url_img = url_reviews.map do |comm|
-	bsuir.get_img(comm)
-end
-
 reviews = url_reviews.map do |comm|
 	bsuir.get_reviews(comm)
 end
