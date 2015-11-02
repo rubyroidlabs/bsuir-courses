@@ -1,7 +1,6 @@
 require 'textmood'
 
 class Analyzer
-
   def initialize(texts)
     @tm = TextMood.new(language: 'ru')
     @comment = texts
@@ -17,6 +16,6 @@ class Analyzer
     score = @comment.map do |comm|
       @tm.analyze(comm) + 2
     end
-    score.inject {|sum, n| sum + n }
+    score.inject { |sum, n| sum + n }
   end
 end
