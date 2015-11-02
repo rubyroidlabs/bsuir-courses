@@ -6,23 +6,23 @@ NOT_NAMES = ['Поиск по группе', 'Расширенный поиск:
 class TeacherListFetcher
   attr_reader :teacher_list
 
-  def initialize (group_number)
+  def initialize(group_number)
     @group_number = group_number
     @teacher_list = []
   end
 
   def get_list
     agent = Mechanize.new
-      page = agent.get("http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}")
-      page.links.each do |i|
-        unless NOT_NAMES.include? i.to_s.strip
-          @teacher_list << i.text
-        end
+    page = agent.get("http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}")
+    page.links.each do |i|
+      unless NOT_NAMES.include? i.to_s.strip
+        @teacher_list << i.text
       end
-      @teacher_list.uniq!
-      @teacher_list.map! do |i|
-        i = i[0...-5]
-      end
+    end
+    @teacher_list.uniq!
+    @teacher_list.map! do |i|
+      i[0...-5]
+    end
     if @teacher_list.empty?
       puts 'некорректный номер группы'.red
       exit

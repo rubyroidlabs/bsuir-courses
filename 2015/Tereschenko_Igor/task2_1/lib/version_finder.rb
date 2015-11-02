@@ -12,7 +12,7 @@ class VersionFinder
       adress = "https://rubygems.org/api/v1/versions/#{@name}.json"
       versions = Curl::Easy.http_get(adress).body_str
       rescue Curl::Err::HostResolutionError
-        puts 'Error aquired! Please, check your network connection.'.red
+        puts '(╯°□°)╯︵ ┻━┻ (check your network connection)'.red
         exit
       end
 

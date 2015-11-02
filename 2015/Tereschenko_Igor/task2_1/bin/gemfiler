@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
 Dir['../lib/*.rb'].each { |f| require_relative(f) }
 require 'optparse'
-OptionParser.new do |opts| 
-  opts.on('-help') do 
+
+OptionParser.new do |opts|
+  opts.on('-help') do
     puts 'gemfiler [gem name] [version filter]'
-    puts 'example: "curb" "> 0.3.0" "< 0.8.0" "!= 0.5.0"'
+    puts 'example: "curb" "> 0.3.0" "< 0.8.0" "!= 0.3.7"'
     exit
   end
 end.parse!

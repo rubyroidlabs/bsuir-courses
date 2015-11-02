@@ -6,16 +6,16 @@ class CommentFetcher
   def get_comments (name)
     comments = Array.new
     agent = Mechanize.new
-    page = agent.get("http://www.bsuir-helper.ru/lectors")
+    page = agent.get('http://www.bsuir-helper.ru/lectors')
     begin
       page = page.links_with(:text => /#{name}/)[0].click
     rescue NoMethodError
-      puts 'Не найдено отзывов'
+      puts 'Не найдено отзывов' + "\n"
       return
     end
     page.parser.css('//div.comment/div.content').each do |i|
       unless i.text.strip.empty?
-          comments << i.text + "\n"
+        comments << i.text + "\n"
       end
     end
     count = 0
@@ -24,7 +24,7 @@ class CommentFetcher
       count += 1
     end
     if comments.empty?
-      puts "Не найдено отзывов"
+      puts 'Не найдено отзывов' + "\n"
       return
     end
     return comments
