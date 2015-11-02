@@ -91,6 +91,7 @@ class Fetcher
   end
 
   def link_checking(link)
+    return if link.nil?
     begin
       @mechanize.get(link)
     rescue SocketError
