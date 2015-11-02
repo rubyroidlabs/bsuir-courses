@@ -14,12 +14,12 @@ class CommandLineParser
   end
 
   def argument_count
-    unless @opts.arguments.count == 1
-      puts 'Usage: ruby bsuir_shedule_parser.rb [number_group]
-        Examples: ruby bsuir-reviews.rb 251006'
-        exit
-    else 
+    if @opts.arguments.count == 1
       @opts.arguments.count
+    else
+      puts 'Usage: ruby bsuir_shedule_parser.rb [number_group]
+      Examples: ruby bsuir-reviews.rb 251006'
+      exit
     end
   end
 

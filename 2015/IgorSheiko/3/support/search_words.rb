@@ -2,7 +2,7 @@ require 'mechanize'
 require 'unicode'
 
 filename = 'words.txt'
-file = File.open(filename,"w")
+file = File.open(filename, 'w')
 url = 'http://bsuir-helper.ru'
 agent = Mechanize.new
 page = agent.get("#{url}/lectors")
@@ -19,8 +19,7 @@ h.default = 0
 words.each do |w|
   h[Unicode::downcase(w)] += 1
 end
-h = h.sort {|a,b| a[1]<=>b[1] }
-hash_input = []
-h.reverse.each do |key, value|
+h = h.sort { |a, b| a[1] <=> b[1] }
+h.reverse_each do |key, value|
   file.write("#{key} => #{value} \n")
 end

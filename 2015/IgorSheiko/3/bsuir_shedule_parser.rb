@@ -10,7 +10,7 @@ helper_manager = CommentsTeachers.new
 teachers_list.each do |teacher|
   link_teacher = helper_manager.search_comments(teacher)
   puts teacher
-  puts '='*10
+  puts '=' * 10
   if link_teacher
     comments_time = helper_manager.time(link_teacher)
     comments_content = helper_manager.content(link_teacher)
