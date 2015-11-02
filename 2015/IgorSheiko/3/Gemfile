@@ -1,0 +1,8 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem 'colored'
+gem 'mechanize'
+gem 'slop'
+gem 'unicode'
+gem 'yaml'
