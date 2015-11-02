@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require 'colorize'
+require 'mechanize'
+require 'pry'
+require 'yaml'
+Dir['../lib/*.rb'].each { |x| require_relative x }
+options = ArgumentParser.new.parse
+if options[:help]
+  puts 'Print "./bsuir_reviews [number of group]" to get reviews about teachers of this group'.red
+else
+  number = ARGV[0]
+  list_of_surnames = SurnameParser.new(number).parse
+  list_of_surnames = list_of_surnames.rotate(-5).drop(8).uniq
+  if list_of_surnames.size == 0
+    puts 'A group with this number has not found'
+  else
+    list_of_surnames.each do |x|
+      reviews = Review_Parser.new(x).parse
+      puts x
+      puts '===='.red
+      puts
+      reviews[0].size.times do |i|
+        puts reviews[1][i]
+        Output.new(reviews[0][i]).print
+        puts
+      end
+      puts 'Not found' if reviews[0].size == 0
+      puts
+    end
+  end
+end
