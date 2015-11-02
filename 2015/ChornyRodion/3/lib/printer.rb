@@ -4,7 +4,8 @@
 class Printer
   def initialize(comments_hash)
     @comments_hash = comments_hash
-    data = retrieve_data('data.yaml')
+    data = {}
+    File.open('data.yaml', 'r') { |io| data = YAML::load(io.read) }
     @translator = MicrosoftTranslator::Client.new(data['id'], data['secret'])
     Sentimental.load_defaults
     Sentimental.threshold = 0.1
@@ -29,12 +30,5 @@ class Printer
         end
       end
     end
-  end
-
-  private
-
-  def retrieve_data(file)
-    data = {}
-    File.open(file, 'r') { |io| data = YAML::load(io.read) }
   end
 end
