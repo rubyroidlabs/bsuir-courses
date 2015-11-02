@@ -4,7 +4,7 @@ class CommandLineParser
   def initialize
     @opts = Slop.parse do |o|
       o.banner = 'Usage: ruby bsuir_shedule_parser.rb [number_group]
-        Examples: ruby bsuir-reviews.rb 251006'
+        Examples: ruby bsuir_shedule_parser.rb 251006'
       o.string '...'
       o.on('-h') do
         puts o
@@ -18,7 +18,7 @@ class CommandLineParser
       @opts.arguments.count
     else
       puts 'Usage: ruby bsuir_shedule_parser.rb [number_group]
-      Examples: ruby bsuir-reviews.rb 251006'
+      Examples: ruby bsuir_shedule_parser.rb 251006'
       exit
     end
   end
