@@ -15,7 +15,7 @@ class Geter
   end
 
   def search_helper(url_helper)
-    search  = @agent.get(url_helper)
+    search = @agent.get(url_helper)
     search.parser.css('.box dt a').each do |showing|
       return showing['href']
     end
@@ -25,7 +25,7 @@ class Geter
     reviews = @agent.get(url_reviews)
     reviews.parser.css('.comment .content p').map do |showing|
       showing.children.each { |c| c.remove if c.name == 'br' || c.name == 'p' }
-      comment = showing.text.strip
+      showing.text.strip
     end
   end
 end

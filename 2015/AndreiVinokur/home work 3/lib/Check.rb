@@ -5,7 +5,7 @@ class Check
 
   def initialize(arguments)
     @group = arguments
-    if @group[0] == nil || @group == "-h"
+    if @group[0] == nil || @group == '-h'
       puts 'Template: ruby bsuir.rb <group_number>'
       exit
     end
@@ -14,6 +14,7 @@ class Check
     end
     check.parse!
   end
+
   def size
     if @group.size > 6
       puts 'Incorrect number of group'
@@ -21,6 +22,7 @@ class Check
       exit
     end
   end
+
   def correct
     if @group =~ /\d+/
       puts 'Incorrect number of group'
@@ -28,6 +30,7 @@ class Check
       exit
     end
   end
+  
   def found(teachers)
     if teachers.empty?
       puts "No groups found\n\n"
