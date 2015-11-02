@@ -25,7 +25,7 @@ teachers_list.each do |teacher|
   puts '=' * 5
   if comments != []
     dates = parser.search_dates
-    for counter in 0..comments.length-1
+    comments.length.times do |counter|
       puts "#{dates[counter]}: "
       parser_yaml.execute(comments[counter])
     end
