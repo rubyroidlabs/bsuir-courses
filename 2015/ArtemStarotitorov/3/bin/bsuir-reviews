@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+Dir[File.expand_path('../../lib/*.rb', __FILE__)].each { |f| require(f) }
+require 'optparse'
+
+class Reviewer
+  def initialize
+    @fetcher = Fetcher.new
+    @printer = Printer.new
+    @analyzer = Analyzer.new
+  end
+
+  def work(group)
+    professors = @fetcher.find_professors(group)
+    professors.each do |professor|
+      puts professor
+      puts '===='
+      reviews = []
+      dates = []
+      @fetcher.find_reviews(professor, reviews, dates)
+      @printer.print(@analyzer, reviews, dates)
+    end
+  end
+end
+
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: ./bsuir-reviews [number_of_group]"
+  opts.on('-h', '--help', 'Display help') do
+    puts opts
+    exit
+  end
+end
+arguments = parser.parse!
+if (arguments.length != 1)
+  puts parser
+  exit
+end
+Reviewer.new.work(arguments[0])
