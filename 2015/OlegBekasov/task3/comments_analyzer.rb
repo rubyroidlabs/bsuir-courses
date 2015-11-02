@@ -12,6 +12,6 @@ class CommentsAnalyzer
     count = 0
     @positive.each { |kw| count += 1 if @comment.include? kw }
     @negative.each { |kw| count -= 1 if @comment.include? kw }
-    count
+    count <=> 0
   end
 end
