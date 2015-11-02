@@ -2,15 +2,15 @@ require 'mechanize'
 
 class ParserSheduleGroup
   def initialize(group_number)
-      @group_number = group_number
-      @url = "http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}"
-      @agent = Mechanize.new
+    @group_number = group_number
+    @url = "http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}"
+    @agent = Mechanize.new
   end
 
   def proffessors_list
-  	begin 
+    begin
       page = @agent.get(@url)
-    rescue 
+    rescue
       puts 'Not Internet connection'
       exit
     end
