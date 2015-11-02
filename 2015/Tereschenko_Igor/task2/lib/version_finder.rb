@@ -25,4 +25,3 @@ class VersionFinder
     end
   end
 end
-

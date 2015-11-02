@@ -20,4 +20,3 @@ class InputParser
     check @operators
   end
 end
-
