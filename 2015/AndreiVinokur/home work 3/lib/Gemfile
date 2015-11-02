@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+require 'colored'
+require 'rubygems'
+require 'mechanize'
+require 'textmood'
+require 'optparse'
