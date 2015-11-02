@@ -30,7 +30,7 @@ class Check
       exit
     end
   end
-  
+
   def found(teachers)
     if teachers.empty?
       puts "No groups found\n\n"
