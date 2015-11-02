@@ -8,9 +8,7 @@ class Fetcher
   def find_professors(group)
     professors = []
     page = open_page_with_timetable_of_group(group)
-    page.links_with(href: /schedule/).each do |link|
-      professors << find_fullname_of_professor(link)
-    end
+    fill_array_of_professors!(page, professors)
     professors.uniq
   end
 
@@ -31,15 +29,20 @@ class Fetcher
       end
     end
   end
-  
+
   private
-  
+  def fill_array_of_professors!(page, professors)
+    page.links_with(href: /schedule/).each do |link|
+      professors << find_fullname_of_professor(link)
+    end
+  end
+
   def collect_reviews!(page, reviews)
     page.search('div.comment div.content').each do |r|
       reviews << r.text
     end
   end
-  
+
   def collect_dates!(page, dates)
     page.search('div.comment div.submitted span.comment-date').each do |d|
       dates << d.text
