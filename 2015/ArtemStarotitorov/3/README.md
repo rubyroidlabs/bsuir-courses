@@ -1,4 +1,4 @@
-nslating things from your ruby application you first need to sign up for the Microsoft Translator API in the Windows Azure Datamarket.
+To use the application you first need to sign up for the Microsoft Translator API in the Windows Azure Datamarket.
 
 https://datamarket.azure.com/dataset/1899a118-d202-492c-aa16-ba21c33c06cb
 
