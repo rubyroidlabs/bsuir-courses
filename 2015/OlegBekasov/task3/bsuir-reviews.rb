@@ -16,5 +16,5 @@ end
 Parser.parse %w[--help] if ARGV.size == 0
 Parser.parse(ARGV)
 names = NamesParse.new(ARGV[0]).parse
-reviews = ReviewsParse.new(names).parse
-ReviewsPrint.new(reviews).show
+reviews = ReviewsParse.new(names).rev_parse
+ReviewsPrint.new(reviews).rev_show

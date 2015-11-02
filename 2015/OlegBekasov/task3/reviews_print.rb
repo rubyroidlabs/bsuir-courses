@@ -4,7 +4,7 @@ class ReviewsPrint
     @reviews = reviews
   end
 
-  def show
+  def rev_show
     @reviews.each do |name, comments|
       puts name.colorize(:light_blue)
       puts '==============='

@@ -4,7 +4,7 @@ class ReviewsParse
     @names = names
   end
 
-  def parse
+  def rev_parse
     agent = Mechanize.new
     page = agent.get('http://bsuir-helper.ru/lectors')
     reviews = {}
