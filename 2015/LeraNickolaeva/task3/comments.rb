@@ -1,5 +1,5 @@
 class Comments
-	def initialize(teacher)
+	def initialize
     @teacher = teacher
     @page_helper = page_helper
   end

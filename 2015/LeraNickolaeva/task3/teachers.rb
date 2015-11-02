@@ -1,20 +1,22 @@
+SHEDULE_PAGE = "http://www.bsuir.by/schedule/schedule.xhtml"
+
 class Teachers
   def initialize
     @num_group = num_group
-    @page_bsuir = page_bsuir
   end
 
   def connection
     agent = Mechanize.new
-    search_form = agent.get("http://www.bsuir.by/schedule/schedule.xhtml?id=#{@num_group}")
-		agent.submit(search_form, search_form.buttons.first)
+    search_form = agent.get(format(SHEDULE_PAGE,@num_group))
+    agent.submit(search_form, search_form.buttons.first)
   end
 
   def find_teachers
     @teachers = []
-		@page_bsuir.parser.xpath('//div//td//a[@href]').each do |l|
-      @teachers.push
+    @page_bsuir.parser.xpath('//div//td//a[@href]').each do |name|
+      @teachers.push(name.text)
     end
     @teachers.uniq!
   end
 end
+
