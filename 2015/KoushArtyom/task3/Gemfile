@@ -1,0 +1,7 @@
+source 'http://rubygems.org'
+
+gem 'colorize'
+gem 'yaml'
+gem 'mechanize'
+gem 'unicode_utils'
+gem 'optparse'
