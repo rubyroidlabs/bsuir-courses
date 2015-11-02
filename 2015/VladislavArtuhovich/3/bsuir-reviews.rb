@@ -30,25 +30,25 @@ begin
   comments_analyzer = CommentsAnalyzer.new
 
   teacher_info.each do |teacher, comment|
-    puts teacher 
+    puts teacher
     puts '====='
     if comment == 'No comments'
       puts comment
       next
     end
-    comment.each do |comment|
-      if comments_analyzer.positive_comment?(comment) == 1
-        puts comment.green
-      elsif comments_analyzer.positive_comment?(comment) == -1
-        puts comment.red
+    comment.each do |helper_comment|
+      if comments_analyzer.positive_comment?(helper_comment) == 1
+        puts helper_comment.green
+      elsif comments_analyzer.positive_comment?(helper_comment) == -1
+        puts helper_comment.red
       else
-        puts comment
+        puts helper_comment
       end
     end
   end
 
 rescue SocketError
   puts 'Error. Check your Internet connection'.red
-rescue ArgumentError => ex
+rescue ArgumentError
   puts 'Error. Check command line arguments!'.red
 end
