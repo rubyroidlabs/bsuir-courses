@@ -21,12 +21,17 @@ class TeacherListFetcher
   end
 
   def get_list
-    agent = Mechanize.new
-    page = agent.get("http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}")
-    page.links_with(:href => /schedule/).each do |i|
-      i.to_s.strip
-      @teacher_list << i.text
+    begin
+      agent = Mechanize.new
+      page = agent.get("http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}")
+      page.links_with(:href => /schedule/).each do |i|
+        i.to_s.strip
+        @teacher_list << i.text
+      end
+      parse_list
+    rescue
+      puts 'bad network connection'.red
+      exit
     end
-    parse_list
   end
 end
