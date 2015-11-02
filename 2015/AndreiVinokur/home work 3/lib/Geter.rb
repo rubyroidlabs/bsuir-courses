@@ -1,7 +1,7 @@
 require 'mechanize'
 
 class Geter
-	def initialize
+  def initialize
 		@agent = Mechanize.new
 	end
 
