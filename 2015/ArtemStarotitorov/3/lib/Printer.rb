@@ -6,9 +6,8 @@ class Printer
       puts 'Empty'
       return
     end
-    for i in 0..dates.length - 1 do
-      dates[i].concat(": ")
-      inf = dates[i].concat(reviews[i])
+    dates.each_index do |i|
+      inf = form_output(reviews[i], dates[i])
       case analyzer.analyze_review(reviews[i])
       when :positive
         puts inf.green
@@ -18,5 +17,10 @@ class Printer
         puts inf
       end
     end
+  end
+
+  def form_output(review, date)
+    date.concat(': ')
+    date.concat(review)
   end
 end
