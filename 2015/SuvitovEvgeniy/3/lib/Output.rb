@@ -10,12 +10,13 @@ class Output
       count -= 1 if @words['negative'].include?(x)
       count += 1 if @words['positive'].include?(x)
     end
-    if count > 0
+    case count <=> 0
+    when 1
       puts @review.green
-    elsif count < 0
-      puts @review.red
-    else
+    when 0
       puts @review
+    else
+      puts @review.red
     end
   end
 end
