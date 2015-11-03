@@ -23,7 +23,8 @@ class TeacherListFetcher
   def get_list
     begin
       agent = Mechanize.new
-      page = agent.get("http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}")
+      link = "http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}"
+      page = agent.get(link)
       page.links_with(:href => /schedule/).each do |i|
         i.to_s.strip
         @teacher_list << i.text

@@ -6,6 +6,15 @@ class CommentFetcher
     @page = agent.get('http://www.bsuir-helper.ru/lectors')
   end
 
+  def add_dates(page, comments)
+    count = 0
+    page.parser.css('//div.submitted/span.comment-date').each do |i|
+      comments[count].insert(0, i.text + ': ')
+      count += 1
+    end
+    return comments
+  end
+
   def get_comments(name)
     comments = Array.new
     begin
@@ -19,15 +28,10 @@ class CommentFetcher
         comments << i.text + "\n"
       end
     end
-    count = 0
-    page.parser.css('//div.submitted/span.comment-date').each do |i|
-      comments[count].insert(0, i.text + ': ')
-      count += 1
-    end
     if comments.empty?
       puts 'Не найдено отзывов' + "\n"
       return
     end
-    return comments
+    add_dates(page, comments)
   end
 end
