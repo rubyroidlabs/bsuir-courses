@@ -20,7 +20,7 @@ class CommentFetcher
       comments[count].insert(0, i.text + ': ')
       count += 1
     end
-    return comments
+    comments
   end
 
   def check(comments)
