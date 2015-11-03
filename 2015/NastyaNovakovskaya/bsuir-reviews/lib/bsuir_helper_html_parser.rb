@@ -1,9 +1,8 @@
 require 'curb'
 require 'mechanize'
 require_relative 'teacher_comment'
+
 class BsuirHelperHtmlParser
-
-
   def self.get_teacher_comments(initials)
     comments = Array.new
     if teacher_exist?(initials)
@@ -24,23 +23,19 @@ class BsuirHelperHtmlParser
       end
     end
     comments
-
   end
-
-private
 
   def self.parse_comment_element(comment_element)
     comment = TeacherComment.new
     comment_element.attributes.each do |a_name, a_value|
       if a_name == 'class'
         case a_value.to_s
-          when 'submitted'
-            comment.date = parse_comment_time(comment_element).to_s
-          when 'content'
-            text = self.parse_comment_text(comment_element)
-            comment.text = parse_comment_text(comment_element).to_s
-          else
-            next
+        when 'submitted'
+          comment.date = parse_comment_time(comment_element).to_s
+        when 'content'
+          comment.text = parse_comment_text(comment_element).to_s
+        else
+          next
         end
       end
     end
@@ -90,6 +85,4 @@ private
 
     teacher_link
   end
-
-
 end

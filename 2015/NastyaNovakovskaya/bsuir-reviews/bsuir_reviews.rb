@@ -3,7 +3,6 @@ require 'optparse'
 require './lib/group_teachers.rb'
 require 'colorize'
 
-
 def print_help
   help_string = File.read('./config/help')
   puts help_string
@@ -25,5 +24,3 @@ else
   group = GroupTeachers.new(group_name)
   group.print_result
 end
-
-

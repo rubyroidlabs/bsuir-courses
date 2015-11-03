@@ -30,8 +30,6 @@ class Teacher
     puts "\n =======".red
   end
 
-private
-
   def print_comment(comment, &block)
     print comment.date
     block.call(' ' + comment.text + "\n")
