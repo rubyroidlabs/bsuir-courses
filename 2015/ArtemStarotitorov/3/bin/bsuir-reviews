@@ -15,9 +15,7 @@ class Reviewer
     professors.each do |professor|
       puts professor
       puts '===='
-      reviews = []
-      dates = []
-      @fetcher.find_reviews(professor, reviews, dates)
+      reviews, dates = @fetcher.find_reviews(professor)
       @printer.print(@analyzer, reviews, dates)
     end
   end

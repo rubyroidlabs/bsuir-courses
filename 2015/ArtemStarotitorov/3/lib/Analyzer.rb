@@ -1,13 +1,12 @@
+require 'yaml'
 require 'microsoft_translator'
 require 'sentimental'
 
 class Analyzer
   def initialize
-    file = File.open('../Passwords.txt')
-    lines = file.to_a
-    client_id = lines.first.delete "\n"
-    client_secret = lines.last.delete "\n"
-    file.close
+    data = YAML.load_file('../config.yml')
+    client_id = data['CLIENT_ID']
+    client_secret = data['CLIENT_SECRET']
     Sentimental.load_defaults
     @analyzer = Sentimental.new
     begin

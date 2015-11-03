@@ -7,12 +7,14 @@ class Fetcher
 
   def find_professors(group)
     professors = []
-    page = open_page_with_timetable_of_group(group)
-    fill_array_of_professors!(page, professors)
+    page = get_page_with_timetable_of_group(group)
+    professors = get_array_of_professors(page)
     professors.uniq
   end
 
-  def find_reviews!(professor, reviews, dates)
+  def find_reviews(professor)
+    reviews = []
+    dates = []
     name_of_professor = professor.split(' ')
     begin
       page = @agent.get('http://bsuir-helper.ru/lectors')
@@ -24,30 +26,37 @@ class Fetcher
       name_of_variant = link.text.split(' ')
       if name_of_professor == name_of_variant
         page_with_inf = link.click
-        collect_reviews!(page_with_inf, reviews)
-        collect_dates!(page_with_inf, dates)
+        reviews = collect_reviews(page_with_inf)
+        dates = collect_dates(page_with_inf)
       end
     end
+    return reviews, dates
   end
 
   private
 
-  def fill_array_of_professors!(page, professors)
+  def get_array_of_professors(page)
+    professors = []
     page.links_with(href: /schedule/).each do |link|
       professors << find_fullname_of_professor(link)
     end
+    professors
   end
 
-  def collect_reviews!(page, reviews)
+  def collect_reviews(page)
+    reviews = []
     page.search('div.comment div.content').each do |r|
       reviews << r.text
     end
+    reviews
   end
 
-  def collect_dates!(page, dates)
+  def collect_dates(page)
+    dates = []
     page.search('div.comment div.submitted span.comment-date').each do |d|
       dates << d.text
     end
+    dates
   end
 
   def find_fullname_of_professor(link)
@@ -59,7 +68,7 @@ class Fetcher
     exit
   end
 
-  def open_page_with_timetable_of_group(group)
+  def get_page_with_timetable_of_group(group)
     page = @agent.get('http://bsuir.by/schedule/schedule.xhtml')
     form = page.form('studentGroupTab:studentGroupForm')
     form['studentGroupTab:studentGroupForm:searchStudentGroup'] = group

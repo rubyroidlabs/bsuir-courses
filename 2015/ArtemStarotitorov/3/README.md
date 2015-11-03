@@ -6,4 +6,4 @@ Don't worry, they have a free tier! (up to 2 million translated characters/month
 
 https://datamarket.azure.com/developer/applications/
 
-Also you should have Passwords.txt file with your client id and your client secret at root directory. Write the client id at the first line and the client secret at the second one. 
+Also you should have a config.yml file with your client id and your client secret at root directory.
