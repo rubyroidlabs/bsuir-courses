@@ -19,18 +19,16 @@ class BsuirXmlParser
     teachers
   end
 
-private
-
   def self.get_group_id(name)
     begin
-    groups_xml = Curl::Easy.perform('http://www.bsuir.by/schedule/rest/studentGroup').body_str
+      groups_xml = Curl::Easy.perform('http://www.bsuir.by/schedule/rest/studentGroup').body_str
     rescue Curl::Err::HostResolutionError
       fail 'Нет подключения к интернету'
     end
     xml_doc = Nokogiri::XML(groups_xml)
 
     begin
-    group_element = xml_doc.xpath("//studentGroup/*[text() = '#{name}']").first.parent
+      group_element = xml_doc.xpath("//studentGroup/*[text() = '#{name}']").first.parent
     rescue NoMethodError
       fail 'Группа не найдена.'
     end
