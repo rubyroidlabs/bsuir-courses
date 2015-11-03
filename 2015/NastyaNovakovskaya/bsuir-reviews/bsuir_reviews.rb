@@ -9,11 +9,11 @@ def print_help
 end
 
 parser = OptionParser.new do|opts|
-      opts.banner = 'Usage: bsuir_reviews.rb [options]'
-      opts.on('-h') do
-        print_help
-        exit
-      end
+  opts.banner = 'Usage: bsuir_reviews.rb [options]'
+  opts.on('-h') do
+    print_help
+    exit
+  end
 end
 parser.parse!
 group_name = ARGV[0]
