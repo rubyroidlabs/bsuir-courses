@@ -6,7 +6,6 @@ class Fetcher
   end
 
   def find_professors(group)
-    professors = []
     page = get_page_with_timetable_of_group(group)
     professors = get_array_of_professors(page)
     professors.uniq
@@ -15,13 +14,8 @@ class Fetcher
   def find_reviews(professor)
     reviews = []
     dates = []
+    page =  get_page_with_list_of_professors
     name_of_professor = professor.split(' ')
-    begin
-      page = @agent.get('http://bsuir-helper.ru/lectors')
-    rescue StandardError => exc
-      puts exc.message
-      exit
-    end
     page.links_with(href: /lectors/).each do |link|
       name_of_variant = link.text.split(' ')
       if name_of_professor == name_of_variant
@@ -30,10 +24,17 @@ class Fetcher
         dates = collect_dates(page_with_inf)
       end
     end
-    return reviews, dates
+    [reviews, dates]
   end
 
   private
+  
+  def get_page_with_list_of_professors
+    @agent.get('http://bsuir-helper.ru/lectors')
+  rescue StandardError => exc
+    puts exc.message
+    exit
+  end
 
   def get_array_of_professors(page)
     professors = []
