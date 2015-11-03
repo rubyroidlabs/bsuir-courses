@@ -2,7 +2,7 @@ class CommentColorizer
   def initialize(comment)
     @comment = comment
     @keywords = YAML.load_file('./keywords.yml')
-    @pos, @neg = 0, 0
+    @pos = @neg = 0
   end
 
   def get_rating

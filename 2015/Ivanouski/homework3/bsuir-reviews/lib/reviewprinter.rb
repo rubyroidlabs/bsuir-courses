@@ -6,18 +6,18 @@ class ReviewPrinter
   def print_db
     @review_db.each do |i| # Another one for Hound and ABC Size
       puts "#{i['lector'].magenta}"
-      puts "#{"=========".yellow}"
+      puts "#{'========='.yellow}"
       if i['dates'].empty?
-        puts "Не найдено отзывов"
+        puts 'Не найдено отзывов'
       else
         (0..(i['dates'].size - 1)).each do |x|
           comment = CommentColorizer.new(i['comments'][x])
           comment.get_rating
           @comment = comment.colorize_comment
-          print "#{i['dates'][x].blue} #{@comment} \n"
+          print "#{i['dates'][x].blue} #{@comment}\n\n"
         end
       end
-    print "\n"
+      puts
     end
   end
 end
