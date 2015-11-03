@@ -7,13 +7,13 @@ class MSAnalysis
   def initialize
     begin
       @translator = MicrosoftTranslator::Client.new(ID, KEY)
-      Sentimental.load_defaults
-      @analyzer = Sentimental.new
     rescue RestClient::BadRequest
       puts 'Microsoft Translator Id & key required'
       puts 'view readme for help'
       exit
     end
+    Sentimental.load_defaults
+    @analyzer = Sentimental.new
   end
 
   def translate(comment)
