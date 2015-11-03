@@ -62,6 +62,6 @@ class Group
       return :red if @config["negative"].include?(el.downcase)
       return :green if@config["positive"].include?(el.downcase)
     end
-    return :white
+    :white
   end
 end
