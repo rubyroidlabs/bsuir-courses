@@ -1,7 +1,7 @@
 class ReviewParser
   def initialize(lectors)
     agent = Mechanize.new
-    @page = agent.get("http://bsuir-helper.ru/lectors")
+    @page = agent.get('http://bsuir-helper.ru/lectors')
     @lectors = lectors
     @linklist = {}
     @review_db = []
@@ -27,10 +27,10 @@ class ReviewParser
   end
 
   def get_reviews
-    reviews = @linklist.each_pair do |lector, link|
+    @linklist.each_pair do |lector, link|
       @comments = []
-      @dates= []
-      if link != nil
+      @dates = []
+      if !link.nil?
         review = link.click
         review_meta = review.search('#comments .content')
         review_meta.each do |comment|
@@ -41,14 +41,10 @@ class ReviewParser
           @dates.push(comment_date.text.strip)
         end
       else
-          @comments.push()
-          @dates.push()
+        @comments.push
+        @dates.push
       end
-      @review_db.push(
-        lector: lector,
-        dates: @dates,
-        comments: @comments,
-        )
+      @review_db.push(lector: lector, dates: @dates, comments: @comments,)
     end
     @review_db = JSON.parse(JSON.pretty_generate(@review_db))
   end
