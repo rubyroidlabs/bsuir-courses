@@ -1,2 +1,3 @@
-require_relative 'prober/prober'
-require_relative 'prober/parser'
+require_relative 'prober/parser_argv'
+require_relative 'prober/parser_site'
+require_relative 'prober/tonality_messages'

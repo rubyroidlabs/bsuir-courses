@@ -4,4 +4,6 @@ $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
 
 require_relative '../lib/lectors_prober'
 
-puts LectorsProber::Prober.new(LectorsProber::Parser.new(ARGV).parse).to_s
+num_group = LectorsProber::ParserArgv.new(ARGV).parse
+lectors_info = LectorsProber::ParserSite.new(num_group).grab_lectors_info
+puts LectorsProber::TonalityMessages.new(lectors_info).to_s
