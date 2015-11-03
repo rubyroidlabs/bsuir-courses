@@ -1,6 +1,6 @@
-require 'mechanize'
-require 'nokogiri'
-require 'open-uri'
+require "mechanize"
+require "nokogiri"
+require "open-uri"
 
 class Downloader
 
@@ -15,7 +15,7 @@ class Downloader
     @page = @agent.current_page
   end
 
-  def get_page_nokogiri url
+  def get_page_nokogiri(url)
     @page = Nokogiri::HTML(open(url))
   end
 end

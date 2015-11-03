@@ -1,4 +1,4 @@
-require 'optparse'
+require "optparse"
 class Parser
   attr_reader :num_of_group
   def initialize
