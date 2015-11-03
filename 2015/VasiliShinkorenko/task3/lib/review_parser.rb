@@ -8,11 +8,12 @@ class ReviewParser < Parser
   def get_reviews(group_tutor)
     if link_present?(group_tutor)
       get_tutor_page(group_tutor)
-      @tutor_page.search('#comments > div.rounded-outside > div > div.comment > div.content').each do |p|
+      xpath = '#comments > div.rounded-outside > div > div.comment > div.content'
+      @tutor_page.search(xpath).each do |p|
         @reviews << p.text.strip
       end
     else
-      @reviews << "Нет отзывов."
+      @reviews << 'Нет отзывов.'
     end
     @reviews
   end
