@@ -1,11 +1,5 @@
+# additional methods for class fetcher, to decrease ABC metric
 module Helper
-  def little_magic(array)
-    # refused to work with negative range (-5..2), dont know why
-    array.slice!(0..2)
-    5.times { array.slice!(-1) }
-    array.uniq!
-  end
-
   def error(message)
     puts message
     exit
@@ -18,7 +12,7 @@ module Helper
 
   def merge_elements(a, b)
     a.count.times { |i| a[i] += b[i] }
-    return a
+    a
   end
 
   def surname(name)

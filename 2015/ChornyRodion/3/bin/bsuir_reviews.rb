@@ -11,8 +11,7 @@ input_parser.parse
 group_id = input_parser.group_id
 
 fetcher = Fetcher.new(group_id)
-# fetcher.retrieve_names
-comments = fetcher.retrieve_comments
+comments = fetcher.fetch_comments
 
 printer = Printer.new(comments)
 printer.sentiment_output

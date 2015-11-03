@@ -2,40 +2,42 @@
 # class for retriving information from web pages
 class Fetcher
   include Helper
+  LECT_REGEXP = /^([А-Я][А-Яа-я-]{3,30})[ ][А-Я][.][ ][А-Я][.][ ]*$/
+  SCHEDULE_LINK = 'http://www.bsuir.by/schedule/schedule.xhtml?id='
+  LECTORS_LINK = 'http://bsuir-helper.ru/lectors'
+  COMMENT_CRITERIA = 'div.comment div.content'
+  DATE_CRITERIA = 'div.comment div.submitted span.comment-date'
 
   def initialize(group_id)
     @group_id = group_id
     @mechanize = Mechanize.new
     @comments = {}
-    @comment_regexp = /comment (odd|even)(\scomment-by-author\s|\s)clear-block/
-    @lect_regexp = /[\p{Cyrillic}]\W\s[\p{Cyrillic}]\W/
-    @schedule_link = 'http://www.bsuir.by/schedule/schedule.xhtml?id='
   end
 
   attr_reader :comments
 
-  def retrieve_comments
+  def fetch_comments
     names = retrieve_names
     names_hash = retrieve_lector_links(names)
-    names_hash.each { |name, link| fetch_comments(name, link) }
+    names_hash.each { |name, link| retrieve_comments(name, link) }
     @comments
   end
 
   private
 
   def retrieve_names
-    page = link_checking(@schedule_link + "#{@group_id}")
+    page = link_checking(SCHEDULE_LINK + "#{@group_id}")
     names = page.parser.search('a').to_a.map do |x|
-      x.content if x.content =~ @lect_regexp
+      x.content if x.content =~ LECT_REGEXP
     end
-    names = little_magic(names)
+    names.uniq!.compact!
     error 'Invalid group id.' if names.nil?
     names
   end
 
   def retrieve_lector_links(names)
     names_hash = {}
-    page = link_checking 'http://bsuir-helper.ru/lectors'
+    page = link_checking LECTORS_LINK
     names.each do |name|
       page.links_with(href: /lectors/).each do |link|
         names_hash[name] = link.uri if link.text[surname(name)]
@@ -44,18 +46,14 @@ class Fetcher
     names_hash
   end
 
-  def fetch_comments(name, link)
+  def retrieve_comments(name, link)
     @comments[name] = []
     return if link == ''
     link = link_checking "http://bsuir-helper.ru#{link}"
     dates = []
     comments = []
-    link.search('div.comment div.content').each do |comment|
-      comments << comment.text
-    end
-    link.search('div.comment div.submitted span.comment-date').each do |date|
-      dates << date.text
-    end
+    link.search(COMMENT_CRITERIA).each { |comment| comments << comment.text }
+    link.search(DATE_CRITERIA).each { |date| dates << date.text }
     comments = merge_elements dates, comments
     @comments[name] = comments
   end
