@@ -1,23 +1,23 @@
-#coding: utf-8
+# coding: utf-8
 require 'yaml'
 require 'colorize'
 
 class Group
   attr_accessor :num_of_group, :opinions_about_lectors, :lectors, :schedule_page, :lectors_of_group_from_helper
   attr_reader :config, :schedule_link
-  def initialize number
+  def initialize(number)
     @num_of_group = number
     @schedule_link = "http://www.bsuir.by/schedule/schedule.xhtml?id=#{@num_of_group}"
     @lectors_of_group_from_helper = {}
     @opinions_about_lectors = {}
-    @config = YAML::load(open('../task_3/lib/opinions.yml'))
+    @config = YAML.load(open('../task_3/lib/opinions.yml'))
   end
 
   def get_all_lectors
     @lectors = @schedule_page.css('tr.ui-widget-content').map {|el| el.children[5].children.text}.uniq.select {|str| str.present?}
   end
 
-  def get_lectors_from_helper all_lectors
+  def get_lectors_from_helper(all_lectors)
     @lectors.each do |lector|
       all_lectors.each do |key, value|
         if (key == lector)
@@ -32,8 +32,8 @@ class Group
     @lectors_of_group_from_helper.each do |key, value|
       page = downloader.get_page_nokogiri("http://bsuir-helper.ru/#{value.href}")
       comments = {}
-      text = page.css('div.rounded-outside div.comment p').map {|el| el.children.text}
-      date = page.css('div.rounded-outside div.comment div.submitted span.comment-date').map {|el| el.children.text}
+      text = page.css('div.rounded-outside div.comment p').map { |el| el.children.text }
+      date = page.css('div.rounded-outside div.comment div.submitted span.comment-date').map { |el| el.children.text }
       date.zip(text) { |a, b| comments[a.to_sym] = b }
       @opinions_about_lectors[key] = comments
     end
@@ -57,7 +57,7 @@ class Group
     end
   end
 
-  def check_opinion opinion
+  def check_opinion(opinion)
     opinion.split(' ').each do |el| 
       return :red if @config["negative"].include?(el.downcase)
       return :green if@config["positive"].include?(el.downcase)
