@@ -4,7 +4,7 @@ class Parser
   def initialize
     OptionParser.new do |opts|
       opts.banner = "Usage: bsuir_reviews.rb <number of groupe>"
-      end.parse!
+    end.parse!
     @num_of_group = ARGV[0]
   end
 end

@@ -14,7 +14,7 @@ class Group
   end
 
   def get_all_lectors
-    @lectors = @schedule_page.css('tr.ui-widget-content').map {|el| el.children[5].children.text}.uniq.select {|str| str.present?}
+    @lectors = @schedule_page.css('tr.ui-widget-content').map { |el| el.children[5].children.text }.uniq.select { |str| str.present? }
   end
 
   def get_lectors_from_helper(all_lectors)
@@ -41,12 +41,12 @@ class Group
 
   def print_opinions
     @lectors.each do |lector|
-      if !(@opinions_about_lectors.keys.include?(lector))
+      unless (@opinions_about_lectors.keys.include?(lector))
         @opinions_about_lectors[lector] = []
       end
     end
     @opinions_about_lectors.each do |key, value|
-      puts key 
+      puts key
       puts "Не найдено отзывов" if value.empty?
       value.each do |date, text|
         puts "#{date} -- #{text.colorize(check_opinion(text))}"
