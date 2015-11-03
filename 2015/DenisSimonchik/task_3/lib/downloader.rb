@@ -1,11 +1,11 @@
 require 'mechanize'
-require "nokogiri"
+require 'nokogiri'
 require 'open-uri'
 
 class Downloader
 
   attr_reader :page
-  
+
   def initialize
     @agent = Mechanize.new
   end

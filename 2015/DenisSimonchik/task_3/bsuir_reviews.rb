@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'mechanize'
-require "active_support/all"
+require 'active_support/all'
 require 'nokogiri'
 require 'open-uri'
 require 'colorize'

@@ -47,20 +47,20 @@ class Group
     end
     @opinions_about_lectors.each do |key, value|
       puts key
-      puts "Не найдено отзывов" if value.empty?
+      puts 'Не найдено отзывов' if value.empty?
       value.each do |date, text|
         puts "#{date} -- #{text.colorize(check_opinion(text))}"
-        puts ""
+        puts ''
       end
-      puts "_______________________________________________________________________________________________________"
-      puts ""
+      puts '_______________________________________________________________________________________________________'
+      puts ''
     end
   end
 
   def check_opinion(opinion)
     opinion.split(' ').each do |el|
-      return :red if @config["negative"].include?(el.downcase)
-      return :green if@config["positive"].include?(el.downcase)
+      return :red if @config['negative'].include?(el.downcase)
+      return :green if@config['positive'].include?(el.downcase)
     end
     return :white
   end
