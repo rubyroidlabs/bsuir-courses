@@ -1,7 +1,7 @@
 # coding: utf-8
-require 'yaml'
-require 'colorize'
-require 'unicode'
+require "yaml"
+require "colorize"
+require "unicode"
 
 class Group
   attr_accessor :num_of_group, :opinions_about_lectors, :lectors, :schedule_page, :lectors_of_group_from_helper
@@ -61,7 +61,7 @@ class Group
   def check_opinion(opinion)  
     count = 0
     comment_downcase = []
-    comment_downcase = Unicode::downcase(opinion)
+    comment_downcase = Unicode.downcase(opinion)
     @config["positive"].each { |word| count += 1 if comment_downcase.include? word }
     @config["negative"].each { |word| count -= 1 if comment_downcase.include? word }
     return :red if count < 0
