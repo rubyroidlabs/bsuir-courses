@@ -6,21 +6,23 @@ require 'colorize'
 
 Dir['../lib/*.rb'].each { |f| require_relative f }
 
-URL_HELPER  = "http://bsuir-helper.ru/lectors"
-URL_SHEDULE = "http://www.bsuir.by/schedule/schedule.xhtml"
+URL_HELPER  = 'http://bsuir-helper.ru/lectors'
+URL_SHEDULE = 'http://www.bsuir.by/schedule/schedule.xhtml'
 
 options = {}
 options_parser = OptionParser.new do |opts|
-  opts.banner = "How to: ./bsuir_reviewer.rb -g 250501\t\t\t-- this will print all tutors of the group" +
-    "\n\t./bsuir_reviewer.rb -g 250501 -t 'Самаль Д. И.' -- this will print reviews about the tutor"
+  opts.banner = "How to: ./bsuir_reviewer.rb -g 250501\t\t\t-- " +
+    "this will print all tutors of the group"                    +
+    "\n\t./bsuir_reviewer.rb -g 250501 -t 'Самаль Д. И.' -- "    +
+    "this will print reviews about the tutor"
 
-  opts.separator "Options:"
+  opts.separator 'Options:'
 
-  opts.on("-g GROUP_NAME", "Name of the group") do |o|
+  opts.on('-g GROUP_NAME', 'Name of the group') do |o|
     options[:group_name] = o
   end
 
-  opts.on("-t TUTOR_ABBR", "Name of the tutor") do |o|
+  opts.on('-t TUTOR_ABBR', 'Name of the tutor') do |o|
     options[:tutor_abbr] = o
   end
 end
@@ -28,10 +30,10 @@ end
 begin
   options_parser.parse!
 rescue OptionParser::MissingArgument
-  puts "You should provide arguments. Type -h for example."
+  puts 'You should provide arguments. Type -h for example.'
   exit
 rescue OptionParser::InvalidOption
-  puts "Wrong type of arguments. Type -h for example."
+  puts 'Wrong type of arguments. Type -h for example.'
   exit
 end
 
