@@ -12,9 +12,9 @@ URL_SHEDULE = 'http://www.bsuir.by/schedule/schedule.xhtml'
 options = {}
 options_parser = OptionParser.new do |opts|
   opts.banner = "How to: ./bsuir_reviewer.rb -g 250501\t\t\t-- " +
-    "this will print all tutors of the group"                    +
-    "\n\t./bsuir_reviewer.rb -g 250501 -t 'Самаль Д. И.' -- "    +
-    "this will print reviews about the tutor"
+                       'this will print all tutors of the group' +
+       "\n\t./bsuir_reviewer.rb -g 250501 -t 'Самаль Д. И.' -- " +
+                       'this will print reviews about the tutor'
 
   opts.separator 'Options:'
 
