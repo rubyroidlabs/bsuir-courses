@@ -15,6 +15,8 @@ class TeacherComment
         @positive = true
       when 2
         @negative = true
+      else
+        return
     end
   end
 end
