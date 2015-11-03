@@ -16,7 +16,7 @@ class Check
   end
 
   def size
-    if @group.size > 6
+    unless @group.to_s.size == 10
       puts 'Incorrect number of group'
       puts 'Group number must be 6 numbers'
       exit
