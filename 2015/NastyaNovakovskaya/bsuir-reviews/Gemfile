@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+
+# parse site
+gem 'mechanize'
+# parse site
+gem 'curb'
+#unicode for russian lang
+gem 'unicode_utils'
+# parse site
+gem 'nokogiri'
+# add color to string
+gem 'colorize'
