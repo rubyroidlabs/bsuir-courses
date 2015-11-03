@@ -25,7 +25,7 @@ module LectorsProber
     end
 
     def entries_count(comment, matchers)
-      matchers.reduce(0) { |amount, e| amount + comment.scan(/#{e}/i).size }
+      matchers.inject(0) { |amount, e| amount + comment.scan(/#{e}/i).size }
     end
 
     def identify_tone(comment, result)
