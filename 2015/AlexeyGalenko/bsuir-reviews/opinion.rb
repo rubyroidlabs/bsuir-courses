@@ -1,7 +1,7 @@
 require 'mechanize'
 require 'set'
 class Opinion
-  def initialize lecturers_set
+  def initialize (lecturers_set)
     @lecturers_set = lecturers_set
     @mechanize = Mechanize.new
     @name_to_link = {}
@@ -21,17 +21,17 @@ class Opinion
   end
 
   def opinions
-    @name_to_link.each do |name, link| 
+    @name_to_link.each do |name, link|
       opinion_page = @mechanize.get(link)
       dates = []
       comments = []
       rows_date = opinion_page.parser.css("div [class='submitted']")
-      rows_date.each do |row| 
-        dates << row.css("span")[1].text
+      rows_date.each do |row|
+        dates << row.css('span')[1].text
       end
       rows_comment = opinion_page.parser.css("div [id='comments']").css("div [class='content']")
       rows_comment.each do |row|
-        comments << row.css("p").text 
+        comments << row.css('p').text
       end
       opinions_hash(dates, comments, name)
     end

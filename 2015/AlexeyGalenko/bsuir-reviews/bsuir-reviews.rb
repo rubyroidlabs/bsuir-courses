@@ -16,15 +16,15 @@ begin
 
   names = Lecturer.new(a[0]).names
   if names.empty?
-    puts 'for help' 
-    puts 'group does not exist' 
+    puts 'for help'
+    puts 'group does not exist'
     puts 'for help'
     puts opts
   else
     O = Opinion.new(names)
     O.links_to_opinions
     opinions = O.opinions
-    Show.new(names, opinions).show
+    Show.new.show(names, opinions)
   end
 rescue => e
   puts e
