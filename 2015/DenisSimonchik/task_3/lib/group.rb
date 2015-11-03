@@ -41,7 +41,7 @@ class Group
 
   def print_opinions
     @lectors.each do |lector|
-      unless (@opinions_about_lectors.keys.include?(lector))
+      unless @opinions_about_lectors.keys.include?(lector)
         @opinions_about_lectors[lector] = []
       end
     end
@@ -58,7 +58,7 @@ class Group
   end
 
   def check_opinion(opinion)
-    opinion.split(' ').each do |el| 
+    opinion.split(' ').each do |el|
       return :red if @config["negative"].include?(el.downcase)
       return :green if@config["positive"].include?(el.downcase)
     end

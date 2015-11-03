@@ -16,7 +16,6 @@ class Downloader
   end
 
   def get_page_nokogiri url
-    @page = Nokogiri::HTML(open(url))   
+    @page = Nokogiri::HTML(open(url))
   end
 end
-

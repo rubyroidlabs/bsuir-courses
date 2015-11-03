@@ -9,8 +9,8 @@ require_relative '../task_3/lib/downloader.rb'
 require_relative '../task_3/lib/group.rb'
 require_relative '../task_3/lib/parser.rb'
 
-puts"Information processing... Wait..."
-puts "_______________________________________________________________________________________________________"
+puts 'Information processing... Wait...'
+puts '_______________________________________________________________________________________________________'
 
 parser = Parser.new
 group = Group.new(parser.num_of_group)
