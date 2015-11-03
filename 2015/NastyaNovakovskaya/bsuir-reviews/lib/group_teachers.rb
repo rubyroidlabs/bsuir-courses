@@ -1,7 +1,6 @@
 require_relative 'bsuir_xml_parser'
 
 class GroupTeachers
-
   def initialize(name)
     @name = name
     @id = 0
@@ -20,8 +19,6 @@ class GroupTeachers
   end
 
   def print_result
-    @teachers.each do |teacher|
-      teacher.show_information
-    end
+    @teachers.each(&:teacher.show_information)
   end
 end
