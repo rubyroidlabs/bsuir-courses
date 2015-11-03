@@ -9,7 +9,7 @@ class BsuirHelperHtmlParser
     if self.teacher_exist?(initials)
       teacher_link = self.get_teacher_link(initials)
       agent = Mechanize.new
-      
+
       begin
         page = agent.get("http://bsuir-helper.ru".concat(teacher_link))
       rescue Curl::Err::HostResolutionError
@@ -26,7 +26,9 @@ class BsuirHelperHtmlParser
     comments
 
   end
+
 private
+
   def self.parse_comment_element(comment_element)
     comment = TeacherComment.new
     comment_element.attributes.each do |a_name, a_value|

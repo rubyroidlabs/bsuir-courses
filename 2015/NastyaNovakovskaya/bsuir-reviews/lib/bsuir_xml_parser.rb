@@ -20,6 +20,7 @@ class BsuirXmlParser
   end
 
 private
+
   def self.get_group_id(name)
     begin
     groups_xml = Curl::Easy.perform('http://www.bsuir.by/schedule/rest/studentGroup').body_str
@@ -40,7 +41,7 @@ private
       end
     end
   end
-  
+
   def self.parse_teacher_element(element)
     teacher = Teacher.new
     element.children.each do |child|
