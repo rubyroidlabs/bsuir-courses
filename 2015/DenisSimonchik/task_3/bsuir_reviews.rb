@@ -21,17 +21,17 @@ group.get_all_lectors
 
 all_lectors_from_helper = []
 page = downloader.get_page("http://bsuir-helper.ru/lectors")
-  page.links_with(href: /lectors/).each do |link|
-    all_lectors_from_helper << link
-  end
+page.links_with(href: /lectors/).each do |link|
+  all_lectors_from_helper << link
+end
 
 all_lectors_from_helper = all_lectors_from_helper[4..-1]
 
 all_lectors_from_helper_hash = {}
 
 all_lectors_from_helper.each do |lector|
-  temp_lector = lector.to_s.split(/[ ' ' \.?!]+/)
-  temp_lector = temp_lector[0] + ' ' + temp_lector[1][0] + '. ' + temp_lector[2][0] + '.  '
+  temp_lector = lector.to_s.split(/[ " "  \.?!]+/)
+  temp_lector = temp_lector[0] + " " + temp_lector[1][0] + ". " + temp_lector[2][0] + ".  "
   all_lectors_from_helper_hash[temp_lector] = lector
 end
 
