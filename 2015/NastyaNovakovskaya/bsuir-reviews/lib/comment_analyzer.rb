@@ -1,10 +1,9 @@
 require 'yaml'
-require "unicode_utils/downcase"
+require 'unicode_utils/downcase'
 
 class CommentAnalyzer
-
   def self.check_comment(comment_text)
-    words = YAML.load_file("./config/keywords.yml")
+    words = YAML.load_file('./config/keywords.yml')
 
     negative_words = words['negative']
     positive_words = words['positive']
@@ -31,6 +30,5 @@ class CommentAnalyzer
     else
       return 2
     end
-
   end
 end
