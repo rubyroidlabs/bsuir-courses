@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 # bsuir-reviews
-# @version 0.1.4
+# @version 0.1.5
 # @author S. Ivanouski
 
 require 'colorize'
@@ -38,7 +38,6 @@ reviews = ReviewParser.new(lecturers)
 reviews.search_reviews
 reviev_db = reviews.get_reviews
 
-output = ReviewPrinter.new(reviev_db)
-output.print_db
+ReviewPrinter.print_db(reviev_db)
 
 exit 0

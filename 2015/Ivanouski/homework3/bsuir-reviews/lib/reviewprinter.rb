@@ -1,14 +1,10 @@
 class ReviewPrinter
-  def initialize(review_db) # Just for Hound and ABC Size
-    @review_db = review_db
-  end
-
-  def print_db
-    @review_db.each do |i| # Another one for Hound and ABC Size
-      puts "#{i['lector'].magenta}"
+  def self.print_db(review_db) # Just for Hound and ABC Size
+    review_db.each do |i|
+      puts "#{i['lector'].cyan}"
       puts "#{'========='.yellow}"
       if i['dates'].empty?
-        puts 'Не найдено отзывов'
+        puts 'Не найдено отзывов'.magenta
       else
         (0..(i['dates'].size - 1)).each do |x|
           comment = CommentColorizer.new(i['comments'][x])
