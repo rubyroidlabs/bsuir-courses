@@ -3,7 +3,6 @@ require "nokogiri"
 require "open-uri"
 
 class Downloader
-
   attr_reader :page
 
   def initialize
