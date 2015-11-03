@@ -5,17 +5,14 @@ class ReviewParser
     @lectors = lectors
     @linklist = {}
     @review_db = []
-    @comments = []
-    @dates = []
   end
 
   def search_reviews
     @lectors.each do |lector|
       @lector = lector
-      @f = lector.scan(/[[:word:]]+/)[0]
-      @i = lector.scan(/[[:word:]]+/)[1]
-      @o = lector.scan(/[[:word:]]+/)[2]
       @linklist["#{@lector}"] = nil
+      fio = @lector.scan(/[[:word:]]+/)
+      @f, @i, @o = fio[0], fio[1], fio[2]
       @page.links_with(text: /#{@f}?/).each do |link|
         if link.text.scan(/[[:word:]]+/)[1][0] == @i &&
            link.text.scan(/[[:word:]]+/)[2][0] == @o

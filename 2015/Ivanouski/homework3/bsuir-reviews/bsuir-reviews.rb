@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 # bsuir-reviews
-# @version 0.1.2
+# @version 0.1.3
 # @author S. Ivanouski
 
 require 'colorize'
@@ -13,7 +13,6 @@ require 'open-uri'
 require 'yaml'
 require './lib/employees.rb'
 require './lib/inputparser.rb'
-require './lib/helper.rb'
 require './lib/reviewparser.rb'
 require './lib/reviewprinter.rb'
 require './lib/commentcolorizer.rb'
@@ -24,13 +23,15 @@ group_id = stdin.get_group_id
 begin
   lecturers = Employees.new(group_id)
 rescue SocketError => err
-  Helper.connection_error(err)
+  print "Connection Error!\n#{err}\n"
+  exit 1
 end
 
 begin
   lecturers = lecturers.get_employees
 rescue NoMethodError => err
-  Helper.input_error(err)
+  print "Check your group id!\n#{err}\n"
+  exit 1
 end
 
 reviews = ReviewParser.new(lecturers)
