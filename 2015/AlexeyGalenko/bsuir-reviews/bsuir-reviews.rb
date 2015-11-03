@@ -16,7 +16,6 @@ begin
 
   names = Lecturer.new(a[0]).names
   if names.empty?
-    puts 'for help'
     puts 'group does not exist'
     puts 'for help'
     puts opts

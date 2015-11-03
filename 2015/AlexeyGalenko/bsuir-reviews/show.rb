@@ -6,19 +6,19 @@ class Show
     @keywords = YAML.load_file('keywords.yml')
   end
 
-  def show (names, opinions)
+  def show(names, opinions)
     names.each do |name|
-      unless opinions.include?(name)
-        opinions[name] = ['Не найдено отзывов']
+      if opinions.include?(name)
+        o = opinions[name]
+        puts name
+        puts '====='
+        o.each { |opinion| estimate_and_print(opinion) }
+      else
+        puts name
+        puts '====='
+        puts 'Не найдено отзывов'
+        puts ''
       end
-    end
-    opinions.each do |name, opinions|
-      puts name
-      puts '====='
-      opinions.each do |opinion|
-        estimate_and_print(opinion)
-      end
-      puts ''
     end
   end
 

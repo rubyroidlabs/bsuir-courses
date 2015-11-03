@@ -1,6 +1,6 @@
 require 'mechanize'
 class Lecturer
-  def initialize (group_number)
+  def initialize(group_number)
     @group_number = group_number
     @lecturers = Set.new
     @mechanize = Mechanize.new
