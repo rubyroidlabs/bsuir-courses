@@ -19,16 +19,23 @@ class Fetcher
     page.links_with(href: /lectors/).each do |link|
       name_of_variant = link.text.split(' ')
       if name_of_professor == name_of_variant
-        page_with_inf = link.click
-        reviews = collect_reviews(page_with_inf)
-        dates = collect_dates(page_with_inf)
+        reviews, dates =  collect_information(link)
       end
     end
     [reviews, dates]
   end
 
   private
-  
+
+  def collect_information(link)
+    reviews = []
+    dates = []
+    page_with_inf = link.click
+    reviews = collect_reviews(page_with_inf)
+    dates = collect_dates(page_with_inf)
+    [reviews, dates]
+  end
+
   def get_page_with_list_of_professors
     @agent.get('http://bsuir-helper.ru/lectors')
   rescue StandardError => exc
