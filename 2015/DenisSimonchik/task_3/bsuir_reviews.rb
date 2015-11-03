@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
-require 'mechanize'
-require 'active_support/all'
-require 'nokogiri'
-require 'open-uri'
-require 'colorize'
+require "mechanize"
+require "active_support/all"
+require "nokogiri"
+require "open-uri"
+require "colorize"
 
-require_relative '../task_3/lib/downloader.rb'
-require_relative '../task_3/lib/group.rb'
-require_relative '../task_3/lib/parser.rb'
+require_relative "../task_3/lib/downloader.rb"
+require_relative "../task_3/lib/group.rb"
+require_relative "../task_3/lib/parser.rb"
 
-puts 'Information processing... Wait...'
-puts '_______________________________________________________________________________________________________'
+puts "Information processing... Wait..."
+puts "_______________________________________________________________________________________________________"
 
 parser = Parser.new
 group = Group.new(parser.num_of_group)
