@@ -1,5 +1,5 @@
 class ReviewPrinter
-  def self.print_db(review_db) # Just for Hound and ABC Size
+  def self.print_db(review_db)
     review_db.each do |i|
       puts "#{i['lector'].cyan}"
       puts "#{'========='.yellow}"
