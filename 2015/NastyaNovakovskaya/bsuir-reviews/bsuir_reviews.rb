@@ -14,7 +14,7 @@ parser = OptionParser.new do|opts|
         print_help
         exit
       end
-    end
+end
 parser.parse!
 group_name = ARGV[0]
 
