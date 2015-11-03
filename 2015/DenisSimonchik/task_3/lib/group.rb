@@ -6,7 +6,7 @@ class Group
   attr_accessor :num_of_group, :opinions_about_lectors, :lectors, :schedule_page, :lectors_of_group_from_helper
   attr_reader :config, :schedule_link
   def initialize number
-    @num_of_group = number;
+    @num_of_group = number
     @schedule_link = "http://www.bsuir.by/schedule/schedule.xhtml?id=#{@num_of_group}"
     @lectors_of_group_from_helper = {}
     @opinions_about_lectors = {}
@@ -25,19 +25,19 @@ class Group
         end
       end
     end
-  end 
+  end
 
-  def get_opinions 
+  def get_opinions
     downloader = Downloader.new
     @lectors_of_group_from_helper.each do |key, value|
-      page = downloader.get_page_nokogiri("http://bsuir-helper.ru/#{value.href}")     
+      page = downloader.get_page_nokogiri("http://bsuir-helper.ru/#{value.href}")
       comments = {}
       text = page.css('div.rounded-outside div.comment p').map {|el| el.children.text}
       date = page.css('div.rounded-outside div.comment div.submitted span.comment-date').map {|el| el.children.text}
-      date.zip(text) { |a, b| comments[a.to_sym] = b}
+      date.zip(text) { |a, b| comments[a.to_sym] = b }
       @opinions_about_lectors[key] = comments
     end
-  end 
+  end
 
   def print_opinions
     @lectors.each do |lector|
@@ -49,8 +49,7 @@ class Group
       puts key 
       puts "Не найдено отзывов" if value.empty?
       value.each do |date, text|
-
-        puts "#{date} -- #{text.colorize(check_opinion(text))}"        
+        puts "#{date} -- #{text.colorize(check_opinion(text))}"
         puts ""
       end
       puts "_______________________________________________________________________________________________________"
@@ -66,4 +65,3 @@ class Group
     return :white
   end
 end
-
