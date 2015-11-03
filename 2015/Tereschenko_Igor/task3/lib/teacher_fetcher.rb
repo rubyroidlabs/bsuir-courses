@@ -12,7 +12,7 @@ class TeacherListFetcher
   def parse_list
     @teacher_list.uniq!
     @teacher_list.map! do |i|
-      i[0...-5]
+      i.split(' ')[8..-1].join(' ')
     end
     if @teacher_list.empty?
       puts 'некорректный номер группы'.red
@@ -25,12 +25,12 @@ class TeacherListFetcher
     link = "http://www.bsuir.by/schedule/schedule.xhtml?id=#{@group_number}"
     page = agent.get(link)
     page.links_with(:href => /schedule/).each do |i|
-      i.to_s.strip
-      @teacher_list << i.text
+      temp = i.click
+      @teacher_list << temp.parser.css('//span.h2').text
     end
     parse_list
-    rescue
-      puts 'bad network connection'.red
-      exit
+  rescue
+    puts 'bad network connection'.red
+    exit
   end
 end

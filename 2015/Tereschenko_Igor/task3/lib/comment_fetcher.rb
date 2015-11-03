@@ -32,7 +32,7 @@ class CommentFetcher
   def get_comments(name)
     comments = Array.new
     begin
-      page = @page.links_with(:text => /#{name}/)[0].click
+      page = @page.links_with(:text => /(?=.*#{name.split(' ')[0]})(?=.*#{name.split(' ')[1]})(?=.*#{name.split(' ')[2]}).*/)[0].click # evil sorcery here
     rescue NoMethodError
       puts 'Не найдено отзывов' + "\n"
       return
