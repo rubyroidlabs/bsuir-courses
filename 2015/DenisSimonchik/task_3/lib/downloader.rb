@@ -9,7 +9,7 @@ class Downloader
     @agent = Mechanize.new
   end
 
-  def get_page url
+  def get_page(url)
     @agent.get(url)
     @page = @agent.current_page
   end

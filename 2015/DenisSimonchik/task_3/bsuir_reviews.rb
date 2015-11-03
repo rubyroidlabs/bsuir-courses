@@ -34,7 +34,6 @@ all_lectors_from_helper.each do |lector|
   temp_lector = temp_lector[0] + " " + temp_lector[1][0] + ". " + temp_lector[2][0] + ".  "
   all_lectors_from_helper_hash[temp_lector] = lector
 end
-
 group.get_lectors_from_helper(all_lectors_from_helper_hash)
 group.get_opinions
 group.print_opinions
