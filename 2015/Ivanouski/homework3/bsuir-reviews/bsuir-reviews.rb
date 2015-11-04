@@ -2,14 +2,13 @@
 # encoding: utf-8
 
 # bsuir-reviews
-# @version 0.1.6
+# @version 0.1.7
 # @author S. Ivanouski
 
 require 'colorize'
 require 'docopt'
 require 'json'
 require 'mechanize'
-require 'open-uri'
 require 'yaml'
 require './lib/employees.rb'
 require './lib/inputparser.rb'

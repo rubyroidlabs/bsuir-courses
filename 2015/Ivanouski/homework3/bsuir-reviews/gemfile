@@ -1,8 +1,0 @@
-source "https://rubygems.org"
-
-require 'colorize'
-require 'docopt'
-require 'json'
-require 'mechanize'
-require 'open-uri'
-require 'yaml'
