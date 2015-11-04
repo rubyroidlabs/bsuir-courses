@@ -6,7 +6,7 @@ class Print
   def initialize(lectors)
     @lectors = lectors
     begin
-    @keywords = YAML.load(File.open('keywords.yml'))
+      @keywords = YAML.load(File.open('keywords.yml'))
     rescue ArgumentError => e
       puts "Could not parse YAML: #{e.message}"
     end
@@ -37,7 +37,7 @@ class Print
       if Unicode::downcase(comment).include?(keyword)
         negative += 1
       end
-     end
+    end
     @keywords['positive'].each do |keyword|
       if Unicode::downcase(comment).include?(keyword)
         positive += 1

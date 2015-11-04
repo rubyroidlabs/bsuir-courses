@@ -15,7 +15,7 @@ class CommentParser
       puts "Cannot connect to bsuir-helper.ru: #{e.message}"
     end
 
-    lector = page.search("#content-content div div a")
+    lector = page.search('#content-content div div a')
     @names.each do |name|
       lector.each do |link|
         if name == convert_name(link.text)
@@ -35,9 +35,9 @@ class CommentParser
     rescue => e
       puts "Cannot connect to bsuir-helper.ru: #{e.message}"
     end
-      page.search("#comments div.rounded-outside div div").each do |comment|
-        message = comment.search("div.content")
-        date = comment.search("div.submitted span.comment-date")
+      page.search('#comments div.rounded-outside div div').each do |comment|
+        message = comment.search('div.content')
+        date = comment.search('div.submitted span.comment-date')
         comments.push(date.text + message.text)
       end
     comments
@@ -50,6 +50,3 @@ class CommentParser
     converted_name = surname + ' ' + name + ' ' + patronymic
   end
 end
-
-
-

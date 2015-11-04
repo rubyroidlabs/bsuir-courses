@@ -8,9 +8,9 @@ class NamesParser
 
   def fetch_names
     agent = Mechanize.new
-    @a=[]
+    @a = []
     begin
-    page = agent.get("http://www.bsuir.by/schedule/schedule.xhtml?id=#{@num}")
+      page = agent.get("http://www.bsuir.by/schedule/schedule.xhtml?id=#{@num}")
     rescue => e
       puts "Cannot connect to bsuir.by: #{e.message}"
     end
