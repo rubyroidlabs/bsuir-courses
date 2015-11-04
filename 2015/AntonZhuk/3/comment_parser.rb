@@ -10,7 +10,7 @@ class CommentParser
     @lectors = Hash.new
     @agent = Mechanize.new
     begin
-    page = @agent.get('http://bsuir-helper.ru/lectors')
+      page = @agent.get('http://bsuir-helper.ru/lectors')
     rescue => e
       puts "Cannot connect to bsuir-helper.ru: #{e.message}"
     end
@@ -35,11 +35,11 @@ class CommentParser
     rescue => e
       puts "Cannot connect to bsuir-helper.ru: #{e.message}"
     end
-      page.search('#comments div.rounded-outside div div').each do |comment|
-        message = comment.search('div.content')
-        date = comment.search('div.submitted span.comment-date')
-        comments.push(date.text + message.text)
-      end
+    page.search('#comments div.rounded-outside div div').each do |comment|
+      message = comment.search('div.content')
+      date = comment.search('div.submitted span.comment-date')
+      comments.push(date.text + message.text)
+    end
     comments
   end
 
@@ -47,6 +47,6 @@ class CommentParser
     surname, name, patronymic = full_name.split
     name = name[0] + '.'
     patronymic = patronymic[0] + '.'
-    converted_name = surname + ' ' + name + ' ' + patronymic
+    surname + ' ' + name + ' ' + patronymic
   end
 end

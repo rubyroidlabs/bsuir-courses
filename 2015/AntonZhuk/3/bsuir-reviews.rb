@@ -9,7 +9,7 @@ group_number.config[:help]
 num = group_number.cli_arguments
 
 if num.empty? # Пока не разобрался, как нормально обработать строку без аргументов
-  puts " -h, --help                       Take this example of input: 'bsuir-reviews.rb 322401'"
+  puts " -h, --help Take this example of input: 'bsuir-reviews.rb 322401'"
   exit(0)
 end
 
