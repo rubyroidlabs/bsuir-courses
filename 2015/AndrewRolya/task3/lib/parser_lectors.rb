@@ -12,7 +12,7 @@ class ParserLectors
     page = @agent.get(@url)
     comments = Array.new
     dates = Array.new
-    page.links_with(:href => /lectors/).each do |link|
+    page.links_with(href: /lectors/).each do |link|
       if teacher_name == link.text
         page = link.click
         page.parser.css('.comment .content').map { |comment| comments << comment.text }

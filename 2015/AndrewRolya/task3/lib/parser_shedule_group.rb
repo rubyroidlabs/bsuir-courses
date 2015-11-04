@@ -11,12 +11,12 @@ class ParserSheduleGroup
     begin
       page = @agent.get(@url)
     rescue
-      puts 'Not Internet connection'
+      puts 'Not page_intermediaternet connection'
       exit
     end
     links_list = Hash.new
     teachers_list = Array.new
-    page.links_with(:href => /schedule/).each do |link|
+    page.links_with(href: /schedule/).each do |link|
       links_list[link.text] = link
     end
     links_list.each do |_key, value|
