@@ -13,8 +13,8 @@ class ReviewParser
       @linklist["#{@lector}"] = nil
       @fio = @lector.scan(/[[:word:]]+/)
       @page.links_with(text: /#{@fio[0]}?/).each do |link|
-        if link.text.scan(/[[:word:]]+/)[1][0] == @fio[1] &&
-           link.text.scan(/[[:word:]]+/)[2][0] == @fio[2]
+        fio_found = link.text.scan(/[[:word:]]+/)
+        if fio_found[1][0] == @fio[1] && fio_found[2][0] == @fio[2]
           @linklist["#{@lector}"] = link
         end
       end
