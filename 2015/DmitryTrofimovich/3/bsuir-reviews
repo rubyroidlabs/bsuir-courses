@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+require 'thor'
+require_relative 'helper_parser.rb'
+require_relative 'output_comments.rb'
+
+class HandleInput < Thor
+  desc 'get GROUP_NUMBER', 'get comments about lecturers'
+  def get(group_number)
+    comments_hash = HelperParser.new(group_number).comments_hash
+    OutputComments.new(comments_hash).output_on_terminal
+  rescue ArgumentError => msg
+    p msg
+  rescue SocketError
+    p 'No internet connection'
+  rescue Errno::ENOENT
+    p 'File not found'
+  end
+end
+
+HandleInput.start
