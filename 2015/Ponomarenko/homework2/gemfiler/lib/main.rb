@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 
 class Gemfiler
-
   def execute
-    args = parse_arguments
-    gem_name = args[:name]
-    version_specs = args[:versions]
+    gem_name = parse_arguments[:name]
+    version_specs = parse_arguments[:versions]
 
     searcher = Searcher.new(gem_name)
     searcher.search
