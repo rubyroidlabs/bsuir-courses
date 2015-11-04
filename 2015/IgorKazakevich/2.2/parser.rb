@@ -7,10 +7,10 @@ class Parser
   attr_reader :array
   attr_reader :find_text
 
-  def initialize  
+  def initialize
     @opts = Slop.parse do |o|
       o.integer '-A'
-      o.regexp '-e' 
+      o.regexp '-e'
       o.bool '-R'
       o.string '-z'
       o.on '-h', '--help' do
@@ -57,7 +57,7 @@ class Parser
 
   def check_opt_r
     if @opts[:R]
-      @files = Dir.glob('**/*').find_all { |file_name| file_name.end_with?('.txt')}
+      @files = Dir.glob('**/*').select { |file_name| file_name.end_with?('.txt') }
     end
   end
 
