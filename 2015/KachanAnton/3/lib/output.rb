@@ -20,7 +20,9 @@ class Output
       end
     end
   end
+
   private
+  
   def output_comment(comment)
     positive = 0
     negative = 0

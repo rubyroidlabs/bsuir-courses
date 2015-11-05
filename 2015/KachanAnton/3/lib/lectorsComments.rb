@@ -23,11 +23,14 @@ class LectorsComments
     end
     @lectors_comment
   end
+
   private
+
   def change_name(name)
     surname, nm, patr = name.split
     surname + ' ' + nm[0] + '.' + ' ' + patr[0] + '.'
   end
+
   def parse_comments(name_lector)
     comments = []
     begin
