@@ -4,7 +4,7 @@ require 'optparse'
 parser = OptionParser.new do |opts|
   opts.banner = "Usage: ./bsuir-reviews.rb [group_number]
   Examples: ./bsuir-reviews.rb 350504"
-  opts.on("-h", "--help", "Output help") do
+  opts.on('-h', '--help', 'Output help') do
     puts opts
     exit
   end

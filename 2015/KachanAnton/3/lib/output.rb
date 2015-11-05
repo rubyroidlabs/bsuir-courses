@@ -20,9 +20,7 @@ class Output
       end
     end
   end
-
   private
-
   def output_comment(comment)
     positive = 0
     negative = 0
@@ -36,14 +34,14 @@ class Output
         positive += 1
       end
     end
-    com =  positive <=> negative
+    com = positive <=> negative
     case com
-        when -1
-          puts comment.colorize(:red)
-        when 1
-          puts comment.colorize(:green)
-        else
-          puts comment
-        end
+    when -1
+      puts comment.colorize(:red)
+    when 1
+      puts comment.colorize(:green)
+    else
+      puts comment
+    end
   end
 end
