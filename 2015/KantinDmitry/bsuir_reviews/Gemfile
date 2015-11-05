@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gem 'colorize', '=0.7.7'
+gem 'thor', '=0.19.1'
+gem 'mechanize', '=2.7.3'
+gem 'unicode', '0.4.4.2'
