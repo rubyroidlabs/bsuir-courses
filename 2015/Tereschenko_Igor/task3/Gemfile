@@ -1,1 +1,6 @@
 source 'https://rubygems.org'
+
+gem 'colorize'
+gem 'mechanize'
+gem 'opt-parse'
+gem 'unicode_utils'
