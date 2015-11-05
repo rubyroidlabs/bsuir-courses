@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 # bsuir-reviews
-# @version 0.1.8
+# @version 0.1.9
 # @author S. Ivanouski
 
 require 'colorize'
