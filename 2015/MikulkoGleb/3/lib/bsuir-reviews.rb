@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-Dir['bsuir-reviews/*.rb'].each{ |file| require_relative file }
+Dir['bsuir-reviews/*.rb'].each { |file| require_relative file }
 require 'mechanize'
 
 class BsuirReviewer
@@ -9,7 +9,8 @@ class BsuirReviewer
                /div[@id='content-wrapper']/div[@id='content']\
                /div[@id='content-inner']/div[@id='content-content']\
                /div[@id='comments']/div[@class='rounded-outside']\
-               /div[@class='rounded-inside']/div[@class='comment odd clear-block']\
+               /div[@class='rounded-inside']\
+               /div[@class='comment odd clear-block']\
                /div[@class='submitted']/span[@class='comment-date']"
 
   XPATH_TEXT = "/html/body/div[@id='page']\
@@ -17,7 +18,8 @@ class BsuirReviewer
                /div[@id='content-wrapper']/div[@id='content']\
                /div[@id='content-inner']/div[@id='content-content']\
                /div[@id='comments']/div[@class='rounded-outside']\
-               /div[@class='rounded-inside']/div[@class='comment odd clear-block']\
+               /div[@class='rounded-inside']\
+               /div[@class='comment odd clear-block']\
                /div[@class='content']/p"
 
   def initialize
