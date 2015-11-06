@@ -1,0 +1,13 @@
+#!/usr/bin/ruby
+Dir['./lib/*.rb'].each { |file| require_relative file }
+Dir['./constants/*.rb'].each { |file| require_relative file }
+begin
+  if  ARGV.empty? || ARGV.to_s.match('-h')
+    puts 'Usage: ./bsuir-reviews [number group]'
+  else
+    searchcomments = CommentsParse.new
+    searchcomments.parser 
+  end
+rescue
+  puts "Error: #{$!.inspect}"
+end
