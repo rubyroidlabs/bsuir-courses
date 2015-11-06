@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 # bsuir-reviews
-# @version 0.1.8
+# @version 0.1.10
 # @author S. Ivanouski
 
 require 'colorize'
@@ -16,12 +16,12 @@ require './lib/reviewparser.rb'
 require './lib/reviewprinter.rb'
 require './lib/commentcolorizer.rb'
 
-stdin = InputParser.new(__FILE__)
-group_id = stdin.get_group_id
+stdinput = InputParser.new(__FILE__)
+group_id = stdinput.get_group_id
 
 begin
   lecturers = Employees.new(group_id)
-rescue SocketError => err
+rescue SocketError, Mechanize::ResponseCodeError => err
   print "Connection Error!\n#{err}\n"
   exit 1
 end
