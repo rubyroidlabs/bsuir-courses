@@ -20,7 +20,7 @@ class SentimentAnalizator
     negative_rating = page.search(XPATH_NEGATIVE).text.to_i
     positive_rating + negative_rating
   rescue => e
-    abort(e.backtrace)
+    abort(e.inspect)
   end
 
   def get_page(text)
@@ -30,6 +30,6 @@ class SentimentAnalizator
     russian_form['text'] = text
     @agent.submit(russian_form, russian_form.buttons.first)
   rescue => e
-    abort(e.backtrace)
+    abort(e.inspect)
   end
 end

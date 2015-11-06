@@ -14,7 +14,7 @@ class Parser
   def parse
     [parse_bsuir, parse_bsuir_helper]
   rescue => e
-    abort(e.backtrace)
+    abort(e.inspect)
   end
 
   private

@@ -1,9 +1,6 @@
 #!/usr/bin/env ruby
-require_relative 'bsuir-reviews/parser.rb'
-require_relative 'bsuir-reviews/writer.rb'
-require_relative 'bsuir-reviews/sentiment_analizator.rb'
+Dir['bsuir-reviews/*.rb'].each{ |file| require_relative file }
 require 'mechanize'
-require 'slop'
 
 class BsuirReviewer
   BSUIR_HELPER_URL = 'http://bsuir-helper.ru'
@@ -24,7 +21,7 @@ class BsuirReviewer
                /div[@class='content']/p"
 
   def initialize
-    group_number = parse_console_param
+    group_number = ConsoleParser.new.parse_console_param(ARGV)
     @group_employees, @all_employees = Parser.new(group_number).parse
     @agent = Mechanize.new
     @sentiment_analizator = SentimentAnalizator.new
@@ -35,18 +32,22 @@ class BsuirReviewer
       puts e
       puts '==============='
       if @all_employees.keys.include? e
-        page = @agent.get("#{BSUIR_HELPER_URL}#{@all_employees[e]}")
-        comments_date = page.search(XPATH_DATE).map(&:text)
-        comments_text = page.search(XPATH_TEXT).map(&:text)
-        comments = Hash[comments_date.zip comments_text]
-        if comments.empty?
-          puts "Нет отзывов\n\n"
-        else
-          print_comments(comments)
-        end
+        search_comments(e)
       else
         puts "Нет на сайте\n\n"
       end
+    end
+  end
+
+  def search_comments(employee)
+    page = @agent.get("#{BSUIR_HELPER_URL}#{@all_employees[employee]}")
+    comments_date = page.search(XPATH_DATE).map(&:text)
+    comments_text = page.search(XPATH_TEXT).map(&:text)
+    comments = Hash[comments_date.zip comments_text]
+    if comments.empty?
+      puts "Нет отзывов\n\n"
+    else
+      print_comments(comments)
     end
   end
 
@@ -62,24 +63,6 @@ class BsuirReviewer
       end
       Writer.write("#{date} : #{text}\n\n", color)
     end
-  end
-
-  def parse_console_param
-    opts = Slop::Options.new
-    opts.banner = 'Usage: ./bsuir-reviews.rb group_number'
-    opts.on '-h', '--help' do
-      puts opts.banner
-      puts 'Example: ./bsuir-reviews.rb 520601'
-      exit
-    end
-
-    parser = Slop::Parser.new(opts)
-    result = ARGV.replace parser.parse(ARGV).arguments
-    fail if result.count != 1
-    result[0]
-  rescue
-    puts opts
-    abort
   end
 end
 
