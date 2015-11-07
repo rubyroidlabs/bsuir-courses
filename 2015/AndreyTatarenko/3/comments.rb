@@ -8,9 +8,9 @@ class Comments
   def initialize(teacher)
     @sanitizer = Rails::Html::FullSanitizer.new
     @url = Mechanize.new.get('http://bsuir-helper.ru/lectors').
-        link_with(:text => teacher).click.canonical_uri
-    @comments = HTTParty.get(@url).to_s.strip.
-        scan(/(?m)<span class="comment-date">.+?<\/div>.+?<\/div>/)
+        links.find { |l| l.text == teacher}.click.canonical_uri
+    @comment_regex = /(?m)<span class="comment-date">.+?<\/div>.+?<\/div>/
+    @comments = HTTParty.get(@url).to_s.strip.scan(@comment_regex)
     @teacher = teacher
     @keywords = YAML.load_file('./keywords.yml')
   end
@@ -18,19 +18,23 @@ class Comments
   def color_print
     unless @comments.empty?
       puts @teacher.yellow
-      puts '============================='
+      puts '============================='.yellow
       @comments.each do |comment|
         @clear_comment = @sanitizer.sanitize(comment)
         @happy_level = happy_level(@clear_comment)
-        if @happy_level > 0
-          puts @clear_comment.green
-        elsif @happy_level < 0
-          puts @clear_comment.red
-        elsif @happy_level == 0
-          puts @clear_comment
-        end
+        comment_print(@happy_level, @clear_comment)
       end
       @teacher
+    end
+  end
+
+  def comment_print(level, comment)
+    if level > 0
+      puts comment.green
+    elsif level < 0
+      puts comment.red
+    elsif level == 0
+      puts comment
     end
   end
 
@@ -43,4 +47,3 @@ class Comments
     @level -= @keywords__matches.size
   end
 end
-

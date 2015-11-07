@@ -24,4 +24,3 @@ end
 
 puts 'Не найдено отзывов:'.red
 puts teachers_list - teachers_with_comments
-
