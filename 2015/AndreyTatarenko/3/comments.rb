@@ -6,9 +6,9 @@ require 'unicode'
 
 class Comments
   def initialize(teacher)
-    @sanitizer = Rails::Html::FullSanitizer.new
-    @url = Mechanize.new.get('http://bsuir-helper.ru/lectors').
-        links.find { |l| l.text == teacher}.click.canonical_uri
+    @url =
+        Mechanize.new.get('http://bsuir-helper.ru/lectors').
+        links.detect { |l| l.text == teacher }.click.canonical_uri
     @comment_regex = /(?m)<span class="comment-date">.+?<\/div>.+?<\/div>/
     @comments = HTTParty.get(@url).to_s.strip.scan(@comment_regex)
     @teacher = teacher
@@ -20,7 +20,7 @@ class Comments
       puts @teacher.yellow
       puts '============================='.yellow
       @comments.each do |comment|
-        @clear_comment = @sanitizer.sanitize(comment)
+        @clear_comment = Rails::Html::FullSanitizer.new.sanitize(comment)
         @happy_level = happy_level(@clear_comment)
         comment_print(@happy_level, @clear_comment)
       end

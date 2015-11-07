@@ -18,8 +18,9 @@ class Teacher
 
   def initials(teacher)
     @teacher_initials = teacher.split(' ')
-    @teacher_initials = @teacher_initials[0].concat(' ').
-        concat(@teacher_initials[-2][0]).concat('.').concat(' ').
+    @teacher_initials =
+        @teacher_initials[0].concat(' ').
+        concat(@teacher_initials[-2][0]).concat('. ').
         concat(@teacher_initials[-1][0]).concat('.')
   end
 
