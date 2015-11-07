@@ -20,8 +20,11 @@ class CommentParser
       lector.each do |link|
         if name == convert_name(link.text)
           @lectors[name] = parse_comments(link['href'])
+          if @lectors[name].empty?
+            @lectors[name] = Array.[]('Comments not found!')
+          end
         elsif @lectors[name].nil?
-          @lectors[name] = Array.[]('Comments not found!')
+          @lectors[name] = Array.[]('Lector not found!')
         end
       end
     end

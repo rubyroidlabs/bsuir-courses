@@ -2,6 +2,7 @@ require_relative 'names_parser'
 require_relative 'print'
 require_relative 'comment_parser'
 require_relative 'group_parser'
+require 'mechanize'
 
 group_number = GroupParser.new
 group_number.parse_options
