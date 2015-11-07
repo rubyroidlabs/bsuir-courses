@@ -1,0 +1,9 @@
+# A sample Gemfile
+source 'https://rubygems.org'
+
+gem 'mechanize'
+gem 'colorize'
+gem 'httparty'
+gem 'rails-html-sanitizer'
+gem 'unicode'
+gem 'pry'

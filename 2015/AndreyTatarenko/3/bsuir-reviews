@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'colorize'
+
+require './argparser.rb'
+require './teacher.rb'
+require './comments'
+
+
+group = ArgParser.new(ARGV).parse
+teachers = Teacher.new(group)
+
+teachers_list = teachers.list
+teachers_links = teachers.links
+teachers_with_comments = []
+
+teachers_links.each do |teacher|
+  teachers_initials = teachers.initials(teacher)
+  if teachers_list.include?(teachers_initials)
+    commented_teacher = Comments.new(teacher).color_print
+    teachers_with_comments << teachers_initials unless commented_teacher.nil?
+  end
+end
+
+puts 'Не найдено отзывов:'.red
+puts teachers_list - teachers_with_comments
+
