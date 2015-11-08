@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title>GAME OF LIFE</title>
+<script type="text/javascript">
+function func(obj_id) {
+    var elem = document.getElementById(obj_id);
+    if (elem.style.backgroundColor == 'black') {
+      elem.style.backgroundColor = 'lawngreen';
+    } else {
+      elem.style.backgroundColor = 'black';
+    }
+};
+</script>
+</head>
+<body>
+	<h1 align="CENTER"> GAME OF LIFE </h1>
+	<br>
+<table align="CENTER" border="2" width="300" bordenrcolor="#FFFFFF" cellspacing="1">
+<% for i in 0..9 %>
+  <tr>
+	<% for index in 0..9 %>
+	    <% if @field[i][index] == 0 %>
+	        <td id=<%=i%><%=index%> onclick="func(this.id)" style="background-color: black" height="30"></td>
+	    <% else %>
+	        <td id=<%=i%><%=index%> onclick="func(this.id)" style="background-color: lawngreen" height="30"></td>
+	    <% end %>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+</body>
+</html>
