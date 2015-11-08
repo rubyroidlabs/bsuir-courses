@@ -70,4 +70,3 @@ Class World
       cell.alive = [true, false].sample
     end
   end
-end

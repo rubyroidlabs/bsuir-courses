@@ -2,21 +2,20 @@ Dir[File.expand_path('./../*.rb', __FILE__)].each { |f| require(f) }
 require 'gosu'
 
 Class Window
-def initialize(height=1800, width=900)
-
+  def initialize(height=1800, width=900)
     @height = height
     @width = width
     super height, width, false
-    self.caption = "Game of Life"
+    self.caption = 'Game of Life'
     @background = Gosu::Color.new(0xffdedede)
     @alive = Gosu::Color.new(0xff121212)
     @dead = Gosu::Color.new(0xffededed)
-    @rows = height/10
-    @columns = width/10
+    @rows = height / 10
+    @columns = width / 10
     @world = World.new(@columns, @rows)
     @game = Game.new(@world)
-    @row_height = height/@rows
-    @col_width = width/@columns
+    @row_height = height / @rows
+    @col_width = width / @columns
     @game.world.randomly_populate
     @generation = 0
   end
