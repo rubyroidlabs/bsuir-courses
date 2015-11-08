@@ -34,4 +34,3 @@ Class Game
       cell.die!
     end
   end
-end

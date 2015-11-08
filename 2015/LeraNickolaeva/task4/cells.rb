@@ -19,4 +19,3 @@ Class Cells
   def revive!
     @alive = true
   end
-end

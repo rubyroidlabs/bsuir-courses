@@ -63,6 +63,5 @@ def initialize(height=1800, width=900)
               width, height, @background,
               0, height, @background)
   end
-end
 
 Window.new.show
