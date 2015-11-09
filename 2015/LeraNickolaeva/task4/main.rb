@@ -14,8 +14,8 @@ Class Window
     @columns = width / 10
     @world = World.new(@columns, @rows)
     @game = Game.new(@world)
-    @row_height = height / @rows
-    @col_width = width / @columns
+    @r_h = height / @rows
+    @c_w = width / @columns
     @game.world.randomly_populate
     @generation = 0
   end
@@ -30,15 +30,15 @@ Class Window
     draw_background
     @game.world.cells.each do |cell|
       if cell.alive?
-        draw_quad(cell.x * @col_width, cell.y * @row_height, @alive,
-                  cell.x * @col_width + (@col_width - 1), cell.y * @row_height, @alive,
-                  cell.x * @col_width + (@col_width - 1), cell.y * @row_height + (@row_height - 1), @alive,
-                  cell.x * @col_width, cell.y * @row_height + (@row_height - 1), @alive)
+        draw_quad(cell.x * @c_w, cell.y * @r_h, @alive,
+                  cell.x * @c_w + (@c_w - 1), cell.y * @r_h, @alive,
+                  cell.x * @c_w + (@c_w - 1), cell.y * @r_h + (@r_h - 1), @alive,
+                  cell.x * @c_w, cell.y * @r_h + (@r_h - 1), @alive)
       else
-        draw_quad(cell.x * @col_width, cell.y * @row_height, @dead,
-                  cell.x * @col_width + (@col_width - 1), cell.y * @row_height, @dead,
-                  cell.x * @col_width + (@col_width - 1), cell.y * @row_height + (@row_height - 1), @dead,
-                  cell.x * @col_width, cell.y * @row_height + (@row_height - 1), @dead)
+        draw_quad(cell.x * @c_w, cell.y * @r_h, @dead,
+                  cell.x * @c_w + (@c_w - 1), cell.y * @r_h, @dead,
+                  cell.x * @c_w + (@c_w - 1), cell.y * @r_h + (@r_h - 1), @dead,
+                  cell.x * @c_w, cell.y * @r_h + (@r_h - 1), @dead)
       end
     end
   end
