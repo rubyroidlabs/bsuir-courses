@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+<div class="container">
+  <table class="table table-bordered" height="75%">
+    <% @array.each do |i| %>
+      <tr>
+        <% i.each do |a| %>
+          <% if a == 1 %>
+            <td class="info"></td>
+          <% else %>
+            <td></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
