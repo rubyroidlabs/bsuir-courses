@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+Dir['./lib/*.rb'].each { |f| require(f) }
+require 'optparse'
+require 'yaml'
+parser = OptionParser.new do|opts|
+  opts.banner = "Утилита bsuir-reviews предназначена для получения комментариев о преподавателях с сайта bsuir-helper.ru
+  Использование: ./bsuir-reviews [номер_группы]
+  Примеры: ./bsuir-reviews 320601
+           ./bsuir-reviews 551004"
+end
+parser.parse!
+
+group = ARGV
+if group[0].nil?
+  puts "Использование: ./bsuir-reviews [номер_группы]"
+  abort
+end
+group = group[0].to_s
+if group.length != 6
+  puts 'Номер группы должен состоять из 6 цифр'
+  fail ArgumentError
+end
+keywords = YAML.load_file('./keywords.yml')
+
+begin
+  bsuir = BsuirTeachersParser.new("#{group}").parse
+  helper = HelperTeachersParser.new.parse
+  lectors_and_comments = CommentsParser.new(bsuir, helper).parse
+  CommentPrinter.new(lectors_and_comments, bsuir, keywords).print
+rescue
+  puts 'Ошибка. Проверьте интернет соединение'
+end
