@@ -15,7 +15,7 @@ stuff = Analyzer.new
 teacher_list = pages.teachers("#{SCHEDULE_URL}#{group.group_number[0]}")
 full_teacher_list = pages.full_teachers(teacher_list)
 full_teacher_list.each do |name|
- puts "==============\n#{name.yellow}\n=============="
+  puts "==============\n#{name.yellow}\n=============="
   comments = pages.get_comments(name)
   comments.each { |com| stuff.analyze(com) }
 end
