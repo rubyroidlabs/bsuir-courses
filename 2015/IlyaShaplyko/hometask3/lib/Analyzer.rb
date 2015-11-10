@@ -2,7 +2,7 @@ class Analyzer
   def initialize
     @keywords = YAML.load_file('keywords.yml')
   end
-  
+
   def analyze(comment)
     counter = 0
     @keywords['positive'].each do |word|
