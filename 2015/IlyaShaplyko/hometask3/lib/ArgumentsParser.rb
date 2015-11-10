@@ -13,6 +13,7 @@ class ArgumentsParser
     end
     parser.parse!
   end
+
   def check
     if @group_number.to_s.size != 10
       puts 'Group number is 6 numbers'

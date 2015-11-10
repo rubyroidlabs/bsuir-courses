@@ -9,7 +9,7 @@ Dir['./lib/*.rb'].each { |f| require(f) }
 
 group = ArgumentsParser.new(ARGV)
 group.check
-pages = Get_Stuff.new
+pages = GetStuff.new
 stuff = Analyzer.new
 
 teacher_list = pages.teachers("#{SCHEDULE_URL}#{group.group_number[0]}")
@@ -18,4 +18,4 @@ full_teacher_list.each do |name|
   puts "==============\n#{name.yellow}\n=============="
   comments = pages.get_comments(name)
   comments.each { |com| stuff.analyze(com) }
- end
+end
