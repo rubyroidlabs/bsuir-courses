@@ -4,10 +4,10 @@ class BsuirHelperParser
 
   def get_teacher_url(teacher_name)
     teacher_id = get_teacher_id(teacher_name)
-    if teacher_id != nil
+    if !teacher_id.nil?
       teacher_url = HELPER_URL + teacher_id
     else
-      teacher_url = "Not found"
+      teacher_url = 'Not found'
     end
     teacher_url
   end
@@ -25,9 +25,9 @@ class BsuirHelperParser
     lector_link
   end
 
-  def get_teacher_comments(teacher_name)
-    comments = Array.new
-    comment_blocks = Array.new
+  def get_comments(teacher_name)
+    comments = []
+    comment_blocks = []
     mechanize = Mechanize.new
     teacher_url = get_teacher_url(teacher_name)
 

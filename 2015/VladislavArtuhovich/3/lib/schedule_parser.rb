@@ -1,6 +1,6 @@
 class ScheduleParser
-  def get_teachers_list(group_number)
-    teachers_list = Array.new
+  def get_teachers(group_number)
+    teachers_list = []
     mechanize = Mechanize.new
     schedule_page = mechanize.get(generate_link_to_schedule(group_number))
     schedule_page.search('employee').each do |employee|
