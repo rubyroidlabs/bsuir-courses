@@ -42,9 +42,8 @@ class BsuirHelperParser
     end
 
     comment_blocks.each do |comment_block|
-      comment = comment_block.search('div.content p').text
-      time = comment_block.search('span.comment-date').text
-      comments.push("#{time}: #{comment}")
+      comments.push("#{comment_block.search('div.content p').text}: 
+        #{comment_block.search('span.comment-date').text}")
     end
     comments
   end
