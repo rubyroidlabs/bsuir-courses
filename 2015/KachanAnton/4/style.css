@@ -1,0 +1,82 @@
+html {
+  background: url(background.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+title {
+ image: url(background.jpg); 
+}
+#header {
+    font-size: 3em;
+    left: 30%;
+    line-height: 2;
+    color: #afa !important;
+    position: absolute;
+}
+#right {
+  border-style: groove;
+  border-width: 20px;
+  border-color: #afa !important;
+  top: 10%;
+  color: #afa !important;
+  text-align: center;
+  right: 1%;
+  width: 300px;
+  height: 500px;
+  font-size: 20px;
+  position: absolute; 
+}
+
+#center {
+  top: 50%; 
+  left: 43%;
+  position: absolute;
+  margin-top: -225px;
+  margin-left: -225px; 
+
+  border-style: groove;
+  border-width: 20px;
+  border-color: #afa !important;
+  border-collapse:collapse;
+}
+
+#left {
+  border-style: groove;
+  border-width: 20px;
+  border-color: #afa !important;
+  width: 200px;
+  color: rgb(0, 255, 0);
+  top: 20%; 
+  left: 2%;  
+  position: absolute; 
+}
+button {
+  
+  height: 40px;
+  color:#afa !important;
+  background-color: black;
+  width: 200px;
+  font-size: 20px; 
+}
+
+input {
+  
+  color:#afa !important;
+  background-color: black;
+  font-size: 20px;
+  width: 152px;
+}
+
+#step {
+ width: 166px;
+  
+}
+
+td {
+  background-color: black;
+  border-style: outset;
+  border-width: 1px;
+}
+
+
+

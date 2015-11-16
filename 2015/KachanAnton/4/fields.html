@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="java.js" >  </script>
+  <title>Game of Life</title>
+  <link rel="shortcut icon" href="background.jpg" type="image/x-icon">
+</head>
+<body>
+ <div id="header">The Game of Life</div>
+  <form id="left">
+    Size X<input id="sizeX" type="text" ></input>
+    Size Y<input id="sizeY" type="text"></input>
+    <br>
+    Step<input id="step" type="text"></input>
+    <button id="btnStart" type="button"> Start </button>
+    <br>
+    <button id="btnNextStep" type="button"> Next Step </button>
+    <br>
+    <button id="btnStop" type="button"> Stop </button>
+    <br>
+    <button id="btnSize" type="button"> Change Size </button>
+    <br>
+    <button id="btnRandom" type="button"> Random </button>
+    <br>
+    <button id="btnInversion" type="button"> Inversion </button>
+    <br>
+    <button id ="btnClear" type="button"> Clear </button>
+  </form>
+  <div id="center">
+  
+  <div id = "govo">
+  </div>
+
+  </div>
+  <div id="right">
+ <p><h1>The Rules</h1></p>
+<p><h3>For a space that is 'populated'</h3></p>
+Each cell with one or no neighbors dies, as if by solitude.
+Each cell with four or more neighbors dies, as if by overpopulation.
+Each cell with two or three neighbors survives.
+<p><h3>For a space that is 'empty' or 'unpopulated'</p></h3>
+Each cell with three neighbors becomes populated.
+ </div>
+</body>
+</html>
