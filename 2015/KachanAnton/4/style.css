@@ -6,6 +6,7 @@ html {
 title {
  image: url(background.jpg); 
 }
+
 #header {
     font-size: 3em;
     left: 30%;
@@ -50,8 +51,8 @@ title {
   left: 2%;  
   position: absolute; 
 }
+
 button {
-  
   height: 40px;
   color:#afa !important;
   background-color: black;
@@ -59,8 +60,7 @@ button {
   font-size: 20px; 
 }
 
-input {
-  
+input { 
   color:#afa !important;
   background-color: black;
   font-size: 20px;
@@ -69,7 +69,6 @@ input {
 
 #step {
  width: 166px;
-  
 }
 
 td {
@@ -77,6 +76,3 @@ td {
   border-style: outset;
   border-width: 1px;
 }
-
-
-

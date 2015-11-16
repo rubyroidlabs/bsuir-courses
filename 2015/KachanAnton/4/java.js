@@ -15,12 +15,10 @@ $(document).ready(function(){
   var cells_array = [];
   var living_cells = [];
   var state_field = [];
-  var my_green = 'rgb(0, 255, 0)';
   var IntervalID;
 
   function CreateField(size_y,size_x){
-    var size_cell = 200/size_x + 'px'
-    var newElem=document.createElement("table");
+    var newElem=document.createElement('table');
     for(var i=0; i<size_y; i++){
       cells_array[i]=[];
       living_cells[i]=[];
@@ -33,32 +31,37 @@ $(document).ready(function(){
       }
       cells_array[i][size_x-1] = newElem.insertRow();
     }
-    
-    for(var i=0; i<size_y; i++)
-      for(var j=0; j<size_x; j++)
-        $("#govo").append(cells_array[i][j]);
-    $('td').css('padding',size_cell);
+  }
 
+  function PrintField(){  
+    for(var i=0; i<size_y; i++)
+      for(var j=0; j<size_x; j++){
+        $('#govo').append(cells_array[i][j]);
+      }
+    $('td').css('padding', 200/size_x + 'px');
     TableClick();
   }
 
   function TableClick() {
      $('td').click(function(){
-        if(ColorGreen(this))
+        if(ColorGreen(this)){
           ToBlack(this);
-        else
+        }
+        else {
           ToGreen(this);
+        }
       });
   }
 
   function ColorGreen(element){
-    if($(element).css('background-color') == my_green)
+    if($(element).css('background-color') == 'rgb(0, 255, 0)'){
       return true;
+    }
     return false;
   }
 
   function ToGreen(element){
-    $(element).css('background-color', my_green);
+    $(element).css('background-color', 'rgb(0, 255, 0)');
   }
 
   function ToBlack(element){
@@ -66,43 +69,52 @@ $(document).ready(function(){
   }
 
   function FieldRandom(){
-    $("td").each(function(index, element){
-      if(Math.random() < 0.2)
+    $('td').each(function(index, element){
+      if(Math.random() < 0.2){
         ToGreen(element);
-      else ToBlack(element);
+      }
+      else {
+        ToBlack(element);
+      }
     });
   }
 
   function Inversion(){
     for (var i = 0; i < size_y; i++)
       for (var j = 0; j < size_x; j++){
-        if(ColorGreen(cells_array[i][j]))
+        if(ColorGreen(cells_array[i][j])){
           ToBlack(cells_array[i][j]);
-        else
+        }
+        else {
           ToGreen(cells_array[i][j]);
+        }
       }
   }
 
   function ChangeSize(){
     $('td').remove();
     CreateField(size_y,size_x);
+    PrintField();
   }
   
   function GetStateField(){
     for (var i = 0; i < size_y; i++)
       for (var j = 0; j < size_x; j++) {
-        if ( ColorGreen(cells_array[i][j]) )
+        if (ColorGreen(cells_array[i][j])){
           state_field[i][j] = 1;
-        else
+        }
+        else {
           state_field[i][j] = 0;
+        }
       }
   }
 
   function ResetLivingCells(){
     for(var i=0; i<size_y; i++){
       living_cells[i]=[];
-      for(var j=0; j<size_x; j++)
+      for(var j=0; j<size_x; j++){
         living_cells[i][j] = 0;
+      }
     }
   }
 
@@ -112,19 +124,25 @@ $(document).ready(function(){
     var y_end = y + 2;
     var x_start = x - 1;
     var y_start = y - 1;
-    if(y == 0)
+    if(y == 0){
       y_start = y;
-    if(x == 0)
+    }
+    if(x == 0){
       x_start = x;
-    if(y == size_y-1)
+    }
+    if(y == size_y-1){
       y_end = y + 1;
-    if(x == size_x-1)
+    }
+    if(x == size_x-1){
       x_end = x + 1;
+    }
 
     for(var i =y_start; i<y_end; i++)
-      for(var j=x_start;j<x_end; j++)
-        if(state_field[i][j])
+      for(var j=x_start;j<x_end; j++){
+        if(state_field[i][j]){
           count++;
+        }
+      }
     return count;
   }
 
@@ -133,11 +151,13 @@ $(document).ready(function(){
       for (var j = 0; j < size_x; j++) {
         var nearby_cells = NearbyCells(i,j);
         if (ColorGreen(cells_array[i][j]))
-          if (nearby_cells-1 == 2 || nearby_cells-1 == 3)
+          if (nearby_cells-1 == 2 || nearby_cells-1 == 3){
             living_cells[i][j] = 1;
+          }
           if (!ColorGreen(cells_array[i][j]))
-            if (nearby_cells == 3)
+            if (nearby_cells == 3){
               living_cells[i][j] = 1;
+            }
       }
   }
 
@@ -147,8 +167,9 @@ $(document).ready(function(){
     GetStateField();
     NextStep();
     GenerateNextField();
-    if(flag_field == 1)
-      document.getElementById("step").value = ++step; 
+    if(flag_field == 1){
+      document.getElementById('step').value = ++step; 
+    }
   }
 
   function GenerateNextField(){
@@ -158,50 +179,52 @@ $(document).ready(function(){
           ToGreen(cells_array[i][j]);
           flag_field = 1;
         }
-        else
+        else {
           ToBlack(cells_array[i][j]);
+        }
       }
   }
 
   function ResetCountStep(){
     step = 0;
-    document.getElementById("step").value = step;
+    document.getElementById('step').value = step;
   }
 
-  $("#btnStart").click(function(){
+  $('#btnStart').click(function(){
     IntervalID = setInterval(GenerateNextStep , 200);
    });
 
-  $("#btnNextStep").click(function(){
+  $('#btnNextStep').click(function(){
      GenerateNextStep();
      });
 
-  $("#btnStop").click(function(){
+  $('#btnStop').click(function(){
     clearInterval(IntervalID);
   });
 
-  $("#btnSize").click(function(){
-      size_x = document.getElementById("sizeX").value
-      size_y = document.getElementById("sizeY").value 
+  $('#btnSize').click(function(){
+      size_x = document.getElementById('sizeX').value
+      size_y = document.getElementById('sizeY').value 
       ChangeSize();
   });
 
-  $("#btnRandom").click(function(){ 
+  $('#btnRandom').click(function(){ 
     ResetCountStep();
     ToBlack('td');
     FieldRandom();
   });
 
-  $("#btnInversion").click(function(){
+  $('#btnInversion').click(function(){
      Inversion();
      ResetCountStep();
   });
 
-  $("#btnClear").click(function(){
+  $('#btnClear').click(function(){
     ToBlack('td');
     ResetCountStep();
   });
 
   CreateField(10,10);
+  PrintField();
 });
 
