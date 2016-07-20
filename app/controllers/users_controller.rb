@@ -21,6 +21,25 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/login' do
+    if logged_in?
+      redirect_to_home_page
+    else
+      erb :index
+    end
+  end
+
+  post 'login' do
+    @user = User.find_by(username:params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to_home_page
+    else
+      flash[:message] = "We can't find you, Please try again"
+      redirect_if_not_logged_in
+    end
+  end
+
 
 
 end
