@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
       erb :index #=> Log In Page
     else
-      redirect to "expenses"
+      redirect_to_home_page
     end
   end
 
