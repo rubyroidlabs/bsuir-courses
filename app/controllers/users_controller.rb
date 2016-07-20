@@ -40,6 +40,28 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/users/:id/edit' do
+    if logged_in?
+        erb :'users/edit_user'
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
+  patch '/users/:id' do
+    if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
+      @user = User.find(params[:id])
+      @user.username = params[:username]
+      @user.email = params[:email]
+      @user.password = params[:password]
+      @user.save
+      redirect to "/users/#{@user.id}"
+    else
+      flash[:message] = "Please don't leave blank content"
+      redirect to "/users/#{params[:id]}/edit"
+    end
+  end
+
 
 
 end
