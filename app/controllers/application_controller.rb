@@ -1,4 +1,8 @@
+require 'rack-flash'
+
 class ApplicationController < Sinatra::Base
+
+  use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -8,11 +12,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    if logged_in?
-      erb :index
-    else
-      redirect_if_not_logged_in
-    end
+    erb :index
   end
 
   helpers do
@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
         redirect "/login"
       end
     end
-    
+
   end
 
 end
