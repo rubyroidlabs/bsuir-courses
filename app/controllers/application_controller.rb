@@ -12,7 +12,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    if !logged_in?
+      erb :index #=> Log In Page
+    else
+      redirect_to_home_page
+    end
+
   end
 
   helpers do
@@ -29,6 +34,10 @@ class ApplicationController < Sinatra::Base
       if !logged_in?
         redirect "/login"
       end
+    end
+
+    def redirect_to_home_page
+      redirect to "/expenses"
     end
 
   end
