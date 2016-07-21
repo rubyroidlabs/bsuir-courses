@@ -29,5 +29,14 @@ class ExpensesController < ApplicationController
     end
   end
 
+  get '/expenses/:id' do
+    if logged_in?
+      @expense = Expense.find(params[:id])
+      erb :'expenses/show_expense'
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
 
 end
