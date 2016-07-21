@@ -50,6 +50,7 @@
           <table class="table table-hover table-striped" >
           <tr class="info">
             <th><h3>Name</h3></th>
+            <th><h3>Items</h3></th>
             <th><h3>Total</h3></th>
             <th><h3>Edit</h3></th>
             <th><h3>Delete</h3></th>
@@ -57,6 +58,7 @@
             <% current_user.categories.all.sort_by {|hash| hash[:name]}.each do |category| %>
               <tr style="text-align:left;">
                 <td><a href="categories/<%= category.id %>"><%= category.name %></a></td>
+                <td><a href="categories/<%= category.id %>"><%= category.expenses.size %></a></td>
                 <td>$ <%= category.expenses.collect {|e| e.amount}.sum %></td>
                 <td><a href="categories/<%= category.id %>/edit">Edit <span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td><form action="/categories/<%= category.id %>/delete" method="post">
