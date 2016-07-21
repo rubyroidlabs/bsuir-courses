@@ -51,3 +51,10 @@
       </div> <!-- end jumbotron -->
     </div> <!-- end row -->
   </div> <!-- end container -->
+
+  <div class="row">
+    <form action="/expenses/<%= @expense.id %>/delete" method="post">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
+      <button type="submit" class="btn btn-danger">Delete Expense</button>
+    </form>
+  </div> <!-- end row -->
