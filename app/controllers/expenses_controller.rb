@@ -53,6 +53,7 @@ class ExpensesController < ApplicationController
         erb :'expenses/edit_expense'
       else
         redirect_to_home_page
+      end
     else
       redirect_if_not_logged_in
     end
