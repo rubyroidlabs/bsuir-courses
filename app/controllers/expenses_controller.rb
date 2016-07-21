@@ -38,5 +38,34 @@ class ExpensesController < ApplicationController
     end
   end
 
+  get '/expenses/:id/edit' do
+    if logged_in?
+      @expense = Expense.find(params[:id])
+      @category = Category.find(@expense.category_id)
+      if @expense.user_id == create_user.id
+        erb :'expenses/edit_expense'
+      else
+        redirect_to_home_page
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
+  patch 'expenses/:id' do
+    if !params[:description].empty? && !params[:amount].empty? && !params[:date].empty?
+      @expense = Expense.find(params[:id])
+      @expense.description = params[:description]
+      @expense.amount = params[:amount]
+      @expense.date = params[:date]
+      @category = Category.find(name:params[:category_name])
+      @expense.category_id = @category_id
+      @expense.save
+      flash[:message] = "Your Expense Has Been Succesfully Updated"
+      redirect_to_home_page
+    else
+      flash[:message] = "Please Don't Leave Blank Content"
+      redirect to "/expenses/#{params[:id]}/edit"
+    end
+  end
 
 end
