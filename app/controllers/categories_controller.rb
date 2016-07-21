@@ -14,11 +14,11 @@ class CategoriesController < ApplicationController
   post '/categories' do
     if params[:name].empty?
       flash[:message] = "Please Enter a Category Name"
-      redirect to "/categories"
+      redirect_to_categories
     else
       @user = current_user
       @category = Category.create(name:params[:name], user_id:@user.id)
-      redirect to "/categories"
+      redirect_to_categories
     end
   end
 
@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
       if @category.user_id == current_user.id
         erb :'categories/edit_category'
       else
-        redirect to "/categories"
+        redirect_to_categories
       end
     else
       redirect_if_not_logged_in
@@ -54,7 +54,7 @@ class CategoriesController < ApplicationController
       @category.name = params[:name]
       @category.save
       flash[:message] = "Your category has been updated successfully"
-      redirect to "/categories"
+      redirect_to_categories
     else
       flash[:message] = "Please don't leave blank content"
       redirect to "/categories/#{params[:id]}/edit"
@@ -67,7 +67,7 @@ class CategoriesController < ApplicationController
     if logged_in?
       if current_user.categories.size == 1
         flash[:message] = "You need at least one category"
-        redirect to "/categories"
+        redirect_to_categories
       else
         @category = Category.find(params[:id])
         if @category.user_id == current_user.id
@@ -75,7 +75,7 @@ class CategoriesController < ApplicationController
           @category.save
           @category.delete
           flash[:message] = "Your category has been deleted successfully"
-          redirect to "/categories"
+          redirect_to_categories
         end
       end
     else
@@ -92,7 +92,7 @@ class CategoriesController < ApplicationController
       if @expense.user_id == session[:user_id]
         erb :'expenses/edit_expense'
       else
-        redirect to '/expenses'
+        redirect_to_home_page
       end
     else
       redirect_if_not_logged_in

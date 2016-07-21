@@ -39,6 +39,10 @@ class ApplicationController < Sinatra::Base
       redirect to "/expenses"
     end
 
+    def redirect_to_categories
+      redirect to "/categories"
+    end
+
   end
 
 end
