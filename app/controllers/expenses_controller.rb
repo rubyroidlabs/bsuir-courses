@@ -68,4 +68,17 @@ class ExpensesController < ApplicationController
     end
   end
 
+  delete '/expenses/:id/delete' do
+    if logged_in?
+      @expense = Expense.find(params[:id])
+      if @expense.user_id == current_user.id
+        @expense.delete
+        flash[:message] = "Your expense has been deleted successfully"
+        redirect to "/expenses"
+      end
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
 end
