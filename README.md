@@ -14,8 +14,6 @@ It will show you your total expense amount and by category.
 To use this app, just clone, run `rake db:migrate` and then run `shotgun`.
 Everything should be set up.
 
-<p data-visibility='hidden'><a href='https://opensource.org/licenses/mit-license.php' title='MIT License'>The MIT License (MIT)</a> </p>
-
 ## Contributing Bugfixes or Features
 
 For submitting something back, be it a patch, some documentation, or new feature requires some level of
@@ -28,3 +26,8 @@ Committing code is easy:
   recognize its purpose.
 - Commit a change, and push your local branch to your github fork
 - Send me pull request for your changes to be included
+
+I apologise in advance for the slow action on pull requests and issues.
+
+## License
+Expensy is licensed under the MIT license. (http://opensource.org/licenses/MIT)
