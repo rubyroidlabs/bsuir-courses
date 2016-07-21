@@ -49,10 +49,10 @@
       <% end %>
       <table class="table table-hover table-striped" >
       <tr class="info">
-        <th><h4>Description</h4></th>
-        <th><h4>Amount</h4></th>
-        <th><h4>Date</h4></th>
-        <th><h4></h4></th>
+        <th><h3>Description</h3></th>
+        <th><h3>Amount</h3></th>
+        <th><h3>Date</h3></th>
+        <th><h3></h3></th>
       </tr>
         <% @category.expenses.sort_by {|hash| hash[:date]}.reverse.each do |expense| %>
           <tr style="text-align:left;">
