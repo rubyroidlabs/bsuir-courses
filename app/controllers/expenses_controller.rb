@@ -1,5 +1,7 @@
 class ExpensesController < ApplicationController
 
+  # lets a user view all expenses if logged in
+  # redirects to login page if not logged in
   get '/expenses' do
     if logged_in?
       @expenses = current_user.expenses.all
@@ -9,6 +11,7 @@ class ExpensesController < ApplicationController
     end
   end
 
+  # lets user create a expense if they are logged in
   get '/expenses/new' do
     if logged_in?
       erb :'/expenses/create_expense'
@@ -17,6 +20,7 @@ class ExpensesController < ApplicationController
     end
   end
 
+  # does not let a user create a blank expense
   post '/expenses' do
     if params[:description].empty? || params[:amount].empty? || params[:date].empty?
       flash[:message] = "Please don't leave blank content"
@@ -29,6 +33,7 @@ class ExpensesController < ApplicationController
     end
   end
 
+  # displays a single expense
   get '/expenses/:id' do
     if logged_in?
       @expense = Expense.find(params[:id])
@@ -38,6 +43,8 @@ class ExpensesController < ApplicationController
     end
   end
 
+  # lets a user view expense edit form if they are logged in
+  # does not let a user edit a expense he/she did not create
   get '/expenses/:id/edit' do
     if logged_in?
       @expense = Expense.find(params[:id])
@@ -51,6 +58,7 @@ class ExpensesController < ApplicationController
     end
   end
 
+  # does not let a user edit a text with blank content
   patch 'expenses/:id' do
     if !params[:description].empty? && !params[:amount].empty? && !params[:date].empty?
       @expense = Expense.find(params[:id])
@@ -68,13 +76,15 @@ class ExpensesController < ApplicationController
     end
   end
 
+  # lets a user delete their own expense if they are logged in
+  # does not let a user delete a expense they did not create
   delete '/expenses/:id/delete' do
     if logged_in?
       @expense = Expense.find(params[:id])
       if @expense.user_id == current_user.id
         @expense.delete
         flash[:message] = "Your expense has been deleted successfully"
-        redirect to "/expenses"
+        redirect_to_home_page
       end
     else
       redirect_if_not_logged_in
