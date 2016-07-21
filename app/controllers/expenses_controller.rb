@@ -49,7 +49,7 @@ class ExpensesController < ApplicationController
     if logged_in?
       @expense = Expense.find(params[:id])
       @category = Category.find(@expense.category_id)
-      if @expense.user_id == create_user.id
+      if @expense.user_id == current_user.id
         erb :'expenses/edit_expense'
       else
         redirect_to_home_page
