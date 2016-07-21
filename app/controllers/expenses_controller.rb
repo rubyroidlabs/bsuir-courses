@@ -9,5 +9,13 @@ class ExpensesController < ApplicationController
     end
   end
 
+  get '/expenses/new' do
+    if logged_in?
+      erb :'/expenses/create_expense'
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
 
 end
