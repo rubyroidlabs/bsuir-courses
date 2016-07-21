@@ -60,14 +60,14 @@ class ExpensesController < ApplicationController
   end
 
   # does not let a user edit a text with blank content
-  patch 'expenses/:id' do
+  patch '/expenses/:id' do
     if !params[:description].empty? && !params[:amount].empty? && !params[:date].empty?
       @expense = Expense.find(params[:id])
       @expense.description = params[:description]
       @expense.amount = params[:amount]
       @expense.date = params[:date]
-      @category = Category.find(name:params[:category_name])
-      @expense.category_id = @category_id
+      @category = Category.find_by(name:params[:category_name])
+      @expense.category_id = @category.id
       @expense.save
       flash[:message] = "Your Expense Has Been Succesfully Updated"
       redirect_to_home_page
