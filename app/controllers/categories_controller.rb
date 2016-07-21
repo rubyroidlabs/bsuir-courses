@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
 
+  # lets user view expense categories if logged in
   get '/categories' do
     if logged_in?
       @categories = current_user.categories.all
@@ -9,6 +10,7 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # does not let a user create a blank category
   post '/categories' do
     if params[:name].empty?
       flash[:message] = "Please Enter a Category Name"
@@ -20,6 +22,7 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # displays a single category
   get '/categories/:id' do
     if logged_in?
       @category = Category.find(params[:id])
@@ -29,6 +32,8 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # lets a user view category edit form if they are logged in
+  # does not let a user edit a category not created by it self
   get '/categories/:id/edit' do
     if logged_in?
       @category = Category.find(params[:id])
@@ -42,6 +47,7 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # does not let a user edit a category with blank content
   patch '/categories/:id' do
     if !params[:name].empty?
       @category = Category.find(params[:id])
@@ -55,6 +61,8 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # lets a user delete their own category if they are logged in
+  # does not let a user delete a category they did not create
   delete '/categories/:id/delete' do
     if logged_in?
       if current_user.categories.size == 1
