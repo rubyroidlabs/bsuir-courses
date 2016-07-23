@@ -4,11 +4,11 @@ class Category < ActiveRecord::Base
   belongs_to :user
 
   def expenses_sort_by_date
-    self.expenses.sort_by {|hash| hash[:date]}.reverse
+    self.expenses.sort_by {|expense| expense[:date]}.reverse
   end
 
   def total_amount
-    self.expenses.collect {|e| e.amount}.sum
+    self.expenses.collect {|eexpense| eexpense.amount}.sum
   end
 
 end
