@@ -54,7 +54,7 @@
         <th><h3>Date</h3></th>
         <th><h3></h3></th>
       </tr>
-        <% @category.expenses.sort_by {|hash| hash[:date]}.reverse.each do |expense| %>
+        <% @category.expenses_sort_by_date.each do |expense| %>
           <tr style="text-align:left;">
             <td><%= expense.description %></td>
             <td>$ <%= expense.amount %></td>

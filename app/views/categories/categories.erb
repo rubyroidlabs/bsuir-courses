@@ -55,7 +55,7 @@
             <th><h3>Edit</h3></th>
             <th><h3>Delete</h3></th>
           </tr>
-            <% current_user.categories.all.sort_by {|hash| hash[:name]}.each do |category| %>
+            <% current_user.categories_sort_by_name.each do |category| %>
               <tr style="text-align:left;">
                 <td><a href="categories/<%= category.id %>"><%= category.name %></a></td>
                 <td><a href="categories/<%= category.id %>"><%= category.expenses.size %></a></td>
