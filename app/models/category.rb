@@ -7,4 +7,8 @@ class Category < ActiveRecord::Base
     self.expenses.sort_by {|hash| hash[:date]}.reverse
   end
 
+  def total_amount
+    self.expenses.collect {|e| e.amount}.sum
+  end
+
 end

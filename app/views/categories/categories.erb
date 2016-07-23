@@ -59,7 +59,7 @@
               <tr style="text-align:left;">
                 <td><a href="categories/<%= category.id %>"><%= category.name %></a></td>
                 <td><a href="categories/<%= category.id %>"><%= category.expenses.size %></a></td>
-                <td>$ <%= category.expenses.collect {|e| e.amount}.sum %></td>
+                <td>$ <%= category.total_amount %></td>
                 <td><a href="categories/<%= category.id %>/edit">Edit <span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td><form action="/categories/<%= category.id %>/delete" method="post">
                     <input type="hidden" id="hidden" name="_method" value="DELETE">
