@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
   end
 
   def total_amount
-    self.expenses.collect {|eexpense| eexpense.amount}.sum
+    self.expenses.collect {|expense| expense.amount}.sum
   end
 
 end
