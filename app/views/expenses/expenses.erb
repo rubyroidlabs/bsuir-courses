@@ -53,7 +53,7 @@
         <th><h3>Category</h3></th>
         <th><h3></h3></th>
       </tr>
-        <% @expenses.sort_by {|hash| hash[:date]}.reverse.each do |expense| %>
+        <% current_user.expenses_sort_by_date.each do |expense| %>
           <tr style="text-align:left;">
             <td><a href="expenses/<%= expense.id %>"><%= expense.description %></a></td>
             <td>$ <%= expense.amount %></td>
