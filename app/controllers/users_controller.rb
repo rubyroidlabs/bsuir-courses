@@ -59,16 +59,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # displays user info if logged in
-  get '/users/:id' do
-    if logged_in?
-      flash[:message] = "Account Updated"
-      erb :'users/show'
-    else
-      redirect_if_not_logged_in
-    end
-  end
-
   # does not let a user edit with blank content
   patch '/users/:id' do
     if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
@@ -77,10 +67,20 @@ class UsersController < ApplicationController
       @user.email = params[:email]
       @user.password = params[:password]
       @user.save
+      flash[:message] = "Account Updated"
       redirect to "/users/#{@user.id}"
     else
       flash[:message] = "Please don't leave blank content"
       redirect to "/users/#{params[:id]}/edit"
+    end
+  end
+
+  # displays user info if logged in
+  get '/users/:id' do
+    if logged_in?
+      erb :'users/show'
+    else
+      redirect_if_not_logged_in
     end
   end
 
