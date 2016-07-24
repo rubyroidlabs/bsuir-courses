@@ -27,7 +27,7 @@ Specs:
 * All parameters inserted in forms are validated before any action, and user is warned and re-routed if invalid data.
 
 - [x] Display validation failures to user with error message (example form URL e.g. /posts/new)
-* I used flsh-rack to add custom messages in case of any invalid data.
+* I used flash-rack to add custom messages in case of any invalid data.
 
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
