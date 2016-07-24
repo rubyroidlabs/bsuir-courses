@@ -62,6 +62,7 @@ class UsersController < ApplicationController
   # displays user info if logged in
   get '/users/:id' do
     if logged_in?
+      flash[:message] = "Account Updated"
       erb :'users/show'
     else
       redirect_if_not_logged_in
