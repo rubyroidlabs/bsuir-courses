@@ -77,7 +77,7 @@
                       <div class="form-group">
                         <label  style="color: white; -webkit-font-smoothing: antialiased !important;" for="category">Category</label>
                         <select name="category_name">
-                              <% current_user.categories.all.sort_by {|hash| hash[:name]}.each do |category| %>
+                              <% current_user.categories_sort_by_name.each do |category| %>
                                 <option  name="category_name" <%='selected' if @category.name == category.name %>><%= category.name %></option>
                               <%end%>
                         </select>
