@@ -26,7 +26,7 @@ class ExpensesController < ApplicationController
       redirect to "/expenses/new"
     else
       @user = current_user
-      @category = @user.categories.find {|category| category.name == params[:category_name]}
+      @category = @user.categories.find_by(name:params[:category_name])
       @expense = Expense.create(description:params[:description], amount:params[:amount], date:params[:date], category_id:@category.id, user_id:@user.id)
       redirect to "/expenses/#{@expense.id}"
     end
@@ -62,10 +62,8 @@ class ExpensesController < ApplicationController
   patch '/expenses/:id' do
     if !params[:description].empty? && !params[:amount].empty? && !params[:date].empty?
       @expense = Expense.find(params[:id])
-      @expense.description = params[:description]
-      @expense.amount = params[:amount]
-      @expense.date = params[:date]
-      @category = Category.find_by(name:params[:category_name])
+      @expense.update(description:params[:description], amount:params[:amount], date:params[:date])
+      @category = current_user.categories.find_by(name:params[:category_name])
       @expense.category_id = @category.id
       @expense.save
       flash[:message] = "Your Expense Has Been Succesfully Updated"
