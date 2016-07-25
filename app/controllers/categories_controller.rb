@@ -51,8 +51,7 @@ class CategoriesController < ApplicationController
   patch '/categories/:id' do
     if !params[:name].empty?
       @category = Category.find(params[:id])
-      @category.name = params[:name]
-      @category.save
+      @category.update(name:params[:name])
       flash[:message] = "Your category has been updated successfully"
       redirect_to_categories
     else
@@ -71,9 +70,7 @@ class CategoriesController < ApplicationController
       else
         @category = Category.find(params[:id])
         if @category.user_id == current_user.id
-          @category.expenses.clear
-          @category.save
-          @category.delete
+          @category.destroy
           flash[:message] = "Your category has been deleted successfully"
           redirect_to_categories
         end
