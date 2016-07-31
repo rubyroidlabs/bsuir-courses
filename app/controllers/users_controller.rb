@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # does not let a user sign up without a username
   # does not let a user sign up without an email
   # does not let a user sign up without a password
-  # creats a general category on initialization
+  # creates a general category on initialization
   post '/signup' do
     if params[:username].empty? || params[:email].empty? || params[:password].empty?
       flash[:message] = "Pleae don't leave blank content"
@@ -63,10 +63,7 @@ class UsersController < ApplicationController
   patch '/users/:id' do
     if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
       @user = User.find(params[:id])
-      @user.username = params[:username]
-      @user.email = params[:email]
-      @user.password = params[:password]
-      @user.save
+      @user.update(username:params[:username], email:params[:email], password:params[:password])
       flash[:message] = "Account Updated"
       redirect to "/users/#{@user.id}"
     else
