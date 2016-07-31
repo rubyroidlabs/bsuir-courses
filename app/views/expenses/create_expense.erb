@@ -37,11 +37,17 @@
 
                       <div class="form-group">
                         <label  style="color: white; -webkit-font-smoothing: antialiased !important;" for="category">Category</label>
-                        <select name="category_name">
-                              <% current_user.categories.all.sort_by {|hash| hash[:name]}.each do |category| %>
+                        <select name="category_name" onchange="yesnoCheck(this);">
+                              <% current_user.categories_sort_by_name.each do |category| %>
                                 <option  name="category_name"><%= category.name %></option>
                               <%end%>
+                              <option value="new category">Create Category</option>
                         </select>
+                      </div>
+
+                      <div class="form-group" id="ifYes" style="display: none;">
+                        <label class="sr-only" for="category">Add New Category</label>
+                        <input type="text" id="create category" placeholder="Add category here..." name="no_name"/>
                       </div>
 
 
