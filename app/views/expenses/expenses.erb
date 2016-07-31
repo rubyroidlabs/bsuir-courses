@@ -22,7 +22,7 @@
             <td><a href="expenses/<%= expense.id %>"><%= expense.description %></a></td>
             <td>$ <%= expense.amount %></td>
             <td><%= expense.date %></td>
-            <td><a href="categories/<%= Category.find(expense.category_id).id %>"><%= Category.find(expense.category_id).name %></a></td>
+            <td><a href="categories/<%= expense.category.id %>"><%= expense.category.name %></a></td>
             <td><a href="expenses/<%= expense.id %>/edit">Edit <span class="glyphicon glyphicon-pencil"></span></a></td>
           </tr>
         <% end %>
