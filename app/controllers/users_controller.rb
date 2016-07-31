@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # does not let a logged in user view the signup page
   get '/signup' do
     if !logged_in?
-      erb :'users/create_user', :layout => :'not_loggin_layout'
+      erb :'users/create_user', :layout => :'not_logged_in_layout.erb'
     else
       redirect_to_home_page
     end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect_to_home_page
     else
-      erb :index, :layout => :'not_loggin_layout'
+      erb :index, :layout => :'not_logged_in_layout.erb'
     end
   end
 

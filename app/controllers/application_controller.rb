@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     if !logged_in?
-      erb :index, :layout => :'not_loggin_layout' #=> Log In Page
+      erb :index, :layout => :'not_logged_in_layout.erb' #=> Log In Page
     else
       redirect_to_home_page
     end
