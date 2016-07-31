@@ -21,12 +21,13 @@ class ExpensesController < ApplicationController
 
   # does not let a user create a blank expense
   post '/expenses' do
-    if params[:description].empty? || params[:amount].empty? || params[:date].empty?
+    if params[:description].empty? || params[:amount].empty? || params[:date].empty? || params[:category_name].empty?
       flash[:message] = "Please don't leave blank content"
       redirect to "/expenses/new"
     else
       @user = current_user
-      @category = @user.categories.find_by(name:params[:category_name])
+      @category = @user.categories.find_or_create_by(name:params[:category_name])
+      @category.user_id = @user.id
       @expense = Expense.create(description:params[:description], amount:params[:amount], date:params[:date], category_id:@category.id, user_id:@user.id)
       redirect to "/expenses/#{@expense.id}"
     end
