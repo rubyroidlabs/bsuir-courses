@@ -9,6 +9,8 @@
         <p ><stron>$ </stron><%= @expense.amount %></p>
         <h3>Date</h3>
         <p ><%= @expense.date %></p>
+        <a href="/expenses/<%= @expense.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit Expense </a>
+        <hr>
         <a href="/expenses"><span class="glyphicon glyphicon-th-list"></span> View Expenses</a>
       </div> <!-- end jumbotron -->
     </div> <!-- end row -->
