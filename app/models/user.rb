@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  include Quantifiable::InstanceMethods
+
   has_secure_password
 
   has_many :categories, :dependent => :destroy

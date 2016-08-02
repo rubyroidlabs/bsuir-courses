@@ -1,4 +1,4 @@
-<h1 style="color: white; margin: 30px 10px;">Hi, <%= current_user.username.capitalize %> your total expenses are $<%= current_user.expenses.collect {|e| e.amount}.sum %></h1>
+<h1 style="color: white; margin: 30px 10px;">Hi, <%= current_user.username.capitalize %> your total expenses are $<%= current_user.total_amount %></h1>
 
 <div class="container" >
   <div class="row">
