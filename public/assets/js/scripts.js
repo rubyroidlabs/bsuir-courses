@@ -62,6 +62,6 @@ function yesnoCheck(that) {
 				document.getElementById("create category").name = "category_name";
 		} else {
 				document.getElementById("ifYes").style.display = "none";
-				document.getElementById("ifYes").name = "no_name";
+				document.getElementById("create category").name = "no_name";
 		}
 }
