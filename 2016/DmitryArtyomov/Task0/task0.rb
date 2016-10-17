@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+# bits are "killed" only in fraction. If there is not enough bits, the result is zero
 def kill_bits(number, bits)
   number_bits = [number].pack('f').unpack('b*')[0].split('')
   # fraction for float (23 bits), the bit order is reversed
@@ -7,10 +8,10 @@ def kill_bits(number, bits)
     if (number_bits[i] == '1')
       number_bits[i] = '0'
       bits -= 1
-      break if bits == 0
+      return [number_bits.join].pack('b*').unpack('f')[0] if bits == 0
     end
   end
-  return [number_bits.join].pack('b*').unpack('f')[0]
+  return 0
 end
 
 def main
@@ -29,7 +30,7 @@ def main
       stack.push(eval(input))
       break if stack.count == 1
     else
-      # matches to any valid number
+      # matches to any number
       if (input =~ /^-?\d+\.?\d*$/)
         stack.push(input.to_f)
       else
