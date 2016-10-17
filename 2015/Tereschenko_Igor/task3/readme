@@ -1,0 +1,6 @@
+Program for getting and analysing student feedback about teachers f a certain group. Keywords.yml file is used as a dictionary for analysis. Feel free to add more words there!
+Usage
+    bsuir-reviews [group_number] 
+Options
+    -h - Display help
+    -ms - use 'sentimental' gem analysis algorythm. This option translates comments in english using Microsoft Translator, so you gotta get a user ID and a key at https://datamarket.azure.com/dataset/bing/microsofttranslator then put it at ./lib/ms_data.rb in order to use this option.
