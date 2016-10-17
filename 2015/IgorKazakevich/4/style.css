@@ -1,0 +1,32 @@
+body {
+	background: #5EAB5C;
+}
+
+.table {
+	display: table;
+	width: 600px;
+	height: 600px;
+	background: #FAFCF5;
+	border: 10px inset #6286A3;
+	border-radius: 20px;
+	margin: auto;
+	table-layout: fixed;
+}
+
+.rows {
+	display: table-row;
+}
+
+.cell {
+	display: table-cell;
+	border: 3px ridge #8BA4AD;
+	vertical-align: middle;
+}
+
+.cyrcle {
+	width: 65%;
+	height: 65%;
+	background: red;
+	border-radius: 50%;
+	margin: 0 auto;
+}
