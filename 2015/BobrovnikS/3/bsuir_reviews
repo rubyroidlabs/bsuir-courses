@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+Dir['./*.rb'].each { |file| require file }
+require 'thor'
+require 'open-uri'
+
+# Main class Reviewer
+class Reviewer < Thor
+  desc 'review group_number', ''
+  attr_accessor :group_number
+
+  method_option :help, aliases:  '-h', desc: 'Help'
+  def review(group_number)
+    if options[:help]
+      puts 'Использование: "./bsuir_reviews review group_number"'
+    else
+      @group_number = group_number
+      fail 'Нет соединения с Интернет' unless internet_connection?
+      handler = Handler.new(@group_number)
+      handler.handle
+    end
+  end
+
+  no_commands do
+    def internet_connection?
+      true if open('http://www.bsuir.by/')
+    rescue
+      false
+    end
+  end
+end
+
+Reviewer.start(ARGV)
