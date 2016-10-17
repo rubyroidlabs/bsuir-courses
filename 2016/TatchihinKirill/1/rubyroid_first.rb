@@ -68,5 +68,6 @@ def main
 		end
 	end
 	puts result
+  result
 end
 main
