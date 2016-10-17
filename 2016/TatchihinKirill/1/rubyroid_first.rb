@@ -1,6 +1,6 @@
 def special_text_and_extra_parameter
-	puts "Please, input one more operand for you RPN expression"
-	temp_parameter = gets.chomp.to_f
+  puts "Please, input one more operand for you RPN expression"
+  temp_parameter = gets.chomp.to_f
 end
 def special_operation(number, count_of_changes)
 	result = number.to_s(2)
