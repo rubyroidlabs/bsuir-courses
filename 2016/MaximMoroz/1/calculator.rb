@@ -22,7 +22,15 @@ class RPN
       when "!"
         last = stack.pop
         prelast = stack.pop
-        stack.push(prelast.to_s(2).slice(0...-last).concat("0" * last).to_i(2))
+        prelast = prelast.to_s(2).chars.reverse.map do |f|
+          if f == '1' && last > 0
+            last -= 1
+            '0'
+          else
+            f
+          end
+        end.reverse.join.to_i(2)
+        stack.push(prelast)
       end
     end
     return stack[0]
