@@ -1,7 +1,7 @@
   def operation!(count, number)
     str = number.to_s(2).reverse 
     str.length.times do |i| 
-      break if arg1 <= 0
+      break if count <= 0
       if str[i] == '1'
         str[i] = '0'
         count -= 1
