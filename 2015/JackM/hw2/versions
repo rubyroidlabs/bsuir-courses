@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+require 'json'
+
+class Versions
+  def initialize(name)
+    @name = name
+  end
+
+  def vers
+    response = `curl https://rubygems.org/api/v1/versions/#{@name}.json`
+    begin
+      hash = JSON.parse(response)
+      arr_of_vers = []
+      hash.each do |i|
+        arr_of_vers << i['number']
+      end
+      arr_of_vers.sort
+    end
+  rescue JSON::ParserError
+    puts 'Error: Gem name incorrect or network problems.'
+  end
+end
