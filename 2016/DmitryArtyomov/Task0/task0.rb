@@ -14,19 +14,19 @@ def kill_bits(number, bits)
   0
 end
 
+def operation(symbol, stack)
+  operand2 = stack.pop
+  operand1 = stack.pop
+  return kill_bits(operand1, operand2.to_i) if symbol == '!'
+  eval(operand1.to_s + symbol + operand2.to_s)
+end
+
 stack = []
 loop do
   input = gets.strip
   case input
-  when '!'
-    bits = stack.pop.to_i
-    number = stack.pop
-    stack.push(kill_bits(number, bits))
-    break if stack.count == 1
-  when '+', '-', '*', '/'
-    input += stack.pop.to_s
-    input = stack.pop.to_s + input
-    stack.push(eval(input))
+  when '+', '-', '*', '/', '!'
+    stack.push(operation(input, stack))
     break if stack.count == 1
   else
     # matches to any number
