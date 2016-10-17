@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gem 'colorize'
+gem 'thor'
+gem 'cyrillizer'
+gem 'nokogiri'
+gem 'unirest'
