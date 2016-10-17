@@ -1,0 +1,4 @@
+source 'https://rubygems.org'
+
+gem 'mechanize' # for parser
+gem 'colorize'  # for colored puts
