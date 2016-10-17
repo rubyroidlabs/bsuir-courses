@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+require 'pry'
+require 'zlib'
+Dir['../lib/*.rb'].each { |x| require_relative x }
+begin
+  fail 'Need more arguments' if ARGV.size < 2
+  options = Parser.new.parse
+  if options[:a]
+    options[:a] = ARGV.shift.to_i
+  else
+    options[:a] = 0
+  end
+  search_string = ARGV.shift
+  search_string = Regexp.new(search_string) if options[:e]
+
+  if options[:r]
+    Dir['../bin/*.txt'].each do |x|
+      Finder.new(search_string, x, options[:a], options[:z]).search
+    end
+  else
+    ARGV.each do |x|
+      Finder.new(search_string, x, options[:a], options[:z]).search
+    end
+  end
+rescue => e
+  p e.message
+end
