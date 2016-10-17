@@ -1,0 +1,14 @@
+require 'optparse'
+require 'mechanize'
+require 'date'
+require 'json'
+require 'yaml'
+
+Dir[File.expand_path('../../lib/*.rb', __FILE__)].each{ |f| require(f) }
+
+p = Parser.new(ARGV)
+name = GetName.new(p.number).fio
+
+name.each do |fio|
+  Bsuirlectors.new(fio).find
+end
