@@ -1,0 +1,4 @@
+Usage: bsuir_reviews [options]
+options:
+	bsuir_reviews {-h }
+	bsuir_reviews [group_name]    like bsuir_reviews 353503
