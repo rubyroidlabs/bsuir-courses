@@ -29,11 +29,10 @@ def binar_!(value, number)
       value &= ~mask
       p += 1
     end
-    mask = mask << 1
+    mask <<= 1
   end
 value
 end
 
-while symbols = gets
-  puts convert_pol(symbols)
-end
+symbols = gets
+puts convert_pol(symbols)
