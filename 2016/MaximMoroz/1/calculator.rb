@@ -35,7 +35,8 @@ def count(arguments)
 end
 
 def countable?(args)
-  operands, operators = 0
+  operands = 0
+  operators = 0
   args.each do |f|
     case f
     when /\d+/
