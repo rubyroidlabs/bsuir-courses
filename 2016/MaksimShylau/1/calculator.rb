@@ -10,7 +10,7 @@ end
 def nul_bin(dec, count) # ! operation (changes '1' on '0')
   ind = -1
   i = 0
-  while i < count && dec[ind] != nil
+  while i < count && !dec[ind].nil?
     if dec[ind] == "1"
       i += 1
       dec[ind] = "0"
