@@ -7,7 +7,7 @@ def kill_bits_iterate(number_bits, n)
     next if number_bits[i] == '0'
     number_bits[i] = '0'
     n -= 1
-    return [number_bits.join].pack('b*').unpack('f')[0] if bits.zero?
+    return [number_bits.join].pack('b*').unpack('f')[0] if n.zero?
   end
   # if we are here and haven't returned yet, it means there is not
   # enough '1' bits in fraction, so the result is 0
