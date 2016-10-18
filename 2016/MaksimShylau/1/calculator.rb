@@ -30,7 +30,8 @@ def to_dec(binary) # From 2 to 10 base
   end
   sum
 end
-def oper (symbol, a, b)
+
+def oper(symbol, a, b)
   case symbol
   when "+"
     return a + b
