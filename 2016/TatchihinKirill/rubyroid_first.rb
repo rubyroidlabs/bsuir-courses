@@ -67,7 +67,7 @@ def main
 			result.push(special_operation(number_for_changing, count_of_changes))
 		end
 	end
-	puts result
 	result
 end
+result
 main
