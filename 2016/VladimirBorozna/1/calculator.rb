@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-require_relative 'lib/numeric_extension'
+require_relative "lib/numeric_extension"
 
 stack = []
 loop do
@@ -12,4 +12,4 @@ loop do
   end
 end
 
-puts format('%g', stack.first)
+puts format("%g", stack.first)

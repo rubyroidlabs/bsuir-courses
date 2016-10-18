@@ -10,8 +10,8 @@ class Numeric
   def bit_index(binary, number_bits)
     number_bits = number_bits.to_i
     i = binary.length - 1
-    while number_bits > 0 && i >= 0
-      number_bits -= 1 if binary[i] == '1'
+    while number_bits.positive? && i >= 0
+      number_bits -= 1 if binary[i] == "1"
       i -= 1
     end
     binary.length - i - 1
