@@ -16,6 +16,10 @@ def kill_bits(number, bits)
 end
 
 def operation(symbol, stack)
+  if stack.count < 2
+    puts 'Not enough operands on stack, ignore'
+    return nil
+  end
   operand2 = stack.pop
   operand1 = stack.pop
   return kill_bits(operand1, operand2.to_i) if symbol == '!'
@@ -27,7 +31,8 @@ loop do
   input = gets.strip
   case input
   when '+', '-', '*', '/', '!'
-    stack.push(operation(input, stack))
+    result = operation(input, stack)
+      stack.push(result) if result != nil
     break if stack.count == 1
   else
     # matches to any number
