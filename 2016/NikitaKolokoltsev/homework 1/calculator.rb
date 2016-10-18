@@ -5,7 +5,7 @@ def remove_bits(bits_to_remove, number)
             i = "0"
             bits_to_remove -= 1
           end
-          i 
+          i
         end.reverse.join 
       end.reverse.map{ |n| ("%d" % "0b#{n}").to_i.chr }.join.unpack("G")[0].to_f
 end
