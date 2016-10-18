@@ -1,17 +1,14 @@
 def remove_bits(bits_to_remove, number)
-  s = [number].pack("G").bytes.map{ |n| sprintf("%08b", n) }. # "G" - packing as float value with double precision; "%08b" - convert string bytes to binary
-      reverse.map do |n| # reverse needed for more understandable float number representation: sign bit - exponent - mantissa
-          n.split("").reverse.map do |i| # n.split will give us every bit of our number
-            if i == "1" && bits_to_remove.positive?
-              i = "0"
-              bits_to_remove -= 1
-            end
-            i
-          end.reverse.
-            join
-        end.reverse. # reverse to initial representation
-      map { |n| (sprintf("%d", "0b#{n}")).to_i.chr }.join. # convert back to packed string and 
-      unpack("G")[0].to_f # unpack this string
+  s = [number].pack("G").bytes.map{ |n| sprintf("%08b", n) }.reverse.map do |n|
+        n.split("").reverse.map do |i|
+          if i == "1" && bits_to_remove.positive?
+            i = "0"
+            bits_to_remove -= 1
+          end
+          i
+        end.reverse.join
+      end.reverse.
+      map { |n| sprintf("%d", "0b#{n}")).to_i.chr }.join.unpack("G")[0].to_f
 end
 
 expression = []
