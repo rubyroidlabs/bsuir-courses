@@ -31,7 +31,7 @@ loop do
     break if stack.count == 1
   else
     # matches to any number
-    if input =~ /^-?\d+\.?\d*$/
+    if input =~ /^-?\d+(\.?\d+)*$/
       stack.push(input.to_f)
     else
       puts 'Wrong syntax, ignore'
