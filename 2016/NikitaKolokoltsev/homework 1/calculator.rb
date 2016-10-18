@@ -6,10 +6,6 @@ def convert_to_float(binary_number)
   binary_number.reverse.map { |n| format("%d", "0b#{n}").to_i.chr }.join.unpack("G")[0].to_f
 end
 
-def remove_last_n_bits(byte)
-  byte.spli
-end
-
 def remove_bits(bits_to_remove, number)
   binary_number = convert_to_binary(number).reverse.map do |n|
     n.split("").reverse.map do |i|
