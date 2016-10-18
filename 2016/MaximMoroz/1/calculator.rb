@@ -35,14 +35,13 @@ def count(arguments)
 end
 
 def countable?(args)
-  operands= 0
+  operands = 0
   operators = 0
   args.each do |f|
     case f
     when /\d+/ then operands += 1
     when %r{\+|\*|\+|\/|\-|\!} then operators += 1
-    else
-      fail "Syntax error"
+    else fail "Syntax error"
     end
   end
   (operands - operators) == 1 && args.count > 1 ? true : false
