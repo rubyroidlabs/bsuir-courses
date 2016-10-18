@@ -3,6 +3,7 @@
 # bits are "killed" only in fraction. If there is not enough bits,
 # the result is zero
 def kill_bits(number, bits)
+  return number if bits <= 0
   number_bits = [number].pack('f').unpack('b*')[0].split('')
   # fraction for float (23 bits), the bit order is reversed
   for i in 0...23
