@@ -36,7 +36,7 @@ def oper(symbol, a, b)
   symbol == "-" ? (return a - b) : nil
   symbol == "*" ? (return a * b) : nil
   symbol == "/" ? (return a / b) : nil
-  symbol == "!" ? (return to_dec(nul_bin(bin(a), b))) : z=0
+  symbol == "!" ? (return to_dec(nul_bin(bin(a), b))) : nil
 end
 a = []
 i = -1
