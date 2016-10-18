@@ -1,25 +1,26 @@
 def bin (number) # From 10 to 2 base
   s = ""
   while number.to_i > 0
-    s += (number.to_i%2).to_s
+    s += (number.to_i % 2).to_s
     number /= 2
   end
   return s.reverse
 end
-def nulBin(dec, count) # ! operation (changes '1' on '0')
+
+def nul_bin(dec, count) # ! operation (changes '1' on '0')
   ind = -1
   i = 0
-  while i<count && dec[ind]!=nil
-    if dec[ind] == '1'
+  while i < count && dec[ind] != nil
+    if dec[ind] == "1"
       i += 1
-      dec[ind] = '0'
+      dec[ind] = "0"
     end
     ind -= 1
   end
   dec.to_s
 end
 
-def toDec(binary) # From 2 to 10 base
+def to_dec(binary) # From 2 to 10 base
   sum = 0
   i = 0
   1.upto(binary.size) do
@@ -40,7 +41,7 @@ def oper (symbol, a, b)
   when "*"
     return a * b
   when "!"
-    return toDec(nulBin(bin(a), b))
+    return to_dec(nul_bin(bin(a), b))
   end
 end
 a = []
@@ -48,7 +49,7 @@ i = -1
 loop do
   i += 1
   a[i] = gets.chomp
-  break if a[i] == '+'||a[i] == '-'||a[i] == '*'||a[i] == '/'||a[i] == '!'
+  break if a[i] == "+" || a[i] == "-" || a[i] == "*" || a[i] == "/" || a[i] == "!"
 end
 j = 0
 res = oper(a[i], a[i - 2].to_i, a[i - 1].to_i)
