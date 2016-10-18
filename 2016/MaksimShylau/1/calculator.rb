@@ -1,17 +1,16 @@
-def bin (number) #Перевод из десятичной в двоичную систему
+def bin (number) # From 10 to 2 base
   s = ""
-  while number.to_i > 0 do 
+  while number.to_i > 0
     s += (number.to_i%2).to_s
     number /= 2
   end
   return s.reverse
 end
-
-def nulBin(dec, count) #Замена 1 на нули (операция !)
+def nulBin(dec, count) # ! operation (changes '1' on '0')
   ind = -1
   i = 0
-  while i<count && dec[ind]!=nil 
-    if dec[ind]=='1'
+  while i<count && dec[ind]!=nil
+    if dec[ind] == '1'
       i += 1
       dec[ind] = '0'
     end
@@ -19,18 +18,17 @@ def nulBin(dec, count) #Замена 1 на нули (операция !)
   end
   return dec.to_s
 end
-
-def toDec(binary) #Перевод из двоичной в десятичную систему
+def toDec(binary) # From 2 to 10 base
   sum = 0
   i = 0
   1.upto(binary.size) do
-    sum += (binary[i].to_i)*(2**(binary.size.to_i-i-1))
+    pow = binary.size.to_i-i-1
+    sum += binary[i].to_i * (2**pow)
     i += 1
   end
   return sum
 end
-
-def oper (symbol, a, b) 
+def oper (symbol, a, b)
   case symbol
   when "+"
     return a + b
@@ -46,7 +44,7 @@ def oper (symbol, a, b)
 end
 a = []
 i = -1
-loop do 
+loop do
   i += 1
   a[i] = gets.chomp
   break if a[i]=='+'||a[i]=='-'||a[i]=='*'||a[i]=='/'||a[i]=='!'
