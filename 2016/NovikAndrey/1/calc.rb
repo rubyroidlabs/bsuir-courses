@@ -1,5 +1,4 @@
 #!/usr/bin/ruby
-
 def bin(var2, var1)
 	j = 0
 	i = 0
