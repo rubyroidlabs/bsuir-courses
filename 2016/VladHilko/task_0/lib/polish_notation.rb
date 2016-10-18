@@ -16,7 +16,7 @@ class PolishNotation
     when '!'
       binary_operator(first, second)
     else
-      raise 'wrong value!'
+      fail 'wrong value!'
     end
   end
 
