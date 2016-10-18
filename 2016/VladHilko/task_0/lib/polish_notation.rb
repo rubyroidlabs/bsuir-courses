@@ -9,7 +9,7 @@ class PolishNotation
     when "-" then first - second
     when "/" then first / second
     when "*" then first * second
-    when "!" then  binary_operator(first, second)
+    when "!" then binary_operator(first, second)
     else fail "wrong value!"
     end
   end
