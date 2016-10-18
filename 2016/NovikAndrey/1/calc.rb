@@ -18,22 +18,22 @@ array = []
 loop do
 	variable = gets.chomp
 	if variable == variable.to_i.to_s
-		array.push(variable.to_i)
-	else
-		case variable
-		when "+"
-			array.push(array.pop + array.pop)
+    array.push(variable.to_i)
+  else
+    case variable
+    when "+"
+      array.push(array.pop + array.pop)
 		when "-"
-			array.push(array.pop - array.pop)
-		when "*"
-			array.push(array.pop * array.pop)
-		when "/"
-			array.push(array.pop / array.pop)
-		when "!"
-			array.push(bin(array.pop, array.pop))
-		end
-		break if array.length == 1
-	end
+      array.push(array.pop - array.pop)
+    when "*"
+      array.push(array.pop * array.pop)
+    when "/"
+      array.push(array.pop / array.pop)
+    when "!"
+      array.push(bin(array.pop, array.pop))
+    end
+    break if array.length == 1
+  end
 end
 
 puts "#=> #{array[0]}"
