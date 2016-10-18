@@ -23,13 +23,13 @@ def operators(a, stack)
 end
 
 def binary_operator(stack)
-  last, prelast = stack.pop, stack.pop
+  last = stack.pop
+  prelast = stack.pop
   prelast = prelast.to_s(2).chars.reverse.map do |f|
     if f == "1" && last.positive?
       last -= 1
       "0"
-    else
-      f
+    else f
     end
   end.reverse.join.to_i(2)
   stack.push(prelast)
