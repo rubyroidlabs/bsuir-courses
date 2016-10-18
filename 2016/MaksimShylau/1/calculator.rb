@@ -29,7 +29,6 @@ def toDec(binary) #Перевод из двоичной в десятичную 
     end
     return sum
 end
-
 def oper (symbol, a, b) 
 	case symbol
 	when "+"
