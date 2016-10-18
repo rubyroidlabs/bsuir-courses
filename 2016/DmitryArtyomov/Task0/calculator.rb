@@ -11,7 +11,7 @@ def kill_bits_iterate(number_bits, n)
   end
   # if we are here and haven't returned yet, it means there is not
   # enough '1' bits in fraction, so the result is 0
-  0
+  0.0
 end
 
 # bits are "killed" only in fraction
