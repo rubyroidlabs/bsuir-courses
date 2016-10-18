@@ -8,7 +8,7 @@ class PolishNotation
       case symbol
       when /\d/
         evaluation.push(symbol.to_i)
-      when '-', '/', '*', '+'
+      when "-", "/", "*", "+"
         operands = evaluation.pop(2)
         evaluation.push(operands[0].send(symbol, operands[1]))
       when '!'
@@ -40,10 +40,10 @@ class PolishNotation
       case symbol
       when /\d/
         numbers += 1
-      when '-', '/', '*', '+', '!'
+      when "-", "/", "*", "+", "!"
         operations += 1
       else
-        raise 'Expression is not valid'
+        fail "Expression is not valid"
       end
     end
     (numbers - operations) == 1 && expression.size > 1
