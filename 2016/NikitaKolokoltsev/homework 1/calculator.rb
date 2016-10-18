@@ -1,5 +1,9 @@
+def convert_to_binary(number)
+  [number].pack("G").bytes.map { |n| format("%08b", n) }
+end
+
 def remove_bits(bits_to_remove, number)
-  [number].pack("G").bytes.map { |n| format("%08b", n) }.reverse.map do |n|
+  convert_to_binary(number).reverse.map do |n|
     n.split('').reverse.map do |i|
       if i == "1" && bits_to_remove > 0
         i = "0"
