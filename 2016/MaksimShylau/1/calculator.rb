@@ -32,10 +32,10 @@ def to_dec(binary) # From 2 to 10 base
 end
 
 def oper(symbol, a, b)
-  symbol == "+" ? (return a + b) : z=0
-  symbol == "-" ? (return a - b) : z=0
-  symbol == "*" ? (return a * b) : z=0
-  symbol == "/" ? (return a / b) : z=0
+  symbol == "+" ? (return a + b) : nil
+  symbol == "-" ? (return a - b) : nil
+  symbol == "*" ? (return a * b) : nil
+  symbol == "/" ? (return a / b) : nil
   symbol == "!" ? (return to_dec(nul_bin(bin(a), b))) : z=0
 end
 a = []
