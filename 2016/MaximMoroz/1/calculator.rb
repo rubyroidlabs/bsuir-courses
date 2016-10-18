@@ -3,35 +3,37 @@ def count(arguments)
 
   arguments.each do |a|
     case a
-    when /\d+/
-      stack.push(a.to_i)
-    when "+"
-      stack.push(stack.pop + stack.pop)
-    when "*"
-      stack.push(stack.pop * stack.pop)
-    when "/"
-      last = stack.pop
-      prelast = stack.pop
-      stack.push((prelast / last).round(2))
-    when "-"
-      last = stack.pop
-      prelast = stack.pop
-      stack.push(prelast - last)
-    when "!"
-      last = stack.pop
-      prelast = stack.pop
-      prelast = prelast.to_s(2).chars.reverse.map do |f|
-        if f == "1" && last.positive?
-          last -= 1
-          "0"
-        else
-          f
-        end
-      end.reverse.join.to_i(2)
-      stack.push(prelast)
+    when /\d+/ then stack.push(a.to_i)
+    when %r{\+|\*|\+|\/|\-} then operators(a, stack)
+    when "!" then binary_operator(stack)
     end
   end
   stack[0]
+end
+
+def operators(a, stack)
+  last = stack.pop
+  prelast = stack.pop
+  case a
+  when "+" then stack.push(last + prelast)
+  when "-" then stack.push(prelast - last)
+  when "*" then stack.push(last + prelast)
+  when "/" then stack.push(prelast + last)
+  end
+end
+
+def binary_operator(stack)
+  last = stack.pop
+  prelast = stack.pop
+  prelast = prelast.to_s(2).chars.reverse.map do |f|
+    if f == "1" && last.positive?
+      last -= 1
+      "0"
+    else
+      f
+    end
+  end.reverse.join.to_i(2)
+  stack.push(prelast)
 end
 
 def countable?(args)
