@@ -1,14 +1,9 @@
 def convert_pol(symbols)
-
   symbols = symbols.split
-
   values = []
   operands = []
-
   symbols.each do |x|
-
     case x
-
       when /\d/
         values.push(x.to_i)
       when '-', '+', '/', '*'
@@ -18,32 +13,27 @@ def convert_pol(symbols)
         operands = values.pop(2)
         values.push(binar_!(operands[0], operands[1]))
       else
-        # type code here
+        puts "Error: Invalid symbol ! "
+        exit(0)
     end
-
   end
-
   values
-
 end
 
 def binar_!(value, number )
   mask = 1
   p = 0
-
   value.to_s(2).length.times do
     unless p == number
-      if value & mask != 0
+      if (value & mask).nonzero?
         value = value&~mask
         p += 1
       end
       mask = mask << 1
     end
   end
-
   value
 end
-
 
 while symbols = gets
   puts convert_pol(symbols)
