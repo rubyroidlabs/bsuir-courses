@@ -16,17 +16,18 @@ def nulBin(dec, count) # ! operation (changes '1' on '0')
     end
     ind -= 1
   end
-  return dec.to_s
+  dec.to_s
 end
+
 def toDec(binary) # From 2 to 10 base
   sum = 0
   i = 0
   1.upto(binary.size) do
-    pow = binary.size.to_i-i-1
+    pow = binary.size.to_i - i - 1
     sum += binary[i].to_i * (2**pow)
     i += 1
   end
-  return sum
+  sum
 end
 def oper (symbol, a, b)
   case symbol
@@ -47,7 +48,7 @@ i = -1
 loop do
   i += 1
   a[i] = gets.chomp
-  break if a[i]=='+'||a[i]=='-'||a[i]=='*'||a[i]=='/'||a[i]=='!'
+  break if a[i] == '+'||a[i] == '-'||a[i] == '*'||a[i] == '/'||a[i] == '!'
 end
 j = 0
 res = oper(a[i], a[i - 2].to_i, a[i - 1].to_i)
