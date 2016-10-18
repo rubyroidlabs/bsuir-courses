@@ -21,7 +21,7 @@ def count(arguments)
       last = stack.pop
       prelast = stack.pop
       prelast = prelast.to_s(2).chars.reverse.map do |f|
-        if f == "1" && last > 0
+        if f == "1" && last.positive?
           last -= 1
           "0"
         else
@@ -35,14 +35,11 @@ def count(arguments)
 end
 
 def countable?(args)
-  operands = 0
-  operators = 0
+  operands, operators = 0
   args.each do |f|
     case f
-    when /\d+/
-      operands += 1
-    when %r{\+|\*|\+|\/|\-|\!}
-      operators += 1
+    when /\d+/ then operands += 1
+    when %r{\+|\*|\+|\/|\-|\!} then operators += 1
     else
       fail "Syntax error"
     end
