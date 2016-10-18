@@ -1,9 +1,9 @@
-require_relative 'lib/polish_notation.rb'
+require_relative "lib/polish_notation.rb"
 
 stack = []
 pn = PolishNotation.new
 
-puts 'Calculate: '
+puts "Calculate: "
 # 2 3 4 + -   => 5
 loop do
   var = gets.chomp

@@ -5,18 +5,18 @@ class PolishNotation
     second = second.to_i
 
     case operation
-    when '+'
+    when "+"
       first + second
-    when '-'
+    when "-"
       first - second
-    when '/'
+    when "/"
       first / second
-    when '*'
+    when "*"
       first * second
-    when '!'
+    when "!"
       binary_operator(first, second)
     else
-      fail 'wrong value!'
+      fail "wrong value!"
     end
   end
 
@@ -24,9 +24,9 @@ class PolishNotation
     #  (93,3) ( 01011101 ) -> (01010000 ) 80
     count = 1
     first.to_s(2).chars.reverse.map do |a|
-      if count <= second && a == '1'
+      if count <= second && a == "1"
         count += 1
-        '0'
+        "0"
       else
         a
       end
