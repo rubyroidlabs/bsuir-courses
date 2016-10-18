@@ -7,10 +7,10 @@ def remove_bits(bits_to_remove, number)
 							bits_to_remove -= 1
 						end
 						i 
-					}.reverse.join 
+					}.reverse
+							.join 
 				}.reverse # reverse to initial representation
-					.map{ |n| ("%d" % "0b#{n}").to_i.chr } # convert back to packed string
-						.join.unpack("G")[0].to_f # unpack this string
+					.map{ |n| ("%d" % "0b#{n}").to_i.chr }.join.unpack("G")[0].to_f # convert back to packed string and unpack this string
 end
 
 expression = []
