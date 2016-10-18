@@ -17,7 +17,7 @@ def operators(a, stack)
   case a
   when "+" then stack.push(last + prelast)
   when "-" then stack.push(prelast - last)
-  when "*" then stack.push(last + prelast)
+  when "*" then stack.push(last * prelast)
   when "/" then stack.push((prelast / last).round(2))
   end
 end
