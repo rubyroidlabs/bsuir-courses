@@ -1,14 +1,13 @@
 def remove_bits(bits_to_remove, number)
-  s = [number].pack("G").bytes.map{ |n| sprintf("%08b", n) }.reverse.map do |n|
-        n.split("").reverse.map do |i|
-          if i == "1" && bits_to_remove.positive?
+  s = [number].pack("G").bytes.map{ |n| "%08b" % n }.reverse.map do |n|
+        n.split('').reverse.map do |i| 
+          if i == "1" && bits_to_remove > 0
             i = "0"
             bits_to_remove -= 1
           end
-          i
-        end.reverse.join
-      end.reverse.
-      map { |n| sprintf("%d", "0b#{n}")).to_i.chr }.join.unpack("G")[0].to_f
+          i 
+        end.reverse.join 
+      end.reverse.map{ |n| ("%d" % "0b#{n}").to_i.chr }.join.unpack("G")[0].to_f 
 end
 
 expression = []
@@ -17,7 +16,7 @@ until (input = gets.chomp).empty?
 end
 
 if expression.include?("!")
-  puts expression.each_with_object([]) do |e, s|
+  puts(expression.each_with_object([]) do |e, s|
     if e =~ /[0-9]/
       s.push(e.to_f)
     elsif e == "!"
@@ -26,14 +25,14 @@ if expression.include?("!")
       s.push(s.pop(2).inject(e).to_f)
     end
     s
-  end
+  end)
 else
-  puts expression.each_with_object([]) do |e, s|
-    if e =~ /[0-9]/
+  puts(expression.each_with_object([]) do |e, s| 
+    if e =~ /[0-9]/ 
       s.push(e.to_f)
-    else
+    else 
       s.push(s.pop(2).inject(e).to_f)
     end
-    s
-  end
+    s 
+  end)
 end
