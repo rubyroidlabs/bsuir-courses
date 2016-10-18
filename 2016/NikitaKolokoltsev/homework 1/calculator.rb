@@ -1,13 +1,13 @@
 def remove_bits(bits_to_remove, number)
-  s = [number].pack("G").bytes.map{ |n| "%08b" % n }.reverse.map do |n|
-        n.split('').reverse.map do |i|
-          if i == "1" && bits_to_remove > 0
-            i = "0"
-            bits_to_remove -= 1
-          end
-          i
-        end.reverse.join 
-      end.reverse.map{ |n| ("%d" % "0b#{n}").to_i.chr }.join.unpack("G")[0].to_f
+  [number].pack("G").bytes.map { |n| format("%08b", n) }.reverse.map do |n|
+    n.split('').reverse.map do |i|
+      if i == "1" && bits_to_remove > 0
+        i = "0"
+        bits_to_remove -= 1
+      end
+      i
+    end.reverse.join 
+  end.reverse.map{ |n| format("%d", "0b#{n}").to_i.chr }.join.unpack("G")[0].to_f
 end
 
 expression = []
