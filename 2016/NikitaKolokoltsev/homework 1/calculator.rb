@@ -1,9 +1,9 @@
-def remove_bits(bits_to_remove, number) 
+def remove_bits(bits_to_remove, number)
 	s = [number].pack("G").bytes.map{ |n| "%08b" % n }	# "G" - packing as float value with double precision; "%08b" - convert string bytes to binary
 				.reverse.map{ |n| # reverse needed for more understandable float number representation: sign bit - exponent - mantissa
 					n.split('').reverse.map{ |i| # n.split will give us every bit of our number
-						if i == "1" && bits_to_remove > 0 then 
-							i = "0"; 
+						if i == "1" && bits_to_remove > 0 then
+							i = "0";
 							bits_to_remove -= 1
 						end
 						i 
@@ -14,23 +14,22 @@ def remove_bits(bits_to_remove, number)
 end
 
 expression = []
-while !(input = gets.chomp).empty? do
+until (input = gets.chomp).empty?
 	expression.push(input)
 end
 
 if expression.include?("!")
-	puts expression.inject([]) { |s,elem|
+	puts expression.each_with_object([]){ |e, s|
 		case
-		when elem.match(/[0-9]/)
-			s.push(elem.to_f) 
-		when elem == "!"
+		when e=~(/[0-9]/)
+			s.push(e.to_f)
+		when e == "!"
 			s.push(remove_bits(s.pop, s.pop))
 		else
-			s.push(s.pop(2).inject(elem).to_f)
+			s.push(s.pop(2).inject(e).to_f)
 		end
 		s
 	}
 else
-	puts expression.inject([]) { |s,elem| elem.match(/[0-9]/) ? s.push(elem.to_f) : s.push(s.pop(2).inject(elem).to_f); s }
+	puts expression.each_with_object([]){ |e, s| e.match(/[0-9]/) ? s.push(e.to_f) : s.push(s.pop(2).inject(e).to_f); s }
 end
-
