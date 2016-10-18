@@ -2,16 +2,22 @@ def convert_to_binary(number)
   [number].pack("G").bytes.map { |n| format("%08b", n) }
 end
 
+def convert_to_float(binary_number)
+  binary_number.reverse.map{ |n| format("%d", "0b#{n}").to_i.chr }.join.unpack("G")[0].to_f
+end
+
 def remove_bits(bits_to_remove, number)
-  convert_to_binary(number).reverse.map do |n|
-    n.split('').reverse.map do |i|
+  binary_number = convert_to_binary(number).reverse.map do |n|
+    byte_in_binary = n.split('').reverse.map do |i|
       if i == "1" && bits_to_remove > 0
         i = "0"
         bits_to_remove -= 1
       end
       i
-    end.reverse.join 
-  end.reverse.map{ |n| format("%d", "0b#{n}").to_i.chr }.join.unpack("G")[0].to_f
+    end
+    byte_in_binary.reverse.join
+  end
+  convert_to_float(binary_number)
 end
 
 expression = []
