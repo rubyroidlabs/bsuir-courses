@@ -5,18 +5,12 @@ class PolishNotation
     second = second.to_i
 
     case operation
-    when "+"
-      first + second
-    when "-"
-      first - second
-    when "/"
-      first / second
-    when "*"
-      first * second
-    when "!"
-      binary_operator(first, second)
-    else
-      fail "wrong value!"
+    when "+" then first + second
+    when "-" then first - second
+    when "/" then first / second
+    when "*" then first * second
+    when "!" then  binary_operator(first, second)
+    else fail "wrong value!"
     end
   end
 
