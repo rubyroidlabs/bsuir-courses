@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/polish_notation.rb'
+require "./lib/polish_notation.rb"
 
 object = PolishNotation.new
 expression = []

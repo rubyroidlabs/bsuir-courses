@@ -1,3 +1,4 @@
+# Reverse Polish notation class
 class PolishNotation
   def evaluate(expression)
     operands = []
