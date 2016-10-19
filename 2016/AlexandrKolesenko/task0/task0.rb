@@ -1,5 +1,5 @@
+#
 class RpnCalc
-
   attr_reader :operators
 
   def initialize
@@ -22,7 +22,7 @@ class RpnCalc
   def evaluate(string)
     stack = []
     string.split(" ").each do |token|
-      if operand? token  then stack.push token
+      if operand? token then stack.push token
       elsif operator? token
         y = stack.pop
         x = stack.pop
