@@ -6,8 +6,9 @@ count = 0
 values = []
 stack = []
 def bitoperation(value, count)
-  if (code = value.to_s(2).reverse).length > count && count.positive?
-    for i in 0...code.length
+  code = value.to_i.to_s(2).reverse
+  if code.length > count && count.positive?
+    code.each_char do |i|
       if count.nonzero? && code[i] == "1"
         code[i] = "0"
         count -= 1
@@ -24,7 +25,7 @@ def operation!(symbol, stack)
   when "-" then stack[stack.length - 1] = stack[stack.length - 1] - var
   when "+" then stack[stack.length - 1] = stack[stack.length - 1] + var
   when "/" then stack[stack.length - 1] = stack[stack.length - 1].to_f / var.to_f
-  when "!" then stack[stack.length - 1] = bitoperation(stack[stack.length - 1].to_i, var)
+  when "!" then stack[stack.length - 1] = bitoperation(stack[stack.length - 1], var)
   end
 end
 while flag
