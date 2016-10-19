@@ -29,19 +29,19 @@ class Calc
     a.join.reverse.to_i(2)
   end
   
-    def sel(s, opers)
-      if s == "+"
-        opers.push(sum(opers.pop(2)))
-      elsif s == "*"
-        opers.push(mult(opers.pop(2)))
-      elsif s == "-"
-        opers.push(diff(opers.pop(2)))
-      elsif s == "/"
-        opers.push(div(opers.pop(2)))
-      elsif s == "!"
-        opers.push(bit(opers.pop(2)))
-      end
+  def sel(s, opers)
+    if s == "+"
+      opers.push(sum(opers.pop(2)))
+    elsif s == "*"
+      opers.push(mult(opers.pop(2)))
+    elsif s == "-"
+      opers.push(diff(opers.pop(2)))
+    elsif s == "/"
+      opers.push(div(opers.pop(2)))
+    elsif s == "!"
+      opers.push(bit(opers.pop(2)))
     end
+  end
 
   def calculate(expression)
     expression_array = expression.split
