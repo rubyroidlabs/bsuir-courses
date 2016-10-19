@@ -29,30 +29,34 @@ class Calc
     a.join.reverse.to_i(2)
   end
   
-  def sel(s, opers)
+  def add(s, opers)
     if s == "+"
       opers.push(sum(opers.pop(2)))
-    elsif s == "*"
-      opers.push(mult(opers.pop(2)))
     elsif s == "-"
       opers.push(diff(opers.pop(2)))
+    end
+  end
+  
+  def bdd(s, opers)
+    if s == "!"
+      opers.push(bit(opers.pop(2)))
+    elsif s == "*"
+      opers.push(mult(opers.pop(2)))
     elsif s == "/"
       opers.push(div(opers.pop(2)))
     end
   end
-
+  
   def calculate(expression)
     expression_array = expression.split
-
-    puts "Wrong data!" if expression_array.length < 2
     operands = []
-    
     expression_array.each do |i|
       if !i.match(/[0-9]/).nil?
         operands.push(i)
-      elsif i == "!"
-        operands.push(bit(operands.pop(2)))
-      else sel(i, operands)
+      elsif i == "!" || i == "*" || i == "/"
+        bdd(i, operands)
+      elsif i == "+" || i == "-"
+        add(i, operands)
       end
     end
     puts "Answer: #{operands}"
