@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require '../0/calculator'
+require "../0/calculator"
 
 calculator = RPNCalc.new
 calculator.start
