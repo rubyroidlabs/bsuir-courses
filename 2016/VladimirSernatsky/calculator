@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+stack = []
+
+loop do
+  lex = gets.chomp
+  if lex.to_i.to_s == lex || lex.to_f.to_s == lex
+    stack.push lex.to_f
+  elsif %w(+ - / % * ** ^ | & ~ << >>).include? lex
+    stack.push stack.pop(2).inject(lex.to_sym)
+  elsif lex == '!'
+    bits = stack.pop
+    stack.push(stack.pop.to_i.to_s(2).reverse.chars.map do |bit|
+      if bits > 0
+        bits -= 1 if bit == '1'
+        '0'
+      else
+        bit
+      end
+    end.join.reverse.to_i(2))
+  end
+  break if %w(+ - / % * ** ^ | & ~ << >> !).include?(lex) && stack.length == 1
+end
+
+puts '=> ' + (stack.last == stack.last.to_i ? stack.last.to_i : stack.last).to_s
