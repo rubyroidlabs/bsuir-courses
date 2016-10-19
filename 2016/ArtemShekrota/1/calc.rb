@@ -28,11 +28,10 @@ def bit(array)
 end
 
 puts "Enter expression in polish notation using space between symbols"
-while a = gets
+while (a = gets)
   begin
     expression_array = a.split
     operands = []
-  
     expression_array.each do |i|
       if !i.match(/[0-9]/).nil?
         operands.push(i)
