@@ -1,12 +1,12 @@
-#1/usr/bin/env ruby
+# 1/usr/bin/env ruby
 
-operators = ['*','/','+','-','!']
+operators = ["*", "/", "+", "-", "!"]
 flag = true
 count = 0
 values = []
 stack = [] 
 def bitoperation(value, count)
-  unless (code = value.to_i.to_s(2)).length <= count || count <= 0 
+  if (code = value.to_i.to_s(2)).length > count || count > 0 
     code = code.reverse
     for i in 0...code.length
       if count.nonzero? && code[i] == "1" 
@@ -17,7 +17,7 @@ def bitoperation(value, count)
     code.reverse.to_i(2)
   else
     p "incorrect argument"
-    result = 0
+    0
   end
 end
 
