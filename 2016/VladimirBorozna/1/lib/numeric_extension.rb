@@ -2,12 +2,12 @@
 class Numeric
   def !(other)
     return self if other <= 0
-    to_i & (-1 << bit_index(to_i.to_s(2), other))
+    to_i & (-1 << leftmost_bit_index(to_i.to_s(2), other))
   end
 
   private
 
-  def bit_index(binary, number_bits)
+  def leftmost_bit_index(binary, number_bits)
     number_bits = number_bits.to_i
     i = binary.length - 1
     while number_bits.positive? && i >= 0

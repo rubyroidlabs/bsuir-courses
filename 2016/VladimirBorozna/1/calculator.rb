@@ -12,4 +12,4 @@ loop do
   end
 end
 
-puts format("%g", stack.first)
+puts format("#=> %g", stack.first)
