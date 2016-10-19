@@ -1,36 +1,36 @@
-currStr = "\0"
-strArr = []
+curr_str = '\0'
+str_arr = []
 
-while (currStr != "\n")  do
-  currStr = gets
-  strArr.push( currStr.chomp )
-  if (currStr.chomp == '+') or (currStr.chomp == '-') or (currStr.chomp == '*') or (currStr.chomp == '/') or (currStr.chomp == '!')
-    if (currStr.chomp == '!')
-      strArr.pop
-      onesNum = strArr.pop.to_i
-      a = tempa = strArr.pop.to_i
+while curr_str != '\n'
+  curr_str = gets
+  str_arr.push(curr_str.chomp)
+  if (curr_str.chomp == '+') || (curr_str.chomp == '-') || (curr_str.chomp == '*') || (curr_str.chomp == '/') || (curr_str.chomp == '!')
+    if (curr_str.chomp == '!')
+      str_arr.pop
+      ones_num = str_arr.pop.to_i
+      a = temp_a = str_arr.pop.to_i
 
-      currOnesNum = 0
-      shiftsAmount = 0
+      curr_ones_num = 0
+      sh_amount = 0
 
-      while (currOnesNum != onesNum)
+      while curr_ones_num != ones_num
         if (tempa % 2 == 1)
-          currOnesNum += 1
+          curr_ones_num += 1
         end
 
-        tempa /= 2
-        shiftsAmount += 1
+        temp_a /= 2
+        sh_amount += 1
       end
 
-      strArr.push( (a >> shiftsAmount << shiftsAmount).to_s )
+      str_arr.push((a >> sh_amount << sh_amount).to_s)
     else
-      op = strArr.pop
-      b = strArr.pop
-      a = strArr.pop
+      op = str_arr.pop
+      b = str_arr.pop
+      a = str_arr.pop
 
-      strArr.push( eval(a + op + b).to_s );
+      str_arr.push(eval(a + op + b).to_s)
     end
   end
 end
 
-puts('#=>' + strArr[0])	
+puts("#=>" + str_arr[0])
