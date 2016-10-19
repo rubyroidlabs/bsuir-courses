@@ -32,12 +32,12 @@ def to_dec(binary) # From 2 to 10 base
 end
 
 def oper(symbol, a, b)
-  case
-  when symbol == "+" then a + b
-  when symbol == "-" then a - b
-  when symbol == "*" then a * b
-  when symbol == "/" then a / b
-  when symbol == "!" then to_dec(nul_bin(bin(a), b))
+  case symbol
+  when "+" then a + b
+  when "-" then a - b
+  when "*" then a * b
+  when "/" then a / b
+  when "!" then to_dec(nul_bin(bin(a), b))
   end
 end
 a = []
