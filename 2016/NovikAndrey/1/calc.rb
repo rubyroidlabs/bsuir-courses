@@ -23,7 +23,7 @@ loop do
     when "+"
       array.push(array.pop + array.pop)
     when "-"
-      array.push( -array.pop + array.pop)
+      array.push(-array.pop + array.pop)
     when "*"
       array.push(array.pop * array.pop)
     when "/"
