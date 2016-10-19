@@ -27,31 +27,27 @@ def bit(array)
   a.join.reverse.to_i(2)
 end
 
-def calculate(expression)
-  expression_array = expression.split
-  operands = []
-  
-  expression_array.each do |i|
-    if !i.match(/[0-9]/).nil?
-      operands.push(i)
-    elsif i == "+"
-      operands.push(sum(operands.pop(2)))
-    elsif i == "-"
-      operands.push(diff(operands.pop(2)))
-    elsif i == "/"
-      operands.push(div(operands.pop(2)))
-    elsif i == "*"
-      operands.push(mult(operands.pop(2)))
-    elsif i == "!"
-      operands.push(bit(operands.pop(2)))
-    end
-  end
-  puts "Answer: #{operands}"
-end
-
 puts "Enter expression in polish notation using space between symbols"
 while a = gets
   begin
-    calculate(a)
+    expression_array = a.split
+    operands = []
+  
+    expression_array.each do |i|
+      if !i.match(/[0-9]/).nil?
+        operands.push(i)
+      elsif i == "+"
+        operands.push(sum(operands.pop(2)))
+      elsif i == "-"
+        operands.push(diff(operands.pop(2)))
+      elsif i == "/"
+        operands.push(div(operands.pop(2)))
+      elsif i == "*"
+        operands.push(mult(operands.pop(2)))
+      elsif i == "!"
+        operands.push(bit(operands.pop(2)))
+      end
+    end
+    puts "Answer: #{operands}"
   end
 end
