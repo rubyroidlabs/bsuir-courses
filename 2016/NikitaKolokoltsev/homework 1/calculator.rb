@@ -45,7 +45,7 @@ first_input = true
 loop do
   input = gets.chomp
   case input.downcase
-  when /(\d|[+-\/\*!])/ # regexp that allows only numbers, +, -, /, *, !
+  when %r{\d|[+-\/\*!]} # regexp that allows only numbers, +, -, /, *, !
     expression.push(input)
     result = calculate(expression)
     if result.length == 1 && !first_input
