@@ -12,32 +12,33 @@ def bitoperation(value, count)
   else
     code = code.reverse
     for i in 0...code.length
-      if count != 0 && code[i] == '1' 
-        code[i] = '0'
+      if count.nonzero? && code[i] == "1" 
+        code[i] = "0"
         count -= 1
       end
     end
-    return result = code.reverse.to_i(2)
+    code.reverse.to_i(2)
   end
 end
+
 def operation!(symbol, stack)
   var = stack.pop
   case symbol
-    when '*' then stack[stack.length - 1] = stack[stack.length - 1] * var
-    when '-' then stack[stack.length - 1] = stack[stack.length - 1] - var
-    when '+' then stack[stack.length - 1] = stack[stack.length - 1] + var
-    when '/' then stack[stack.length - 1] = stack[stack.length - 1].to_f / var.to_f
-    when '!' then stack[stack.length - 1] = bitoperation(stack[stack.length - 1], var)
+  when "*" then stack[stack.length - 1] = stack[stack.length - 1] * var
+  when "-" then stack[stack.length - 1] = stack[stack.length - 1] - var
+  when "+" then stack[stack.length - 1] = stack[stack.length - 1] + var
+  when "/" then stack[stack.length - 1] = stack[stack.length - 1].to_f / var.to_f
+  when "!" then stack[stack.length - 1] = bitoperation(stack[stack.length - 1], var)
   end
 end
 while flag
   if (value = gets.chomp).match(/^\d+$/)
     values.push(value = value.to_i)
     count += 1	
-  elseif operators.include?(value)
+  else if operators.include?(value)
     count -= 1
     values.push(value)
-    if (count == 1 || count <= 0)
+    if count == 1 || count <= 0
       flag = false
     end 		
   end
