@@ -1,4 +1,4 @@
-require_relative 'numeric/new_operator'
+require_relative "numeric/new_operator"
 
 # adding ! operator
 class Numeric
