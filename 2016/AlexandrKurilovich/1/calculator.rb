@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-class String
+class String  #:nodoc:
   def operator?
-    true if /^[\+\-\/\*!]+$/.match(self)
+    true if %r/^[\+\-\/\*!]+$/ =~ self
   end
 
   def number?
@@ -9,7 +9,7 @@ class String
   end
 
   def valid?
-    true if self.operator? || self.number?
+    true if operator? || number?
   end
 end
 
@@ -20,17 +20,10 @@ def reset(a, b)
 end
 
 def calc(b, a, operator)
-  case operator
-  when "+"
-    return a + b
-  when "-"
-    return a - b
-  when "*"
-    return a * b
-  when "/"
-    return a / b
-  when "!"
+  if operator == "!"
     reset(a, b)
+  else
+    eval("#{a}#{operator}#{b}")
   end
 end
 
