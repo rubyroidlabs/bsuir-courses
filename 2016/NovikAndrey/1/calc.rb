@@ -1,14 +1,12 @@
 def bin(var2, var1)
   j = 0
-  tmp = var1.to_s(2).reverse
-  for i in 0..(tmp.size - 1)
-    if tmp[i] == "1"
-      tmp[i] = "0"
+  tmp = var1.to_s(2).reverse.split("")
+  tmp.each_index do |i|
+    if tmp[i] == "1" && j < var2
       j += 1
+      tmp[i] = "0"
     end
-    i += 1
-    break tmp.reverse.to_i(2) if j == var2
-  end
+  end.join("").reverse.to_i(2)
 end
 
 array = []
