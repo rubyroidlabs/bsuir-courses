@@ -1,4 +1,4 @@
-class RPN_Calculator	
+class RPN_Calculator
 
 	def special_func(first, second)
 		tmp_str = "0" + first.to_s(2)
