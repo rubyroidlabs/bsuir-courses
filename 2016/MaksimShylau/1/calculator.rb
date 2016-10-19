@@ -1,6 +1,6 @@
 def bin (number) # From 10 to 2 base
   s = ""
-  while number.to_i > 0
+  while number.positive?
     s += (number.to_i % 2).to_s
     number /= 2
   end
