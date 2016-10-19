@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 def bin(var2, var1)
   j = 0
   tmp = var1.to_s(2).reverse.split("")
