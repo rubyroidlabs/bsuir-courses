@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-def ToBinary(bits, b)
+def to_binary(bits, b)
   i = 0
   while i < bits.length
     if b.positive? && (bits[i] == 1)
@@ -33,7 +33,7 @@ loop do
         break if a.negative? || a.zero?
       end
       bits.reverse!
-      bits = ToBinary(bits, b)
+      bits = to_binary(bits, b)
       i = 0
       result = 0
       while i < bits.length
