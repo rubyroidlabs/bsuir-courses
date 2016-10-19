@@ -4,14 +4,13 @@ class RPNCalculator
   def special_func(first, second)
     tmp_arr = ("0" + first.to_s(2)).split(//)
     index = (second * - 1) - 1
-    (index..0).each { |i| tmp_arr[i] = "0"}
+    (index..0).each { |i| tmp_arr[i] = "0" }
     result = "0" + tmp_arr.join('')
     result.to_i(2)
   end
 
   def evaluate(rpn)
-    a = rpn.split(" ")
-    array = a.inject([]) do |stack, i|
+    array = rpn.split(" ").inject([]) do |stack, i|
       if i =~ /\d+/
         stack << i.to_i 
       else
