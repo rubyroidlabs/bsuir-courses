@@ -38,8 +38,6 @@ class Calc
       opers.push(diff(opers.pop(2)))
     elsif s == "/"
       opers.push(div(opers.pop(2)))
-    elsif s == "!"
-      opers.push(bit(opers.pop(2)))
     end
   end
 
@@ -52,6 +50,8 @@ class Calc
     expression_array.each do |i|
       if !i.match(/[0-9]/).nil?
         operands.push(i)
+      elsif i == "!"
+        operands.push(bit(operands.pop(2)))
       else sel(i, operands)
       end
     end
