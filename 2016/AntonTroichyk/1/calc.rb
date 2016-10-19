@@ -1,6 +1,6 @@
-def main
+def calc
   stack = []
-  while(true)
+  while (true)
     tmp = gets.chomp
     case tmp
     when /\d/
@@ -44,5 +44,5 @@ def main
   end
   puts result 
 end
-puts main
+puts calc
 
