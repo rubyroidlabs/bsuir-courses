@@ -59,7 +59,7 @@ loop do
         expression = []
         first_input = true
         puts "New expression:"
-        next # needed here because of assignment of 'first_input = false' at 68 line
+        next # needed here because of assignment of 'first_input = false' at 65 line
       end
     end
     first_input = false
