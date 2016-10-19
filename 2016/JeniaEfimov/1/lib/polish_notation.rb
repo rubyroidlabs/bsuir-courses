@@ -7,7 +7,7 @@ class PolishNotation
     when "-", "/", "*", "+"
       operands = evaluation.pop(2)
       evaluation.push(operands[0].send(symbol, operands[1]))
-    when '!'
+    when "!"
       operands = evaluation.pop(2)
       zero_bits(operands[0], operands[1])
     end
@@ -25,8 +25,8 @@ class PolishNotation
     number = number.to_s(2).reverse
     number.length.times do |i|
       break if number_of_bits <= 0
-      if number[i] == '1'
-        number[i] = '0'
+      if number[i] == "1"
+        number[i] = "0"
         number_of_bits -= 1
       end
     end
