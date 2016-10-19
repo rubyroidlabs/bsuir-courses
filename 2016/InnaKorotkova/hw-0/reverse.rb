@@ -26,13 +26,12 @@ def operation!(symbol, stack)
   when "-" then stack.push(arg - var)
   when "+" then stack.push(arg + var)
   when "/" then stack.push(arg.to_f / var.to_f)
-  when "!" then arg = bitoperation(arg.to_i, var)
-    stack.push(arg)
+  when "!" then stack.push(bitoperation(arg.to_i, var))
   end
 end
 while flag
   value = gets.chomp
-  if value.match(/^\d+$/)
+  if /^\d+$/ === value
     values.push(value = value.to_i)
     count += 1
   elsif operators.include?(value)
