@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Simple implementation of specific RPN
 class RPNCalc
   def initialize
@@ -67,7 +65,3 @@ class RPNCalc
     sign =~ %r{[+\-*/!]}
   end
 end
-
-calculator = RPNCalc.new
-calculator.start
-calculator.show_result
