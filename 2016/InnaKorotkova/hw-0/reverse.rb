@@ -6,7 +6,7 @@ count = 0
 values = []
 stack = [] 
 def bitoperation(value, count)
-  if (code = value.to_i.to_s(2)).length > count || count > 0 
+  if (code = value.to_i.to_s(2)).length > count || count.positive?
     code = code.reverse
     for i in 0...code.length
       if count.nonzero? && code[i] == "1" 
@@ -33,14 +33,14 @@ def operation!(symbol, stack)
 end
 while flag
   if (value = gets.chomp).match(/^\d+$/)
-    values.push(value = value.to_i)
-    count += 1	
+   values.push(value = value.to_i)
+   count += 1	
   elsif operators.include?(value)
-    count -= 1
-    values.push(value)
-    if count == 1 || count <= 0
-      flag = false
-    end 		
+   count -= 1
+   values.push(value)
+   if count == 1 || count <= 0
+    flag = false
+   end 		
   end
 end 
 values.each { |x| operators.include?(x) ? operation!(x, stack) : stack.push(x) }
