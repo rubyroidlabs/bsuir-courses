@@ -5,7 +5,7 @@ class String #:nodoc:
   end
 
   def number?
-    !(self =~ %r{^-?\d+(\.\d*)?$}).nil?
+    !(self =~ /^-?\d+(\.\d*)?$/).nil?
   end
 
   def valid?
@@ -17,21 +17,6 @@ def reset(a, b)
   a = a.to_i.to_s(2).reverse
   b.to_i.times { a[a.index("1")] = "0" }
   a.reverse.to_i(2)
-end
-
-def calc(b, a, operator)
-  case operator
-  when "+"
-    return a + b
-  when "-"
-    return a - b
-  when "*"
-    return a * b
-  when "/"
-    return a / b
-  when "!"
-    reset(a, b)
-  end
 end
 
 numbers = 0
@@ -56,7 +41,20 @@ expr.each do |x|
   if x.number?
     stack.push x.to_f
   else
-    res = calc(stack.pop, stack.pop, x)
+    b = stack.pop
+    a = stack.pop
+    case x
+    when "+"
+      res = a + b
+    when "-"
+      res = a - b
+    when "*"
+      res = a * b
+    when "/"
+      res = a / b
+    when "!"
+      res = reset(a, b)
+    end
     stack.push res
   end
 end
