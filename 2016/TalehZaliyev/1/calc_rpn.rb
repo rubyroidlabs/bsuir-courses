@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require './lib/Numeric.rb'
+require "./lib/numeric.rb"
 def calc_rpn(stack = [])
   loop do
     case (input = gets.strip)
