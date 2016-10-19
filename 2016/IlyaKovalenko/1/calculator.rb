@@ -17,12 +17,12 @@ loop do
       loop do
         bits.push(a % 2)
         a /= 2
-      break if a.negative? || a.zero?
+        break if a.negative? || a.zero?
       end
       bits.reverse!
       i = 0
       while i < bits.length
-        if (b.positive?) && (bits[i] == 1)
+        if b.positive? && (bits[i] == 1)
           bits[i] = 0
           b -= 1
         end
@@ -46,7 +46,7 @@ loop do
   else
     stack.push(lexem.to_f)
   end
-break if stack.length < 2 && (got_symbol)
+  break if stack.length < 2 && got_symbol
 end
 
 puts "#=> " + stack.pop.to_s
