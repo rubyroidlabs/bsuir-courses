@@ -52,30 +52,10 @@ forth = gets.chomp
 if forth.match(/\D/)
   fifth = gets.chomp
   if fifth.match(/\D/)
-    if forth == "+"
-      result = second_num + third.to_f
-    end
-    if forth == "-"
-      result = second_num - third.to_f
-    end
-    if forth == "*"
-      result=second_num * third.to_f
-    end
-    if forth == "/"
-      result = second_num / third.to_f
-    end
+          result = second_num + third.to_f if forth == "+" ||  result = second_num - third.to_f  if forth == "-" ||
+          result=second_num * third.to_f  if forth == "*" || result = second_num / third.to_f  if forth == "/"
   end
-  if fifth == "+"
-    result=result + first_num
+  result=result + first_num if fifth == "+" || result=result - first_num  if fifth == "-"||
+      result=result * first_num if fifth == "*" || result = result / first_num  if fifth == "/"
   end
-  if fifth == "-"
-    result=result - first_num
-  end
-  if fifth == "*"
-    result=result * first_num
-  end
-  if fifth == "/"
-    result = result / first_num
-  end
-end
 puts "result= " + result.to_s
