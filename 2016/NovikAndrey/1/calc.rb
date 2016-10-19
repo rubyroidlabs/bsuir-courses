@@ -16,8 +16,8 @@ end
 
 array = []
 loop do
-	variable = gets.chomp
-	if variable == variable.to_i.to_s
+  variable = gets.chomp
+  if variable == variable.to_i.to_s
     array.push(variable.to_i)
   else
     case variable
