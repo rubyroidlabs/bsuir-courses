@@ -21,7 +21,7 @@ loop do
   else
     opz(input, numbers)
     break
-end
+  end
 end
 
 (numbers.count - 1).times do
