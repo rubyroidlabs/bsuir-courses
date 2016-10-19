@@ -21,8 +21,7 @@ def nul_bin(dec, count) # ! operation (changes '1' on '0')
 end
 
 def to_dec(binary) # From 2 to 10 base
-  sum = 0
-  i = 0
+  sum = i = 0
   1.upto(binary.size) do
     pow = binary.size.to_i - i - 1
     sum += binary[i].to_i * (2**pow)
