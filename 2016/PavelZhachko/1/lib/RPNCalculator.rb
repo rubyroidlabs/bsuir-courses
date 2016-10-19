@@ -14,16 +14,21 @@ class RPNCalculator
       if i =~ /\d+/
         stack << i.to_i
       else
-        b = stack.pop(2)
-          case i
-          when "+" then stack << b[0] + b[1]
-          when "-" then stack << b[0] - b[1]
-          when "*" then stack << b[0] * b[1]
-          when "/" then stack << b[0] / b[1]
-          when "!" then stack << special_func(b[0], b[1])
-          end
+        case_func(stack, i)
       end
     end
     p array.pop
+  end
+ 
+  def case_func(volume, key)
+    b = volume.pop(2)
+    case key
+    when "+" then volume << b[0] + b[1]
+    when "-" then volume << b[0] - b[1]
+    when "*" then volume << b[0] * b[1]
+    when "/" then volume << b[0] / b[1]
+    when "!" then volume << special_func(b[0], b[1])
+    else p 'Smthing is wrong. Check input'
+    end
   end
 end
