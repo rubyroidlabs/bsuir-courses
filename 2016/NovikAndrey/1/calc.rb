@@ -1,17 +1,14 @@
-#!/usr/bin/ruby
 def bin(var2, var1)
   j = 0
-  i = 0
   tmp = var1.to_s(2).reverse
-  loop do
+  for i in 0..(tmp.size - 1)
     if tmp[i] == "1"
       tmp[i] = "0"
       j += 1
     end
     i += 1
-    break if j == var2
+    break tmp.reverse.to_i(2) if j == var2
   end
-  tmp.reverse.to_i(2)
 end
 
 array = []
