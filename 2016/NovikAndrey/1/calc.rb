@@ -1,4 +1,3 @@
-
 def bin(var2, var1)
   j = 0
   tmp = var1.to_s(2).reverse.split("")
@@ -12,11 +11,11 @@ end
 
 array = []
 loop do
-  variable = gets.chomp
-  if variable == variable.to_i.to_s
-    array.push(variable.to_i)
+  var = gets.chomp
+  if var == var.to_i.to_s
+    array.push(var.to_i)
   else
-    case variable
+    case var
     when "+"
       array.push(array.pop + array.pop)
     when "-"
