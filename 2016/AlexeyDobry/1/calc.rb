@@ -1,17 +1,16 @@
 #!/usr/bin/env ruby
  class String
   def operation?
-    true if /^[\+\-\/\*\!]+$/.match(numb)
+    true if /^[\+\-\/\*!]+$/.match(self)
   end
 
   def number?
-    true if Float numb rescue false
+    true if Float self rescue false
   end
 
   def valid?
-    true if numb.operation? || numb.number?
+    true if self.operation? || self.number?
   end
-
  end
 
  def nul(a, b)
@@ -22,18 +21,17 @@
 
  def calc(b, a, operation)
   case operation
-  when "+"
-    return a + b
-  when "-"
-    return a - b
-  when "*"
-    return a * b
-  when "/"
-    return a / b
-  when "!"
-    nul(a, b)
+   when "+"
+     return a + b
+   when "-"
+     return a - b
+   when "*"
+     return a * b
+   when "/"
+     return a / b
+   when "!"
+     nul(a, b)
   end
-
  end
 
  exp = [] 
@@ -52,8 +50,8 @@
   end
  end
 
- steck = []
  result = 0
+ steck = []
  exp.each do |x|
   if x.number?
     steck.push x.to_f
