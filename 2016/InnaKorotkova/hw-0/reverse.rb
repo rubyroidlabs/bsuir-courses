@@ -31,16 +31,15 @@ def operation!(symbol, stack)
   end
 end
 while flag
-  if (value = gets.chomp).match(/^\d+$/)
-    values.push(value = value.to_i)
-    count += 1	
-  elsif operators.include?(value)
-    count -= 1
-    values.push(value)
-    if count == 1 || count <= 0
-     flag = false
+ if (value = gets.chomp).match(/^\d+$/)
+   values.push(value = value.to_i)
+   count += 1	
+ elsif operators.include?(value)
+   count -= 1
+   values.push(value)
+   flag = false if count == 1 || count <= 0
    end 		
-  end
+ end
 end 
 values.each { |x| operators.include?(x) ? operation!(x, stack) : stack.push(x) }
 print stack[0], "\n"
