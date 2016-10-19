@@ -26,7 +26,7 @@ end
 
 def calculate(expression)
   expression.each_with_object([]) do |e, s|
-    if e =~ %r{\d}
+    if e =~ %r{/\d/}
       s.push(e.to_f)
     elsif e == "!"
       s.push(remove_bits(s.pop, s.pop))
@@ -45,7 +45,7 @@ first_input = true
 loop do
   input = gets.chomp
   case input.downcase
-  when %r{(\d|[+-/\*!])} # regexp that allows only numbers, +, -, /, *, !
+  when %r{/(\d|[+-/\*!])/} # regexp that allows only numbers, +, -, /, *, !
     expression.push(input)
     result = calculate(expression)
     if result.length == 1 && !first_input
