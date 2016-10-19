@@ -1,29 +1,28 @@
 class Calc
   def sum(array)
-    result = array[0].to_f + array[1].to_f
+    array[0].to_f + array[1].to_f
   end
 
   def mult(array)
-    result = array[0].to_f * array[1].to_f
+    array[0].to_f * array[1].to_f
   end
 
   def diff(array)
-    result = array[0].to_f - array[1].to_f
+    array[0].to_f - array[1].to_f
   end
 
   def div(array)
-    result = array[0].to_f / array[1].to_f
+    array[0].to_f / array[1].to_f
   end
-  
+
   def bit(array)
-    a = ((array[0].to_i.to_s(2)).reverse).split(//)
+    a = array[0].to_i.to_s(2).reverse.split(//)
     b = array[1].to_i
     a.map! do |i|
       break if b <= 0
-      if i == "1" then
-        b -= 1
-        i = "0"
-        else i
+      if i == "1"
+      b -= 1
+      "0"
       end
     end
     a.join.reverse.to_i(2)    
