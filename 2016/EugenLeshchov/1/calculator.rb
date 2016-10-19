@@ -17,7 +17,6 @@ while curr_str != '\n'
         if (tempa % 2 == 1)
           curr_ones_num += 1
         end
-
         temp_a /= 2
         sh_amount += 1
       end
