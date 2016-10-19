@@ -1,7 +1,7 @@
 puts "input reverse polish notation"
 first_num = gets.chomp.to_i
 second_num = gets.chomp.to_i
-third=gets.chomp
+third = gets.chomp
 if third.match(/\D/)
   if third == "+"
     result = first_num + second_num
@@ -15,14 +15,14 @@ if third.match(/\D/)
   if third == "/"
     result = first_num / second_num
   end
-  if third=="!"
+  if third == "!"
     b = first_num.to_s(2)
     c = b.length.to_i
     d = b.length.to_i
     e = 1
     g = []
     while c != 0
-      f=first_num[d - c]
+      f = first_num[d - c]
       if e <= second_num
         if f == 1
           g[d - c] = first_num[~(d - c)]
@@ -43,39 +43,39 @@ if third.match(/\D/)
       k += j[i].to_s
       i += 1
     end
-    result=k.to_i(2)
+    result = k.to_i(2)
   end
   puts "result= " + result.to_s
   exit
 end
-forth=gets.chomp
+forth = gets.chomp
 if forth.match(/\D/)
-  fifth=gets.chomp
+  fifth = gets.chomp
   if fifth.match(/\D/)
-    if forth=="+"
-      result=second_num + third.to_f
+    if forth == "+"
+      result = second_num + third.to_f
     end
-    if forth=="-"
-      result=second_num - third.to_f
+    if forth == "-"
+      result = second_num - third.to_f
     end
-    if forth=="*"
+    if forth == "*"
       result=second_num * third.to_f
     end
-    if forth=="/"
-      result=second_num / third.to_f
+    if forth == "/"
+      result = second_num / third.to_f
     end
   end
-  if fifth=="+"
+  if fifth == "+"
     result=result + first_num
   end
-  if fifth=="-"
+  if fifth == "-"
     result=result - first_num
   end
-  if fifth=="*"
+  if fifth == "*"
     result=result * first_num
   end
-  if fifth=="/"
-    result=result / first_num
+  if fifth == "/"
+    result = result / first_num
   end
 end
 puts "result= " + result.to_s
