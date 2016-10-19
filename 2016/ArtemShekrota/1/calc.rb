@@ -40,15 +40,15 @@ class Calc
     expression_array.each do |i|
       if i.match(/[0-9]/) != nil
         operands.push(i)
-        elsif i == "+"
+      elsif i == "+"
         operands.push(sum(operands.pop(2)))
-        elsif i == "*"
+      elsif i == "*"
         operands.push(mult(operands.pop(2)))
-        elsif i == "-"
+      elsif i == "-"
         operands.push(diff(operands.pop(2)))
-        elsif i == "/"
+      elsif i == "/"
         operands.push(div(operands.pop(2)))
-        elsif i == "!"
+      elsif i == "!"
         operands.push(bit(operands.pop(2)))
       end
     end
