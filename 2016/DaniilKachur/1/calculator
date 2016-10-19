@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
-require './lib/rpn'
+require "./lib/rpn"
 
 def beautify(value)
   (value % 1).zero? ? value.to_i : value
 end
 
 RPN::ExceptionHandler.handle do
-  input = ''
-  buffer = ''
+  input = ""
+  buffer = ""
 
   loop do
     buffer << gets

@@ -1,4 +1,4 @@
-require_relative 'io/immediately_io'
+require_relative "io/immediately_io"
 
 # adding immediately output
 class IO

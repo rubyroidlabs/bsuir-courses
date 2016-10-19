@@ -1,5 +1,5 @@
-# calculating reverse polish notation
 module RPN
+  # calculating reverse polish notation
   class Calculator
     def self.solve(rpn)
       rpn.split("\n").inject([]) do |stack, token|
