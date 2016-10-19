@@ -19,7 +19,7 @@ class RPNCalculator
     end
     p array.pop
   end
- 
+
   def case_func(volume, key)
     b = volume.pop(2)
     case key
@@ -28,7 +28,7 @@ class RPNCalculator
     when "*" then volume << b[0] * b[1]
     when "/" then volume << b[0] / b[1]
     when "!" then volume << special_func(b[0], b[1])
-    else p 'Smthing is wrong. Check input'
+    else p "Smthing is wrong. Check input"
     end
   end
 end
