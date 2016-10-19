@@ -1,6 +1,6 @@
 def calc
   stack = []
-  while (true)
+  while
     tmp = gets.chomp
     case tmp
     when /\d/
