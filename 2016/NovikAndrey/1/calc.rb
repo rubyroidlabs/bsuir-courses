@@ -9,6 +9,10 @@ def bin(var2, var1)
   end.join("").reverse.to_i(2)
 end
 
+def del(var2, var1)
+  var1 / var2
+end
+
 array = []
 loop do
   var = gets.chomp
@@ -19,11 +23,11 @@ loop do
     when "+"
       array.push(array.pop + array.pop)
     when "-"
-      array.push(array.pop - array.pop)
+      array.push( -array.pop + array.pop)
     when "*"
       array.push(array.pop * array.pop)
     when "/"
-      array.push(array.pop / array.pop)
+      array.push(del(array.pop, array.pop))
     when "!"
       array.push(bin(array.pop, array.pop))
     end
