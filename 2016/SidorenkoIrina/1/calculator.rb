@@ -11,23 +11,16 @@ loop do
 end
   operations.each do |el|
   s = numbers.size
+  raise "Empty array!" if numbers.empty? 
   case el
-    when "+"
-        if numbers.empty? then raise "Empty array!"
-        else numbers[s-2] +=  numbers.pop()
-          end
+    when "+" 
+        numbers[s-2] +=  numbers.pop()
     when "-"
-      if numbers.empty? then raise "Empty array!"
-        else numbers[s-2] -= numbers.pop()
-        end
+        numbers[s-2] -= numbers.pop()
     when "*"
-       if numbers.empty? then raise "Empty array!"
-        else numbers[s-2] *= numbers.pop()
-        end
+        numbers[s-2] *= numbers.pop()
     when "/"
-      if numbers.empty? then raise "Empty array!"
-        else numbers[s-2] /= numbers.pop()
-        end
+        numbers[s-2] /= numbers.pop()
     else 
       numbers.push(el.to_i)
   end 
