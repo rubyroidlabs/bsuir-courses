@@ -25,9 +25,9 @@ class RPN_Calculator
 					when i == "*" then array << b[0] * b[1]
 					when i == "/" then array << b[0] / b[1]
 					when i == "!" then array << special_func(b[0], b[1])
-				end
-			end
-		end
-		p array.pop
-	end
+         end
+        end
+      end
+     p array.pop
+   end
 end

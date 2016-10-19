@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative 'RPN_calculator'
+require_relative "RPN_calculator"
 
 calc = RPN_Calculator.new
 p "Input rpn ex - reverse polish notation example"
