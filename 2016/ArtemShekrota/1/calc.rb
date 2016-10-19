@@ -1,3 +1,4 @@
+# Calculating
 class Calc
   def sum(array)
     array[0].to_f + array[1].to_f
@@ -21,23 +22,22 @@ class Calc
     a.map! do |i|
       break if b <= 0
       if i == "1"
-      b -= 1
+        b -= 1
       "0"
       end
     end
-    a.join.reverse.to_i(2)    
+    a.join.reverse.to_i(2)
   end
   
   def calculate(expression)
     expression_array = expression.split
     operands = []
 
-    if expression_array.length < 2
-      return puts "Wrong data!"
+    if expression_array.length < 2 then return puts "Wrong data!"
     end
 
     expression_array.each do |i|
-      if i.match(/[0-9]/) != nil
+      if !i.match(/[0-9]/).nil?
         operands.push(i)
       elsif i == "+"
         operands.push(sum(operands.pop(2)))
