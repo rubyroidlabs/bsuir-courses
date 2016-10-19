@@ -35,7 +35,6 @@ while flag
    count -= 1
    values.push(value)
    flag = false if count == 1 || count <= 0
-   end 		
  end
 end 
 values.each { |x| operators.include?(x) ? operation!(x, stack) : stack.push(x) }
