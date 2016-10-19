@@ -1,4 +1,17 @@
 #!/usr/bin/env ruby
+
+def ToBinary(bits, b)
+  i = 0
+  while i < bits.length
+    if b.positive? && (bits[i] == 1)
+      bits[i] = 0
+      b -= 1
+    end
+    i += 1
+  end
+  bits
+end
+
 stack = []
 got_symbol = false
 loop do
@@ -20,14 +33,7 @@ loop do
         break if a.negative? || a.zero?
       end
       bits.reverse!
-      i = 0
-      while i < bits.length
-        if b.positive? && (bits[i] == 1)
-          bits[i] = 0
-          b -= 1
-        end
-        i += 1
-      end
+      bits = ToBinary(bits, b)
       i = 0
       result = 0
       while i < bits.length
