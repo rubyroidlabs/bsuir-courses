@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require "./lib/numeric.rb"
-(stack = [])
+(stack = []) # sexy view
 loop do
   case (input = gets.strip)
   when /^(\d+|\d+[.]\d+)$/ then stack.push(input)
