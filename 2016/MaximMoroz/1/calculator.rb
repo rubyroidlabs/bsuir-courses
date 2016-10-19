@@ -3,7 +3,7 @@ def count(arguments)
 
   arguments.each do |a|
     case a
-    when /\d+/ then stack.push(a.to_i)
+    when %r{\^d+$} then stack.push(a.to_i)
     when %r{\+|\*|\+|\/|\-} then operators(a, stack)
     when "!" then binary_operator(stack)
     end
