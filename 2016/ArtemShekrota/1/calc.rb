@@ -23,7 +23,7 @@ class Calc
       break if b <= 0
       if i == "1"
         b -= 1
-      "0"
+        "0"
       end
     end
     a.join.reverse.to_i(2)
@@ -33,9 +33,8 @@ class Calc
     expression_array = expression.split
     operands = []
 
-    if expression_array.length < 2 then return puts "Wrong data!"
-    end
-
+    puts "Wrong data!" if expression_array.length < 2
+    
     expression_array.each do |i|
       if !i.match(/[0-9]/).nil?
         operands.push(i)
