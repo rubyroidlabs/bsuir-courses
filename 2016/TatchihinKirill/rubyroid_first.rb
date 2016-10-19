@@ -18,7 +18,7 @@ def make_rpn_input(operands_count = 0, operators_count = 0, rpn_form = [])
   end
   rpn_form
 end
-def push_performed_bit_changing(result, number_for_changing, count_of_changes)
+def push_performed_bit_changing(result)
   count_of_changes = result.pop.to_f
   number_for_changing = result.pop.to_i
   result.push(special_operation(number_for_changing, count_of_changes))
@@ -27,7 +27,7 @@ def perform_bit_changing(result)
   if result.size < 2
     result.push(special_text_and_extra_parameter)
   end
-  push_performed_bit_changing(result, number_for_changing, count_of_changes)
+  push_performed_bit_changing(result)
 end
 def calculate_operations(result, element)
   first_operand = result.pop
