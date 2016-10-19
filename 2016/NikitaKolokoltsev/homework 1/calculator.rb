@@ -25,18 +25,16 @@ def remove_bits(bits_to_remove, number)
 end
 
 def calculate(expression)
-  expression = expression.each_with_object([]) do |e, s|
-    case e
-    when /\d/
+  expression.each_with_object([]) do |e, s|
+    if e =~ %r{\d}
       s.push(e.to_f)
-    when "!"
+    elsif e == "!"
       s.push(remove_bits(s.pop, s.pop))
     else
       s.push(s.pop(2).inject(e).to_f)
     end
     s
   end
-  expression
 end
 
 puts "Reverse Polish Notation calculator"
@@ -47,7 +45,7 @@ first_input = true
 loop do
   input = gets.chomp
   case input.downcase
-  when /(\d|[+-\/\*!])/ # regexp that allows only numbers, +, -, /, *, !
+  when %r{(\d|[+-/\*!])} # regexp that allows only numbers, +, -, /, *, !
     expression.push(input)
     result = calculate(expression)
     if result.length == 1 && !first_input
@@ -58,7 +56,7 @@ loop do
       when "exit"
         break
       else
-        result, expression = [], []
+        expression = []
         first_input = true
         puts "New expression:"
         next # needed here because of assignment of 'first_input = false' at 68 line
