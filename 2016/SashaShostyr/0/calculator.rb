@@ -9,9 +9,9 @@ loop do
   else
     b = stack.pop(2)
     case variable
-      when variable == "+" then stack << b[0] + b[1] 
-      when variable == "-" then stack << b[0] - b[1]  
-      when variable == "*" then stack << b[0] * b[1]  
+      when variable == "+" then stack << b[0] + b[1]
+      when variable == "-" then stack << b[0] - b[1]
+      when variable == "*" then stack << b[0] * b[1]
       when variable == "/" then stack << b[0] / b[1]
       when variable == "!" then
         number = 0
@@ -27,7 +27,7 @@ loop do
         end.reverse.join.to_i(2)
       else fail "Wrong data !!!"
     end
-    break if stack.length == 1   
+    break if stack.length == 1
   end
 end
-p stack.first
+p stack.firsts
