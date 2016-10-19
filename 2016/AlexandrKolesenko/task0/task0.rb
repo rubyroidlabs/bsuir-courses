@@ -1,23 +1,20 @@
-#
 class RpnCalc
 
   attr_reader :operators
 
-  public
-
   def initialize
     @operators = {
       "+" => {
-        action: proc { |x, y| x + y}
+        action: proc { |x, y| x + y }
         },
       "-" => {
-        action: proc { |x, y| x - y}
+        action: proc { |x, y| x - y }
         },
       "*" => {
-        action: proc { |x, y| x * y}
+        action: proc { |x, y| x * y }
         },
       "/" => {
-        action: proc { |x, y| x / y}
+        action: proc { |x, y| x / y }
         }
     }
   end
@@ -25,8 +22,8 @@ class RpnCalc
   def evaluate(string)
     stack = []
     string.split(" ").each do |token|
-      if operand? token then stack.push token
-      elsif operator? token then
+      if operand? token  then stack.push token
+      elsif operator? token
         y = stack.pop
         x = stack.pop
         stack.push apply_operator(x, y, token)
@@ -52,4 +49,3 @@ end
 
 p RpnCalc.new.evaluate("8 8 2  / +")
 # => 12
-
