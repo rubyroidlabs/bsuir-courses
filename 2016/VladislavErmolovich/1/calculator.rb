@@ -31,7 +31,12 @@ while array.size > 1 do
   when '-'
     array[i-2] -= array[i-1]
   when '/'
-    array[i-2] /= array[i-1]
+    if array[i-1] !=0 
+      array[i-2] /= array[i-1]
+    else
+      puts "Division by zero is not allowed"
+      exit
+    end
   end
   array[i-1] = nil
   array[i] = nil
