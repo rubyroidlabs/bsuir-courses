@@ -4,7 +4,7 @@ def bin (number) # From 10 to 2 base
     s += (number.to_i % 2).to_s
     number /= 2
   end
-  return s.reverse
+  s.reverse
 end
 
 def nul_bin(dec, count) # ! operation (changes '1' on '0')
