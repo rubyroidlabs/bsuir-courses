@@ -30,11 +30,9 @@
       <file leaf-file-name="polish_calculator_with_spec_operation.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.75829387" vertical-offset="585" max-vertical-offset="1260">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-              <folding>
-                <element signature="e#825#879#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.8530806" vertical-offset="450" max-vertical-offset="1305">
+              <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -300,11 +298,9 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.75829387" vertical-offset="585" max-vertical-offset="1260">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding>
-            <element signature="e#825#879#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.8530806" vertical-offset="450" max-vertical-offset="1305">
+          <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

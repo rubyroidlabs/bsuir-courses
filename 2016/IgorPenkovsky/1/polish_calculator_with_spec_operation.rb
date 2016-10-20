@@ -58,7 +58,7 @@ if forth =~ /\D/
     when "-"
       result = second_num - third.to_f
     when "*"
-      result=second_num * third.to_f
+      result = second_num * third.to_f
     when "/"
       result = second_num / third.to_f
     else
