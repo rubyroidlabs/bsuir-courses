@@ -31,7 +31,7 @@ def operation!(symbol, stack)
 end
 while flag
   value = gets.chomp
-  if /^\d+$/ === value
+  if /^\d+$/ =~ value
     values.push(value = value.to_i)
     count += 1
   elsif operators.include?(value)
