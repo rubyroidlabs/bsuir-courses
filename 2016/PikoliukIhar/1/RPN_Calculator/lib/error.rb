@@ -1,4 +1,4 @@
-# This is simple eror checker for input
+#:nodoc:
 require "colorize"
 class Error
   def input_check(exp)
@@ -6,35 +6,35 @@ class Error
     check(exp)
   end
 
-  def check(expr)
+  def check(exp)
     operands = 0
-    expr.each do |expr|
+    exp.each do |expr|
       case expr
       when /\d+/
         operands += 1
       else
-        op_check(expr)
+        op_ch(expr)
       end
     end
     arg_check(expr, operands)
   end
 
-  def null_check(expr)
-    if expr == "\="
+  def null_check(exp)
+    if exp == "\="
       puts "Error. You must write expr.".red
       exit 1
     end
   end
 
-  def op_check(expr)
-    if expr != /\d+/ && expr != "\=" && expr != "\+" && expr != "\-" && expr != "\*" && expr != "\/" && expr != "\!"
+  def op_ch(exp)
+    if exp != /\d+/ && exp != "\=" && exp != "\+" && exp != "\-" && exp != "\*" && exp != "\/" && exp != "\!"
       puts "Error. Wrong expression, please use only numbers and symbols: +, *, /, -, !, =.".red
       exit 1
     end
   end
 
-  def arg_check(expr, op)
-    if (expr.size / 2 != op || expr.size < 3)
+  def arg_check(exp, op)
+    if exp.size / 2 != op || exp.size < 3
       puts "Error. Wrong number of arguments".red
       exit 1
     end

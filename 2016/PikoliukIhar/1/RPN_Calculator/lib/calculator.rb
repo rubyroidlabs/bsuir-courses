@@ -1,9 +1,9 @@
 # This is RPN Calculator
 class Calculator
-  def count(expr)
+  def count(exp)
     arg = []
 
-    expr.each do |e|
+    exp.each do |e|
       case e
       when /\d+/
         arg[arg.size] = e.to_i
