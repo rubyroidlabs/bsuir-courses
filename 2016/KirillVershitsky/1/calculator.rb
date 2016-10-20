@@ -8,9 +8,10 @@ def bin_oper(digs)
   a = digs[0].to_i.to_s(2).reverse!.split("")
   a.map! do |el|
     if el == "1" && digs[1].positive?
-    digs[1] -= 1
+      digs[1] -= 1
       "0"
-    else el
+    else
+      el
     end
   end
   a.reverse!.join.to_i(2)
