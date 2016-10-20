@@ -20,9 +20,13 @@ loop do
       stack.push case element
                  when /\d/ then element.to_i
                  when /\+/ then stack.pop + stack.pop
-                 when /\-/ then stack.pop - stack.pop
+                 when /\-/
+                   operands = stack.pop(2)
+                   operands[0] - operands[1]
                  when /\*/ then stack.pop * stack.pop
-                 when %r{\/} then stack.pop / stack.pop
+                 when %r{\/}
+                   operands = stack.pop(2)
+                   operands[0] / operands[1]
                  when /\!/ then kill_one_bits(stack.pop, stack.pop)
                  end
     end
@@ -32,5 +36,5 @@ loop do
   elsif item.include? "q"
     break
   end
-  item =~ %r{[\d\+\*\/\!]} ? expression << item : puts("Incorrectly input!")
+  item =~ %r{[\d\+\*\/\!\-]} ? expression << item : puts("Incorrectly input!")
 end
