@@ -1,4 +1,3 @@
-
 def operation_with_bits(value, number_od_bits)
   bits = []
   i = 0
