@@ -16,11 +16,11 @@ stck = []
 loop do
   tmp = gets
   tmp.chomp!
-  if tmp =~ /\A[+-]?\d+\z/
-    stck.push(tmp.to_i)
+  if tmp =~ /\A[+-]?^\d+(?:\.\d+|)$+\z/
+    stck.push(tmp.to_f)
   elsif ['+', '-', '*', '/', '!'].include? tmp
     case tmp
-    when '!' then stck.push(binary(stck.pop, stck.pop))
+    when '!' then stck.push(binarystck.pop.to_f, stck.pop.to_f))
     else stck.push(stck.pop(2).inject(tmp.to_sym))
     end
     break if stck.count == 1
