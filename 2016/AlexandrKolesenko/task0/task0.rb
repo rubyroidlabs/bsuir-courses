@@ -30,8 +30,8 @@ class RpnCalc
   end
 
   def initialize
-    @operators = 
-    {
+    @operators =
+     {
       "+" => { action: proc { |x, y| x + y } },
       "-" => { action: proc { |x, y| x - y } },
       "*" => { action: proc { |x, y| x * y } },
