@@ -1,5 +1,5 @@
+#:nodoc:
 class Calculator
-
   def count(exp)
     arguments = []
 
@@ -19,7 +19,6 @@ class Calculator
         zeroing(arguments)
       end
     end
-    return arguments[0]
   end
 
   def sum(a)
