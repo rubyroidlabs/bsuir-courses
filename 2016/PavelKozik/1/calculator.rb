@@ -31,34 +31,29 @@ def split_and_count
   operands = []
   x = gets.chomp
   while x.match(/\w/) != true && (x.match(/^\d*$/) || x == '')
-    unless x == ''
-      operands.push(x.to_i)
-    end
+    operands.push(x.to_i) unless x == ''
     x = gets.chomp
   end
   while operands.size > 1
     case x
     when /\w/
-      abort('Syntax error. You can use only digits and operators like / * - + and ** for ^')
-    when '!'
+      abort("Syntax error. You can use only digits and operators like / * - + and ** for ^")
+    when "!"
       sum = operands.pop(2)
       operands.push(operation_with_bits(sum[0], sum[1]))
 
-    when '+', '-', '*', '/', '**'
+    when "+", "-", "*", "/", "**"
       sum = operands.pop(2)
       operands.push(sum[0].send(x, sum[1]))
     else
-      abort('Syntax error.')
+      abort("Syntax error.")
     end
-    if operands.size == 1
-      break
-    end
+    break if operands.size == 1
     x = gets.chomp
   end
 
-  if operands.size > 1 || operands.size.zero?
-    abort('Syntax error.')
-  end
+  abort("Syntax error.") if operands.size > 1 || operands.size.zero?
+ 
   puts "#=> #{operands[0]}"
 end
 
