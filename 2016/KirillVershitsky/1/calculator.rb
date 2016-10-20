@@ -5,18 +5,18 @@ def calc(dig, operation)
 end
 
 def bin_oper(digs)
-  a = digs[0].to_i.to_s(2).reverse!.split('')
+  a = digs[0].to_i.to_s(2).reverse!.split("")
   a.map! do |el|
-    if el == '1' && digs[1] > 0
-      digs[1] -= 1
-      '0'
+    if el == "1" && digs[1].positive?
+    digs[1] -= 1
+      "0"
     else el
     end
   end
   a.reverse!.join.to_i(2)
 end
 
-puts 'Enter expression separate by {Enter}. Supports integer operands and - / * + ! operators'
+puts "Enter expression separate by {Enter}. Supports - / * + ! operators"
 stack = []
 flag = false
 while stack.length > 1 || !flag
@@ -24,16 +24,12 @@ while stack.length > 1 || !flag
   if /\d/ =~ element
     stack.push(element.to_f)
   elsif %w(+ - / * !).include?(element) && stack.size > 1
-    rez = 0
-    if element != '!'
-      rez = calc(stack.pop(2), element)
-    else
-      rez = bin_oper(stack.pop(2))
-    end
+    rez = element != "!" ? calc(stack.pop(2), element) : bin_oper(stack.pop(2))
     stack.push(rez)
     flag = true
   else
-    puts 'Isn\'t correct input'
+    puts "Isn't correct input"
   end
 end
+
 puts "#=> #{stack[0]}"
