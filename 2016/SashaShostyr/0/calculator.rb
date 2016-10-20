@@ -15,10 +15,8 @@ loop do
     when "/" then stack << b[0] / b[1]
     when "!" then
       number = 0
-      border = b[1]
-      current = b[0]
-      stack << current.to_s(2).chars.reverse.map do |bit|
-        if number < border && bit == "1"
+      stack << b[0].to_s(2).chars.reverse.map do |bit|
+        if number < b[1] && bit == "1"
           number += 1
           "0"
         else
