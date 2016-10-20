@@ -1,9 +1,9 @@
-def digit? (str)
+def digit?(str)
   a = str.match(/-?\d+(\.\d+)?/)
   a.to_s.length == str.length
 end
 
-def operator? (str)
+def operator?(str)
   "+-*/!".include?(str)
 end
 
