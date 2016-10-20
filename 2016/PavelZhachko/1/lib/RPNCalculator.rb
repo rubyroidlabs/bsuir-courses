@@ -4,20 +4,20 @@ class RPNCalculator
   def special_func(first, second, key)
     if key == "!"
       tmp_arr = ("0" + first.to_s(2)).split(//)
-      index = 0 - second
+      index = 0
+      index -= second
       ((index - 1)..0).each do |i|
         tmp_arr[i] = "0"
       end
       return ("0" + tmp_arr.join("")).to_i(2)
     else
-      case key
-      when "+" then return first + second
-      when "-" then return first - second
-      when "*" then return first * second
-      when "/" then return first / second
-      end
+      return case key
+             when "+" then first + second
+             when "-" then first - second
+             when "*" then first * second
+             when "/" then first / second
+             end
     end
-    result
   end
 
   def case_func(volume, key)
