@@ -9,16 +9,27 @@ def float?(str)
 end
 
 def operator?(str)
-  %r'^(\+|\-|\*{1,2}|/{1,2}|!)$' =~ str ? true : false
+  %r'^(\+|\-|\*{1,2}|/|!)$' =~ str ? true : false
 end
 
 def execute_operator(a, b, op_line)
-  if op_line != "!"
-    eval "#{a} #{op_line} #{b}"
-  elsif a.is_a? Integer
-    set_to_zero_int(a, b)
-  elsif a.is_a? Float
-    set_to_zero_float(a, b)
+  case op_line
+  when "!"
+    if a.is_a? Integer
+      set_to_zero_int(a, b)
+    else
+      set_to_zero_float(a, b)
+    end
+  when "+"
+    a + b
+  when "-"
+    a - b
+  when "*"
+    a * b
+  when "**"
+    a**b
+  when "/"
+    a / b
   end
 end
 
