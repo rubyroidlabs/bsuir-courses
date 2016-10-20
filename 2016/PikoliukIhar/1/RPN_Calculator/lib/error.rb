@@ -1,5 +1,5 @@
-#:nodoc:
 require "colorize"
+#:nodoc:
 class Error
   def input_check(exp)
     null_check(exp)
@@ -12,31 +12,26 @@ class Error
       case expr
       when /\d+/
         operands += 1
-      else
-        op_check(expr)
       end
     end
     arg_check(exp, operands)
   end
 
-  def null_check(exp)
-    if exp == "\="
-      puts "Error. You must write expr.".red
-      exit 1
-    end
+  def null_check(expres)
+    return unless expres == "\="
+    puts "Error. You must write expr.".red
+    exit 1
   end
 
   def op_check(exp)
-    if exp != /\d+/ && exp != "/\+|\*|\/|\-|\!|\=/"
-      puts "Error. Wrong expression, please use only numbers and symbols: +, *, /, -, !, =.".red
-      exit 1
-    end
+    return unless exp != /\d+/ && exp != "/\+|\*|\/|\-|\!|\=/"
+    puts "Error. Wrong expression, please use only numbers and symbols: +, *, /, -, !, =.".red
+    exit 1
   end
 
   def arg_check(exp, op)
-    if exp.size / 2 != op || exp.size < 3
-      puts "Error. Wrong number of arguments".red
-      exit 1
-    end
+    return unless exp.size / 2 != op || exp.size < 3
+    puts "Error. Wrong number of arguments".red
+    exit 1
   end
 end

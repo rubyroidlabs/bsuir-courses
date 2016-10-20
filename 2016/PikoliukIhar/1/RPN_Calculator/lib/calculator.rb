@@ -1,23 +1,44 @@
-# This is RPN Calculator
+#:nodoc:
 class Calculator
-  def count(exp)
-    arguments = []
-
-    exp.each do |expr|
+  def count(expression)
+    a = []
+    expression.each do |expr|
       case expr
       when /\d+/
-        arguments[arguments.size] = expr.to_i
-      when "+"
-        sum(arguments)
-      when "*"
-        composition(arguments)
-      when "/"
-        quotient(arguments)
-      when "-"
-        difference(arguments)
-      when "!"
-        zeroing(arguments)
+        a[a.size] = expr.to_i
+      when /\+|\*|\/|\-|\!|/
+        count2(expr, a)
       end
+    end
+    expression = a[0]
+  end
+
+  def count2(operator, a)
+    case operator
+    when /\+|\-/
+      simple_count(operator, a)
+    when /\*|\//
+      hard_count(operator, a)
+    when "!"
+      zeroing(a)
+    end
+  end
+
+  def simple_count(operator, a)
+    case operator
+    when "+"
+      sum(a)
+    when "-"
+      difference(a)
+    end
+  end
+
+  def hard_count(operator, a)
+    case operator
+    when "*"
+      composition(a)
+    when "/"
+      quotient(a)
     end
   end
 
