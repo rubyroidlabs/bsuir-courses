@@ -5,7 +5,7 @@ nums = 0
 signs = 0
 
 def check_result(num)
-  num - num.to_i < 1E-20 ? num = num.to_i : num
+  num - num.to_i < 1E-20 ? num.to_i : num
 end
 
 def zeroing(num, i)
