@@ -1,13 +1,13 @@
 #! /usr/bin/env ruby
 
 def is_num?(s)
-  (Integer(s) rescue nil) || (Float(s) rescue nil)
+  (Float(s) rescue nil)
 end
 
 array = []
 functions_count = 0
 operands_count = 0
-until (operands_count - functions_count == 1) && (functions_count != 0)
+until (operands_count - functions_count == 1) && (functions_count != 0)# && (operands_count==functions_count)
   s = gets.chomp
   if (s.size == 1) && (['+','-','*','/'].include?(s))
     functions_count += 1
@@ -17,6 +17,10 @@ until (operands_count - functions_count == 1) && (functions_count != 0)
     array.push(s)
   else puts "Incorrect input. Try Again"
   end
+if operands_count <= functions_count
+  puts "Your expression is incorrect. Check operands' and operations' count"
+  exit
+end
 end
 while array.size > 1 do
   i = 0
