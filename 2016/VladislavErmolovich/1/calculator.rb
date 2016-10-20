@@ -17,11 +17,12 @@ until (operands_count - functions_count == 1) && (functions_count != 0)# && (ope
     array.push(s)
   else puts "Incorrect input. Try Again"
   end
-if operands_count <= functions_count
-  puts "Your expression is incorrect. Check operands' and operations' count"
-  exit
+  if operands_count <= functions_count
+    puts "Your expression is incorrect. Check operands' and operations' count"
+    exit
+  end
 end
-end
+
 while array.size > 1 do
   i = 0
   while (i < array.size) && (not ['+','*','/','-'].include?(array[i]))
