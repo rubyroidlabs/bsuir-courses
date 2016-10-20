@@ -14,16 +14,11 @@ end
 
 def execute_operator(a, b, op_line)
   case op_line
-  when "!"
-    set_to_zero(a, b)
-  when "+"
-    a + b
-  when "-"
-    a - b
-  when "*"
-    a * b
-  when "/"
-    a / b
+  when "!" then set_to_zero(a, b)
+  when "+" then a + b
+  when "-" then a - b
+  when "*" then a * b
+  when "/" then a / b
   end
 end
 
