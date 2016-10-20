@@ -40,7 +40,7 @@ def countable?(args)
   operators = 0
   args.each do |f|
     case f
-    when /\d+/ then operands += 1
+    when /\^d+$/ then operands += 1
     when %r{\+|\*|\+|\/|\-|\!} then operators += 1
     else fail "Syntax error"
     end
