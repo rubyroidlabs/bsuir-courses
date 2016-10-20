@@ -5,13 +5,13 @@ third = gets.chomp
 if third =~ /\D/
   case third
   when "+"
-      result = first_num + second_num
+    result = first_num + second_num
   when "-"
-      result = first_num - second_num
+    result = first_num - second_num
   when "*"
-      result = first_num * second_num
+    result = first_num * second_num
   else
-      result = first_num / second_num
+    result = first_num / second_num
   end
   if third == "!"
     b = first_num.to_s(2)

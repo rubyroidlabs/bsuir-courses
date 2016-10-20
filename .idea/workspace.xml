@@ -30,11 +30,11 @@
       <file leaf-file-name="polish_calculator_with_spec_operation.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.4691943" vertical-offset="0" max-vertical-offset="1020">
-              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.30805686" vertical-offset="0" max-vertical-offset="1020">
+              <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
               <folding>
-                <element signature="e#805#859#0" expanded="false" />
-                <element signature="e#1254#1434#0" expanded="false" />
+                <element signature="e#797#851#0" expanded="false" />
+                <element signature="e#1246#1426#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -281,11 +281,11 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4691943" vertical-offset="0" max-vertical-offset="1020">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.30805686" vertical-offset="0" max-vertical-offset="1020">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
           <folding>
-            <element signature="e#805#859#0" expanded="false" />
-            <element signature="e#1254#1434#0" expanded="false" />
+            <element signature="e#797#851#0" expanded="false" />
+            <element signature="e#1246#1426#0" expanded="false" />
           </folding>
         </state>
       </provider>
