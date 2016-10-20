@@ -1,22 +1,22 @@
 #!/usr/bin/env ruby
 
-def to_binary(bits, b)
-  i = 0
-  while i < bits.length
-    if b.positive? && (bits[i] == 1)
-      bits[i] = 0
+def del_bits(bits, b)
+  bits.collect! do |bit|
+    if b.positive? && bit.to_i.positive?
       b -= 1
+      bit = '0'
     end
-    i += 1
+    bit
   end
   bits
 end
 
 stack = []
-got_symbol = false
+got_operation = false
 loop do
-  lexem = gets
+  lexem = gets.chomp
   if ["+", "-", "/", "*", "!", "^"].include? lexem.chr
+    got_operation = true
     b = stack.pop
     a = stack.pop
     case lexem.chr
@@ -24,35 +24,14 @@ loop do
     when "-" then stack.push(a - b)
     when "*" then stack.push(a * b)
     when "^" then stack.push(a**b)
-    when "!" then
-      bits = []
-      a = a.to_i
-      loop do
-        bits.push(a % 2)
-        a /= 2
-        break if a.negative? || a.zero?
-      end
-      bits.reverse!
-      bits = to_binary(bits, b)
-      i = 0
-      result = 0
-      while i < bits.length
-        result += bits[i] * (2**i)
-        i += 1
-      end
-      stack.push(result)
-    when "/" then
-      if b.zero?
-        puts "Division by zero. " + a.to_s + "/" + b.to_s
-      else
-        stack.push(a / b)
-      end
+    when "!" then stack.push(del_bits(a.to_i.to_s(2).split('').reverse, b) \
+                             .reverse.join('').to_i(2).to_s(10).to_i)
+    when "/" then (b.zero?) ? (puts "Division by zero.") : stack.push(a / b)
     end
-    got_symbol = true
   else
-    stack.push(lexem.to_f)
+    (lexem.to_f.is_a? Numeric) ? stack.push(lexem.to_f) : (puts "Error.")
   end
-  break if stack.length < 2 && got_symbol
+  break if (stack.length == 1) && got_operation
 end
 
 puts "#=> " + stack.pop.to_s
