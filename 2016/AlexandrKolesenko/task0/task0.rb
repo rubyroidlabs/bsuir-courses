@@ -12,7 +12,6 @@ class RpnCalc
       end
     end
     p stack
-    stack.pop
   end
 
   private
