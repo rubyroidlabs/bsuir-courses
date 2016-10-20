@@ -1,16 +1,15 @@
-#This is simple eror checker for input
+# This is simple eror checker for input
 require 'colorize'
 
 class Error
-
-  def input_check(expression)
-    null_check(expression)
-    check(expression)
+  def input_check(expr)
+    null_check(expr)
+    check(expr)
   end
 
-  def check(expression)
+  def check(expr)
     operands = 0
-    expression.each do |expr|
+    expr.each do |expr|
       case expr
       when /\d+/
         operands += 1
@@ -18,25 +17,25 @@ class Error
         op_check(expr)
       end
     end
-    arg_check(expression, operands)
+    arg_check(expr, operands)
   end
 
-  def null_check(expression)
-    if(expression == "=")
-      puts "Error. You must write expression.".red
+  def null_check(expr)
+    if (expr == "=")
+      puts "Error. You must write expr.".red
       exit 1
     end
   end
 
   def op_check(expr)
-    if(expr != /\d+/ && expr != "=" && expr != "+" && expr != "-" && expr != "*" && expr != "/" && expr != "!")
+    if (expr != /\d+/ && expr != "=" && expr != "+" && expr != "-" && expr != "*" && expr != "/" && expr != "!")
       puts "Error. Wrong expression, please use only numbers and symbols: +, *, /, -, !, =.".red
       exit 1
     end
   end
 
-  def arg_check(expression, operands)
-    if (expression.size / 2 != operands || expression.size < 3)
+  def arg_check(expr, op)
+    if (expr.size / 2 != op || expr.size < 3)
       puts "Error. Wrong number of arguments".red
       exit 1
     end

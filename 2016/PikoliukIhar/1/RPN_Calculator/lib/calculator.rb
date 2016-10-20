@@ -1,30 +1,30 @@
+# This is RPN Calculator
 class Calculator
+  def count(expr)
+    arg = []
 
-  def count(expression)
-    arguments = []
-
-    expression.each do |expr|
-      case expr
+    expr.each do |e|
+      case e
       when /\d+/
-        arguments[arguments.size] = expr.to_i
+        arg[arg.size] = e.to_i
       when "+"
-        sum(arguments)
+        sum(arg)
       when "*"
-        composition(arguments)
+        composition(arg)
       when "/"
-        quotient(arguments)
+        quotient(arg)
       when "-"
-        difference(arguments)
+        difference(arg)
       when "!"
-        zeroing(arguments)
+        zeroing(arg)
       end
     end
-    return arguments[0]
+    return arg[0]
   end
 
   def sum(a)
-      a[a.size] = (a[a.size - 1] + a[a.size - 2])
-    end
+    a[a.size] = (a[a.size - 1] + a[a.size - 2])
+  end
 
   def difference(a)
     a[a.size] = (a[a.size - 2] - a[a.size - 1])
@@ -41,7 +41,7 @@ class Calculator
 
   def zeroing(a)
     reset = a[a.size - 2].to_s(2).reverse
-    number_of_reset = a[a.size - 1].times { reset[reset.index("1")] = "0" }
+    a[a.size - 1].times { reset[reset.index("1")] = "0" }
     a[a.size] = reset.reverse.to_i(2)
     delete(a)
   end

@@ -12,7 +12,7 @@ class RPN_Calculator
       errors = Error.new
       errors.input_check(expression)
       calculator = Calculator.new
-      puts "Unswer: #{expression.map{|exp| exp+=" "}.join}#{calculator.count(expression)}"
+      puts "Unswer: #{ expression.map{ |exp| exp + ' ' }.join }#{ calculator.count(expression) }"
       exit
     end
   end
