@@ -15,31 +15,19 @@ end
 def execute_operator(a, b, op_line)
   case op_line
   when "!"
-    if a.is_a? Integer
-      set_to_zero_int(a, b)
-    else
-      set_to_zero_float(a, b)
-    end
+    set_to_zero(a, b)
   when "+"
     a + b
   when "-"
     a - b
   when "*"
     a * b
-  when "**"
-    a**b
   when "/"
     a / b
   end
 end
 
-def set_to_zero_float(a, b)
-  bin = [a].pack("g").bytes.map { |byte| format("%08b", byte) }.join
-  b.times { bin[bin.rindex("1")] = "0" }
-  bin.scan(/.{8}/).map { |s| s.to_i(2).chr }.join.unpack("g")
-end
-
-def set_to_zero_int(a, b)
+def set_to_zero(a, b)
   bin = a.to_s(2)
   b.times { bin[bin.rindex("1")] = "0" }
   bin.to_i(2)
