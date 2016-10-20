@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -w
+#!/usr/bin/env ruby
 
 def int?(str)
   /^\-?\d*$/ =~ str ? true : false
@@ -13,16 +13,14 @@ def operator?(str)
 end
 
 def execute_operator(a, b, op_line)
-  if op_line != '!'
+  if op_line != "!"
     eval "#{a} #{op_line} #{b}"
-  elsif a.is_a? Integer
-    bin = a.to_s(2)
-    b.times { bin[bin.rindex('1')] = '0' }
-    bin.to_i(2)
-  elsif a.is_a? Float
-    bin = [a].pack('g').bytes.map { |byte| '%08b'.format(byte) }.join
-    b.times { bin[bin.rindex('1')] = '0' }
-    bin.scan(/.{8}/).map { |s| s.to_i(2).chr }.join.unpack('g')
+  else
+    bin = a.to_s(2) if a.is_a? Integer
+    bin = [a].pack("g").bytes.map { |byte| "%08b" % byte }.join if a.is_a? Float
+    b.times { bin[bin.rindex("1")] = "0" }
+    bin.to_i(2) if a.is_a? Integer
+    bin.scan(/.{8}/).map { |s| s.to_i(2).chr }.join.unpack("g") if a.is_a? Float
   end
 end
 
@@ -31,7 +29,7 @@ stack = []
 loop do
   line = gets.strip
 
-  break if line == 'exit'
+  break if line == "exit"
 
   if int? line
     stack.push(line.to_i)
@@ -39,7 +37,7 @@ loop do
     stack.push(line.to_f)
   elsif operator? line
     if stack.size < 2
-      puts 'Not enough numbers.'
+      puts "Not enough numbers."
     else
       b = stack.pop
       a = stack.pop
@@ -47,6 +45,6 @@ loop do
       puts "#=> #{stack.pop}" if stack.size == 1
     end
   else
-    puts 'Invalid input! Please, try again.'
+    puts "Invalid input! Please, try again."
   end
 end
