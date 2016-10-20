@@ -12,10 +12,7 @@ if third =~ /\D/
     result = first_num * second_num
   when "/"
     result = first_num / second_num
-  else
-    puts "Error"
-  end
-  if third == "!"
+  when "!"
     b = first_num.to_s(2)
     c = b.length.to_i
     d = b.length.to_i
@@ -23,13 +20,9 @@ if third =~ /\D/
     g = []
     while c.nonzero?
       f = first_num[d - c]
-      if e <= second_num
-        if f == 1
-          g[d - c] = first_num[~(d - c)]
-          e += 1
-        else
-          g[d - c] = first_num[d - c]
-        end
+      if e <= second_num && f == 1
+        g[d - c] = first_num[~(d - c)]
+        e += 1
       else
         g[d - c] = first_num[d - c]
       end
@@ -44,6 +37,8 @@ if third =~ /\D/
       i += 1
     end
     result = k.to_i(2)
+  else
+    puts "Error"
   end
   puts result.to_s
   exit
