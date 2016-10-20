@@ -3,22 +3,9 @@ arr = []
 sign = ["+", "-", "*", "/", "!", "%"]
 nums = 0
 signs = 0
-class String
-  def valid_float?
-    true if Float self rescue false
-  end
-end
-
-def checking(sym)
-  signs = ["+", "-", "*", "/", "!", "%"]
-  signs.include?(sym) || sym.valid_float?
-end
 
 def check_result(num)
-  if num - num.to_i < 1E-20
-    num = num.to_i
-  end
-  num
+  num - num.to_i < 1E-20 ? num = num.to_i : num
 end
 
 def zeroing(num, i)
@@ -34,21 +21,17 @@ end
 
 loop do
   elem = gets.chomp
-  if checking(elem)
-    if sign.include?(elem)
-      signs += 1
-      arr = arr.push(elem)
-    else
-      nums += 1
-      arr = arr.push(elem.to_f)
-    end
-    break if (nums > 1) && (signs == nums - 1)
-    if sign.include?(arr[0]) || sign.include?(arr[1])
-      puts "Unexpected expression"
-      exit
-    end
+  if sign.include?(elem)
+    signs += 1
+    arr = arr.push(elem)
   else
-    puts "Invalid input, try again"
+    nums += 1
+    arr = arr.push(elem.to_f)
+  end
+  break if (nums > 1) && (signs == nums - 1)
+  if sign.include?(arr[0]) || sign.include?(arr[1])
+    puts "Unexpected expression"
+    exit
   end
 end
 while arr.size > 1
