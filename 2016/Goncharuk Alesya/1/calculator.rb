@@ -43,10 +43,10 @@ if flag_input_item
       puts"Сейчас должно следовать число."
       puts"Убедитесь,что вы знакомы с постфиксной записью числа"
       puts"Ну-ка соберитесь и попроуйте ввести снова значение"
-      elsif symbol.to_s == "+" || symbol.to_s == "-" || symbol.to_s == "*" || symbol.to_s == "/" || symbol.to_s == "!"
-        quantity_symbols += 1
-        stack_symbols.push(symbol)
-        break
+    elsif symbol.to_s == "+" || symbol.to_s == "-" || symbol.to_s == "*" || symbol.to_s == "/" || symbol.to_s == "!"
+      quantity_symbols += 1
+      stack_symbols.push(symbol)
+      break
     else
       puts"Вы ввели какую-то ерунду"
       puts"Попробуйте снова ввести допустимое значение"
