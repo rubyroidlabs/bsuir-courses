@@ -1,46 +1,50 @@
-# This is RPN Calculator
 class Calculator
-  def count(exp)
-    arg = []
 
-    exp.each do |e|
-      case e
+  def count(exp)
+    arguments = []
+
+    exp.each do |expr|
+      case expr
       when /\d+/
-        arg[arg.size] = e.to_i
+        arguments[arguments.size] = expr.to_i
       when "+"
-        sum(arg)
+        sum(arguments)
       when "*"
-        composition(arg)
+        composition(arguments)
       when "/"
-        quotient(arg)
+        quotient(arguments)
       when "-"
-        difference(arg)
-      when
-        zeroing(arg)
+        difference(arguments)
+      when "!"
+        zeroing(arguments)
       end
     end
+    return arguments[0]
   end
 
   def sum(a)
-    a[a.size] = (a[a.size - 1] + a[a.size - 2])
+    a[a.size] = (a[a.size-1] + a[a.size-2])
+    delete(a)
   end
 
   def difference(a)
-    a[a.size] = (a[a.size - 2] - a[a.size - 1])
+    a[a.size] = (a[a.size-2] - a[a.size-1])
+    delete(a)
   end
 
   def composition(a)
-    a[a.size] = (a[a.size - 1] * a[a.size - 2])
+    a[a.size] = (a[a.size-1] * a[a.size-2])
+    delete(a)
   end
 
   def quotient(a)
-    a[a.size] = (a[a.size - 2] / a[a.size - 1])
+    a[a.size] = (a[a.size-2] / a[a.size-1])
     delete(a)
   end
 
   def zeroing(a)
-    reset = a[a.size - 2].to_s(2).reverse
-    a[a.size - 1].times { reset[reset.index("1")] = "0" }
+    reset=a[a.size-2].to_s(2).reverse
+    a[a.size-1].times { reset[reset.index("1")] = "0" }
     a[a.size] = reset.reverse.to_i(2)
     delete(a)
   end
