@@ -22,4 +22,4 @@ loop do
   break if %w(+ - / % * ** ^ | & ~ << >> !).include?(lex) && stack.length == 1
 end
 
-puts '=> ' + (stack.last == stack.last.to_i ? stack.last.to_i : stack.last).to_s
+puts format('#=> %g', stack.last)
