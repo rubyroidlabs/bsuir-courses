@@ -10,7 +10,7 @@ class RPNCalculator
       end
       ("0" + tmp_arr.join("")).to_i(2)
     else
-      first.send(key, second)
+      second.nonzero? ? :first.send(key, second) : " divyded by 0. Try again"
     end
   end
 
