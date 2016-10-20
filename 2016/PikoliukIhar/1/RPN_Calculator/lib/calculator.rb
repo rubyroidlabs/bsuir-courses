@@ -15,10 +15,10 @@ class Calculator
         quotient(arg)
       when "-"
         difference(arg)
-      when "!"
+      when
         zeroing(arg)
       end
-    end  
+    end
   end
 
   def sum(a)

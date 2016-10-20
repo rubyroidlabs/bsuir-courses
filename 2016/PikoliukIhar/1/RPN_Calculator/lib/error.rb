@@ -1,9 +1,9 @@
 # This is simple eror checker for input
 require "colorize"
 class Error
-  def input_check(expr)
-    null_check(expr)
-    check(expr)
+  def input_check(exp)
+    null_check(exp)
+    check(exp)
   end
 
   def check(expr)
@@ -20,14 +20,14 @@ class Error
   end
 
   def null_check(expr)
-    if (expr == "=")
+    if expr == "\="
       puts "Error. You must write expr.".red
       exit 1
     end
   end
 
   def op_check(expr)
-    if (expr != /\d+/ && expr != "=" && expr != "+" && expr != "-" && expr != "*" && expr != "/" && expr != "!")
+    if expr != /\d+/ && expr != "\=" && expr != "\+" && expr != "\-" && expr != "\*" && expr != "\/" && expr != "\!"
       puts "Error. Wrong expression, please use only numbers and symbols: +, *, /, -, !, =.".red
       exit 1
     end
