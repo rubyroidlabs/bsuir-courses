@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
 def del_bits(bits, b)
-  bits.collect! do |bit|
+  bits.map! do |bit|
     if b.positive? && bit.to_i.positive?
       b -= 1
-      bit = '0'
+      bit = "0"
     end
     bit
   end
@@ -24,12 +24,11 @@ loop do
     when "-" then stack.push(a - b)
     when "*" then stack.push(a * b)
     when "^" then stack.push(a**b)
-    when "!" then stack.push(del_bits(a.to_i.to_s(2).split('').reverse, b) \
-                             .reverse.join('').to_i(2).to_s(10).to_i)
-    when "/" then (b.zero?) ? (puts "Division by zero.") : stack.push(a / b)
+    when "!" then stack.push(del_bits(a.to_i.to_s(2).split("").reverse, b).reverse.join("").to_i(2).to_s(10).to_i)
+    when "/" then b.zero? ? (puts "Division by zero.") : stack.push(a / b)
     end
   else
-    (lexem.to_f.is_a? Numeric) ? stack.push(lexem.to_f) : (puts "Error.")
+    stack.push(lexem.to_f)
   end
   break if (stack.length == 1) && got_operation
 end
