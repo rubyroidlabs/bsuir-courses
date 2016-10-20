@@ -23,7 +23,7 @@ end
 def map(a, b)
   a.map! do |i|
     break if b <= 0
-    if i =="1"
+    if i == "1"
       b -= 1
       "0"
     else i
