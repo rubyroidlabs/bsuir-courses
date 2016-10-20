@@ -18,8 +18,7 @@ class Calculator
       when "!"
         zeroing(arg)
       end
-    end
-    return arg[0]
+    end  
   end
 
   def sum(a)

@@ -1,6 +1,5 @@
 # This is simple eror checker for input
-require 'colorize'
-
+require "colorize"
 class Error
   def input_check(expr)
     null_check(expr)
