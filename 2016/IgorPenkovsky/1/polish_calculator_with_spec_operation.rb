@@ -10,7 +10,7 @@ if third =~ /\D/
     result = first_num - second_num
   when "*"
     result = first_num * second_num
-  else
+  when "/"
     result = first_num / second_num
   end
   if third == "!"
