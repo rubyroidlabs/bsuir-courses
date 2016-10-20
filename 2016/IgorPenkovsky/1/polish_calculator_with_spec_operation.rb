@@ -4,13 +4,13 @@ second_num = gets.chomp.to_i
 third = gets.chomp
 if third =~ /\D/
   case third
-    when "+"
+  when "+"
       result = first_num + second_num
-    when "-"
+  when "-"
       result = first_num - second_num
-    when "*"
+  when "*"
       result = first_num * second_num
-    else
+  else
       result = first_num / second_num
   end
   if third == "!"
