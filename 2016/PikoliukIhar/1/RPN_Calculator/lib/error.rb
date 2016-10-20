@@ -13,7 +13,7 @@ class Error
       when /\d+/
         operands += 1
       else
-        op_ch(expr)
+        op(expr)
       end
     end
     arg_check(expr, operands)
@@ -26,7 +26,7 @@ class Error
     end
   end
 
-  def op_ch(exp)
+  def op(exp)
     if exp != /\d+/ && exp != "\=" && exp != "\+" && exp != "\-" && exp != "\*" && exp != "\/" && exp != "\!"
       puts "Error. Wrong expression, please use only numbers and symbols: +, *, /, -, !, =.".red
       exit 1
