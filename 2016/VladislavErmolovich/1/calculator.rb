@@ -1,9 +1,7 @@
-#! /usr/bin/env ruby
+#!/usr/bin/env ruby
 
 def num?(s)
-  begin
-  (Float(s) rescue nil)
-  end
+  Float(s) rescue nil
 end
 
 array = []
