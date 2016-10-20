@@ -45,26 +45,34 @@ first_input = true
 loop do
   input = gets.chomp
   case input.downcase
-  when %r{\d|[+-\/\*!]} # regexp that allows only numbers, +, -, /, *, !
+  when "+", "-", "*", "/", "!", %r{^[-]?\d*$|^[-]?\d*\.{1}\d*$} # regexp that allows only integer or float
     expression.push(input)
     result = calculate(expression)
     if result.length == 1 && !first_input
       puts "Result: #{result[0]}\nWant to continue with that result?(yes/no)"
-      case gets.chomp.downcase
-      when "yes"
-        puts result[0]
-      when "exit"
-        break
-      else
-        expression = []
-        first_input = true
-        puts "New expression:"
-        next # needed here because of assignment of 'first_input = false' at 65 line
+      loop do
+        case gets.chomp.downcase
+        when "yes"
+          puts result[0]
+          break
+        when "no"
+          expression = []
+          first_input = true
+          puts "New expression:"
+          break
+        when "exit"
+          abort
+        else
+          puts "InputError"
+          puts "Result: #{result[0]}\nWant to continue with that result?(yes/no)"
+          next
+        end
       end
+      next
     end
     first_input = false
   when "exit"
-    break
+    abort
   else
     puts "InputError"
   end
