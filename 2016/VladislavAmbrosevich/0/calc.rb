@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 arr = []
-sign = ['+', '-', '*', '/', '!', '%']
+sign = ["+", "-", "*", "/", "!", "%"]
 nums = 0
 signs = 0
 class String
@@ -9,8 +9,8 @@ class String
   end
 end
 def Checking sym
-  signs = ['+', '-', '*', '/', '!', '%']	
-  (signs.include?(sym)) || (sym.valid_float?) 
+  signs = ["+", "-", "*", "/", "!", "%"]
+  signs.include?(sym) || sym.valid_float?
 end
 def CheckResult num
   if num - num.to_i < 1E-20
@@ -37,39 +37,38 @@ end
 while true
   elem = gets.chomp
   if Checking(elem)
-    if sign.include?(elem) 
+    if sign.include?(elem)
       signs += 1
-      arr = arr.push(elem)		
-    else 
+      arr = arr.push(elem)
+    else
       nums += 1
       arr = arr.push(elem.to_f)
     end
-    if (nums > 1) && (signs == nums - 1)
-      break 
+    break if (nums > 1) && (signs == nums - 1)
     end
-    if (sign.include?(arr[0])) || (sign.include?(arr[1]))
+    if sign.include?(arr[0]) || sign.include?(arr[1])
       puts "Unexpected expression"
       exit
-    end 
+    end
   else
     puts "Invalid input, try again"
   end
 end
-while arr.size > 1 
+while arr.size > 1
   i = 0
-  while ((!sign.include?(arr[i])) && (i < arr.size))
+  while !sign.include?(arr[i]) && (i < arr.size)
     i += 1
   end
   case arr[i]
-  when '+' 
+  when "+"
     arr[i - 2] = (arr[i - 2] + arr[i - 1]).to_f
-  when '-'
-    arr[i - 2] = (arr[i - 2] - arr[i - 1]).to_f  
-  when '*'
+  when "-"
+    arr[i - 2] = (arr[i - 2] - arr[i - 1]).to_f
+  when "*"
     arr[i - 2] = (arr[i - 2] * arr[i - 1]).to_f
-  when '!'
+  when "!"
     arr[i - 2] = Zeroing(arr[i - 2].to_i, arr[i - 1].to_i).to_f
-  when '/'
+  when "/"
     if arr[i-1].zero?
       puts "Division by zero"
       exit
@@ -85,5 +84,5 @@ while arr.size > 1
   arr[i - 1] = nil
   arr[i] = nil
   arr = arr.compact
-end 
+end
 puts "Result: #{CheckResult(arr[0])}"
