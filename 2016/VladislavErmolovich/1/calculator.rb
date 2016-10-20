@@ -1,22 +1,24 @@
 #! /usr/bin/env ruby
 
-def is_num?(s)
+def num?(s)
+  begin
   (Float(s) rescue nil)
+  end
 end
 
 array = []
 functions_count = 0
 operands_count = 0
-functions_array = ["+","-","*","/"]
+functions_array = ["+", "-", "*", "/"]
 
-until (operands_count - functions_count == 1) && (functions_count != 0) do
+until (operands_count - functions_count == 1) && functions_count.nonzero?
   s = gets.chomp
   if (s.size == 1) && (functions_array.include?(s))
     functions_count += 1
     array.push(s)
-  elsif is_num?(s) 
+  elsif num?(s)
     operands_count += 1
-    s = is_num?(s)
+    s = num?(s)
     array.push(s)
   else puts "Incorrect input. Try Again"
   end
@@ -26,10 +28,10 @@ until (operands_count - functions_count == 1) && (functions_count != 0) do
   end
 end
 
-while array.size > 1 do
+while array.size > 1
   i = 0
-  while (i < array.size) && (!functions_array.include?(array[i]))
-    i+=1
+  while i < array.size && !functions_array.include?(array[i])
+    i += 1
   end
   case array[i]
   when "+"
@@ -46,8 +48,8 @@ while array.size > 1 do
       exit
     end
   end
-array[i - 1] = nil
-array[i] = nil
-array.compact!
+  array[i - 1] = nil
+  array[i] = nil
+  array.compact!
 end
 puts array[0]
