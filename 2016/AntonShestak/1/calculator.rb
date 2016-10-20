@@ -18,9 +18,9 @@ def rpn
   stack = []
   error_flag = false
   puts "Let's start:"
-  while (operator_cnt == 0 or digit_cnt - operator_cnt != 1)
+  while (operator_cnt == 0 || digit_cnt - operator_cnt != 1)
     input = gets.chomp()
-    if input == ''
+    if input == ""
       error_flag = true
     end
     if digit?(input) && !error_flag
@@ -33,9 +33,9 @@ def rpn
         operator_cnt += 1
         second = stack.pop
         first = stack.pop
-        if input == '/'
+        if input == "/"
           stack.push(eval(first.to_f.to_s + input + second).to_s)
-        elsif input == '!'
+        elsif input == "!"
           stack.push(to_zero(first, second))
         else
           stack.push(eval(first + input + second).to_s)
@@ -43,7 +43,7 @@ def rpn
       end
     else
       puts "Something went wrong. Try again"
-        error_flag = false
+      error_flag = false
     end 
   end
   puts "Your answer is:"
