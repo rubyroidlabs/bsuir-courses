@@ -30,7 +30,7 @@ end
 def split_and_count
   operands = []
   x = gets.chomp
-  while x.match(/\w/) != true && (x.match(/^\d*$/) || x == '')
+  while x.match(/\w/) != true && (x.match(/^\d*$/) || x == "")
     operands.push(x.to_i) unless x == ''
     x = gets.chomp
   end
