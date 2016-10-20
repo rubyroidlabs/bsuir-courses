@@ -8,35 +8,33 @@ class String
     true if Float self rescue false
   end
 end
-def Checking sym
+
+def checking(sym)
   signs = ["+", "-", "*", "/", "!", "%"]
   signs.include?(sym) || sym.valid_float?
 end
-def CheckResult num
+
+def check_result(num)
   if num - num.to_i < 1E-20
     num = num.to_i
   end
   num
 end
-def Zeroing num, i
+
+def zeroing(num, i)
   count = 0
   shifts = 0
   while count < i
-    if num[0] == 1
-      count += 1
-      shifts += 1
-      num = num >> 1
-    else
-      shifts += 1
-      num = num >> 1
-    end
+    num[0] == 1 ? (count += 1 && shifts += 1) : shifts += 1
+    num = num >> 1
   end
   num = num << shifts
   num
 end
-while true
+
+loop do
   elem = gets.chomp
-  if Checking(elem)
+  if checking(elem)
     if sign.include?(elem)
       signs += 1
       arr = arr.push(elem)
@@ -55,9 +53,7 @@ while true
 end
 while arr.size > 1
   i = 0
-  while !sign.include?(arr[i]) && (i < arr.size)
-    i += 1
-  end
+  i += 1 while !sign.include?(arr[i]) && (i < arr.size)
   case arr[i]
   when "+"
     arr[i - 2] = (arr[i - 2] + arr[i - 1]).to_f
@@ -66,9 +62,9 @@ while arr.size > 1
   when "*"
     arr[i - 2] = (arr[i - 2] * arr[i - 1]).to_f
   when "!"
-    arr[i - 2] = Zeroing(arr[i - 2].to_i, arr[i - 1].to_i).to_f
+    arr[i - 2] = zeroing(arr[i - 2].to_i, arr[i - 1].to_i).to_f
   when "/"
-    if arr[i-1].zero?
+    if arr[i - 1].zero?
       puts "Division by zero"
       exit
     end
@@ -84,4 +80,4 @@ while arr.size > 1
   arr[i] = nil
   arr = arr.compact
 end
-puts "Result: #{CheckResult(arr[0])}"
+puts "Result: #{check_result(arr[0])}"
