@@ -4,19 +4,13 @@ class RPNCalculator
   def special_func(first, second, key)
     if key == "!"
       tmp_arr = ("0" + first.to_s(2)).split(//)
-      index = 0
-      index -= second
+      index = second * -1
       ((index - 1)..0).each do |i|
         tmp_arr[i] = "0"
       end
-      return ("0" + tmp_arr.join("")).to_i(2)
+      ("0" + tmp_arr.join("")).to_i(2)
     else
-      return case key
-             when "+" then first + second
-             when "-" then first - second
-             when "*" then first * second
-             when "/" then first / second
-             end
+      first.send(key, second)
     end
   end
 
