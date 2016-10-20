@@ -9,11 +9,11 @@ loop do
   else
     b = stack.pop(2)
     case variable
-    when variable == "+" then stack << b[0] + b[1]
-    when variable == "-" then stack << b[0] - b[1]
-    when variable == "*" then stack << b[0] * b[1]
-    when variable == "/" then stack << b[0] / b[1]
-    when variable == "!" then
+    when "+" then stack << b[0] + b[1]
+    when "-" then stack << b[0] - b[1]
+    when "*" then stack << b[0] * b[1]
+    when "/" then stack << b[0] / b[1]
+    when "!" then
       number = 0
       border = b[1]
       current = b[0]
@@ -30,4 +30,4 @@ loop do
     break if stack.length == 1
   end
 end
-p stack.firsts
+p stack.first
