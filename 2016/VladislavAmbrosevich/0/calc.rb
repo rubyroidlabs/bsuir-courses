@@ -45,7 +45,6 @@ while true
       arr = arr.push(elem.to_f)
     end
     break if (nums > 1) && (signs == nums - 1)
-    end
     if sign.include?(arr[0]) || sign.include?(arr[1])
       puts "Unexpected expression"
       exit
