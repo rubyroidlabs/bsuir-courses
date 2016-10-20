@@ -2,7 +2,7 @@ puts "input reverse polish notation"
 first_num = gets.chomp.to_i
 second_num = gets.chomp.to_i
 third = gets.chomp
-if third =~ (/\D/)
+if third =~ /\D/
   if third == "+"
     result = first_num + second_num
    elsif third == "-"
@@ -23,7 +23,7 @@ if third =~ (/\D/)
       if e <= second_num
         if f == 1
           g[d - c] = first_num[~(d - c)]
-          e+=1
+          e += 1
         else
           g[d - c] = first_num[d - c]
         end
@@ -46,9 +46,9 @@ if third =~ (/\D/)
   exit
 end
 forth = gets.chomp
-if forth =~ (/\D/)
+if forth =~ /\D/
   fifth = gets.chomp
-  if fifth =~ (/\D/)
+  if fifth =~ /\D/
     if forth == "+"
       result = second_num + third.to_f
         elsif forth == "-"
