@@ -30,9 +30,18 @@
       <file leaf-file-name="polish_calculator_with_spec_operation.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.2085308" vertical-offset="522" max-vertical-offset="1155">
-              <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-              <folding />
+            <state vertical-scroll-proportion="0.16587678" vertical-offset="0" max-vertical-offset="633">
+              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+              <folding>
+                <element signature="e#113#938#0" expanded="false" />
+                <element signature="e#132#360#0" expanded="false" />
+                <element signature="e#474#759#0" expanded="false" />
+                <element signature="e#825#879#0" expanded="false" />
+                <element signature="e#958#1458#0" expanded="false" />
+                <element signature="e#998#1271#0" expanded="false" />
+                <element signature="e#1019#1265#1" expanded="false" />
+                <element signature="e#1274#1454#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -270,15 +279,26 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2085308" vertical-offset="522" max-vertical-offset="1155">
-          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-          <folding />
+        <state vertical-scroll-proportion="0.16587678" vertical-offset="0" max-vertical-offset="633">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <element signature="e#113#938#0" expanded="false" />
+            <element signature="e#132#360#0" expanded="false" />
+            <element signature="e#474#759#0" expanded="false" />
+            <element signature="e#825#879#0" expanded="false" />
+            <element signature="e#958#1458#0" expanded="false" />
+            <element signature="e#998#1271#0" expanded="false" />
+            <element signature="e#1019#1265#1" expanded="false" />
+            <element signature="e#1274#1454#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
