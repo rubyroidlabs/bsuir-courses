@@ -13,7 +13,7 @@ functions_array = ["+", "-", "*", "/"]
 
 until (operands_count - functions_count == 1) && functions_count.nonzero?
   s = gets.chomp
-  if (s.size == 1) && (functions_array.include?(s))
+  if (s.size == 1) && functions_array.include?(s)
     functions_count += 1
     array.push(s)
   elsif num?(s)
@@ -30,9 +30,7 @@ end
 
 while array.size > 1
   i = 0
-  while i < array.size && !functions_array.include?(array[i])
-    i += 1
-  end
+  i += 1 while i < array.size && !functions_array.include?(array[i])  
   case array[i]
   when "+"
     array[i - 2] += array[i - 1]
