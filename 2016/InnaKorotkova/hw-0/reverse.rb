@@ -26,7 +26,7 @@ def operation!(symbol, stack)
   when "-" then stack.push(arg - var)
   when "+" then stack.push(arg + var)
   when "/" then stack.push(arg.to_f / var.to_f)
-  when "!" then stack.push(bitoperation(arg.to_i, var))
+  when "!" then stack.push(bitoperation(arg, var))
   end
 end
 while flag
