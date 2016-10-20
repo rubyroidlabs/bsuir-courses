@@ -18,20 +18,23 @@ class Error
   end
 
   def null_check(expres)
-    return unless expres == "\="
-    puts "Error. You must write expr.".red
-    exit 1
+    if expres == "\="
+      puts "Error. You must write expr.".red
+      exit 1
+    end
   end
 
   def op_check(exp)
-    return unless exp != /\d+/ && exp != "/\+|\*|\/|\-|\!|\=/"
-    puts "Error. Wrong expression, please use only numbers and symbols: +, *, /, -, !, =.".red
-    exit 1
+    if exp != /\d+/ && exp != "/\+|\*|\/|\-|\!|\=/"
+      puts "Error. Wrong expression, please use only numbers and symbols: +, *, /, -, !, =.".red
+      exit 1
+    end
   end
 
   def arg_check(exp, op)
-    return unless exp.size / 2 != op || exp.size < 3
-    puts "Error. Wrong number of arguments".red
-    exit 1
+    if exp.size / 2 != op || exp.size < 3
+      puts "Error. Wrong number of arguments".red
+      exit 1
+    end
   end
 end

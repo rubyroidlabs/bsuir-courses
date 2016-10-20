@@ -7,13 +7,13 @@ class RpnCalculator
 
   loop do
     expression << gets.chomp
-    next unless expression.last == "\="
+    if expression.last == "\="
       puts expression
       errors = Error.new
       errors.input_check(expression)
       calculator = Calculator.new
-      puts "Unswer: #{ expression.map { |exp| exp + ' ' }.join }#{ calculator.count(expression) }"
-    exit
-
+      puts "Unswer: #{expression.map { |exp| exp + ' ' }.join}#{ calculator.count(expression) }"
+      exit
+    end
   end
 end
