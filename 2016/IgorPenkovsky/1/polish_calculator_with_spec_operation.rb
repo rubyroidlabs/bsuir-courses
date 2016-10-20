@@ -2,7 +2,7 @@ puts "input reverse polish notation"
 first_num = gets.chomp.to_i
 second_num = gets.chomp.to_i
 third = gets.chomp
-if third.match(/\D/)
+if third =~ (/\D/)
   if third == "+"
     result = first_num + second_num
    elsif third == "-"
@@ -35,7 +35,7 @@ if third.match(/\D/)
     j = g.reverse
     l = j.length.to_i
     i = 0
-    k = ''
+    k = ""
     while i != l
       k += j[i].to_s
       i += 1
@@ -46,9 +46,9 @@ if third.match(/\D/)
   exit
 end
 forth = gets.chomp
-if forth.match(/\D/)
+if forth =~ (/\D/)
   fifth = gets.chomp
-  if fifth.match(/\D/)
+  if fifth =~ (/\D/)
     if forth == "+"
       result = second_num + third.to_f
         elsif forth == "-"
