@@ -24,7 +24,8 @@ end
 
 def set_to_zero(a, b)
   bin = a.to_s(2)
-  b.times { bin[bin.rindex("1")] = "0" }
+  n = [b, bin.count('1')].min
+  n.times { bin[bin.rindex("1")] = "0" }
   bin.to_i(2)
 end
 
