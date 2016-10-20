@@ -13,14 +13,22 @@ def operator?(str)
 end
 
 def execute_operator(a, b, op_line)
-  if op_line != "!"
+  unless op_line == "!"
     eval "#{a} #{op_line} #{b}"
   else
-    bin = a.to_s(2) if a.is_a? Integer
-    bin = [a].pack("g").bytes.map { |byte| "%08b" % byte }.join if a.is_a? Float
+    set_to_zero(a, b)
+  end
+end
+
+def set_to_zero(a, b)
+  if a.is_a? Integer
+    bin = a.to_s(2)
     b.times { bin[bin.rindex("1")] = "0" }
-    bin.to_i(2) if a.is_a? Integer
-    bin.scan(/.{8}/).map { |s| s.to_i(2).chr }.join.unpack("g") if a.is_a? Float
+    bin.to_i(2)
+  else
+    bin = [a].pack("g").bytes.map { |byte| format("%08b", byte) }.join
+    b.times { bin[bin.rindex("1")] = "0" }
+    bin.scan(/.{8}/).map { |s| s.to_i(2).chr }.join.unpack("g")
   end
 end
 
