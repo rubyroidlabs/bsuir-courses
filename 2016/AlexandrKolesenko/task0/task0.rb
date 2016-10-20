@@ -1,23 +1,6 @@
-#
+# RPN calculator
 class RpnCalc
   attr_reader :operators
-
-  def initialize
-    @operators = {
-      "+" => {
-        action: proc { |x, y| x + y }
-        },
-      "-" => {
-        action: proc { |x, y| x - y }
-        },
-      "*" => {
-        action: proc { |x, y| x * y }
-        },
-      "/" => {
-        action: proc { |x, y| x / y }
-        }
-    }
-  end
 
   def evaluate(string)
     stack = []
@@ -26,26 +9,47 @@ class RpnCalc
       elsif operator? token
         y = stack.pop
         x = stack.pop
-        stack.push apply_operator(x, y, token)
+        stack.push apply_operator(x, y, token) 
       end
     end
+    p stack
     stack.pop
   end
 
-  private 
+  private
 
   def operand?(string)
-    (string =~ /^\d+$/) && 0
+    string.match(/\d/)
   end
 
   def operator?(string)
-    @operators.has_key? string
+    @operators.key? string
   end
 
   def apply_operator(num1, num2, operator)
     @operators[operator][:action].call(num1.to_i, num2.to_i)
   end
-end
+  
+  def initialize
+    @operators = {
+      "+" => {
+        action: proc { |x, y| x + y }
+             },
+      "-" => {
+        action: proc { |x, y| x - y }
+             },
+      "*" => {
+        action: proc { |x, y| x * y }
+             },
+      "/" => {
+        action: proc { |x, y| x / y }
+             }
+                 }
+  end
 
-p RpnCalc.new.evaluate("8 8 2  / +")
-# => 12
+loop do
+p "Please, input your postfix expression (use spaces):"
+str = gets.chomp
+RpnCalc.new.evaluate(str)
+    end
+  end
