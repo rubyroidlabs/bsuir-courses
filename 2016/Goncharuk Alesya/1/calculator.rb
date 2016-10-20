@@ -2,7 +2,7 @@ def reset_bits(value, number_bits)
   num_resets = 0
   n = 0
   while value.nonzero? && num_resets < number_bits
-    if (set_bit? value, 2**n)
+    if set_bit? value, 2**n
       num_resets += 1
       value = value ^ 2**n
     end
@@ -12,7 +12,7 @@ def reset_bits(value, number_bits)
 end
 
 def set_bit?(value, number_marker)
-  if ((value & number_marker) == 0)
+  if (value & number_marker).zero?
     false
   else
     true
@@ -25,7 +25,7 @@ puts"Каждый новый элемент (операнд или операц�
 symbol = gets.chomp
 quantity_numbers = 0
 quantity_symbols = 0
-if symbol.to_i == 0
+if symbol.to_i.zero?
   puts"Выpажение не может начинаться с операции. Программа будет завершена"
   flag_input_item = false
 end
@@ -43,25 +43,25 @@ if (flag_input_item == true)
         puts"Сейчас должно следовать число."
         puts"Убедитесь,что вы знакомы с постфиксной записью числа"
         puts"Ну-ка соберитесь и попроуйте ввести снова значение"
-      elsif (symbol.to_s == "+" || symbol.to_s == "-" || symbol.to_s == "*" || symbol.to_s == "/" || symbol.to_s == "!")
-          quantity_symbols += 1
-          stack_symbols.push(symbol)
-          break
+      elsif symbol.to_s == "+" || symbol.to_s == "-" || symbol.to_s == "*" || symbol.to_s == "/" || symbol.to_s == "!"
+        quantity_symbols += 1
+        stack_symbols.push(symbol)
+        break
       else
         puts"Вы ввели какую-то ерунду"
         puts"Попробуйте снова ввести допустимое значение"
       end
   end
-  while (quantity_symbols!=quantity_numbers - 1)
+  while quantity_symbols != quantity_numbers - 1
     symbol = gets.chomp
-    if (symbol== "+" || symbol== "-" || symbol== "*" || symbol== "/" || symbol== "!")
+    if symbol == "+" || symbol == "-" || symbol == "*" || symbol == "/" || symbol == "!"
       stack_symbols.push(symbol)
       quantity_symbols += 1
     else
       puts"Соберитесь и начните вводить нормальные значения"
     end
   end
-until stack_symbols.empty? do
+until stack_symbols.empty? 
    first_operand = stack_numbers.pop
    second_operand = stack_numbers.pop
    operation = stack_symbols.shift
