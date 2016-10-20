@@ -27,7 +27,7 @@ class Error
   end
 
   def op_check(exp)
-    if exp != /\d+/ && exp != "\=" && exp != "\+" && exp != "\-" && exp != "\*" && exp != "\/" && exp != "\!"
+    if exp != /\d+/ && exp != "/\+|\*|\/|\-|\!|\=/"
       puts "Error. Wrong expression, please use only numbers and symbols: +, *, /, -, !, =.".red
       exit 1
     end
