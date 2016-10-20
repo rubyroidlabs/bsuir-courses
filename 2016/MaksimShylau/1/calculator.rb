@@ -1,12 +1,3 @@
-def bin(number) # From 10 to 2 base
-  s = ""
-  while number.positive?
-    s += (number.to_i % 2).to_s
-    number /= 2
-  end
-  s.reverse
-end
-
 def nul_bin(dec, count) # ! operation (changes '1' on '0')
   ind = -1
   i = 0
@@ -20,23 +11,13 @@ def nul_bin(dec, count) # ! operation (changes '1' on '0')
   dec.to_s
 end
 
-def to_dec(binary) # From 2 to 10 base
-  sum = i = 0
-  1.upto(binary.size) do
-    pow = binary.size.to_i - i - 1
-    sum += binary[i].to_i * (2**pow)
-    i += 1
-  end
-  sum
-end
-
 def oper(symbol, a, b)
   case symbol
   when "+" then a + b
   when "-" then a - b
   when "*" then a * b
   when "/" then a / b
-  when "!" then to_dec(nul_bin(bin(a), b))
+  when "!" then nul_bin(a.to_s(2), b).to_i(2)
   end
 end
 a = []
