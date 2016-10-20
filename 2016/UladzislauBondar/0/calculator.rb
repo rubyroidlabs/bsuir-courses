@@ -58,7 +58,7 @@ class RPNCalc
   end
 
   def number?(sign)
-    sign =~ /^[0-9]+$/
+    sign =~ /^[-+]?[0-9]+$/
   end
 
   def operation?(sign)
