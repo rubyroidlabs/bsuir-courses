@@ -6,7 +6,7 @@ class RpnCalc
     stack = []
     string.split(" ").each do |token|
       if operand? token then stack.push token
-      elsif operator? token then 
+      elsif operator? token
         y = stack.pop
         x = stack.pop
         stack.push apply_operator(x, y, token)
@@ -34,7 +34,8 @@ class RpnCalc
       "+" => { action: proc { |x, y| x + y } },
       "-" => { action: proc { |x, y| x - y } },
       "*" => { action: proc { |x, y| x * y } },
-      "/" => { action: proc { |x, y| x / y } } }
+      "/" => { action: proc { |x, y| x / y } }
+      }
   end
 
   loop do
