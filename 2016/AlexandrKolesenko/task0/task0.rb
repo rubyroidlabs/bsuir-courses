@@ -8,7 +8,7 @@ class RpnCalc
       if operand? token then stack.push token
       elsif operator? token then y = stack.pop
        x = stack.pop
-        stack.push apply_operator(x, y, token)
+       stack.push apply_operator(x, y, token)
       end
     end
     p stack
