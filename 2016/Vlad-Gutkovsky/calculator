@@ -16,7 +16,7 @@ stck = []
 loop do
   tmp = gets
   tmp.chomp!
-  if tmp =~ /\A\d+\z/
+  if tmp =~ /\A[+-]?\d+\z/
     stck.push(tmp.to_i)
   elsif ['+', '-', '*', '/', '!'].include? tmp
     case tmp
