@@ -1,4 +1,4 @@
-#:nodoc:
+# This is RPN Calculator
 class Calculator
   def count(exp)
     arguments = []
@@ -42,7 +42,7 @@ class Calculator
   end
 
   def zeroing(a)
-    reset=a[a.size - 2].to_s(2).reverse
+    reset = a[a.size - 2].to_s(2).reverse
     a[a.size - 1].times { reset[reset.index("1")] = "0" }
     a[a.size] = reset.reverse.to_i(2)
     delete(a)
