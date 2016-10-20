@@ -3,14 +3,15 @@ first_num = gets.chomp.to_i
 second_num = gets.chomp.to_i
 third = gets.chomp
 if third =~ /\D/
-  if third == "+"
-    result = first_num + second_num
-  elsif third == "-"
-    result = first_num - second_num
-  elsif third == "*"
-    result = first_num * second_num
-  elsif third == "/"
-    result = first_num / second_num
+  case third
+    when "+"
+      result = first_num + second_num
+    when "-"
+      result = first_num - second_num
+    when "*"
+      result = first_num * second_num
+    else
+      result = first_num / second_num
   end
   if third == "!"
     b = first_num.to_s(2)
