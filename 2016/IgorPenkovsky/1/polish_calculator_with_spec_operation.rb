@@ -12,6 +12,8 @@ if third =~ /\D/
     result = first_num * second_num
   when "/"
     result = first_num / second_num
+  else
+    puts "Error"
   end
   if third == "!"
     b = first_num.to_s(2)
@@ -50,24 +52,30 @@ forth = gets.chomp
 if forth =~ /\D/
   fifth = gets.chomp
   if fifth =~ /\D/
-    if forth == "+"
+    case forth
+    when "+"
       result = second_num + third.to_f
-    elsif forth == "-"
+    when "-"
       result = second_num - third.to_f
-    elsif forth == "*"
+    when "*"
       result=second_num * third.to_f
-    elsif forth == "/"
+    when "/"
       result = second_num / third.to_f
+    else
+      puts "Error"
     end
   end
-  if fifth == "+"
+  case fifth
+  when "+"
     result += first_num
-  elsif fifth == "-"
+  when "-"
     result -= first_num
-  elsif fifth == "*"
+  when "*"
     result *= first_num
-  elsif fifth == "/"
+  when "/"
     result /= first_num
+  else
+    puts "Error"
   end
 end
 puts result.to_s
