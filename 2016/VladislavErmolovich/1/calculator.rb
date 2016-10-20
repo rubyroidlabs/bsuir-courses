@@ -30,7 +30,7 @@ end
 
 while array.size > 1
   i = 0
-  i += 1 while i < array.size && !functions_array.include?(array[i])  
+  i += 1 while i < array.size && !functions_array.include?(array[i])
   case array[i]
   when "+"
     array[i - 2] += array[i - 1]
