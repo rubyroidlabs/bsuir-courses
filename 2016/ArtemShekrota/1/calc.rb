@@ -17,11 +17,16 @@ end
 def bit(array)
   a = array[0].to_i.to_s(2).reverse.split(//)
   b = array[1].to_i
+  map(a, b)
+end
+
+def map(a, b)
   a.map! do |i|
     break if b <= 0
-    if i == "1"
+    if i =="1"
       b -= 1
       "0"
+    else i
     end
   end
   a.join.reverse.to_i(2)
