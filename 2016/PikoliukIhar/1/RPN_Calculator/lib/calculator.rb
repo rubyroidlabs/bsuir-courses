@@ -4,20 +4,20 @@ class Calculator
     a = []
     expression.each do |expr|
       case expr
-      when /\d+/
+      when  %r{\d+}
         a[a.size] = expr.to_i
-      when /\+|\*|\/|\-|\!|/
+      when  %r{\+|\*|\/|\-|\!|}
         count2(expr, a)
       end
     end
-    expression = a[0]
+    a[0]
   end
 
   def count2(operator, a)
     case operator
-    when /\+|\-/
+    when  %r{\+|\-}
       simple_count(operator, a)
-    when /\*|\//
+    when  %r{\*|\/}
       hard_count(operator, a)
     when "!"
       zeroing(a)
