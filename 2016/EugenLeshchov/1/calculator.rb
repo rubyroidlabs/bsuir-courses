@@ -1,35 +1,106 @@
-curr_str = '\0'
-str_arr = []
+require 'pry'
 
-while curr_str != '\n'
-  curr_str = gets
-  str_arr.push(curr_str.chomp)
-  if (curr_str.chomp == '+') || (curr_str.chomp == '-') || (curr_str.chomp == '*') || (curr_str.chomp == '/') || (curr_str.chomp == '!')
-    if (curr_str.chomp == '!')
-      str_arr.pop
-      ones_num = str_arr.pop.to_i
-      a = temp_a = str_arr.pop.to_i
+NUMS = /[+-]?[0-9]*\.?[0-9]+/
+OPS = /[\+\-\*\/\!]{1}/
 
-      curr_ones_num = 0
-      sh_amount = 0
+class RPN
 
-      while curr_ones_num != ones_num
-        if (tempa % 2 == 1)
-          curr_ones_num += 1
-        end
-        temp_a /= 2
-        sh_amount += 1
-      end
+  #constructor
+  def initialize
+      @exp = []
+  end
 
-      str_arr.push((a >> sh_amount << sh_amount).to_s)
-    else
-      op = str_arr.pop
-      b = str_arr.pop
-      a = str_arr.pop
-
-      str_arr.push(eval(a + op + b).to_s)
+  #put expression for following calculations
+  def putExpression
+    until (op = gets.chomp) == ''
+      @exp.push(op)
     end
+  end
+
+  #checking accuracy of entered expression
+  def checkExpression
+    nums_amount = 0
+    ops_amount = 0
+
+    @exp.each do |op|
+      if op.match(NUMS)
+        nums_amount += 1
+
+      elsif  op.match(OPS)
+        ops_amount += 1
+      else
+        raise 'IError'
+      end
+    end
+
+    if ((nums_amount - ops_amount) != 1) || (nums_amount + ops_amount < 3)
+      raise 'OpsAmountError'
+    end
+
+    raise 'EmptyError' if @exp.empty?
+  end
+
+  #converting operands and calculating expression
+  def calculate
+    @exp.reverse!
+    stack = []
+
+    until @exp.empty?
+      op = @exp.pop
+      if op.match(NUMS)
+        stack.push(op)
+      else
+        second_operand = stack.pop.to_f
+        first_operand = stack.pop.to_f
+        case op
+        when '+','-','*','/'
+          stack.push(first_operand.send(op, second_operand).to_s)
+        when '!'
+          stack.push(makeZero(first_operand, second_operand))
+        end  
+      end
+    end
+
+    @exp.push(stack.pop)
+  end
+
+  #convert ones into zeroes in binary representation of number
+  def makeZero(op, ones_num)
+    op = op.to_i.to_s(2).reverse
+
+    ones_num = ones_num.to_i
+    curr_num = 0
+    op.each_char do
+      if curr_num != ones_num
+        op[op.index('1')] = '0'
+        curr_num += 1
+      end
+    end
+    return op.reverse.to_i(2)
+  end
+
+  #Put result into console output
+  def getsResult
+    puts @exp.pop
+  end
+
+  #main 
+  def main
+    begin
+      putExpression
+
+      checkExpression
+
+      calculate
+
+      getsResult
+    rescue => e
+      puts e.message
+      exit
+    end
+
   end
 end
 
-puts("#=>" + str_arr[0])
+t = RPN.new
+t.main
