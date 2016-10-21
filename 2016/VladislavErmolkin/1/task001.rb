@@ -1,5 +1,5 @@
 NUM_REGEX = %r{[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)*}
-SIGN_REGEX = %{[\+\-\*\/\!]{1}}
+SIGN_REGEX = %r{[\+\-\*\/\!]{1}}
 
 def main
   stack = validate_str gets
