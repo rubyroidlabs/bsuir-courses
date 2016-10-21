@@ -49,11 +49,11 @@ class RPN
   # applying operation
   def apply_op(a, b, op)
     case op
-        when "+", "-", "*", "/"
-          @stack.push(a.send(op, b).to_s)
-        when "!"
-          @stack.push(make_zero(a, b))
-        end
+      when "+", "-", "*", "/"
+        @stack.push(a.send(op, b).to_s)
+      when "!"
+        @stack.push(make_zero(a, b))
+      end
   end
 
   # convert ones into zeroes in binary representation of number
