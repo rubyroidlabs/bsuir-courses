@@ -1,4 +1,3 @@
-NUMS = %r{[+-]?[0-9]*\.?[0-9]+}
 OPS = %r{[\+\-\*\/\!]{1}}
 # reverse polish natation class
 class RPN
@@ -20,7 +19,7 @@ class RPN
   # getting amount of different elements in expression
   def count_ops
     @exp.each do |op|
-      if op.match(NUMS)
+      if op =~ /[+-]?[0-9]*\.?[0-9]+/
         @num += 1
       elsif op.match(OPS)
         @ops += 1
@@ -40,7 +39,7 @@ class RPN
   # converting operands and calculating expression
   def calculate
     until @exp.empty?
-      if (op = @exp.pop).match(NUMS) then @stack.push(op)
+      if (op = @exp.pop) =~ /[+-]?[0-9]*\.?[0-9]+/ then @stack.push(op)
       else
         second_operand = @stack.pop.to_f
         first_operand = @stack.pop.to_f
