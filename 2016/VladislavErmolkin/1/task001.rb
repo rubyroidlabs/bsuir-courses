@@ -3,7 +3,7 @@ SIGN_REGEX = %r{[\+\-\*\/\!]{1}}
 
 def main
   stack = validate_str gets
-  result = R_P_N(stack)
+  result = rpn(stack)
   result.to_i if result == result.to_i
   return "=> " + result.to_s
 rescue NoMethodError
@@ -24,7 +24,7 @@ def validate_str(str)
   elements
 end
 
-def R_P_N(source)
+def rpn(source)
   stack = []
   until source.empty?
     if (el = source.pop).is_a? Float
@@ -33,16 +33,11 @@ def R_P_N(source)
       op1 = stack.pop
       op2 = stack.pop
       case el
-      when "+"
-        stack.push op1 + op2
-      when "-"
-        stack.push op2 - op1
-      when "*"
-        stack.push op1 * op2
-      when "/"
-        stack.push op2 / op1
-      when "!"
-        stack.push zeroing(op2, op1)
+      when "+" then stack.push op1 + op2
+      when "-" then stack.push op2 - op1
+      when "*" then stack.push op1 * op2
+      when "/" then stack.push op2 / op1
+      when "!" then stack.push zeroing(op2, op1)
       end
     end
   end
