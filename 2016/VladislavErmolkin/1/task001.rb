@@ -7,7 +7,7 @@ def main()
   begin
     stack = validate_str gets
 
-    result = RPN(stack)
+    result = R_P_N(stack)
     
     result.to_i if result == result.to_i
 
@@ -27,7 +27,6 @@ def main()
 
 end
 
-
 def validate_str(str)
   elements = str.split
   elements.map! do |element| 
@@ -45,8 +44,7 @@ def validate_str(str)
   return elements
 end
 
-
-def RPN (source)
+def R_P_N (source)
   stack = []
   until source.empty? do
     if (el = source.pop).is_a? Float
@@ -76,6 +74,5 @@ def zeroing(number, q)
   q.to_i.times { s.sub!("1", "0") }
   [s].pack("b*").unpack("f")[0]
 end
-
 
 puts main
