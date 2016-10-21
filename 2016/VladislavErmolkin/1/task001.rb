@@ -3,7 +3,7 @@ SIGN_REGEX = %r{[\+\-\*\/\!]{1}}
 
 def main
   stack = validate_str gets
-  result = rpn(stack)
+  result = rpn stack
   result.to_i if result == result.to_i
   return "=> " + result.to_s
 rescue NoMethodError
@@ -12,7 +12,7 @@ rescue NoMethodError
 end
 
 def validate_str(str)
-  str.split.elements.map! do |element|
+  elements = str.split.map! do |element|
     if element.match(NUM_REGEX)
       element.to_f
     elsif element.match(SIGN_REGEX)
@@ -30,8 +30,7 @@ def rpn(source)
     if (el = source.pop).is_a? Float
       stack.push el
     else
-      op1 = stack.pop
-      op2 = stack.pop
+      op1 = stack.pop; op2 = stack.pop
       case el
       when "+" then stack.push op1 + op2
       when "-" then stack.push op2 - op1
