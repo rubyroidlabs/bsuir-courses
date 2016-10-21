@@ -1,3 +1,4 @@
+require 'pry'
 NUMS = %r/[+-]?[0-9]*\.?[0-9]+/
 OPS = %r/[\+\-\*\/\!]{1}/
 # reverse polish natation class
@@ -5,6 +6,7 @@ class RPN
   # constructor
   def initialize
     @exp = []
+    @stack = []
   end
 
   # put expression for following calculations
@@ -35,23 +37,20 @@ class RPN
 
   # converting operands and calculating expression
   def calculate
-    stack = []
     until @exp.empty?
       op = @exp.pop
-      if op.match(NUMS)
-        stack.push(op)
+      if op.match(NUMS) then @stack.push(op)
       else
-        second_operand = stack.pop.to_f
-        first_operand = stack.pop.to_f
+        second_operand = @stack.pop.to_f
+        first_operand = @stack.pop.to_f
         case op
         when "+", "-", "*", "/"
-          stack.push(first_operand.send(op, second_operand).to_s)
+          @stack.push(first_operand.send(op, second_operand).to_s)
         when "!"
-          stack.push(make_zero(first_operand, second_operand))
+          @stack.push(make_zero(first_operand, second_operand))
         end
       end
     end
-    @exp.push(stack.pop)
   end
 
   # convert ones into zeroes in binary representation of number
@@ -71,7 +70,7 @@ class RPN
 
   # put result into console output
   def gets_result
-    puts @exp.pop
+    puts @stack.pop
   end
 
   # main
