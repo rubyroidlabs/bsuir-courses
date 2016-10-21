@@ -10,11 +10,11 @@ flag = false
 while stack.length > 1 || !flag
   element = gets.strip
   if /\d/ =~ element
-   stack.push(element.to_f)
+    stack.push(element.to_f)
   elsif %w(+ - / * !).include?(element) && stack.size > 1
-   result = calc(stack.pop(2), element)
-   stack.push(result)
-   flag = true
+    result = calc(stack.pop(2), element)
+    stack.push(result)
+    flag = true
   else puts "Incorrect input.Enter the correct value."
   end
 end
