@@ -4,25 +4,19 @@ $example = "3 5 + 4 / 7 * 3 4 + -"
 
 
 def main()
-  begin
-    stack = validate_str gets
-
-    result = R_P_N(stack)
-    
-    result.to_i if result == result.to_i
-
-     return "=> " + result.to_s
-
-   rescue IOError => ex
-     puts "#{ex.class}: #{ex.message}"
-     exit
-   rescue TypeError => ex
-     puts "Error: Incorrect RPN."
-     exit
-   rescue NoMethodError => ex
-     puts "Error: Incorrect RPN."
-     exit
-   end
+  stack = validate_str gets
+  result = R_P_N(stack)
+  result.to_i if result == result.to_i
+  return "=> " + result.to_s
+  rescue IOError => ex
+    puts "#{ex.class}: #{ex.message}"
+    exit
+  rescue TypeError
+    puts "Error: Incorrect RPN."
+    exit
+  rescue NoMethodError
+    puts "Error: Incorrect RPN."
+    exit
 end
 
 def validate_str(str)
