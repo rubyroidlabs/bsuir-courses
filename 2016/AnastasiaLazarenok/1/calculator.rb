@@ -11,13 +11,13 @@ loop do
     x2 = stack.pop.to_i
     number -= 1
     case a
-    when '+'
+    when "+"
       result = x2 + x1
-    when '-'
+    when "-"
       result = x2 - x1
-    when '*'
+    when "*"
       result = x2 * x1
-    when '/'
+    when "/"
       result = x2 / x1
     end
     stack.push(result)
