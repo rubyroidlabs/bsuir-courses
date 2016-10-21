@@ -15,7 +15,7 @@ while stack.length > 1 || !flag
     result = calc(stack.pop(2), element)
     stack.push(result)
     flag = true
-  else puts "Incorrect input.Enter the correct value."
+  else puts 'Incorrect input.Enter the correct value.'
   end
 end
 
