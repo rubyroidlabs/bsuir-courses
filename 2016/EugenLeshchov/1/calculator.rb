@@ -1,13 +1,10 @@
-require "pry"
-
-NUMS = /[+-]?[0-9]*\.?[0-9]+/
-OPS = /[\+\-\*\/\!]{1}/
-
+NUMS = %r{[+-]?[0-9]*\.?[0-9]+}
+OPS = %r{[\+\-\*\/\!]{1}}
+#reverse polish natation class
 class RPN
-
   # constructor
   def initialize
-      @exp = []
+    @exp = []
   end
 
   # put expression for following calculations
@@ -21,23 +18,19 @@ class RPN
   def check_expression
     nums_amount = 0
     ops_amount = 0
-
     @exp.each do |op|
       if op.match(NUMS)
         nums_amount += 1
-
       elsif  op.match(OPS)
         ops_amount += 1
       else
-        raise "IError"
+        fail "IError"
       end
     end
-
     if ((nums_amount - ops_amount) != 1) || (nums_amount + ops_amount < 3)
-      raise "OpsAmountError"
+      fail "OpsAmountError"
     end
-
-    raise "EmptyError" if @exp.empty?
+    fail "EmptyError" if @exp.empty?
   end
 
   # converting operands and calculating expression
@@ -56,7 +49,7 @@ class RPN
         when "+", "-", "*", "/"
           stack.push(first_operand.send(op, second_operand).to_s)
         when "!"
-          stack.push(makeZero(first_operand, second_operand))
+          stack.push(make_zero(first_operand, second_operand))
         end
       end
     end
@@ -87,13 +80,13 @@ class RPN
   # main
   def main
     begin
-      putExpression
+      put_expression
 
-      checkExpression
+      check_expression
 
       calculate
 
-      getsResult
+      gets_result
     rescue => e
       puts e.message
       exit
