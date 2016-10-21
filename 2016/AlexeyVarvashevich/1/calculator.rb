@@ -19,7 +19,7 @@ while stack.length > 1 || !flag
   end
 end
 
-if stack[0].to_s.split('.')[1] == '0'
+if stack[0].to_s.split(".")[1] == '0'
   puts "Result is #{stack[0].to_i}"
 else
   puts "Result is #{stack[0]}"
