@@ -66,19 +66,15 @@ def RPN (source)
 				stack.push zeroing(op2, op1)
 			end
 		end
-	end
-	raise TypeError if stack.length != 1
-	return stack[0]
+    end
+    raise TypeError if stack.length != 1
+    return stack[0]
 end
 
-
-def zeroing (number, q)
-	s = [number].pack("f").unpack("b*")[0]
-	q.to_i.times { s.sub!("1", "0") }
-	return [s].pack("b*").unpack("f")[0]
+def zeroing(number, q)
+    s = [number].pack("f").unpack("b*")[0]
+    q.to_i.times { s.sub!("1", "0") }
+    return [s].pack("b*").unpack("f")[0]
 end
-
-
 
 puts main
-
