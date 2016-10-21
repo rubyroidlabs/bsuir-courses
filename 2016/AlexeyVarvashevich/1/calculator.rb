@@ -12,11 +12,11 @@ while stack.length > 1 || !flag
   if /\d/ =~ element
    stack.push(element.to_f)
   elsif %w(+ - / * !).include?(element) && stack.size > 1
-   result = calc(stack.pop(2), element)	
+   result = calc(stack.pop(2), element)
    stack.push(result)
    flag = true
   else puts "Incorrect input.Enter the correct value."
-  end 
+  end
 end
 
 if stack[0].to_s.split('.')[1] == '0'
@@ -24,4 +24,3 @@ if stack[0].to_s.split('.')[1] == '0'
 else
   puts "Result is #{stack[0]}"
 end
-
