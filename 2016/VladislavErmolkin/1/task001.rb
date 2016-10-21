@@ -1,22 +1,20 @@
-NUM_REGEX = /[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)*/
-SIGN_REGEX = /[\+\-\*\/\!]{1}/
-$example = "3 5 + 4 / 7 * 3 4 + -"
+NUM_REGEX = %r{[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)*}
+SIGN_REGEX = %{[\+\-\*\/\!]{1}}
 
-
-def main()
+def main
   stack = validate_str gets
   result = R_P_N(stack)
   result.to_i if result == result.to_i
   return "=> " + result.to_s
-  rescue IOError => ex
-    puts "#{ex.class}: #{ex.message}"
-    exit
-  rescue TypeError
-    puts "Error: Incorrect RPN."
-    exit
-  rescue NoMethodError
-    puts "Error: Incorrect RPN."
-    exit
+rescue IOError => ex
+  puts "#{ex.class}: #{ex.message}"
+  exit
+rescue TypeError
+  puts "Error: Incorrect RPN."
+  exit
+rescue NoMethodError
+  puts "Error: Incorrect RPN."
+  exit
 end
 
 def validate_str(str)
@@ -33,7 +31,7 @@ def validate_str(str)
   elements
 end
 
-def R_P_N (source)
+def R_P_N(source)
   stack = []
   until source.empty?
     if (el = source.pop).is_a? Float
