@@ -30,7 +30,7 @@ class RPN
     end
   end
 
-  # checking accuracy of entered expression
+  # checking accuracy of expression
   def check_expression
     count_ops
     fail "EmptyError" if @exp.empty?
