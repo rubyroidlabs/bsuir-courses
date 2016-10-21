@@ -2,9 +2,7 @@ NUM_REGEX = /[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)*/
 SIGN_REGEX = %r{[\+\-\*\/\!]{1}}
 
 def main
-  stack = validate_str gets
-  result = rpn stack
-  result.to_i if result == result.to_i
+  result = rpn validate_str gets
   return "=> " + result.to_s
 rescue NoMethodError
   puts "Error: Incorrect RPN."
@@ -12,7 +10,7 @@ rescue NoMethodError
 end
 
 def validate_str(str)
-  elements = str.split.map! do |element|
+  elements = str.split.map do |element|
     if element.match(NUM_REGEX)
       element.to_f
     elsif element.match(SIGN_REGEX)
@@ -20,18 +18,15 @@ def validate_str(str)
     else
       fail "Input error."
     end
-  end.reverse!
+  end.reverse
   elements
 end
 
 def rpn(source)
   stack = []
   until source.empty?
-    if (el = source.pop).is_a? Float then stack.push el
-    else
-      op1 = stack.pop
-      op2 = stack.pop
-      stack.push arithmetic_action(op1, op2, el)
+    if (element = source.pop).is_a? Float then stack.push element
+    else stack.push arithmetic_action(stack.pop, stack.pop, element)
     end
   end
   fail "Error: Incorrect RPN." if stack.length != 1
