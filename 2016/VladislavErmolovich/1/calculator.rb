@@ -1,7 +1,12 @@
 #!/usr/bin/env ruby
 
 def num?(s)
-  Float(s) rescue nil
+  if s == "0"
+    result = 0
+  elsif s.to_f.nonzero?
+    result = s.to_f
+  else result = nil
+  end
 end
 
 array = []
