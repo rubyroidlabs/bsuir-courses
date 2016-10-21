@@ -1,6 +1,6 @@
-NUMS = %r{[+-]?[0-9]*\.?[0-9]+}
-OPS = %r{[\+\-\*\/\!]{1}}
-#reverse polish natation class
+NUMS = %r/[+-]?[0-9]*\.?[0-9]+/
+OPS = %r/[\+\-\*\/\!]{1}/
+# reverse polish natation class
 class RPN
   # constructor
   def initialize
@@ -21,7 +21,7 @@ class RPN
     @exp.each do |op|
       if op.match(NUMS)
         nums_amount += 1
-      elsif  op.match(OPS)
+      elsif op.match(OPS)
         ops_amount += 1
       else
         fail "IError"
@@ -35,9 +35,7 @@ class RPN
 
   # converting operands and calculating expression
   def calculate
-    @exp.reverse!
     stack = []
-
     until @exp.empty?
       op = @exp.pop
       if op.match(NUMS)
@@ -53,7 +51,6 @@ class RPN
         end
       end
     end
-
     @exp.push(stack.pop)
   end
 
@@ -79,18 +76,18 @@ class RPN
 
   # main
   def main
-    begin
-      put_expression
+    put_expression
 
-      check_expression
+    check_expression
 
-      calculate
+    @exp.reverse!
 
-      gets_result
-    rescue => e
-      puts e.message
-      exit
-    end
+    calculate
+
+    gets_result
+  rescue => e
+    puts e.message
+    exit
   end
 end
 
