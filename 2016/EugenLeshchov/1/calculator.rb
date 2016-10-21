@@ -1,24 +1,24 @@
-require 'pry'
+require "pry"
 
 NUMS = /[+-]?[0-9]*\.?[0-9]+/
 OPS = /[\+\-\*\/\!]{1}/
 
 class RPN
 
-  #constructor
+  # constructor
   def initialize
       @exp = []
   end
 
-  #put expression for following calculations
-  def putExpression
-    until (op = gets.chomp) == ''
+  # put expression for following calculations
+  def put_expression
+    until (op = gets.chomp) == ""
       @exp.push(op)
     end
   end
 
-  #checking accuracy of entered expression
-  def checkExpression
+  # checking accuracy of entered expression
+  def check_expression
     nums_amount = 0
     ops_amount = 0
 
@@ -29,18 +29,18 @@ class RPN
       elsif  op.match(OPS)
         ops_amount += 1
       else
-        raise 'IError'
+        raise "IError"
       end
     end
 
     if ((nums_amount - ops_amount) != 1) || (nums_amount + ops_amount < 3)
-      raise 'OpsAmountError'
+      raise "OpsAmountError"
     end
 
-    raise 'EmptyError' if @exp.empty?
+    raise "EmptyError" if @exp.empty?
   end
 
-  #converting operands and calculating expression
+  # converting operands and calculating expression
   def calculate
     @exp.reverse!
     stack = []
@@ -53,38 +53,38 @@ class RPN
         second_operand = stack.pop.to_f
         first_operand = stack.pop.to_f
         case op
-        when '+','-','*','/'
+        when "+", "-", "*", "/"
           stack.push(first_operand.send(op, second_operand).to_s)
-        when '!'
+        when "!"
           stack.push(makeZero(first_operand, second_operand))
-        end  
+        end
       end
     end
 
     @exp.push(stack.pop)
   end
 
-  #convert ones into zeroes in binary representation of number
-  def makeZero(op, ones_num)
+  # convert ones into zeroes in binary representation of number
+  def make_zero(op, ones_num)
     op = op.to_i.to_s(2).reverse
 
     ones_num = ones_num.to_i
     curr_num = 0
     op.each_char do
       if curr_num != ones_num
-        op[op.index('1')] = '0'
+        op[op.index("1")] = "0"
         curr_num += 1
       end
     end
-    return op.reverse.to_i(2)
+    op.reverse.to_i(2)
   end
 
-  #Put result into console output
-  def getsResult
+  # put result into console output
+  def gets_result
     puts @exp.pop
   end
 
-  #main 
+  # main
   def main
     begin
       putExpression
@@ -98,7 +98,6 @@ class RPN
       puts e.message
       exit
     end
-
   end
 end
 
