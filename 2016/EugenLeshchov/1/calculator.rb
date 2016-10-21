@@ -53,7 +53,7 @@ class RPN
         @stack.push(a.send(op, b).to_s)
       when "!"
         @stack.push(make_zero(a, b))
-      end
+    end
   end
 
   # convert ones into zeroes in binary representation of number
