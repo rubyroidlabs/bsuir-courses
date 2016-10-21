@@ -1,5 +1,5 @@
-NUMS = %r/[+-]?[0-9]*\.?[0-9]+/
-OPS = %r/[\+\-\*\/\!]{1}/
+NUMS = %r{[+-]?[0-9]*\.?[0-9]+}
+OPS = %r{[\+\-\*\/\!]{1}}
 # reverse polish natation class
 class RPN
   # constructor
