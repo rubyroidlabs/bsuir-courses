@@ -1,4 +1,4 @@
-NUM_REGEX = /{[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)*/
+NUM_REGEX = /[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)*/
 SIGN_REGEX = %r{[\+\-\*\/\!]{1}}
 
 def main
@@ -12,8 +12,7 @@ rescue NoMethodError
 end
 
 def validate_str(str)
-  elements = str.split
-  elements.map! do |element|
+  str.split.elements.map! do |element|
     if element.match(NUM_REGEX)
       element.to_f
     elsif element.match(SIGN_REGEX)
