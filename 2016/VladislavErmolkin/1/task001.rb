@@ -30,18 +30,23 @@ def rpn(source)
     if (el = source.pop).is_a? Float
       stack.push el
     else
-      op1 = stack.pop; op2 = stack.pop
-      case el
-      when "+" then stack.push op1 + op2
-      when "-" then stack.push op2 - op1
-      when "*" then stack.push op1 * op2
-      when "/" then stack.push op2 / op1
-      when "!" then stack.push zeroing(op2, op1)
-      end
+      op1 = stack.pop
+      op2 = stack.pop
+      stack.push arithmetic_action(op1, op2, el)
     end
   end
   fail "Error: Incorrect RPN." if stack.length != 1
   stack[0]
+end
+
+def arithmetic_action(op1, op2, sign)
+  case sign
+  when "+" then return op1 + op2
+  when "-" then return op2 - op1
+  when "*" then return op1 * op2
+  when "/" then return op2 / op1
+  when "!" then return zeroing(op2, op1)
+  end
 end
 
 def zeroing(number, q)
