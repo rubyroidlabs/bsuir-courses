@@ -6,7 +6,7 @@ loop do
   if a =~ /\d/
     stack.push(a.to_i)
     number += 1
-  elsif ['*', '-', '+', '/'.include?(a)
+  elsif ['*', '-', '+', '/'].include?(a)
     x1 = stack.pop.to_i
     x2 = stack.pop.to_i
     number -= 1
