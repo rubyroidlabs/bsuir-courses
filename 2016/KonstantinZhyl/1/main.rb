@@ -17,8 +17,7 @@ def divis(x, y)
 end
 
 def oper(x, y)
-  x = x.to_i
-  y = y.to_i
+  x = x.to_i, y = y.to_i
   i = 1, k = 0
   while (k < y) && x.nonzero?
     if x & i == i
@@ -35,28 +34,28 @@ top = 0
 
 loop do
   newstr = gets.chomp
-  if (newstr != '+') && (newstr != '-') && (newstr != '*') && (newstr != '/') && (newstr != '!')
+  if (newstr != "+") && (newstr != "-") && (newstr != "*") && (newstr != "/") && (newstr != "!")
     array[top] = newstr.to_f
     top += 1
     next
   else
-    if newstr == '+'
+    if newstr == "+"
       array[top - 2] = sum(array[top - 1], array[top - 2])
       top -= 1
     end
-    if newstr == '-'
+    if newstr == "-"
       array[top - 2] = sub(array[top - 2], array[top - 1])
       top -= 1
     end
-    if newstr == '*'
+    if newstr == "*"
       array[top - 2] = mult(array[top - 1], array[top - 2])
       top -= 1
     end
-    if newstr == '/'
+    if newstr == "/"
       array[top - 2] = divis(array[top - 2], array[top - 1])
       top -= 1
     end
-    if newstr == '!'
+    if newstr == "!"
       array[top - 2] = oper(array[top - 2], array[top - 1])
       top -= 1
     end
