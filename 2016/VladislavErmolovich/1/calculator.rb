@@ -1,11 +1,10 @@
 #!/usr/bin/env ruby
 
 def num?(s)
-  result = nil
-  if s == "0"
-    result = 0
-  elsif s.to_f.nonzero?
-    result = s.to_f
+  if s.to_f.nonzero?
+    s.to_f
+  elsif s == "0"
+    0
   end
 end
 
