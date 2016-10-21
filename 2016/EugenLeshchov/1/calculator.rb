@@ -18,7 +18,7 @@ class RPN
   end
 
   # getting amount of different elements in expression
-  def get_ops
+  def count_ops
     @exp.each do |op|
       if op.match(NUMS)
         @num += 1
@@ -32,7 +32,7 @@ class RPN
 
   # checking accuracy of entered expression
   def check_expression
-    get_ops
+    count_ops
     fail "EmptyError" if @exp.empty?
     if ((@num - @ops) != 1) || (@num + @ops < 3)
       fail "OpsAmountError"
