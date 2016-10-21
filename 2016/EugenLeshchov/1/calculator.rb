@@ -17,14 +17,12 @@ class RPN
 
   # checking accuracy of entered expression
   def check_expression
-    nums_amount, ops_amount = 0, 0
+    nums_amount = 0
+    ops_amount = 0
     @exp.each do |op|
-      if op.match(NUMS)
-        nums_amount += 1
-      elsif op.match(OPS)
-        ops_amount += 1
-      else
-        fail "IError"
+      if op.match(NUMS) nums_amount += 1
+      elsif op.match(OPS) ops_amount += 1
+      else fail "IError"
       end
     end
     if ((nums_amount - ops_amount) != 1) || (nums_amount + ops_amount < 3)
@@ -38,15 +36,21 @@ class RPN
     until @exp.empty?
       if (op = @exp.pop).match(NUMS) then @stack.push(op)
       else
-        second_operand, first_operand = @stack.pop.to_f, @stack.pop.to_f
-        case op
-        when "+", "-", "*", "/"
-          @stack.push(first_operand.send(op, second_operand).to_s)
-        when "!"
-          @stack.push(make_zero(first_operand, second_operand))
-        end
+        second_operand = @stack.pop.to_f
+        first_operand = @stack.pop.to_f
+        apply_op(first_operand, second_operand, op)
       end
     end
+  end
+
+  # applying operation
+  def apply_op(a, b, op)
+    case op
+        when "+", "-", "*", "/"
+          @stack.push(a.send(op, b).to_s)
+        when "!"
+          @stack.push(make_zero(a, b))
+        end
   end
 
   # convert ones into zeroes in binary representation of number
