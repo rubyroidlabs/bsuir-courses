@@ -15,23 +15,29 @@ class RPN
     end
   end
 
-  # checking accuracy of entered expression
-  def check_expression
-    nums_amount = 0
-    ops_amount = 0
+  # getting amount of different elements in expression
+  def get_ops(num, ops)
     @exp.each do |op|
       if op.match(NUMS)
-        nums_amount += 1
+        num += 1
       elsif op.match(OPS)
-        ops_amount += 1
+        ops += 1
       else
         fail "IError"
       end
     end
+    return num, ops
+  end
+
+  # checking accuracy of entered expression
+  def check_expression
+    nums_amount = 0
+    ops_amount = 0
+    nums_amount, ops_amount = get_ops(nums_amount, ops_amount)
+    fail "EmptyError" if @exp.empty?
     if ((nums_amount - ops_amount) != 1) || (nums_amount + ops_amount < 3)
       fail "OpsAmountError"
     end
-    fail "EmptyError" if @exp.empty?
   end
 
   # converting operands and calculating expression
