@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0fe2bb7-5151-48a5-8142-6d7be8c6f185" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb" afterPath="$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb" />
     </list>
     <ignored path="bsuir-courses.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +30,7 @@
       <file leaf-file-name="polish_calculator_with_spec_operation.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33175355" vertical-offset="0" max-vertical-offset="1230">
+            <state vertical-scroll-proportion="0.18957347" vertical-offset="90" max-vertical-offset="855">
               <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
               <folding />
             </state>
@@ -298,7 +298,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/2016/IgorPenkovsky/1/polish_calculator_with_spec_operation.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33175355" vertical-offset="0" max-vertical-offset="1230">
+        <state vertical-scroll-proportion="0.18957347" vertical-offset="90" max-vertical-offset="855">
           <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
           <folding />
         </state>
