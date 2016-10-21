@@ -6,9 +6,9 @@ loop do
   if a =~ /\d/
     stack.push(a.to_i)
     number += 1
-  elsif (%w[* - + / ].include?(a)) && stack.size != 1
-    x1 = (stack.pop).to_i
-    x2 = (stack.pop).to_i
+  elsif (%w[* - + / ].include?(a)) 
+    x1 = stack.pop.to_i
+    x2 = stack.pop.to_i
     number -= 1
     case a
     when '+'
