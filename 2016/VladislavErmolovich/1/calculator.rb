@@ -53,4 +53,4 @@ while array.size > 1
   array[i] = nil
   array.compact!
 end
-puts array[0]
+puts "#=> "+array[0].to_s
