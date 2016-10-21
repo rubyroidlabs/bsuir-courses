@@ -34,9 +34,7 @@ class RPN
   def check_expression
     count_ops
     fail "EmptyError" if @exp.empty?
-    if ((@num - @ops) != 1) || (@num + @ops < 3)
-      fail "OpsAmountError"
-    end
+    fail "OpsAmountError" if @num - @ops != 1 || @num + @ops < 3
   end
 
   # converting operands and calculating expression
