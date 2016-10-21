@@ -27,8 +27,7 @@ end
 def rpn(source)
   stack = []
   until source.empty?
-    if (el = source.pop).is_a? Float
-      stack.push el
+    if (el = source.pop).is_a? Float then stack.push el
     else
       op1 = stack.pop
       op2 = stack.pop
