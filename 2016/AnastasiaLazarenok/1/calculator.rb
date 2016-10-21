@@ -22,7 +22,7 @@ loop do
     end
     stack.push(result)
     break if number == 1
-  else 
+  else
     puts "Error !!!!"
   end
 end
