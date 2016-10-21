@@ -1,4 +1,3 @@
-require 'pry'
 NUMS = %r/[+-]?[0-9]*\.?[0-9]+/
 OPS = %r/[\+\-\*\/\!]{1}/
 # reverse polish natation class
@@ -18,8 +17,7 @@ class RPN
 
   # checking accuracy of entered expression
   def check_expression
-    nums_amount = 0
-    ops_amount = 0
+    nums_amount, ops_amount = 0, 0
     @exp.each do |op|
       if op.match(NUMS)
         nums_amount += 1
@@ -38,11 +36,9 @@ class RPN
   # converting operands and calculating expression
   def calculate
     until @exp.empty?
-      op = @exp.pop
-      if op.match(NUMS) then @stack.push(op)
+      if (op = @exp.pop).match(NUMS) then @stack.push(op)
       else
-        second_operand = @stack.pop.to_f
-        first_operand = @stack.pop.to_f
+        second_operand, first_operand = @stack.pop.to_f, @stack.pop.to_f
         case op
         when "+", "-", "*", "/"
           @stack.push(first_operand.send(op, second_operand).to_s)
@@ -65,7 +61,7 @@ class RPN
         curr_num += 1
       end
     end
-    op.reverse.to_i(2)
+    op.reverse.to_i(2).to_f
   end
 
   # put result into console output
