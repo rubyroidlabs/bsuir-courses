@@ -6,12 +6,6 @@ def main
   result = R_P_N(stack)
   result.to_i if result == result.to_i
   return "=> " + result.to_s
-rescue IOError => ex
-  puts "#{ex.class}: #{ex.message}"
-  exit
-rescue TypeError
-  puts "Error: Incorrect RPN."
-  exit
 rescue NoMethodError
   puts "Error: Incorrect RPN."
   exit
@@ -25,7 +19,7 @@ def validate_str(str)
     elsif element.match(SIGN_REGEX)
       element
     else
-      raise IOError, "Input error."
+      fail "Input error."
     end
   end.reverse!
   elements
@@ -53,7 +47,7 @@ def R_P_N(source)
       end
     end
   end
-  raise TypeError if stack.length != 1
+  fail "Error: Incorrect RPN." if stack.length != 1
   stack[0]
 end
 
