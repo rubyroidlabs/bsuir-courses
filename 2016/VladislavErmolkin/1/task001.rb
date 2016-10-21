@@ -23,13 +23,11 @@ def main()
      puts "Error: Incorrect RPN."
      exit
    end
-
-
 end
 
 def validate_str(str)
   elements = str.split
-  elements.map! do |element| 
+  elements.map! do |element|
     if element.match(NUM_REGEX)
       element.to_f
     elsif element.match(SIGN_REGEX)
@@ -37,36 +35,34 @@ def validate_str(str)
     else
       raise IOError, "Input error."
     end
-  end
-  .reverse!
-
-
-  return elements
+  end.reverse!
+  elements
 end
 
 def R_P_N (source)
   stack = []
-  until source.empty? do
+  until source.empty?
     if (el = source.pop).is_a? Float
       stack.push el
-    else 
-      op1, op2 = stack.pop, stack.pop
+    else
+      op1 = stack.pop
+      op2 = stack.pop
       case el
       when "+"
-        stack.push (op1 + op2)
+        stack.push op1 + op2
       when "-"
-        stack.push (op2 - op1)
+        stack.push op2 - op1
       when "*"
-        stack.push (op1 * op2)
+        stack.push op1 * op2
       when "/"
-        stack.push (op2 / op1)
+        stack.push op2 / op1
       when "!"
         stack.push zeroing(op2, op1)
       end
     end
   end
   raise TypeError if stack.length != 1
-  return stack[0]
+  stack[0]
 end
 
 def zeroing(number, q)
