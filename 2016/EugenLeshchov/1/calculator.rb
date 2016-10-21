@@ -20,9 +20,12 @@ class RPN
     nums_amount = 0
     ops_amount = 0
     @exp.each do |op|
-      if op.match(NUMS) nums_amount += 1
-      elsif op.match(OPS) ops_amount += 1
-      else fail "IError"
+      if op.match(NUMS)
+        nums_amount += 1
+      elsif op.match(OPS)
+        ops_amount += 1
+      else
+        fail "IError"
       end
     end
     if ((nums_amount - ops_amount) != 1) || (nums_amount + ops_amount < 3)
