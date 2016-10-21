@@ -6,6 +6,8 @@ class RPN
   def initialize
     @exp = []
     @stack = []
+    @num = 0
+    @ops = 0
   end
 
   # put expression for following calculations
@@ -16,26 +18,23 @@ class RPN
   end
 
   # getting amount of different elements in expression
-  def get_ops(num, ops)
+  def get_ops
     @exp.each do |op|
       if op.match(NUMS)
-        num += 1
+        @num += 1
       elsif op.match(OPS)
-        ops += 1
+        @ops += 1
       else
         fail "IError"
       end
     end
-    return num, ops
   end
 
   # checking accuracy of entered expression
   def check_expression
-    nums_amount = 0
-    ops_amount = 0
-    nums_amount, ops_amount = get_ops(nums_amount, ops_amount)
+    get_ops
     fail "EmptyError" if @exp.empty?
-    if ((nums_amount - ops_amount) != 1) || (nums_amount + ops_amount < 3)
+    if ((@num - @ops) != 1) || (@num + @ops < 3)
       fail "OpsAmountError"
     end
   end
