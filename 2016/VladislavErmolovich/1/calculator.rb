@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
 def num?(s)
+  result = nil
   if s == "0"
     result = 0
   elsif s.to_f.nonzero?
     result = s.to_f
-  else result = nil
   end
 end
 
@@ -53,4 +53,4 @@ while array.size > 1
   array[i] = nil
   array.compact!
 end
-puts "#=> "+array[0].to_s
+puts "#=> " + array[0].to_s
