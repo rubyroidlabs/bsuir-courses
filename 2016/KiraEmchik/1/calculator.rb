@@ -24,10 +24,28 @@ def amount_numb(res, value_in_bit, last_number_in_mas)
   amount_numbers
 end
 
+def res(numbers, signs)
+  res = numbers.pop
+  signs.each do |n|
+    res = case n
+          when "+"
+            res + numbers.pop
+          when "-"
+            numbers.pop - res
+          when "*"
+	            res * numbers.pop
+          when "/"
+            numbers.pop / res
+          when "!"
+	          reset_units(numbers, res)
+          end
+  end
+  res
+end
+
 def run
   numbers = []
   signs = []
-
   loop do
     number = gets.chomp
     if int?(number)
@@ -40,23 +58,7 @@ def run
       return p "Error"
     end
   end
-
-  res = numbers.pop
-  signs.each do |n|
-    res = case n
-          when "+"
-            res + numbers.pop
-          when "-"
-            numbers.pop - res
-          when "*"
-            res * numbers.pop
-          when "/"
-            numbers.pop / res
-          when "!"
-            reset_units(numbers, res)
-          end
-  end
-  p res
+  p res(numbers, signs)
 end
 
 run
