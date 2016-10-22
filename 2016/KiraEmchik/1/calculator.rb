@@ -33,11 +33,11 @@ def res(numbers, signs)
           when "-"
             numbers.pop - res
           when "*"
-	            res * numbers.pop
+	    res * numbers.pop
           when "/"
             numbers.pop / res
           when "!"
-	          reset_units(numbers, res)
+	    reset_units(numbers, res)
           end
   end
   res
