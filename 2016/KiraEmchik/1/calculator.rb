@@ -33,31 +33,35 @@ def res(numbers, signs)
           when "-"
             numbers.pop - res
           when "*"
-	    res * numbers.pop
+            res * numbers.pop
           when "/"
             numbers.pop / res
           when "!"
-	    reset_units(numbers, res)
+            reset_units(numbers, res)
           end
   end
   res
 end
 
-def run
-  numbers = []
-  signs = []
+def input(numbers, signs)
   loop do
     number = gets.chomp
     if int?(number)
       numbers << number.to_i
     elsif %w(+ - * ! /).include?(number)
       signs << number
-      return p "Error" if numbers.size < 2
+      return "Error" if numbers.size < 2
       break if signs.size == numbers.size - 1
     else
-      return p "Error"
+      return "Error"
     end
   end
+end
+
+def run
+  numbers = []
+  signs = []
+  return p "Error" if input(numbers, signs) == "Error"
   p res(numbers, signs)
 end
 
