@@ -17,8 +17,6 @@ def divis(x, y)
 end
 
 def oper(x, y)
-  x = x.to_i
-  y = y.to_i
   i = 1
   k = 0
   while (k < y) && x.nonzero?
@@ -58,7 +56,7 @@ loop do
       top -= 1
     end
     if newstr == "!"
-      array[top - 2] = oper(array[top - 2], array[top - 1])
+      array[top - 2] = oper(array[top - 2].to_i, array[top - 1].to_i)
       top -= 1
     end
   end
