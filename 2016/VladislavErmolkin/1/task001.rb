@@ -1,8 +1,8 @@
-NUM_REGEX = /[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)*/
+NUM_REGEX = /^[-+]?\d*\.?\d+(?:[eE][-+]?\d+)*$/
 SIGN_REGEX = %r{[\+\-\*\/\!]{1}}
 
 def main
-  result = rpn validate_str gets
+  result = rpn validate_str(gets)
   return "=> " + result.to_s
 rescue NoMethodError
   puts "Error: Incorrect RPN."
