@@ -17,11 +17,11 @@ def divis(x, y)
 end
 
 def oper(x, y)
-  x = x.to_i, 
+  x = x.to_i
   y = y.to_i
   i = 1
   k = 0
-  while (k < y) && (x != 0)
+  while (k < y) && x.nonzero?
     if x & i == i
       x -= i
       k += 1
