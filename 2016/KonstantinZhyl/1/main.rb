@@ -17,9 +17,9 @@ def divis(x, y)
 end
 
 def oper(x, y)
-  x = x.to_i, y = y.to_i
-  i = 1, k = 0
-  while (k < y) && x.nonzero?
+  x, y = x.to_i, y = y.to_i
+  i, k = 1, 0
+  while (k < y) && (x != 0)
     if x & i == i
       x -= i
       k += 1
