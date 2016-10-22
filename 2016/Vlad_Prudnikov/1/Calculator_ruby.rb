@@ -34,6 +34,6 @@ loop do
   end
   puts "Stack = #{stack}"
   k += 1
-  break if stack.length <= 1 && k! = 1
+  break if stack.length <= 1 && k! == 1
 end
 puts "Result = #{stack[0]}"
