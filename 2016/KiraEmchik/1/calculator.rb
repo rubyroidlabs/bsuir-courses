@@ -16,7 +16,8 @@ def amount_numb(res, value_in_bit, last_number_in_mas)
   amount_numbers = 0
   number_of_units = 0
   count = last_number_in_mas
-  while number_of_units != res.to_i
+  loop do
+    break if number_of_units == res.to_i
     count -= amount_numbers
     number_of_units += 1 if value_in_bit[count] == "1"
     amount_numbers += 1
