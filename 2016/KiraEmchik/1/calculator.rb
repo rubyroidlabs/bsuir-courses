@@ -15,11 +15,10 @@ end
 def amount_numb(res, value_in_bit, last_number_in_mas)
   amount_numbers = 0
   number_of_units = 0
-  count = last_number_in_mas
   loop do
     break if number_of_units == res.to_i
-    count -= amount_numbers
-    number_of_units += 1 if value_in_bit[count] == "1"
+    last_number_in_mas -= amount_numbers
+    number_of_units += 1 if value_in_bit[last_number_in_mas] == "1"
     amount_numbers += 1
   end
   amount_numbers
