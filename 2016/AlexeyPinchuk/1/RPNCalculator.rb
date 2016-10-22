@@ -6,17 +6,16 @@ begin
 
   expression = gets.chomp
 
-  expression = expression.split(' ')
+  expression = expression.split(" ")
   expression.map do |x|
-    if /[0-9]/ =~ x
-      numbers.push(x.to_i)
+    numbers.push(x.to_i) if /[0-9]/ =~ x
     elsif %r{\+|\*|\/|\-|\!} =~ x
       operations.push(x.to_sym)
     end
   end
 
   if numbers.size != operations.size + 1
-    puts 'Incorrect expression!'
+    puts "Incorrect expression!"
   end
 
   operations = operations.reverse
@@ -31,13 +30,13 @@ begin
   when /\*/ then numbers.push(first_operand * second_operand)
   when %r{\/} then
     if second_operand.zero?
-      puts 'Division by zero!'
+      puts "ivision by zero!"
       exit
     else
       numbers.push(first_operand.to_f / second_operand.to_f)
     end
   when /\!/ then
-    while first_operand > 0
+    while first_operand.positive?
       bits.push(first_operand % 2)
       first_operand /= 2
     end
@@ -61,5 +60,5 @@ begin
     numbers.push(result_operand)
   end
   end
-puts 'Result: ' + numbers.pop.to_s
+puts "Result: " + numbers.pop.to_s
 end
