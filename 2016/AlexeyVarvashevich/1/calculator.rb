@@ -9,12 +9,16 @@ stack = []
 flag = false
 while stack.length > 1 || !flag
   element = gets.strip
-  if /\d/ =~ element
+  if /[A-Za-z]/ =~ element
+    puts "'#{element}' contains incorrect symbols. Please input number or operator."
+  elsif /\d/ =~ element
     stack.push(element.to_f)
   elsif %w(+ - / * !).include?(element) && stack.size > 1
     result = calc(stack.pop(2), element)
     stack.push(result)
     flag = true
+  elsif stack.size <= 1
+    puts "Not enough numbers to calculate. Please input number."
   else puts "Incorrect input.Enter the correct value."
   end
 end
