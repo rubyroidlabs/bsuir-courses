@@ -9,14 +9,16 @@ def reset_units(numbers, res)
   amount_numbers = amount_numb(res, value_in_bit, last_number_in_mas)
   res_in_string = value_in_bit[0..(last_number_in_mas - amount_numbers)]
   res_in_string += "0" * amount_numbers
-  res_in_string.to_i(base = 2)
+  res_in_string.to_i(2)
 end
 
 def amount_numb(res, value_in_bit, last_number_in_mas)
   amount_numbers = 0
   number_of_units = 0
+  count = last_number_in_mas
   while number_of_units != res.to_i
-    number_of_units += 1 if value_in_bit[last_number_in_mas - amount_numbers] == "1"
+    count -= amount_numbers
+    number_of_units += 1 if value_in_bit[count] == "1"
     amount_numbers += 1
   end
   amount_numbers
@@ -57,4 +59,4 @@ def run
   p res
 end
 
-runs
+run
