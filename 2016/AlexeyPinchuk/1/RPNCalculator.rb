@@ -68,25 +68,3 @@ while @numbers.size != 1
   end
 end
 puts "Result: " + @numbers.pop.to_s
-
-$operations = $operations.reverse
-
-while $numbers.size != 1
-  second_operand = $numbers.pop
-  first_operand = $numbers.pop
-
-  case $operations.pop
-  when /\+/ then $numbers.push(first_operand + second_operand)
-  when /\-/ then $numbers.push(first_operand - second_operand)
-  when /\*/ then $numbers.push(first_operand * second_operand)
-  when %r{\/} then
-    if second_operand.zero?
-      puts "ivision by zero!"
-      exit
-    else
-      $numbers.push(first_operand.to_f / second_operand.to_f)
-    end
-  when /\!/ then zeroBit(first_operand, second_operand)
-  end
-end
-puts "Result: " + $numbers.pop.to_s
