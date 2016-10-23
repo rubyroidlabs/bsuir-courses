@@ -4,6 +4,19 @@ def calc(dig, op)
   dig[0].send(op, dig[1])
 end
 
+def binar(num)
+  a = num[0].to_i.to_s(2).reverse!.split("")
+  a.map! do |cell|
+    if cell == "1" && num[1].positive?
+      num[1] -= 1
+      "0"
+    else
+      cell
+    end
+  end
+  a.reverse!.join.to_i(2)
+end
+
 puts "Enter expression separated by {Enter}. Supported operators '+ - / *'."
 stack = []
 flag = false
@@ -14,7 +27,11 @@ while stack.length > 1 || !flag
   elsif /\d/ =~ element
     stack.push(element.to_f)
   elsif %w(+ - / * !).include?(element) && stack.size > 1
-    result = calc(stack.pop(2), element)
+    if element == "!"
+      result = binar(stack.pop(2))
+    else
+      result = calc(stack.pop(2), element)
+    end
     stack.push(result)
     flag = true
   elsif stack.size <= 1
