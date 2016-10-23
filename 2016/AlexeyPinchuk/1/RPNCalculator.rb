@@ -7,7 +7,8 @@ expression = gets.chomp
 
 expression = expression.split(" ")
 expression.map do |x|
-  numbers.push(x.to_i) if /[0-9]/ =~ x
+  if /[0-9]/ =~ x
+    numbers.push(x.to_i)
   elsif %r{\+|\*|\/|\-|\!} =~ x
     operations.push(x.to_sym)
   end
