@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+
 def calc(dig, op)
   dig[0].send(op, dig[1])
 end
