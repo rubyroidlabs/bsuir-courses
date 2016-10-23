@@ -27,7 +27,7 @@ while stack.length > 1 || !flag
   elsif /\d/ =~ element
     stack.push(element.to_f)
   elsif %w(+ - / * !).include?(element) && stack.size > 1
-    if element == "!"
+    if "!" == element
       result = binar(stack.pop(2))
     else
       result = calc(stack.pop(2), element)
