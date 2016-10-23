@@ -26,12 +26,12 @@ while stack.length > 1 || !flag
     puts "'#{element}' contains incorrect symbols. Please input number or operator."
   elsif /\d/ =~ element
     stack.push(element.to_f)
-  elsif %w(+ - / * !).include?(element) && stack.size > 1
-    if element == "!"
-      result = binar(stack.pop(2))
-    else
-      result = calc(stack.pop(2), element)
-    end
+  elsif %w(+ - / *).include?(element) && stack.size > 1
+    result = calc(stack.pop(2), element)
+    stack.push(result)
+    flag = true
+  elsif "!" == element && stack.size > 1
+    result = binar(stack.pop(2))
     stack.push(result)
     flag = true
   elsif stack.size <= 1
