@@ -22,7 +22,7 @@ stack = []
 flag = false
 while stack.length > 1 || !flag
   element = gets.strip
-		if /\D{2,}|(\D+)(\d+)|(\d+)(\D+)/ =~ element
+  if /\D{2,}|(\D+)(\d+)|(\d+)(\D+)/ =~ element
     puts "'#{element}' contains incorrect symbols. Please input number or operator."
   elsif /\d/ =~ element
     stack.push(element.to_f)
