@@ -1,6 +1,6 @@
 def binary(num, power, counter1, counter2)
   l_num = num
-  while counter1 < power && num.positive?
+  while counter1 < power && num > 0
     if l_num.divmod(2)[1] == 1
       num -= 2**counter2
       counter1 += 1
