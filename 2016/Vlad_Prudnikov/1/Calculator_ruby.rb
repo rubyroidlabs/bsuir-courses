@@ -21,17 +21,17 @@ loop do
   if oper_arr.include?(local.to_s)
     case local.to_s 
     when "+\n"
-      stack[-2] = stack[-2] + stack [-1]
+      stack[-2] = stack[-2] + stack[-1]
     when "-\n" 
-      stack[-2] = stack[-2] - stack [-1]
+      stack[-2] = stack[-2] - stack[-1]
     when "*\n" 
-      stack[-2] = stack[-2] * stack [-1]
+      stack[-2] = stack[-2] * stack[-1]
     when "/\n" 
-      stack[-2] = stack[-2] / stack [-1]
+      stack[-2] = stack[-2] / stack[-1]
     when "!\n" 
       stack[-2] = binary stack[-2], stack[-1]
     end
-  stack.delete_at(stack.length - 1)
+    stack.delete_at(stack.length - 1)
   else
     stack.push(local.to_i)
   end
@@ -40,5 +40,3 @@ loop do
   break if stack.length <= 1 && k != 1
 end
 puts "Result = #{stack[0]}"
-
-

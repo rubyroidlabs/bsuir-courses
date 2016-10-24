@@ -40,5 +40,3 @@ loop do
   break if stack.length <= 1 && k != 1
 end
 puts "Result = #{stack[0]}"
-
-
