@@ -54,9 +54,3 @@ reverse_polish_notation.each do |element|
 end
 
 puts "The answer of this expression is #{expression_operands[0]}"   
-
-
-
-
-
-
