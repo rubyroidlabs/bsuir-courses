@@ -1,14 +1,8 @@
 def nul_bin(dec, count) # ! operation (changes '1' on '0')
-  ind = -1
-  i = 0
-  while i < count && !dec[ind].nil?
-    if dec[ind] == "1"
-      i += 1
-      dec[ind] = "0"
-    end
-    ind -= 1
+  1.upto(count) do
+  dec.sub!("1", "0")
   end
-  dec.to_s
+  dec.reverse.to_s
 end
 
 def oper(symbol, a, b)
