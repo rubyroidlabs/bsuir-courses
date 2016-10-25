@@ -1,60 +1,62 @@
-def operation_with_bits(value, number_od_bits)
-  bits = []
-  i = 0
-  new_value = 0
+# Partial RPilishCalc
+class RPolishCalculator
+def initialize
+  @operands = []
+end
 
-  while value.nonzero?
-    bits.push(value % 2)
-    value /= 2
-  end
-
-  while i != bits.size
-    if bits[i] == 1 && number_od_bits.nonzero?
-      bits[i] = 0
-      number_od_bits -= 1
+def operation_with_bits(value, n_of_zeros)
+  bin_str = value.to_s(2).reverse
+  bin_str.each_char do |bit|
+    if bit == "1"
+      bin_str[bit] = "0"
+      n_of_zeros -= 1
     end
-    i += 1
+    break if n_of_zeros < 1
   end
-
-  bits = bits.reverse
-  i = 0
-
-  while i != bits.size
-    new_value += bits[i] * (2**(bits.size - i - 1))
-    i += 1
-  end
-
-  new_value
+  bin_str.reverse.to_i(2)
 end
 
 def split_and_count
-  operands = []
-  x = gets.chomp
-  while x.match(/\w/) != true && (x.match(/^\d*$/) || x == "")
-    operands.push(x.to_i) unless x == ''
-    x = gets.chomp
-  end
-  while operands.size > 1
-    case x
-    when /\w/
-      abort("Syntax error. You can use only digits and operators like / * - + and ** for ^")
-    when "!"
-      sum = operands.pop(2)
-      operands.push(operation_with_bits(sum[0], sum[1]))
-
-    when "+", "-", "*", "/", "**"
-      sum = operands.pop(2)
-      operands.push(sum[0].send(x, sum[1]))
+  until (symbol = gets.chomp).nil?
+    if is_number?(symbol)
+      add_as_operand(symbol)
+    elsif @operands.size >= 2 && is_operation?(symbol)
+      perform_operation(symbol)
+      break unless @operands.size >= 2
     else
-      abort("Syntax error.")
+      puts("Invalid input. There should be more operands to perfom a calculation")
     end
-    break if operands.size == 1
-    x = gets.chomp
   end
-
-  abort("Syntax error.") if operands.size > 1 || operands.size.zero?
- 
-  puts "#=> #{operands[0]}"
 end
 
-split_and_count
+def show_result
+  puts "$ #{@operands[0]}"
+end
+
+private
+
+def operation?(sign)
+  sign =~ %r{[+\-*/!]}
+end
+
+def number?(symbol)
+  symbol =~ /^[-+]?[0-9]+$/
+end
+
+def add_as_operand(operand)
+  @operands.push(operand.to_i)
+end
+
+def perform_operation(sign)
+  sum = @operands.pop(2)
+  if sign == "!"
+    @operands. push(operation_with_bits(sum[0], sum[1]))
+  else
+    @operands. push(send_operation(sum[0], sum[1], sign))
+  end
+end
+
+def send_operation(first, second, operation)
+  first.send(operation, second)
+end
+end
