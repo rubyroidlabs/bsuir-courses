@@ -1,7 +1,5 @@
 def nul_bin(dec, count) # ! operation (changes '1' on '0')
-  1.upto(count) do
-  dec.sub!("1", "0")
-  end
+  1.upto(count) {dec.sub!("1", "0")}
   dec.reverse.to_s
 end
 
