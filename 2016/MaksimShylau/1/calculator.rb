@@ -22,9 +22,9 @@ def get_nums(a)
   end
   i
 end
-
-def res(a, i)
-  j = 0
+a = []
+i = get_nums(a)
+j = 0
   res = oper(a[i], a[i - 2].to_i, a[i - 1].to_i)
   ind = i
   1.upto(a.size - 3) do
@@ -33,9 +33,4 @@ def res(a, i)
     res = oper(a[i + j], a[ind - 3].to_i, res)
     ind -= 1
   end
-  res
-end
-a = []
-i = get_nums(a)
-res = res(a, i)
 puts "#=> " + res.to_s
