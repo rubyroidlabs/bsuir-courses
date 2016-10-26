@@ -12,20 +12,30 @@ def oper(symbol, a, b)
   when "!" then nul_bin(a.to_s(2), b).to_i(2)
   end
 end
-a = Array.new
-i = -1
-loop do
-  i += 1
-  a[i] = gets.chomp
+
+def get_nums(a)
+  i = -1
+  loop do
+    i += 1
+    a[i] = gets.chomp
   break if a[i] == "+" || a[i] == "-" || a[i] == "*" || a[i] == "/" || a[i] == "!"
+  end
+  return i
 end
-j = 0
-res = oper(a[i], a[i - 2].to_i, a[i - 1].to_i)
-ind = i
-1.upto(a.size - 3) do
-  j += 1
-  a[i + j] = gets.chomp
-  res = oper(a[i + j], a[ind - 3].to_i, res)
-  ind -= 1
+
+def get_opers_and_res(a, i)
+  j = 0
+  res = oper(a[i], a[i - 2].to_i, a[i - 1].to_i)
+  ind = i
+  1.upto(a.size - 3) do
+    j += 1
+    a[i + j] = gets.chomp
+    res = oper(a[i + j], a[ind - 3].to_i, res)
+    ind -= 1
+  end
+  return res
 end
+a = Array.new
+i = get_nums(a)
+res = get_opers_and_res(a, i)
 puts "#=> " + res.to_s
