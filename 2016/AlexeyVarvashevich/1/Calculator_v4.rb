@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 
 def calc(dig, op)
-  dig[0].send(op, dig[1])
+  if "^" == op
+    dig[0] ** dig[1]
+  else dig[0].send(op, dig[1])
+  end
 end
 
 def binar(num)
@@ -10,23 +13,20 @@ def binar(num)
     if cell == "1" && num[1].positive?
       num[1] -= 1
       "0"
-    else
-      cell
+    else cell
     end
   end
   a.reverse!.join.to_i(2)
 end
 
-puts "Enter expression separated by {Enter}. Supported operators '+ - / *'."
+puts "You're running a calculator based on RPN (Reverse Polish Notation).\n Enter expression separated by {Enter}. Supported operators '+ - / * ! ^'."
 stack = []
 flag = false
 while stack.length > 1 || !flag
   element = gets.strip
-  if /\D{2,}|(\D+)(\d+)|(\d+)(\D+)/ =~ element
-    puts "'#{element}' contains incorrect symbols. Please input number or operator."
-  elsif /\d/ =~ element
+  if /^[-]?\d(\d)*?$|^[-]?\d*\.{1}\d*$/ =~ element
     stack.push(element.to_f)
-  elsif %w(+ - / *).include?(element) && stack.size > 1
+  elsif %w(+ - / * ^).include?(element) && stack.size > 1
     result = calc(stack.pop(2), element)
     stack.push(result)
     flag = true
@@ -36,7 +36,7 @@ while stack.length > 1 || !flag
     flag = true
   elsif stack.size <= 1
     puts "Not enough numbers to calculate. Please input number."
-  else puts "Incorrect input.Enter the correct value."
+  else puts "'#{element}' contains incorrect symbols. Please input number or operator."
   end
 end
 
