@@ -24,6 +24,7 @@ def get_nums(a)
 end
 
 def result(a, i, ind, res)
+  j = 0
   1.upto(a.size - 3) do
     j += 1
     a[i + j] = gets.chomp
@@ -32,9 +33,8 @@ def result(a, i, ind, res)
   end
   res
 end
-a = Array.new
+a = []
 i = get_nums(a)
-j = 0
 res = oper(a[i], a[i - 2].to_i, a[i - 1].to_i)
 ind = i
 res = result(a, i, ind, res)
