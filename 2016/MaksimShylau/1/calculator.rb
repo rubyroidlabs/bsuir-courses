@@ -22,15 +22,20 @@ def get_nums(a)
   end
   i
 end
-a = []
+
+def result(a, i, ind, res)
+  1.upto(a.size - 3) do
+    j += 1
+    a[i + j] = gets.chomp
+    res = oper(a[i + j], a[ind - 3].to_i, res)
+    ind -= 1
+  end
+  res
+end
+a = Array.new
 i = get_nums(a)
 j = 0
 res = oper(a[i], a[i - 2].to_i, a[i - 1].to_i)
 ind = i
-1.upto(a.size - 3) do
-  j += 1
-  a[i + j] = gets.chomp
-  res = oper(a[i + j], a[ind - 3].to_i, res)
-  ind -= 1
-end
+res = result(a, i, ind, res)
 puts "#=> " + res.to_s
