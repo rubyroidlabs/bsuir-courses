@@ -12,7 +12,7 @@ def oper(symbol, a, b)
   when "!" then nul_bin(a.to_s(2), b).to_i(2)
   end
 end
-a = []
+a = Array.new
 i = -1
 loop do
   i += 1
