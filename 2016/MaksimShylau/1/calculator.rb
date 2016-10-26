@@ -23,7 +23,7 @@ def get_nums(a)
   i
 end
 
-def get_opers_and_res(a, i)
+def res(a, i)
   j = 0
   res = oper(a[i], a[i - 2].to_i, a[i - 1].to_i)
   ind = i
@@ -37,5 +37,5 @@ def get_opers_and_res(a, i)
 end
 a = []
 i = get_nums(a)
-res = get_opers_and_res(a, i)
+res = res(a, i)
 puts "#=> " + res.to_s
