@@ -3,4 +3,8 @@ source "https://rubygems.org"
 gem 'telegram-bot-ruby'
 gem 'redis'
 gem 'logger'
+gem 'redis'
+gem 'json'
+gem 'byebug'
+
 # gem "rails"
