@@ -16,11 +16,11 @@ end
 def get_nums(a)
   i = -1
   loop do
-    i += 1
-    a[i] = gets.chomp
+  i += 1
+  a[i] = gets.chomp
   break if a[i] == "+" || a[i] == "-" || a[i] == "*" || a[i] == "/" || a[i] == "!"
   end
-  return i
+  i
 end
 
 def get_opers_and_res(a, i)
@@ -33,9 +33,9 @@ def get_opers_and_res(a, i)
     res = oper(a[i + j], a[ind - 3].to_i, res)
     ind -= 1
   end
-  return res
+  res
 end
-a = Array.new
+a = []
 i = get_nums(a)
 res = get_opers_and_res(a, i)
 puts "#=> " + res.to_s
