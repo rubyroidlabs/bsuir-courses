@@ -16,9 +16,9 @@ end
 def get_nums(a)
   i = -1
   loop do
-  i += 1
-  a[i] = gets.chomp
-  break if a[i] == "+" || a[i] == "-" || a[i] == "*" || a[i] == "/" || a[i] == "!"
+    i += 1
+    a[i] = gets.chomp
+    break if a[i] == "+" || a[i] == "-" || a[i] == "*" || a[i] == "/" || a[i] == "!"
   end
   i
 end
