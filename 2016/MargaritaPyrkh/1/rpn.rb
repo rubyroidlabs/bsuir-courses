@@ -2,7 +2,7 @@ def sum(operand)
   return operand[0].to_f + operand[1].to_f
 end
 
-# mul func
+# mul func 
 def multiplication(operand)
   return operand[0].to_f * operand[1].to_f
 end
