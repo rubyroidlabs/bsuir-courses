@@ -33,7 +33,7 @@ def show_result
   puts "$ #{@operands[0]}"
 end
 
-  private
+private
 
   def operation?(sign)
     sign =~ %r{[+\-*/!]}
