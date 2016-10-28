@@ -2,7 +2,7 @@
 
 def calc(digits, operator)
   if "^" == operator
-    digits[0] ** digits[1]
+    digits[0]**digits[1]
   else digits[0].send(operator, digits[1])
   end
 end
