@@ -33,30 +33,30 @@ def show_result
   puts "$ #{@operands[0]}"
 end
 
-private
+  private
 
-def operation?(sign)
-  sign =~ %r{[+\-*/!]}
-end
-
-def number?(symbol)
-  symbol =~ /^[-+]?[0-9]+$/
-end
-
-def add_as_operand(operand)
-  @operands.push(operand.to_i)
-end
-
-def perform_operation(sign)
-  sum = @operands.pop(2)
-  if sign == "!"
-    @operands. push(operation_with_bits(sum[0], sum[1]))
-  else
-    @operands. push(send_operation(sum[0], sum[1], sign))
+  def operation?(sign)
+    sign =~ %r{[+\-*/!]}
   end
-end
 
-def send_operation(first, second, operation)
-  first.send(operation, second)
-end
+  def number?(symbol)
+    symbol =~ /^[-+]?[0-9]+$/
+  end
+
+  def add_as_operand(operand)
+    @operands.push(operand.to_i)
+  end
+
+  def perform_operation(sign)
+    sum = @operands.pop(2)
+    if sign == "!"
+      @operands. push(operation_with_bits(sum[0], sum[1]))
+    else
+      @operands. push(send_operation(sum[0], sum[1], sign))
+    end
+  end
+
+  def send_operation(first, second, operation)
+    first.send(operation, second)
+  end
 end
