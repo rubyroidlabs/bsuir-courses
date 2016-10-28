@@ -4,16 +4,16 @@ class RPolishCalculator
     @operands = []
   end
 
-  def operation_with_bits(value, n_of_zeros)
-    bin_str = value.to_s(2).reverse
-    bin_str.each_char do |bit|
+  def operation_with_bits(value, num_of_zeros)
+    binary_str = value.to_s(2).reverse
+    binary_str.each_char do |bit|
       if bit == "1"
-        bin_str[bit] = "0"
-        n_of_zeros -= 1
+        binary_str[bit] = "0"
+        num_of_zeros -= 1
       end
-      break if n_of_zeros < 1
+      break if num_of_zeros < 1
     end
-    bin_str.reverse.to_i(2)
+    binary_str.reverse.to_i(2)
   end
 
   def split_and_count
