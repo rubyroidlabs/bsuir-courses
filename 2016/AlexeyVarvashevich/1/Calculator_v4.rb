@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-def calc(dig, op)
-  if "^" == op
-    dig[0] ** dig[1]
-  else dig[0].send(op, dig[1])
+def calc(digits, operator)
+  if "^" == operator
+    digits[0] ** digits[1]
+  else digits[0].send(operator, digits[1])
   end
 end
 
