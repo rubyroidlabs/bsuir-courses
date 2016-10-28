@@ -1,4 +1,4 @@
-# Partial RPolishCalc
+# Partial RPolishCalculator
 class RPolishCalculator
   def initialize
     @operands = []
