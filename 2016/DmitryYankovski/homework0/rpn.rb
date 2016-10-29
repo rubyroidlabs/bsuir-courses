@@ -4,7 +4,7 @@ loop do
   input_string = gets.strip
   case input_string
   when /-?\d(\.?\d+)?/
-    puts 'argument add'
+    puts "argument add"
     stack.push(input_string.to_f)
   when "+", "*", "/", "-"
     if stack.count < 2
