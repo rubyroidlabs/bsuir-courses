@@ -4,8 +4,9 @@ class Status < Command
 		@str = []
 		@to_do = nil
 	end
+
   def must_be_done(labs_count, sem_start, sem_end)
-	  time_start = Time.new(sem_start.year, sem_start.month, sem_start.day)
+    time_start = Time.new(sem_start.year, sem_start.month, sem_start.day)
 		time_end = Time.new(sem_end.year, sem_end.month, sem_end.day)
 		time_now = Time.new
 		k = ((time_now - time_start).to_f) / (time_end-time_start).to_f
