@@ -1,3 +1,4 @@
+# It can send messages
 class Reset < Command
 	def initialize(bot, message, redis, id)
 		super(bot, message)
