@@ -63,11 +63,11 @@ class DateParser
 	  return true
   end
 
-  def self.is_correct_count?(labs_count)
+  def self.correct_count?(labs_count)
 	  if labs_count.to_i <= 0 || labs_count.to_i > 25 then return false end
 	  return true
   end
-	attr_accessor :day
-	attr_accessor :month
-	attr_accessor :year
+  attr_accessor :day
+  attr_accessor :month
+  attr_accessor :year
 end

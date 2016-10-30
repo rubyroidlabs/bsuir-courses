@@ -40,7 +40,7 @@ class User
       redis.set(id, hash.to_json)
       return true
     when "wanns_labs_count"
-      if !DateParser.is_correct_count?(message.text)
+      if !DateParser.correct_count?(message.text)
       	command.send_message("*Некорректный ввод*. Попробуй ещё раз")
         return true
       end
