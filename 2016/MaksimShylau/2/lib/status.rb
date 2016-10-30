@@ -12,7 +12,7 @@ class Status < Command
     k = ((time_now - time_start).to_f) / (time_end-time_start).to_f
     to_do = k * labs_count.to_i
     to_do = to_do.to_i + 1
-    if to_do > labs_count.to_i
+  if to_do > labs_count.to_i
 	  to_do = labs_count.to_i
 	elsif to_do.negative?
 	  to_do = 0
