@@ -7,7 +7,7 @@ def multiplication(operand)
 end
 
 def division(operand)
-  roperand[0].to_f / operand[1].to_f
+  operand[0].to_f / operand[1].to_f
 end
 
 def subtraction(operand)
