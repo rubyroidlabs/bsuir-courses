@@ -4,7 +4,7 @@ class Semester < Command
 		super(bot, message)
 		sem_start = nil
 		sem_end = nil
-	end
-	attr_accessor :sem_start
-	attr_accessor :sem_end
+  end
+  attr_accessor :sem_start
+  attr_accessor :sem_end
 end
