@@ -17,8 +17,8 @@ class Status < Command
 		elsif to_do < 0
 			to_do = 0
 		end
-    return to_do
-	end
-	attr_accessor :str
+    to_do
+  end
+  attr_accessor :str
   attr_accessor :hash
 end
