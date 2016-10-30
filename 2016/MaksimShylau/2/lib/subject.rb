@@ -10,6 +10,6 @@ class Subject < Command
 
 	attr_accessor :name
 	attr_accessor :labs_count
-    attr_accessor :done
-    attr_accessor :to_do
+  attr_accessor :done
+  attr_accessor :to_do
 end

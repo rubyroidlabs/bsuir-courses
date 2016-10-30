@@ -67,7 +67,7 @@ class TelegramBot
             next
           end
           if hash["subject_count"] == 0
-                  status.send_message("Сначала укажи предметы (/subject)")
+            status.send_message("Сначала укажи предметы (/subject)")
             next
           end
           sem_start = DateParser.new(hash["sem_start"])
