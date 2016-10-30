@@ -1,8 +1,8 @@
 class Status < Command
   def initialize(bot, message)
-	  super(bot, message)
-	  @str = []
-	  @to_do = nil
+    super(bot, message)
+    @str = []
+    @to_do = nil
   end
 
   def must_be_done(labs_count, sem_start, sem_end)
