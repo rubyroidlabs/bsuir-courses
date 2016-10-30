@@ -49,9 +49,7 @@ class User
       hash["user_status"] = nil
       redis.set(id, hash.to_json)
       return true
-      else then return false
-	end
-	end
+    end
 	attr_accessor :id
 	attr_accessor :status
 end
