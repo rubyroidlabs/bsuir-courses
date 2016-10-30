@@ -6,8 +6,6 @@ class Subject < Command
 		@done = 0
 		@to_do = 0
 	end
-
-
 	attr_accessor :name
 	attr_accessor :labs_count
   attr_accessor :done
