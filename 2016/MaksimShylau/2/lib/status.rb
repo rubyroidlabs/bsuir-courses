@@ -1,3 +1,4 @@
+# It can send messages
 class Status < Command
   def initialize(bot, message)
     super(bot, message)
