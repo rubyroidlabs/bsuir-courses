@@ -13,9 +13,9 @@ class Status < Command
 		to_do = k * labs_count.to_i
 		to_do = to_do.to_i + 1
 		if to_do > labs_count.to_i
-			to_do = labs_count.to_i
-		elsif to_do < 0
-			to_do = 0
+		  to_do = labs_count.to_i
+		elsif to_do.negative?
+		  to_do = 0
 		end
     to_do
   end
