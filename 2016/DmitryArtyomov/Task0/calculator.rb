@@ -48,8 +48,7 @@ end
 
 # process user IO
 def user_io(input, stack)
-  case input
-  when '+', '-', '*', '/', '!'
+  if %w(+ - / * !).include?(input)
     res = operation(input, stack)
     # if after an operation there is only 1 element in stack, it
     # means that it's the end of expression and need to print the answer
