@@ -2,8 +2,8 @@ class DateParser
 	def initialize(date)
 		timeAr = []
 		0.upto(2) do |i|
-		  timeAr[i] = date[0..date.index('.').to_i-1]
-		  date = date[(date.index('.').to_i+1)..date.size]
+		  timeAr[i] = date[0..date.index(".").to_i-1]
+		  date = date[(date.index(".").to_i+1)..date.size]
 	  end
 	  @day = timeAr[0].to_i
 	  @month = timeAr[1].to_i
@@ -51,10 +51,10 @@ class DateParser
 	def self.is_correct?(date)
     if (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? then return false end
     timeAr = []
-    if date.index('.').nil? then return false end
+    if date.index(".").nil? then return false end
     0.upto(2) do |i|
-		  timeAr[i] = date[0..date.index('.').to_i-1]
-		  date = date[(date.index('.').to_i+1)..date.size]
+		  timeAr[i] = date[0..date.index(".").to_i-1]
+		  date = date[(date.index(".").to_i+1)..date.size]
 	  end
 	  day = timeAr[0].to_i
 	  month = timeAr[1].to_i

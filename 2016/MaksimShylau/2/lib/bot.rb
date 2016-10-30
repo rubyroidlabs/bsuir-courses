@@ -1,17 +1,17 @@
-require 'rubygems'
-require 'telegram/bot'
-require 'redis'
-require 'json'
-require_relative 'db'
-require_relative 'command'
-require_relative 'user'
-require_relative 'start'
-require_relative 'data'
-require_relative 'parse_date'
-require_relative 'semester'
-require_relative 'subject'
-require_relative 'status'
-require_relative 'reset'
+require "rubygems"
+require "telegram/bot"
+require "redis"
+require "json"
+require_relative "db"
+require_relative "command"
+require_relative "user"
+require_relative "start"
+require_relative "data"
+require_relative "parse_date"
+require_relative "semester"
+require_relative "subject"
+require_relative "status"
+require_relative "reset"
 
 HELLO = "*Привет*. Я тебе смогу помочь сдать все лабы, чтобы мамка не ругалась. Смотри список что я умею:
 /start - выводит приветствие и описание всех доступных команд
@@ -37,9 +37,9 @@ class TelegramBot
         if user.check_status(user.status, user.id, hash, db.redis, command, message, subject_count) then next end
         db.set_hash(hash, user.id)
         case message.text
-        when '/start' # годнота
+        when "/start" # годнота
           start = Start.new(bot, message, HELLO)
-        when '/semester' # годнота
+        when "/semester" # годнота
           hash = db.get_hash(user.id)
           sem = Semester.new(bot, message)
           sem.sem_start = hash["sem_start"]
@@ -53,13 +53,13 @@ class TelegramBot
           start_parse = DateParser.new(hash["sem_start"])
           end_parse = DateParser.new(hash["sem_end"])
           command.send_message(DateParser.difference(end_parse, start_parse))
-        when '/subject' # годнота
+        when "/subject" # годнота
           hash = db.get_hash(user.id)
           command.send_message(WHAT_SUBJECT)
           hash["user_status"] = "wanna_subject"
           db.set_hash(hash, user.id)
           next
-        when '/status' # годнота
+        when "/status" # годнота
           hash = db.get_hash(user.id)
           status = Status.new(bot, message)
           if hash["sem_start"].nil?
@@ -80,7 +80,7 @@ class TelegramBot
           p hash 
           status.send_message(DO_IT)
           db.set_hash(hash, user.id)
-        when '/reset'
+        when "/reset"
           Reset.new(bot, message, db.redis, user.id)
         else
           command.send_message("Моя твоя не понимать")
