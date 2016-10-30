@@ -1,25 +1,25 @@
 class DateParser
 	def initialize(date)
-		timeAr = []
+		time_ar = []
 		0.upto(2) do |i|
-		  timeAr[i] = date[0..date.index(".").to_i-1]
+		  time_ar[i] = date[0..date.index(".").to_i-1]
 		  date = date[(date.index(".").to_i+1)..date.size]
 	  end
-	  @day = timeAr[0].to_i
-	  @month = timeAr[1].to_i
-	  @year = timeAr[2].to_i
+	  @day = time_ar[0].to_i
+	  @month = time_ar[1].to_i
+	  @year = time_ar[2].to_i
 	end
 
 	def self.difference(date_end, date_start)
 		year_diff = date_end.year - date_start.year
 		if date_end.month - date_start.month < 0
-			year_diff-=1
+			year_diff -= 1
 			month_diff = date_end.month - date_start.month + 12
 	  else 
 	  	month_diff = date_end.month - date_start.month
 	  end
 	  if date_end.day - date_start.day < 0
-			month_diff-=1
+			month_diff -= 1
 			day_diff = date_end.day - date_start.day + 30
 	  else 
 	  	day_diff = date_end.day - date_start.day
@@ -50,24 +50,23 @@ class DateParser
 
 	def self.is_correct?(date)
     if (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? then return false end
-    timeAr = []
+    time_ar = []
     if date.index(".").nil? then return false end
     0.upto(2) do |i|
-		  timeAr[i] = date[0..date.index(".").to_i-1]
-		  date = date[(date.index(".").to_i+1)..date.size]
+		  time_ar[i] = date[0..date.index(".").to_i - 1]
+		  date = date[(date.index(".").to_i + 1)..date.size]
 	  end
-	  day = timeAr[0].to_i
-	  month = timeAr[1].to_i
-	  year = timeAr[2].to_i
+	  day = time_ar[0].to_i
+	  month = time_ar[1].to_i
+	  year = time_ar[2].to_i
 	  if day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1 then return false end
 	  return true
   end
 
-  	def self.is_correct_count?(labs_count)
+  def self.is_correct_count?(labs_count)
 	  if labs_count.to_i <= 0 || labs_count.to_i > 25 then return false end
 	  return true
   end
-
 	attr_accessor :day
 	attr_accessor :month
 	attr_accessor :year
