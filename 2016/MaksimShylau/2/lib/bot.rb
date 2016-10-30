@@ -37,9 +37,9 @@ class TelegramBot
         if user.check_status(user.status, user.id, hash, db.redis, command, message, subject_count) then next end
         db.set_hash(hash, user.id)
         case message.text
-        when "/start" # годнота
+        when "/start"
           start = Start.new(bot, message, HELLO)
-        when "/semester" # годнота
+        when "/semester"
           hash = db.get_hash(user.id)
           sem = Semester.new(bot, message)
           sem.sem_start = hash["sem_start"]
@@ -53,20 +53,20 @@ class TelegramBot
           start_parse = DateParser.new(hash["sem_start"])
           end_parse = DateParser.new(hash["sem_end"])
           command.send_message(DateParser.difference(end_parse, start_parse))
-        when "/subject" # годнота
+        when "/subject"
           hash = db.get_hash(user.id)
           command.send_message(WHAT_SUBJECT)
           hash["user_status"] = "wanna_subject"
           db.set_hash(hash, user.id)
           next
-        when "/status" # годнота
+        when "/status"
           hash = db.get_hash(user.id)
           status = Status.new(bot, message)
           if hash["sem_start"].nil?
             status.send_message("Сначала укажи границы семестра (/semester)")
             next
           end
-          if hash["subject_count"] == 0
+          if hash["subject_count"].zero?
             status.send_message("Сначала укажи предметы (/subject)")
             next
           end
@@ -74,10 +74,10 @@ class TelegramBot
           sem_end = DateParser.new(hash["sem_end"])
           status.send_message("К этому времени у тебя должно быть сдано:")
           1.upto(hash["subject_count"]) do |i|
-            hash["subject"][i-1]["to_do"] = status.must_be_done(hash["subject"][i-1]["labs_count"], sem_start, sem_end)
-            status.send_message("*" + hash["subject"][i-1]["subject_name"].to_s + "* - *" + hash["subject"][i-1]["to_do"].to_s + "* из *" + hash["subject"][i-1]["labs_count"].to_s + "*")
+            hash["subject"][i - 1]["to_do"] = status.must_be_done(hash["subject"][i - 1]["labs_count"], sem_start, sem_end)
+            status.send_message("*" + hash["subject"][i - 1]["subject_name"].to_s + "* - *" + hash["subject"][i - 1]["to_do"].to_s + "* из *" + hash["subject"][i - 1]["labs_count"].to_s + "*")
           end
-          p hash 
+          p hash
           status.send_message(DO_IT)
           db.set_hash(hash, user.id)
         when "/reset"
