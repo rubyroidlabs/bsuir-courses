@@ -1,7 +1,7 @@
 # Module for storing private keys
 module Secret
   # telegram
-  TELEGRAM_TOKEN = ''
+  TOKEN = ''
 
   #redis
   REDIS_HOST = ''
