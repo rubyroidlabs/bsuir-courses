@@ -3,7 +3,7 @@ stack = []
 loop do
   input_string = gets.strip
   case input_string
-  when /-?\d(\.?\d+)?/
+  when /^-?\d(\.?\d+)?/
     puts "argument add"
     stack.push(input_string.to_f)
   when "+", "*", "/", "-"
