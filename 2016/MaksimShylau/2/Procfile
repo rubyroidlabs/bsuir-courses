@@ -1,1 +1,1 @@
-app: bundle exec ruby run.rb -p $PORT
+worker: bundle exec ruby run.rb
