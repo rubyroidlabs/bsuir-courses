@@ -1,3 +1,4 @@
+# Simple command that sends messages
 class Command
   def initialize(bot, message)
 	@bot = bot
