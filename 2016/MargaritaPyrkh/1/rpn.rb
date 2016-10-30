@@ -18,7 +18,7 @@ def nulling(operand)
   counter = 0
   number_of_bits = 0
   until counter == operand[1]
-    if (operand[0] % 2) == 1
+    if operand[0].odd
       counter += 1
     end
     operand[0] = operand[0] / 2
