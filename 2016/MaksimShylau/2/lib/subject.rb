@@ -1,3 +1,4 @@
+# It can send messages
 class Subject < Command
   def initialize(bot, message, name)
 	super(bot, message)
