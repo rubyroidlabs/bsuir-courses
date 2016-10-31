@@ -32,8 +32,8 @@ class User
     when "wanna_subject"
       subject_count += 1
       hash["subject_count"] = subject_count
-      hash["subject"][subject_count-1]={}
-      hash["subject"][subject_count-1]["subject_name"] = message.text
+      hash["subject"][subject_count - 1]={}
+      hash["subject"][subject_count - 1]["subject_name"] = message.text
       command.send_message("Название предмета — *#{message.text}*")
       command.send_message(HOW_MANY_LABS)
       hash["user_status"] = "wanns_labs_count"
@@ -44,7 +44,7 @@ class User
         command.send_message("*Некорректный ввод*. Попробуй ещё раз")
         return true
       end
-      hash["subject"][subject_count-1]["labs_count"] = message.text
+      hash["subject"][subject_count - 1]["labs_count"] = message.text
       command.send_message("Количество лаб — *#{message.text}*")
       hash["user_status"] = nil
       redis.set(id, hash.to_json)
