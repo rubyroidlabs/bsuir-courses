@@ -1,7 +1,7 @@
 require 'json'
 
 class User
-  attr_accessor :id, :sem_phase, :sem_start, :sem_end, :sem_process_now, :subjects
+  attr_accessor :id, :sem, :subjects
 
   def initialize(id)
   	@id = id
@@ -16,11 +16,19 @@ class User
   end
 
   def fill_attrs(params)
-  	@sem_start = params.fetch("sem_start", nil)
-    @sem_end = params.fetch("sem_end", nil)
-    @sem_process_now = params.fetch("sem_process_now", false)
-    @sem_phase = params.fetch("sem_phase", 0)
-    @subjects = params.fetch("subjects", nil)
+  	puts params.inspect
+  	fill_sem_attrs params
+    @subjects = params.fetch('subjects', nil)
+  end
+
+  def fill_sem_attrs(params)
+	@sem = params.fetch('sem', Hash.new)
+	if @sem.empty?
+	  	@sem["start"] = nil
+	    @sem["end"] = nil
+	    @sem["is_now?"] = false
+	    @sem["phase"] = 0
+	end
   end
 
   def save

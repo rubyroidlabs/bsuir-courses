@@ -31,7 +31,8 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
 
   def action_process(text)
     puts 'IN ACTION_PROCESS.'
-    if @user.sem_process_now
+    puts @user.to_hash
+    if @user.sem["is_now?"]
       return semester_process(text)
     end
     case text

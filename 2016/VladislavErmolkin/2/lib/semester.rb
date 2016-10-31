@@ -16,7 +16,7 @@ class Semester < Action
 	end
 
 	def text_validation
-		case @user.sem_phase
+		case @user.sem["phase"]
 		when 0
 			if @text.gsub("\n", "") == '/semester'
 				return true
@@ -33,27 +33,27 @@ class Semester < Action
 		puts 'IN RUN'
 		puts "text_validation returns #{text_validation}."
 		if !text_validation
-			@user.sem_phase = 0
-			@user.sem_process_now = false
+			@user.sem["phase"] = 0
+			@user.sem["is_now?"] = false
 			@user.save
 			return nil
 		end
-		case @user.sem_phase
+		case @user.sem["phase"]
 		when 0
-			@user.sem_phase += 1
-			@user.sem_process_now = true
+			@user.sem["phase"] += 1
+			@user.sem["is_now?"] = true
 			result = 'Когда начинаем учиться?'
 		when 1
-			@user.sem_start = @text.gsub("\n", "")
-			@user.sem_phase += 1
+			@user.sem["start"] = @text.gsub("\n", "")
+			@user.sem["phase"] += 1
 			result = 'Когда надо сдать все лабы?'
 		when 2
-			@user.sem_end = @text.gsub("\n", "")
-			@user.sem_phase = 0
-			@user.sem_process_now = false
-			result = native_difference generate_difference @user.sem_start, @user.sem_end
+			@user.sem["end"] = @text.gsub("\n", "")
+			@user.sem["phase"] = 0
+			@user.sem["is_now?"] = false
+			result = native_difference generate_difference @user.sem["start"], @user.sem["end"]
 		end
-		puts "In run sem_phase = #{@user.sem_phase}."
+		puts "In run sem[\"phase\"] = #{@user.sem["phase"]}."
 		@user.save
 		result
 	end
