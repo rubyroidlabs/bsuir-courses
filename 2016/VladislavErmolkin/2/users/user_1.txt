@@ -1,0 +1,1 @@
+{"sem_start":"2016-09-01\n","sem_end":"2016-11-25\n","sem_phase":0,"subjects":["math","english"]}

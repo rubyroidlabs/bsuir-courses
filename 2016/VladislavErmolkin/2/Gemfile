@@ -2,3 +2,8 @@
 source "https://rubygems.org"
 
 gem 'telegram-bot-ruby'
+gem 'json'
+gem 'redis'
+gem 'redis-namespace'
+gem 'webrick'
+gem 'time_difference'
