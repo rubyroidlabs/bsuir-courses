@@ -3,8 +3,8 @@ class Database
   def initialize(id)
     user = User.new(id)
     @redis = Redis.new(url: ENV["redis://h:phl40bf5cs3286b1h8pflrroll@ec2-46-51-184-223.eu-west-1.compute.amazonaws.com:8139"])
-    if !@redis.get(user.id).nil?
-      hash = JSON.parse(@redis.get(user.id)).to_hash
+    hash = if !@redis.get(user.id).nil?
+      JSON.parse(@redis.get(user.id)).to_hash
     else hash = {}
     end
     if hash["subject"].nil? then hash["subject"] = [{}] end
