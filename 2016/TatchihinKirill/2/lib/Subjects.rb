@@ -49,7 +49,7 @@ class SubjectsCommand < MainCommand
           bot.api.send_message(chat_id: message.chat.id, text: "У тебя уже есть этот предмет в списке сдаваемых")
         end
       else
-        bot.api.send_message(chat_id: message.chat.id, text: "Пссс. количество лаб надо вводить числом(или цифрой). Давай по новой")
+        bot.api.send_message(chat_id: message.chat.id, text: "Пссс. количество лаб надо вводить числом(или цифрой). Давай по новой(еще их не может быть больше 40)")
         user_action = 'count_of_labs'
       end
     end

@@ -60,8 +60,10 @@ class SemesterCommand < MainCommand
       result
     end
     def open_file(id)
-      result_file = IO.readlines("./users/#{id}", "a+")
-      result_file
+      result_file = File.open("./users/#{id}", "a+")
+      array_of_lines = result_file.readlines
+      result_file.close
+      array_of_lines
     end
     def check_client(id, user_start_semester, user_end_semester, user_action)
       id_file = SemesterCommand.open_file(id)
