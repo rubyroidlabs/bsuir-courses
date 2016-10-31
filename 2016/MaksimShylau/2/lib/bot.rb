@@ -24,6 +24,7 @@ WHAT_SUBJECT = "Какой предмет учим?"
 HOW_MANY_LABS = "Сколько лаб надо сдать?"
 DO_IT = "Давай поднажмём! :)"
 DELETED = "Все данные удалены"
+# Bot logic
 class TelegramBot
   def initialize
     Telegram::Bot::Client.run(TOKEN) do |bot|
