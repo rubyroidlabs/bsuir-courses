@@ -9,7 +9,7 @@ class Database
     subject = hash["subject"]
     if subject.nil?
       subject = []
-      hash["subject"]=[{}]
+      hash["subject"] = [{}]
     end
     subject_count = hash["subject_count"]
     if hash["subject_count"].nil? then hash["subject_count"] = 0 end
