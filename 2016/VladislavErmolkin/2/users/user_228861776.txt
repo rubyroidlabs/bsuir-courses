@@ -1,0 +1,1 @@
+{"id":228861776,"sem_start":"2016-09-01","sem_end":"2016-11-25","sem_process_now":false,"sem_phase":0,"subjects":null}

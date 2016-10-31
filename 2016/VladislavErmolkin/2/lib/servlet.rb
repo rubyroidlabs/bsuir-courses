@@ -1,59 +1,60 @@
 require_relative 'start'
 require_relative 'semester'
-DATE_REGEX = /^\d{2,4}-\d{1,2}-\d{1,2}$/
+require_relative 'user'
 
 class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def initialize server, bot
     super server
     @bot = bot
-    @semester_process_now = false
   end
 
   def do_POST(request, response)
     body = JSON.parse request.body.gsub("\n", " ")
     putsmth body
     body =  Telegram::Bot::Types::Update.new(body)
-    handler body.message 
+    @user = User.new(body.message.from.id)
+    handler body.message
+    @user.save
     response.status = 200
     response.body = 'Success.'
   end
- 
- 
+
   def handler(message)
-    if message.nil? then return
-    answer = case @semester_process_now
-    when true then semester_process(message)
-    when false then action_process(message)
+    if message.nil?
+      return nil
     end
-    @bot.api.send_message(chat_id: message.from.id, text: answer)
+    puts 'IN HANDLER.'
+    answer = action_process(message.text)
+    @bot.api.send_message(chat_id: @user.id, text: answer)
   end
 
-  def action_process(message)
-    case message.text
+
+  def action_process(text)
+    puts 'IN ACTION_PROCESS.'
+    if @user.sem_process_now
+      return semester_process(text)
+    end
+    case text
     when '/start' then Start.new.run
     when '/semester'
-      @semester_process_now = true
-      Semester.new(message.from.id, message.text).run
+      semester_process(text)
     else
       "Don't panic. You've got to know where your towel is."
     end
   end
 
-  def semester_process(message)
-    if is_date? message.text do
-      sem = Semester.new(message.from.id, message.text)
-      result = sem.run
-      @semester_process_now = false if sem.user.sem_phase == 0
+  def semester_process(text)
+    puts 'IN SEMESTER_PROCESS.'
+    sem = Semester.new(@user, text)
+    result = sem.run
+    puts "semester_process_now is #{@semester_process_now}."
+    if result == nil 
+      return 'I don\'t know this date.' 
+    else 
       return result
-    else 'I don\'t know this date.'
     end
   end
 
-  def is_date?(string)
-    if string.match(DATE_REGEX) then true
-    else false
-    end
-  end
 end
 
 

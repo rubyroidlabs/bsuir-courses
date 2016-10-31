@@ -1,11 +1,34 @@
-class User
-  attr_accessor :sem_phase, :sem_start, :sem_end, :subjects
+require 'json'
 
-  def initialize(params)
-    @sem_start = params.fetch("sem_start", nil)
+class User
+  attr_accessor :id, :sem_phase, :sem_start, :sem_end, :sem_process_now, :subjects
+
+  def initialize(id)
+  	@id = id
+  	path = "./users/user_#{@id}.txt"
+    file = File.open(path, 'a+')
+    if File.zero?(path)
+    	fill_attrs({})
+    else
+    	fill_attrs JSON.parse(file.read)
+    end
+    file.close
+  end
+
+  def fill_attrs(params)
+  	@sem_start = params.fetch("sem_start", nil)
     @sem_end = params.fetch("sem_end", nil)
+    @sem_process_now = params.fetch("sem_process_now", false)
     @sem_phase = params.fetch("sem_phase", 0)
     @subjects = params.fetch("subjects", nil)
+  end
+
+  def save
+    puts 'IN SAVE_USER.'
+    path = "./users/user_#{@id}.txt"
+    file = File.open(path, 'w')
+    file.print JSON.generate itself.to_hash
+    file.close
   end
 
   def to_hash
