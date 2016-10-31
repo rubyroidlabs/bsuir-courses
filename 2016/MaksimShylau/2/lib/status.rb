@@ -6,9 +6,9 @@ class Status < Command
     @to_do = nil
   end
 
-  def must_be_done(count, start, s_end)
-    time_start = Time.new(start.year, start.month, start.day)
-    time_end = Time.new(s_end.year, s_end.month, s_end.day)
+  def must_be_done(count, sem_start, sem_end)
+    time_start = Time.new(sem_start.year, sem_start.month, sem_start.day)
+    time_end = Time.new(sem_end.year, sem_end.month, sem_end.day)
     time_now = Time.new
     to_do = (((time_now - time_start).to_f) / (time_end - time_start).to_f * count.to_i).to_i + 1
     if to_do > count.to_i
