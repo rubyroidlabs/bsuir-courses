@@ -1,3 +1,4 @@
+# User's class
 class User
   def initialize(id)
     @id = id
