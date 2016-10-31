@@ -28,7 +28,7 @@ class TelegramBot
   def initialize
     Telegram::Bot::Client.run(TOKEN) do |bot|
       bot.listen do |message|
-        user = User.new(message.chat.id) 
+        user = User.new(message.chat.id)
         db = Database.new(user.id)
         command = Command.new(bot, message)
         hash = db.get_hash(user.id)
@@ -38,7 +38,7 @@ class TelegramBot
         db.set_hash(hash, user.id)
         case message.text
         when "/start"
-          start = Start.new(bot, message, HELLO)
+          Start.new(bot, message, HELLO)
         when "/semester"
           hash = db.get_hash(user.id)
           sem = Semester.new(bot, message)
