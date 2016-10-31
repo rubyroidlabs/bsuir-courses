@@ -1,3 +1,4 @@
+# Initializing DB
 class Database
   def initialize(id)
     user = User.new(id)
