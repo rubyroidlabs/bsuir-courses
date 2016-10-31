@@ -14,12 +14,12 @@ class Database
     subject_count = hash["subject_count"]
     if subject_count.nil? then subject_count = 0; hash["subject_count"]= 0 end
     @redis.set(user.id, hash.to_json)
-    return @redis
+    @redis
   end
 
   def get_hash(id)
     hash = JSON.parse(@redis.get(id)).to_hash
-    return hash
+    hash
   end
 
   def set_hash(hash, id)
