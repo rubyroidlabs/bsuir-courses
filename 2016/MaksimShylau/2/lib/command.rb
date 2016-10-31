@@ -1,8 +1,8 @@
 # Simple command that sends messages
 class Command
   def initialize(bot, message)
-	@bot = bot
-	@message = message
+    @bot = bot
+    @message = message
   end
 
   def send_message(send_text)
