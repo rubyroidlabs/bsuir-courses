@@ -32,7 +32,7 @@ class User
     when "wanna_subject"
       subject_count += 1
       hash["subject_count"] = subject_count
-      hash["subject"][subject_count - 1]={}
+      hash["subject"][subject_count - 1] = {}
       hash["subject"][subject_count - 1]["subject_name"] = message.text
       command.send_message("Название предмета — *#{message.text}*")
       command.send_message(HOW_MANY_LABS)
