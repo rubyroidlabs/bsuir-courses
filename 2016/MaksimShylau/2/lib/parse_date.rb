@@ -56,22 +56,22 @@ class DateParser
     time_ar[i] = date[0..date.index(".").to_i - 1]
     date = date[(date.index(".").to_i + 1)..date.size]
     end
-	  day = time_ar[0].to_i
-	  month = time_ar[1].to_i
-	  year = time_ar[2].to_i
-	  if day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1
-	  	false
-	  else
-	  	true
-	  end
+    day = time_ar[0].to_i
+    month = time_ar[1].to_i
+    year = time_ar[2].to_i
+    if day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1
+      false
+    else
+      true
+    end
   end
 
   def self.correct_count?(labs_count)
-	  if labs_count.to_i <= 0 || labs_count.to_i > 25
-	  	false
-	  else
-	    true
-	  end
+    if labs_count.to_i <= 0 || labs_count.to_i > 25
+      false
+    else
+      true
+    end
   end
   attr_accessor :day
   attr_accessor :month
