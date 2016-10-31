@@ -7,10 +7,8 @@ class Database
       hash = JSON.parse(@redis.get(user.id)).to_hash
     else hash = {}
     end
-    if hash["subject"].nil? || has["subject_count"].nil?
-      hash["subject"] = [{}]
-      hash["subject_count"] = 0
-    end
+    if hash["subject"].nil? then hash["subject"] = [{}] end
+    if hash["subject_count"].nil? then hash["subject_count"] = 0 end
     @redis.set(user.id, hash.to_json)
     @redis
   end
