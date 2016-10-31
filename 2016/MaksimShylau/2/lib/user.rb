@@ -1,27 +1,27 @@
 class User
-	def initialize(id)
-		@id = id
-		@status = nil
-	end
+  def initialize(id)
+    @id = id
+    @status = nil
+  end
 
-	def check_status(status, id, hash, redis, command, message, subject_count)
-	  case status
-	  when "wanna_sem_start"
-	    if !DateParser.is_correct?(message.text)
-	      command.send_message("*Некорректный ввод*. Повтори")
-	      return true
-	    end
-	    hash["user_status"] = "wanna_sem_end"
-	    hash["sem_start"] = message.text
-	    command.send_message("Окей, дату начала ты указал: _#{message.text}_, теперь укажи дату окончания. \nНапример, *31.12.2016*")
-	    redis.set(id, hash.to_json)
-	    return true
-	  when "wanna_sem_end"
-	    if !DateParser.is_correct?(message.text)
-	      command.send_message("*Некорректный ввод*. Повтори")
-	      return true
-	    end
-	    hash["user_status"] = nil
+  def check_status(status, id, hash, redis, command, message, subject_count)
+    case status
+    when "wanna_sem_start"
+      if !DateParser.is_correct?(message.text)
+        command.send_message("*Некорректный ввод*. Повтори")
+        return true
+      end
+      hash["user_status"] = "wanna_sem_end"
+      hash["sem_start"] = message.text
+      command.send_message("Окей, дату начала ты указал: _#{message.text}_, теперь укажи дату окончания. \nНапример, *31.12.2016*")
+      redis.set(id, hash.to_json)
+      return true
+    when "wanna_sem_end"
+      if !DateParser.is_correct?(message.text)
+        command.send_message("*Некорректный ввод*. Повтори")
+        return true
+      end
+      hash["user_status"] = nil
       hash["sem_end"] = message.text
       command.send_message("Отлично, семестр заканчивается _#{message.text}_ :) ")
       redis.set(id, hash.to_json)
@@ -41,7 +41,7 @@ class User
       return true
     when "wanns_labs_count"
       if !DateParser.correct_count?(message.text)
-      	command.send_message("*Некорректный ввод*. Попробуй ещё раз")
+        command.send_message("*Некорректный ввод*. Попробуй ещё раз")
         return true
       end
       hash["subject"][subject_count-1]["labs_count"] = message.text
@@ -52,6 +52,6 @@ class User
     end
   end
 
-	attr_accessor :id
-	attr_accessor :status
+  attr_accessor :id
+  attr_accessor :status
 end
