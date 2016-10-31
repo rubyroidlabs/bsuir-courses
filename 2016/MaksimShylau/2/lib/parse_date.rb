@@ -2,8 +2,8 @@ class DateParser
   def initialize(date)
     time_ar = []
     0.upto(2) do |i|
-      time_ar[i] = date[0..date.index(".").to_i-1]
-      date = date[(date.index(".").to_i+1)..date.size]
+      time_ar[i] = date[0..date.index(".").to_i - 1]
+      date = date[(date.index(".").to_i + 1)..date.size]
     end
     @day = time_ar[0].to_i
     @month = time_ar[1].to_i
