@@ -7,7 +7,7 @@ class User
   def check_status(status, id, hash, redis, command, message, subject_count)
     case status
     when "wanna_sem_start"
-      if !DateParser.is_correct?(message.text)
+      unless DateParser.is_correct?(message.text)
         command.send_message("*Некорректный ввод*. Повтори")
         return true
       end
@@ -17,7 +17,7 @@ class User
       redis.set(id, hash.to_json)
       return true
     when "wanna_sem_end"
-      if !DateParser.is_correct?(message.text)
+      unless DateParser.is_correct?(message.text)
         command.send_message("*Некорректный ввод*. Повтори")
         return true
       end
@@ -40,7 +40,7 @@ class User
       redis.set(id, hash.to_json)
       return true
     when "wanns_labs_count"
-      if !DateParser.correct_count?(message.text)
+      unless DateParser.correct_count?(message.text)
         command.send_message("*Некорректный ввод*. Попробуй ещё раз")
         return true
       end
