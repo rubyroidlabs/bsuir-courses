@@ -47,7 +47,7 @@ class DateParser
   end
 
   def self.is_correct?(date)
-    if (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? then status = false end
+    status = false if (date =~ /\d\d.\d\d.\d\d\d\d$/).nil?
     time_ar = []
     if date.index(".").nil? then status = false end
     0.upto(2) do |i|
