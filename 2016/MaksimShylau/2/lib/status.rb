@@ -14,7 +14,7 @@ class Status < Command
     if to_do > labs_count.to_i
       to_do = labs_count.to_i
     elsif to_do.negative?
-	 to_do = 0
+      to_do = 0
     end
     to_do
   end
