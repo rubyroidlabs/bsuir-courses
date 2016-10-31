@@ -1,10 +1,11 @@
-require_relative './action.rb'
+require_relative 'action'
 
 class Start < Action
-	def initialize
-		
-		super()
-	end
+    def run
+        return "/start - выводит приветствие и описание всех доступных команд
+                /semester - запоминает даты начала и конца семестра
+                /subject - добавляет предмет и количество лабораторных работ по нему
+                /status - выводит твой список лаб, которые тебе предстоит сдать
+                /reset - сбрасывает для пользователя все данные."
+    end
 end
-
-Start.new
