@@ -12,7 +12,7 @@ class Database
       hash["subject"]=[{}]
     end
     subject_count = hash["subject_count"]
-    if subject_count.nil? then subject_count = 0; hash["subject_count"]= 0 end
+    if hash["subject_count"].nil? then hash["subject_count"] = 0 end
     @redis.set(user.id, hash.to_json)
     @redis
   end
