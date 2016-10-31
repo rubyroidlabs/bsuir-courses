@@ -49,9 +49,9 @@ class DateParser
   end
 
   def self.is_correct?(date)
-    if (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? then false end
+    if (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? then status = false end
     time_ar = []
-    if date.index(".").nil? then false end
+    if date.index(".").nil? then status = false end
     0.upto(2) do |i|
     time_ar[i] = date[0..date.index(".").to_i - 1]
     date = date[(date.index(".").to_i + 1)..date.size]
@@ -60,18 +60,20 @@ class DateParser
     month = time_ar[1].to_i
     year = time_ar[2].to_i
     if day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1
-      false
+      status = false
     else
-      true
+      status = true
     end
+    status
   end
 
   def self.correct_count?(labs_count)
     if labs_count.to_i <= 0 || labs_count.to_i > 25
-      false
+      status = false
     else
-      true
+      status = true
     end
+    status
   end
   attr_accessor :day
   attr_accessor :month
