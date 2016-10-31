@@ -71,7 +71,8 @@ class DateParser
 	  	false
 	  else
 	    true
-	end
+	  end
+  end
   attr_accessor :day
   attr_accessor :month
   attr_accessor :year

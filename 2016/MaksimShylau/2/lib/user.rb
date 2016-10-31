@@ -28,7 +28,7 @@ class User
       start_parse = DateParser.new(hash["sem_start"])
       end_parse = DateParser.new(hash["sem_end"])
       command.send_message(DateParser.difference(end_parse, start_parse))
-    return true
+      return true
     when "wanna_subject"
       subject_count += 1
       hash["subject_count"] = subject_count
@@ -50,6 +50,8 @@ class User
       redis.set(id, hash.to_json)
       return true
     end
+  end
+
 	attr_accessor :id
 	attr_accessor :status
 end
