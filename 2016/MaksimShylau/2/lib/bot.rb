@@ -97,13 +97,18 @@ class TelegramBot
     end
   end
 
+  def init_helper(message, bot)
+    user = User.new(message.chat.id)
+    db = Database.new(user.id)
+    command = Command.new(bot, message)
+    hash = db.get_hash(user.id)
+    [user, db, command, hash]
+  end
+
   def initialize
     Telegram::Bot::Client.run(TOKEN) do |bot|
       bot.listen do |message|
-        user = User.new(message.chat.id)
-        db = Database.new(user.id)
-        command = Command.new(bot, message)
-        hash = db.get_hash(user.id)
+        user, db, command, hash = init_helper(message, bot)
         next if user.check_status(user.id, hash, db.redis, command, message)
         choose_command(message, db, user.id, bot, command)
       end
