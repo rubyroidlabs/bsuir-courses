@@ -25,7 +25,7 @@ module Bot
         pp left_days_number
         response(
           "semester_left_days",
-          number_days: left_days_number < 0 ? 0 : left_days_number,
+          number_days: left_days_number.negative? ? 0 : left_days_number,
           day_form:    translate("day", count: left_days_number)
         )
       end

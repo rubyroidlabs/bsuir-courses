@@ -51,7 +51,7 @@ module Bot
 
       def rest_of_days(left_days_number)
         number_days = left_days_number % DAYS_IN_MONTH
-        return "" unless number_days > 0
+        return "" unless number_days.positive?
 
         day_form = translate("day", count: number_days)
         response(
@@ -63,7 +63,7 @@ module Bot
 
       def left_months(left_days_number)
         number_months = left_days_number / DAYS_IN_MONTH
-        return "" unless number_months > 0
+        return "" unless number_months.positive?
 
         month_form = translate("month", count: number_months)
         response(

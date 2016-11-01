@@ -8,7 +8,7 @@ module Bot
       def parse_date(text)
         Date.strptime(text, "%Y-%m-%d")
       rescue ArgumentError
-        fail(BotError, "date_format_invalid")
+        raise(BotError, "date_format_invalid")
       end
 
       def parse_subject_name(text)
