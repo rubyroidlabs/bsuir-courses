@@ -17,7 +17,7 @@ class User
   end
 
   def incorrect?(starter, ender, hash, redis, id)
-    if ender - starer <= 0
+    if ender - starter <= 0
       hash["user_status"] = "wanna_sem_start"
       redis.set(id, hash.to_json)
       return true
