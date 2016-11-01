@@ -16,7 +16,7 @@ module Bot
       end
 
       def start
-        raise NotImplementedError
+        fail(NotImplementedError)
       end
 
       def select_next_command
