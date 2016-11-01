@@ -69,7 +69,7 @@ class DateParser
     end
   end
 
-  def get_time_ar(date)
+  def self.get_time_ar(date)
     time_ar = []
     0.upto(2) do |i|
       time_ar[i] = date[0..date.index(".").to_i - 1]
@@ -89,11 +89,7 @@ class DateParser
   def self.correct?(date)
     day, month, year = get_date(date)
     check = day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1 || (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? || date.index(".").nil?
-    if check
-      status = false
-    else
-      status = true
-    end
+    status = check ? false : true 
     status
   end
 
