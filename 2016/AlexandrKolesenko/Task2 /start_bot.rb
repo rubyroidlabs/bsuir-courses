@@ -66,20 +66,21 @@ Telegram::Bot::Client.run(token) do |bot|
     when '/status'
      if @eta != nil
       bot.api.sendMessage(chat_id: message.chat.id, text: "Осталось времени #{@eta} дней")
-    else
+     else
      bot.api.sendMessage(chat_id: message.chat.id, text: "Введи начало и конец семестров")
-    end
+     end
     
-    if @eta != nil then @stack.each do |key, value|
-     taskcalc(value.to_i)
-     bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
+     if !@eta.nil? then @stack.each do |key, value|
+      taskcalc(value.to_i)
+      bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
+     end
     end
-    end
-    
+
     when '/reset'
-    @stack = nil
-    @eta = nil
-    @sum_of_days = nil
-        end
+      @stack = nil
+      @eta = nil
+      @sum_of_days = nil
+     end
 	end
-	end
+end
+	
