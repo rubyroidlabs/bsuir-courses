@@ -9,7 +9,7 @@ module Bot
     attribute :total_number, Type::Integer
     attribute :accepted_numbers, Type::Array
 
-    reference :user, 'Bot::User'
+    reference :user, "Bot::User"
     index :name
 
     def remaining_numbers

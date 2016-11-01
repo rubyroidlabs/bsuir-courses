@@ -1,4 +1,4 @@
-require 'ohm/datatypes'
+require "ohm/datatypes"
 
 module Bot
   class User < Ohm::Model #:nodoc:
@@ -15,7 +15,7 @@ module Bot
     attribute :method
     attribute :data
 
-    set :subjects, 'Bot::Subject'
+    set :subjects, "Bot::Subject"
 
     index     :telegram_id
     unique    :telegram_id

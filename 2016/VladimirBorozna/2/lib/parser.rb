@@ -13,8 +13,9 @@ module Bot
 
       def parse_subject_name(text)
         range = (1..MAX_SUBJECT_NAME_LENGTH)
-        raise BotError, 'subject_name_invalid' unless range.cover?(text.length)
-        text
+        name = text.downcase
+        raise BotError, 'subject_name_invalid' unless range.cover?(name.length)
+        name
       end
 
       def parse_work_number(text)
