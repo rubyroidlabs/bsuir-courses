@@ -76,7 +76,7 @@ class DateParser
     day = time_ar[0].to_i
     month = time_ar[1].to_i
     year = time_ar[2].to_i
-    [day, month, year]
+    [day, month, year] 
   end
 
   def self.correct?(date)
