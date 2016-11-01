@@ -55,7 +55,7 @@ class TelegramBot
       return true
     end
   end
-  
+
   def status_send(hash, i, sem_start, sem_end, status)
     hash["subject"][i - 1]["to_do"] = status.must_be_done(hash["subject"][i - 1]["labs_count"], sem_start, sem_end)
     status.send_message("*" + hash["subject"][i - 1]["subject_name"].to_s + "* - *" + hash["subject"][i - 1]["to_do"].to_s + "* из *" + hash["subject"][i - 1]["labs_count"].to_s + "*")
