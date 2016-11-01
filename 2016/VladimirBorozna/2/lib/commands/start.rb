@@ -9,7 +9,7 @@ module Bot
       private
 
       def response_message
-        commands.inject(response('greeting') << "\n") do |result, command|
+        commands.inject(response("greeting") << "\n") do |result, command|
           result << command_triggers(command)
           result << " - #{command_desciption(command)}\n"
         end
@@ -21,7 +21,7 @@ module Bot
 
       def command_triggers(command)
         lookup = "commands.#{command}.triggers"
-        translate(lookup.to_sym).map { |t| "*#{t}*" }.join(', ')
+        translate(lookup.to_sym).map { |t| "*#{t}*" }.join(", ")
       end
 
       def command_desciption(command)

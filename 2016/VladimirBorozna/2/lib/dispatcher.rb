@@ -1,4 +1,4 @@
-require_relative 'commands'
+require_relative "commands"
 
 module Bot
   # Class for dispatching user commands
@@ -25,7 +25,7 @@ module Bot
       start(command)
     rescue BotError => error
       error_message = I18n.t("errors.#{error.message}")
-      api.call('sendMessage', chat_id: user.telegram_id, text: error_message)
+      api.call("sendMessage", chat_id: user.telegram_id, text: error_message)
       user.reset_next_command
     end
 
@@ -41,7 +41,7 @@ module Bot
     end
 
     def should_start_command
-      command = AVAILABLE_COMMANDS.find do |command_class|
+      command = AVAILABLE_COMMANDS.detect do |command_class|
         command_class.new(user, message).should_start?
       end
       command.new(user, message) if command

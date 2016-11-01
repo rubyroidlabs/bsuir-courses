@@ -1,5 +1,5 @@
-require 'date'
-require 'ohm/datatypes'
+require "date"
+require "ohm/datatypes"
 
 module Bot
   class Subject < Ohm::Model #:nodoc:

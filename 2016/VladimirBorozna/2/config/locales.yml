@@ -1,7 +1,7 @@
 ru:
   commands:
     start:
-      triggers: ['/start'] 
+      triggers: ["/start"] 
       description: "выводит приветствие и описание всех доступных команд"
       response:
         greeting: >
@@ -9,7 +9,7 @@ ru:
           Я тебе смогу помочь сдать все лабораторные работы вовремя. Но это не точно.
           Вот список того, того я умею:
     semester:
-      triggers: ['/semester']
+      triggers: ["/semester"]
       description: "запоминает даты начала и конца семестра"
       response:
         semester_start_question: 
@@ -21,7 +21,7 @@ ru:
           months: " %{number} %{month_form}"
           days:   " %{number} %{day_form}."
     subject:
-      triggers: ['/subject']
+      triggers: ["/subject"]
       description: "добавляет предмет и количество лабораторных работ по нему"
       response:
         subject_name_question:
@@ -31,7 +31,7 @@ ru:
         confirmation:
           "ОК"
     status:
-      triggers: ['/status']
+      triggers: ["/status"]
       description: "выводит твой список лабораторных работ, которые тебе предстоит сдать"
       response: 
         semester_left_days:
@@ -42,14 +42,14 @@ ru:
            (сдано %{performed_number} из %{total_number})
         conclusion: "Всего было сдано %{accepted_number} лаб из %{total_number}."
     submit:
-      triggers: ['/submit', 'я сдал', 'я сдала']
+      triggers: ["/submit", "я сдал", "я сдала"]
       description: "сохраняет номера лабораторных, которые были сданы"
       response:
         subject_name_question: "По какому предмету была сдана работа?"
         work_number_question: "Какой номер лабораторной работы?"
         confirmation: "Молодец!"
     reset:
-      triggers: ['/reset']
+      triggers: ["/reset"]
       description: "сбрасывает данные"
       response:
         confirmation: "ОК"

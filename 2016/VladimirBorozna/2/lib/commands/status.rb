@@ -5,8 +5,8 @@ module Bot
       CHECKMARK = "\u2713".freeze
 
       def start
-        raise BotError, 'semester_dates_not_found' unless user.semester_present?
-        raise BotError, 'subjects_not_found' unless user.subjects_present?
+        fail(BotError, "semester_dates_not_found") unless user.semester_present?
+        fail(BotError, "subjects_not_found") unless user.subjects_present?
 
         send_message(response_message)
       end
@@ -15,32 +15,34 @@ module Bot
 
       def response_message
         result =  semester_left_days_message << "\n"
-        result << response('required_work_header') << "\n"
+        result << response("required_work_header") << "\n"
         result << subjects_status_message
         result << conclusion_message
       end
 
       def semester_left_days_message
         left_days_number = (user.semester_finish - Date.today).round
+        pp left_days_number
         response(
-          'semester_left_days',
-          number_days: left_days_number,
-          day_form:    translate('day', count: left_days_number)
+          "semester_left_days",
+          number_days: left_days_number < 0 ? 0 : left_days_number,
+          day_form:    translate("day", count: left_days_number)
         )
       end
 
       def subjects_status_message
         coefficient = calculate_required_coefficient
-        user.subjects.inject('') do |result, subject|
+        user.subjects.inject("") do |result, subject|
+          pp subject
           result << subject_status(subject, coefficient) + "\n"
         end
       end
 
       def subject_status(subject, coefficient)
-        required_numbers = subject.required_numbers(coefficient).join(', ')
+        required_numbers = subject.required_numbers(coefficient).join(", ")
         required_numbers = CHECKMARK if required_numbers.empty?
         response(
-          'subject_status',
+          "subject_status",
           subject_name:     subject.name,
           required_numbers: "-  #{required_numbers}",
           performed_number: subject.accepted_numbers.size,
@@ -50,7 +52,7 @@ module Bot
 
       def conclusion_message
         response(
-          'conclusion',
+          "conclusion",
           accepted_number: total_number_accepted_works,
           total_number:    total_number_works
         )

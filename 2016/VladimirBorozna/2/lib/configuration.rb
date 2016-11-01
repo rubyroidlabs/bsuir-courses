@@ -1,5 +1,5 @@
-require 'erb'
-require 'i18n/backend/pluralization'
+require "erb"
+require "i18n/backend/pluralization"
 
 module Bot #:nodoc:
   class << self
@@ -36,12 +36,12 @@ module Bot #:nodoc:
     private
 
     def setup_environment
-      @env = ENV['RACK_ENV'] || 'development'
+      @env = ENV["RACK_ENV"] || "development"
     end
 
     def setup_bot_token
-      secrets = YAML.load(ERB.new(IO.read('config/secrets.yml')).result)
-      @bot_token = secrets[env]['telegram_bot_token']
+      secrets = YAML.load(ERB.new(IO.read("config/secrets.yml")).result)
+      @bot_token = secrets[env]["telegram_bot_token"]
     end
 
     def setup_api
@@ -49,15 +49,15 @@ module Bot #:nodoc:
     end
 
     def setup_database
-      config = YAML.load(ERB.new(IO.read('config/redis.yml')).result)
-      redis_url = config[env]['database_url']
+      config = YAML.load(ERB.new(IO.read("config/redis.yml")).result)
+      redis_url = config[env]["database_url"]
       Ohm.redis = Redic.new(redis_url)
     end
 
     def setup_i18n
       I18n::Backend::Simple.send(:include, I18n::Backend::Pluralization)
       I18n.config.available_locales = [:en, :ru]
-      I18n.load_path = Dir['config/locales.yml']
+      I18n.load_path = Dir["config/locales.yml"]
       I18n.default_locale = :ru
       I18n.backend.load_translations
     end

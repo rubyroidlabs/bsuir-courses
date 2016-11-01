@@ -1,5 +1,5 @@
 development:
-  database_url: <%= ENV['REDIS_URL'] %>
+  database_url: <%= ENV["REDIS_URL"] %>
 
 production:
-  database_url: <%= ENV['REDIS_URL'] %>
+  database_url: <%= ENV["REDIS_URL"] %>

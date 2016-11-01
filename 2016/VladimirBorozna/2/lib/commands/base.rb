@@ -11,7 +11,7 @@ module Bot
       end
 
       def should_start?
-        triggers = translate('triggers')
+        triggers = translate("triggers")
         triggers.include?(text) || triggers.empty?
       end
 
@@ -24,17 +24,17 @@ module Bot
       end
 
       def self.command_name
-        to_s.sub(/.*Command::/, '').downcase
+        to_s.sub(/.*Command::/, "").downcase
       end
 
       protected
 
       def send_message(response_text, options = {})
         api.call(
-          'sendMessage',
+          "sendMessage",
           chat_id: user.telegram_id,
           text: response_text,
-          parse_mode: 'markdown',
+          parse_mode: "markdown",
           reply_markup: options[:reply_markup]
         )
       end

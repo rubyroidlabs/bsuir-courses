@@ -21,11 +21,14 @@ module Bot
     unique    :telegram_id
 
     def semester_present?
+      pp semester_start.instance_of?(Date)
+      pp semester_finish.instance_of?(Date)
       result =  semester_start.instance_of?(Date)
       result && semester_finish.instance_of?(Date)
     end
 
     def subjects_present?
+      pp subjects.size
       subjects && !subjects.size.zero?
     end
 
@@ -50,7 +53,7 @@ module Bot
     end
 
     def destroy
-      subjects.map(&:delete)
+      subjects.each { |s| subjects.delete(s) }
       update(semester_start: nil, semester_finish: nil)
     end
 

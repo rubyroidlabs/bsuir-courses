@@ -3,21 +3,21 @@ module Bot
     # Class for the command - /submit
     class Submit < Base
       def start
-        raise BotError, 'semester_dates_not_found' unless user.semester_present?
-        raise BotError, 'subjects_not_found' unless user.subjects_present?
+        fail(BotError, "semester_dates_not_found") unless user.semester_present?
+        fail(BotError, "subjects_not_found") unless user.subjects_present?
         send_message(
-          response('subject_name_question'),
+          response("subject_name_question"),
           reply_markup: subjects_markup
         )
       end
 
       def subject_name
         name = Parser.parse_subject_name(text)
-        raise BotError, 'subject_not_found' unless user.subject_present?(name)
+        fail(BotError, "subject_not_found") unless user.subject_present?(name)
 
         user.next_command_data(name)
         send_message(
-          response('work_number_question'),
+          response("work_number_question"),
           reply_markup: remaining_numbers_markup(name)
         )
       end
@@ -28,16 +28,16 @@ module Bot
         validate_work_number(subject, value)
 
         subject.update(accepted_numbers: subject.accepted_numbers << value)
-        send_message(response('confirmation'))
+        send_message(response("confirmation"))
       end
 
       def select_next_command
         case user.method
         when nil
-          user.next_command(class_name, 'subject_name')
-        when 'subject_name'
-          user.next_command(class_name, 'work_number')
-        when 'work_number'
+          user.next_command(class_name, "subject_name")
+        when "subject_name"
+          user.next_command(class_name, "work_number")
+        when "work_number"
           user.reset_next_command
         end
       end
@@ -46,7 +46,7 @@ module Bot
 
       def validate_work_number(subject, value)
         check = subject.remaining_numbers.include?(value)
-        raise BotError, 'work_number_not_found' unless check
+        fail(BotError, "work_number_not_found") unless check
       end
 
       def remaining_numbers_markup(name)
