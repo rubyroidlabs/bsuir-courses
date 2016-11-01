@@ -59,18 +59,19 @@ Telegram::Bot::Client.run(token) do |bot|
    		 bot.api.sendMessage(chat_id: message.chat.id, text: "Принял.")
         break
         end
-    end
-           @abgx = Hash[@task, @task_num]
-           @stack = @stack.merge(@abgx)
+     end
+        @abgx = Hash[@task, @task_num]
+        @stack = @stack.merge(@abgx)
            
     when '/status'
      if @eta != nil
       bot.api.sendMessage(chat_id: message.chat.id, text: "Осталось времени #{@eta} дней")
      else
-     bot.api.sendMessage(chat_id: message.chat.id, text: "Введи начало и конец семестров")
+      bot.api.sendMessage(chat_id: message.chat.id, text: "Введи начало и конец семестров")
      end
     
-     if !@eta.nil? then @stack.each do |key, value|
+     unless !@eta.nil?
+     @stack.each do |key, value|
       taskcalc(value.to_i)
       bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
      end
@@ -80,7 +81,7 @@ Telegram::Bot::Client.run(token) do |bot|
       @stack = nil
       @eta = nil
       @sum_of_days = nil
-     end
-	end
+    end
+  end
 end
 	
