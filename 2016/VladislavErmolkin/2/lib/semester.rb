@@ -1,95 +1,71 @@
 require_relative 'action'
 require_relative 'user'
-require 'json'
+require_relative 'regulars'
 require 'time_difference'
 
-DATE_REGEX = /^\d{2,4}-\d{1,2}-\d{1,2}$/
-
 class Semester < Action
-	attr_reader :user
+  def run
+    if !text_validation
+      @user.reset_sem_system_variables
+      @user.save
+      return nil
+    end
+    result = case @user.sem["__phase"]
+    when 0 then sem_enter
+    when 1 then set_start_of_sem
+    when 2 then set_end_of_sem
+    end
+    @user.save
+    result
+  end
 
-	def initialize(user, text)
-		puts 'IN SEM INITIALIZE.'
-		super()
-		@text = text
-		@user = user
-	end
+  def sem_enter
+    @user.sem["__phase"] += 1
+    @user.sem["__is_now?"] = true
+    'Start of semester?'
+  end
 
-	def text_validation
-		case @user.sem["phase"]
-		when 0
-			if @text.gsub("\n", "") == '/semester'
-				return true
-			end
-		when 1..2
-			if is_date? @text.gsub("\n", "")
-				return true
-			end
-		end
-		false
-	end
+  def set_start_of_sem
+    @user.sem["start"] = @text
+    @user.sem["__phase"] += 1
+    'End of semester?'
+  end
 
-	def run
-		puts 'IN RUN'
-		puts "text_validation returns #{text_validation}."
-		if !text_validation
-			@user.sem["phase"] = 0
-			@user.sem["is_now?"] = false
-			@user.save
-			return nil
-		end
-		case @user.sem["phase"]
-		when 0
-			@user.sem["phase"] += 1
-			@user.sem["is_now?"] = true
-			result = 'Когда начинаем учиться?'
-		when 1
-			@user.sem["start"] = @text.gsub("\n", "")
-			@user.sem["phase"] += 1
-			result = 'Когда надо сдать все лабы?'
-		when 2
-			@user.sem["end"] = @text.gsub("\n", "")
-			@user.sem["phase"] = 0
-			@user.sem["is_now?"] = false
-			result = native_difference generate_difference @user.sem["start"], @user.sem["end"]
-		end
-		puts "In run sem[\"phase\"] = #{@user.sem["phase"]}."
-		@user.save
-		result
-	end
+  def set_end_of_sem
+    @user.sem["end"] = @text
+    @user.reset_sem_system_variables
+    native_difference generate_difference @user.sem["start"], @user.sem["end"]
+  end
 
-	def generate_difference(first_date, second_date)
-		TimeDifference.between(Time.parse(first_date), Time.parse(second_date)).in_general
-	end
-
-	def native_difference(diff)
-		month = case diff[:months]
-		when 1 then 'месяц'
-		when 2..4 then 'месяца'
-		else 'месяцев'
-		end
-		week = case diff[:weeks]
-		when 1 then 'неделя'
-		when 2..4 then 'недели'
-		else 'недель'
-		end
-		day = case diff[:days]
-		when 1 then 'день'
-		when 2..4 then 'дня'
-		else 'дней'
-		end
-		"Понял, на все про все у нас #{diff[:months]} #{month}, #{diff[:weeks]} #{week} и #{diff[:days]} #{day}."
-	end
-
-	def is_date?(string)
-	    if string.match(DATE_REGEX) then true
-	    else false
+  def text_validation
+    case @user.sem["__phase"]
+    when 0 then @text == '/semester'
+    when 1..2 then is_date? @text
+    else false
     end
   end
+
+  def generate_difference(first_date, second_date)
+    TimeDifference.between(Time.parse(first_date), Time.parse(second_date)).in_general
+  end
+
+  def native_difference(diff)
+    month = case diff[:months]
+    when 0..1 then 'month' 
+    else 'months' 
+    end
+    week = case diff[:weeks]
+    when 0..1 then 'week'
+    else 'weeks'
+    end
+    day = case diff[:days]
+    when 0..1 then 'day'
+    else 'days'
+    end
+    "#{diff[:months]} #{month}, #{diff[:weeks]} #{week} & #{diff[:days]} #{day}.\nYou shall not pass. "
+  end
+
+  def is_date?(string)
+      string.match(DATE_REGEX).nil? ? false : true
+  end
 end
-
-
-# text = gets
-# sem = Semester.new 12, '/semester'
-# p sem.run
-

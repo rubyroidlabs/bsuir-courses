@@ -1,15 +1,8 @@
 require_relative 'user'
 require_relative 'action'
-
-ACTION_REGEX = /^\/\S+$/
-NUMBER_REGEX = /^\d+$/
-
+require_relative 'regulars'
 
 class Subject < Action
-  def initialize(user, text)
-    super user, text.gsub("\n", "")
-  end
-
   def run
     if !text_validation
       @user.reset_subject_system_variables
@@ -28,19 +21,19 @@ class Subject < Action
   def subject_enter
     @user.subjects["__phase"] += 1
     @user.subjects["__is_now?"] = true
-    'Какой предмет учим?'
+    'Which subject?'
   end
 
   def set_subject
     @user.subjects["__current"] = @text
     @user.subjects["__phase"] += 1
-    'Сколько лаб надо сдать?'
+    'How many labs?'
   end
 
   def set_number_of_labs
     @user.subjects[@user.subjects["__current"]] = @text.to_i
     @user.reset_subject_system_variables
-    'OK'
+    'Excelent.'
   end
 
   def text_validation
