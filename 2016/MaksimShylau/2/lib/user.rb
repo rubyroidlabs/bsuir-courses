@@ -35,6 +35,13 @@ class User
     true
   end
 
+  def success_end(command, hash, redis, id, message)
+    command.send_message("Отлично, семестр заканчивается _#{message.text}_ :) ")
+    hash["user_status"] = nil
+    redis.set(id, hash.to_json)
+    command.send_message(DateParser.difference(DateParser.new(hash["sem_end"]), DateParser.new(hash["sem_start"])))
+  end
+
   def want_sem_end(id, hash, redis, command, message)
     unless DateParser.correct?(message.text)
       command.send_message("*Некорректный ввод*. Повтори")
@@ -42,10 +49,7 @@ class User
     end
     hash["sem_end"] = message.text
     return true unless correct_sems?(redis, command, hash, id)
-    command.send_message("Отлично, семестр заканчивается _#{message.text}_ :) ")
-    hash["user_status"] = nil
-    redis.set(id, hash.to_json)
-    command.send_message(DateParser.difference(DateParser.new(hash["sem_end"]), DateParser.new(hash["sem_start"])))
+    success_end(command, hash, redis, id, message)
   end
 
   def want_subject(id, hash, redis, command, message)
