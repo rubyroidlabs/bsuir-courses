@@ -72,12 +72,17 @@ class DateParser
     end
   end
 
-  def self.get_date(date)
+  def get_time_ar(date)
     time_ar = []
     0.upto(2) do |i|
       time_ar[i] = date[0..date.index(".").to_i - 1]
       date = date[(date.index(".").to_i + 1)..date.size]
     end
+    time_ar
+  end
+
+  def self.get_date(date)
+    time_ar = get_time_ar(date)
     day = time_ar[0].to_i
     month = time_ar[1].to_i
     year = time_ar[2].to_i
