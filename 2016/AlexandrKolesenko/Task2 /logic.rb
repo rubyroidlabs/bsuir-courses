@@ -19,12 +19,10 @@ end
 
 #method checks input is date and if its valid in terms of calendar
 def v_date?(date_string)
-  begin
-   x = Date.parse(date_string).to_s
-   y, m, d = x.split '-'
-   Date.valid_date? y.to_i, m.to_i, d.to_i
+  x = Date.parse(date_string).to_s
+  y, m, d = x.split "-"
+  Date.valid_date? y.to_i, m.to_i, d.to_i
   return true
-  rescue
-    return false
-  end
+rescue
+  return false
 end

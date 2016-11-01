@@ -3,7 +3,7 @@ require_relative 'logic.rb'
 require 'telegram/bot'
 token = 'YOUR_TELEGRAM_TOKEN'
 
-@stack = Hash.new
+@stack = {}
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
