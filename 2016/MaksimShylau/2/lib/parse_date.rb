@@ -17,12 +17,13 @@ class DateParser
   end
 
   def self.month_difference(date_end, date_start)
-    month_diff = if (date_end.month - date_start.month).negative?
-                   date_end.month - date_start.month + 12
+    difference = date_end.month - date_start.month
+    month_diff = if difference.negative?
+                   difference + 12
                  else
-                   date_end.month - date_start.month
+                   difference
                  end
-    month_diff -= 1 if (date_end.day - date_start.day).negative?
+    month_diff -= 1 if (difference).negative?
     month_diff
   end
 
