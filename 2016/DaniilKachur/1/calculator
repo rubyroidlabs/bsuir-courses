@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require "./lib/rpn"
+
+def beautify(value)
+  (value % 1).zero? ? value.to_i : value
+end
+
+RPN::ExceptionHandler.handle do
+  input = ""
+  buffer = ""
+
+  loop do
+    buffer << gets
+    if buffer =~ /q/
+      exit
+    elsif buffer == input
+      $stdin.imm_out(input, $stdout) do |rpn|
+        beautify(RPN::Calculator.solve(rpn))
+      end
+    end
+    input = buffer
+  end
+end
