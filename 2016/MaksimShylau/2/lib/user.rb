@@ -58,16 +58,12 @@ class User
     case status
     when "wanna_sem_start"
       want_sem_start(id, hash, redis, command, message)
-      return true
     when "wanna_sem_end"
       want_sem_end(id, hash, redis, command, message)
-      return true
     when "wanna_subject"
       want_subject(id, hash, redis, command, message, subject_count)
-      return true
     when "wanns_labs_count"
       want_labs_count(id, hash, redis, command, message, subject_count)
-      return true
     end
   end
 
