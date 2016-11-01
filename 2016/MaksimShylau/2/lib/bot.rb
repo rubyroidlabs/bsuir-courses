@@ -35,7 +35,7 @@ class TelegramBot
         hash = db.get_hash(user.id)
         user.status = hash["user_status"]
         subject_count = hash["subject_count"]
-        if user.check_status(user.status, user.id, hash, db.redis, command, message, subject_count) then next end
+        if user.check_status(user.id, hash, db.redis, command, message) then next end
         db.set_hash(hash, user.id)
         case message.text
         when "/start"
