@@ -87,7 +87,7 @@ class DateParser
   end
 
   def self.get_check(day, month, year, date)
-    return !(1..31).cover?(day) || !(1..12).cover?(month) || (Time.now.year - year).abs > 1 || (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? || date.index(".").nil?
+    !(1..31).cover?(day) || !(1..12).cover?(month) || (Time.now.year - year).abs > 1 || (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? || date.index(".").nil?
   end
 
   def self.correct?(date)
