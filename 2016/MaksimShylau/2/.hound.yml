@@ -1,10 +1,2 @@
-scss:
-  enabled: false
-
 ruby:
   config_file: .rubocop.yml
-
-jshint:
-  ignore_file: .jshintignore
-
-fail_on_violations: false
