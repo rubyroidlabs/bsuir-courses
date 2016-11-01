@@ -15,7 +15,7 @@ Telegram::Bot::Client.run(token) do |bot|
 		/subject - добавляет предмет и количество лабораторных работ по нему
         /status - выводит твой список лаб, которые тебе предстоит сдать
         /reset - сбрасывает для пользователя все данные.")
-    when '/semester'
+    when "/semester"
       bot.api.sendMessage(chat_id: message.chat.id, text: "Когда начинаем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
       bot.listen do |answer|
         if v_date?(answer.text) == false
@@ -26,7 +26,7 @@ Telegram::Bot::Client.run(token) do |bot|
           break
         end
       end
-      bot.listen do |answer|
+    bot.listen do |answer|
         if v_date?(answer.text) == false
           bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, ты пишешь шляпу. Нормально введи дату!")
         else
@@ -48,7 +48,7 @@ Telegram::Bot::Client.run(token) do |bot|
       end
 
       bot.api.sendMessage(chat_id: message.chat.id, text: "Сколько лаб нужно сдать?")
-   	    bot.listen do |answer|
+        bot.listen do |answer|
           if !/\d+/.match(answer.text) == true
             bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, будь человеком введи число!")
           else
@@ -57,8 +57,8 @@ Telegram::Bot::Client.run(token) do |bot|
             break
           end
         end
-       @abgx = Hash[@task, @task_num]
-       @stack = @stack.merge(@abgx)
+        @abgx = Hash[@task, @task_num]
+        @stack = @stack.merge(@abgx)
 
     when "/status"
       if @eta != nil
