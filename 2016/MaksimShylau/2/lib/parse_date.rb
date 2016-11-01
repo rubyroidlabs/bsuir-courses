@@ -16,17 +16,17 @@ class DateParser
                  else
                    date_end.month - date_start.month
                  end
-    month_diff -= 1 if date_end.day - date_start.day < 0
-    return month_diff
+    month_diff -= 1 if (date_end.day - date_start.day).negative?
+    month_diff
   end
 
   def self.day_difference(date_end, date_start)
-    if date_end.day - date_start.day < 0
+    if (date_end.day - date_start.day).negative?
       day_diff = date_end.day - date_start.day + 30
     else 
       day_diff = date_end.day - date_start.day
     end
-    return day_diff
+    day_diff
   end
 
   def self.month_str(month_diff)
@@ -38,7 +38,7 @@ class DateParser
     else
       month_diff_str = month_diff.to_s + " месяцев"
     end
-    return month_diff_str
+    month_diff_str
   end
 
   def self.day_diff(day_diff)
@@ -50,7 +50,7 @@ class DateParser
     else
       day_diff_str = day_diff.to_s + " дней"
     end
-    return day_diff_str
+    day_diff_str
   end
 
   def self.difference(date_end, date_start)
