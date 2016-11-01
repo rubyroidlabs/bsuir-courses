@@ -1,4 +1,4 @@
-require './models/lab'
+require '../models/lab'
 
 class Subject
   attr_accessor :hash_of_labs
@@ -6,5 +6,3 @@ class Subject
     @hash_of_labs = {}
   end
 end
-
-

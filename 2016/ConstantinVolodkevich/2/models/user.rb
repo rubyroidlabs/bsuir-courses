@@ -1,6 +1,6 @@
-require './models/semester'
-require './controllers/users_status'
-require './models/subject'
+require '../models/semester'
+require '../controllers/users_status'
+require '../models/subject'
 
 class User
 
@@ -16,4 +16,3 @@ class User
   end
 
 end
-

@@ -1,12 +1,10 @@
-require './commands/text_react'
-require './models/user'
+require '../commands/text_react'
+require '../models/user'
 
 class Status_C < Text_React
 
   def execute_command(user)
-    p user.status
     change_status(user) unless user.hash_of_subjects.empty?
-    p user.status
     user
   end
 

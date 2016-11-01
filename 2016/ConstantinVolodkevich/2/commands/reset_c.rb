@@ -1,5 +1,5 @@
-require './commands/text_react'
-require './models/user'
+require '../commands/text_react'
+require '../models/user'
 
 class Reset_C < Text_React
 

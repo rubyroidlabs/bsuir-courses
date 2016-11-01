@@ -1,5 +1,5 @@
-require './commands/text_react'
-require './models/user'
+require '../commands/text_react'
+require '../models/user'
 class Subject_C < Text_React
 
   def execute_command(user)

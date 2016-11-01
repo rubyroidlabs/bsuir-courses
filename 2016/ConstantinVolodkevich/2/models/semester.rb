@@ -17,5 +17,3 @@ class Semester
     "Got it! You got #{month} months and #{days} days left!"
   end
 end
-
-

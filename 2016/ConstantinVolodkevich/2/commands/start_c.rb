@@ -1,4 +1,4 @@
-require "./commands/text_react"
+require "../commands/text_react"
 class Start_C < Text_React
   @@greetings = "Konichiwa! I'm your personal assistant created by Constantin Volodkevich.
 Here is some sample commands to run:

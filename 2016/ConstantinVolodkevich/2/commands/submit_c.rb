@@ -1,6 +1,6 @@
 require 'telegram/bot'
-require './commands/text_react'
-require './models/user'
+require '../commands/text_react'
+require '../models/user'
 
 class Submit_C < Text_React
 

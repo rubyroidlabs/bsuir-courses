@@ -1,4 +1,4 @@
-require './models/user'
+require '../models/user'
 require 'redis'
 require 'json'
 
@@ -24,8 +24,6 @@ class DB_Helper
 
   def get_user(id)
     json_str = JSON.parse(@redis.get(id))
-    p '+'*30
-    p json_str['hash_of_subjects']
     user = User.new(json_str['name'], json_str['last_name'])
     user.user_status.steps_semester = json_str['user_status']['steps_semester']
     user.user_status.steps_subject = json_str['user_status']['steps_subject']
@@ -50,8 +48,6 @@ class DB_Helper
   end
 
   def to_json(user)
-    #p '-'*30
-    #p user.hash_of_subjects
     hash_labs = {}
     hash = {}
     user.hash_of_subjects.each do |subj_name, subj|

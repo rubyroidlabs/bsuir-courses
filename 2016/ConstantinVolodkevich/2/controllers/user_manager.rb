@@ -1,12 +1,12 @@
-require './models/user'
-require './commands/start_c'
-require './commands/semester_c'
-require './commands/reset_semester_c'
-require './commands/subject_c'
-require './commands/submit_c'
-require './commands/status_c'
-require './commands/reset_c'
-require './controllers/db_helper'
+require '../models/user'
+require '../commands/start_c'
+require '../commands/semester_c'
+require '../commands/reset_semester_c'
+require '../commands/subject_c'
+require '../commands/submit_c'
+require '../commands/status_c'
+require '../commands/reset_c'
+require '../controllers/db_helper'
 
 class User_Manager
 
@@ -92,16 +92,18 @@ class User_Manager
     user = @db_helper.get_user(id)
     user = @subject_c.save_subject(user, text)
     @db_helper.update_user(id, user)
-    #p '='*30
-    #p user.user_status.steps_subject['relevant_subj'] = text
-    "How many labs you have to pass?"
+    "How many labs you have to pass(use numbers)?"
   end
 
   def save_labs(id, text)
-    user = @db_helper.get_user(id)
-    user = @subject_c.save_labs(user, text)
-    @db_helper.update_user(id, user)
-    'OK'
+    if /\A\d+\z/.match(text) #check if text is a number
+      user = @db_helper.get_user(id)
+      user = @subject_c.save_labs(user, text)
+      @db_helper.update_user(id, user)
+      'OK'
+    else
+      "#{text} isn't a number"
+    end
   end
 
   def execute_submit(id)
