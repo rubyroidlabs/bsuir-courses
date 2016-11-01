@@ -1,14 +1,14 @@
 # Parses date and some data
 class DateParser
   def initialize(date)
-    time_ar = []
+    ar = []
     0.upto(2) do |i|
-      time_ar[i] = date[0..date.index(".").to_i - 1]
+      ar[i] = date[0..date.index(".").to_i - 1]
       date = date[(date.index(".").to_i + 1)..date.size]
     end
-    @day = time_ar[0].to_i
-    @month = time_ar[1].to_i
-    @year = time_ar[2].to_i
+    @day = ar[0].to_i
+    @month = ar[1].to_i
+    @year = ar[2].to_i
   end
 
   def self.month_difference(date_end, date_start)
