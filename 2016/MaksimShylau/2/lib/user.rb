@@ -39,7 +39,7 @@ class User
       return true
     end
     hash["sem_end"] = message.text
-    return true if !correct_sems?(redis, command, hash, id)
+    return true unless correct_sems?(redis, command, hash, id)
     command.send_message("Отлично, семестр заканчивается _#{message.text}_ :) ")
     hash["user_status"] = nil
     redis.set(id, hash.to_json)
