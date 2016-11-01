@@ -8,7 +8,7 @@ token = 'YOUR_TELEGRAM_TOKEN'
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
 
-  
+
     case message.text
     when "/start"
       bot.api.sendMessage(chat_id: message.chat.id, text: "Привет, #{message.from.first_name}")
