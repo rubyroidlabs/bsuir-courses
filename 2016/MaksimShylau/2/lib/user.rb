@@ -16,12 +16,17 @@ class User
     redis.set(id, hash.to_json)
   end
 
-  def correct_sems? (redis, command, hash, id)
-    starter = Time.new(*DateParser.get_date(hash["sem_start"]).reverse)
-    ender = Time.new(*DateParser.get_date(hash["sem_end"]).reverse)
-    if ender.to_i - starter.to_i <= 0
+  def incorrect?(starter, ender, hash, redis, id)
+    if ender - starer <= 0
       hash["user_status"] = "wanna_sem_start"
       redis.set(id, hash.to_json)
+      return true
+    end
+    false
+  def correct_sems?(redis, command, hash, id)
+    starter = Time.new(*DateParser.get_date(hash["sem_start"]).reverse)
+    ender = Time.new(*DateParser.get_date(hash["sem_end"]).reverse)
+    if incorrect?(starter, ender, hash, redis, id)
       command.send_message("Так-с, что-то не то. Давай по новой. *Введи дату начала семестра*.")
       return false
     end
