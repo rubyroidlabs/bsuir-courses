@@ -24,35 +24,35 @@ class DateParser
   end
 
   def self.day_difference(date_end, date_start)
-    if (date_end.day - date_start.day).negative?
-      day_diff = date_end.day - date_start.day + 30
-    else
-      day_diff = date_end.day - date_start.day
-    end
+    day_diff = if (date_end.day - date_start.day).negative?
+                 date_end.day - date_start.day + 30
+               else
+                 date_end.day - date_start.day
+               end
     day_diff
   end
 
   def self.month_str(month_diff)
-    case month_diff
-    when 1
-      month_diff_str = "1 месяц"
-    when 2..4
-      month_diff_str = month_diff.to_s + " месяца"
-    else
-      month_diff_str = month_diff.to_s + " месяцев"
-    end
+    month_diff_str = case month_diff
+                     when 1
+                       "1 месяц"
+                     when 2..4
+                       month_diff.to_s + " месяца"
+                     else
+                       month_diff.to_s + " месяцев"
+                     end
     month_diff_str
   end
 
   def self.day_diff(day_diff)
-    case day_diff
-    when 1
-      day_diff_str = "1 день"
-    when 2..4
-      day_diff_str = day_diff.to_s + " дня"
-    else
-      day_diff_str = day_diff.to_s + " дней"
-    end
+    day_diff_str = case day_diff
+                   when 1
+                     "1 день"
+                   when 2..4
+                     day_diff.to_s + " дня"
+                   else
+                     day_diff.to_s + " дней"
+                   end
     day_diff_str
   end
 
