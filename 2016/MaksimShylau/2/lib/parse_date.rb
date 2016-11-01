@@ -68,7 +68,7 @@ class DateParser
 
   def self.get_date(date)
     time_ar = []
-    if date.index(".").nil? then status = false end
+    status = false if date.index(".").nil?
     0.upto(2) do |i|
       time_ar[i] = date[0..date.index(".").to_i - 1]
       date = date[(date.index(".").to_i + 1)..date.size]
