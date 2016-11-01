@@ -18,14 +18,14 @@ Telegram::Bot::Client.run(token) do |bot|
         /reset - сбрасывает для пользователя все данные.")
     when '/semester'
       bot.api.sendMessage(chat_id: message.chat.id, text: "Когда начинаем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
-        bot.listen do |answer|
-   		  if v_date?(answer.text) == false
-   			 bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, ты пишешь шляпу. Нормально введи дату!")
-		  else
-           @date1 = Date.parse(answer.text)
-           bot.api.sendMessage(chat_id: message.chat.id, text: "Когда заканчиваем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
-           break
-          end
+      bot.listen do |answer|
+        if v_date?(answer.text) == false
+          bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, ты пишешь шляпу. Нормально введи дату!")
+        else
+          @date1 = Date.parse(answer.text)
+          bot.api.sendMessage(chat_id: message.chat.id, text: "Когда заканчиваем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
+          break
+        end
       end
       bot.listen do |answer|
         if v_date?(answer.text) == false
@@ -70,7 +70,7 @@ Telegram::Bot::Client.run(token) do |bot|
 
       if !@eta.nil?
         @stack.each do |key, value|
-          taskcalc(value.to_i)
+        taskcalc(value.to_i)
         bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
         end
       end
