@@ -1,11 +1,16 @@
 # Parses date and some data
 class DateParser
-  def initialize(date)
+  def time_array(date)
     ar = []
     0.upto(2) do |i|
       ar[i] = date[0..date.index(".").to_i - 1]
       date = date[(date.index(".").to_i + 1)..date.size]
     end
+    ar
+  end
+
+  def initialize(date)
+    ar = time_array(date)
     @day = ar[0].to_i
     @month = ar[1].to_i
     @year = ar[2].to_i

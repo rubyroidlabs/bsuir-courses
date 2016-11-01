@@ -2,6 +2,7 @@
 class Database
   def initialize(id)
     user = User.new(id)
+    #@redis = Redis.new(host: "127.0.0.1", port: 6379)
     @redis = Redis.new(url: ENV["redis://h:phl40bf5cs3286b1h8pflrroll@ec2-46-51-184-223.eu-west-1.compute.amazonaws.com:8139"])
     hash = get_std_hash(user)
     @redis.set(user.id, hash.to_json)
