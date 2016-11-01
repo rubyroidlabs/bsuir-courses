@@ -10,18 +10,26 @@ class DateParser
     @year = time_ar[2].to_i
   end
 
-  def self.difference(date_end, date_start)
+  def self.month_difference(date_end, date_start)
     month_diff = if (date_end.month - date_start.month).negative?
                    date_end.month - date_start.month + 12
                  else
                    date_end.month - date_start.month
                  end
+    month_diff -= 1 if date_end.day - date_start.day < 0
+    return month_diff
+  end
+
+  def self.day_difference(date_end, date_start)
     if date_end.day - date_start.day < 0
-      month_diff -= 1
       day_diff = date_end.day - date_start.day + 30
     else 
       day_diff = date_end.day - date_start.day
     end
+    return day_diff
+  end
+
+  def self.month_str(month_diff)
     case month_diff
     when 1
       month_diff_str = "1 месяц"
@@ -30,6 +38,10 @@ class DateParser
     else
       month_diff_str = month_diff.to_s + " месяцев"
     end
+    return month_diff_str
+  end
+
+  def self.day_diff(day_diff)
     case day_diff
     when 1
       day_diff_str = "1 день"
@@ -38,6 +50,14 @@ class DateParser
     else
       day_diff_str = day_diff.to_s + " дней"
     end
+    return day_diff_str
+  end
+
+  def self.difference(date_end, date_start)
+    month_diff = month_difference(date_end, date_start)
+    day_diff = day_difference(date_end,date_start)
+    month_diff_str = month_str(month_diff)
+    day_diff_str = day_diff(day_diff)
     if month_diff.zero?
       "На всё про всё у нас *#{day_diff_str}*"
     elsif day_diff.zero?
@@ -46,8 +66,7 @@ class DateParser
     end
   end
 
-  def self.is_correct?(date)
-    status = false if (date =~ /\d\d.\d\d.\d\d\d\d$/).nil?
+  def self.get_date(date)
     time_ar = []
     if date.index(".").nil? then status = false end
     0.upto(2) do |i|
@@ -57,6 +76,12 @@ class DateParser
     day = time_ar[0].to_i
     month = time_ar[1].to_i
     year = time_ar[2].to_i
+    return day, month, year
+  end
+
+  def self.correct?(date)
+    status = false if (date =~ /\d\d.\d\d.\d\d\d\d$/).nil?
+    day, month, year = get_date(date)
     if day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1
       status = false
     else
