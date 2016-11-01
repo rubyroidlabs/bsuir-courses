@@ -48,31 +48,30 @@ Telegram::Bot::Client.run(token) do |bot|
    	   break
    	 end
    		 
-     bot.api.sendMessage(chat_id: message.chat.id, text: "Сколько лаб нужно сдать?")
-   	 bot.listen do |answer|
-   		if !/\d+/.match(answer.text) == true
-   		bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, будь человеком введи число!")
-   		
+      bot.api.sendMessage(chat_id: message.chat.id, text: "Сколько лаб нужно сдать?")
+   	  bot.listen do |answer|
+        if !/\d+/.match(answer.text) == true
+        bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, будь человеком введи число!")
    		else
-   		 @task_num = answer.text
-   		 bot.api.sendMessage(chat_id: message.chat.id, text: "Принял.")
+        @task_num = answer.text
+        bot.api.sendMessage(chat_id: message.chat.id, text: "Принял.")
         break
         end
-    end
-           @abgx = Hash[@task, @task_num]
-           @stack = @stack.merge(@abgx)
-           
+        end
+        @abgx = Hash[@task, @task_num]
+        @stack = @stack.merge(@abgx)
+
     when "/status"
       if @eta != nil
         bot.api.sendMessage(chat_id: message.chat.id, text: "Осталось времени #{@eta} дней")
       else
-       bot.api.sendMessage(chat_id: message.chat.id, text: "Введи начало и конец семестров")
+        bot.api.sendMessage(chat_id: message.chat.id, text: "Введи начало и конец семестров")
       end
 
       if !@eta.nil?  
-      @stack.each do |key, value|
-      taskcalc(value.to_i)
-      bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
+        @stack.each do |key, value|
+        taskcalc(value.to_i)
+        bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
       end
       end
     when "/reset"
