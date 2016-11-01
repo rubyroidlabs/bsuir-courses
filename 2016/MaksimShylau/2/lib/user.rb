@@ -7,13 +7,13 @@ class User
 
   def want_sem_start(id, hash, redis, command, message)
     unless DateParser.correct?(message.text)
-        command.send_message("*Некорректный ввод*. Повтори")
-        return true
-      end
-      hash["user_status"] = "wanna_sem_end"
-      hash["sem_start"] = message.text
-      command.send_message("Окей, дату начала ты указал: _#{message.text}_, теперь укажи дату окончания. \nНапример, *31.12.2016*")
-      redis.set(id, hash.to_json)
+      command.send_message("*Некорректный ввод*. Повтори")
+      return true
+    end
+    hash["user_status"] = "wanna_sem_end"
+    hash["sem_start"] = message.text
+    command.send_message("Окей, дату начала ты указал: _#{message.text}_, теперь укажи дату окончания. \nНапример, *31.12.2016*")
+    redis.set(id, hash.to_json)
   end
 
   def want_sem_end(id, hash, redis, command, message)
