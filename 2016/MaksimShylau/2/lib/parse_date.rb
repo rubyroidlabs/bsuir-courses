@@ -88,18 +88,14 @@ class DateParser
 
   def self.correct?(date)
     day, month, year = get_date(date)
-    check = day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1 || (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? || date.index(".").nil?
+    check = !(1..31).include?(day) || !(1..12).include?(month) || (Time.now.year - year).abs > 1 || (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? || date.index(".").nil?
     status = check ? false : true
     status
   end
 
   def self.correct_count?(labs_count)
     check = labs_count.to_i <= 0 || labs_count.to_i > 25
-    if check
-      status = false
-    else
-      status = true
-    end
+    status = check ? false : true
     status
   end
   attr_accessor :day
