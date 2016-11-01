@@ -23,7 +23,7 @@ class DateParser
                  else
                    difference
                  end
-    month_diff -= 1 if (difference).negative?
+    month_diff -= 1 if difference.negative?
     month_diff
   end
 
