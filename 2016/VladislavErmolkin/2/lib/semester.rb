@@ -6,9 +6,9 @@ require 'time_difference'
 class Semester < Action
   def run
     if !text_validation
-      @user.reset_sem_system_variables
+      sem_fail
       @user.save
-      return nil
+      return 'I don\'t know this date.'
     end
     result = case @user.sem["__phase"]
     when 0 then sem_enter
@@ -17,6 +17,12 @@ class Semester < Action
     end
     @user.save
     result
+  end
+
+  def sem_fail
+    @user.sem["start"] = nil
+    @user.sem["end"] = nil
+    @user.reset_sem_system_variables
   end
 
   def sem_enter
@@ -38,10 +44,10 @@ class Semester < Action
   end
 
   def text_validation
+    puts @user.to_hash
     case @user.sem["__phase"]
     when 0 then @text == '/semester'
     when 1..2 then is_date? @text
-    else false
     end
   end
 

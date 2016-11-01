@@ -2,6 +2,13 @@ require 'redis'
 require 'webrick'
 
 class Action
-	def initialize
-	end
+  attr_reader :user
+  
+  def initialize(user, text)
+    @text = text.gsub("\n", "")
+    @user = user
+  end
+
+  def text_validation
+  end
 end

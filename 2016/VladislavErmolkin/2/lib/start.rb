@@ -1,11 +1,20 @@
 require_relative 'action'
 
 class Start < Action
+    def initialize(name)
+      super(nil, '')
+      @name = name
+    end
+
     def run
-        return "/start - выводит приветствие и описание всех доступных команд
-                /semester - запоминает даты начала и конца семестра
-                /subject - добавляет предмет и количество лабораторных работ по нему
-                /status - выводит твой список лаб, которые тебе предстоит сдать
-                /reset - сбрасывает для пользователя все данные."
+        return "Hi, #{@name}. 
+    Honestly, I don't feel enthusiastic about doing smth.
+    But I'm just a bot and have no choise. 
+    So it's list of tasks I can take:
+    /start
+    /semester
+    /subject
+    /status
+    /reset"
     end
 end

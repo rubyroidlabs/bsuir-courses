@@ -7,7 +7,7 @@ class Subject < Action
     if !text_validation
       @user.reset_subject_system_variables
       @user.save
-      return nil
+      return 'Think you could fool me? Not today.'
     end
     result = case @user.subjects["__phase"]
     when 0 then subject_enter
