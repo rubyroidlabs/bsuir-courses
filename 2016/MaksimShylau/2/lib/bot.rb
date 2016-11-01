@@ -61,9 +61,23 @@ class TelegramBot
     hash
   end
 
+  def get_name(hash, i)
+    hash["subject"][i - 1]["subject_name"].to_s
+    hash
+  end
+
+  def get_to_do(hash, i)
+    hash["subject"][i - 1]["to_do"].to_s
+    hash
+  end
+
+  def get_labs_count(hash, i)
+    hash["subject"][i - 1]["labs_count"].to_s
+  end
+
   def status_send(hash, i, sem_start, sem_end, status)
     hash = hash_to_do(hash, i, sem_start, sem_end, status)
-    status.send_message("*" + hash["subject"][i - 1]["subject_name"].to_s + "* - *" + hash["subject"][i - 1]["to_do"].to_s + "* из *" + hash["subject"][i - 1]["labs_count"].to_s + "*")
+    status.send_message("*" + get_name(hash, i) + "* - *" + get_to_do(hash, i) + "* из *" + get_labs_count(hash, i) + "*")
   end
 
   def status_to_do(status, hash, sem_start, sem_end)
