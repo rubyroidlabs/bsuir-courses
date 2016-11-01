@@ -24,7 +24,7 @@ class DateParser
   def self.day_difference(date_end, date_start)
     if (date_end.day - date_start.day).negative?
       day_diff = date_end.day - date_start.day + 30
-    else 
+    else
       day_diff = date_end.day - date_start.day
     end
     day_diff
@@ -69,7 +69,6 @@ class DateParser
 
   def self.get_date(date)
     time_ar = []
-    status = false if date.index(".").nil?
     0.upto(2) do |i|
       time_ar[i] = date[0..date.index(".").to_i - 1]
       date = date[(date.index(".").to_i + 1)..date.size]
@@ -82,7 +81,7 @@ class DateParser
 
   def self.correct?(date)
     day, month, year = get_date(date)
-    check = day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1 || (date =~ /\d\d.\d\d.\d\d\d\d$/).nil?
+    check = day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1 || (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? || date.index(".").nil?
     if check
       status = false
     else
