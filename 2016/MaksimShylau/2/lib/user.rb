@@ -23,6 +23,8 @@ class User
       return true
     end
     false
+  end
+
   def correct_sems?(redis, command, hash, id)
     starter = Time.new(*DateParser.get_date(hash["sem_start"]).reverse)
     ender = Time.new(*DateParser.get_date(hash["sem_end"]).reverse)
