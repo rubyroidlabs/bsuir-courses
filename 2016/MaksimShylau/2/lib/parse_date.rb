@@ -91,7 +91,8 @@ class DateParser
   end
 
   def self.correct_count?(labs_count)
-    if labs_count.to_i <= 0 || labs_count.to_i > 25
+    check = labs_count.to_i <= 0 || labs_count.to_i > 25
+    if check
       status = false
     else
       status = true
