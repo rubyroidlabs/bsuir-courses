@@ -78,14 +78,10 @@ class User
 
   def check_status(id, hash, redis, command, message)
     case hash["user_status"]
-    when "wanna_sem_start"
-      want_sem_start(id, hash, redis, command, message)
-    when "wanna_sem_end"
-      want_sem_end(id, hash, redis, command, message)
-    when "wanna_subject"
-      want_subject(id, hash, redis, command, message)
-    when "wanns_labs_count"
-      want_labs_count(id, hash, redis, command, message)
+    when "wanna_sem_start" then want_sem_start(id, hash, redis, command, message)
+    when "wanna_sem_end" then want_sem_end(id, hash, redis, command, message)
+    when "wanna_subject" then want_subject(id, hash, redis, command, message)
+    when "wanns_labs_count" then want_labs_count(id, hash, redis, command, message)
     end
   end
 
