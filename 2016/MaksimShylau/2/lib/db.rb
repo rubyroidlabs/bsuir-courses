@@ -11,7 +11,7 @@ class Database
   def get_std_hash(user)
     hash = if !@redis.get(user.id).nil?
              JSON.parse(@redis.get(user.id)).to_hash
-             else {}
+           else {}
            end
     hash["subject"] = [{}] if hash["subject"].nil?
     hash["subject_count"] = 0 if hash["subject_count"].nil?

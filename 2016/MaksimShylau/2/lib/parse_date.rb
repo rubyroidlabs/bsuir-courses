@@ -1,3 +1,4 @@
+# Parses date and some data
 class DateParser
   def initialize(date)
     time_ar = []
@@ -55,7 +56,7 @@ class DateParser
 
   def self.difference(date_end, date_start)
     month_diff = month_difference(date_end, date_start)
-    day_diff = day_difference(date_end,date_start)
+    day_diff = day_difference(date_end, date_start)
     month_diff_str = month_str(month_diff)
     day_diff_str = day_diff(day_diff)
     if month_diff.zero?
@@ -80,9 +81,8 @@ class DateParser
   end
 
   def self.correct?(date)
-    status = false if (date =~ /\d\d.\d\d.\d\d\d\d$/).nil?
     day, month, year = get_date(date)
-    check = day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1
+    check = day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1 || (date =~ /\d\d.\d\d.\d\d\d\d$/).nil?
     if check
       status = false
     else
