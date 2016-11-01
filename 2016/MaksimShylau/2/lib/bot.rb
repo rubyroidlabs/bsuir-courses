@@ -82,16 +82,11 @@ class TelegramBot
 
   def choose_command(message, db, id, bot, command)
     case message.text
-    when "/start"
-      Start.new(bot, message, HELLO)
-    when "/semester"
-      semester_command(db, id, command)
-    when "/subject"
-      subject_command(db, id, command)
-    when "/status"
-      status_command(db, id, bot, message, command)
-    when "/reset"
-      Reset.new(bot, message, db.redis, id)
+    when "/start" then Start.new(bot, message, HELLO)
+    when "/semester" then semester_command(db, id, command)
+    when "/subject" then subject_command(db, id, command)
+    when "/status" then status_command(db, id, bot, message, command)
+    when "/reset" then Reset.new(bot, message, db.redis, id)
     else
       command.send_message("Моя твоя не понимать")
     end
