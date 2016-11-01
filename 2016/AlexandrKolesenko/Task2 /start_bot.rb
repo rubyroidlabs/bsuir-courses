@@ -7,7 +7,6 @@ token = 'YOUR_TELEGRAM_TOKEN'
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-
     case message.text
     when "/start"
       bot.api.sendMessage(chat_id: message.chat.id, text: "Привет, #{message.from.first_name}")
@@ -70,8 +69,8 @@ Telegram::Bot::Client.run(token) do |bot|
 
       if !@eta.nil?
         @stack.each do |key, value|
-        taskcalc(value.to_i)
-        bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
+          taskcalc(value.to_i)
+          bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
         end
       end
     when "/reset"
