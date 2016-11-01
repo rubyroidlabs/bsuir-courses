@@ -80,18 +80,18 @@ class TelegramBot
     db.set_hash(hash, id)
   end
 
-  def choose_command(message, db, user, bot, command)
+  def choose_command(message, db, id, bot, command)
     case message.text
     when "/start"
       Start.new(bot, message, HELLO)
     when "/semester"
-      semester_command(db, user.id, command)
+      semester_command(db, id, command)
     when "/subject"
-      subject_command(db, user.id, command)
+      subject_command(db, id, command)
     when "/status"
-      status_command(db, user.id, bot, message, command)
+      status_command(db, id, bot, message, command)
     when "/reset"
-      Reset.new(bot, message, db.redis, user.id)
+      Reset.new(bot, message, db.redis, id)
     else
       command.send_message("Моя твоя не понимать")
     end
@@ -105,8 +105,7 @@ class TelegramBot
         command = Command.new(bot, message)
         hash = db.get_hash(user.id)
         next if user.check_status(user.id, hash, db.redis, command, message)
-        db.set_hash(hash, user.id)
-        choose_command(message, db, user, bot, command)
+        choose_command(message, db, user.id, bot, command)
       end
     end
   end
