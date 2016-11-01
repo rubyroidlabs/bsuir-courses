@@ -53,8 +53,7 @@ class User
   end
 
   def check_status(id, hash, redis, command, message)
-    status = hash["user_status"]
-    case status
+    case hash["user_status"]
     when "wanna_sem_start"
       want_sem_start(id, hash, redis, command, message)
     when "wanna_sem_end"
