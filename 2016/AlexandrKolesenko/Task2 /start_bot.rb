@@ -32,20 +32,20 @@ Telegram::Bot::Client.run(token) do |bot|
    		 bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, ты пишешь шляпу. Нормально введи дату!")
 	  else
         @date2 = Date.parse(answer.text)
-      break
+        break
       end
-    end
-      if  countdown(@date1, @date2) == true
+      end
+      if countdown(@date1, @date2) == true
         bot.api.sendMessage(chat_id: message.chat.id, text: "В запасе дней:#{@eta}")
-        else
-        bot.api.sendMessage(chat_id: message.chat.id, text: "Время вышло")
-        end
-        
+      else
+          bot.api.sendMessage(chat_id: message.chat.id, text: "Время вышло")
+      end
+
     when "/subject"
       bot.api.sendMessage(chat_id: message.chat.id, text: "Как называется предмет?")
       bot.listen do |answer|
-      @task = answer.text
-      break
+        @task = answer.text
+        break
       end
 
       bot.api.sendMessage(chat_id: message.chat.id, text: "Сколько лаб нужно сдать?")
@@ -53,13 +53,13 @@ Telegram::Bot::Client.run(token) do |bot|
           if !/\d+/.match(answer.text) == true
             bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, будь человеком введи число!")
           else
-        @task_num = answer.text
-        bot.api.sendMessage(chat_id: message.chat.id, text: "Принял.")
-        break
+            @task_num = answer.text
+            bot.api.sendMessage(chat_id: message.chat.id, text: "Принял.")
+            break
+          end
         end
-        end
-        @abgx = Hash[@task, @task_num]
-        @stack = @stack.merge(@abgx)
+       @abgx = Hash[@task, @task_num]
+       @stack = @stack.merge(@abgx)
 
     when "/status"
       if @eta != nil
@@ -68,11 +68,11 @@ Telegram::Bot::Client.run(token) do |bot|
         bot.api.sendMessage(chat_id: message.chat.id, text: "Введи начало и конец семестров")
       end
 
-      if !@eta.nil?  
+      if !@eta.nil?
         @stack.each do |key, value|
         taskcalc(value.to_i)
         bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
-      end
+        end
       end
     when "/reset"
       @stack = nil
