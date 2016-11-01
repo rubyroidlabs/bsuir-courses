@@ -70,11 +70,12 @@ Telegram::Bot::Client.run(token) do |bot|
        bot.api.sendMessage(chat_id: message.chat.id, text: "Введи начало и конец семестров")
      end
     
-     if !@eta.nil?
+     if @eta.nil? break
+     else
        @stack.each do |key, value|
        taskcalc(value.to_i)
        bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
-     end
+       end
      end
 
     when "/reset"
