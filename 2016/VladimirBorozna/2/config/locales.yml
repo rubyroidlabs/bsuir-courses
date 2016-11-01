@@ -1,0 +1,93 @@
+ru:
+  commands:
+    start:
+      triggers: ['/start'] 
+      description: "выводит приветствие и описание всех доступных команд"
+      response:
+        greeting: >
+          Привет.
+          Я тебе смогу помочь сдать все лабораторные работы вовремя. Но это не точно.
+          Вот список того, того я умею:
+    semester:
+      triggers: ['/semester']
+      description: "запоминает даты начала и конца семестра"
+      response:
+        semester_start_question: 
+          "Когда начинаем учиться? Формат даты: yyyy-mm-dd"
+        semester_finish_question:
+          "Когда надо сдать все лабы?"
+        confirmation: 
+          main:   "Понял, на все про все у нас"
+          months: " %{number} %{month_form}"
+          days:   " %{number} %{day_form}."
+    subject:
+      triggers: ['/subject']
+      description: "добавляет предмет и количество лабораторных работ по нему"
+      response:
+        subject_name_question:
+          "Какой предмет учим?"
+        number_works_question:
+          "Сколько лабораторных работ надо сдать?"
+        confirmation:
+          "ОК"
+    status:
+      triggers: ['/status']
+      description: "выводит твой список лабораторных работ, которые тебе предстоит сдать"
+      response: 
+        semester_left_days:
+          "До конца семестра %{number_days} %{day_form}."
+        required_work_header: "К этому времени у тебя должно было быть сдано:"
+        subject_status: >-
+           %{subject_name} %{required_numbers}
+           (сдано %{performed_number} из %{total_number})
+        conclusion: "Всего было сдано %{accepted_number} лаб из %{total_number}."
+    submit:
+      triggers: ['/submit', 'я сдал', 'я сдала']
+      description: "сохраняет номера лабораторных, которые были сданы"
+      response:
+        subject_name_question: "По какому предмету была сдана работа?"
+        work_number_question: "Какой номер лабораторной работы?"
+        confirmation: "Молодец!"
+    reset:
+      triggers: ['/reset']
+      description: "сбрасывает данные"
+      response:
+        confirmation: "ОК"
+    undefined:
+      triggers: [ ]
+      response:
+        dont_understand: "Нераспознанная команда."
+
+  errors:
+    semester_dates_not_found:
+      "Я не знаю даты начала и конца семестра. Используй команду /semester для их ввода."
+    semester_dates_invalid:
+      "Временной промежуток задан неверно."
+    subject_name_invalid:
+      "Название предмета не соответствует формату."
+    subject_name_not_found:
+      "Предмет не был найден."
+    subjects_not_found:
+      "Предметы не были добавлены. Используй команду /subject, чтобы добавить предмет."
+    subject_name_not_uniq:
+      "Предмет уже был добавлен."
+    work_number_not_found:
+      "Номер лабораторной работы не был найден."
+    work_number_invalid:
+      "Введеный номер не соответствует формату."
+    works_number_invalid:
+      "Введенное количество не соответствует формату."
+    date_format_invalid:
+      "Введеная дата не соответствует формату. Используй команду /semester для повторного ввода"
+
+  month:
+    zero: "месяцев"
+    one:  "месяц"
+    few:  "месяца"
+    many: "месяцев"
+
+  day:
+    zero:  "дней"
+    one:   "день"
+    few:   "дня"
+    many:  "дней"
