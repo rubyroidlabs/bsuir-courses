@@ -28,17 +28,17 @@ Telegram::Bot::Client.run(token) do |bot|
           end
       end
       bot.listen do |answer|
-      if v_date?(answer.text) == false
-   		 bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, ты пишешь шляпу. Нормально введи дату!")
-	  else
-        @date2 = Date.parse(answer.text)
-        break
-      end
+        if v_date?(answer.text) == false
+          bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, ты пишешь шляпу. Нормально введи дату!")
+        else
+          @date2 = Date.parse(answer.text)
+          break
+        end
       end
       if countdown(@date1, @date2) == true
         bot.api.sendMessage(chat_id: message.chat.id, text: "В запасе дней:#{@eta}")
       else
-          bot.api.sendMessage(chat_id: message.chat.id, text: "Время вышло")
+        bot.api.sendMessage(chat_id: message.chat.id, text: "Время вышло")
       end
 
     when "/subject"
@@ -70,7 +70,7 @@ Telegram::Bot::Client.run(token) do |bot|
 
       if !@eta.nil?
         @stack.each do |key, value|
-        taskcalc(value.to_i)
+          taskcalc(value.to_i)
         bot.api.sendMessage(chat_id: message.chat.id, text: "#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
         end
       end
