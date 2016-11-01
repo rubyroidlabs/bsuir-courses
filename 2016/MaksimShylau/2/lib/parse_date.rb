@@ -89,7 +89,7 @@ class DateParser
   def self.correct?(date)
     day, month, year = get_date(date)
     check = day <= 0 || day > 31 || month <= 0 || month > 12 || (Time.now.year - year).abs > 1 || (date =~ /\d\d.\d\d.\d\d\d\d$/).nil? || date.index(".").nil?
-    status = check ? false : true 
+    status = check ? false : true
     status
   end
 
