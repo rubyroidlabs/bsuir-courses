@@ -56,8 +56,10 @@ module Bot
       end
 
       def subjects_markup
-        subject_names = user.subjects.map(&:name)
-        ReplyMarkupFormatter.markup(subject_names, 5)
+        subject_names = user.subjects.map do |s|
+          s.remaining_numbers.size.zero? ? nil : s.name
+        end
+        ReplyMarkupFormatter.markup(subject_names.compact, 5)
       end
     end
   end
