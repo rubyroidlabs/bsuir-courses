@@ -21,7 +21,8 @@ class Status < Command #:nodoc:
   end
 
   def calc_labs(lab)
-    ((semester_length - remaining_days).to_f / semester_length * lab.to_i).to_i
+    days = (semester_length - remaining_days).to_f
+    (days / semester_length * lab.to_i).to_i
   end
 
   def semester_length
