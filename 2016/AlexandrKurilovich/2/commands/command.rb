@@ -11,7 +11,7 @@ class Command #:nodoc:
 
   def parse_data
     data = @redis.get(@message.chat.id.to_s)
-      return { "semester" => 0, "subject" => 0, "subjects" => {} } if data.nil?
+    return { "semester" => 0, "subject" => 0, "subjects" => {} } if data.nil?
     JSON.parse(data)
   end
 

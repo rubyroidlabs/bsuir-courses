@@ -21,8 +21,14 @@ class Status < Command #:nodoc:
   end
 
   def calc_labs(lab)
-    semester_length = (Date.parse(@data["end"]) - Date.parse(@data["start"])).to_i
-    remaining_days = (Date.parse(@data["end"]) - DateTime.now.to_date).to_i
     ((semester_length - remaining_days).to_f / semester_length * lab.to_i).to_i
+  end
+
+  def semester_length
+    (Date.parse(@data["end"]) - Date.parse(@data["start"])).to_i
+  end
+
+  def remaining_days
+    (Date.parse(@data["end"]) - DateTime.now.to_date).to_i
   end
 end
