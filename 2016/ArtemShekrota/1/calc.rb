@@ -20,11 +20,11 @@ def bit(array)
   map(a, b)
 end
 
-def map(a, b)
+def map(a, flag)
   a.map! do |el|
-    break if b <= 0
+    break if flag <= 0
     if el == "1"
-      b -= 1
+      flag -= 1
       "0"
     else el
     end
