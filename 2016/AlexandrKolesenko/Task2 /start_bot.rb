@@ -1,7 +1,7 @@
 
-require_relative 'logic.rb'
-require 'telegram/bot'
-token = 'YOUR_TELEGRAM_TOKEN'
+require_relative "logic.rb"
+require "telegram/bot"
+token = "YOUR_TELEGRAM_TOKEN"
 
 @stack = {}
 
@@ -26,7 +26,7 @@ Telegram::Bot::Client.run(token) do |bot|
           break
         end
       end
-    bot.listen do |answer|
+      bot.listen do |answer|
         if v_date?(answer.text) == false
           bot.api.sendMessage(chat_id: message.chat.id, text: "#{answer.from.first_name}, ты пишешь шляпу. Нормально введи дату!")
         else
