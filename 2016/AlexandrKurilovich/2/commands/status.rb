@@ -1,7 +1,7 @@
 class Status < Command #:nodoc:
   def message
     if semester?
-      @bot.api.sendMessage(chat_id: @message.chat.id, text: "Тебе осталось сдать:\n")
+      @bot.api.sendMessage(chat_id: @message.chat.id, text: "У тебя должно быть сдано:\n")
       @subjects = @data["subjects"]
       @subjects.each do |key, val|
         @bot.api.sendMessage(chat_id: @message.chat.id, text: "#{key} - #{calc_labs(val)} из #{val} лаб\n")
