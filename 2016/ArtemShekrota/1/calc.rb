@@ -33,22 +33,22 @@ def map(a, b)
 end
 
 puts "Enter expression in polish notation using space between symbols"
-while (a = gets)
+while (input = gets)
   begin
-    expression_array = a.split
+    expression_array = input.split
     operands = []
-    expression_array.each do |i|
-      if !i.match(/[0-9]/).nil?
-        operands.push(i)
-      elsif i == "+"
+    expression_array.each do |element|
+      if !element.match(/\A[+-]?\d+(\.\d+)?([eE]\d+)?\Z/).nil?
+        operands.push(element)
+      elsif element == "+"
         operands.push(sum(operands.pop(2)))
-      elsif i == "-"
+      elsif element == "-"
         operands.push(diff(operands.pop(2)))
-      elsif i == "/"
+      elsif element == "/"
         operands.push(div(operands.pop(2)))
-      elsif i == "*"
+      elsif element == "*"
         operands.push(mult(operands.pop(2)))
-      elsif i == "!"
+      elsif element == "!"
         operands.push(bit(operands.pop(2)))
       end
     end
