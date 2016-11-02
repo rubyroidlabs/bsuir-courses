@@ -1,9 +1,9 @@
-class Subject < Command
+class Subject < Command #:nodoc:
   def message
     reset_status
     @data["subject"] = 1
     @subjects = @data["subjects"]
-    @redis.set( "#{ @message.chat.id }", @data.to_json )
+    @redis.set("#{@message.chat.id.to_s}", @data.to_json)
     @bot.api.sendMessage(chat_id: @message.chat.id, text: "Какой предмет учим?")
   end
 
@@ -24,7 +24,7 @@ class Subject < Command
     @subjects[@message.text] = 0
     @data["last_subject"] = @message.text
     @data["subject"] = 2
-    @redis.set("#{ @message.chat.id }", @data.to_json)
+    @redis.set("#{@message.chat.id.to_s}", @data.to_json)
     @bot.api.sendMessage(chat_id: @message.chat.id, text: "Сколько лаб надо сдать?")
   end
 
@@ -33,7 +33,7 @@ class Subject < Command
     @data["subject"] = 0
     @subjects[@data["last_subject"]] = @message.text
     @data["subjects"] = @subjects
-    @redis.set("#{ @message.chat.id }", @data.to_json)
+    @redis.set("#{@message.chat.id.to_s}", @data.to_json)
     @bot.api.sendMessage(chat_id: @message.chat.id, text: "Красава! Записал.")
   end
 
