@@ -10,11 +10,11 @@ class Command #:nodoc:
   end
 
   def parse_data
-    data = @redis.get("#{@message.chat.id}")
+    data = @redis.get(@message.chat.id.to_s)
     if data.nil?
-      data = { "semester" => 0, "subject" => 0, "subjects" => {} }
+      return{ "semester" => 0, "subject" => 0, "subjects" => {} }
     else
-      data = JSON.parse(data)
+      return JSON.parse(data)
     end
   end
 
@@ -24,6 +24,6 @@ class Command #:nodoc:
   def reset_status
     @data["semester"] = 0
     @data["subject"] = 0
-    @redis.set("#{ @message.chat.id }", @data.to_json)
+    @redis.set(@message.chat.id.to_s, @data.to_json)
   end
 end

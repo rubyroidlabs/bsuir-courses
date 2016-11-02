@@ -8,15 +8,15 @@ Telegram::Bot::Client.run(BOT_TOKEN) do |bot|
     status_bot = Status.new(bot, message, redis)
     reset_bot = Reset.new(bot, message, redis)
     case message.text
-    when '/start'
+    when "/start"
       start_bot.message
-    when '/semester'
+    when "/semester"
       semester_bot.message
-    when '/subject'
+    when "/subject"
       subject_bot.message
-    when '/status'
+    when "/status"
       status_bot.message
-    when '/reset'
+    when "/reset"
       reset_bot.message
     else
       semester_bot.handler
