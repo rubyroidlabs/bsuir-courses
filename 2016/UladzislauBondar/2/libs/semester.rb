@@ -1,5 +1,5 @@
-require_relative 'command'
-require 'date'
+require_relative "command"
+require "date"
 
 module Command
   # Semester-command class

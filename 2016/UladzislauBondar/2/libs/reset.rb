@@ -1,4 +1,4 @@
-require_relative 'command'
+require_relative "command"
 
 module Command
   # Reset-command class
@@ -17,12 +17,12 @@ module Command
     private
 
     def delete_semester_end
-      @redis.del('users_semester_ends', user_id)
+      @redis.del("users_semester_ends", user_id)
     end
 
     def delete_subjects
-      @redis.del('users_subjects', user_id)
-      @redis.hset('users_subjects', user_id, {})
+      @redis.del("users_subjects", user_id)
+      @redis.hset("users_subjects", user_id, {})
     end
   end
 end
