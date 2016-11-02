@@ -1,6 +1,7 @@
 class Status < Command
   def message
     if semester?
+      @bot.api.sendMessage(chat_id: @message.chat.id, text: "Тебе осталось сдать:\n")
       @subjects = @data["subjects"]
       @subjects.each do |key, val|
         @bot.api.sendMessage(chat_id: @message.chat.id,
