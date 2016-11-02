@@ -21,12 +21,12 @@ def bit(array)
 end
 
 def map(a, b)
-  a.map! do |i|
+  a.map! do |el|
     break if b <= 0
-    if i == "1"
+    if el == "1"
       b -= 1
       "0"
-    else i
+    else el
     end
   end
   a.join.reverse.to_i(2)
