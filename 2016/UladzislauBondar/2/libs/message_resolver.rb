@@ -39,9 +39,9 @@ class MessageResolver
 
   def process_text
     case user_command
-    when '/semester'
+    when "/semester"
       process_semester
-    when '/subject'
+    when "/subject"
       process_subject
     else
       Undefined.new(@message).process

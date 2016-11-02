@@ -29,12 +29,12 @@ module Command
       @message[:from][:id]
     end
 
-    def save_user_command(command = '')
-      @redis.hset('users_commands', user_id, command)
+    def save_user_command(command = "")
+      @redis.hset("users_commands", user_id, command)
     end
 
     def send_message(text)
-      @api.call('sendMessage', chat_id: chat_id, text: text)
+      @api.call("sendMessage", chat_id: chat_id, text: text)
     end
 
     def token
