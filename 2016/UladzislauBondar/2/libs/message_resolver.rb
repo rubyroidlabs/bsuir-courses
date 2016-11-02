@@ -1,9 +1,9 @@
-require_relative 'command'
-require_relative 'start'
-require_relative 'semester'
-require_relative 'subject'
-require_relative 'status'
-require_relative 'reset'
+require_relative "command"
+require_relative "start"
+require_relative "semester"
+require_relative "subject"
+require_relative "status"
+require_relative "reset"
 include Command
 
 # Resolves commands and messages from user
@@ -77,24 +77,24 @@ class MessageResolver
   end
 
   def users
-    @redis.smembers('users')
+    @redis.smembers("users")
   end
 
   def save_user
-    @redis.sadd('users', user_id)
+    @redis.sadd("users", user_id)
     set_user_command
     create_hash_of_subjects
   end
 
   def user_command
-    @redis.hget('users_commands', user_id)
+    @redis.hget("users_commands", user_id)
   end
 
   def create_hash_of_subjects
-    @redis.hset('users_subjects', user_id, {})
+    @redis.hset("users_subjects", user_id, {})
   end
 
   def save_user_command(command = '')
-    @redis.hset('users_commands', user_id, command)
+    @redis.hset("users_commands", user_id, command)
   end
 end
