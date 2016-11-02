@@ -1,22 +1,26 @@
 require 'json'
+require 'redis'
 
 class User
   attr_accessor :id, :sem, :subjects
+  @@redis = Redis.new(:host => "127.0.0.1", :port => 6379, :db => 15)
 
   def initialize(id)
     @id = id
-    path = "./users/user_#{@id}.txt"
-    file = File.open(path, 'a+')
-    File.zero?(path) ? fill_attrs({}) : fill_attrs(JSON.parse(file.read))
-    file.close
+    user_hash = if @@redis.exists "user_#{id}"
+      JSON.parse(@@redis.get("user_#{id}"))
+    else
+      {}
+    end
+    set_attrs user_hash
   end
 
-  def fill_attrs(params)
-    fill_sem_attrs params
-    fill_subject_attrs params
+  def set_attrs(params)
+    set_sem_attrs params
+    set_subject_attrs params
   end
 
-  def fill_sem_attrs(params)
+  def set_sem_attrs(params)
     @sem = params.fetch('sem', Hash.new)
     if @sem.empty?
       @sem["start"] = nil
@@ -25,7 +29,7 @@ class User
     end
   end
 
-  def fill_subject_attrs(params)
+  def set_subject_attrs(params)
     @subjects = params.fetch('subjects', Hash.new)
     if @subjects.empty? then reset_subject_system_variables end
   end
@@ -46,15 +50,12 @@ class User
   end
 
   def save
-    path = "./users/user_#{@id}.txt"
-    file = File.open(path, 'w')
-    file.print JSON.generate itself.to_hash
-    file.close
+    @@redis.set "user_#{@id}", JSON.generate(itself.to_hash)
   end
 
   def reset
-    fill_sem_attrs({})
-    fill_subject_attrs({})
+    set_sem_attrs({})
+    set_subject_attrs({})
   end
 
   def to_hash
