@@ -1,8 +1,8 @@
-class Semester < Command
+class Semester < Command #:nodoc:
   def message
     reset_status
     @data["semester"] = 1
-    @redis.set( "#{ @message.chat.id }", @data.to_json )
+    @redis.set(@message.chat.id.to_s, @data.to_json)
     @bot.api.sendMessage(chat_id: @message.chat.id, text: "Когда начинается семестр?")
   end
 
@@ -23,7 +23,7 @@ class Semester < Command
     return unless data_valid?(@message.text)
     @data["semester"] = 2
     @data["start"] = @message.text
-    @redis.set("#{ @message.chat.id }", @data.to_json)
+    @redis.set(@message.chat.id.to_s, @data.to_json)
     @bot.api.sendMessage(chat_id: @message.chat.id, text: "Когда заканчивается семестр?")
   end
 
@@ -31,7 +31,7 @@ class Semester < Command
     return unless data_valid?(@message.text)
     @data["semester"] = 0
     @data["end"] = @message.text
-    @redis.set("#{ @message.chat.id }", @data.to_json)
+    @redis.set(@message.chat.id.to_s, @data.to_json)
     @bot.api.sendMessage(chat_id: @message.chat.id, text: "У нас #{remaining_days} дня, почан. Прошло #{semester_proc}% семестра.")
   end
 
@@ -40,8 +40,8 @@ class Semester < Command
   end
 
   def semester_proc
-    semester_length = (Date.parse(@message.text)-Date.parse(@data["start"])).to_i
-    ((semester_length-remaining_days).to_f/semester_length*100).to_i
+    semester_length = (Date.parse(@message.text) - Date.parse(@data["start"])).to_i
+    ((semester_length - remaining_days).to_f / semester_length * 100).to_i
   end
 
   def data_valid?(data)

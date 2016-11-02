@@ -1,6 +1,6 @@
 require_relative "../config"
 
-class Command
+class Command #:nodoc:
   def initialize(bot, message, redis)
     @redis = redis
     @bot = bot
