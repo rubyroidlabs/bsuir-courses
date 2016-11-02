@@ -57,8 +57,8 @@ Telegram::Bot::Client.run(token) do |bot|
             break
           end
         end
-        @abgx = Hash[@task, @task_num]
-        @stack = @stack.merge(@abgx)
+      @abgx = Hash[@task, @task_num]
+      @stack = @stack.merge(@abgx)
 
     when "/status"
       if @eta.nil?
