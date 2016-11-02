@@ -14,11 +14,12 @@ module Command
 
     def process_semester_end
       @semester_end = Date.parse(text)
-      raise ArgumentError unless valid_date?
+      fail ArgumentError unless valid_date?
       save_semester_end
       send_message(left_days_message)
       save_user_command
-    fail ArgumentError, send_message("Invalid date. Try again!")
+    rescue ArgumentError
+      send_message("Invalid date. Try again!")
     end
 
     private
