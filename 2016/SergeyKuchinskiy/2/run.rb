@@ -5,7 +5,6 @@ require "require_all"
 require "date"
 require_all "lib"
 
-TOKEN = "Secret::TOKEN"
 server = WEBrick::HTTPServer.new(Port: 3333)
 server.mount "/", MyServlet
 

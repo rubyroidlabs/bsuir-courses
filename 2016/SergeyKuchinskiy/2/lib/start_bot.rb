@@ -14,6 +14,6 @@ class StartBot < Bot
     "/submit\t\twhen you pass a lab \n"\
     "/memes\t\t\n"\
     "/give_me_memes")
-    return nil
+    nil
   end
 end

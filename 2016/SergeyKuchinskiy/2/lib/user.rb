@@ -12,9 +12,7 @@ class User
   def handler(message, bot)
     puts "current:   " + @current.inspect
     if !@current
-      obj = EntryPoint.new(bot, message)
-      @current = obj.run(@subjects, @semester)
-
+      @current = EntryPoint.new(bot, message).run(@subjects, @semester)
     elsif @current.include?("/subject")
       @current = SubjectBot.new(bot, message).handle(@current, @subjects)
     elsif @current.include?("/submit")
@@ -23,9 +21,12 @@ class User
       @current = SemesterBot.new(bot, message).handle(@current, @semester)
     end
     return nil if @current == "reset"
+    save_to_file
+  end
 
+  def save_to_file
     file = File.open("UsersData/#{@uid}", "w+")
-    file.write(JSON({ current: @current, semester: @semester, subjects: @subjects }))
+    file.write(JSON(current: @current, semester: @semester, subjects: @subjects))
     file.close
   end
 end

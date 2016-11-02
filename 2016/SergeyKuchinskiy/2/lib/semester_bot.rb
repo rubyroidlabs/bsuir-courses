@@ -13,32 +13,32 @@ class SemesterBot < Bot
   def handle(current, semester)
     case current[10]
     when "1"
-      return "/semester/1" if !@month_hash.keys.include?(@message.text)
+      return "/semester/1" unless @month_hash.keys.include?(@message.text)
       semester["month_start"] = @message.text
       input_day(array_of_days(semester["month_start"]), "start")
       "/semester/2"
     when "2"
-      return "/semester/2" if !array_of_days(semester["month_start"]).include?(@message.text)
+      return "/semester/2" unless array_of_days(semester["month_start"]).include?(@message.text)
       semester["day_start"] = @message.text
       input_year("start")
       "/semester/3"
     when "3"
-      return "/semester/3" if !%w(2016 2017).include?(@message.text)
+      return "/semester/3" unless %w(2016 2017).include?(@message.text)
       semester["year_start"] = @message.text
       input_month("finish")
       "/semester/4"
     when "4"
-      return "/semester/4" if !@month_hash.keys.include?(@message.text)
+      return "/semester/4" unless @month_hash.keys.include?(@message.text)
       semester["month_finish"] = @message.text
       input_day(array_of_days(semester["month_finish"]), "finish")
       "/semester/5"
     when "5"
-      return "/semester/5" if !array_of_days(semester["month_finish"]).include?(@message.text)
+      return "/semester/5" unless array_of_days(semester["month_finish"]).include?(@message.text)
       semester["day_finish"] = @message.text
       input_year("finish")
       "/semester/6"
     when "6"
-      return "/semester/6" if !%w(2016 2017).include?(@message.text)
+      return "/semester/6" unless %w(2016 2017).include?(@message.text)
       semester["year_finish"] = @message.text
 
       semester["start"] = DateTime.parse(semester["month_start"] + " " +
