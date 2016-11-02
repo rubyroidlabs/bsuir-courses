@@ -1,8 +1,8 @@
-require 'telegram/bot'
-require 'redis'
-require 'yaml'
-require_relative '../2/libs/message_resolver'
-require_relative '../2/libs/command'
+require "telegram/bot"
+require "redis"
+require "yaml"
+require_relative "../2/libs/message_resolver"
+require_relative "../2/libs/command"
 
 # Main class for communication with user
 class Client
