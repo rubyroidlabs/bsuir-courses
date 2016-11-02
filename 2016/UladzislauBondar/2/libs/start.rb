@@ -1,4 +1,4 @@
-require_relative 'command'
+require_relative "command"
 
 module Command
   # Start-command class

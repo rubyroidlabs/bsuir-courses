@@ -1,4 +1,4 @@
-require_relative 'command'
+require_relative "command"
 
 module Command
   # Status-command class
@@ -38,11 +38,11 @@ module Command
     end
 
     def semester_end
-      @redis.hget('users_semester_ends', user_id)
+      @redis.hget("users_semester_ends", user_id)
     end
 
     def subjects
-      @redis.hget('users_subjects', user_id)
+      @redis.hget("users_subjects", user_id)
     end
 
     def hash_of_subjects

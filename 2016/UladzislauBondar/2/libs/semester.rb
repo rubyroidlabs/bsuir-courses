@@ -18,8 +18,7 @@ module Command
       save_semester_end
       send_message(left_days_message)
       save_user_command
-    rescue ArgumentError
-      send_message("Invalid date. Try again!")
+    fail ArgumentError, send_message("Invalid date. Try again!")
     end
 
     private
@@ -30,7 +29,7 @@ module Command
 
     def valid_date?
       today = Date.today
-      @semester_end - today > 0
+      (@semester_end - today).positive?
     end
 
     def left_days_message
@@ -51,7 +50,7 @@ module Command
     end
 
     def save_semester_end
-      @redis.hset('users_semester_ends', user_id, semester_end)
+      @redis.hset("users_semester_ends", user_id, semester_end)
     end
   end
 end

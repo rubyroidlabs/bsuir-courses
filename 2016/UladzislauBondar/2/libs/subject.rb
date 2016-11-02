@@ -1,5 +1,5 @@
-require_relative 'command'
-require 'json'
+require_relative "command"
+require "json"
 
 module Command
   # Subject-command class
@@ -40,7 +40,7 @@ module Command
     private
 
     def positive_number?
-      text =~ /^\d+$/ && text.to_i > 0
+      text =~ /^\d+$/ && text.to_i.positive?
     end
 
     def save_subject
@@ -61,7 +61,7 @@ module Command
     end
 
     def subjects
-      @redis.hget('users_subjects', user_id)
+      @redis.hget("users_subjects", user_id)
     end
 
     def hash_of_subjects
@@ -69,7 +69,7 @@ module Command
     end
 
     def save_hash_of_subjects(hash)
-      @redis.hset('users_subjects', user_id, hash.to_json)
+      @redis.hset("users_subjects", user_id, hash.to_json)
     end
   end
 end

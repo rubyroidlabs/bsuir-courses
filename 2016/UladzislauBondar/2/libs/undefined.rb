@@ -1,7 +1,7 @@
-require_relative 'command'
+require_relative "command"
 
 module Command
-  # Resolvles all "bad" messages and sends error message
+  # Resolves all "bad" messages and sends error message
   class Undefined < Base
     def process
       send_message("You're doing smth wrong")
