@@ -1,4 +1,10 @@
-#Starts telegram client
+require 'telegram/bot'
+require 'redis'
+require 'yaml'
+require_relative '../2/libs/message_resolver'
+require_relative '../2/libs/command'
+
+# Main class for communication with user
 class Client
   def initialize
     client.run(token) do |bot|
@@ -24,3 +30,5 @@ class Client
     token
   end
 end
+
+Client.new
