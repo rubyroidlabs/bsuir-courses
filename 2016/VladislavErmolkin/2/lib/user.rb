@@ -2,7 +2,7 @@ require 'json'
 require 'redis'
 
 class User
-  attr_accessor :id, :sem, :subjects
+  attr_accessor :id, :sem, :subjects, :submit
   @@redis = Redis.new(:host => "127.0.0.1", :port => 6379, :db => 15)
 
   def initialize(id)
@@ -18,6 +18,12 @@ class User
   def set_attrs(params)
     set_sem_attrs params
     set_subject_attrs params
+    set_submit_attrs params
+  end
+
+  def set_submit_attrs(params)
+    @submit = params.fetch('submit', Hash.new)
+    reset_submit_system_variables if @submit.empty?
   end
 
   def set_sem_attrs(params)
@@ -31,7 +37,7 @@ class User
 
   def set_subject_attrs(params)
     @subjects = params.fetch('subjects', Hash.new)
-    if @subjects.empty? then reset_subject_system_variables end
+    reset_subject_system_variables if @subjects.empty? 
   end
 
   def reset_sem_system_variables
@@ -45,12 +51,19 @@ class User
     @subjects["__current"] = nil
   end
 
+  def reset_submit_system_variables
+    @submit["__is_now?"] = false
+    @submit["__phase"] = 0
+    @submit["__current"] = nil
+  end
+
   def get_subject_items
     @subjects.select { |key, value| key[0...2] != "__"}
   end
 
   def save
     @@redis.set "user_#{@id}", JSON.generate(itself.to_hash)
+    puts @@redis.get "user_#{@id}"
   end
 
   def reset

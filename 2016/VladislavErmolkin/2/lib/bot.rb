@@ -4,9 +4,9 @@ require 'json'
 require 'redis'
 require_relative 'servlet'
 
-TOKEN = '269397188:AAEAg1R3nq1eJ7eaEwCv64oKAo2qXsi0h0g'
+TOKEN = '269397188:AAHQy3DIpZcQtT_sRLc2ADy2SgLhfGBmqZk'
  
- # https://api.telegram.org/bot269397188:AAEAg1R3nq1eJ7eaEwCv64oKAo2qXsi0h0g/setWebhook?url=https://f626102f.ngrok.io/webhooks/telegram_Xi39zZtru6W3Eop897cz
+ # https://api.telegram.org/bot269397188:AAHQy3DIpZcQtT_sRLc2ADy2SgLhfGBmqZk/setWebhook?url=https://b978b6b9.ngrok.io/webhooks/telegram_Xi39zZtru6V3oop897cz
  # lsof -wni tcp:8080
  # kill -9 <pid>
  
@@ -20,7 +20,10 @@ class Bot
     Telegram::Bot::Client.run(@token) { |bot| @bot = bot }
     server = WEBrick::HTTPServer.new(:Port => 8080)
     server.mount("/", MyServlet, @bot)
-    trap("INT") { server.shutdown } 
+    trap("INT") do
+      server.shutdown
+      p 'end!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+    end
     server.start
   end
 end

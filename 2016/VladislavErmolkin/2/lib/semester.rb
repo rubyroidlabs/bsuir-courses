@@ -8,7 +8,7 @@ class Semester < Action
     if !text_validation
       sem_fail
       @user.save
-      return 'I don\'t know this date.'
+      return 'Think you could fool me? Not today.'
     end
     result = case @user.sem["__phase"]
     when 0 then sem_enter
@@ -44,10 +44,15 @@ class Semester < Action
   end
 
   def text_validation
-    puts @user.to_hash
     case @user.sem["__phase"]
-    when 0 then @text == '/semester'
-    when 1..2 then is_date? @text
+    when 0 then true
+    when 1 then is_date? @text
+    when 2 
+      if is_date? @text
+        return Time.parse(@user.sem["start"]) < Time.parse(@text)
+      else
+        false
+    end
     end
   end
 
@@ -55,6 +60,7 @@ class Semester < Action
     TimeDifference.between(Time.parse(first_date), Time.parse(second_date)).in_general
   end
 
+  #todo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   def native_difference(diff)
     month = case diff[:months]
     when 0..1 then 'month' 

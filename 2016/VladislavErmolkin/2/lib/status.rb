@@ -9,8 +9,8 @@ class Status < Action
       return "First you need to set semester dates (try '/semester')."
     end
     index = calculate
-    result = "You need to do:\n"
-    p @user.get_subject_items
+    result = "Semester: #{@user.sem['start']}  :  #{@user.sem['end']}.\nToday: #{Date.today}.\n"
+    result += "You need to do:\n" if @user.get_subject_items.length > 0
     @user.get_subject_items.each do |subject, labs|
       result += get_count(subject, labs, index)
     end
@@ -23,12 +23,12 @@ class Status < Action
     now = Time.now
     full_time = TimeDifference.between(start, finish).in_days
     wasted_time = TimeDifference.between(start, now).in_days
-    puts full_time, wasted_time
-    return wasted_time.to_f / full_time
+    return (wasted_time.to_f / full_time)
   end
 
   def get_count(subject, all_labs, k)
-    required_labs = (k * all_labs).round
-    "#{subject} - #{required_labs} of #{all_labs}\n"
+    required_number = (k * all_labs.length).round
+    required_labs = all_labs[0...required_number]
+    "#{subject} - #{required_labs.join(' ')}\n"
   end
 end

@@ -1,1 +1,0 @@
-{"id":228861776,"sem":{"start":"2016-09-01","end":"2016-11-25","__is_now?":false,"__phase":0},"subjects":{"__is_now?":false,"__phase":0,"__current":null,"PPU":8,"IGI":6,"SUBD":7}}

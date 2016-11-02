@@ -12,7 +12,7 @@ class Subject < Action
     result = case @user.subjects["__phase"]
     when 0 then subject_enter
     when 1 then set_subject 
-    when 2 then set_number_of_labs
+    when 2 then set_labs
     end
     @user.save
     result
@@ -30,15 +30,15 @@ class Subject < Action
     'How many labs?'
   end
 
-  def set_number_of_labs
-    @user.subjects[@user.subjects["__current"]] = @text.to_i
+  def set_labs
+    @user.subjects[@user.subjects["__current"]] = (1..@text.to_i).to_a
     @user.reset_subject_system_variables
     'Excelent.'
   end
 
   def text_validation
     case @user.subjects["__phase"]
-    when 0 then @text == '/subject'
+    when 0 then true
     when 1 then (@text.match(ACTION_REGEX)).nil?
     when 2 then !(@text.match(NUMBER_REGEX)).nil?      
     else false
