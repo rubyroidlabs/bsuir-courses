@@ -5,49 +5,49 @@ class SubjectBot < Bot
   end
 
   def start
-    send_text_message('What is the subject?')
-    '/subject/1'
+    send_text_message("What is the subject?")
+    "/subject/1"
   end
 
   def handle(current, subjects)
     case current[-1]
-    when '1'
+    when "1"
       first_stage(subjects)
-    when '2'
+    when "2"
       second_stage(subjects)
     end
   end
 
   def first_stage(subjects)
-    if @message.text.start_with?('/')
-      send_text_message('What is the subject?')
-      return '/subject/1'
+    if @message.text.start_with?("/")
+      send_text_message("What is the subject?")
+      return "/subject/1"
     end
-    subjects['temp'] = @message.text
-    send_text_message('How many labs?')
-    '/subject/2'
+    subjects["temp"] = @message.text
+    send_text_message("How many labs?")
+    "/subject/2"
   end
 
   def second_stage(subjects)
-    return '/subjects/2' if !correct_number?
+    return "/subjects/2" if !correct_number?
 
-    send_text_message('Successfully added')
-    subjects[subjects['temp']] = { 'list' => (1..@message.text.to_i).to_a, 'count' => @message.text.to_i }
-    subjects.delete('temp')
+    send_text_message("Successfully added")
+    subjects[subjects["temp"]] = { "list" => (1..@message.text.to_i).to_a, "count" => @message.text.to_i }
+    subjects.delete("temp")
     nil
   end
 
   def correct_number?
     if (@message.text =~ /^[\d]+$/).nil?
-      send_text_message('How many labs?')
+      send_text_message("How many labs?")
       return false
     end
     if @message.text.to_i.zero?
-      send_text_message('How many labs?')
+      send_text_message("How many labs?")
       return false
     end
     if @message.text.to_i > 15
-      send_text_message('I think, that is too many labs. Please input number again.')
+      send_text_message("I think, that is too many labs. Please input number again.")
       return false
     end
     true

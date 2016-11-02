@@ -13,7 +13,7 @@ class StartBot < Bot
     "/reset\t\treset your data\n"\
     "/submit\t\twhen you pass a lab \n"\
     "/memes\t\t\n"\
-    '/give_me_memes')
+    "/give_me_memes")
     return nil
   end
 end

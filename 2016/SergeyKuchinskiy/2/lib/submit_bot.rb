@@ -6,12 +6,12 @@ class SubmitBot < Bot
 
   def start(subjects)
     if subjects == {}
-      send_text_message('First of all, you should fill the /subject')
+      send_text_message("First of all, you should fill the /subject")
       return nil
     else
       send_markup_message("What's done?", create_markup(subjects.keys))
     end
-    '/submit/1'
+    "/submit/1"
   end
 
   def handle(current, subjects)
@@ -22,29 +22,29 @@ class SubmitBot < Bot
     end
 
     case current[8]
-    when '1'
-      return '/submit/1' if @message.data.nil?
+    when "1"
+      return "/submit/1" if @message.data.nil?
       return first_stage(subjects)
-    when '2'
+    when "2"
       return second_stage(subjects, current)
     end
   end
 
   def first_stage(subjects)
-    if subjects[@message.data]['list'].empty?
-      send_text_message('Already done!')
+    if subjects[@message.data]["list"].empty?
+      send_text_message("Already done!")
       return nil
     end
-    send_markup_message('Choose lab, please.', create_markup(subjects[@message.data]['list']))
+    send_markup_message("Choose lab, please.", create_markup(subjects[@message.data]["list"]))
     "/submit/2/#{@message.data}"
   end
 
   def second_stage(subjects, current)
-    if subjects[current[10..-1]]['list'].delete(@message.data.to_i).nil?
-      send_text_message('Please, choose the lab')
+    if subjects[current[10..-1]]["list"].delete(@message.data.to_i).nil?
+      send_text_message("Please, choose the lab")
       return "/submit/2/#{current[10..-1]}"
     end
-    send_text_message('Good job, man!')
+    send_text_message("Good job, man!")
     nil
   end
 

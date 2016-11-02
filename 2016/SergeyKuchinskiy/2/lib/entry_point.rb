@@ -12,27 +12,27 @@ class EntryPoint < Bot
     end
 
     case @message.text
-    when '/start'
+    when "/start"
       return StartBot.new(@bot, @message).run
-    when '/semester'
+    when "/semester"
       if semester != {}
-        send_text_message('Already defined')
+        send_text_message("Already defined")
         return nil
       end
       return SemesterBot.new(@bot, @message).run
-    when '/subject'
+    when "/subject"
       return SubjectBot.new(@bot, @message).start
-    when '/status'
+    when "/status"
       return StatusBot.new(@bot, @message).run(subjects, semester)
-    when '/reset'
+    when "/reset"
       File.delete("UsersData/#{@message.from.id}")
-      send_text_message('Successfully deleted')
-      return 'reset'
-    when '/submit'
+      send_text_message("Successfully deleted")
+      return "reset"
+    when "/submit"
       return SubmitBot.new(@bot, @message).start(subjects)
-    when '/memes'
+    when "/memes"
       return MemesBot.new(@bot, @message).run
-    when '/give_me_memes'
+    when "/give_me_memes"
       return StickerBot.new(@bot, @message).run
     else
       send_text_message("#{@message.from.first_name}, I "\

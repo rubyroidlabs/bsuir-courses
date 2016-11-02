@@ -1,18 +1,18 @@
 # myservlet
 class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def do_POST(request, response)
-    body = JSON.parse(request.body.tr("\n", ' '))
+    body = JSON.parse(request.body.tr("\n", " "))
     puts body.inspect
-    if body['callback_query']
+    if body["callback_query"]
       message =  Telegram::Bot::Types::Update.new(body).callback_query
-    elsif body['message']
+    elsif body["message"]
       message =  Telegram::Bot::Types::Update.new(body).message
     end
     Telegram::Bot::Client.run(Secret::TOKEN) do |bot|
       handler(message, bot)
     end
     response.status = 200
-    response.body = 'KEK'
+    response.body = "KEK"
   end
 
   def handler(message, bot)
@@ -20,12 +20,12 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     uid = message.from.id
 
     if File.exist?("UsersData/#{uid}")
-      file = File.open("UsersData/#{uid}", 'r')
+      file = File.open("UsersData/#{uid}", "r")
       content = file.read
     else
-      file = File.open("UsersData/#{uid}", 'w+')
-      file.write('{}')
-      content = '{}'
+      file = File.open("UsersData/#{uid}", "w+")
+      file.write("{}")
+      content = "{}"
     end
     file.close
 
