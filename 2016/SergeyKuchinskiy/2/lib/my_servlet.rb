@@ -2,7 +2,6 @@
 class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def do_POST(request, response)
     body = JSON.parse(request.body.tr("\n", " "))
-    puts body.inspect
     if body["callback_query"]
       message =  Telegram::Bot::Types::Update.new(body).callback_query
     elsif body["message"]

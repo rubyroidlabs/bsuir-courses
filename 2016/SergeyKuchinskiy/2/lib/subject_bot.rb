@@ -29,7 +29,7 @@ class SubjectBot < Bot
   end
 
   def second_stage(subjects)
-    return "/subjects/2" if !correct_number?
+    return "/subjects/2" unless correct_number?
 
     send_text_message("Successfully added")
     subjects[subjects["temp"]] = { "list" => (1..@message.text.to_i).to_a, "count" => @message.text.to_i }
@@ -41,12 +41,10 @@ class SubjectBot < Bot
     if (@message.text =~ /^[\d]+$/).nil?
       send_text_message("How many labs?")
       return false
-    end
-    if @message.text.to_i.zero?
-      send_text_message("How many labs?")
+    elsif @message.text.to_i.zero?
+      send_text_message("Zero? Are you kidding me? How many labs?")
       return false
-    end
-    if @message.text.to_i > 15
+    elsif @message.text.to_i > 15
       send_text_message("I think, that is too many labs. Please input number again.")
       return false
     end

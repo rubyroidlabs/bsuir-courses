@@ -2,7 +2,7 @@
 class SemesterBot < Bot
   def initialize(bot, message)
     super(bot, message)
-    @month_hash = { "September" => 30, "October" => 31, "November" => 30, "December" => 31,"January" => 31, "February" => 28, "March" => 31, "April" => 30, "May" => 31 }
+    @month_hash = { "September" => 30, "October" => 31, "November" => 30, "December" => 31, "January" => 31, "February" => 28, "March" => 31, "April" => 30, "May" => 31 }
   end
 
   def run
