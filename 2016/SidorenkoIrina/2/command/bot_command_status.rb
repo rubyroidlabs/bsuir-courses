@@ -31,15 +31,24 @@ class StatusCommand < Command
     
     def status
     	info = read_file('subject')
-        all_labs = 0
-        text = "\xF0\x9F\x93\x85 К этому времени у тебя должно быть сдано:\n\n"
-	   	for i in 0..info.size-1 
-            amount = info[i][1].to_i
-            all_labs += amount   
-            text = text + "\xF0\x9F\x93\x8C  #{info[i][0]}:" + passed_labs(info, all_labs) + "из #{amount}\n"  
-        end  
-        text = text + "\n Не грусти, лето уже скоро. \xF0\x9F\x8F\x84"
-        send_message(text)
+        lab = read_file('semester')
+        unless info
+            send_message("Для начала выполните команду /subject")
+        else
+            unless lab
+                send_message("Вы не установили границы семестра! /semester")
+            else
+                all_labs = 0
+                text = "\xF0\x9F\x93\x85 К этому времени у тебя должно быть сдано:\n\n"
+        	   	for i in 0..info.size-1 
+                    amount = info[i][1].to_i
+                    all_labs += amount   
+                    text = text + "\xF0\x9F\x93\x8C  #{info[i][0]}:" + passed_labs(info, all_labs) + "из #{amount}\n"  
+                end  
+                text = text + "\n Не грусти, лето уже скоро. \xF0\x9F\x8F\x84"
+                send_message(text)
+            end
+        end
 	end
 
     def send_message(text) 
