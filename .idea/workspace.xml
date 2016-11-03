@@ -4,13 +4,8 @@
     <list default="true" id="e3a4b29b-a09e-47cc-8465-faf9e604568a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/bsuir-courses.iml" afterPath="$PROJECT_DIR$/.idea/bsuir-courses.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016/UladzislauBondar/2/Gemfile" afterPath="$PROJECT_DIR$/2016/UladzislauBondar/2/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016/UladzislauBondar/2/Gemfile.lock" afterPath="$PROJECT_DIR$/2016/UladzislauBondar/2/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016/UladzislauBondar/2/client.rb" afterPath="$PROJECT_DIR$/2016/UladzislauBondar/2/client.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/command.rb" afterPath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/command.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/message_resolver.rb" afterPath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/message_resolver.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/semester.rb" afterPath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/semester.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/undefined.rb" afterPath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/undefined.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/user.rb" afterPath="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/user.rb" />
     </list>
     <ignored path="bsuir-courses.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,8 +28,8 @@
       <file leaf-file-name="semester.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2016/UladzislauBondar/2/libs/semester.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
-              <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+            <state relative-caret-position="187">
+              <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -63,7 +58,6 @@
         <option value="$PROJECT_DIR$/.ruby-version" />
         <option value="$PROJECT_DIR$/2016/UladzislauBondar/1/libs/message_resolver.rb" />
         <option value="$PROJECT_DIR$/2016/UladzislauBondar/1/client.rb" />
-        <option value="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/user.rb" />
         <option value="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/users.rb" />
         <option value="$PROJECT_DIR$/2016/UladzislauBondar/2/config.yaml" />
         <option value="$PROJECT_DIR$/2016/UladzislauBondar/2/test.rb" />
@@ -77,6 +71,7 @@
         <option value="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/message_resolver.rb" />
         <option value="$PROJECT_DIR$/2016/UladzislauBondar/2/Gemfile" />
         <option value="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/status.rb" />
+        <option value="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/user.rb" />
         <option value="$PROJECT_DIR$/2016/UladzislauBondar/2/libs/semester.rb" />
       </list>
     </option>
@@ -89,9 +84,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="81" />
-    <option name="y" value="30" />
+    <option name="y" value="-5" />
     <option name="width" value="1839" />
-    <option name="height" value="1050" />
+    <option name="height" value="1085" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -161,7 +156,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -262,7 +257,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -444,23 +439,24 @@
       <workItem from="1477933447698" duration="6174000" />
       <workItem from="1478120348933" duration="1980000" />
       <workItem from="1478174426637" duration="1272000" />
+      <workItem from="1478190668960" duration="160000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50954000" />
+    <option name="totallyTimeSpent" value="51114000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="81" y="30" width="1839" height="1050" extended-state="6" />
-    <editor active="false" />
+    <frame x="81" y="-5" width="1839" height="1085" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1924592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19527294" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983193" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32983193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -489,6 +485,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/2016/UladzislauBondar/2/libs/semester.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/2016/UladzislauBondar/2/client.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -699,7 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2016/UladzislauBondar/2/libs/user.rb" />
     <entry file="file://$PROJECT_DIR$/.rubocop.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1320">
@@ -795,10 +798,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/2016/UladzislauBondar/2/libs/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/2016/UladzislauBondar/2/libs/semester.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+        <state relative-caret-position="187">
+          <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
           <folding />
         </state>
       </provider>

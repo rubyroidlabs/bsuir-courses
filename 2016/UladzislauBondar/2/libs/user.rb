@@ -29,7 +29,7 @@ class User
     @redis.hget("semester_end", @id)
   end
 
-  def save_command(command = '')
+  def save_command(command = "")
     @redis.hset("commands", @id, command)
   end
 
