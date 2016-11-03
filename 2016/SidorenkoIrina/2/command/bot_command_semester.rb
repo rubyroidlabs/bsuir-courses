@@ -8,17 +8,17 @@ class SemesterCommand < Command
      @@text_end = "\xF0\x9F\x93\x85 Когда необходимо сдать все лабы?"
 
      def initialize (bot, message_chat_id)
-	@bot = bot
-        @message_chat_id = message_chat_id
+	 @bot = bot
+         @message_chat_id = message_chat_id
      end	
 
      def check_date(date)
-	date_hash = Date._parse(date.to_s)
-	if(Date.valid_date?(date_hash[:year].to_i, date_hash[:mon].to_i, date_hash[:mday].to_i))
-	     return Date.parse(date)
-	else 
-	     return false
-	end
+	 date_hash = Date._parse(date.to_s)
+	 if(Date.valid_date?(date_hash[:year].to_i, date_hash[:mon].to_i, date_hash[:mday].to_i))
+	    return Date.parse(date)
+	 else 
+	    return false
+	 end
      end
 
      def period(month, days)	
@@ -28,18 +28,18 @@ class SemesterCommand < Command
     def date_comparison(date_begin, date_end, flag)
     	days = (date_end - date_begin).to_i
     	check = date_end - Date.today
-	    month = days/30
-	    if flag == 0
-		if (days < 0 || check < 0)  
-	            send_message("Семестр уже закончился или еще не начался!")
-	            set_semester
-		elsif month != 0
-		    period(month, days % 30)
-		else 
-		    period(month, days)	   
-		end
-		end
-	 return days
+	month = days/30
+        if flag == 0
+	   if (days < 0 || check < 0)  
+	       send_message("Семестр уже закончился или еще не начался!")
+	       set_semester
+	   elsif month != 0
+	       period(month, days % 30)
+	   else 
+	       period(month, days)	   
+	   end
+	end
+	   return days
      end
 
      def read_file(file)
@@ -48,8 +48,8 @@ class SemesterCommand < Command
 
      def percentage_days
     	 sem = read_file("semester")
-         date_start =  Date.parse(sem[0][0])
-         date_end =  Date.parse(sem[0][1])
+         date_start = Date.parse(sem[0][0])
+         date_end = Date.parse(sem[0][1])
     	 days = date_comparison(date_start, date_end, 1)
     	 cur = Date.today - date_start
     	 percentage_days = ((cur/days)*100).to_f
