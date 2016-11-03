@@ -71,9 +71,9 @@ class User
   end
 
   def reset
-    set_sem_attrs({})
-    set_subject_attrs({})
-    set_submit_attrs({})
+    sem_attrs({})
+    subject_attrs({})
+    submit_attrs({})
   end
 
   def to_hash
