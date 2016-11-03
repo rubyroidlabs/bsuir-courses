@@ -3,7 +3,7 @@ class Semester < Command #:nodoc:
     reset_status
     @data["semester"] = 1
     @redis.set(@message.chat.id.to_s, @data.to_json)
-    @bot.api.sendMessage(chat_id: @message.chat.id, text: "Когда начинается семестр?")
+    @bot.api.sendMessage(chat_id: @message.chat.id, text: "Когда начинается семестр?", reply_markup: hide_clav)
   end
 
   def handler

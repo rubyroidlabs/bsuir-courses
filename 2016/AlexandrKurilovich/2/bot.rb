@@ -19,7 +19,7 @@ Telegram::Bot::Client.run(BOT_TOKEN) do |bot|
       status_bot.message
     when "/reset"
       reset_bot.message
-    when "/submit"
+    when "/submit", "я сдал", "Я сдал"
       submit_bot.message
     else
       semester_bot.handler

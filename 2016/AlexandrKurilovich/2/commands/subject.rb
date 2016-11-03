@@ -3,7 +3,7 @@ class Subject < Command #:nodoc:
     reset_status
     @data["subject"] = 1
     @redis.set(@message.chat.id.to_s, @data.to_json)
-    @bot.api.sendMessage(chat_id: @message.chat.id, text: "Какой предмет учим?")
+    @bot.api.sendMessage(chat_id: @message.chat.id, text: "Какой предмет учим?", reply_markup: hide_clav)
   end
 
   def handler

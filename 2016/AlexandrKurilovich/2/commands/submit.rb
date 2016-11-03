@@ -36,12 +36,13 @@ class Submit < Command #:nodoc:
     @subjects[@data["last_submit_subject"]].delete(@message.text.to_i)
     @data["submit"] = @subjects
     @redis.set(@message.chat.id.to_s, @data.to_json)
-    @bot.api.sendMessage(chat_id: @message.chat.id, text: "Красава! Поздравляю!")
+    @bot.api.sendMessage(chat_id: @message.chat.id, text: "Красава! Поздравляю!", reply_markup: hide_clav)
   end
 
   def data_valid?(data)
     if @subjects[data].nil?
       @bot.api.sendMessage(chat_id: @message.chat.id, text: "Нет такого предмета")
+      hide_clav
       false
     else
       true
