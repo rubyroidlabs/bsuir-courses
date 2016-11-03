@@ -40,10 +40,14 @@ class Submit < Command #:nodoc:
 
   def message_end_of_input_save
     @data["submit"] = 0
-    @subjects[@data["last_submit_subject"]].delete(@message.text.to_i)
     @data["submit"] = @subjects
+    subj_del
     @redis.set(@message.chat.id.to_s, @data.to_json)
     @bot.api.sendMessage(chat_id: @message.chat.id, text: "Красава! Поздравляю!", reply_markup: hide_clav)
+  end
+
+  def subj_del
+    @subjects[@data["last_submit_subject"]].delete(@message.text.to_i)
   end
 
   def data_valid?(data)
