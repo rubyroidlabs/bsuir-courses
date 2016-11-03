@@ -1,6 +1,7 @@
 require 'redis'
 require 'singleton'
 require 'json'
+require_relative 'secret.rb'
 
 # Class for interaction with Redis cloud server
 class DataStorage

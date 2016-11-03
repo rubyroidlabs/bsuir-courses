@@ -101,6 +101,11 @@ class User
     (Date.today - Time.at(sem_start).to_date).to_i
   end
 
+  def sem_time_left
+    return nil unless sem_defined?
+    (Time.at(sem_end).to_date - Date.today).to_i
+  end
+
   def sem_passed_percent
     return nil unless sem_defined?
     sem_time_passed.to_f / sem_time_length
@@ -111,10 +116,19 @@ class User
     sem_passed_percent >= 0 && sem_passed_percent <= 1
   end
 
-  def sem_text
+  def sem_start_text
     return '' unless sem_defined?
-    'Семестр с ' + Time.at(sem_start).to_date.strftime('%d.%m.%Y') +
-      ' по ' + Time.at(sem_end).to_date.strftime('%d.%m.%Y')
+    Time.at(sem_start).to_date.strftime('%d.%m.%Y')
+  end
+
+  def sem_end_text
+    return '' unless sem_defined?
+    Time.at(sem_end).to_date.strftime('%d.%m.%Y')
+  end
+
+  def sem_passed_percent_text
+    return '' unless sem_now?
+    (sem_passed_percent * 100).to_i.to_s
   end
 
   # Subjects

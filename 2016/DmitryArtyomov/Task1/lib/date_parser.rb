@@ -28,7 +28,8 @@ module DateParser
     end
 
     def prepare_date(date_string)
-      date_split = date_string.split(/[\s.-]/)
+      date_split = date_string.sub(/^[\s.-]+/, '').sub(/[\s.-]+$/, '')
+                              .split(/[\s.-]/)
       return nil if date_split.count < 2
       date_process_year(date_split).join('.')
     end
@@ -38,11 +39,9 @@ module DateParser
     def parse(date_string)
       date = prepare_date(date_string)
       return nil if date.nil?
-      begin
-        Date.parse(date).to_time.to_i
-      rescue ArgumentError
-        nil
-      end
+      Date.parse(date).to_time.to_i
+    rescue ArgumentError
+      nil
     end
 
     def valid_date?(date_string)

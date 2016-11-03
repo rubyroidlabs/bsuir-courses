@@ -13,7 +13,7 @@ module BotCommand
       @needed_msg = @result_msg
       all_labs
 
-      send_message('*' + user.sem_text + "*\n\n" + @needed_msg + @result_msg)
+      send_message(sem_text + "\n\n" + @needed_msg + @result_msg)
     end
 
     private
@@ -79,7 +79,7 @@ module BotCommand
     end
 
     def text_add_subject(subj)
-      @result_msg += "\n" + subj + ' -'
+      @result_msg += "\n*" + subj + '* -'
     end
 
     def percent
@@ -111,6 +111,28 @@ module BotCommand
         lab_count[:left] += 1
         @result_msg += ' ' + (lab + 1).to_s
       end
+    end
+
+    # Fuck ABC
+    def prepare_sem_text
+      [
+        user.sem_start_text,
+        user.sem_end_text,
+        user.sem_passed_percent_text,
+        (user.sem_time_left / 30).to_s,
+        (user.sem_time_left % 30).to_s
+      ]
+    end
+
+    def sem_text
+      return '' unless user.sem_defined?
+      text = prepare_sem_text
+      Responses::SEM_TEXT
+        .sub('[START]', text[0])
+        .sub('[END]', text[1])
+        .sub('[PERC]', text[2])
+        .sub('[ML]', prepare_sem_text[3])
+        .sub('[DL]', text[4])
     end
   end
 end

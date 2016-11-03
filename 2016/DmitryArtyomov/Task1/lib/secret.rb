@@ -1,10 +1,10 @@
 # Module for storing private keys
 module Secret
   # telegram
-  TOKEN = ''
+  TELEGRAM_TOKEN = ''
 
   #redis
   REDIS_HOST = ''
-  REDIS_PORT = 0
+  REDIS_PORT = 12_345
   REDIS_PASS = ''
 end
