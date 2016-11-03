@@ -4,7 +4,7 @@ class Status < Command #:nodoc:
       @bot.api.sendMessage(chat_id: @message.chat.id, text: "Тебе осталось сдать:\n", reply_markup: hide_clav)
       @subjects = @data["subjects"]
       @subjects.each do |key, val|
-        @bot.api.sendMessage(chat_id: @message.chat.id, text: "#{key} - #{val.join(", ")}\n")
+        @bot.api.sendMessage(chat_id: @message.chat.id, text: "#{key} - #{val.join(', ')}\n")
       end
     end
   end

@@ -25,13 +25,20 @@ class Submit < Command #:nodoc:
     @data["last_submit_subject"] = @message.text
     @data["submit"] = 2
     @redis.set(@message.chat.id.to_s, @data.to_json)
-    subjects_labs = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: @subjects[@message.text].map { |x| x.to_s }, one_time_keyboard: true)
     @bot.api.sendMessage(chat_id: @message.chat.id, text: "Какую лабу сдал?", reply_markup: subjects_labs)
+  end
+
+  def subjects_labs
+    Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: @subjects[@message.text].map(&:to_s), one_time_keyboard: true)
   end
 
   def message_end_of_input
     return unless number?(@message.text)
     return unless invalid_lab(@message.text)
+    message_end_of_input_save
+  end
+
+  def message_end_of_input_save
     @data["submit"] = 0
     @subjects[@data["last_submit_subject"]].delete(@message.text.to_i)
     @data["submit"] = @subjects
@@ -58,11 +65,11 @@ class Submit < Command #:nodoc:
   end
 
   def invalid_lab(data)
-    unless @subjects[@data["last_submit_subject"]].include?(data.to_i)
+    if @subjects[@data["last_submit_subject"]].include?(data.to_i)
+      true
+    else
       @bot.api.sendMessage(chat_id: @message.chat.id, text: "Нет такой лабы")
       false
-    else
-      true
     end
   end
 end
