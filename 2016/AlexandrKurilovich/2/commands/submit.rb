@@ -42,7 +42,6 @@ class Submit < Command #:nodoc:
   def data_valid?(data)
     if @subjects[data].nil?
       @bot.api.sendMessage(chat_id: @message.chat.id, text: "Нет такого предмета")
-      hide_clav
       false
     else
       true
