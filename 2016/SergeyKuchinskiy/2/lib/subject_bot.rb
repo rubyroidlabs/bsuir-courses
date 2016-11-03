@@ -10,7 +10,7 @@ class SubjectBot < Bot
   end
 
   def handle(current, subjects)
-    if @message.text == '/stop'
+    if @message.text == "/stop"
       subjects.delete("__temp")
       send_text_message("OK!")
       return nil

@@ -11,7 +11,7 @@ class SemesterBot < Bot
   end
 
   def handle(current, semester)
-    if @message.text == '/stop'
+    if @message.text == "/stop"
       semester.clear
       send_text_message("OK!")
       return nil
