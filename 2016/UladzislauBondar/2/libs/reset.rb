@@ -8,21 +8,10 @@ module Command
     end
 
     def process
-      delete_semester_end
-      delete_subjects
+      @user.delete_semester
+      @user.clear_subjects
       send_message("Data removed.")
-      save_user_command
-    end
-
-    private
-
-    def delete_semester_end
-      @redis.del("users_semester_ends", user_id)
-    end
-
-    def delete_subjects
-      @redis.del("users_subjects", user_id)
-      @redis.hset("users_subjects", user_id, {})
+      @user.save_command
     end
   end
 end

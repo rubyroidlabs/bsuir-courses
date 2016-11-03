@@ -42,7 +42,7 @@
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.25.1, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v2.99.3, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.1.0, RVM: ruby-2.3.1) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.8.3, RVM: ruby-2.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.9.1, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mixlib-cli (v1.7.0, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_xml (v0.5.5, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multipart-post (v2.0.0, RVM: ruby-2.3.1) [gem]" level="application" />
@@ -89,6 +89,7 @@
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.19.1, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.5, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.5, RVM: ruby-2.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="time_difference (v0.5.0, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.2, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unf (v0.1.4, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unf_ext (v0.0.7.2, RVM: ruby-2.3.1) [gem]" level="application" />

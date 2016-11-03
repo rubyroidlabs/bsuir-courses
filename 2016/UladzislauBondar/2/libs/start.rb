@@ -13,7 +13,7 @@ module Command
       send_message("/subject - submit new subject and quantity of works")
       send_message("/status - show quantity of unpassed works for every subject")
       send_message("/reset - delete your data")
-      save_user_command
+      @user.save_command
     end
   end
 end

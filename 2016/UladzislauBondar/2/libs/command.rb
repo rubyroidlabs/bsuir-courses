@@ -3,8 +3,9 @@ module Command
   class Base
     def initialize(message)
       @message = message
-      @api = Telegram::Bot::Api.new(token)
-      @redis ||= Redis.new
+      @api = Telegram::Bot::Api.new(Token.get)
+      @redis = Redis.new
+      @user = User.new(user_id)
     end
 
     def process
@@ -29,18 +30,8 @@ module Command
       @message[:from][:id]
     end
 
-    def save_user_command(command = "")
-      @redis.hset("users_commands", user_id, command)
-    end
-
     def send_message(text)
       @api.call("sendMessage", chat_id: chat_id, text: text)
-    end
-
-    def token
-      config = YAML.load_file("config.yaml")
-      token = config["config"]["token"]
-      token
     end
   end
 end
