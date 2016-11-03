@@ -1,10 +1,10 @@
 class Status < Command #:nodoc:
   def message
     if semester?
-      @bot.api.sendMessage(chat_id: @message.chat.id, text: "У тебя должно быть сдано:\n")
+      @bot.api.sendMessage(chat_id: @message.chat.id, text: "Тебе осталось сдать:\n")
       @subjects = @data["subjects"]
       @subjects.each do |key, val|
-        @bot.api.sendMessage(chat_id: @message.chat.id, text: "#{key} - #{calc_labs(val)} из #{val} лаб\n")
+        @bot.api.sendMessage(chat_id: @message.chat.id, text: "#{key} - #{val.join(", ")}\n")
       end
     end
   end
@@ -18,18 +18,5 @@ class Status < Command #:nodoc:
     else
       true
     end
-  end
-
-  def calc_labs(lab)
-    days = (semester_length - remaining_days).to_f
-    (days / semester_length * lab.to_i).to_i
-  end
-
-  def semester_length
-    (Date.parse(@data["end"]) - Date.parse(@data["start"])).to_i
-  end
-
-  def remaining_days
-    (Date.parse(@data["end"]) - DateTime.now.to_date).to_i
   end
 end

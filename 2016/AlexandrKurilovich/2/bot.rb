@@ -24,6 +24,7 @@ Telegram::Bot::Client.run(BOT_TOKEN) do |bot|
     else
       semester_bot.handler
       subject_bot.handler
+      submit_bot.handler
     end
   end
 end
