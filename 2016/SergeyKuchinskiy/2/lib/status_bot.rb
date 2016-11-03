@@ -13,7 +13,7 @@ class StatusBot < Bot
     subjects.keys.each do |key|
       difference = (1 - coeff) * subjects[key]["count"] - subjects[key]["list"].size
       difference = difference.to_i
-      if difference.negative?
+      if difference < 0
         answer.push("#{key}:  you had to do #{-difference} lab(s) more to this time")
       else
         answer.push("#{key}:  everything is OK!")
@@ -29,9 +29,9 @@ class StatusBot < Bot
       send_text_message("First of all, you should fill the /subject")
     elsif semester == {}
       send_text_message("First of all, you should fill the /semester")
-    elsif DateTime.now - DateTime.parse(semester["start"]).negative?
+    elsif DateTime.now - DateTime.parse(semester["start"]) < 0
       send_text_message("semester has not started yet")
-    elsif DateTime.now - DateTime.parse(semester["finish"]).positive?
+    elsif DateTime.now - DateTime.parse(semester["finish"]) > 0
       send_text_message("semester has ended")
     else
       correct = true

@@ -12,6 +12,7 @@ class StartBot < Bot
     "/status\t\tshows you list of labs that you should do\n"\
     "/reset\t\treset your data\n"\
     "/submit\t\twhen you pass a lab \n"\
+    "/stop\t\tfor stop current command\n"\
     "/memes\t\t\n"\
     "/give_me_memes")
     nil
