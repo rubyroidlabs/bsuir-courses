@@ -1,5 +1,4 @@
 require_relative "../lib/parse_date"
-
 RSpec.describe DateParser do
 	describe "DateParser test" do
 		it "Tests DateParser initializer" do
