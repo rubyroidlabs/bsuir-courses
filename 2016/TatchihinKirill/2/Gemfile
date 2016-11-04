@@ -3,5 +3,6 @@ require 'telegram/bot'
 source "https://rubygems.org"
 gem 'telegram-bot-ruby'
 gem 'redis', '~>3.2'
-
+gem 'json'
+gem 'rspec', '~>3.0'
 # gem "rails"

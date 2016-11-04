@@ -4,6 +4,7 @@ require 'date'
 #require_relative
 require 'redis'
 require './lib/User.rb'
+require 'json'
 require_relative './lib/Semester.rb'
 require_relative './lib/Start.rb'
 require_relative './lib/Status.rb'
@@ -11,19 +12,22 @@ require_relative './lib/MainCommand.rb'
 require_relative './lib/Subjects.rb'
 require_relative './lib/Reset.rb'
 require_relative './lib/calculations.rb'
-TOKEN = '298272856:AAEMgCksHqhx__47RvnrgWkk7dq0Ycjt-Sw'
+require_relative './lib/database.rb'
+TOKEN = '298272856:AAE1ZwzyNMsA5HRgngXf8j-lpdU81sd-YK0'
 $new_client = false
+#$redis = Redis.new
 temp = []
 def intro(user_name)
   return "Привет, #{user_name}. Тут такое дело: в универе надо сдавать лабы. Но не волнуйся, я тебе помогу. Вот, что я умею \n/semester - запоминаю даты начала и конца семестра \n /status - напоминаю тебе, какие лабы осталось сдать \n /subject - добавляем новый предмет, по которому надо было бы сдать лабы \n /reset - забываем даты семестра и лабы"
 end
-$redis = Redis.new
 temp = ''
+#user_db = DatabaseWorker.new
 command = MainCommand.new
 Telegram::Bot::Client.run(TOKEN) do |bot|
   user = User.new
   user.subjects = {}
   bot.listen do |message|
+  #  user_db.id = message.from.id
     command.name_of_the_command = message.text
     case command.name_of_the_command
     when '/start'
@@ -51,7 +55,6 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
     	case user.action
     	when 'semester'
         SemesterCommand.semester(message, bot, user, message.from.id, user.action)
-      #  user.write_semester_to_file(message.from.id, user.start_semester, user.end_semester)
       when 'subject'
         bot.api.send_message(chat_id: message.chat.id, text: "Сколько лаб по предмету?")
         temp = message.text
