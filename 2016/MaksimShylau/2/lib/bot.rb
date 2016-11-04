@@ -32,7 +32,7 @@ class TelegramBot
       command.send_message(SEM_START)
       hash["user_status"] = "wanna_sem_start"
       db.set_hash(hash, id)
-      break
+      return
     end
     command.send_message(DateParser.difference(DateParser.new(hash["sem_end"]), DateParser.new(hash["sem_start"])))
   end
