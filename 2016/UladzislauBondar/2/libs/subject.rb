@@ -49,13 +49,11 @@ module Command
 
     def save_quantity_of_works
       hash = subjects
-      hash.select do |k, v|
-        if v.empty?
-          hash_of_works = {}
-          @quantity_of_works.times { |i| hash_of_works[i + 1] = true }
-          hash[k] = hash_of_works
-          break
-        end
+      hash.each do |k, v|
+        next unless v.empty?
+        hash_of_works = {}
+        @quantity_of_works.times { |i| hash_of_works[i + 1] = true }
+        hash[k] = hash_of_works
       end
       @user.save_subjects(hash)
     end
