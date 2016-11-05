@@ -30,8 +30,22 @@ module Command
       @message[:from][:id]
     end
 
+    def telegram_types
+      Telegram::Bot::Types
+    end
+
     def send_message(text)
-      @api.call("sendMessage", chat_id: chat_id, text: text)
+      @api.send_message(chat_id: chat_id, text: text)
+    end
+
+    def show_keyboard(text, answers)
+      keyboard = telegram_types::ReplyKeyboardMarkup.new(keyboard: answers, one_time_keyboard: true)
+      @api.send_message(chat_id: chat_id, text: text, reply_markup: keyboard)
+    end
+
+    def hide_keyboard(text)
+      keyboard = telegram_types::ReplyKeyboardHide.new(hide_keyboard: true)
+      @api.send_message(chat_id: chat_id, text: text, reply_markup: keyboard)
     end
   end
 end

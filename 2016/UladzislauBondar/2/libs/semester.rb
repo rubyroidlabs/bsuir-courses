@@ -59,9 +59,9 @@ module Command
     def left_days_message
       left_days = left[:days] + left[:weeks] * 7
       if left[:months].zero?
-        "We have #{left[:days]} days left."
+        "You have #{left[:days]} days left."
       else
-        "We have #{left[:months]} months and #{left_days} days left."
+        "You have #{left[:months]} months and #{left_days} days left."
       end
     end
 

@@ -13,12 +13,12 @@ class User
     @redis.hget("subjects", @id)
   end
 
-  def semester_step
-    @redis.hget("semester_step", @id).to_i
-  end
-
   def subject_step
     @redis.hget("subject_step", @id).to_i
+  end
+
+  def semester_step
+    @redis.hget("semester_step", @id).to_i
   end
 
   def semester_start
@@ -29,12 +29,20 @@ class User
     @redis.hget("semester_end", @id)
   end
 
-  def save_command(command = "")
-    @redis.hset("commands", @id, command)
+  def submit_step
+    @redis.hget("submit_step", @id).to_i
+  end
+
+  def current_submitted_subject
+    @redis.hget("current_submitted_subject", @id)
   end
 
   def create_hash_of_subjects
     @redis.hset("subjects", @id, {})
+  end
+
+  def save_command(command = "")
+    @redis.hset("commands", @id, command)
   end
 
   def save_semester_end(date)
@@ -55,6 +63,14 @@ class User
 
   def save_subjects(hash)
     @redis.hset("subjects", @id, hash.to_json)
+  end
+
+  def save_submit_step(step)
+    @redis.hset("submit_step", @id, step)
+  end
+
+  def save_current_submitted_subject(subject)
+    @redis.hset("current_submitted_subject", @id, subject)
   end
 
   def delete_semester

@@ -4,6 +4,7 @@ require_relative "start"
 require_relative "semester"
 require_relative "subject"
 require_relative "status"
+require_relative "submit"
 require_relative "reset"
 require_relative "undefined"
 
@@ -13,6 +14,7 @@ class MessageResolver
     Command::Start,
     Command::Semester,
     Command::Subject,
+    Command::Submit,
     Command::Status,
     Command::Reset
   ].freeze
@@ -45,6 +47,8 @@ class MessageResolver
       process_semester
     when "/subject"
       process_subject
+    when "/submit"
+      process_submit
     else
       Command::Undefined.new(@message).process
     end
@@ -67,6 +71,16 @@ class MessageResolver
       subject.new(@message).process_subject
     when subject::WORKS
       subject.new(@message).process_quantity_of_works
+    end
+  end
+
+  def process_submit
+    submit = Command::Submit
+    case @user.submit_step
+    when submit::NAME
+      submit.new(@message).process_subject
+    when submit::WORK
+      submit.new(@message).process_work
     end
   end
 
