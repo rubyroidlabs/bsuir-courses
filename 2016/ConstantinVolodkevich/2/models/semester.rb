@@ -14,6 +14,10 @@ class Semester
       days -= 30
       month += 1
     end
-    "Got it! You got #{month} months and #{days} days left!"
+    if month == 0
+      "Got it! You got #{days} days left!"
+    else
+      "Got it! You got #{month} months and #{days} days left!"
+    end
   end
 end

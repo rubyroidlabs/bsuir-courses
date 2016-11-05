@@ -1,6 +1,6 @@
-require '../models/semester'
-require '../controllers/users_status'
-require '../models/subject'
+require_relative '../models/semester'
+require_relative '../controllers/users_status'
+require_relative '../models/subject'
 
 class User
 
@@ -9,7 +9,7 @@ class User
   def initialize(first_name, last_name)
   @user_status = Users_Status.new
   @semester = Semester.new
-  @status = "Subjects haven't been added yet."
+  @status = "Subjects haven't been added yet. Use /subject command to add subject."
   @hash_of_subjects = {}
   @name = first_name
   @last_name = last_name

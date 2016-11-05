@@ -1,4 +1,4 @@
-require '../models/lab'
+require_relative '../models/lab'
 
 class Subject
   attr_accessor :hash_of_labs

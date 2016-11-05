@@ -1,16 +1,17 @@
-require '../models/user'
-require '../commands/start_c'
-require '../commands/semester_c'
-require '../commands/reset_semester_c'
-require '../commands/subject_c'
-require '../commands/submit_c'
-require '../commands/status_c'
-require '../commands/reset_c'
-require '../controllers/db_helper'
+require_relative '../models/user'
+require_relative '../commands/start_c'
+require_relative '../commands/semester_c'
+require_relative '../commands/reset_semester_c'
+require_relative '../commands/subject_c'
+require_relative '../commands/submit_c'
+require_relative '../commands/status_c'
+require_relative '../commands/reset_c'
+require_relative '../controllers/db_helper'
+require_relative '../controllers/reminder_c'
 
 class User_Manager
 
-  attr_accessor :semester_c, :subject_c, :start_c, :submit_c, :status_c, :hash_of_users, :db_helper
+  attr_accessor :semester_c, :subject_c, :start_c, :submit_c, :status_c, :hash_of_users, :db_helper, :reminder_c
 
   def initialize
 
@@ -23,6 +24,7 @@ class User_Manager
     @submit_c = Submit_C.new
     @status_c = Status_C.new
     @reset = Reset_C.new
+    @reminder_c = Reminder_C.new
 
   end
 
@@ -37,6 +39,7 @@ class User_Manager
 
   def update_steps(id)
     user =  @db_helper.get_user(id)
+    user.user_status.steps_reminder['user_wanna_remind'] = false
     user.user_status.steps_semester['set_ending_date'] = false
     user.user_status.steps_subject['save_subject'] = false
     user.user_status.steps_subject['save_labs'] = false
@@ -44,6 +47,7 @@ class User_Manager
     user.user_status.steps_submit['submit_lab'] = false
     user.user_status.steps_reset['user_is_sure'] = false
     user.user_status.steps_submit['relevant_subj'] = ''
+
     @db_helper.update_user(id, user)
   end
   def execute_start()
@@ -149,6 +153,20 @@ class User_Manager
     else
       "You data isn't changed"
     end
+  end
+
+  def execute_reminder(id)
+    user = @db_helper.get_user(id)
+    @reminder_c.execute_command(user)
+    @db_helper.update_user(id, user)
+    @reminder_c.make_buttons
+  end
+
+  def save_reminders_step(id)
+    user = @db_helper.get_user(id)
+    user.user_status.steps_reminder['remind_on'] = true
+    @db_helper.update_user(id, user)
+
   end
 
 end

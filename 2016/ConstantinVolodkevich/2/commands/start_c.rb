@@ -8,7 +8,8 @@ Here is some sample commands to run:
 /subject - set new subject and number of labs you need to pass
 /submit - sumit specific lab
 /status - list of labs you need to pass
-/reset - reset all user data"
+/reset - reset all user data
+/reminder - reminds status "
 
   def execute_command()
    @@greetings

@@ -1,4 +1,4 @@
-require '../models/user'
+require_relative '../models/user'
 require 'redis'
 require 'json'
 
@@ -29,6 +29,7 @@ class DB_Helper
     user.user_status.steps_subject = json_str['user_status']['steps_subject']
     user.user_status.steps_submit = json_str['user_status']['steps_submit']
     user.user_status.steps_reset = json_str['user_status']['steps_reset']
+    user.user_status.steps_reminder = json_str['user_status']['steps_reminder']
     begin
     user.semester.ending_date = Date.parse json_str['semester']['ending_date']
     rescue ArgumentError
@@ -60,7 +61,8 @@ class DB_Helper
     json = {'user_status' => {'steps_semester' => user.user_status.steps_semester,
                               'steps_subject' => user.user_status.steps_subject,
                               'steps_submit' => user.user_status.steps_submit,
-                              'steps_reset' => user.user_status.steps_reset},
+                              'steps_reset' => user.user_status.steps_reset,
+                              'steps_reminder' => user.user_status.steps_reminder},
             'semester' => {'ending_date' => user.semester.ending_date},
             'status' => user.status,
             'hash_of_subjects' => hash,
