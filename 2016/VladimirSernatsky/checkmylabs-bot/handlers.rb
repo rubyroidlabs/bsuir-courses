@@ -116,9 +116,9 @@ class Status < Handler
 
   # shit starts here. Thank you, Mr. Rubocop
   def answer(_from, _message)
-    total_num, all_num, status = Session.get("subjects")
-                                        .enum_for(:each_with_index)
-                                        .inject([0, 0, ""]) do |mem, x|
+    total_num, all_num, status = Session.get("subjects").
+                                         enum_for(:each_with_index).
+                                         inject([0, 0, ""]) do |mem, x|
                                           render_current(
                                             mem[0], mem[1], mem[2],
                                             x[0], x[1]
@@ -153,7 +153,7 @@ class Status < Handler
   end
 
   def lablist(labs)
-    return labs.join(", ") if labs.count > 0
+    return labs.join(", ") if labs.count.positive?
     "Ты всё сдал"
   end
 
@@ -230,7 +230,7 @@ class Submit < Handler
       subject, lab = data.split ","
       lab = lab.split(":")[1].to_i
       labs = Session.get(subject)
-      if 0 < lab && lab < labs.count
+      if lab.positive? && lab < labs.count
         puts subject, lab, labs[lab]
         puts Session.remove(subject, labs[lab], 1)
         "Мои поздравления."

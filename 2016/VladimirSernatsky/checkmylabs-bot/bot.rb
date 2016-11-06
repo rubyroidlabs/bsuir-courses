@@ -42,7 +42,7 @@ Client.run("__CUT__") do |bot|
       Session.id = message.from.id
       Session.request = message.data
     end
-    handler = handlers.find { |h| h == Session.request }
+    handler = handlers.detect { |h| h == Session.request }
     unless handler.nil?
       begin
         case message

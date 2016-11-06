@@ -5,7 +5,7 @@ require_relative "session"
 # base event handler class
 class Handler
   def equals?(_message)
-    raise NotImplementedError
+    fail NotImplementedError
   end
 
   def ==(other)
@@ -17,7 +17,7 @@ class Handler
   end
 
   def answer(_from, _message)
-    raise NotImplementedError
+    fail NotImplementedError
   end
 end
 
@@ -46,7 +46,7 @@ class ChainHandler < Handler
   end
 
   def handle_var(_from, _key, _value)
-    raise NotImplementedError
+    fail NotImplementedError
   end
 
   def end_input
