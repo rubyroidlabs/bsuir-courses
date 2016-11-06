@@ -117,13 +117,13 @@ class Status < Handler
   # shit starts here. Thank you, Mr. Rubocop
   def answer(_from, _message)
     total_num, all_num, status = Session.get("subjects").
-                                         enum_for(:each_with_index).
-                                         inject([0, 0, ""]) do |mem, x|
-                                          render_current(
-                                            mem[0], mem[1], mem[2],
-                                            x[0], x[1]
-                                          )
-                                        end
+                                 enum_for(:each_with_index).
+                                 inject([0, 0, ""]) do |mem, x|
+      render_current(
+        mem[0], mem[1], mem[2],
+        x[0], x[1]
+      )
+    end
     render status, total_num, all_num
   end
 
