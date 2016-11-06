@@ -1,6 +1,6 @@
-require 'telegram/bot'
+require "telegram/bot"
 
-require_relative 'session'
+require_relative "session"
 
 # base event handler class
 class Handler
@@ -29,17 +29,17 @@ end
 class ChainHandler < Handler
   def ==(other)
     equals?(other) || (
-      !Session.get('__promt__').nil? && !@monitored_vars.index do |v|
-        v.match(Session.get('__promt__'))
+      !Session.get("__promt__").nil? && !@monitored_vars.index do |v|
+        v.match(Session.get("__promt__"))
       end.nil?
     )
   end
 
   def handle(from, message)
-    if !Session.get('__promt__').nil? && !@monitored_vars.index do |v|
-      v.match(Session.get('__promt__'))
+    if !Session.get("__promt__").nil? && !@monitored_vars.index do |v|
+      v.match(Session.get("__promt__"))
     end.nil?
-      handle_var from, Session.get('__promt__'), message
+      handle_var from, Session.get("__promt__"), message
     else
       answer from, message
     end
@@ -50,6 +50,6 @@ class ChainHandler < Handler
   end
 
   def end_input
-    Session.del('__promt__')
+    Session.del("__promt__")
   end
 end

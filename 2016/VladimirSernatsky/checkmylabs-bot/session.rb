@@ -1,18 +1,18 @@
-require 'redis'
+require "redis"
 
 # session keeper
 module Session
   class << self
     attr_accessor :id, :request
   end
-  @redis = Redis.new url: '__CUT__'
+  @redis = Redis.new url: "__CUT__"
 
   def self.get(key)
-    get_absolute @id.to_s + ':' + key
+    get_absolute "#{@id}:#{key}"
   end
 
   def self.get_absolute(key)
-    if @redis.type(key) == 'list'
+    if @redis.type(key) == "list"
       @redis.lrange key, 0, -1
     else
       @redis.get key
@@ -20,15 +20,15 @@ module Session
   end
 
   def self.set(key, val)
-    @redis.set @id.to_s + ':' + key, val
+    @redis.set "#{@id}:#{key}", val
   end
 
   def self.del(key)
-    @redis.del @id.to_s + ':' + key
+    @redis.del "#{@id}:#{key}"
   end
 
   def self.append(key, val)
-    @redis.rpush @id.to_s + ':' + key, val
+    @redis.rpush "#{@id}:#{key}", val
   end
 
   def self.extend(key, vals)
@@ -36,11 +36,11 @@ module Session
   end
 
   def self.remove(key, val, count)
-    @redis.lrem @id.to_s + ':' + key, count, val
+    @redis.lrem "#{@id}:#{key}", count, val
   end
 
   def self.len(key)
-    @redis.llen @id.to_s + ':' + key
+    @redis.llen "#{@id}:#{key}"
   end
 
   def self.clear

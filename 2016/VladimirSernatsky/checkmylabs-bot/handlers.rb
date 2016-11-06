@@ -1,18 +1,18 @@
-require 'date'
+require "date"
 
-require_relative 'handler'
-require_relative 'session'
-require_relative 'utils'
+require_relative "handler"
+require_relative "session"
+require_relative "utils"
 
 # hello message
 class Start < Handler
   def equals?(message)
-    message == '/start'
+    message == "/start"
   end
 
   def answer(from, _message)
     ["Привет, #{from.first_name}.",
-     'Я могу в следующие команды:',
+     "Я могу в следующие команды:",
      "/start - вывожу это сообщение\n"\
        "/semester - запоминаю даты начала и конца семестра\n"\
        "/subject - запоминаю предмет и количество лаб\n"\
@@ -29,35 +29,35 @@ class Semester < ChainHandler
   end
 
   def equals?(message)
-    message == '/semester'
+    message == "/semester"
   end
 
   def answer(_from, _message)
-    Promt.new 'Когда начинается семестр?', 'semester_start'
+    Promt.new "Когда начинается семестр?", "semester_start"
   end
 
   def handle_var(_from, key, value)
-    return semester_start value if key == 'semester_start'
-    return semester_end value if key == 'semester_end'
+    return semester_start value if key == "semester_start"
+    return semester_end value if key == "semester_end"
   end
 
   def semester_start(from)
     Date.parse from
   rescue
-    Promt.new 'Попробуй дату в формате YYYY-MM-DD', 'semester_start'
+    Promt.new "Попробуй дату в формате YYYY-MM-DD", "semester_start"
   else
-    Session.set('semester_start', from)
-    Promt.new 'Когда заканчивается?', 'semester_end'
+    Session.set("semester_start", from)
+    Promt.new "Когда заканчивается?", "semester_end"
   end
 
   def semester_end(to)
     Date.parse to
   rescue
-    Promt.new 'Попробуй дату в формате YYYY-MM-DD', 'semester_end'
+    Promt.new "Попробуй дату в формате YYYY-MM-DD", "semester_end"
   else
-    delta = (Date.parse(to) - Date.parse(Session.get('semester_start'))).to_i
-    Session.set 'semester', delta
-    Session.del('__promt__')
+    delta = (Date.parse(to) - Date.parse(Session.get("semester_start"))).to_i
+    Session.set "semester", delta
+    Session.del("__promt__")
     "У тебя целых #{delta} дней."
   end
 end
@@ -65,44 +65,44 @@ end
 # subject request dialog
 class Subject < ChainHandler
   def initialize
-    @monitored_vars = ['subject', /subject:\d+/]
+    @monitored_vars = ["subject", /subject:\d+/]
   end
 
   def equals?(message)
-    message == '/subject'
+    message == "/subject"
   end
 
   def answer(_from, _message)
-    Promt.new 'Какой предмет?', 'subject'
+    Promt.new "Какой предмет?", "subject"
   end
 
   def handle_var(_from, key, value)
-    return subject value if key == 'subject'
+    return subject value if key == "subject"
     return number value if /subject:\d*/ =~ key
   end
 
   def subject(subj)
-    Session.append('subjects', subj)
-    Promt.new 'Сколько лаб?', 'subject:' + (Session.len('subjects') - 1).to_s
+    Session.append("subjects", subj)
+    Promt.new "Сколько лаб?", "subject:" + (Session.len("subjects") - 1).to_s
   end
 
   def save_labs(num)
     Session.extend(
-      'subject:' + (Session.len('subjects') - 1).to_s,
+      "subject:" + (Session.len("subjects") - 1).to_s,
       [*1..num.to_i]
     )
-    Session.set 'subject_num:' + (Session.len('subjects') - 1).to_s, num
-    Session.del('__promt__')
+    Session.set "subject_num:" + (Session.len("subjects") - 1).to_s, num
+    Session.del("__promt__")
   end
 
   def number(num)
     if num.to_i.to_s == num
       save_labs num
-      'Я сохранил.'
+      "Я сохранил."
     else
       Promt.new(
-        'Попробуй целое число',
-        'subject:' + (Session.len('subjects') - 1).to_s
+        "Попробуй целое число",
+        "subject:" + (Session.len("subjects") - 1).to_s
       )
     end
   end
@@ -111,14 +111,14 @@ end
 # status message
 class Status < Handler
   def equals?(message)
-    message == '/status'
+    message == "/status"
   end
 
   # shit starts here. Thank you, Mr. Rubocop
   def answer(_from, _message)
-    total_num, all_num, status = Session.get('subjects')
+    total_num, all_num, status = Session.get("subjects")
                                         .enum_for(:each_with_index)
-                                        .inject([0, 0, '']) do |mem, x|
+                                        .inject([0, 0, ""]) do |mem, x|
                                           render_current(
                                             mem[0], mem[1], mem[2],
                                             x[0], x[1]
@@ -128,11 +128,11 @@ class Status < Handler
   end
 
   def get_labs(i)
-    Session.get('subject:' + i.to_s) || []
+    Session.get("subject:#{i}") || []
   end
 
   def get_num(i)
-    Session.get('subject_num:' + i.to_s).to_i
+    Session.get("subject_num:#{i}").to_i
   end
 
   def render_current(total_num, all_num, status, s, i)
@@ -148,18 +148,18 @@ class Status < Handler
 
   def expectation(num)
     num * (
-      Date.today - Date.parse(Session.get('semester_start'))
-    ).to_i / Session.get('semester').to_i
+      Date.today - Date.parse(Session.get("semester_start"))
+    ).to_i / Session.get("semester").to_i
   end
 
   def lablist(labs)
-    return labs.join(', ') if labs.count > 0
-    'Ты всё сдал'
+    return labs.join(", ") if labs.count > 0
+    "Ты всё сдал"
   end
 
   def render(status, total_num, all_num)
     [
-      'К сегодняшнему дню ты должен сделать:',
+      "К сегодняшнему дню ты должен сделать:",
       status,
       "Тебе осталось сделать #{total_num} лаб из #{all_num}."
     ]
@@ -169,36 +169,36 @@ end
 # reset user data
 class Reset < Handler
   def equals?(message)
-    message == '/reset'
+    message == "/reset"
   end
 
   def answer(_from, _message)
     Session.clear
-    'Ты больше не в нашем клубе.'
+    "Ты больше не в нашем клубе."
   end
 end
 
 # (system) dump all database
 class List < Handler
   def equals?(message)
-    message == '///list'
+    message == "///list"
   end
 
   def answer(_from, _message)
     Session.keys.each { |key| p key, Session.get_absolute(key) }
-    '///list'
+    "///list"
   end
 end
 
 # (system) drop database
 class ClearAll < Handler
   def equals?(message)
-    message == '///clearall'
+    message == "///clearall"
   end
 
   def answer(_from, _message)
     Session.clear_absolute
-    '///clearall'
+    "///clearall"
   end
 end
 
@@ -219,36 +219,36 @@ class Submit < Handler
     end
 
     def subject(_from, data)
-      keyboard = Keyboard.new('Какая лаба?')
+      keyboard = Keyboard.new("Какая лаба?")
       Session.get(data).each_with_index do |lab, i|
-        keyboard.add_button lab, data + ',lab:' + i.to_s
+        keyboard.add_button lab, "#{data},lab:#{i}"
       end
       keyboard
     end
 
     def lab(_from, data)
-      subject, lab = data.split ','
-      lab = lab.split(':')[1].to_i
+      subject, lab = data.split ","
+      lab = lab.split(":")[1].to_i
       labs = Session.get(subject)
       if 0 < lab && lab < labs.count
         puts subject, lab, labs[lab]
         puts Session.remove(subject, labs[lab], 1)
-        'Мои поздравления.'
+        "Мои поздравления."
       else
-        'Пожалуйста, не используй клавиатуру более одного раза'
+        "Пожалуйста, не используй клавиатуру более одного раза"
       end
     end
   end
 
   def equals?(message)
-    (message == '/submit') || message.casecmp('я сдал').zero?
+    (message == "/submit") || message.casecmp("я сдал").zero?
   end
 
   def answer(_from, _message)
-    return 'Нет предметов для сдачи.' if Session.len('subjects') <= 0
-    keyboard = Keyboard.new('Что сдал?')
-    Session.get('subjects').each_with_index do |subj, i|
-      keyboard.add_button subj, 'subject:' + i.to_s
+    return "Нет предметов для сдачи." if Session.len("subjects") <= 0
+    keyboard = Keyboard.new("Что сдал?")
+    Session.get("subjects").each_with_index do |subj, i|
+      keyboard.add_button subj, "subject:#{i}"
     end
     keyboard
   end

@@ -1,6 +1,6 @@
-require 'telegram/bot'
+require "telegram/bot"
 
-require_relative 'session'
+require_relative "session"
 
 InlineKeyboardMarkup = Telegram::Bot::Types::InlineKeyboardMarkup
 InlineKeyboardButton = Telegram::Bot::Types::InlineKeyboardButton
@@ -8,7 +8,7 @@ InlineKeyboardButton = Telegram::Bot::Types::InlineKeyboardButton
 # common methods
 module Utils
   def self.send_promt(api, answer)
-    Session.set('__promt__', answer.var)
+    Session.set("__promt__", answer.var)
     api.send_message chat_id: Session.id, text: answer.message
   end
 

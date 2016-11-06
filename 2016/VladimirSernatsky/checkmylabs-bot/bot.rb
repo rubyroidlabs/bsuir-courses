@@ -1,23 +1,23 @@
-require 'telegram/bot'
+require "telegram/bot"
 
-require_relative 'session'
-require_relative 'handlers'
-require_relative 'utils'
+require_relative "session"
+require_relative "handlers"
+require_relative "utils"
 
 CallbackQuery = Telegram::Bot::Types::CallbackQuery
 Message = Telegram::Bot::Types::Message
 Client = Telegram::Bot::Client
 
-def self.start_reminder_loop(api)
+def start_reminder_loop(api)
   Thread.new do
     loop do
       # sleep 1.days
       # Session.get_absolute
-      #        .map { |key| key.split(':')[0] }
+      #        .map { |key| key.split(":")[0] }
       #        .uniq
-      #        .each { |id| api.send_message chat_id: id.to_i, text: 'hello' }
+      #        .each { |id| api.send_message chat_id: id.to_i, text: "hello" }
       sleep 3
-      puts 'remind', api
+      puts "remind", api
     end
   end
 end
@@ -30,7 +30,7 @@ def setup_handlers
   ]
 end
 
-Client.run('__CUT__') do |bot|
+Client.run("__CUT__") do |bot|
   start_reminder_loop bot.api
   handlers = setup_handlers
   bot.listen do |message|
