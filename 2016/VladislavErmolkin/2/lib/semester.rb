@@ -3,80 +3,44 @@ require_relative 'user'
 require_relative 'regulars'
 require 'time_difference'
 
+MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 # Class Semester.
 class Semester < Action
+  
   def run
-    unless text_validation
-      sem_fail
-      @user.save
-      return 'Think you could fool me? Incorrect date.'
+    case @user.sys["semester_phase"]
+    when 1, 4 then @user.sys["current"] << @text << "-"
+    when 2, 5 then @user.sys["current"] << MONTHS.index(@text).to_s << "-"
+    when 3 then @user.sys["start"] = @user.sys["current"] << @text
+    when 6
+     @user.semester["end"] = @user.sys["current"] << @text
+     @user.semester["start"] = @user.sys["start"]
     end
-    result = case @user.sem['__phase']
-             when 0 then sem_enter
-             when 1 then set_start_of_sem
-             when 2 then set_end_of_sem
-             end
+    @user.sys["current"] = "" if [3, 6].include? @user.sys["semester_phase"]
+    @user.sys["semester_phase"] = @user.sys["semester_phase"] >= 6 ? 0 : @user.sys["semester_phase"] + 1
     @user.save
-    result
+    bot_says
   end
 
-  def sem_fail
-    @user.sem['start'] = nil
-    @user.sem['end'] = nil
-    @user.reset_sem_system_variables
-  end
-
-  def sem_enter
-    @user.sem['__phase'] += 1
-    @user.sem['__is_now?'] = true
-    'Start of semester?'
-  end
-
-  def set_start_of_sem
-    @user.sem['start'] = @text.tr!('-', '.')
-    @user.sem['__phase'] += 1
-    'End of semester?'
-  end
-
-  def set_end_of_sem
-    @user.sem['end'] = @text.tr!('-', '.')
-    @user.reset_sem_system_variables
-    native_difference generate_difference @user.sem['start'], @user.sem['end']
-  end
-
-  def text_validation
-    case @user.sem['__phase']
-    when 0 then true
-    when 1 then date? @text
-    when 2
-      if date? @text
-        Time.parse(@user.sem['start']) < Time.parse(@text)
-      else
-        false
-      end
+  def bot_says
+    case @user.sys["semester_phase"]
+    when 1 then "Choose start year:"
+    when 2, 5 then "Choose month:"
+    when 3, 6 then "Choose day:"
+    when 4 then "Choose finish year:"
+    when 0 then print_date
     end
   end
 
-  def generate_difference(first_date, second_date)
-    TimeDifference.between(Time.parse(first_date), Time.parse(second_date)).in_general
-  end
-
-  def native_difference(diff)
-    months = plural? 'month', diff[:months]
-    weeks = plural? 'week', diff[:weeks]
-    days = plural? 'day', diff[:days]
-
-    "#{diff[:months]} #{months}, #{diff[:weeks]} #{weeks} & #{diff[:days]} #{days}."
-  end
-
-  def plural?(word, number)
-    case number
-    when 0..1 then word
-    else word + 's'
+  def print_date
+    start = Date.parse(@user.semester["start"])
+    finish = Date.parse(@user.semester["end"])
+    difference = TimeDifference.between(start, finish)
+    if difference.in_each_component[:years] >= 1 then "Too big semester."
+    elsif start > finish then "Time travel? Incorrect time interval." 
+    elsif Date.today < start || Date.today > finish then "You are not in semester. Sorry."
+    else difference.humanize
     end
-  end
-
-  def date?(string)
-    string.match(DATE_REGEX).nil? ? false : true
   end
 end

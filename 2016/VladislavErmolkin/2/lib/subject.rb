@@ -5,43 +5,31 @@ require_relative 'regulars'
 # Class Subject.
 class Subject < Action
   def run
-    unless text_validation
-      @user.reset_subject_system_variables
-      @user.save
-      return 'Think you could fool me? Incorrect input.'
+    return bot_says unless text_validation
+    case @user.sys["subjects_phase"]
+    when 1 then @user.sys["current"] = @text
+    when 2
+      @user.subjects[@user.sys["current"]] = (1..@text.to_i).to_a
+      @user.sys["current"] = ""
     end
-    result = case @user.subjects['__phase']
-             when 0 then subject_enter
-             when 1 then set_subject
-             when 2 then set_labs
-             end
+    @user.sys["subjects_phase"] >= 2 ? @user.sys["subjects_phase"] = 0 : @user.sys["subjects_phase"] += 1
     @user.save
-    result
+    bot_says
   end
 
-  def subject_enter
-    @user.subjects['__phase'] += 1
-    @user.subjects['__is_now?'] = true
-    'Which subject?'
-  end
-
-  def set_subject
-    @user.subjects['__current'] = @text
-    @user.subjects['__phase'] += 1
-    'How many labs?'
-  end
-
-  def set_labs
-    @user.subjects[@user.subjects['__current']] = (1..@text.to_i).to_a
-    @user.reset_subject_system_variables
-    'OK.'
+  def bot_says
+    case @user.sys["subjects_phase"]
+    when 1 then "Which subject?"
+    when 2 then "How many labs?"
+    when 0 then "OK"
+    end
   end
 
   def text_validation
-    case @user.subjects['__phase']
+    case @user.sys["subjects_phase"]
     when 0 then true
     when 1 then @text.match(ACTION_REGEX).nil?
-    when 2 then !@text.match(NUMBER_REGEX).nil?
+    when 2 then (!@text.match(NUMBER_REGEX).nil? && (1..20).include?(@text.to_i))
     else false
     end
   end
