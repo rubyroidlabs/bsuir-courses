@@ -1,6 +1,6 @@
-require_relative 'user'
-require_relative 'action'
-require_relative 'regulars'
+require_relative "user"
+require_relative "action"
+require_relative "regulars"
 
 # Class Subject.
 class Subject < Action
@@ -29,7 +29,7 @@ class Subject < Action
     case @user.sys["subjects_phase"]
     when 0 then true
     when 1 then @text.match(ACTION_REGEX).nil?
-    when 2 then (!@text.match(NUMBER_REGEX).nil? && (1..20).include?(@text.to_i))
+    when 2 then (!@text.match(NUMBER_REGEX).nil? && (1..20).cover?(@text.to_i))
     else false
     end
   end

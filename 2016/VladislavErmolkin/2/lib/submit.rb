@@ -1,5 +1,5 @@
-require_relative 'user'
-require_relative 'action'
+require_relative "user"
+require_relative "action"
 
 # Class Submit.
 class Submission < Action
