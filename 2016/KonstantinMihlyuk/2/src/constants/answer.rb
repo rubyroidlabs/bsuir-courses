@@ -1,7 +1,7 @@
 require "date"
 
 class Answer
-
+  #Class which contains all the answers for the commands
   START_COMMANDS = "/start - Выводит описание всех доступных команд\n/semester - Запоминает даты начала и конца семестра\n/subject - Добавляет предмет и количество лабораторных работ по нему\n/subject_remove - Удаляет предмет\n/status - Выводит твой список лаб, которые тебе предстоит сдать\n/submit - Запоминает какие предметы ты сдал\n/reset - Сбрасывает для пользователя все данные.\n/remind - Самый лучший менеджер напоминалок.".freeze
   
   WHEN_BEGIN_TO_LEARN = "Когда начинаем учиться? (дд-мм-гггг)".freeze

@@ -10,9 +10,7 @@ require_relative "./commands/reset.rb"
 require_relative "./commands/subject_remove.rb"
 require_relative "./commands/remind.rb"
 require_relative "./database.rb"
-
-DEFAULT_COMMANDS = [Start, Semester, Subject, Status, Submit, Reset, Subject_remove, Remind]
-TOKEN = "282969345:AAEkW0070hAfVNlqKasIPvNYF076ANBSoMs"
+require_relative "constants/constants.rb"
 
 database = Redis.new
 database.set("token", TOKEN)
@@ -25,7 +23,7 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
     db = Database.new
     user = db.user(user_id) ? db.user(user_id) : db.create_user(user_id)
 
-    default_command = DEFAULT_COMMANDS.find{ |command| "/#{command.to_s.downcase}" == message.text }
+    default_command = DEFAULT_COMMANDS.find { |command| "/#{command.to_s.downcase}" == message.text }
     command = default_command ? default_command.new(user) : waiting_commands[user_id]
 
     if command

@@ -2,7 +2,7 @@ require "json"
 require "redis"
 
 class Database
-
+  #Class for working with database
   def initialize
     @database = Redis.new
   end
@@ -29,11 +29,11 @@ class Database
 
   def create_user(user_id)
     user = {
-      'subjects' => {},
-      'start_date' => '',
-      'finish_date' =>  '',
-      'available_days' => '',
-      'reminders' => []
+      "subjects" => {},
+      "start_date" => '',
+      "finish_date" => '',
+      "available_days" => '',
+      "reminders" => []
     }
     save_user(user, user_id)
 
