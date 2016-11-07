@@ -91,7 +91,7 @@ class DateParser
   end
 
   def self.correct?(date)
-    if date.index(".").nil? then return false end
+    return false if date.index(".").nil?
     day, month, year = get_date(date)
     status = get_check(day, month, year, date) ? false : true
 
