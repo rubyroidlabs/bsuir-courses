@@ -1,7 +1,6 @@
-require 'rubygems'
-require 'telegram/bot'
-require_relative './lib/calendar.rb'
-
+require "rubygems"
+require "telegram/bot"
+require_relative "./lib/calendar.rb"
 class Base
   token = '273396926:AAEP9YaekvsgpG0gcMSmKMOWMXZWrrfZHLs'
   Telegram::Bot::Client.run(token) do |bot|
