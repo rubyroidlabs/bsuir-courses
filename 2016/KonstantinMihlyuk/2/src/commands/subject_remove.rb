@@ -1,6 +1,6 @@
-require_relative '../commands/command.rb'
-require_relative '../constants/answer.rb'
-require_relative '../constants/regular.rb'
+require_relative "../commands/command.rb"
+require_relative "../constants/answer.rb"
+require_relative "../constants/regular.rb"
 
 class Subject_remove < Command
 

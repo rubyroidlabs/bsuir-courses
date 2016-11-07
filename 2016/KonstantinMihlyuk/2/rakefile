@@ -1,30 +1,30 @@
-require 'redis'
-require 'json'
+require "redis"
+require "json"
 
-require_relative 'src/commands/status.rb'
-require_relative 'src/database.rb'
-require_relative 'src/reminder.rb'
+require_relative "src/commands/status.rb"
+require_relative "src/database.rb"
+require_relative "src/reminder.rb"
 
-desc 'This task is initializes database'
+desc "This task is initializes database"
 task :init_database do
   db = Redis.new
 
-  unless db.exists('users')
-    db.set('users', {}.to_json)
+  unless db.exists("users")
+    db.set("users", {}.to_json)
   end
 
-  p 'database created'
+  p "database created"
 end
 
-desc 'This task is drop database'
+desc "This task is drop database"
 task :clear_database do
   db = Redis.new
-  db.set('users', {}.to_json)
+  db.set("users", {}.to_json)
 
-  p 'database cleared'
+  p "database cleared"
 end
 
-desc 'This task is make remind'
+desc "This task is make remind"
 task :remind do
   db = Database.new
   users = db.get_users
@@ -34,10 +34,10 @@ task :remind do
   user_keys.each do |user_key|
     user = users[user_key]
     remind_message = Status.new(user).say
-    reminders = user['reminders']
+    reminders = user["reminders"]
 
     if reminders.any? do |reminder|
-      Reminder.need_remind_now?(reminder['days'], reminder['hour'])
+      Reminder.need_remind_now?(reminder["days"], reminder["hour"])
     end
       Reminder.remind(token, user_key, remind_message)
     end

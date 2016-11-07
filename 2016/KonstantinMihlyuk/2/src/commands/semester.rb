@@ -1,15 +1,15 @@
-require_relative './command.rb'
-require_relative '../constants/regular.rb'
-require_relative '../constants/answer.rb'
+require_relative "./command.rb"
+require_relative "../constants/regular.rb"
+require_relative "../constants/answer.rb"
 
 class Semester < Command
 
   def initialize(user)
     super(user)
 
-    @start_date = ''
-    @finish_date = ''
-    @available_days = ''
+    @start_date = ""
+    @finish_date = ""
+    @available_days = ""
   end
 
   def say(message)
@@ -74,8 +74,8 @@ class Semester < Command
   end
 
   def calc_available_days(start_date, finish_date)
-    start_date = Date.strptime(start_date, '%d-%m-%Y')
-    finish_date = Date.strptime(finish_date, '%d-%m-%Y')
+    start_date = Date.strptime(start_date, "%d-%m-%Y")
+    finish_date = Date.strptime(finish_date, "%d-%m-%Y")
 
     (finish_date - start_date).to_i
   end

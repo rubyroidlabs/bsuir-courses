@@ -1,5 +1,5 @@
-require_relative '../constants/regular.rb'
-require_relative './command.rb'
+require_relative "../constants/regular.rb"
+require_relative "./command.rb"
 
 class Remind < Command
 

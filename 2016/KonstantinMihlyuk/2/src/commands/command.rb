@@ -2,11 +2,11 @@ class Command
 
   def initialize(user)
     @dialog_step = 1
-    @subjects = user['subjects']
-    @start_date = user['start_date']
-    @finish_date = user['finish_date']
-    @available_days = user['available_days']
-    @reminders = user['reminders']
+    @subjects = user["subjects"]
+    @start_date = user["start_date"]
+    @finish_date = user["finish_date"]
+    @available_days = user["available_days"]
+    @reminders = user["reminders"]
   end
 
   def get_dialog_step

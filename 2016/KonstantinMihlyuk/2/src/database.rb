@@ -1,5 +1,5 @@
-require 'json'
-require 'redis'
+require "json"
+require "redis"
 
 class Database
 
@@ -16,24 +16,24 @@ class Database
   end
 
   def get_token
-    @database.get('token')
+    @database.get("token")
   end
 
   def get_user(user_id)
-    JSON.parse(@database.get('users'))[user_id.to_s]
+    JSON.parse(@database.get("users"))[user_id.to_s]
   end
 
   def get_users
-    JSON.parse(@database.get('users'))
+    JSON.parse(@database.get("users"))
   end
 
   def create_user(user_id)
     user = {
-        'subjects' => {},
-        'start_date' => '',
-        'finish_date' =>  '',
-        'available_days' => '',
-        'reminders' => []
+        "subjects" => {},
+        "start_date" => "",
+        "finish_date" =>  "",
+        "available_days" => "",
+        "reminders" => []
     }
     save_user(user, user_id)
 
@@ -43,10 +43,10 @@ class Database
   private
 
   def save_user(user, user_id)
-    users = JSON.parse(@database.get('users'))
+    users = JSON.parse(@database.get("users"))
     users[user_id.to_s] = user
 
-    @database.set('users', users.to_json)
+    @database.set("users", users.to_json)
   end
 
 end
@@ -65,9 +65,9 @@ end
  #                     labs_count: 10,
  #                     labs: [2, 4, 5, 6]
  #                 }},
- #             start_date: '01-09-2016',
- #             finish_date: '03-11-2016',
- #             available_days: '123',
+ #             start_date: "01-09-2016",
+ #             finish_date: "03-11-2016",
+ #             available_days: "123",
  #             reminders: [{
  #                 days: 1,
  #                 hour: 12
@@ -83,14 +83,14 @@ end
  #                     labs_count: 10,
  #                     made_labs: [2, 4, 5, 6]
  #                 }},
- #             start_date: '01-09-2016',
- #             finish_date: '03-11-2016',
- #             available_days: '123',
+ #             start_date: "01-09-2016",
+ #             finish_date: "03-11-2016",
+ #             available_days: "123",
  #             reminders: [{
  #                  day: 1,
  #                  hour: 12
  #             }]
  #         }
  #     },
- #     token: 'ax123r123s13ies3n123esy123e'
+ #     token: "ax123r123s13ies3n123esy123e"
  # }

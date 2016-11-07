@@ -1,12 +1,12 @@
-require_relative '../commands/command.rb'
-require_relative '../constants/answer.rb'
+require_relative "../commands/command.rb"
+require_relative "../constants/answer.rb"
 
 class Subject < Command
 
   def initialize(user)
     super(user)
 
-    @subject = ''
+    @subject = ""
   end
 
   def say(message)
@@ -46,8 +46,8 @@ class Subject < Command
     return Answer::INCORRECT_LABS_COUNT unless check_bound(labs_count, 1, 20)
 
     @subjects[@subject] = {
-        'labs_count' => labs_count.to_i,
-        'made_labs' => Array.new(labs_count.to_i, false)
+        "labs_count" => labs_count.to_i,
+        "made_labs" => Array.new(labs_count.to_i, false)
     }
 
     @dialog_step = 0

@@ -1,5 +1,5 @@
-require_relative '../commands/command.rb'
-require_relative '../constants/answer.rb'
+require_relative "../commands/command.rb"
+require_relative "../constants/answer.rb"
 
 class Submit < Command
 
@@ -37,13 +37,13 @@ class Submit < Command
   end
 
   def send_ok(message)
-    made_labs = @subjects[@subject_key]['made_labs']
+    made_labs = @subjects[@subject_key]["made_labs"]
 
     return Answer::DONT_HAVE_LABS unless message =~ Regular::LABS_COUNT
     return Answer::DONT_HAVE_LABS unless check_bound(message.to_i - 1, 0, made_labs.size)
 
     made_labs[message.to_i - 1] = true
-    @subjects[@subject_key]['made_labs'] = made_labs
+    @subjects[@subject_key]["made_labs"] = made_labs
     @dialog_step = 0
 
     Answer::OK

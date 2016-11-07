@@ -1,21 +1,21 @@
-require 'telegram/bot'
-require 'redis'
+require "telegram/bot"
+require "redis"
 
-require_relative './commands/start.rb'
-require_relative './commands/semester.rb'
-require_relative './commands/subject.rb'
-require_relative './commands/status.rb'
-require_relative './commands/submit.rb'
-require_relative './commands/reset.rb'
-require_relative './commands/subject_remove.rb'
-require_relative './commands/remind.rb'
-require_relative './database.rb'
+require_relative "./commands/start.rb"
+require_relative "./commands/semester.rb"
+require_relative "./commands/subject.rb"
+require_relative "./commands/status.rb"
+require_relative "./commands/submit.rb"
+require_relative "./commands/reset.rb"
+require_relative "./commands/subject_remove.rb"
+require_relative "./commands/remind.rb"
+require_relative "./database.rb"
 
 DEFAULT_COMMANDS = [Start, Semester, Subject, Status, Submit, Reset, Subject_remove, Remind]
-TOKEN = '282969345:AAEkW0070hAfVNlqKasIPvNYF076ANBSoMs'
+TOKEN = "282969345:AAEkW0070hAfVNlqKasIPvNYF076ANBSoMs"
 
 database = Redis.new
-database.set('token', TOKEN)
+database.set("token", TOKEN)
 
 waiting_commands = {}
 
@@ -33,15 +33,12 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       answer = command.say(message.text)
 
       if command.dialog_ended
-        db.update(command.to_hash, user_id) #TODO: сделать методы для каждого поля
+        db.update(command.to_hash, user_id)
       else
         waiting_commands[user_id] = command
       end
 
       bot.api.send_message(chat_id: user_id, text: answer) if answer
     end
-
   end
 end
-
-
