@@ -13,7 +13,9 @@ class Remind < Command
   end
 
   def to_hash
-      {reminders: @reminders}
+    {
+      reminders: @reminders
+    }
   end
 
   private
@@ -47,7 +49,9 @@ class Remind < Command
     days = to_number_week(time[1])
     hour = time[3].to_i
 
-    @reminders << {days: days, hour: hour}
+    @reminders << {
+        days: days, hour: hour
+    }
     @dialog_step = 0
 
     Answer::OK
@@ -74,7 +78,7 @@ class Remind < Command
   end
 
   def to_number_week(day)
-    day = day.downcase.to_s #TODO: Разобраться с downcase
+    day = day.downcase.to_s
 
     week = %w(понедельник вторник среда четверг пятница суббота воскресенье)
     week_large_letter = %w(Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье)

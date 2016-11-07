@@ -14,7 +14,7 @@ class Command
   end
 
   def dialog_ended
-    @dialog_step == 0
+    @dialog_step.zero?
   end
 
   private
@@ -28,7 +28,6 @@ class Command
   end
 
   def check_available_days(days)
-    days > 0
+    days.positive?
   end
-
 end
