@@ -26,7 +26,6 @@ class Base
               break
             end
           end
-
           bot.api.send_message(chat_id: message.chat.id, text: "Когда дедлайн?")
           bot.listen do |anwser|
             if valid?(anwser.text) == false
@@ -36,7 +35,6 @@ class Base
               break
             end
           end
-
           if sem_date(@begin, @end) == true					
             bot.api.send_message(chat_id: message.chat.id, text: "У тя #{@today} дней до дедлайна")
           end
