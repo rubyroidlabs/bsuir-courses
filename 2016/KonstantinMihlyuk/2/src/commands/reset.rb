@@ -15,9 +15,9 @@ class Reset < Command
 
   def to_hash
     {
-        "subjects" => @subjects,
-        "start_date" => @start_date,
-        "finish_date" => @finish_date
+      "subjects" => @subjects,
+      "start_date" => @start_date,
+      "finish_date" => @finish_date
     }
   end
 

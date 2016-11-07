@@ -3,7 +3,6 @@ require_relative "../constants/answer.rb"
 require_relative "../constants/regular.rb"
 
 class Subject_remove < Command
-
   def say(message)
     case @dialog_step
     when 1 then remove_subject
@@ -14,7 +13,7 @@ class Subject_remove < Command
 
   def to_hash
     {
-       subjects: @subjects
+      subjects: @subjects
     }
   end
 
@@ -39,5 +38,4 @@ class Subject_remove < Command
 
     Answer::OK
   end
-
 end

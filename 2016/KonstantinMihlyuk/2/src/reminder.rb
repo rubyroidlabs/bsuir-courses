@@ -8,7 +8,7 @@ class Reminder
     day_now = DateTime.now.strftime("%u").to_i
     right_day = day.to_i + 1 == day_now
 
-    right_day && Reminder.right_hour(hour)
+    right_day && self.right_hour(hour)
   end
 
   def self.remind(token, user_id, text)

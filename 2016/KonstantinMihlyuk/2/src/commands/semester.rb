@@ -23,9 +23,9 @@ class Semester < Command
 
   def to_hash
     {
-        start_date: @start_date,
-        finish_date: @finish_date,
-        available_days: @available_days
+      start_date: @start_date,
+      finish_date: @finish_date,
+      available_days: @available_days
     }
   end
 

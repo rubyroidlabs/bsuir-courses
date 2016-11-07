@@ -20,7 +20,7 @@ class Subject < Command
 
   def to_hash
     {
-        subjects: @subjects
+      subjects: @subjects
     }
   end
 
