@@ -40,7 +40,7 @@ class Base
           if sem_date(@date1, @date2) == true					
             bot.api.send_message(chat_id: message.chat.id, text: "У тя #{@today} дней до дедлайна")
           end
-        end
+      end
     end
   end
 end	
