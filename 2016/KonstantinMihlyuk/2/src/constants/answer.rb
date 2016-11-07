@@ -62,23 +62,22 @@ class Answer
     "К этому времени у тебя должно быть сдано: \n\n" + subjects.map do |subject_name, subject|
       labs = subject["made_labs"]
       labs_count = subject["labs_count"]
-      statistic = statistic(labs, elapsed_time, available_days)
+      statistic = statistic(labs, elapsed_time, available_days, labs_count)
 
-      "#{subject_name}\n   Должно быть сдано: #{statistic['need_made_labs']}/#{statistic['labs_count']}\n   Сдано: #{statistic['made_labs_count']}/#{statistic['labs_count']}\n   #{statistic['unmade_labs']}\n\n"
+      "#{subject_name}\n   Должно быть сдано: #{statistic['need_made_labs']}/#{labs_count}\n   Сдано: #{statistic['made_labs_count']}/#{labs_count}\n   #{statistic['unmade_labs']}\n\n"
     end.join("")
   end
 
-  def statistic(labs, elapsed_time, available_days)
+  def statistic(labs, elapsed_time, available_days, labs_count)
     unmade_labs = labs.map.with_index { |value, key| key + 1 unless value }.compact
-    made_labs_count = labs.map.with_index { |value, key| key + 1 if value }.compact.size
+    made_labs_count = labs_count - unmade_labs.size
     need_made_labs = Answer.in_interval((labs_count * elapsed_time / available_days.to_f).ceil, 0, labs_count)
     unmade_labs = unmade_labs.empty? ? "Лаб больше не осталось =(" : "Оставшиеся: #{unmade_labs}"
 
     {
-      "unmade_labs" => unmade_labs,
-      "made_labs_count" => made_labs_count,
-      "need_made_labs" => need_made_labs,
-      "unmade_labs" => unmade_labs
+        "made_labs_count" => made_labs_count,
+        "need_made_labs" => need_made_labs,
+        "unmade_labs" => unmade_labs
     }
   end
 
