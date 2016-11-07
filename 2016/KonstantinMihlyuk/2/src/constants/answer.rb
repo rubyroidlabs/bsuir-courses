@@ -73,7 +73,9 @@ class Answer
     end.join("")
   end
 
-  def self.decline(number, first_dec, sec_dec, third_dec)
+  private
+
+  def decline(number, first_dec, sec_dec, third_dec)
     string = number.to_s
     decisive_letter = string[string.length - 1]
 
@@ -84,20 +86,20 @@ class Answer
     end
   end
 
-  def self.week_day(number)
+  def week_day(number)
     days_of_week = %w(Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье)
 
     days_of_week[number]
   end
 
-  def self.calc_elapsed_days(start_date)
+  def calc_elapsed_days(start_date)
     start_date = Date.strptime(start_date, "%d-%m-%Y")
     date_now = Date.strptime(Time.now.strftime("%d-%m-%Y"), "%d-%m-%Y")
 
     (date_now - start_date).to_i
   end
 
-  def self.in_interval(number, min, max)
+  def in_interval(number, min, max)
     return 0 if number < min
     return max if number > max
     number

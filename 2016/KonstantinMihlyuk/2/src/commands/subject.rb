@@ -46,13 +46,12 @@ class Subject < Command
     return Answer::INCORRECT_LABS_COUNT unless check_bound(labs_count, 1, 20)
 
     @subjects[@subject] = {
-        "labs_count" => labs_count.to_i,
-        "made_labs" => Array.new(labs_count.to_i, false)
+      "labs_count" => labs_count.to_i,
+      "made_labs" => Array.new(labs_count.to_i, false)
     }
 
     @dialog_step = 0
 
     Answer::OK
   end
-
 end

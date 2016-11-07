@@ -11,5 +11,4 @@ class Status < Command
 
     Answer.status(@subjects, @available_days, @start_date)
   end
-
 end
