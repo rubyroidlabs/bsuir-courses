@@ -1,7 +1,7 @@
 require_relative "../commands/command.rb"
 require_relative "../constants/answer.rb"
 
-#Class for status command
+# Class for status command
 class Status < Command
   def say(message = "")
     return Answer::DONT_ENTER_SUBJECTS if @subjects.empty?

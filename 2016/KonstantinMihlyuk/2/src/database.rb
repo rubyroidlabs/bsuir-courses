@@ -1,7 +1,7 @@
 require "json"
 require "redis"
 
-#Class for working with database
+# Class for working with database
 class Database
   def initialize
     @database = Redis.new

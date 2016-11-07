@@ -1,6 +1,6 @@
 require "date"
 
-#Class which contains all the answers for the commands
+# Class which contains all the answers for the commands
 class Answer
   START_COMMANDS = "/start - Выводит описание всех доступных команд\n/semester - Запоминает даты начала и конца семестра\n/subject - Добавляет предмет и количество лабораторных работ по нему\n/subject_remove - Удаляет предмет\n/status - Выводит твой список лаб, которые тебе предстоит сдать\n/submit - Запоминает какие предметы ты сдал\n/reset - Сбрасывает для пользователя все данные.\n/remind - Самый лучший менеджер напоминалок.".freeze
   
@@ -40,7 +40,7 @@ class Answer
 
   def self.WHAT_REMIND_PASSED(reminders)
     "Какое напоминаение удалим?\n\n" + reminders.map.with_index do |reminder, index|
-      "#{index + 1}. #{self.week_day(reminder["days"])} #{reminder["hour"]}:00\n"
+      "#{index + 1}. #{week_day(reminder["days"])} #{reminder["hour"]}:00\n"
     end.join("")
   end
 
@@ -75,7 +75,7 @@ class Answer
 
   private
 
-  def self.decline(number, first_dec, sec_dec, third_dec)
+  def decline(number, first_dec, sec_dec, third_dec)
     string = number.to_s
     decisive_letter = string[string.length - 1]
 
@@ -86,20 +86,20 @@ class Answer
     end
   end
 
-  def self.week_day(number)
+  def week_day(number)
     days_of_week = %w(Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье)
 
     days_of_week[number]
   end
 
-  def self.calc_elapsed_days(start_date)
+  def calc_elapsed_days(start_date)
     start_date = Date.strptime(start_date, "%d-%m-%Y")
     date_now = Date.strptime(Time.now.strftime("%d-%m-%Y"), "%d-%m-%Y")
 
     (date_now - start_date).to_i
   end
 
-  def self.in_interval(number, min, max)
+  def in_interval(number, min, max)
     return 0 if number < min
     return max if number > max
     number

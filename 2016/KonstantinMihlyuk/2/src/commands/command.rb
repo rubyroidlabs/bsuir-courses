@@ -1,4 +1,4 @@
-#Class for all commands
+# Class for all commands
 class Command
   def initialize(user)
     @dialog_step = 1

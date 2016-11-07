@@ -1,7 +1,7 @@
 require_relative "../commands/command.rb"
 require_relative "../constants/answer.rb"
 
-#Class for subject command
+# Class for subject command
 class Subject < Command
   def initialize(user)
     super(user)

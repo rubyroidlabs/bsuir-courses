@@ -1,7 +1,7 @@
 require_relative "../constants/regular.rb"
 require_relative "./command.rb"
 
-#Class for remind command
+# Class for remind command
 class Remind < Command
   def say(message)
     case @dialog_step
