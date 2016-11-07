@@ -14,7 +14,7 @@ module BotAction
     private
 
     def check_valid?(text)
-      if text.empty? || text.include?('/')
+      if text.empty? || text.include?('/') || text.include?("\n")
         action_handler.repeat_action(user)
         false
       elsif user.subject?(text)
