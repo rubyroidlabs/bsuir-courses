@@ -30,9 +30,9 @@ class Database
   def create_user(user_id)
     user = {
       "subjects" => {},
-      "start_date" => '',
-      "finish_date" => '',
-      "available_days" => '',
+      "start_date" => "",
+      "finish_date" => "",
+      "available_days" => "",
       "reminders" => []
     }
     save_user(user, user_id)

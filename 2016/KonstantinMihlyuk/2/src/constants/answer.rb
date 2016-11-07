@@ -62,20 +62,27 @@ class Answer
     "К этому времени у тебя должно быть сдано: \n\n" + subjects.map do |subject_name, subject|
       labs = subject["made_labs"]
       labs_count = subject["labs_count"]
+      statistic = statistic(labs, elapsed_time, available_days)
 
-      made_labs = labs.map.with_index { |value, key| key + 1 if value }.compact
-      unmade_labs = labs.map.with_index { |value, key| key + 1 unless value }.compact
-      made_labs_count = made_labs.size
-      need_made_labs = Answer.in_interval((labs_count * elapsed_time / available_days.to_f).ceil, 0, labs_count)
-      unmade_labs = unmade_labs.empty? ? "Лаб больше не осталось =(" : "Оставшиеся: #{unmade_labs}"
-
-      "#{subject_name}\n   Должно быть сдано: #{need_made_labs}/#{labs_count}\n   Сдано: #{made_labs_count}/#{labs_count}\n   #{unmade_labs}\n\n"
+      "#{subject_name}\n   Должно быть сдано: #{statistic['need_made_labs']}/#{statistic['labs_count']}\n   Сдано: #{statistic['made_labs_count']}/#{statistic['labs_count']}\n   #{statistic['unmade_labs']}\n\n"
     end.join("")
   end
 
-  private
+  def statistic(labs, elapsed_time, available_days)
+    unmade_labs = labs.map.with_index { |value, key| key + 1 unless value }.compact
+    made_labs_count = labs.map.with_index { |value, key| key + 1 if value }.compact.size
+    need_made_labs = Answer.in_interval((labs_count * elapsed_time / available_days.to_f).ceil, 0, labs_count)
+    unmade_labs = unmade_labs.empty? ? "Лаб больше не осталось =(" : "Оставшиеся: #{unmade_labs}"
 
-  def decline(number, first_dec, sec_dec, third_dec)
+    {
+      "unmade_labs" => unmade_labs,
+      "made_labs_count" => made_labs_count,
+      "need_made_labs" => need_made_labs,
+      "unmade_labs" => unmade_labs
+    }
+  end
+
+  def self.decline(number, first_dec, sec_dec, third_dec)
     string = number.to_s
     decisive_letter = string[string.length - 1]
 
@@ -86,20 +93,20 @@ class Answer
     end
   end
 
-  def week_day(number)
+  def self.week_day(number)
     days_of_week = %w(Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье)
 
     days_of_week[number]
   end
 
-  def calc_elapsed_days(start_date)
+  def self.calc_elapsed_days(start_date)
     start_date = Date.strptime(start_date, "%d-%m-%Y")
     date_now = Date.strptime(Time.now.strftime("%d-%m-%Y"), "%d-%m-%Y")
 
     (date_now - start_date).to_i
   end
 
-  def in_interval(number, min, max)
+  def self.in_interval(number, min, max)
     return 0 if number < min
     return max if number > max
     number
