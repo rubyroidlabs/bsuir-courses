@@ -1,8 +1,8 @@
 require_relative "../commands/command.rb"
 require_relative "../constants/answer.rb"
 
+#Class for reset command
 class Reset < Command
-  #Class for reset command
   def say(message)
     @subjects = {}
     @start_date = ""

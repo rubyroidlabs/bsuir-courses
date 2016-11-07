@@ -1,7 +1,7 @@
 require "date"
 
+#Class which contains all the answers for the commands
 class Answer
-  #Class which contains all the answers for the commands
   START_COMMANDS = "/start - Выводит описание всех доступных команд\n/semester - Запоминает даты начала и конца семестра\n/subject - Добавляет предмет и количество лабораторных работ по нему\n/subject_remove - Удаляет предмет\n/status - Выводит твой список лаб, которые тебе предстоит сдать\n/submit - Запоминает какие предметы ты сдал\n/reset - Сбрасывает для пользователя все данные.\n/remind - Самый лучший менеджер напоминалок.".freeze
   
   WHEN_BEGIN_TO_LEARN = "Когда начинаем учиться? (дд-мм-гггг)".freeze
@@ -53,7 +53,7 @@ class Answer
   end
 
   def self.FAIL_AVAILABLE_DAYS(available_time)
-    "Мне кажется что ты ввел даты наоборот, я поменяла их местами)\nНа все про все у тебя #{available_time} #{Answer.decline(available_time, "дней", "день", "дня")}"
+    "Мне кажется что ты ввел даты наоборот, я поменяла их местами)\nНа все про все у тебя #{available_time} #{decline(available_time, "дней", "день", "дня")}"
   end
 
   def self.STATUS(subjects, available_days, start_date)
@@ -80,9 +80,9 @@ class Answer
     decisive_letter = string[string.length - 1]
 
     case decisive_letter
-      when "0", "5", "6", "7", "8", "9" then return first_dec
-      when "1" then return sec_dec
-      when "2", "3", "4" then return third_dec
+    when "0", "5", "6", "7", "8", "9" then return first_dec
+    when "1" then return sec_dec
+    when "2", "3", "4" then return third_dec
     end
   end
 

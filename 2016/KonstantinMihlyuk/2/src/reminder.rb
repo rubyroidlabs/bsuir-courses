@@ -2,8 +2,8 @@ require "cgi"
 require "curl"
 require "date"
 
+#Class for help you remind
 class Reminder
-
   def self.need_remind_now?(day, hour)
     day_now = DateTime.now.strftime("%u").to_i
     right_day = day.to_i + 1 == day_now

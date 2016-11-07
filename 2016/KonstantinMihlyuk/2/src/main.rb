@@ -7,23 +7,23 @@ require_relative "./commands/subject.rb"
 require_relative "./commands/status.rb"
 require_relative "./commands/submit.rb"
 require_relative "./commands/reset.rb"
-require_relative "./commands/subject_remove.rb"
+require_relative "./commands/subjectRemove.rb"
 require_relative "./commands/remind.rb"
 require_relative "./database.rb"
 require_relative "constants/constants.rb"
 
 database = Redis.new
-database.set("token", TOKEN)
+database.set("token", Constants::TOKEN)
 
 waiting_commands = {}
 
-Telegram::Bot::Client.run(TOKEN) do |bot|
+Telegram::Bot::Client.run(Constants::TOKEN) do |bot|
   bot.listen do |message|
     user_id = message.from.id
     db = Database.new
     user = db.user(user_id) ? db.user(user_id) : db.create_user(user_id)
 
-    default_command = DEFAULT_COMMANDS.find { |command| "/#{command.to_s.downcase}" == message.text }
+    default_command =Constants::DEFAULT_COMMANDS.find { |command| "/#{command.to_s.downcase}" == message.text }
     command = default_command ? default_command.new(user) : waiting_commands[user_id]
 
     if command

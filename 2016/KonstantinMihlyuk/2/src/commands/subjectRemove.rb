@@ -2,8 +2,8 @@ require_relative "../commands/command.rb"
 require_relative "../constants/answer.rb"
 require_relative "../constants/regular.rb"
 
-class Subject_remove < Command
-  #Class for subject_remove command
+#Class for subject_remove command
+class SubjectRemove < Command
   def say(message)
     case @dialog_step
     when 1 then remove_subject

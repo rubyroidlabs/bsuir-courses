@@ -1,14 +1,14 @@
 require_relative "../constants/regular.rb"
 require_relative "./command.rb"
 
+#Class for remind command
 class Remind < Command
-  #Class for remind command
   def say(message)
     case @dialog_step
-      when 1 then show_menu
-      when 2 then add_remove_remind(message)
-      when 3 then choose_time(message)
-      when 4 then choose_reminder(message)
+    when 1 then show_menu
+    when 2 then add_remove_remind(message)
+    when 3 then choose_time(message)
+    when 4 then choose_reminder(message)
     end
   end
 
@@ -26,8 +26,8 @@ class Remind < Command
 
   def add_remove_remind(message)
     case message.to_i
-      when 1 then add_menu
-      when 2 then remove_menu
+    when 1 then add_menu
+    when 2 then remove_menu
     end
   end
 

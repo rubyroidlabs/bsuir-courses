@@ -1,5 +1,5 @@
+#Class for all commands
 class Command
-  #Class for all commands
   def initialize(user)
     @dialog_step = 1
     @subjects = user["subjects"]
