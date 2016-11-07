@@ -1,13 +1,13 @@
-require_relative '../lib/base'
-require_relative '../lib/semester'
-require 'redis'
-require 'telegram/bot'
-require 'date'
+require_relative "../lib/base"
+require_relative "../lib/semester"
+require "redis"
+require "telegram/bot"
+require "date"
 
-token = '274685898:AAEuPrF8KsgxHyenEt_OGEOO8PGdP2lPTIM'
+token = "274685898:AAEuPrF8KsgxHyenEt_OGEOO8PGdP2lPTIM"
 
 RSpec.describe Semester do
-  let(:token) { '274685898:AAEuPrF8KsgxHyenEt_OGEOO8PGdP2lPTIM' }
+  let(:token) { "274685898:AAEuPrF8KsgxHyenEt_OGEOO8PGdP2lPTIM" }
   let(:user_id) { 178_107_947 }
 
   let(:bot_one) do
@@ -17,8 +17,8 @@ RSpec.describe Semester do
   end
 
   before(:each) do
-    if bot_one.api.getUpdates['result'].empty?
-      bot_one.api.sendMessage(chat_id: user_id, text: 'Введи соообщение для начала работы тестов: ')
+    if bot_one.api.getUpdates["result"].empty?
+      bot_one.api.sendMessage(chat_id: user_id, text: "Введи соообщение для начала работы тестов: ")
     end
     @semester = Semester.new(bot_one, user_id)
   end
@@ -29,7 +29,7 @@ RSpec.describe Semester do
     end
 
     it "should raise NoMethodError exceptions " do
-      bot = 'effefefeffe'
+      bot = "effefefeffe"
       expect { Semester.new(bot, user_id) }.to raise_error(NoMethodError)
     end
 
@@ -42,12 +42,12 @@ RSpec.describe Semester do
     end
 
     it "should be correct date value" do
-      date1 = '12.12.2005'
+      date1 = "12.12.2005"
       expect(@semester.str_date?(date1)).to be true
     end
 
     it "should be incorrect date value" do
-      date1 = '12dwad.daw12.ef2005'
+      date1 = "12dwad.daw12.ef2005"
       expect(@semester.str_date?(date1)).to be false
     end
   end

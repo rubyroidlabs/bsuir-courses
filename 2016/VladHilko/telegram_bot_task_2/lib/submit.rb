@@ -1,9 +1,9 @@
 # This class will help you close your labs
 class Submit < Base
   def send_messages
-    ask_about_subject('Что сдавал?')
-    ask_about_lab_number('Какую лабу сдал?')
-    telegram_send_message('ok')
+    ask_about_subject("Что сдавал?")
+    ask_about_lab_number("Какую лабу сдал?")
+    telegram_send_message("ok")
   end
 
   def ask_about_subject(question)
@@ -19,7 +19,7 @@ class Submit < Base
     subject_name_in_redis = "#{@user_id}-subject-#{selected_subject.downcase}"
 
     # if @redis.smembers(subject_name_in_redis).empty?
-    #   telegram_send_message('not subject')
+    #   telegram_send_message("not subject")
     #   return
     # end
 

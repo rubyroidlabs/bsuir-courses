@@ -1,8 +1,8 @@
 # This class inludes your subject and labs count
 class Subject < Base
   def send_messages
-    ask_about_studying_subject('Какой предмет учим?')
-    ask_about_labs_count('Сколько лаб надо сдать?')
+    ask_about_studying_subject("Какой предмет учим?")
+    ask_about_labs_count("Сколько лаб надо сдать?")
 
     messages_array.shift
     subject_name = @messages_array.first
@@ -12,7 +12,7 @@ class Subject < Base
     @redis.hmset("#{user_id}-subject", subject_name, subject_labs_count)
     @redis.sadd("#{user_id}-subject-#{subject_name.downcase}", num_to_str_sequence(subject_labs_count))
 
-    telegram_send_message('Ок')
+    telegram_send_message("Ок")
   end
 
   def ask_about_studying_subject(question)
@@ -25,7 +25,7 @@ class Subject < Base
     take_new_answer
 
     until messages_array.last =~ /\A[-+]?\d*\.?\d+\z/
-      telegram_send_message('Введи число лаб пожалуйста ... ')
+      telegram_send_message("Введи число лаб пожалуйста ... ")
       take_new_answer
     end
   end

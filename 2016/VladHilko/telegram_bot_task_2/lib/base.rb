@@ -25,7 +25,7 @@ class Base
       end
       update_last
     end
-  rescue then telegram_send_message('Слишком долго отвечаешь ...')
+  rescue then telegram_send_message("Слишком долго отвечаешь ...")
   end
 
   def num_to_sequence(seq)
