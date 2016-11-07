@@ -7,15 +7,14 @@ MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "
 
 # Class Semester.
 class Semester < Action
-  
   def run
     case @user.sys["semester_phase"]
     when 1, 4 then @user.sys["current"] << @text << "-"
     when 2, 5 then @user.sys["current"] << MONTHS.index(@text).to_s << "-"
     when 3 then @user.sys["start"] = @user.sys["current"] << @text
     when 6
-     @user.semester["end"] = @user.sys["current"] << @text
-     @user.semester["start"] = @user.sys["start"]
+      @user.semester["end"] = @user.sys["current"] << @text
+      @user.semester["start"] = @user.sys["start"]
     end
     @user.sys["current"] = "" if [3, 6].include? @user.sys["semester_phase"]
     @user.sys["semester_phase"] = @user.sys["semester_phase"] >= 6 ? 0 : @user.sys["semester_phase"] + 1
@@ -38,7 +37,7 @@ class Semester < Action
     finish = Date.parse(@user.semester["end"])
     difference = TimeDifference.between(start, finish)
     if difference.in_each_component[:years] >= 1 then "Too big semester."
-    elsif start > finish then "Time travel? Incorrect time interval." 
+    elsif start > finish then "Time travel? Incorrect time interval."
     elsif Date.today < start || Date.today > finish then "You are not in semester. Sorry."
     else difference.humanize
     end
