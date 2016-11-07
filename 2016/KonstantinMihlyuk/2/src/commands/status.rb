@@ -9,7 +9,7 @@ class Status < Command
 
     @dialog_step = 0
 
-    Answer::STATUS(@subjects, @available_days, @start_date)
+    Answer::status(@subjects, @available_days, @start_date)
   end
 
 end

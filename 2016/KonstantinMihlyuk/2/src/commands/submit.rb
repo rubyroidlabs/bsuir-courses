@@ -23,7 +23,7 @@ class Submit < Command
 
     @dialog_step += 1
 
-    Answer::WHAT_SUBJECT_PASSED(@subjects)
+    Answer::what_subject_passed(@subjects)
   end
 
   def what_subject(message)

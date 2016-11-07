@@ -34,30 +34,30 @@ class Answer
   EMPTY_REMINDERS = "У тебя нет напоминаний)".freeze
   INCORRECT_REMIND_NUMBER = "Хм, мне кажется нет такого напоминания".freeze
 
-  def self.WHAT_SUBJECT_PASSED(subjects)
+  def self.what_subject_passed(subjects)
     "Какой предмет сдавал?\n\n" + subjects.keys.map.with_index { |value, key| "#{key + 1}. #{value}\n" }.join("")
   end
 
-  def self.WHAT_REMIND_PASSED(reminders)
+  def self.what_remind_passed(reminders)
     "Какое напоминаение удалим?\n\n" + reminders.map.with_index do |reminder, index|
-      "#{index + 1}. #{week_day(reminder["days"])} #{reminder["hour"]}:00\n"
+      "#{index + 1}. #{week_day(reminder['days'])} #{reminder['hour']}:00\n"
     end.join("")
   end
 
-  def self.WHAT_SUBJECT_REMOVE(subjects)
+  def self.what_subject_remove(subjects)
     "Какой предмет удалим?\n\n" + subjects.keys.map.with_index { |value, key| "#{key + 1}. #{value}\n" }.join("")
   end
 
-  def self.HOW_MANY_DAYS_YOU_HAVE(available_time)
-    "На все про все у тебя #{available_time} #{self.decline(available_time, "дней", "день", "дня")}"
+  def self.how_many_days_you_have(available_time)
+    "На все про все у тебя #{available_time} #{decline(available_time, 'дней', 'день', 'дня')}"
   end
 
-  def self.FAIL_AVAILABLE_DAYS(available_time)
-    "Мне кажется что ты ввел даты наоборот, я поменяла их местами)\nНа все про все у тебя #{available_time} #{decline(available_time, "дней", "день", "дня")}"
+  def self.fail_available_days(available_time)
+    "Мне кажется что ты ввел даты наоборот, я поменяла их местами)\nНа все про все у тебя #{available_time} #{decline(available_time, 'дней', 'день', 'дня')}"
   end
 
-  def self.STATUS(subjects, available_days, start_date)
-    elapsed_time = self.calc_elapsed_days(start_date)
+  def self.status(subjects, available_days, start_date)
+    elapsed_time = calc_elapsed_days(start_date)
 
     "К этому времени у тебя должно быть сдано: \n\n" + subjects.map do |subject_name, subject|
       labs = subject["made_labs"]
@@ -66,7 +66,7 @@ class Answer
       made_labs = labs.map.with_index { |value, key| key + 1 if value }.compact
       unmade_labs = labs.map.with_index { |value, key| key + 1 unless value }.compact
       made_labs_count = made_labs.size
-      need_made_labs = self.in_interval((labs_count * elapsed_time / available_days.to_f).ceil, 0, labs_count)
+      need_made_labs = in_interval((labs_count * elapsed_time / available_days.to_f).ceil, 0, labs_count)
       unmade_labs = unmade_labs.empty? ? "Лаб больше не осталось =(" : "Оставшиеся: #{unmade_labs}"
 
       "#{subject_name}\n   Должно быть сдано: #{need_made_labs}/#{labs_count}\n   Сдано: #{made_labs_count}/#{labs_count}\n   #{unmade_labs}\n\n"

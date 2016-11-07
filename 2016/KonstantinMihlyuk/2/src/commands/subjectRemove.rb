@@ -25,7 +25,7 @@ class SubjectRemove < Command
 
     @dialog_step += 1
 
-    Answer::WHAT_SUBJECT_REMOVE(@subjects)
+    Answer::what_subject_remove(@subjects)
   end
 
   def send_ok(subject_number)

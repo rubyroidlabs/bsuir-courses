@@ -70,7 +70,7 @@ class Remind < Command
 
     @dialog_step = 4
 
-    Answer::WHAT_REMIND_PASSED(@reminders)
+    Answer::what_remind_passed(@reminders)
   end
 
   def to_number_week(day)
