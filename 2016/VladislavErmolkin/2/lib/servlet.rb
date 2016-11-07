@@ -7,8 +7,8 @@ require_relative "reset"
 require_relative "submit"
 require_relative "cancel"
 
-COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31].freeze
+MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].freeze
 
 # Class Servlet.
 class MyServlet < WEBrick::HTTPServlet::AbstractServlet
@@ -18,13 +18,12 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def do_POST(request, response)
-    body =  Telegram::Bot::Types::Update.new(JSON.parse request.body.gsub('\n', " "))
+    body =  Telegram::Bot::Types::Update.new(JSON.parse(request.body.gsub('\n', " ")))
     body.callback_query.nil? ? handler(body.message, true) : handler(body.callback_query, false)
     response.status = 200
     response.body = "Success."
   end
 
-  # TODO -> make shorter.
   def handler(message, from_text_message)
     @user = User.new(message.from.id)
     text = from_text_message ? message.text : message.data
@@ -32,8 +31,8 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     answer = if !@user.sys["subjects_phase"].zero? then Subject.new(@user, text).run
              elsif !@user.sys["semester_phase"].zero? then Semester.new(@user, text).run
              elsif !@user.sys["submission_phase"].zero? then Submission.new(@user, text).run
-             else answer = try_ordinary_action(text, message.from.first_name)
-    end
+             else try_ordinary_action(text, message.from.first_name)
+             end
     send_message(message.from.id, text, answer)
   end
 
