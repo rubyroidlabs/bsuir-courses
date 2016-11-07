@@ -7,7 +7,7 @@ class Base
   Telegram::Bot::Client.run(token) do |bot|
     bot.listen do |message|
       case message.text
-        when '/start'
+        when "/start"
           bot.api.send_message(chat_id: message.chat.id, text: "Здраствуй, #{message.from.first_name}!")
           bot.api.send_message(chat_id: message.chat.id, text: "Пару вещей, которые ты должен знать: \n
             /start - ты его видишь \n
@@ -16,7 +16,7 @@ class Base
             /status - познай страх, чтобы не приуныть \n
             /reset - rm -rf /dev/null \n
             Развлекайся ;3")
-        when '/semestr'
+        when "/semestr"
           bot.api.send_message(chat_id: message.chat.id, text: "Напомни дату, когда ТЗ было оформлено: ")
           bot.listen do |anwser|
             if valid?(anwser.text) == false
@@ -37,7 +37,7 @@ class Base
             end
           end
 
-          if sem_date(@date1, @date2) == true					
+          if sem_date(@begin, @end) == true					
             bot.api.send_message(chat_id: message.chat.id, text: "У тя #{@today} дней до дедлайна")
           end
       end
