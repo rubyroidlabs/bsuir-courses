@@ -6,7 +6,7 @@ module BotCommand
     end
 
     def start
-      send_message(Responses::START)
+      send_message(Responses::START.sub('[NAME]', message.from.first_name))
     end
   end
 end

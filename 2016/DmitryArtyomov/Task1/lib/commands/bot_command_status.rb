@@ -12,17 +12,18 @@ module BotCommand
       needed_labs
       @needed_msg = @result_msg
       all_labs
-
-      send_message(sem_text + "\n\n" + @needed_msg + @result_msg)
+      send_message(sem_text + @needed_msg + @result_msg)
     end
 
     private
 
     def needed_labs
       @result_msg = ''
+      return unless user.sem_now?
       lab_count_needed = { total: 0, left: 0, needed: 0 }
       count_labs_needed(lab_count_needed)
       form_message_needed(lab_count_needed)
+      @result_msg = "\n\n#{@result_msg}"
     end
 
     def all_labs
@@ -36,8 +37,8 @@ module BotCommand
       if !user.sem_defined?
         send_message(Responses::STATUS_SEM_ERR)
         false
-      elsif !user.sem_now?
-        send_message(Responses::SEM_ERR)
+      elsif user.sem_passed_percent < 0
+        send_message(Responses::SEM_NOT_STARTED)
         false
       else
         true
@@ -54,32 +55,30 @@ module BotCommand
     end
 
     def form_message_needed(lab_count)
-      if lab_count[:left].zero?
-        @result_msg = Responses::STATUS_1_COOL
-      else
-        @result_msg = Responses::STATUS_1 +
-                      @result_msg +
-                      Responses::STATUS_1_END
-                      .sub('[L]', lab_count[:left].to_s)
-                      .sub('[T]', lab_count[:total].to_s)
-      end
+      form_message(lab_count, Responses::STATUS_1_COOL,
+                   Responses::STATUS_1, Responses::STATUS_1_END)
     end
 
     def form_message_all(lab_count)
+      form_message(lab_count, Responses::STATUS_2_COOL,
+                   Responses::STATUS_2, Responses::STATUS_2_END)
+    end
+
+    def form_message(lab_count, cool, start, finish)
       if lab_count[:left].zero?
-        @result_msg = Responses::STATUS_2_COOL
+        @result_msg = cool
         @needed_msg = ''
       else
-        @result_msg = Responses::STATUS_2 +
+        @result_msg = start +
                       @result_msg +
-                      Responses::STATUS_2_END
+                      finish
                       .sub('[L]', lab_count[:left].to_s)
                       .sub('[T]', lab_count[:total].to_s)
       end
     end
 
     def text_add_subject(subj)
-      @result_msg += "\n*" + subj + '* -'
+      @result_msg += "\n*#{subj}* -"
     end
 
     def percent
@@ -124,15 +123,20 @@ module BotCommand
       ]
     end
 
-    def sem_text
-      return '' unless user.sem_defined?
-      text = prepare_sem_text
+    def sem_text_sub(text)
       Responses::SEM_TEXT
         .sub('[START]', text[0])
         .sub('[END]', text[1])
         .sub('[PERC]', text[2])
-        .sub('[ML]', prepare_sem_text[3])
+        .sub('[ML]', text[3])
         .sub('[DL]', text[4])
+    end
+
+    def sem_text
+      return '' unless user.sem_defined?
+      return Responses::SEM_ENDED unless user.sem_now?
+      text = prepare_sem_text
+      sem_text_sub(text)
     end
   end
 end

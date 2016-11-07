@@ -9,5 +9,5 @@ class CallbackHandler
   def handle(callback)
     return unless User.new(callback.from.id).callback?
     CallbackDispatcher.new(callback, message_handler)
-  end  
+  end
 end

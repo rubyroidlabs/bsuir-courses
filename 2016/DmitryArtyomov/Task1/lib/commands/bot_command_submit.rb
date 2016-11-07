@@ -12,8 +12,8 @@ module BotCommand
         send_message(Responses::SUBM_COOL)
       else
         add_cancel_callback_button(kb)
-        send_message_inline(Responses::SUBM_SUBJ, markup(kb))
-        user.callback = 'submit-name'
+        sent_msg_id = send_message_inline(Responses::SUBM_SUBJ, markup(kb))
+        add_callback('submit-name', sent_msg_id)
       end
     end
 

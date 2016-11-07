@@ -1,5 +1,5 @@
 module BotAction
-  # Class for handling end of input for semester
+  # Class for handling input of semester end
   class SemEnd < Base
     def should_start?
       action[0] =~ /SEM_END/
@@ -43,9 +43,13 @@ module BotAction
       ]
     end
 
+    def sem_now_text
+      user.sem_now? ? Responses::SEM_OK_NOW : Responses::SEM_OK_NOT_NOW
+    end
+
     def form_message
       prepared = form_message_prepare
-      Responses::SEM_OK
+      sem_now_text
         .sub('[ML]', prepared[0].to_s)
         .sub('[DL]', prepared[1].to_s)
         .sub('[MT]', prepared[2].to_s)

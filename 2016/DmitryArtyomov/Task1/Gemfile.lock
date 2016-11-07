@@ -25,6 +25,7 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    xml-simple (1.1.5)
 
 PLATFORMS
   ruby
@@ -33,6 +34,10 @@ DEPENDENCIES
   redis
   require_all
   telegram-bot-ruby
+  xml-simple
+
+RUBY VERSION
+   ruby 2.3.1p112
 
 BUNDLED WITH
    1.13.6

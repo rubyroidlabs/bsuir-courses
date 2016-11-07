@@ -8,7 +8,7 @@ module BotCallback
     def start
       subj_name = callback_data[1]
       user.del_subject(subj_name)
-      user.callback = nil
+      remove
       text = Responses::SUBJ_DELETE_OK.sub('[S]', subj_name)
       edit_inline_message(text)
     end

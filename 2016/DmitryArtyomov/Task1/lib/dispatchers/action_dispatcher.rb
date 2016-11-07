@@ -4,8 +4,8 @@ class ActionDispatcher
     BotAction::Cancel,
     BotAction::SemStart,
     BotAction::SemEnd,
-    BotAction::SubjName,
-    BotAction::SubjCount
+    BotAction::ImportGroup,
+    BotAction::SubjName
   ].freeze
 
   def initialize(message, message_handler, action_handler)

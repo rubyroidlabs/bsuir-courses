@@ -7,6 +7,7 @@ module BotCallback
 
     def start
       user.delete
+      Reminders.new.delete_user(user_id)
       text = Responses::RESET_OK
       edit_inline_message(text)
     end

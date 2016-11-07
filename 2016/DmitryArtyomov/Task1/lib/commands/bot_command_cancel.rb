@@ -5,11 +5,29 @@ module BotCommand
       text =~ %r{/cancel}
     end
 
-    # If we are here, we have no action to cancel.
-    # That's because actions are handled with higher
-    # priorities, rather than commands
     def start
-      send_message(Responses::NO_CANCEL)
+      if user.callback?
+        # Emulate cancel callback for callback handler
+        callback = create_cancel_callback
+        CallbackDispatcher.new(callback, message_handler)
+      else
+        # If we are here, we have nothing to cancel.
+        # That's because actions are handled with higher
+        # priorities, rather than commands
+        send_message(Responses::NO_CANCEL)
+      end
+    end
+
+    private
+
+    def create_cancel_callback
+      Telegram::Bot::Types::CallbackQuery.new(
+        from: message.from,
+        message: Telegram::Bot::Types::Message.new(
+          chat: message.chat
+        ),
+        data: 'cancel'
+      )
     end
   end
 end

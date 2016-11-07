@@ -12,8 +12,8 @@ module BotCommand
         .new(text: 'Удалить', callback_data: 'reset')
       )
       add_cancel_callback_button(keyboard)
-      send_message_inline(Responses::RESET, markup(keyboard))
-      user.callback = 'reset'
+      sent_msg_id = send_message_inline(Responses::RESET, markup(keyboard))
+      add_callback('reset', sent_msg_id)
     end
   end
 end

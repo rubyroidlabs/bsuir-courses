@@ -9,8 +9,8 @@ module BotCommand
       return unless check_subjects?
       kb = create_keyboard(user.subjects)
       add_cancel_callback_button(kb)
-      send_message_inline(Responses::SUBJ_DELETE, markup(kb))
-      user.callback = 'subject-delete'
+      sent_msg_id = send_message_inline(Responses::SUBJ_DELETE, markup(kb))
+      add_callback('subject-delete', sent_msg_id)
     end
 
     def check_subjects?

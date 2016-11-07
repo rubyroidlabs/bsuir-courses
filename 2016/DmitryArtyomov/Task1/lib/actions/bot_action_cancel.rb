@@ -2,7 +2,7 @@ module BotAction
   # Class for cancelling stored actions
   class Cancel < Base
     def should_start?
-      text =~ %r(/cancel) && action?
+      text =~ %r{/cancel} && action?
     end
 
     def start

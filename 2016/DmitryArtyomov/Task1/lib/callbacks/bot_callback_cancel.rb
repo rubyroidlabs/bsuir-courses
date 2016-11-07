@@ -6,8 +6,13 @@ module BotCallback
     end
 
     def start
-      user.callback = nil
+      # If not a real callback, send additional message
+      unless msg_id
+        callback.message.message_id = user.callback_msg_id
+        message_handler.send_message(user_id, Responses::CANCEL)
+      end
       edit_inline_message(Responses::CANCEL)
+      remove
     end
   end
 end

@@ -22,8 +22,8 @@ class ActionHandler
     add_action(user, user.action[0], *user.action.drop(1))
   end
 
-  def del_action(user, succ_msg)    
-    message_handler.send_message(user.user_id, succ_msg)
+  def del_action(user, succ_msg = nil)
+    message_handler.send_message(user.user_id, succ_msg) unless succ_msg.nil?
     user.set_action(nil)
   end
 end

@@ -4,11 +4,13 @@ class CommandDispatcher
     BotCommand::Start,
     BotCommand::Status,
     BotCommand::Cancel,
+    BotCommand::Import,
+    BotCommand::Remind,
     BotCommand::Semester,
     BotCommand::SubjectDelete,
     BotCommand::Subject,
     BotCommand::Submit,
-    BotCommand::Reset,    
+    BotCommand::Reset,
     BotCommand::Undefined
   ].freeze
 

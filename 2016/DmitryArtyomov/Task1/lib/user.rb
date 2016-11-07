@@ -30,6 +30,7 @@ class User
     new_user['subjects'] = {}
     new_user['action'] = nil
     new_user['callback'] = nil
+    new_user['callback_msg_id'] = nil
     save(new_user)
     new_user
   end
@@ -52,6 +53,15 @@ class User
 
   def callback?
     !callback.nil?
+  end
+
+  def callback_msg_id=(value)
+    user['callback_msg_id'] = value
+    save
+  end
+
+  def callback_msg_id
+    user['callback_msg_id']
   end
 
   # Actions
@@ -133,7 +143,7 @@ class User
 
   # Subjects
   def subject?(subj)
-    user['subjects'].key?(subj)
+    user['subjects'].keys.map(&:downcase_rus).include?(subj.downcase_rus)
   end
 
   def add_subject(subj, labs)
@@ -161,5 +171,14 @@ class User
 
   def subjects?
     !subjects.empty?
+  end
+end
+
+# Add downcase for cyrillic
+class String
+  def downcase_rus
+    rus_down = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+    rus_up = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+    downcase.tr(rus_up, rus_down)
   end
 end

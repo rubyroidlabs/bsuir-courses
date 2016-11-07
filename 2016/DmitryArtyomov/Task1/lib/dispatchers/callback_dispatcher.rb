@@ -2,6 +2,15 @@
 class CallbackDispatcher
   AVAILABLE_CALLBACKS = [
     BotCallback::Cancel,
+    BotCallback::RemindAddStart,
+    BotCallback::RemindAddDay,
+    BotCallback::RemindAddTime,
+    BotCallback::RemindDeleteChoose,
+    BotCallback::RemindDeleteEnd,
+    BotCallback::ImportStop,
+    BotCallback::ImportSubject,
+    BotCallback::ImportLabs,
+    BotCallback::SubjectAdd,
     BotCallback::SubjectDelete,
     BotCallback::SubmitName,
     BotCallback::SubmitLab,

@@ -1,37 +1,23 @@
-module BotAction
-  # Class for handling input of subject name
-  class SubjName < Base
+module BotCallback
+  # Class for importing user subject
+  class ImportSubject < Base
     def should_start?
-      user.action[0] =~ /SUBJ_NAME/
+      callback_data[0] =~ /import-subject/
     end
 
     def start
-      return unless check_valid?(text)
-      form_callback_message(text)
-      action_handler.del_action(user)
+      subject = callback_data[1]
+      form_callback_message(subject)
     end
 
     private
 
-    def check_valid?(text)
-      if text.empty? || text.include?('/')
-        action_handler.repeat_action(user)
-        false
-      elsif user.subject?(text)
-        action_handler.del_action(user, Responses::SUBJ_EXIST)
-        false
-      else
-        true
-      end
-    end
-
     def form_callback_message(subject_name)
       kb = create_keyboard(subject_name)
-      msg_id = send_message_inline(
+      edit_inline_message(
         Responses::SUBJ_COUNT.sub('[S]', subject_name),
         markup(kb)
       )
-      add_callback('subject-add', msg_id)
     end
 
     def create_keyboard(subj_name)
@@ -48,7 +34,7 @@ module BotAction
       keyboard.push(
         Telegram::Bot::Types::InlineKeyboardButton.new(
           text: labs,
-          callback_data: "subject-add/#{subj}/#{labs}"
+          callback_data: "import-labs/#{subj}/#{labs}"
         )
       )
     end

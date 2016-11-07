@@ -8,7 +8,7 @@ module BotCallback
     def start
       subj_name = callback_data[1]
       kb = create_keyboard(subj_name)
-      user.callback = 'submit-lab'
+      add('submit-lab')
       edit_inline_message(Responses::SUBM_LAB, markup(kb))
     end
 
@@ -28,10 +28,6 @@ module BotCallback
         text: (lab_number + 1).to_s,
         callback_data: 'submit-lab/' + subj_name + '/' + lab_number.to_s
       )
-    end
-
-    def markup(kb)
-      Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
     end
   end
 end

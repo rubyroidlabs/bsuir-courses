@@ -19,6 +19,20 @@ module BotCallback
 
     protected
 
+    def add(callback_data)
+      user.callback = callback_data
+      user.callback_msg_id = msg_id
+    end
+
+    def remove
+      user.callback = nil
+      user.callback_msg_id = nil
+    end
+
+    def markup(kb)
+      Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
+    end
+
     def add_cancel_callback_button(keyboard)
       keyboard.push(
         Telegram::Bot::Types::InlineKeyboardButton
@@ -39,9 +53,12 @@ module BotCallback
     end
 
     def edit_inline_message(text, markup = nil)
-      chat_id = callback.from.id
-      msg_id = callback.message.message_id
-      message_handler.edit_inline_message(chat_id, msg_id, text, markup)
+      return unless msg_id
+      message_handler.edit_inline_message(user_id, msg_id, text, markup)
+    end
+
+    def send_message_inline(text, markup)
+      message_handler.send_message_inline(user_id, text, markup)
     end
   end
 end

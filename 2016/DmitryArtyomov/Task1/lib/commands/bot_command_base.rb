@@ -20,6 +20,11 @@ module BotCommand
 
     protected
 
+    def add_callback(callback_data, msg_id)
+      user.callback = callback_data
+      user.callback_msg_id = msg_id
+    end
+
     def add_cancel_callback_button(keyboard)
       keyboard.push(
         Telegram::Bot::Types::InlineKeyboardButton
@@ -46,13 +51,5 @@ module BotCommand
     def markup(kb)
       Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
     end
-  end
-end
-
-class String
-  def downcase_rus
-    rus_down = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
-    rus_up = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-    downcase.tr(rus_up, rus_down)
   end
 end
