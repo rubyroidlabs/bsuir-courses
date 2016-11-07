@@ -1,10 +1,10 @@
-require_relative 'start'
-require_relative 'user'
-require_relative 'semester'
-require_relative 'subject'
-require_relative 'status'
-require_relative 'reset'
-require_relative 'submit'
+require_relative "start"
+require_relative "user"
+require_relative "semester"
+require_relative "subject"
+require_relative "status"
+require_relative "reset"
+require_relative "submit"
 require_relative "cancel"
 
 COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -18,10 +18,10 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def do_POST(request, response)
-    body =  Telegram::Bot::Types::Update.new(JSON.parse request.body.gsub('\n', ' '))
+    body =  Telegram::Bot::Types::Update.new(JSON.parse request.body.gsub('\n', " "))
     body.callback_query.nil? ? handler(body.message, true) : handler(body.callback_query, false)
     response.status = 200
-    response.body = 'Success.'
+    response.body = "Success."
   end
 
   # TODO -> make shorter.
@@ -38,7 +38,7 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def text_validation(text, from_text_message)
-    if text == '/cancel' && (!@user.sys["subjects_phase"].zero? || !@user.sys["semester_phase"].zero? || !@user.sys["submission_phase"].zero?)
+    if text == "/cancel" && (!@user.sys["subjects_phase"].zero? || !@user.sys["semester_phase"].zero? || !@user.sys["submission_phase"].zero?)
       Cancel.new(@user, text).run
       send_message(@user.id, nil, "Successfully.")
       return false
@@ -60,19 +60,19 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
 
   def try_ordinary_action(text, name)
     case text
-    when '/start' then Start.new(name).run
-    when '/semester' then Semester.new(@user, text).run
-    when '/subject' then Subject.new(@user, text).run
-    when '/status' then Status.new(@user, text).run
-    when '/reset' then Reset.new(@user, text).run
-    when '/submit', 'I passed.' then Submission.new(@user, text).run
+    when "/start" then Start.new(name).run
+    when "/semester" then Semester.new(@user, text).run
+    when "/subject" then Subject.new(@user, text).run
+    when "/status" then Status.new(@user, text).run
+    when "/reset" then Reset.new(@user, text).run
+    when "/submit", "I passed." then Submission.new(@user, text).run
     when "/cancel" then "Nothing to cancel."
     else "I don't understand.\nDon't panic. You've got to know where your towel is."
     end
   end
 
   def create_keyboard(text)
-    buttons = button_names(text).map do |row| 
+    buttons = button_names(text).map do |row|
       row.map do |name|
         Telegram::Bot::Types::InlineKeyboardButton.new(text: name.to_s, callback_data: name.to_s)
       end
@@ -87,7 +87,7 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
       case @user.sys["semester_phase"]
       when 1, 4 then [[2016], [2017]].to_a
       when 2, 5 then MONTHS[1..-1].each_slice(4).to_a
-      when 3, 6 then (1..days_in_month((MONTHS.index(text)).to_i)).each_slice(7).to_a
+      when 3, 6 then (1..days_in_month((MONTHS.index text).to_i)).each_slice(7).to_a
       end
     end
   end
