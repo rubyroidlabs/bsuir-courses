@@ -8,5 +8,4 @@ class Start < Command
 
     Answer::START_COMMANDS
   end
-
 end

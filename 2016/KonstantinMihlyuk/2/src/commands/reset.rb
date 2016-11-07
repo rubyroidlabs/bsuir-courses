@@ -20,5 +20,4 @@ class Reset < Command
       "finish_date" => @finish_date
     }
   end
-
 end
