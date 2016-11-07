@@ -1,9 +1,9 @@
-require_relative 'action'
-require_relative 'user'
-require_relative 'regulars'
-require 'time_difference'
+require_relative "action"
+require_relative "user"
+require_relative "regulars"
+require "time_difference"
 
-MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].freeze
 
 # Class Semester.
 class Semester < Action
