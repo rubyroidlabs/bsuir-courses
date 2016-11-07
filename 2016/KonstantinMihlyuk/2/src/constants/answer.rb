@@ -3,7 +3,7 @@ require "date"
 # Class which contains all the answers for the commands
 class Answer
   START_COMMANDS = "/start - Выводит описание всех доступных команд\n/semester - Запоминает даты начала и конца семестра\n/subject - Добавляет предмет и количество лабораторных работ по нему\n/subject_remove - Удаляет предмет\n/status - Выводит твой список лаб, которые тебе предстоит сдать\n/submit - Запоминает какие предметы ты сдал\n/reset - Сбрасывает для пользователя все данные.\n/remind - Самый лучший менеджер напоминалок.".freeze
-  
+
   WHEN_BEGIN_TO_LEARN = "Когда начинаем учиться? (дд-мм-гггг)".freeze
   WHEN_END_TO_LEARN = "Когда конец занятий? (дд-мм-гггг)".freeze
 
@@ -49,15 +49,15 @@ class Answer
   end
 
   def self.how_many_days_you_have(available_time)
-    "На все про все у тебя #{available_time} #{decline(available_time, 'дней', 'день', 'дня')}"
+    "На все про все у тебя #{available_time} #{Answer.decline(available_time, 'дней', 'день', 'дня')}"
   end
 
   def self.fail_available_days(available_time)
-    "Мне кажется что ты ввел даты наоборот, я поменяла их местами)\nНа все про все у тебя #{available_time} #{decline(available_time, 'дней', 'день', 'дня')}"
+    "Мне кажется что ты ввел даты наоборот, я поменяла их местами)\nНа все про все у тебя #{available_time} #{Answer.decline(available_time, 'дней', 'день', 'дня')}"
   end
 
   def self.status(subjects, available_days, start_date)
-    elapsed_time = calc_elapsed_days(start_date)
+    elapsed_time = Answer.calc_elapsed_days(start_date)
 
     "К этому времени у тебя должно быть сдано: \n\n" + subjects.map do |subject_name, subject|
       labs = subject["made_labs"]
@@ -66,16 +66,14 @@ class Answer
       made_labs = labs.map.with_index { |value, key| key + 1 if value }.compact
       unmade_labs = labs.map.with_index { |value, key| key + 1 unless value }.compact
       made_labs_count = made_labs.size
-      need_made_labs = in_interval((labs_count * elapsed_time / available_days.to_f).ceil, 0, labs_count)
+      need_made_labs = Answer.in_interval((labs_count * elapsed_time / available_days.to_f).ceil, 0, labs_count)
       unmade_labs = unmade_labs.empty? ? "Лаб больше не осталось =(" : "Оставшиеся: #{unmade_labs}"
 
       "#{subject_name}\n   Должно быть сдано: #{need_made_labs}/#{labs_count}\n   Сдано: #{made_labs_count}/#{labs_count}\n   #{unmade_labs}\n\n"
     end.join("")
   end
 
-  private
-
-  def decline(number, first_dec, sec_dec, third_dec)
+  def self.decline(number, first_dec, sec_dec, third_dec)
     string = number.to_s
     decisive_letter = string[string.length - 1]
 
@@ -86,20 +84,20 @@ class Answer
     end
   end
 
-  def week_day(number)
+  def self.week_day(number)
     days_of_week = %w(Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье)
 
     days_of_week[number]
   end
 
-  def calc_elapsed_days(start_date)
+  def self.calc_elapsed_days(start_date)
     start_date = Date.strptime(start_date, "%d-%m-%Y")
     date_now = Date.strptime(Time.now.strftime("%d-%m-%Y"), "%d-%m-%Y")
 
     (date_now - start_date).to_i
   end
 
-  def in_interval(number, min, max)
+  def self.in_interval(number, min, max)
     return 0 if number < min
     return max if number > max
     number

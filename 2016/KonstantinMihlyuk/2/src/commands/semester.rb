@@ -64,7 +64,7 @@ class Semester < Command
     @available_days = available_days
     @dialog_step = 0
 
-    Answer::how_many_days_you_have(@available_days)
+    Answer.how_many_days_you_have(@available_days)
   end
 
   def change_dates(finish_date)

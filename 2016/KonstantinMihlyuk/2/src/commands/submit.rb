@@ -23,12 +23,12 @@ class Submit < Command
 
     @dialog_step += 1
 
-    Answer::what_subject_passed(@subjects)
+    Answer.what_subject_passed(@subjects)
   end
 
   def what_subject(message)
     return Answer::INCORRECT_LABS_COUNT unless message =~ Regular::LABS_COUNT
-    return Answer::DONT_HAVE_SUBJECT unless check_bound(message.to_i - 1, 0, @subjects.size) #TODO: Проверить граничные знчения
+    return Answer::DONT_HAVE_SUBJECT unless check_bound(message.to_i - 1, 0, @subjects.size)
 
     @subject_key = @subjects.keys[message.to_i - 1]
     @dialog_step += 1
@@ -48,5 +48,4 @@ class Submit < Command
 
     Answer::OK
   end
-
 end
