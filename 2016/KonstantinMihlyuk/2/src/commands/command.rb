@@ -26,8 +26,4 @@ class Command
   def check_date(message, regular)
     message =~ regular
   end
-
-  def check_available_days(days)
-    days.positive?
-  end
 end

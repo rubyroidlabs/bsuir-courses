@@ -53,7 +53,7 @@ class Semester < Command
 
     available_days = calc_available_days(@start_date, finish_date)
 
-    return fail_available_days(finish_date) unless check_available_days(available_days)
+    return fail_available_days(finish_date) unless available_days.positive?
 
     set_data(finish_date, available_days)
     @dialog_step = 0
