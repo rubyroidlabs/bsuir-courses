@@ -3,7 +3,7 @@ require_relative "../constants/answer.rb"
 
 # Class for start command
 class Start < Command
-  def say(message)
+  def say(_message)
     @dialog_step = 0
 
     Answer::START_COMMANDS

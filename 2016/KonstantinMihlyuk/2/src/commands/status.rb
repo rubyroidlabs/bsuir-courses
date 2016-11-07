@@ -3,7 +3,7 @@ require_relative "../constants/answer.rb"
 
 # Class for status command
 class Status < Command
-  def say(message = "")
+  def say(_message)
     return Answer::DONT_ENTER_SUBJECTS if @subjects.empty?
     return Answer::DONT_ENTER_SEMESTER if @start_date.empty? || @finish_date.empty?
 

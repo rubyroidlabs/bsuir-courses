@@ -53,17 +53,19 @@ class Semester < Command
 
     available_days = calc_available_days(@start_date, finish_date)
 
-    unless check_available_days(available_days)
-      change_dates(finish_date)
-      @dialog_step = 0
-
-      return Answer.fail_available_days(@available_days)
-    end
+    return fail_available_days(finish_date) unless check_available_days(available_days)
 
     set_data(finish_date, available_days)
     @dialog_step = 0
 
     Answer.how_many_days_you_have(@available_days)
+  end
+
+  def fail_available_days(finish_date)
+    change_dates(finish_date)
+    @dialog_step = 0
+
+    Answer.fail_available_days(@available_days)
   end
 
   def set_data(finish_date, available_days)

@@ -80,9 +80,8 @@ class Remind < Command
     week_large_letter = %w(Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье)
 
     one = week.index { |week_day| week_day == day }
-    two = week_large_letter.index { |week_day| week_day == day } #Хоть бы никто не увидел o_0
+    two = week_large_letter.index { |week_day| week_day == day }
 
     one || two
   end
-
 end
