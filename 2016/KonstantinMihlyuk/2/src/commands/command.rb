@@ -1,5 +1,5 @@
 class Command
-
+  #Class for all commands
   def initialize(user)
     @dialog_step = 1
     @subjects = user["subjects"]
@@ -9,32 +9,12 @@ class Command
     @reminders = user["reminders"]
   end
 
-  def get_dialog_step
-    @dialog_step
-  end
-
   def to_hash
     {}
   end
 
   def dialog_ended
     @dialog_step == 0
-  end
-
-  def get_subjects
-    @subjects
-  end
-
-  def get_start_date
-    @start_date
-  end
-
-  def get_finish_date
-    @finish_date
-  end
-
-  def get_available_days
-    @available_days
   end
 
   private

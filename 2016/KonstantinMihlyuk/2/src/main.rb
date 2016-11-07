@@ -23,9 +23,9 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
   bot.listen do |message|
     user_id = message.from.id
     db = Database.new
-    user = db.get_user(user_id) ? db.get_user(user_id) : db.create_user(user_id)
+    user = db.user(user_id) ? db.user(user_id) : db.create_user(user_id)
 
-    default_command = DEFAULT_COMMANDS.find { |command| "/#{command.to_s.downcase}" == message.text }
+    default_command = DEFAULT_COMMANDS.find{ |command| "/#{command.to_s.downcase}" == message.text }
     command = default_command ? default_command.new(user) : waiting_commands[user_id]
 
     if command

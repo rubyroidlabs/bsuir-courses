@@ -2,7 +2,7 @@ require_relative "../commands/command.rb"
 require_relative "../constants/answer.rb"
 
 class Submit < Command
-
+  #Class for submit command
   def say(message)
     case @dialog_step
     when 1 then what_passed

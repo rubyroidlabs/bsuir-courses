@@ -3,7 +3,7 @@ require_relative "../constants/regular.rb"
 require_relative "../constants/answer.rb"
 
 class Semester < Command
-
+  #Class for semester command
   def initialize(user)
     super(user)
 
