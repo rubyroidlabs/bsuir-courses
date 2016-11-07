@@ -50,7 +50,8 @@ class Remind < Command
     hour = time[3].to_i
 
     @reminders << {
-        days: days, hour: hour
+      days: days,
+      hour: hour
     }
     @dialog_step = 0
 
