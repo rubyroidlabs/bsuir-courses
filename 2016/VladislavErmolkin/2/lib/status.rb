@@ -1,7 +1,7 @@
-require_relative 'action'
-require_relative 'user'
-require_relative 'semester'
-require 'time_difference'
+require_relative "action"
+require_relative "user"
+require_relative "semester"
+require "time_difference"
 
 # Class Status.
 class Status < Action

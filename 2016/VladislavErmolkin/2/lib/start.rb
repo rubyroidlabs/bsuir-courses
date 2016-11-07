@@ -1,11 +1,11 @@
-require_relative 'action'
-require_relative 'answers'
+require_relative "action"
+require_relative "answers"
 
 # Class Start.
 class Start < Action
   def initialize(name)
-    super(nil, '')
-    @name = ', ' + name
+    super(nil, "")
+    @name = ", " + name
   end
 
   def run
