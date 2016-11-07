@@ -3,24 +3,19 @@ require 'telegram/bot'
 require_relative './lib/calendar.rb'
 
 class Base
-
 token = '273396926:AAEP9YaekvsgpG0gcMSmKMOWMXZWrrfZHLs'
-#date = Date.new
-
 Telegram::Bot::Client.run(token) do |bot|
 	bot.listen do |message|
 		case message.text
 			when '/start'
-				#id_name = message.from.first_name
-				#start.Start(chat_id: message.chat.id, text: text)
-			bot.api.send_message(chat_id: message.chat.id, text: "Здраствуй, #{message.from.first_name}!")
-			bot.api.send_message(chat_id: message.chat.id, text: "Пару вещей, которые ты должен знать: \n
-				/start - ты его видишь \n
-				/semestr - напоминание, чтобы не приуныть перед сессией (Даты вводить в стиле год-месяц-день или наоборот)\n
-				/subject - выплесни свой страх сюда, и кол-во страха тоже с: \n
-				/status - познай страх, чтобы не приуныть \n
-				/reset - rm -rf /dev/null \n
-				Развлекайся ;3")
+				bot.api.send_message(chat_id: message.chat.id, text: "Здраствуй, #{message.from.first_name}!")
+				bot.api.send_message(chat_id: message.chat.id, text: "Пару вещей, которые ты должен знать: \n
+					/start - ты его видишь \n
+					/semestr - напоминание, чтобы не приуныть перед сессией (Даты вводить в стиле год-месяц-день или наоборот)\n
+					/subject - выплесни свой страх сюда, и кол-во страха тоже с: \n
+					/status - познай страх, чтобы не приуныть \n
+					/reset - rm -rf /dev/null \n
+					Развлекайся ;3")
 			when '/semestr'
 				bot.api.send_message(chat_id: message.chat.id, text: "Напомни дату, когда ТЗ было оформлено: ")
 				bot.listen do |anwser|
