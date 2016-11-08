@@ -45,7 +45,7 @@ class Semester < Action
     if difference.in_each_component[:years] >= 1 then "Too big semester."
     elsif start > finish then "Time travel? Incorrect time interval."
     elsif Date.today < start || Date.today > finish then "You are not in semester. Sorry."
-    else nil
     end
+    nil
   end
 end

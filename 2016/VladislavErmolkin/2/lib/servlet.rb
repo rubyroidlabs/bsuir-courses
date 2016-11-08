@@ -18,7 +18,7 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def do_post(request, response)
-    body =  Telegram::Bot::Types::Update.new(JSON.parse(request.body.gsub('\n', " ")))
+    body = Telegram::Bot::Types::Update.new(JSON.parse(request.body.gsub('\n', " ")))
     body.callback_query.nil? ? handler(body.message, true) : handler(body.callback_query, false)
     response.status = 200
     response.body = "Success."
@@ -82,9 +82,20 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def button_names(text)
+    buttons_for_submission = try_buttons_for_submission
+    return buttons_for_submission unless buttons_for_submission.nil?
+    buttons_for_semester = try_buttons_for_semester(text)
+    return buttons_for_semester unless buttons_for_semester.nil?
+  end
+
+  def try_buttons_for_submission
     if !@user.sys["submission_phase"].zero?
       @user.sys["submission_phase"] == 1 ? @user.subjects.keys.each_slice(1) : @user.subjects[@user.sys["current"]].each_slice(5).to_a
-    elsif !@user.sys["semester_phase"].zero?
+    end
+  end
+
+  def try_buttons_for_semester(text)
+    if !@user.sys["semester_phase"].zero?
       case @user.sys["semester_phase"]
       when 1, 4 then [[2016], [2017]]
       when 2, 5 then MONTHS[1..-1].each_slice(4).to_a
