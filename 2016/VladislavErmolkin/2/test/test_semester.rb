@@ -3,6 +3,7 @@ require_relative "../lib/semester"
 require_relative "../lib/user"
 require_relative "../lib/reset"
 
+# Tests for class Semester.
 class SemesterTest < Minitest::Test
   def setup
     User.redis.del("user_1")
@@ -30,7 +31,7 @@ class SemesterTest < Minitest::Test
 
   def generate_difference(f_year, f_month, f_day, s_year, s_month, s_day)
     Reset.new(User.new(1), "").run
-    Semester.new(User.new(1), '/semester').run
+    Semester.new(User.new(1), "/semester").run
     Semester.new(User.new(1), f_year).run
     Semester.new(User.new(1), f_month).run
     Semester.new(User.new(1), f_day).run

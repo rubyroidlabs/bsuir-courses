@@ -3,6 +3,7 @@ require_relative "../lib/subject"
 require_relative "../lib/user"
 require_relative "../lib/reset"
 
+# Tests for class Subject.
 class SubjectTest < Minitest::Test
   def setup
     User.redis.del("user_1")
