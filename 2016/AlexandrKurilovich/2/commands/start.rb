@@ -1,5 +1,6 @@
 class Start < Command #:nodoc:
   def message
+    reset_status
     @bot.api.sendMessage(
       chat_id: @message.chat.id, text: "Привет, #{@message.from.first_name}. Я помогу тебе сдать все лабы, чтобы мамка не ругалась.
       \nСмотри что я умею:
