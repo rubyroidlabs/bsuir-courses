@@ -1,4 +1,4 @@
-require_relative '../config'
+require_relative "../config"
 redis = Redis.new(REDIS_HOST)
 Telegram::Bot::Client.run(BOT_TOKEN) do |bot|
   bot.listen do |message|
