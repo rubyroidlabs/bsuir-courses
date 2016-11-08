@@ -7,7 +7,7 @@ require_relative '../commands/submit_c'
 require_relative '../commands/status_c'
 require_relative '../commands/reset_c'
 require_relative '../controllers/db_helper'
-require_relative '../controllers/reminder_c'
+require_relative '../commands/reminder_c'
 
 class User_Manager
 
@@ -50,6 +50,7 @@ class User_Manager
 
     @db_helper.update_user(id, user)
   end
+
   def execute_start()
     @start_c.execute_command
   end
@@ -71,7 +72,7 @@ class User_Manager
     user = @semester_c.save_ending_date(user, text)
 
     unless user.user_status.steps_semester['got_ending_date']
-      "#{text} is invalid date! Try againe."
+      "#{text} is invalid date! Try again."
     else
       @db_helper.update_user(id, user)
       user.semester.time_left(user.semester.ending_date )
@@ -101,10 +102,14 @@ class User_Manager
 
   def save_labs(id, text)
     if /\A\d+\z/.match(text) #check if text is a number
-      user = @db_helper.get_user(id)
-      user = @subject_c.save_labs(user, text)
-      @db_helper.update_user(id, user)
-      'OK'
+      if text.to_i < 20
+        user = @db_helper.get_user(id)
+        user = @subject_c.save_labs(user, text)
+        @db_helper.update_user(id, user)
+        'OK'
+      else
+        'Nice try! Maybe now you will write the actual number of labs...'
+      end
     else
       "#{text} isn't a number"
     end
@@ -166,7 +171,6 @@ class User_Manager
     user = @db_helper.get_user(id)
     user.user_status.steps_reminder['remind_on'] = true
     @db_helper.update_user(id, user)
-
   end
 
 end

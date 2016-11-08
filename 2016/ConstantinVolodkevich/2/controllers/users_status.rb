@@ -7,7 +7,9 @@ class Users_Status
     @steps_reset = {'user_is_sure' => false}
     @steps_reminder = {'user_wanna_remind' => false, 'remind_on' => false}
   end
+
+  def update_status(user)
+
+  end
 end
 
-user_status = Users_Status.new
-p user_status
