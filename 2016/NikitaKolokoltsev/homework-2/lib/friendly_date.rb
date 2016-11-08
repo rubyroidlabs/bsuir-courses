@@ -1,6 +1,6 @@
 # Date processing
 class FriendlyDate
-  attr_accessor :day, :month, :year
+  attr_reader :day, :month, :year
 
   def initialize(date_str)
     if date_str.split(".").size == 3

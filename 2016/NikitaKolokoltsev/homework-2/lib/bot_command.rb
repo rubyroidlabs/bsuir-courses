@@ -52,11 +52,6 @@ class BotCommand < Bot
   You can add it with /semester command.
   ".freeze
 
-  NO_SUBJECTS = "
-  Sorry, seems like you don't have any subjects added.
-  You can add them with /subject command.
-  ".freeze
-
   ALL_LABS_DONE = "
   No labs left. Good job.
   ".freeze
