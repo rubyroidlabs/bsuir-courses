@@ -1,12 +1,15 @@
 module Bot
   module Command
-    # Base class for user commands
+    # Base class of user-based commands
     class Base
-      attr_reader :user, :text, :api
+      include Bot::Translation
+
+      attr_reader :user, :message, :api, :next_command
 
       def initialize(user, message)
         @user = user
-        @text = message[:text]
+        @next_command = user.next_command
+        @message = message
         @api = Bot.configuration.api
       end
 
@@ -16,15 +19,15 @@ module Bot
       end
 
       def start
-        fail(NotImplementedError)
+        fail NotImplementedError
       end
 
       def select_next_command
-        user.reset_next_command
+        user.next_command.reset
       end
 
-      def self.command_name
-        to_s.sub(/.*Command::/, "").downcase
+      def text
+        @text ||= message.text
       end
 
       protected
@@ -32,34 +35,15 @@ module Bot
       def send_message(response_text, options = {})
         api.call(
           "sendMessage",
-          chat_id: user.telegram_id,
-          text: response_text,
-          parse_mode: "markdown",
-          reply_markup: options[:reply_markup]
+          chat_id:      user.telegram_id,
+          text:         response_text,
+          reply_markup: options[:reply_markup],
+          parse_mode:   "markdown"
         )
       end
 
       def class_name
         self.class.to_s
-      end
-
-      def command_scope
-        "commands.#{self.class.command_name}"
-      end
-
-      def translate(name, options = {})
-        lookup = "#{command_scope}.#{name}"
-        I18n.t(lookup, options.merge(default: name.to_sym))
-      end
-
-      def response(name, options = {})
-        lookup = "#{command_scope}.response.#{name}"
-        I18n.t(lookup, options.merge(default: name.to_sym))
-      end
-
-      def error(name, options = {})
-        lookup = "#{command_scope}.errors.#{name}"
-        I18n.t(lookup, options.merge(default: "errors.#{name}"))
       end
     end
   end

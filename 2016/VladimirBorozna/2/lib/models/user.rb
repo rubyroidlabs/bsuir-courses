@@ -8,62 +8,55 @@ module Bot
     attribute :first_name
     attribute :last_name
 
-    attribute :semester_start, Type::Date
-    attribute :semester_finish, Type::Date
-
-    attribute :command
-    attribute :method
-    attribute :data
-
-    set :subjects, "Bot::Subject"
+    reference :semester,     "Bot::Semester"
+    reference :next_command, "Bot::NextCommand"
+    reference :callback,     "Bot::CallbackContainer"
+    reference :notification, "Bot::Notification"
+    set       :subjects,     "Bot::Subject"
 
     index     :telegram_id
     unique    :telegram_id
 
-    def semester_present?
-      pp semester_start.instance_of?(Date)
-      pp semester_finish.instance_of?(Date)
-      result =  semester_start.instance_of?(Date)
-      result && semester_finish.instance_of?(Date)
-    end
-
     def subjects_present?
-      pp subjects.size
       subjects && !subjects.size.zero?
     end
 
-    def subject_present?(name)
-      !subjects.find(name: name).empty?
+    def subject_exist?(name)
+      !subjects.find(name: name).first.nil?
     end
 
-    def next_command(command = nil, method = nil)
-      update(command: command, method: method)
-    end
-
-    def next_command_data(data = nil)
-      update(data: data)
-    end
-
-    def command_data
-      data
-    end
-
-    def reset_next_command
-      update(command: nil, method: nil, data: nil)
+    def can_notify?
+      notice = notification
+      last_sent = notice.last_sent
+      check = !last_sent || (last_sent - Date.today).round >= notice.period
+      notice.status && check
     end
 
     def destroy
       subjects.each { |s| subjects.delete(s) }
-      update(semester_start: nil, semester_finish: nil)
+      semester&.delete
+      next_command&.delete
+      callback&.delete
+      delete
     end
 
     def self.find_or_create_by(from)
-      user = User.with(:telegram_id, from[:id])
+      user = User.find(telegram_id: from.id).first
       user || User.create(
-        telegram_id: from[:id],
-        first_name:  from[:first_name],
-        last_name:   from[:last_name]
+        telegram_id:  from.id,
+        first_name:   from.first_name,
+        last_name:    from.last_name,
+        semester:     Bot::Semester.create,
+        next_command: Bot::NextCommand.create,
+        callback:     Bot::CallbackContainer.create,
+        notification: Bot::Notification.create
       )
+    end
+
+    alias assigin_id id=
+
+    def id=(id)
+      assigin_id(id)
     end
   end
 end

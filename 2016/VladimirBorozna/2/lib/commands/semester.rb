@@ -5,12 +5,12 @@ module Bot
       DAYS_IN_MONTH = 30
 
       def start
-        send_message(response("semester_start_question"))
+        send_message(command_response("semester_start_question"))
       end
 
       def semester_start
-        user.next_command_data(Parser.parse_date(text))
-        send_message(response("semester_finish_question"))
+        next_command.update(data: DateParser.parse(text))
+        send_message(command_response("semester_finish_question"))
       end
 
       def semester_finish
@@ -19,54 +19,50 @@ module Bot
       end
 
       def select_next_command
-        case user.method
+        case next_command.method
         when nil
-          user.next_command(class_name, "semester_start")
+          next_command.set(class_name, "semester_start")
         when "semester_start"
-          user.next_command(class_name, "semester_finish")
+          next_command.set(class_name, "semester_finish")
         when "semester_finish"
-          user.reset_next_command
+          next_command.reset
         end
       end
 
       private
 
       def set_semester_data
-        start_date  = Parser.parse_date(user.command_data)
-        finish_date = Parser.parse_date(text)
+        start_date  = DateParser.parse(next_command.data)
+        finish_date = DateParser.parse(text)
         fail(BotError, "semester_dates_invalid") if start_date >= finish_date
 
-        user.update(
-          semester_start: start_date,
-          semester_finish: finish_date
-        )
+        user.semester.update(start: start_date, finish: finish_date)
       end
 
       def confiramation_message
-        result = response("confirmation.main")
-        left_days_number = (user.semester_finish - user.semester_start).round
-        result << left_months(left_days_number)
-        result << rest_of_days(left_days_number)
+        result = command_response("confirmation.main")
+        result << left_months
+        result << rest_of_days
       end
 
-      def rest_of_days(left_days_number)
-        number_days = left_days_number % DAYS_IN_MONTH
+      def rest_of_days
+        number_days = user.semester.number_days % DAYS_IN_MONTH
         return "" unless number_days.positive?
 
         day_form = translate("day", count: number_days)
-        response(
+        command_response(
           "confirmation.days",
           day_form: day_form,
           number: number_days
         )
       end
 
-      def left_months(left_days_number)
-        number_months = left_days_number / DAYS_IN_MONTH
+      def left_months
+        number_months = user.semester.number_days / DAYS_IN_MONTH
         return "" unless number_months.positive?
 
         month_form = translate("month", count: number_months)
-        response(
+        command_response(
           "confirmation.months",
           number: number_months,
           month_form: month_form

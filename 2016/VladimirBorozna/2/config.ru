@@ -1,6 +1,9 @@
-require 'bundler'
+require "bundler"
 Bundler.require(:default)
-require './lib/bot'
-require './config/application'
+require_all "lib"
+require "./config/application"
+
+Ohm.flush
+require "./seeds"
 
 run Bot::Base.new

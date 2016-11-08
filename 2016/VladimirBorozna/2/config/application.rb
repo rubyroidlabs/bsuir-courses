@@ -17,3 +17,19 @@ Bot.configure do |config|
   config.add_plurazation(:ru, russian_rule, keys)
   config.webhook_path = "/#{config.bot_token}"
 end
+
+Sidekiq.configure_server do |config|
+  config.redis = { url: ENV["REDIS_SIDEKIQ_URL"], size: 10 }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: ENV["REDIS_SIDEKIQ_URL"], size: 10 }
+end
+
+module Clockwork # :nodoc:
+  configure do |config|
+    config[:tz] = "UTC"
+    config[:max_threads] = 15
+    config[:thread] = true
+  end
+end

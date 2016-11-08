@@ -1,0 +1,26 @@
+AllCops:
+  Exclude:
+  - 'seeds.rb'
+  - 'test/*'
+  - 'server'
+  - 'shell/*'
+
+inherit_from:
+  - ../../../.rubocop.yml
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  Enabled: true
+
+Style/SignalException:
+  EnforcedStyle: semantic
+  Enabled: true
+
+Metrics/LineLength:
+  Enabled: false
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false

@@ -4,7 +4,7 @@ module Bot
     class Reset < Base
       def start
         user.destroy
-        send_message(response("confirmation"))
+        send_message(command_response("confirmation"))
       end
     end
   end

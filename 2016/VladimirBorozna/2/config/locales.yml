@@ -13,7 +13,7 @@ ru:
       description: "запоминает даты начала и конца семестра"
       response:
         semester_start_question: 
-          "Когда начинаем учиться? Формат даты: yyyy-mm-dd"
+          "Когда начинаем учиться?"
         semester_finish_question:
           "Когда надо сдать все лабы?"
         confirmation: 
@@ -34,8 +34,8 @@ ru:
       triggers: ["/status"]
       description: "выводит твой список лабораторных работ, которые тебе предстоит сдать"
       response: 
-        semester_left_days:
-          "До конца семестра %{number_days} %{day_form}."
+        semester_time_left_begining:
+          "До конца семестра "
         required_work_header: "К этому времени у тебя должно было быть сдано:"
         subject_status: >-
            %{subject_name} %{required_numbers}
@@ -45,24 +45,60 @@ ru:
       triggers: ["/submit", "я сдал", "я сдала"]
       description: "сохраняет номера лабораторных, которые были сданы"
       response:
-        subject_name_question: "По какому предмету была сдана работа?"
-        work_number_question: "Какой номер лабораторной работы?"
-        confirmation: "Молодец!"
+        subject_name_question:
+          "Что сдал?"
     reset:
       triggers: ["/reset"]
       description: "сбрасывает данные"
       response:
-        confirmation: "ОК"
+        confirmation: "Данные сброшены."
     undefined:
       triggers: [ ]
       response:
-        dont_understand: "Нераспознанная команда."
+        dont_understand: "Я тебя не понимаю."
+
+    cancel:
+      triggers: ["/cancel"]
+      description: "отменяет текущую команду"
+      response:
+        confirmation: "команда отменена"
+
+    remind:
+      triggers: ["/remind"]
+      description: "отменяет текущую команду"
+      response:
+        remind_question: "Как часто нужно присылать напоминание?"
+        periods:
+          - "каждый день"
+          - "каждые 2 дня"
+          - "каждые 3 дня"
+          - "каждую пятницу"
+
+  response_particles:
+    required_work_header:
+      "К этому времени у тебя должно было быть сдано:"
+    subject_status: >-
+      %{subject_name} %{required_numbers}
+      (сдано %{performed_number} из %{total_number})
+    time_left:
+      months: "%{number} %{month_form}"
+      days:   " %{number} %{day_form}"
+    notification:
+      "Напоминание:"
+
+  callbacks:
+    subject_name:
+      response:
+        work_number_question: "Какой номер лабораторной работы?"
+    work_number:
+      response:
+        confirmation: "Молодец!"
+    cancel:
+      response:
+        confirmation: "Операция отменена."
+
 
   errors:
-    semester_dates_not_found:
-      "Я не знаю даты начала и конца семестра. Используй команду /semester для их ввода."
-    semester_dates_invalid:
-      "Временной промежуток задан неверно."
     subject_name_invalid:
       "Название предмета не соответствует формату."
     subject_name_not_found:
@@ -71,14 +107,33 @@ ru:
       "Предметы не были добавлены. Используй команду /subject, чтобы добавить предмет."
     subject_name_not_uniq:
       "Предмет уже был добавлен."
+    subject_not_found:
+      "Предмет не найден."
+
+
+    all_works_was_submited:
+      "Все работы были сданы."
+
+    callback_invalid_message:
+      "Невалидное сообщение"
+
+
+    semester_dates_not_found:
+      "Я не знаю даты начала и конца семестра. Используй команду /semester для их ввода."
+    semester_dates_invalid:
+      "Временной промежуток задан неверно."
+    
     work_number_not_found:
       "Номер лабораторной работы не был найден."
-    work_number_invalid:
-      "Введеный номер не соответствует формату."
+    number_invalid:
+      "Введеное число не валидно."
     works_number_invalid:
       "Введенное количество не соответствует формату."
     date_format_invalid:
       "Введеная дата не соответствует формату. Используй команду /semester для повторного ввода"
+
+  buttons:
+    cancel: '[Отменить]'
 
   month:
     zero: "месяцев"

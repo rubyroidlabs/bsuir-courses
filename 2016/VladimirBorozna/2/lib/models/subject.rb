@@ -12,6 +12,14 @@ module Bot
     reference :user, "Bot::User"
     index :name
 
+    def any?
+      !size.zero?
+    end
+
+    def name_present?(name)
+      !find(name: name.downcase).empty?
+    end
+
     def remaining_numbers
       1.upto(total_number).to_a - accepted_numbers
     end
@@ -20,6 +28,12 @@ module Bot
       required_number = (total_number * coeff).ceil
       offset = [required_number - accepted_numbers.size, 0].max
       remaining_numbers.first(offset)
+    end
+
+    alias assigin_id id=
+
+    def id=(id)
+      assigin_id(id)
     end
   end
 end
