@@ -46,3 +46,4 @@ class SubjectTest < Minitest::Test
     Subject.new(User.new(1), number_of_labs).run
   end
 end
+
