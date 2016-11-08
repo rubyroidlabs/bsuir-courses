@@ -36,10 +36,16 @@ class Semester < Action
     start = Date.parse(@user.semester["start"])
     finish = Date.parse(@user.semester["end"])
     difference = TimeDifference.between(start, finish)
+    incorrect_diff = difference_validation(start, finish, difference)
+    return incorrect_diff unless incorrect_diff.nil?
+    difference.humanize
+  end
+
+  def difference_validation(start, finish, difference)
     if difference.in_each_component[:years] >= 1 then "Too big semester."
     elsif start > finish then "Time travel? Incorrect time interval."
     elsif Date.today < start || Date.today > finish then "You are not in semester. Sorry."
-    else difference.humanize
+    else nil
     end
   end
 end
