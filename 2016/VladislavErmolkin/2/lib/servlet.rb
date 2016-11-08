@@ -89,12 +89,11 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def try_buttons_for_submission
-    unless @user.sys["submission_phase"].zero?
-      if @user.sys["submission_phase"] == 1
-        @user.subjects.keys.each_slice(1)
-      else
-        @user.subjects[@user.sys["current"]].each_slice(5).to_a
-      end
+    return nil if @user.sys["submission_phase"].zero?
+    if @user.sys["submission_phase"] == 1
+      @user.subjects.keys.each_slice(1).to_a
+    else
+      @user.subjects[@user.sys["current"]].each_slice(5)
     end
   end
 
