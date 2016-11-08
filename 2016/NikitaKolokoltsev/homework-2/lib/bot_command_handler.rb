@@ -14,7 +14,7 @@ class BotCommandHandler
       c = command.new(update)
       if c.called?
         c.perform
-        return
+        return 0
       end
     end
   end

@@ -1,10 +1,5 @@
 # /submit
 class BotCommandSubmit < BotCommand
-  NO_SUBJECTS = "
-  Sorry, seems like you don't have any subjects added.
-  You can add them with /subject command.
-  ".freeze
-
   def initialize(update)
     @message = update.message || update.callback_query
   end
@@ -17,7 +12,7 @@ class BotCommandSubmit < BotCommand
   end
 
   def initialize_command(user)
-    calling_commands = ["/submit", "сдал", "сдала", "сдавал", "сдавала", "сдано"]
+    calling_commands = %w(/submit сдал сдала сдавал сдавала сдано)
     (callback? || calling_commands.include?(@message.text)) && user[:previous_command].nil?
   end
 
@@ -33,7 +28,7 @@ class BotCommandSubmit < BotCommand
   def delete_lab(user, subject, lab)
     user[:previous_command] = nil
     user[:subjects][subject].delete(lab)
-    send_message(chat_id: @message.message.chat.id, text: "#{lab} done")
+    send_message(chat_id: @message.message.chat.id, text: OK)
   end
 
   def show_subject_labs(user, subject)
@@ -44,12 +39,12 @@ class BotCommandSubmit < BotCommand
       labs << Telegram::Bot::Types::InlineKeyboardButton.new(text: v.to_s, callback_data: "#{subject}-#{v}")
     end
     markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: labs)
-    send_message(chat_id: @message.message.chat.id, text: "What lab?", reply_markup: markup)
+    send_message(chat_id: @message.message.chat.id, text: CHOOSE_LAB, reply_markup: markup)
   end
 
   def all_labs_done?(user, subject)
     if user[:subjects][subject].empty?
-      send_message(chat_id: @message.message.chat.id, text: "No labs left. Good Job!")
+      send_message(chat_id: @message.message.chat.id, text: ALL_LABS_DONE)
       return true
     end
     false
@@ -62,11 +57,11 @@ class BotCommandSubmit < BotCommand
       subjects << Telegram::Bot::Types::InlineKeyboardButton.new(text: k.to_s, callback_data: k.to_s)
     end
     markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: subjects)
-    send_message(chat_id: @message.chat.id, text: "What subject?", reply_markup: markup)
+    send_message(chat_id: @message.chat.id, text: CHOOSE_SUBJECT, reply_markup: markup)
   end
 
   def process_callback(user, message)
-    if message.data.split("-")[1] =~ /^[0-9]+$/
+    if message.data.split("-")[1] =~ LABS_COUNT_REGEXP
       parse_callback_and_delete_lab(user, message)
     else
       subject = message.data.to_sym

@@ -1,13 +1,5 @@
 # /semester
 class BotCommandSemester < BotCommand
-  SEMESTER_START_DATE_SET = "
-  When your semester starts?
-  ".freeze
-
-  SEMESTER_END_DATE_SET = "
-  When your semester ends?
-  ".freeze
-
   def initialize(update)
     @message = update.message
   end
@@ -31,20 +23,20 @@ class BotCommandSemester < BotCommand
   def time_left(semester_date_start, semester_date_end)
     time_left = semester_date_end - semester_date_start
     time_left_message = ""
-    time_left_message << "Semester length:\n#{time_left[:days]} day(s)\n" if time_left[:days] > 0
-    time_left_message << "#{time_left[:months]} month(s)\n" if time_left[:months] > 0
-    time_left_message << "#{time_left[:years]} year(s)\n" if time_left[:years] > 0
+    time_left_message << "Semester length:\n#{time_left[:days]} day(s)\n" if time_left[:days].positive?
+    time_left_message << "#{time_left[:months]} month(s)\n" if time_left[:months].positive?
+    time_left_message << "#{time_left[:years]} year(s)\n" if time_left[:years].positive?
     time_left_message
   end
 
-  def set_semester(user)
+  def semester_set(user)
     case user[:previous_command]
     when nil
       remember_command(user)
     when "semester_date_start_input"
-      set_semester_date_start(user)
+      semester_set_date_start(user)
     when "semester_date_end_input"
-      set_semester_date_end(user)
+      semester_set_date_end(user)
     end
     database_save(@message.chat.id, user)
     user[:semester]
@@ -55,14 +47,14 @@ class BotCommandSemester < BotCommand
     user[:previous_command] = "semester_date_start_input"
   end
 
-  def set_semester_date_start(user)
+  def semester_set_date_start(user)
     semester_date_start = FriendlyDate.new(@message.text)
     user[:semester] = { date_start: semester_date_start.to_s }
     send_message(chat_id: @message.chat.id, text: SEMESTER_END_DATE_SET)
     user[:previous_command] = "semester_date_end_input"
   end
 
-  def set_semester_date_end(user)
+  def semester_set_date_end(user)
     semester_date_end = FriendlyDate.new(@message.text)
     fail SemesterDateError unless semester_date_end.bigger_than? FriendlyDate.new(user[:semester][:date_start])
     user[:previous_command] = nil
@@ -84,7 +76,7 @@ class BotCommandSemester < BotCommand
 
   def perform
     user = database_load(@message.chat.id)
-    set_semester(user)
+    semester_set(user)
   rescue DateFormatError, SemesterDateError => error
     show_error_message(error)
     user[:previous_command] = "semester_date_start_input"

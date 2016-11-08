@@ -1,25 +1,5 @@
 # /status
 class BotCommandStatus < BotCommand
-  attr_accessor :message
-
-  NO_SUBJECTS = "
-  Sorry, seems like you don't have any subjects added.
-  You can add them with /subject command.
-  ".freeze
-
-  SEMESTER_NOT_STARTED = "
-  Your semester has not started yet. Relax.
-  ".freeze
-
-  SEMESTER_ENDED = "
-  Seems like your semester has already ended.
-  ".freeze
-
-  NO_SEMESTER = "
-  No information about semester.
-  You can add it with /semester command.
-  ".freeze
-
   def initialize(update)
     @message = update.message
   end

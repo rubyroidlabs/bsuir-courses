@@ -1,19 +1,5 @@
 # /subject
 class BotCommandSubject < BotCommand
-  attr_accessor :message
-
-  ADD_SUBJECT = "
-  How is subject called?
-  ".freeze
-
-  ADD_LABS_COUNT = "
-  How many labs you should pass?
-  ".freeze
-
-  OK = "OK".freeze
-
-  LABS_COUNT_REGEXP = /^[0-9]+$/
-
   def initialize(update)
     @message = update.message
   end
