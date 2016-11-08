@@ -4,6 +4,7 @@ require "redis"
 # class for user's data.
 class User
   attr_accessor :id, :semester, :subjects, :sys
+
   @@redis = Redis.new(host: "127.0.0.1", port: 6379, db: 15)
 
   def initialize(id)
@@ -28,5 +29,9 @@ class User
     hash = {}
     instance_variables.each { |var| hash[var.to_s.delete("@")] = instance_variable_get(var) }
     hash
+  end
+
+  def self.redis
+    @@redis
   end
 end

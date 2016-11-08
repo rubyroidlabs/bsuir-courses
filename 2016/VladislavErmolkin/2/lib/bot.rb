@@ -6,7 +6,7 @@ require_relative "servlet"
 
 TOKEN = "289410618:AAGCYzweaG-rTtTR15mvamdJ_yFxACmJMLU".freeze
 
-# https://api.telegram.org/bot289410618:AAGCYzweaG-rTtTR15mvamdJ_yFxACmJMLU/setWebhook?url=https://d5ec8f12.ngrok.io/webhooks/telegram_Xi39zZFru6J3oop897cz
+# https://api.telegram.org/bot289410618:AAGCYzweaG-rTtTR15mvamdJ_yFxACmJMLU/setWebhook?url=https://b0e6ea41.ngrok.io/webhooks/telegram_Xi42zZFru6J3oop897cz
 
 # Here we are creating HTTPServer.
 class Bot
