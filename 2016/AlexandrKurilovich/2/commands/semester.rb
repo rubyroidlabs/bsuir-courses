@@ -47,7 +47,7 @@ class Semester < Command #:nodoc:
     if date_border_check(end_date, start_date)
       true
     else
-      @bot.api.sendMessage(chat_id: @message.chat.id, text: "Неправильно введена даты")
+      @bot.api.sendMessage(chat_id: @message.chat.id, text: "Неправильно введены даты")
       false
     end
   end
