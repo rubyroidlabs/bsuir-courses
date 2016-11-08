@@ -38,7 +38,7 @@ class BotCommandSubject < BotCommand
 
   def add_subject(user)
     subject = @message.text
-    raise SubjectFormatError if subject[0] == "/"
+    fail SubjectFormatError if subject[0] == "/"
     add_to_subjects(user, subject)
     user[:previous_command] = "labs_count_input/#{subject}"
     send_message(chat_id: @message.chat.id, text: ADD_LABS_COUNT)
@@ -54,7 +54,7 @@ class BotCommandSubject < BotCommand
 
   def add_labs_count(user)
     labs_count = @message.text
-    raise LabsCountFormatError unless labs_count =~ LABS_COUNT_REGEXP && labs_count.to_i > 0
+    fail LabsCountFormatError unless labs_count =~ LABS_COUNT_REGEXP && labs_count.to_i.positive?
     subject = user[:previous_command].split("/")[1].to_sym
     fill_labs(user, subject, labs_count)
     user[:previous_command] = nil

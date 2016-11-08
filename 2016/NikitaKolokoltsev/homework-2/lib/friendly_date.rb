@@ -11,7 +11,7 @@ class FriendlyDate
       divide_symbol = "-"
     end
     convert(date_str, divide_symbol)
-    raise DateFormatError unless Date.valid_date?(@year, @month, @day)
+    fail DateFormatError unless Date.valid_date?(@year, @month, @day)
   end
 
   def convert(date_str, divide_symbol)
@@ -21,7 +21,7 @@ class FriendlyDate
   end
 
   def bigger_than?(date)
-    DateTime.parse(to_s).mjd - DateTime.parse(date.to_s).mjd > 0
+    (DateTime.parse(to_s).mjd - DateTime.parse(date.to_s).mjd).positive?
   end
 
   def -(other)

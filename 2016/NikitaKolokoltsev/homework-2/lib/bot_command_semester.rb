@@ -64,7 +64,7 @@ class BotCommandSemester < BotCommand
 
   def set_semester_date_end(user)
     semester_date_end = FriendlyDate.new(@message.text)
-    raise SemesterDateError unless semester_date_end.bigger_than? FriendlyDate.new(user[:semester][:date_start])
+    fail SemesterDateError unless semester_date_end.bigger_than? FriendlyDate.new(user[:semester][:date_start])
     user[:previous_command] = nil
     user[:semester][:date_end] = semester_date_end.to_s
     # OUTPUT SEMESTER LENGTH!!!
