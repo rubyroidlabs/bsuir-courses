@@ -3,29 +3,27 @@ require_relative "../commands/submit.rb"
 require_relative "../constants/answer.rb"
 
 RSpec.describe Submit do
-
   user = {
-    "subjects"=> {
-      "mrz"=> {
-        "labs_count"=> 10,
-        "made_labs"=> [2, 4, 5, 6]
+    "subjects" => {
+      "mrz" => {
+        "labs_count" => 10,
+        "made_labs" => [2, 4, 5, 6]
       },
-      "ppvis"=> {
-        "labs_count"=> 10,
-        "labs"=> [2, 4, 5, 6]
+      "ppvis" => {
+        "labs_count" => 10,
+        "labs" => [2, 4, 5, 6]
       }
     },
     "start_date" => "01-09-2016",
     "finish_date" => "03-11-2016",
     "available_days" => "41",
-    "reminders"=> [{
-      "days"=> 1,
-      "hour"=> 12
+    "reminders" => [{
+      "days" => 1,
+      "hour" => 12
     }]
   }
 
   describe "check returned messages for submit class" do
-
     it "should return correct subject message" do
       subject = Submit.new(user)
 
