@@ -4,9 +4,7 @@ class Status < Command #:nodoc:
     if semester?
       @bot.api.sendMessage(chat_id: @message.chat.id, text: "Тебе осталось сдать:\n", reply_markup: hide_clav)
       @subjects = @data["subjects"]
-      @subjects.each do |key, val|
-        @bot.api.sendMessage(chat_id: @message.chat.id, text: "#{key} - #{val.join(', ')}\n") unless val.nil?
-      end
+      labs_list(@subjects)
     end
   end
 
@@ -18,6 +16,12 @@ class Status < Command #:nodoc:
       false
     else
       true
+    end
+  end
+
+  def labs_list(subj)
+    subj.each do |key, val|
+      @bot.api.sendMessage(chat_id: @message.chat.id, text: "#{key} - #{val.join(', ')}\n") unless val.nil?
     end
   end
 end
