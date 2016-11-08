@@ -28,5 +28,4 @@ class TestFriendlyDate < Test::Unit::TestCase
     assert_nothing_raised { FriendlyDate.new("01.1.15") }
     assert_nothing_raised { FriendlyDate.new("1.1.15") }
   end
-
 end
