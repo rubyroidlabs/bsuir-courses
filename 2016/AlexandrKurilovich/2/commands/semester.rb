@@ -29,6 +29,7 @@ class Semester < Command #:nodoc:
 
   def message_end_of_input
     return unless data_valid?(@message.text)
+    return unless data_pos?(@message.text, @data["start"])
     @data["semester"] = 0
     @data["end"] = @message.text
     @redis.set(@message.chat.id.to_s, @data.to_json)
@@ -42,6 +43,15 @@ class Semester < Command #:nodoc:
   def semester_proc
     semester_length = (Date.parse(@message.text) - Date.parse(@data["start"])).to_i
     ((semester_length - remaining_days).to_f / semester_length * 100).to_i
+  end
+
+  def data_pos?(end_date, start_date)
+    if Date.parse(end_date) >= Date.parse(start_date) && Date.parse(end_date) >= DateTime.now.to_date && DateTime.now.to_date >= Date.parse(start_date)
+      true
+    else
+      @bot.api.sendMessage(chat_id: @message.chat.id, text: "Неправильно введена даты")
+      false
+    end
   end
 
   def data_valid?(data)
