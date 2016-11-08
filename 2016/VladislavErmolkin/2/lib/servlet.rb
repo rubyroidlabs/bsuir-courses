@@ -17,12 +17,14 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     @bot = bot
   end
 
-  def do_POST(request, response)
+  def do_post(request, response)
     body =  Telegram::Bot::Types::Update.new(JSON.parse(request.body.gsub('\n', " ")))
     body.callback_query.nil? ? handler(body.message, true) : handler(body.callback_query, false)
     response.status = 200
     response.body = "Success."
   end
+
+  alias do_POST do_post
 
   def handler(message, from_text_message)
     @user = User.new(message.from.id)
@@ -71,7 +73,7 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def create_keyboard(text)
-    buttons = button_names(text).map do |row|
+    buttons = button_names((MONTHS.index text).to_i).map do |row|
       row.map do |name|
         Telegram::Bot::Types::InlineKeyboardButton.new(text: name.to_s, callback_data: name.to_s)
       end
@@ -84,9 +86,9 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
       @user.sys["submission_phase"] == 1 ? @user.subjects.keys.each_slice(1) : @user.subjects[@user.sys["current"]].each_slice(5).to_a
     elsif !@user.sys["semester_phase"].zero?
       case @user.sys["semester_phase"]
-      when 1, 4 then [[2016], [2017]].to_a
+      when 1, 4 then [[2016], [2017]]
       when 2, 5 then MONTHS[1..-1].each_slice(4).to_a
-      when 3, 6 then (1..days_in_month((MONTHS.index text).to_i)).each_slice(7).to_a
+      when 3, 6 then (1..days_in_month(text)).each_slice(7).to_a
       end
     end
   end
