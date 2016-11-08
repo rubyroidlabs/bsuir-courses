@@ -25,12 +25,7 @@ module Bot
     end
 
     def callback_name
-      self.class
-          .to_s
-          .split("::")
-          .last
-          .gsub(/(.)([A-Z])/, '\1_\2')
-          .downcase
+      self.class.to_s.split("::").last.gsub(/(.)([A-Z])/, '\1_\2').downcase
     end
 
     def command_name

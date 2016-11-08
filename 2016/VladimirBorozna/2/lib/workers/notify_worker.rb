@@ -28,7 +28,7 @@ class NotifyWorker # :nodoc:
     users.each_slice(API_REQUESTS_PER_SECOND) do |users_slice|
       every_second do
         users_slice.each do |user|
-          text = translate('response_particles.notification') << "\n"
+          text = translate("response_particles.notification") << "\n"
           text << Bot::Response::SubjectsStatus.new(user).message
           send_message(user, text)
         end
