@@ -6,7 +6,7 @@ require_relative "../lib/reset"
 # Tests for class Semester.
 class SemesterTest < Minitest::Test
   def setup
-    User.redis.del("user_1")
+    User.new(1).redis.del("user_1")
   end
 
   def test_semester_correct
@@ -26,7 +26,7 @@ class SemesterTest < Minitest::Test
   end
 
   def test_semester_incorrect_4
-    assert_equal "You are not in semester. Sorry.", generate_difference(%w(2016 September 20), %w(2016 November 29))
+    assert_equal "You are not in semester. Sorry.", generate_difference(%w(2016 November 20), %w(2016 November 29))
   end
 
   def generate_difference(f_date, s_date)
