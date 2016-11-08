@@ -3,6 +3,7 @@ require "time_diff"
 require_relative "lib/friendly_date"
 require_relative "lib/exceptions"
 
+# Tests
 class TestFriendlyDate < Test::Unit::TestCase
   def test_friendly_date_failure
     assert_raise(DateFormatError) { FriendlyDate.new("asf.asf.a") }
@@ -14,11 +15,14 @@ class TestFriendlyDate < Test::Unit::TestCase
     assert_raise(DateFormatError) { FriendlyDate.new("1.01") }
   end
 
-  def test_friendly_date_succeed
+  def test_friendly_date_4_digits_year
     assert_nothing_raised { FriendlyDate.new("01.01.2015") }
     assert_nothing_raised { FriendlyDate.new("1.01.2015") }
     assert_nothing_raised { FriendlyDate.new("01.1.2015") }
     assert_nothing_raised { FriendlyDate.new("1.1.2015") }
+  end
+
+  def test_friendly_date_2_digits_year
     assert_nothing_raised { FriendlyDate.new("01.01.15") }
     assert_nothing_raised { FriendlyDate.new("1.01.15") }
     assert_nothing_raised { FriendlyDate.new("01.1.15") }
