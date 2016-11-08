@@ -7,6 +7,7 @@ Telegram::Bot::Client.run(BOT_TOKEN) do |bot|
     subject_bot = Subject.new(bot, message, redis)
     status_bot = Status.new(bot, message, redis)
     reset_bot = Reset.new(bot, message, redis)
+    submit_bot = Submit.new(bot, message, redis)
     case message.text
     when "/start"
       start_bot.message
@@ -18,9 +19,12 @@ Telegram::Bot::Client.run(BOT_TOKEN) do |bot|
       status_bot.message
     when "/reset"
       reset_bot.message
+    when "/submit", "я сдал", "Я сдал"
+      submit_bot.message
     else
       semester_bot.handler
       subject_bot.handler
+      submit_bot.handler
     end
   end
 end

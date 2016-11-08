@@ -21,6 +21,11 @@ class Command #:nodoc:
   def reset_status
     @data["semester"] = 0
     @data["subject"] = 0
+    @data["submit"] = 0
     @redis.set(@message.chat.id.to_s, @data.to_json)
+  end
+
+  def hide_clav
+    Telegram::Bot::Types::ReplyKeyboardHide.new(hide_keyboard: true)
   end
 end

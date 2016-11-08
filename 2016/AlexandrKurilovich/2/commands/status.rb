@@ -1,5 +1,6 @@
 class Status < Command #:nodoc:
   def message
+    reset_status
     if semester?
       @bot.api.sendMessage(chat_id: @message.chat.id, text: "Тебе осталось сдать:\n", reply_markup: hide_clav)
       @subjects = @data["subjects"]
