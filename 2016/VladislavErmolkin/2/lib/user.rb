@@ -10,8 +10,8 @@ class User
   def initialize(id)
     user_hash = @@redis.exists("user_#{id}") ? JSON.parse(@@redis.get("user_#{id}")) : {}
     @id = id
-    @sys = user_hash.fetch("sys", { "semester_phase" => 0, "subjects_phase" => 0, "submission_phase" => 0, "current" => "", "start" => nil })
-    @semester = user_hash.fetch("semester", { "start" => nil, "end" => nil })
+    @sys = user_hash.fetch("sys", "semester_phase" => 0, "subjects_phase" => 0, "submission_phase" => 0, "current" => "", "start" => nil)
+    @semester = user_hash.fetch("semester", "start" => nil, "end" => nil)
     @subjects = user_hash.fetch("subjects", {})
   end
 
