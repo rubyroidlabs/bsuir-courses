@@ -20,7 +20,7 @@ class Subject < Command #:nodoc:
   private
 
   def message_labs
-    @subjects[@message.text] = 0
+    @subjects[@message.text] = nil
     @data["last_subject"] = @message.text
     @data["subject"] = 2
     @redis.set(@message.chat.id.to_s, @data.to_json)
