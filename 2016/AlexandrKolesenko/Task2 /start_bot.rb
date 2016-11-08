@@ -71,7 +71,7 @@ Telegram::Bot::Client.run(token) do |bot|
         end
       end
     when "/reset"
-      @stack = nil
+      @stack = {}
       @eta = nil
       @sum_of_days = nil
     end
