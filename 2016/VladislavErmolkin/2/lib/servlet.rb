@@ -34,35 +34,47 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def answer(message, text)
-    return nil if text == "/cancel" && !try_cancel_difficult_action(text).nil?
+    return cancel(text) if text == "/cancel"
     ans = try_continue_difficult_action(text)
     ans.nil? ? try_ordinary_action(text, message.from.first_name) : ans
   end
 
+  def run_action(cl, text)
+    cl.new(@user, text).run
+  end
+
   def try_continue_difficult_action(text)
-    if @user.sys["subjects_phase"].positive? then Subject.new(@user, text).run
-    elsif @user.sys["semester_phase"].positive? then Semester.new(@user, text).run
-    elsif @user.sys["submission_phase"].positive? then Submission.new(@user, text).run
+    if @user.sys["subjects_phase"].positive? then run_action(Subject, text)
+    elsif @user.sys["semester_phase"].positive? then run_action(Semester, text)
+    elsif @user.sys["submission_phase"].positive? then run_action(Submission, text)
     end
   end
 
   def text_validation(text, from_text_message)
     return true if text == "/cancel"
     return false if text.nil?
-    return false if from_text_message && any_button_action_active?
-    return false if !from_text_message && @user.sys["semester_phase"].zero? && @user.sys["submission_phase"].zero?
+    if from_text_message
+      return false if any_button_action_active?
+    elsif button_actions_inactive?
+      return false
+    end
     true
   end
 
-  def try_cancel_difficult_action(text)
+  def cancel(text)
     if @user.sys["subjects_phase"].positive? || any_button_action_active?
       Cancel.new(@user, text).run
       send_message(@user.id, nil, "Successfully.")
+    else send_message(@user.id, nil, "Nothing to cancel.")
     end
   end
 
   def any_button_action_active?
     @user.sys["semester_phase"].positive? || @user.sys["submission_phase"].positive?
+  end
+
+  def button_actions_inactive?
+    @user.sys["semester_phase"].zero? && @user.sys["submission_phase"].zero?
   end
 
   def send_message(id, text, answer)
@@ -75,12 +87,11 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def try_ordinary_action(text, name)
     case text
     when "/start" then Start.new(name).run
-    when "/semester" then Semester.new(@user, text).run
-    when "/subject" then Subject.new(@user, text).run
-    when "/status" then Status.new(@user, text).run
-    when "/reset" then Reset.new(@user, text).run
-    when "/submit", "I passed." then Submission.new(@user, text).run
-    when "/cancel" then "Nothing to cancel."
+    when "/semester" then run_action(Semester, text)
+    when "/subject" then run_action(Subject, text)
+    when "/status" then run_action(Status, text)
+    when "/reset" then run_action(Reset, text)
+    when "/submit", "I passed." then run_action(Submission, text)
     else "I don't understand.\nDon't panic. You've got to know where your towel is."
     end
   end

@@ -10,7 +10,7 @@ class User
   def initialize(id)
     user_hash = REDIS.exists("user_#{id}") ? JSON.parse(REDIS.get("user_#{id}")) : {}
     @id = id
-    @sys = user_hash.fetch("sys", "semester_phase" => 0, "subjects_phase" => 0, "submission_phase" => 0, "current" => "", "start" => nil)
+    @sys = user_hash.fetch("sys", "semester_phase" => 0, "subjects_phase" => 0, "submission_phase" => 0, "current" => "", "start" => nil, "end" => nil)
     @semester = user_hash.fetch("semester", "start" => nil, "end" => nil)
     @subjects = user_hash.fetch("subjects", {})
   end
@@ -20,7 +20,7 @@ class User
   end
 
   def reset
-    @sys = { "semester_phase" => 0, "subjects_phase" => 0, "submission_phase" => 0, "current" => "", "start" => nil }
+    @sys = { "semester_phase" => 0, "subjects_phase" => 0, "submission_phase" => 0, "current" => "", "start" => nil, "end" => nil }
     @semester = { "start" => nil, "end" => nil }
     @subjects = {}
   end

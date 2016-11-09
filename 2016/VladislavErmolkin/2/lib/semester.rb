@@ -33,9 +33,15 @@ class Semester < Action
   end
 
   def input_second_date_end
-    @user.semester["end"] = input_day
-    @user.semester["start"] = @user.sys["start"]
+    @user.sys["end"] = input_day
     @user.sys["current"] = ""
+    return unless difference_validation(@user.sys["start"], @user.sys["end"]).nil?
+    confirm_dates
+  end
+
+  def confirm_dates
+    @user.semester["end"] = @user.sys["end"]
+    @user.semester["start"] = @user.sys["start"]
   end
 
   def input_year
@@ -56,23 +62,39 @@ class Semester < Action
     when 2, 5 then "Choose month:"
     when 3, 6 then "Choose day:"
     when 4 then "Choose finish year:"
-    when 0 then print_date
+    when 0 then print_date(@user.sys["start"], @user.sys["end"])
     end
   end
 
-  def print_date
-    start = Date.parse(@user.semester["start"])
-    finish = Date.parse(@user.semester["end"])
-    difference = TimeDifference.between(start, finish)
-    incorrect_diff = difference_validation(start, finish, difference)
-    return incorrect_diff unless incorrect_diff.nil?
-    difference.humanize
+  def generate_difference(start, finish)
+    TimeDifference.between(Date.parse(start), Date.parse(finish))
   end
 
-  def difference_validation(start, finish, difference)
-    if difference.in_each_component[:years] >= 1 then "Too big semester."
-    elsif start > finish then "Time travel? Incorrect time interval."
-    elsif Date.today < start || Date.today > finish then "You are not in semester. Sorry."
+  def print_date(start, finish)
+    option = difference_validation(start, finish)
+    if option.zero?
+      generate_difference(start, finish).humanize
+    else
+      incorrect_diff(option)
+    end
+  end
+
+  def incorrect_diff(option)
+    case option
+    when 1 then "Too big semester."
+    when 2 then "Time travel? Incorrect time interval."
+    when 3 then "You are not in semester. Sorry."
+    end
+  end
+
+  def difference_validation(s, f)
+    start = Date.parse(s)
+    finish = Date.parse(f)
+    difference = generate_difference(s, f)
+    if difference.in_each_component[:years] >= 1 then 1
+    elsif start > finish then 2
+    elsif Date.today < start || Date.today > finish then 3
+    else 0
     end
   end
 end

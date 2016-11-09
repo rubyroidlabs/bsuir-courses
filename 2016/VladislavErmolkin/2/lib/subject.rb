@@ -6,15 +6,30 @@ require_relative "regulars"
 class Subject < Action
   def run
     return bot_says unless text_validation
-    case @user.sys["subjects_phase"]
-    when 1 then @user.sys["current"] = @text
-    when 2
-      @user.subjects[@user.sys["current"]] = (1..@text.to_i).to_a
-      @user.sys["current"] = ""
-    end
-    @user.sys["subjects_phase"] >= 2 ? @user.sys["subjects_phase"] = 0 : @user.sys["subjects_phase"] += 1
+    input_text
+    increase_phase
     @user.save
     bot_says
+  end
+
+  def input_text
+    case @user.sys["subjects_phase"]
+    when 1 then input_subject
+    when 2 then input_labs
+    end
+  end
+
+  def increase_phase
+    @user.sys["subjects_phase"] >= 2 ? @user.sys["subjects_phase"] = 0 : @user.sys["subjects_phase"] += 1
+  end
+
+  def input_subject
+    user.sys["current"] = @text
+  end
+
+  def input_labs
+    @user.subjects[@user.sys["current"]] = (1..@text.to_i).to_a
+    @user.sys["current"] = ""
   end
 
   def bot_says

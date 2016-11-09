@@ -14,7 +14,7 @@ class SemesterTest < Minitest::Test
   end
 
   def test_semester_incorrect_1
-    assert_equal "Too big semester.", generate_difference(%w(2016 September 1), %w(2018 November 25))
+    assert_equal "Too big semester.", generate_difference(%w(2016 September 1), %w(2017 November 21))
   end
 
   def test_semester_incorrect_2
@@ -31,12 +31,13 @@ class SemesterTest < Minitest::Test
 
   def generate_difference(f_date, s_date)
     Reset.new(User.new(1), "").run
-    Semester.new(User.new(1), "/semester").run
-    Semester.new(User.new(1), f_date[0]).run
-    Semester.new(User.new(1), f_date[1]).run
-    Semester.new(User.new(1), f_date[2]).run
-    Semester.new(User.new(1), s_date[0]).run
-    Semester.new(User.new(1), s_date[1]).run
-    Semester.new(User.new(1), s_date[2]).run
+    generate_semester("/semester")
+    f_date.each { |text| generate_semester(text) }
+    s_date.each { |text| generate_semester(text) }
+    Semester.new(User.new(1), "").bot_says
+  end
+
+  def generate_semester(text)
+    Semester.new(User.new(1), text).run
   end
 end

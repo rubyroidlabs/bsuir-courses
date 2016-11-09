@@ -6,15 +6,23 @@ require "time_difference"
 # Class Status.
 class Status < Action
   def run
-    if @user.semester["start"].nil? || @user.semester["end"].nil?
-      return "First you need to set semester dates (try '/semester')."
+    if empty_semester?
+      return %(First you need to set semester dates (try "/semester").)
     end
-    result = "Semester: #{@user.semester['start']}  :  #{@user.semester['end']}.\nToday: #{Date.today.to_s.tr!('-', '.')}.\n"
+    result = %(Semester: #{@user.semester["start"]}  :  #{@user.semester["end"]}.\nToday: #{Date.today.to_s.tr!("-", ".")}.\n)
     result << "\nYou need to do:\n" unless @user.subjects.empty?
-    @user.subjects.each do |subject, labs|
-      result << count(subject, labs, calculate)
-    end
+    print_subjects_with_labs(result)
     result
+  end
+
+  def empty_semester?
+    @user.semester["start"].nil? || @user.semester["end"].nil?
+  end
+
+  def print_subjects_with_labs(string)
+    @user.subjects.each do |subject, labs|
+      string << count(subject, labs, calculate)
+    end
   end
 
   def calculate
@@ -29,6 +37,6 @@ class Status < Action
   def count(subject, all_labs, k)
     required_number = (k * all_labs.length).round
     required_labs = all_labs[0...required_number]
-    "#{subject}: #{required_labs.join(' ')}\n"
+    "#{subject}: #{required_labs.join(" ")}\n"
   end
 end
