@@ -61,7 +61,6 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     end
   end
 
-
   def any_button_action_active?
     @user.sys["semester_phase"].positive? || @user.sys["submission_phase"].positive?
   end

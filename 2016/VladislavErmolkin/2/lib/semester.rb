@@ -8,12 +8,7 @@ MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "
 # Class Semester.
 class Semester < Action
   def run
-    case @user.sys["semester_phase"]
-    when 1, 4 then input_year
-    when 2, 5 then input_month
-    when 3 then input_first_date_end
-    when 6 then input_second_date_end
-    end
+    input_text
     increase_phase
     @user.save
     bot_says
@@ -21,6 +16,15 @@ class Semester < Action
 
   def increase_phase
     @user.sys["semester_phase"] = @user.sys["semester_phase"] >= 6 ? 0 : @user.sys["semester_phase"] + 1
+  end
+
+  def input_text
+    case @user.sys["semester_phase"]
+    when 1, 4 then input_year
+    when 2, 5 then input_month
+    when 3 then input_first_date_end
+    when 6 then input_second_date_end
+    end
   end
 
   def input_first_date_end
