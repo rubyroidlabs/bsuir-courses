@@ -10,12 +10,12 @@ class Base
         when "/start"
           bot.api.send_message(chat_id: message.chat.id, text: "Здраствуй, #{message.from.first_name}!")
           bot.api.send_message(chat_id: message.chat.id, text: "Пару вещей, которые ты должен знать: \n
-/start - ты его видишь \n
-/semestr - напоминание, чтобы не приуныть перед сессией (Даты вводить в стиле год-месяц-день или наоборот)\n
-/subject - выплесни свой страх сюда, и кол-во страха тоже с: \n
-/status - познай страх, чтобы не приуныть \n
-/reset - rm -rf /dev/null \n
-Развлекайся ;3")
+            /start - ты его видишь \n
+            /semestr - напоминание, чтобы не приуныть перед сессией (Даты вводить в стиле год-месяц-день или наоборот)\n
+            /subject - выплесни свой страх сюда, и кол-во страха тоже с: \n
+            /status - познай страх, чтобы не приуныть \n
+            /reset - rm -rf /dev/null \n
+            Развлекайся ;3")
         when "/semestr"
           bot.api.send_message(chat_id: message.chat.id, text: "Напомни дату, когда ТЗ было оформлено: ")
           bot.listen do |anwser|
