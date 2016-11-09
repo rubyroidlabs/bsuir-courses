@@ -18,7 +18,7 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def do_post(request, response)
-    body = Telegram::Bot::Types::Update.new(JSON.parse(request.body.gsub("\n", " ")))
+    body = Telegram::Bot::Types::Update.new(JSON.parse(request.body.gsub('\n', " ")))
     body.callback_query.nil? ? handler(body.message, true) : handler(body.callback_query, false)
     response.status = 200
     response.body = "Success."
@@ -34,24 +34,33 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def answer(message, text)
+    return nil if text == "/cancel" && !try_cancel_difficult_action(text).nil?
+    ans = try_continue_difficult_action(text)
+    ans.nil? ? try_ordinary_action(text, message.from.first_name) : ans
+  end
+
+  def try_continue_difficult_action(text)
     if @user.sys["subjects_phase"].positive? then Subject.new(@user, text).run
     elsif @user.sys["semester_phase"].positive? then Semester.new(@user, text).run
     elsif @user.sys["submission_phase"].positive? then Submission.new(@user, text).run
-    else try_ordinary_action(text, message.from.first_name)
     end
   end
 
   def text_validation(text, from_text_message)
-    if text == "/cancel" && (@user.sys["subjects_phase"].positive? || any_button_action_active?)
-      Cancel.new(@user, text).run
-      send_message(@user.id, nil, "Successfully.")
-      return false
-    end
+    return true if text == "/cancel"
     return false if text.nil?
     return false if from_text_message && any_button_action_active?
     return false if !from_text_message && @user.sys["semester_phase"].zero? && @user.sys["submission_phase"].zero?
     true
   end
+
+  def try_cancel_difficult_action(text)
+    if @user.sys["subjects_phase"].positive? || any_button_action_active?
+      Cancel.new(@user, text).run
+      send_message(@user.id, nil, "Successfully.")
+    end
+  end
+
 
   def any_button_action_active?
     @user.sys["semester_phase"].positive? || @user.sys["submission_phase"].positive?
