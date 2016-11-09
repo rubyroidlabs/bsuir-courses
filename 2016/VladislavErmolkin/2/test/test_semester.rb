@@ -6,7 +6,7 @@ require_relative "../lib/reset"
 # Tests for class Semester.
 class SemesterTest < Minitest::Test
   def setup
-    User.new(1).redis.del("user_1")
+    REDIS.del("user_1")
   end
 
   def test_semester_correct

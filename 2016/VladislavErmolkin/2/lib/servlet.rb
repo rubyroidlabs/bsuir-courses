@@ -13,12 +13,12 @@ MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "
 # Class Servlet.
 class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def initialize(server, bot)
-    super server
+    super(server)
     @bot = bot
   end
 
   def do_post(request, response)
-    body = Telegram::Bot::Types::Update.new(JSON.parse(request.body.gsub('\n', " ")))
+    body = Telegram::Bot::Types::Update.new(JSON.parse(request.body.gsub("\n", " ")))
     body.callback_query.nil? ? handler(body.message, true) : handler(body.callback_query, false)
     response.status = 200
     response.body = "Success."
@@ -30,32 +30,37 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     @user = User.new(message.from.id)
     text = from_text_message ? message.text : message.data
     return nil unless text_validation(text, from_text_message)
-    answer = if !@user.sys["subjects_phase"].zero? then Subject.new(@user, text).run
-             elsif !@user.sys["semester_phase"].zero? then Semester.new(@user, text).run
-             elsif !@user.sys["submission_phase"].zero? then Submission.new(@user, text).run
-             else try_ordinary_action(text, message.from.first_name)
-             end
-    send_message(message.from.id, text, answer)
+    send_message(message.from.id, text, answer(message, text))
+  end
+
+  def answer(message, text)
+    if @user.sys["subjects_phase"].positive? then Subject.new(@user, text).run
+    elsif @user.sys["semester_phase"].positive? then Semester.new(@user, text).run
+    elsif @user.sys["submission_phase"].positive? then Submission.new(@user, text).run
+    else try_ordinary_action(text, message.from.first_name)
+    end
   end
 
   def text_validation(text, from_text_message)
-    if text == "/cancel" && (!@user.sys["subjects_phase"].zero? || !@user.sys["semester_phase"].zero? || !@user.sys["submission_phase"].zero?)
+    if text == "/cancel" && (@user.sys["subjects_phase"].positive? || any_button_action_active?)
       Cancel.new(@user, text).run
       send_message(@user.id, nil, "Successfully.")
       return false
     end
     return false if text.nil?
-    return false if from_text_message && (!@user.sys["semester_phase"].zero? || !@user.sys["submission_phase"].zero?)
-    return false if !from_text_message && (@user.sys["semester_phase"].zero? && @user.sys["submission_phase"].zero?)
+    return false if from_text_message && any_button_action_active?
+    return false if !from_text_message && @user.sys["semester_phase"].zero? && @user.sys["submission_phase"].zero?
     true
+  end
+
+  def any_button_action_active?
+    @user.sys["semester_phase"].positive? || @user.sys["submission_phase"].positive?
   end
 
   def send_message(id, text, answer)
     return if answer.nil?
-    if !@user.sys["semester_phase"].zero? || !@user.sys["submission_phase"].zero?
-      @bot.api.send_message(chat_id: id, text: answer, reply_markup: create_keyboard(text))
-    else
-      @bot.api.send_message(chat_id: id, text: answer)
+    if any_button_action_active? then @bot.api.send_message(chat_id: id, text: answer, reply_markup: create_keyboard(text))
+    else @bot.api.send_message(chat_id: id, text: answer)
     end
   end
 
@@ -73,7 +78,7 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def create_keyboard(text)
-    buttons = button_names((MONTHS.index text).to_i).map do |row|
+    buttons = button_names(text).map do |row|
       row.map do |name|
         Telegram::Bot::Types::InlineKeyboardButton.new(text: name.to_s, callback_data: name.to_s)
       end
@@ -82,32 +87,26 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def button_names(text)
-    buttons_for_submission = try_buttons_for_submission
-    return buttons_for_submission unless buttons_for_submission.nil?
-    buttons_for_semester = try_buttons_for_semester(text)
-    return buttons_for_semester unless buttons_for_semester.nil?
+    return buttons_for_submission if @user.sys["submission_phase"].positive?
+    return buttons_for_semester(text) if @user.sys["semester_phase"].positive?
   end
 
-  def try_buttons_for_submission
-    return nil if @user.sys["submission_phase"].zero?
-    if @user.sys["submission_phase"] == 1
-      @user.subjects.keys.each_slice(1).to_a
-    else
-      @user.subjects[@user.sys["current"]].each_slice(5)
+  def buttons_for_submission
+    if @user.sys["submission_phase"] == 1 then @user.subjects.keys.each_slice(1).to_a
+    else @user.subjects[@user.sys["current"]].each_slice(5)
     end
   end
 
-  def try_buttons_for_semester(text)
-    unless @user.sys["semester_phase"].zero?
-      case @user.sys["semester_phase"]
-      when 1, 4 then [[2016], [2017]]
-      when 2, 5 then MONTHS[1..-1].each_slice(4).to_a
-      when 3, 6 then (1..days_in_month(text)).each_slice(7).to_a
-      end
+  def buttons_for_semester(text)
+    case @user.sys["semester_phase"]
+    when 1, 4 then [[2016], [2017]]
+    when 2, 5 then MONTHS[1..-1].each_slice(4).to_a
+    when 3, 6 then (1..days_in_month(text)).each_slice(7).to_a
     end
   end
 
-  def days_in_month(month, year = Time.now.year)
+  def days_in_month(month_string, year = Time.now.year)
+    month = (MONTHS.index month_string).to_i
     return 29 if month == 2 && Date.gregorian_leap?(year)
     COMMON_YEAR_DAYS_IN_MONTH[month]
   end

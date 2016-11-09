@@ -9,17 +9,37 @@ MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "
 class Semester < Action
   def run
     case @user.sys["semester_phase"]
-    when 1, 4 then @user.sys["current"] << @text << "-"
-    when 2, 5 then @user.sys["current"] << MONTHS.index(@text).to_s << "-"
-    when 3 then @user.sys["start"] = @user.sys["current"] << @text
-    when 6
-      @user.semester["end"] = @user.sys["current"] << @text
-      @user.semester["start"] = @user.sys["start"]
+    when 1, 4 then semester_input_year
+    when 2, 5 then semester_input_month
+    when 3 then semester_input_first_date_end
+    when 6 then semester_input_second_date_end
     end
-    @user.sys["current"] = "" if [3, 6].include? @user.sys["semester_phase"]
     @user.sys["semester_phase"] = @user.sys["semester_phase"] >= 6 ? 0 : @user.sys["semester_phase"] + 1
     @user.save
     bot_says
+  end
+
+  def semester_input_first_date_end
+    @user.sys["start"] = semester_input_day
+    @user.sys["current"] = ""
+  end
+
+  def semester_input_second_date_end
+    @user.semester["end"] = semester_input_day
+    @user.semester["start"] = @user.sys["start"]
+    @user.sys["current"] = ""
+  end
+
+  def semester_input_year
+    @user.sys["current"] << @text << "-"
+  end
+
+  def semester_input_month
+    @user.sys["current"] << MONTHS.index(@text).to_s << "-"
+  end
+
+  def semester_input_day
+    @user.sys["current"] << @text
   end
 
   def bot_says
@@ -46,6 +66,5 @@ class Semester < Action
     elsif start > finish then "Time travel? Incorrect time interval."
     elsif Date.today < start || Date.today > finish then "You are not in semester. Sorry."
     end
-    nil
   end
 end

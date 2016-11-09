@@ -6,6 +6,7 @@ class Cancel < Action
     @user.sys["semester_phase"] = 0
     @user.sys["subjects_phase"] = 0
     @user.sys["submission_phase"] = 0
+    @user.sys["current"] = ""
     @user.save
   end
 end
