@@ -4,8 +4,6 @@ require_relative 'lib/console.rb'
 require_relative 'lib/user.rb'
 require_relative 'lib/message_handler'
 
-KEYBOARD = [['/semestr  lalala'], ['/start commands'], ['/subject hahah'], ['submut ya sdal totototo']].freeze
-
 class Bot
   def initialize
     @console = Console.new
