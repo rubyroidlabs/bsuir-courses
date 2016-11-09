@@ -9,7 +9,7 @@ class Status < Action
     if empty_semester?
       return %(First you need to set semester dates (try "/semester").)
     end
-    result = %(Semester: #{@user.semester["start"]}  :  #{@user.semester["end"]}.\nToday: #{Date.today.to_s.tr!("-", ".")}.\n)
+    result = %(Semester: #{@user.semester['start']}  :  #{@user.semester['end']}.\nToday: #{Date.today.to_s.tr!('-', '.')}.\n)
     result << "\nYou need to do:\n" unless @user.subjects.empty?
     print_subjects_with_labs(result)
     result
@@ -37,6 +37,6 @@ class Status < Action
   def count(subject, all_labs, k)
     required_number = (k * all_labs.length).round
     required_labs = all_labs[0...required_number]
-    "#{subject}: #{required_labs.join(" ")}\n"
+    "#{subject}: #{required_labs.join(' ')}\n"
   end
 end
