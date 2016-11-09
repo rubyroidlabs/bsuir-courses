@@ -54,9 +54,9 @@ class Semester < Command #:nodoc:
     Date.parse(end_date) >= Date.parse(start_date) && Date.parse(end_date) >= DateTime.now.to_date && DateTime.now.to_date >= Date.parse(start_date)
   end
 
-  def data_valid?(data)
+  def data_valid?(data, mes = true)
     if (data =~ /(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}/).nil?
-      @bot.api.sendMessage(chat_id: @message.chat.id, text: "Что-то ты неправильно ввёл. Пиши в формате DD-MM-YYYY")
+      @bot.api.sendMessage(chat_id: @message.chat.id, text: "Что-то ты неправильно ввёл. Пиши в формате DD-MM-YYYY") if mes
       false
     else
       true
