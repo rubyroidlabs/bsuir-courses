@@ -9,6 +9,8 @@ Telegram::Bot::Client.run(BOT_TOKEN) do |bot|
           data = JSON.parse(redis.get(message.chat.id.to_s))
           expect(command.parse_data).to eq(data)
         end
+      end
+      describe "#reset_status" do
         it "reset status" do
           command.reset_status
           data = command.parse_data

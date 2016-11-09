@@ -17,8 +17,6 @@ class Semester < Command #:nodoc:
     end
   end
 
-  private
-
   def message_end_semester
     return unless data_valid?(@message.text)
     @data["semester"] = 2
