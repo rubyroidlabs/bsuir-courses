@@ -3,12 +3,7 @@ require_relative "answers"
 
 # Class Start.
 class Start < Action
-  def initialize(name)
-    super(nil, "")
-    @name = ", " + name
-  end
-
   def run
-    "Hi#{@name}." + START_ANSWER
+    "Hi#{@text}." + START_ANSWER
   end
 end

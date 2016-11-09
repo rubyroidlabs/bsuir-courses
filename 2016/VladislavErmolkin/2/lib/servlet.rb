@@ -9,6 +9,7 @@ require_relative "cancel"
 
 COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31].freeze
 MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].freeze
+ACTIVITIES = { "/start" => Start, "/semester" => Semester, "/subject" => Subject, "/status" => Status, "/reset" => Reset, "/submit" => Submission, "I passed." => Submission }.freeze
 
 # Class Servlet.
 class MyServlet < WEBrick::HTTPServlet::AbstractServlet
@@ -64,8 +65,9 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def cancel(text)
     if @user.sys["subjects_phase"].positive? || any_button_action_active?
       Cancel.new(@user, text).run
-      send_message(@user.id, nil, "Successfully.")
-    else send_message(@user.id, nil, "Nothing to cancel.")
+      "Successfully."
+    else
+      "Nothing to cancel."
     end
   end
 
@@ -85,15 +87,9 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def try_ordinary_action(text, name)
-    case text
-    when "/start" then Start.new(name).run
-    when "/semester" then run_action(Semester, text)
-    when "/subject" then run_action(Subject, text)
-    when "/status" then run_action(Status, text)
-    when "/reset" then run_action(Reset, text)
-    when "/submit", "I passed." then run_action(Submission, text)
-    else "I don't understand.\nDon't panic. You've got to know where your towel is."
-    end
+    return Start.new(@user, name).run if text == "/start"
+    return run_action(ACTIVITIES[text], text) if ACTIVITIES.include? text
+    "I don't understand.\nDon't panic. You've got to know where your towel is."
   end
 
   def create_keyboard(text)
