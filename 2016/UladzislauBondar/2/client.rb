@@ -1,6 +1,5 @@
 require "telegram/bot"
 require "redis"
-require "yaml"
 require_relative "../2/libs/message_resolver"
 require_relative "../2/libs/command"
 require_relative "../2/libs/token"
