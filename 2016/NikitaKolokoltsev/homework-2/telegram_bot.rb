@@ -1,3 +1,15 @@
+# Bot Server
+class BotServer
+  def bot
+    token = "288795431:AAEmmmRKg0W5tEP9qGvO_DTJtF69OIP-lvc"
+    Telegram::Bot::Client.run(token) { |bot| yield(bot) if block_given? }
+  end
+
+  def DATABASE
+    DATABASE
+  end
+end
+
 require "telegram/bot"
 require_relative "lib/mp_telegram_bot"
 require "webrick"
@@ -16,6 +28,8 @@ require_relative "lib/bot_command_status"
 require_relative "lib/bot_command_submit"
 require_relative "lib/bot_command_reset"
 require_relative "lib/bot_command_handler"
+
+DATABASE = Redis.new
 
 server = WEBrick::HTTPServer.new(Port: 8000)
 
