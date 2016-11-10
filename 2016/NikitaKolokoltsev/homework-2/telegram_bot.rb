@@ -5,7 +5,7 @@ class BotServer
     Telegram::Bot::Client.run(token) { |bot| yield(bot) if block_given? }
   end
 
-  def DATABASE
+  def database
     DATABASE
   end
 end

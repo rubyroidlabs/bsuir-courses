@@ -1,7 +1,7 @@
 # Class for basic @@bot actions
 class Bot < BotServer
   def database_save(chat_id, user)
-    DATABASE.set(chat_id, user.to_json)
+    database.set(chat_id, user.to_json)
   end
 
   def run(request)
@@ -14,7 +14,7 @@ class Bot < BotServer
   end
 
   def database_load(chat_id)
-    user = DATABASE.get(chat_id) || {}
+    user = database.get(chat_id) || {}
     if user.is_a?(String)
       JSON.parse(user).keys_to_syms
     else
