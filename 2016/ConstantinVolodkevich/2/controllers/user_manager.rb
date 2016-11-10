@@ -162,7 +162,7 @@ class User_Manager
 
   def execute_reminder(id)
     user = @db_helper.get_user(id)
-    @reminder_c.execute_command(user)
+    @reminder_c.execute_command(id, user)
     @db_helper.update_user(id, user)
     @reminder_c.make_buttons
   end

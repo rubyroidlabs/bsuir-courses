@@ -4,11 +4,13 @@ require 'timers'
 
 class Reminder_C < Text_React
 
-  def execute_command(user)
+  def execute_command(id, user)
     if user.user_status.steps_reminder['remind_on']
       user.user_status.steps_reminder['remind_on'] = false
-      $thread.each do |thread|
+      $thread.each do |key, thread|
+        if key == id
         thread.kill
+        end
       end
     end
     user.user_status.steps_reminder['user_wanna_remind'] = true
