@@ -38,7 +38,7 @@ module Command
     private
 
     def positive_number?
-      text =~ /^\d+$/  && text.to_i.positive?
+      text =~ /^\d+$/ && text.to_i.positive?
     end
 
     def save_subject
