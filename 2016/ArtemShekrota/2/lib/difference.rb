@@ -1,4 +1,4 @@
-#length of semester and left time
+# length of semester and left time
 def diff(date1, date2)
   today = Date.today
   if date2 > today

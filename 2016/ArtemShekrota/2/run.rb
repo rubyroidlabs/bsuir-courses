@@ -1,6 +1,6 @@
-require 'telegram/bot'
-require 'date'
-require 'require_all'
+require "telegram/bot"
+require "date"
+require "require_all"
 require_all "lib"
 
 token = "242688245:AAFKh_rAnQMSaLOyk2dVB52sgSSQjt6z2y4"
@@ -43,19 +43,18 @@ Telegram::Bot::Client.run(token) do |bot|
       bot.api.sendMessage(chat_id: message.chat.id, text: "Starts: #{@date1}")
 
       bot.api.sendMessage(chat_id: message.chat.id, text: "When semester ends?")
-
       bot.api.send_message(chat_id: message.chat.id, text: question_month, reply_markup: answers_one)
       bot.listen do |answer|
         @month = answer.text
         break
       end
 
-      bot.api.send_message(chat_id: message.chat.id, text: question_day, reply_markup: answers_two)
+      answers_new = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: (1..@month_hash[@month.to_s]).to_a.map(&:to_s).each_slice(8).to_a, one_time_keyboard: true)
+      bot.api.send_message(chat_id: message.chat.id, text: question_day, reply_markup: answers_new)
       bot.listen do |answer|
         @day = answer.text
         break
       end
-
       bot.api.send_message(chat_id: message.chat.id, text: question_year, reply_markup: answers_three)
       bot.listen do |answer|
         @year = answer.text
