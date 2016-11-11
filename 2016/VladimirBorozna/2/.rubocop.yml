@@ -17,7 +17,7 @@ Style/SignalException:
   Enabled: true
 
 Style/RegexpLiteral:
-  EnforcedStyle: percent_r
+  EnforcedStyle: mixed
   Enabled: true
 
 Style/DotPosition:

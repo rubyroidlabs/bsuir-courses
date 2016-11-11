@@ -3,7 +3,7 @@ module Bot
     # Callback sets the notification settings(period, weekday)
     class NotificationSetting < Base # :nodoc:
       def should_start?
-        data.first =~ %r{notification_setting}
+        data.first =~ /notification_setting/
       end
 
       def start
@@ -22,9 +22,9 @@ module Bot
 
       def parse_setting
         case setting
-        when %r{^period-(\d+)}
+        when /^period-(\d+)/
           { period: NumberParser.parse(Regexp.last_match(1)) }
-        when %r{^weekday-(\d)}
+        when /^weekday-(\d)/
           { weekday: NumberParser.parse(Regexp.last_match(1)) }
         else
           fail(BotError, "callback_invalid")

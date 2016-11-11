@@ -16,7 +16,7 @@ RSpec.configure do |config|
     else
       name = example.
              metadata[:full_description].
-             split(%r{\s+}, 2).
+             split(/\s+/, 2).
              join("/").tr(".", "/").
              gsub(%r{[^\w\/]+}, "_").
              gsub(%r{\/$}, "").

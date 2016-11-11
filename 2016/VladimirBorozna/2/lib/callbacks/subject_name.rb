@@ -3,7 +3,7 @@ module Bot
     # Callback takes a subject name from data and sends new markup with numbers of works
     class SubjectName < Base
       def should_start?
-        data.first =~ %r{subject_name}
+        data.first =~ /subject_name/
       end
 
       def start

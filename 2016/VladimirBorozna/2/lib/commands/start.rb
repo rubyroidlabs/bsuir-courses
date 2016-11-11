@@ -17,7 +17,7 @@ module Bot
 
       def commands
         Bot::CommandDispatcher::AVAILABLE_COMMANDS.map do |command_class|
-          command_class.to_s.sub(%r{.*Command::}, "").downcase
+          command_class.to_s.sub(/.*Command::/, "").downcase
         end
       end
 

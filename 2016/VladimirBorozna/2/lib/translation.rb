@@ -30,7 +30,7 @@ module Bot
     end
 
     def class_name
-      self.class.to_s.split("::").last.gsub(%r{(.)([A-Z])}, '\1_\2').downcase
+      self.class.to_s.split("::").last.gsub(/(.)([A-Z])/, '\1_\2').downcase
     end
   end
 end

@@ -24,7 +24,7 @@ module Bot
       end
 
       def preprocessing(text)
-        date_parts = text.split(%r{-|\.})
+        date_parts = text.split(/-|\./)
         fail(BotError, "date_format_invalid") unless date_parts.size == DATE_NUMBER_PARTS
 
         date_parts.reverse! if date_parts.first.length == 4
