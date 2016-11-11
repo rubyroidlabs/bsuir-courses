@@ -4,4 +4,3 @@ def donelabs(tasks)
   days_gone = @timeall - @time
   @done = days_gone / days_per_task
 end
-

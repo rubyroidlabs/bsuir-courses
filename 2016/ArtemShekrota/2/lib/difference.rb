@@ -9,4 +9,3 @@ def diff(date1, date2)
     false
   end
 end
-

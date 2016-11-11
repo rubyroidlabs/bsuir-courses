@@ -32,7 +32,7 @@ Telegram::Bot::Client.run(token) do |bot|
         break
       end
 
-      answers_three = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard:[%w(2016), %w(2017)], one_time_keyboard: true)
+      answers_three = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: [%w(2016), %w(2017)], one_time_keyboard: true)
       bot.api.send_message(chat_id: message.chat.id, text: question_year, reply_markup: answers_three)
       bot.listen do |answer|
         @year = answer.text
