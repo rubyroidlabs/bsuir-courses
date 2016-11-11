@@ -1,13 +1,13 @@
-require 'telegram/bot'
-require 'faraday'
+require "telegram/bot"
+require "faraday"
 
-require_relative 'session'
-require_relative 'dialog'
+require_relative "session"
+require_relative "dialog"
 
 # common methods
 module Utils
   def self.send_promt(api, answer)
-    Session.set('__promt__', answer.var)
+    Session.set("__promt__", answer.var)
     api.send_message chat_id: Session.id, text: answer.message
   end
 

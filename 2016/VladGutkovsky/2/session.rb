@@ -1,18 +1,18 @@
-require 'redis'
+require "redis"
 
 # session keeper
 module Session
   class << self
     attr_accessor :id, :request
   end
-  @redis = Redis.new url: 'redis'
+  @redis = Redis.new url: "redis"
 
   def self.get(key)
     get_absolute "#{@id}:#{key}"
   end
 
   def self.get_absolute(key)
-    if @redis.type(key) == 'list'
+    if @redis.type(key) == "list"
       @redis.lrange key, 0, -1
     else
       @redis.get key

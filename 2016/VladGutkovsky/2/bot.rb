@@ -1,15 +1,15 @@
-require 'telegram/bot'
+require "telegram/bot"
 
-require_relative 'session'
-require_relative 'handlers'
-require_relative 'utils'
+require_relative "session"
+require_relative "handlers"
+require_relative "utils"
 
 Message = Telegram::Bot::Types::Message
 Client = Telegram::Bot::Client
 
 Session.clear
 
-Client.run('TOKEN') do |bot|
+Client.run("TOKEN") do |bot|
   handlers = [
     Reset.new,
     Start.new,
