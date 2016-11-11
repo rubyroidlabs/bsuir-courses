@@ -3,6 +3,7 @@ module Bot
     # Class for the command - /semester
     class Semester < Base
       DAYS_IN_MONTH = 30
+      AVAILABLE_METHODS = %w(semester_start semester_finish).freeze
 
       def start
         send_message(command_response("semester_start_question"))
@@ -14,59 +15,26 @@ module Bot
       end
 
       def semester_finish
-        set_semester_data
-        send_message(confiramation_message)
-      end
+        start_date  = DateParser.parse(next_command.data)
+        finish_date = DateParser.parse(text)
+        validate_dates(start_date, finish_date)
 
-      def select_next_command
-        case next_command.method
-        when nil
-          next_command.set(class_name, "semester_start")
-        when "semester_start"
-          next_command.set(class_name, "semester_finish")
-        when "semester_finish"
-          next_command.reset
-        end
+        user.semester.update(start: start_date, finish: finish_date)
+        send_message(confirmation_message)
       end
 
       private
 
-      def set_semester_data
-        start_date  = DateParser.parse(next_command.data)
-        finish_date = DateParser.parse(text)
-        fail(BotError, "semester_dates_invalid") if start_date >= finish_date
+      def validate_dates(start, finish)
+        return unless start >= finish
 
-        user.semester.update(start: start_date, finish: finish_date)
+        next_command.reset
+        fail(BotError, "semester_dates_invalid")
       end
 
-      def confiramation_message
-        result = command_response("confirmation.main")
-        result << left_months
-        result << rest_of_days
-      end
-
-      def rest_of_days
-        number_days = user.semester.number_days % DAYS_IN_MONTH
-        return "" unless number_days.positive?
-
-        day_form = translate("day", count: number_days)
-        command_response(
-          "confirmation.days",
-          day_form: day_form,
-          number: number_days
-        )
-      end
-
-      def left_months
-        number_months = user.semester.number_days / DAYS_IN_MONTH
-        return "" unless number_months.positive?
-
-        month_form = translate("month", count: number_months)
-        command_response(
-          "confirmation.months",
-          number: number_months,
-          month_form: month_form
-        )
+      def confirmation_message
+        result = command_response("confirmation.begining")
+        result << " " << ResponseParticle::TimeLeft.new(user).text << "."
       end
     end
   end

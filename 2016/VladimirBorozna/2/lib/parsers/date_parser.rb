@@ -4,6 +4,7 @@ module Bot
     MIN_YEAR = 2016
     MAX_YEAR = 3000
     YEAR_RANGE = (MIN_YEAR..MAX_YEAR)
+    DATE_NUMBER_PARTS = 3
 
     class << self
       def parse(text)
@@ -23,11 +24,11 @@ module Bot
       end
 
       def preprocessing(text)
-        parts = text.tr("-", ".").split(".")
-        fail(BotError, "date_year_invalid") unless parts.size == 3
-        parts = parts.reverse if parts.first.length == 4
+        date_parts = text.split(%r{-|\.})
+        fail(BotError, "date_format_invalid") unless date_parts.size == DATE_NUMBER_PARTS
 
-        format("%02d.%02d.%04d", *parts.map(&:to_i))
+        date_parts.reverse! if date_parts.first.length == 4
+        format("%02d.%02d.%04d", *date_parts.map(&:to_i))
       end
     end
   end

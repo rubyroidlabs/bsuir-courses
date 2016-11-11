@@ -1,5 +1,6 @@
 module Bot
   module Callback
+    # Callback sets the notification settings(period, weekday)
     class NotificationSetting < Base # :nodoc:
       def should_start?
         data.first =~ %r{notification_setting}

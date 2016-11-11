@@ -6,7 +6,7 @@ module Bot
 
       def start
         fail(BotError, "semester_dates_not_found") unless user.semester.present?
-        fail(BotError, "subjects_not_found") unless user.subjects_present?
+        fail(BotError, "subjects_not_found")       unless user.subjects_present?
 
         send_message(response_message)
       end
@@ -14,21 +14,22 @@ module Bot
       private
 
       def response_message
-        result =  semester_left_days_message << "\n"
-        result << Bot::Response::SubjectsStatus.new(user).message
-        result << conclusion_message
+        result =  semester_time_left << "\n"
+        result << Bot::ResponseParticle::SubjectsStatus.new(user).text
+        result << conclusion
       end
 
-      def semester_time_left_message
+      def semester_time_left
         result = command_response("semester_time_left_begining")
-        result << "#{Bot::Response::TimeLeft.new(user).message}."
+        result << Bot::ResponseParticle::TimeLeft.new(user).text << "."
       end
 
-      def conclusion_message
+      def conclusion
+        subjects = user.subjects
         command_response(
           "conclusion",
-          accepted_number: user.subjects.inject(0) { |a, e| a + e.accepted_numbers.size },
-          total_number:    user.subjects.inject(0) { |a, e| a + e.total_number }
+          accepted_number: subjects.inject(0) { |a, e| a + e.accepted_numbers.size },
+          total_number:    subjects.inject(0) { |a, e| a + e.total_number }
         )
       end
     end

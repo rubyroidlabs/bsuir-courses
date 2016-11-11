@@ -1,44 +1,37 @@
 module Bot
   module Callback
-    class Base # :nodoc:
-      include Bot::Translation
+    # Base class for callbacks
+    class Base
+      include Bot::TranslationHelpers
+      DATA_DELIMITER = ";".freeze
 
       attr_reader :user,
                   :api,
                   :data,
                   :message
 
-      def initialize(user, query)
-        @data    = query.data.split(";")
+      def initialize(api, user, query)
+        @data    = query.data.split(DATA_DELIMITER)
         @message = query.message
         @user    = user
-        @api     = Bot.configuration.api
+        @api     = api
       end
 
       def should_start?
-        fail NotImplementedError
+        fail(NotImplementedError)
       end
 
       def start
-        fail NotImplementedError
+        fail(NotImplementedError)
       end
 
       protected
 
-      def verify_callback
-        check = user.callback.message_id == message.message_id
-        fail(BotError, "callback_invalid_message") unless check
-      end
-
-      def edit_message(edited_text, options = {})
-        api.call(
-          "editMessageText",
-          chat_id:      user.telegram_id,
-          message_id:   message.message_id,
-          text:         edited_text,
-          reply_markup: options[:reply_markup],
-          parse_mode:   "markdown"
-        )
+      def edit_message(text, options = {})
+        options[:chat_id] = user.telegram_id
+        options[:message_id] = message.message_id
+        options[:text] = text
+        api.call("editMessageText", options)
       end
     end
   end

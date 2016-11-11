@@ -1,7 +1,8 @@
 require "ohm/datatypes"
 
 module Bot
-  class NextCommand < Ohm::Model #:nodoc:
+  # Model contains the information needed to process the following commands
+  class NextCommand < Ohm::Model
     include Ohm::DataTypes
 
     attribute :name

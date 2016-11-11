@@ -1,61 +1,63 @@
 module Bot
   # Class for dispatching user commands
-  class CommandDispatcher
-    attr_reader :message,
-                :user,
-                :api
+  class CommandDispatcher < Dispatcher
+    attr_reader :message, :command, :next_command
 
     AVAILABLE_COMMANDS = [
       Command::Start,
       Command::Semester,
       Command::Subject,
-      Command::Submit,
       Command::Status,
+      Command::Submit,
+      Command::Cancel,
+      Command::Remind,
       Command::Reset
     ].freeze
 
-    def initialize(user, message)
+    def initialize(api, user, message)
+      super(api, user)
       @message = message
-      @user = user
-      @api = Bot.configuration.api
+      @next_command = user.next_command
+      @command = command_instance
     end
 
     def dispatch
-      command = initialize_command
-      start(command)
+      process
     rescue BotError => error
-      error_message = I18n.t("errors.#{error.message}")
+      error_message = translate_error(error.message)
       api.call("sendMessage", chat_id: user.telegram_id, text: error_message)
     end
 
     private
 
-    def initialize_command
-      command = should_start_command || user_next_command
-      return command if command
-
-      Command::Undefined.new(user, message)
-    end
-
-    def should_start_command
-      command = AVAILABLE_COMMANDS.detect do |command_class|
-        command_class.new(user, message).should_start?
-      end
-      command&.new(user, message)
-    end
-
-    def user_next_command
-      command_name = user.next_command&.name
-      Object.const_get(command_name).new(user, message) if command_name
-    end
-
-    def start(command)
-      if user.next_command.method
-        command.public_send(user.next_command.method)
+    def process
+      method = next_command&.method
+      if method && !command.is_a?(Command::Cancel)
+        command.public_send(method)
       else
         command.start
       end
-      command.select_next_command
+      command.set_next_method
+    end
+
+    def command_instance
+      should_start_command || user_next_command || undefined_command
+    end
+
+    def should_start_command
+      cmd = AVAILABLE_COMMANDS.detect do |cmd_class|
+        cmd_class.new(api, user, message).should_start?
+      end
+      cmd&.new(api, user, message)
+    end
+
+    def user_next_command
+      cmd_name = next_command&.name
+      Object.const_get(cmd_name).new(api, user, message) if cmd_name
+    end
+
+    def undefined_command
+      Command::Undefined.new(api, user, message)
     end
   end
 end

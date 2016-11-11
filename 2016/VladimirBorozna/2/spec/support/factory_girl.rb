@@ -6,9 +6,9 @@ RSpec.configure do |config|
   end
 end
 
-# Monkey patching
+# factory_girl doesnt work without this inctance methods
 module Ohm
-  class Model
+  class Model # :nodoc:
     alias assign_id id=
     alias save! save
 

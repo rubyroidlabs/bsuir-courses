@@ -16,11 +16,17 @@ Style/SignalException:
   EnforcedStyle: semantic
   Enabled: true
 
+Style/RegexpLiteral:
+  EnforcedStyle: percent_r
+  Enabled: true
+
+Style/DotPosition:
+  EnforcedStyle: trailing
+  Enabled: true
+
 Metrics/LineLength:
   Enabled: false
 
 Style/SingleLineBlockParams:
   Enabled: false
 
-Style/RegexpLiteral:
-  Enabled: false

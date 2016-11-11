@@ -1,8 +1,9 @@
 module Bot
   module Callback
+    # Callback that cancels current operation
     class Cancel < Base # :nodoc:
       def should_start?
-        data.first =~ /cancel/
+        data.first =~ %r{cancel}
       end
 
       def start

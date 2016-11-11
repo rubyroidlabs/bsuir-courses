@@ -1,4 +1,4 @@
-:concurrency: 3
+:concurrency: 15
 :strict: false
 :verbose: false
 :queues:
@@ -8,5 +8,3 @@
 
 :development:
   :verbose: true
-production:
-  :concurrency: 5

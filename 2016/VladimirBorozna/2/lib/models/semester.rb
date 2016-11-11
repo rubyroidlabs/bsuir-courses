@@ -1,7 +1,8 @@
 require "ohm/datatypes"
 
 module Bot
-  class Semester < Ohm::Model #:nodoc:
+  # Semester data
+  class Semester < Ohm::Model
     include Ohm::DataTypes
 
     attribute :start,  Type::Date
@@ -13,7 +14,7 @@ module Bot
     end
 
     def days_left
-      (finish - Date.today).round + 1
+      (finish - Date.today_utc).round + 1
     end
 
     def present?
@@ -21,14 +22,7 @@ module Bot
     end
 
     def required_coefficient
-      current_date = Date.parse(Time.now.to_s)
-      ((current_date - start) / (finish - start)).to_f
-    end
-
-    alias assigin_id id=
-
-    def id=(id)
-      assigin_id(id)
+      ((Date.today_utc - start) / (finish - start)).to_f
     end
   end
 end

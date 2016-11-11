@@ -7,8 +7,7 @@ module Bot
 
     class << self
       def parse(text)
-        number = text.to_i
-        validate_date(number)
+        validate_date(text.to_i)
       rescue ArgumentError
         raise(BotError, "number_invalid")
       end

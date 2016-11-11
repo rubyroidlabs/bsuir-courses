@@ -2,41 +2,32 @@ module Bot
   module Command
     # Class for the command - /start
     class Start < Base
-      DESCRIBED_COMMANDS = [
-        Command::Start,
-        Command::Semester,
-        Command::Subject,
-        Command::Submit,
-        Command::Status,
-        Command::Reset
-      ].freeze
-
       def start
-        send_message(response_message)
+        send_message(response_message, parse_mode: "markdown")
       end
 
       private
 
       def response_message
-        commands.inject(command_response("greeting") << "\n") do |result, command|
-          result << command_triggers(command)
-          result << " - #{command_desciption(command)}\n"
+        greeting = command_response("greeting") << "\n"
+        commands.inject(greeting) do |result, command|
+          result << "#{triggers(command)} - #{desciption(command)}\n"
         end
       end
 
       def commands
-        DESCRIBED_COMMANDS.map do |command_class|
-          command_class.to_s.sub(/.*Command::/, "").downcase
+        Bot::CommandDispatcher::AVAILABLE_COMMANDS.map do |command_class|
+          command_class.to_s.sub(%r{.*Command::}, "").downcase
         end
       end
 
-      def command_triggers(command)
+      def triggers(command)
         lookup = "commands.#{command}.triggers"
-        translate(lookup.to_sym).map { |t| "*#{t}*" }.join(", ")
+        translate(lookup).map { |trigger| "*#{trigger}*" }.join(", ")
       end
 
-      def command_desciption(command)
-        translate("commands.#{command}.description".to_sym)
+      def desciption(command)
+        translate("commands.#{command}.description")
       end
     end
   end

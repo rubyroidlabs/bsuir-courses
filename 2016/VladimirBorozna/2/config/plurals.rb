@@ -1,3 +1,5 @@
+require "i18n/backend/pluralization"
+
 russian_rule = lambda do |n|
   if n.zero?
     :zero

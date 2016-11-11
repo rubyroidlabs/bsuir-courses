@@ -1,7 +1,7 @@
 require_relative "../spec_helper"
 
-describe "SubjectNameParser" do
-  describe ".parse" do
+describe Bot::SubjectNameParser do
+  describe "#parse" do
     def parse(date)
       Bot::SubjectNameParser.parse(date)
     end

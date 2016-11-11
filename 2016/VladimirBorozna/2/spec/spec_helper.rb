@@ -4,4 +4,4 @@ require_all "lib"
 
 require "webmock/rspec"
 require_relative "support/vcr"
-require_relative "support/inbound_request_recorder"
+require_relative "support/factory_girl"

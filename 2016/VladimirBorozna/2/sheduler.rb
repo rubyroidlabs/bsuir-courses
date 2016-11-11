@@ -1,8 +1,9 @@
 require "clockwork"
 require "require_all"
 require_all "lib/workers"
+require_relative "seeds"
 
-# Module for clock proccess
+# :nodoc:
 module Clockwork
-  every(10.hour, "Send notificaionts") { NotifyWorker.perform_async }
+  every(24.hours, "Send notificaionts") { NotifyWorker.perform_async }
 end

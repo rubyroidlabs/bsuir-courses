@@ -2,48 +2,76 @@ module Bot
   module Command
     # Base class of user-based commands
     class Base
-      include Bot::Translation
+      include Bot::TranslationHelpers
 
-      attr_reader :user, :message, :api, :next_command
+      attr_reader :api,
+                  :user,
+                  :message,
+                  :next_command
 
-      def initialize(user, message)
-        @user = user
+      def initialize(api, user, message)
+        @api          = api
+        @user         = user
+        @message      = message
         @next_command = user.next_command
-        @message = message
-        @api = Bot.configuration.api
       end
 
       def should_start?
-        triggers = translate("triggers")
+        lookup = "#{command_scope}.#{class_name}.triggers"
+        triggers = translate(lookup)
         triggers.include?(text) || triggers.empty?
       end
 
       def start
-        fail NotImplementedError
+        fail(NotImplementedError)
       end
 
-      def select_next_command
-        user.next_command.reset
+      def set_next_method
+        return unless methods_defined?
+
+        if last_method?
+          next_command.reset
+        else
+          next_command.set(command_class.to_s, methods[next_method_index])
+        end
       end
+
+      protected
 
       def text
         @text ||= message.text
       end
 
-      protected
-
-      def send_message(response_text, options = {})
-        api.call(
-          "sendMessage",
-          chat_id:      user.telegram_id,
-          text:         response_text,
-          reply_markup: options[:reply_markup],
-          parse_mode:   "markdown"
-        )
+      def send_message(text, options = {})
+        options[:chat_id] = user.telegram_id
+        options[:text] = text
+        api.call("sendMessage", options)
       end
 
-      def class_name
-        self.class.to_s
+      private
+
+      def methods_defined?
+        command_class.const_defined?(:AVAILABLE_METHODS)
+      end
+
+      def last_method?
+        methods.size - 1 == method_index
+      end
+
+      def next_method_index
+        method_index.nil? ? 0 : method_index + 1
+      end
+
+      def method_index
+        @method_index ||= methods.index(next_command.method)
+      end
+
+      def methods
+        @methods ||= command_class::AVAILABLE_METHODS
+      end
+
+      def command_class
+        @command_class ||= self.class
       end
     end
   end

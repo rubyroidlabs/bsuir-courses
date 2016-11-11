@@ -4,48 +4,51 @@ require "date"
 require "json"
 
 module Bot
-  class Base #:nodoc:
-    attr_reader :webhook_path
+  class Base # :nodoc:
+    attr_reader :webhook_path,
+                :api,
+                :env
 
     def initialize
-      @webhook_path = Bot.configuration.webhook_path
+      config = Bot.configuration
+      @webhook_path = config.webhook_path
+      @api = config.api
     end
 
     def call(env)
-      return response_error unless request_verified?(env)
+      @env = env
+      return response_error unless request_verified?
 
-      update = update_data(env)
-      message = extract_message(update)
-      user = user_data(message.from)
-      dispatch(user, message)
-
+      dispatch
       response_ok
     end
 
-    def update_data(env)
+    def dispatch
+      data = extract_update_data(update)
+      user = get_user(data.from)
+      case data
+      when Telegram::Bot::Types::CallbackQuery
+        CallbackDispatcher.new(api, user, data).dispatch
+      when Telegram::Bot::Types::Message
+        CommandDispatcher.new(api, user, data).dispatch
+      end
+    end
+
+    def get_user(from)
+      User.find_or_create_by(from.id, from)
+    end
+
+    def update
       request_body = env["rack.input"].read
       json_data = JSON.parse(request_body, symbolize_keys: true)
       Telegram::Bot::Types::Update.new(json_data)
     end
 
-    def extract_message(update)
+    def extract_update_data(update)
       update.callback_query || update.message
     end
 
-    def dispatch(user, message)
-      case message
-      when Telegram::Bot::Types::CallbackQuery
-        CallbackDispatcher.new(user, message).dispatch
-      when Telegram::Bot::Types::Message
-        CommandDispatcher.new(user, message).dispatch
-      end
-    end
-
-    def user_data(from)
-      User.find_or_create_by(from)
-    end
-
-    def request_verified?(env)
+    def request_verified?
       env["PATH_INFO"].start_with?(webhook_path) && env["REQUEST_METHOD"] == "POST"
     end
 

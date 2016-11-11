@@ -1,39 +1,36 @@
 module Bot
-  module Translation # :nodoc:
+  # Module contains helper methods for message translation
+  module TranslationHelpers
     def translate(name, options = {})
-      lookup = "#{command_scope}.#{name}"
-      I18n.t(lookup, options.merge(default: name.to_sym))
+      I18n.t(name, options)
     end
 
     def command_response(name, options = {})
-      lookup = "#{command_scope}.response.#{name}"
-      I18n.t(lookup, options.merge(default: name.to_sym))
-    end
-
-    def error(name, options = {})
-      lookup = "#{command_scope}.errors.#{name}"
-      I18n.t(lookup, options.merge(default: "errors.#{name}"))
+      I18n.t("#{command_scope}.#{class_name}.responses.#{name}", options)
     end
 
     def callback_response(name, options = {})
-      lookup = "#{callback_scope}.response.#{name}"
-      I18n.t(lookup, options.merge(default: name.to_sym))
+      I18n.t("#{callback_scope}.#{class_name}.responses.#{name}", options)
+    end
+
+    def translate_error(name, options = {})
+      I18n.t("#{error_scope}.#{name}", options)
+    end
+
+    def error_scope
+      "errors"
     end
 
     def callback_scope
-      "callbacks.#{callback_name}"
-    end
-
-    def callback_name
-      self.class.to_s.split("::").last.gsub(/(.)([A-Z])/, '\1_\2').downcase
-    end
-
-    def command_name
-      self.class.to_s.sub(/.*Command::/, "").downcase
+      "callbacks"
     end
 
     def command_scope
-      "commands.#{command_name}"
+      "commands"
+    end
+
+    def class_name
+      self.class.to_s.split("::").last.gsub(%r{(.)([A-Z])}, '\1_\2').downcase
     end
   end
 end

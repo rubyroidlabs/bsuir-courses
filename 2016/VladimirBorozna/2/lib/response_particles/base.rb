@@ -1,7 +1,8 @@
 module Bot
-  module Response
-    class Base # :nodoc:
-      include Bot::Translation
+  module ResponseParticle
+    # Base class for a text particle which are used for user interaction
+    class Base
+      include Bot::TranslationHelpers
 
       attr_reader :user
 
@@ -9,7 +10,7 @@ module Bot
         @user = user
       end
 
-      def message
+      def text
         fail NotImplementedError
       end
     end

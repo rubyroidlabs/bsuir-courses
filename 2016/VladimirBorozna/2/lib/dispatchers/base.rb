@@ -1,7 +1,7 @@
 module Bot
   # Base class of dispachers
   class Dispatcher
-    include Bot::Translation
+    include Bot::TranslationHelpers
     attr_reader :api, :user
 
     def initialize(api, user)
