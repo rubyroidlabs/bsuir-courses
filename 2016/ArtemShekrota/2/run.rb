@@ -44,22 +44,19 @@ Telegram::Bot::Client.run(token) do |bot|
 
       bot.api.sendMessage(chat_id: message.chat.id, text: "When semester ends?")
 
-      answers_four = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: @month_hash.keys.each_slice(3).to_a, one_time_keyboard: true)
-      bot.api.send_message(chat_id: message.chat.id, text: question_month, reply_markup: answers_four)
+      bot.api.send_message(chat_id: message.chat.id, text: question_month, reply_markup: answers_one)
       bot.listen do |answer|
         @month = answer.text
         break
       end
 
-      answers_five = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: (1..@month_hash[@month.to_s]).to_a.map(&:to_s).each_slice(8).to_a, one_time_keyboard: true)
-      bot.api.send_message(chat_id: message.chat.id, text: question_day, reply_markup: answers_five)
+      bot.api.send_message(chat_id: message.chat.id, text: question_day, reply_markup: answers_two)
       bot.listen do |answer|
         @day = answer.text
         break
       end
 
-      answers_six = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard:[%w(2016), %w(2017)], one_time_keyboard: true)
-      bot.api.send_message(chat_id: message.chat.id, text: question_year, reply_markup: answers_six)
+      bot.api.send_message(chat_id: message.chat.id, text: question_year, reply_markup: answers_three)
       bot.listen do |answer|
         @year = answer.text
         break
