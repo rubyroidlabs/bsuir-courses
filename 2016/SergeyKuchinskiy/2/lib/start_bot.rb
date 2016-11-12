@@ -13,8 +13,7 @@ class StartBot < Bot
     "/reset\t\treset your data\n"\
     "/submit\t\twhen you pass a lab \n"\
     "/stop\t\tfor stop current command\n"\
-    "/memes\t\t\n"\
-    "/give_me_memes")
+    "/memes\t\t\n/give_me_memes")
     nil
   end
 end

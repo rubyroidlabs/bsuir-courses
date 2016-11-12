@@ -4,40 +4,35 @@ class EntryPoint < Bot
     super(bot, message)
   end
 
-  def run(subjects, semester)
-    begin
-      @message.text
-    rescue
-      return nil
-    end
+  def nil_message?
+    @message.text
+    return false
+  rescue
+    return true
+  end
 
-    case @message.text
-    when "/start"
-      return StartBot.new(@bot, @message).run
-    when "/semester"
-      if semester != {}
-        send_text_message("Already defined")
-        return nil
-      end
-      return SemesterBot.new(@bot, @message).run
-    when "/subject"
-      return SubjectBot.new(@bot, @message).start
-    when "/status"
-      return StatusBot.new(@bot, @message).run(subjects, semester)
-    when "/reset"
-      File.delete("UsersData/#{@message.from.id}")
-      send_text_message("Successfully deleted")
-      return "reset"
-    when "/submit"
-      return SubmitBot.new(@bot, @message).start(subjects)
-    when "/memes"
-      return MemesBot.new(@bot, @message).run
-    when "/give_me_memes"
-      return StickerBot.new(@bot, @message).run
-    else
-      send_text_message("#{@message.from.first_name}, I "\
+  def run(subjects, semester)
+    return nil if nil_message?
+    return StartBot.new(@bot, @message).run if @message.text == "/start"
+    return SemesterBot.new(@bot, @message, semester).run if @message.text == "/semester"
+    return SubjectBot.new(@bot, @message).start if @message.text == "/subject"
+    return StatusBot.new(@bot, @message, subjects, semester).run if @message.text == "/status"
+    return reset if @message.text == "/reset"
+    return SubmitBot.new(@bot, @message).start(subjects) if @message.text == "/submit"
+    return MemesBot.new(@bot, @message).run if @message.text == "/memes"
+    return StickerBot.new(@bot, @message).run if @message.text == "/give_me_memes"
+    not_command
+  end
+
+  def reset
+    File.delete("UsersData/#{@message.from.id}")
+    send_text_message("Successfully deleted")
+    "reset"
+  end
+
+  def not_command
+    send_text_message("#{@message.from.first_name}, I "\
         "have no idea what #{@message.text.inspect} means. Type /start")
-      return nil
-    end
+    nil
   end
 end

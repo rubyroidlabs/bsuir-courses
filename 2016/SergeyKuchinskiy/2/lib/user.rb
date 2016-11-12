@@ -11,6 +11,12 @@ class User
 
   def handler(message, bot)
     puts "current:   " + @current.inspect
+    controller(message, bot)
+    return nil if @current == "reset"
+    save_to_file
+  end
+
+  def controller(message, bot)
     if !@current
       @current = EntryPoint.new(bot, message).run(@subjects, @semester)
     elsif @current.include?("/subject")
@@ -18,10 +24,8 @@ class User
     elsif @current.include?("/submit")
       @current = SubmitBot.new(bot, message).handle(@current, @subjects)
     elsif @current.include?("/semester")
-      @current = SemesterBot.new(bot, message).handle(@current, @semester)
+      @current = SemesterBot.new(bot, message, @semester).handle(@current)
     end
-    return nil if @current == "reset"
-    save_to_file
   end
 
   def save_to_file
