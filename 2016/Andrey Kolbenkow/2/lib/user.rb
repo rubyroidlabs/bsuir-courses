@@ -91,6 +91,8 @@ class User
   end
 
   def delete
-    @database.delete_user(self)
+    @database.db.execute('DELETE FROM users WHERE id = ?', id)
+    @database.db.execute('DELETE FROM subjects WHERE user_id = ?', id)
+    @database.db.execute('DELETE FROM labs WHERE user_id = ?', id)
   end
 end

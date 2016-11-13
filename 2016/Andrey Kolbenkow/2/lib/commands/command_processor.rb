@@ -7,6 +7,7 @@ require_relative 'cancel.rb'
 require_relative 'subject.rb'
 require_relative 'command.rb'
 require_relative 'status.rb'
+require_relative 'reset.rb'
 
 class CommandProcessor
   def initialize

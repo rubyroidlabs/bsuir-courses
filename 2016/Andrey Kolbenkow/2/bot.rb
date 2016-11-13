@@ -4,15 +4,14 @@ require_relative 'lib/console.rb'
 require_relative 'lib/user.rb'
 require_relative 'lib/message_handler'
 
-KEYBOARD = [['/semestr  lalala'], ['/start commands'], ['/subject hahah'], ['submut ya sdal totototo']].freeze
-
 class Bot
   def initialize
     @console = Console.new
     @message_handler = MessageHandler.new
     @user = User.new
     @token = YAML.load_file('token.yml')['TOKEN']
-    @markup = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: KEYBOARD)
+    # ""
+    #@markup = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: KEYBOARD)
   end
 
   def run
