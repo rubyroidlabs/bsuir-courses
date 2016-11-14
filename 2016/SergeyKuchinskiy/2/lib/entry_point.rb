@@ -13,15 +13,27 @@ class EntryPoint < Bot
 
   def run(subjects, semester)
     return nil if nil_message?
-    return StartBot.new(@bot, @message).run if @message.text == "/start"
-    return SemesterBot.new(@bot, @message, semester).run if @message.text == "/semester"
-    return SubjectBot.new(@bot, @message).start if @message.text == "/subject"
-    return StatusBot.new(@bot, @message, subjects, semester).run if @message.text == "/status"
+    return info_commands(subjects, semester) if ["/start", "/status", "/memes", "/give_me_memes"].include?(@message.text)
+    return input_commands(subjects, semester) if ["/semester", "/subject", "/submit"].include?(@message.text)
     return reset if @message.text == "/reset"
-    return SubmitBot.new(@bot, @message).start(subjects) if @message.text == "/submit"
+    not_command
+  end
+
+  def info_commands(subjects, semester)
+    return StartBot.new(@bot, @message).run if @message.text == "/start"
+    return StatusBot.new(@bot, @message, subjects, semester).run if @message.text == "/status"
+    return memes_commands if ["/give_me_memes", "/memes"].include?(@message.text)
+  end
+
+  def memes_commands
     return MemesBot.new(@bot, @message).run if @message.text == "/memes"
     return StickerBot.new(@bot, @message).run if @message.text == "/give_me_memes"
-    not_command
+  end
+
+  def input_commands(subjects, semester)
+    return SemesterBot.new(@bot, @message, semester).run if @message.text == "/semester"
+    return SubjectBot.new(@bot, @message).run if @message.text == "/subject"
+    return SubmitBot.new(@bot, @message).start(subjects) if @message.text == "/submit"
   end
 
   def reset

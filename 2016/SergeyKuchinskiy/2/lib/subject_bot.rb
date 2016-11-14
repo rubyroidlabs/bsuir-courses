@@ -4,7 +4,7 @@ class SubjectBot < Bot
     super(bot, message)
   end
 
-  def start
+  def run
     send_text_message("What is the subject?")
     "/subject/save_subject"
   end

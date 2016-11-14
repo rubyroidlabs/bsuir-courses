@@ -14,19 +14,19 @@ class SemesterBot < Bot
 
   def handle(current)
     if current[10..-1].include?("start")
-      handle_for_start_semester
+      handle_for_start_semester(current)
     else
-      handle_for_finish_semester
+      handle_for_finish_semester(current)
     end
   end
 
-  def handle_for_start_semester
+  def handle_for_start_semester(current)
     return save_month_start if current[10..-1] == "month_start"
     return save_day_start if current[10..-1] == "day_start"
     return save_year_start if current[10..-1] == "year_start"
   end
 
-  def handle_for_finish_semester
+  def handle_for_finish_semester(current)
     return save_month_finish if current[10..-1] == "month_finish"
     return save_day_finish if current[10..-1] == "day_finish"
     return save_year_finish if current[10..-1] == "year_finish"
@@ -72,18 +72,8 @@ class SemesterBot < Bot
     @semester["year_finish"] = @message.text
     save_date_start
     save_date_finish
-    check_for_correct_input
+    CheckBot.new(@bot, @message, @semester).check_for_correct_input
     nil
-  end
-
-  def check_for_correct_input
-    residual = @semester["finish"] - @semester["start"]
-    if residual <= 0
-      send_text_message("Incorrect input")
-      @semester.clear
-    else
-      send_text_message("There are " + residual.to_i.to_s + " days in your semester")
-    end
   end
 
   def save_date_finish
