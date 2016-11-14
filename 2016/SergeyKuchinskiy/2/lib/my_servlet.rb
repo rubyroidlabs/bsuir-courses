@@ -3,9 +3,9 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
   def do_post(request, response)
     body = JSON.parse(request.body.tr("\n", " "))
     if body["callback_query"]
-      message =  Telegram::Bot::Types::Update.new(body).callback_query
+      message = Telegram::Bot::Types::Update.new(body).callback_query
     elsif body["message"]
-      message =  Telegram::Bot::Types::Update.new(body).message
+      message = Telegram::Bot::Types::Update.new(body).message
     end
     Telegram::Bot::Client.run(Secret::TOKEN) do |bot|
       handler(message, bot)
