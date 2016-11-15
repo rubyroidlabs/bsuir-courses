@@ -30,5 +30,9 @@ module Helper
     def not_passed_labs
       old_labs.each_index.select { |i| old_labs[i] == "not passed" }
     end
+
+    def accepted_labs(labs_amount)
+      "#{(labs_amount * days_ratio).to_i} из #{labs_amount}"
+    end
   end
 end
