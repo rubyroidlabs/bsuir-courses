@@ -21,6 +21,7 @@ end
 def init_hash(hash, count)
   hash["phrases"] = [{}] if hash["phrases"].nil?
   hash["phrases"][count] = {}
+  hash
 end
 
 def phrase_in_hash_helper(count, phrase, hash, user)
