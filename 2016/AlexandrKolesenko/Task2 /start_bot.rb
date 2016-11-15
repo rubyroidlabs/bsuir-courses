@@ -6,23 +6,23 @@ token = "YOUR_TELEGRAM_TOKEN"
 @stack = {}
 
 Telegram::Bot::Client.run(token) do |bot|
-  bot.listen do |message|
-  sm = lambda {|ms| bot.api.sendMessage(chat_id: message.chat.id, text: ms)}
-  name = message.from.first_name
+   bot.listen do |message|
+     sm = lambda {|ms| bot.api.sendMessage(chat_id: message.chat.id, text: ms)}
+     name = message.from.first_name
     case message.text
     when "/start"
-       sm.call("/start - выводит приветствие и описание всех доступных команд
+      sm.call("/start - выводит приветствие и описание всех доступных команд
         /semester - запоминает даты начала и конца семестра
 		/subject - добавляет предмет и количество лабораторных работ по нему
         /status - выводит твой список лаб, которые тебе предстоит сдать
         /reset - сбрасывает для пользователя все данные.")
     when "/semester"
       sm.call("Когда начинаем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
-      bot.listen do |message|
-        if v_date?(message.text) == false
+      bot.listen do |answer|
+        if v_date?(answer.text) == false
           sm.call("#{name}, ты пишешь шляпу. Нормально введи дату!")
         else
-          @date1 = Date.parse(message.text)
+          @date1 = Date.parse(answer.text)
           sm.call("Когда заканчиваем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
           break
         end
