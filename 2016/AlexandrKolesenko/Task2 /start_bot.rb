@@ -6,9 +6,9 @@ token = "YOUR_TELEGRAM_TOKEN"
 @stack = {}
 
 Telegram::Bot::Client.run(token) do |bot|
-   bot.listen do |message|
-     sm = lambda {|ms| bot.api.sendMessage(chat_id: message.chat.id, text: ms)}
-     name = message.from.first_name
+  bot.listen do |message|
+    sm = lambda {|ms| bot.api.sendMessage(chat_id: message.chat.id, text: ms)}
+    name = message.from.first_name
     case message.text
     when "/start"
       sm.call("/start - выводит приветствие и описание всех доступных команд
