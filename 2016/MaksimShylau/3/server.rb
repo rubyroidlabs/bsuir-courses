@@ -60,7 +60,7 @@ def username
   session[:username] ? session[:username] : "Hello stranger"
 end
 
-def get_regex(phrase)
+def regex(phrase)
   regex = /([a-zA-Z]+|[а-яА-Яё])+,?;?:?-?/.match(phrase)
   regex
 end
@@ -74,7 +74,7 @@ def edit_set_hash(hash, id, phrase, user, regex)
 end
 
 get "/" do
-  @hash = db.get_hash
+  @hash = db.hash
   @phrases = @hash["phrases"]
   @count = @hash["count"]
   @user = session[:username]
@@ -107,13 +107,13 @@ get "/new_phrase" do
 end
 
 post "/new_phrase" do
-  user_hash = db.get_user_hash
+  user_hash = db.user_hash
   redirect_if_spam(user_hash, session[:username])
-  regex = get_regex(params["phrase"])
+  regex = regex(params["phrase"])
   last_added_phrase(user_hash, session[:username])
   redirect "/new_phrase?phrase=#{params['phrase']}" if params["phrase"].empty? || regex.nil?
   @phrase_text = regex
-  hash = phrase_in_hash(@phrase_text, db.get_hash, session[:username])
+  hash = phrase_in_hash(@phrase_text, db.hash, session[:username])
   db.set_hash(hash)
   db.set_user_hash(user_hash)
   erb :new_phrase_added
@@ -126,7 +126,7 @@ get "/delete_all" do
 end
 
 get "/edit" do
-  hash = db.get_hash
+  hash = db.hash
   redirect "/" if params["id"].nil? || params["id"].to_i.negative? || params["id"].to_i > hash["count"].to_i - 1
   session[:previous_url] = "/edit?id=" + params["id"]
   redirect "/login" if session[:username].nil?
@@ -138,10 +138,10 @@ get "/edit" do
 end
 
 post "/edit" do
-  hash = db.get_hash
+  hash = db.hash
   phrase_to_join = params["phrase"]
   @phrase = hash["phrases"][params["id"].to_i]["text"]
-  regex = get_regex(phrase_to_join)
+  regex = regex(phrase_to_join)
   redirect "/edit?id=#{params[:id]}&phrase=#{phrase_to_join}" if params["phrase"].empty? || regex.nil?
   @phrase = [@phrase, regex.to_s].reject(&:empty?).join(" ")
   hash = edit_set_hash(hash, params["id"].to_i, @phrase, session[:username], regex.to_s)
