@@ -66,14 +66,24 @@ def regex(phrase)
   regex
 end
 
-def edit_set_hash(hash, id, phrase, user, regex)
+def put_phrase(hash, id, phrase, user)
   hash["phrases"][id]["text"] = phrase
   hash["phrases"][id]["edited_by"] = user
+  hash
+end
+
+def put_history(hash, id, hash_history)
+  hash["phrases"][id]["history"] = hash_history
+  hash["phrases"][id]["word_count"] += 1
+  hash
+end
+
+def edit_set_hash(hash, id, phrase, user, regex)
+  hash = put_phrase(hash, id, phrase, user)
   word_count = hash["phrases"][id]["word_count"]
   history = hash["phrases"][id]["history"]
   hash_history = history_in_hash(word_count, user, regex, history)
-  hash["phrases"][id]["history"] = hash_history
-  hash["phrases"][id]["word_count"] += 1
+  hash = put_history(hash, id, hash_history)
   hash
 end
 
