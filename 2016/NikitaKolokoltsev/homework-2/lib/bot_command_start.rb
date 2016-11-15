@@ -8,7 +8,7 @@ class BotCommandStart < BotCommand
     user = database_load(@message.chat.id)
     @message.text =~ %r{/start} && user[:previous_command].nil?
   rescue
-    true
+    false
   end
 
   def perform
