@@ -18,6 +18,11 @@ def history_in_hash(word_number, username, word, history)
   history
 end
 
+def init_hash(hash)
+  hash["phrases"] = [{}] if hash["phrases"].nil?
+  hash["phrases"][count] = {}
+end
+
 def phrase_in_hash_helper(count, phrase, hash, user)
   hash["phrases"] = [{}] if hash["phrases"].nil?
   hash["phrases"][count] = {}
