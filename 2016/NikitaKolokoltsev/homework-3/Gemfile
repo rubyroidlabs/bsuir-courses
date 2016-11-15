@@ -1,0 +1,13 @@
+source "https://rubygems.org"
+
+gem "sinatra"
+gem "slim"
+gem "activerecord"
+gem "sinatra-activerecord"
+gem "sqlite3"
+gem "rake"
+gem "require_all"
+gem "shotgun"
+gem "pry"
+gem "bcrypt"
+gem "sinatra-websocket"
