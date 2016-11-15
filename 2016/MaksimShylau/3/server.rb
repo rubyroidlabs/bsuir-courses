@@ -59,7 +59,7 @@ def redirect_if_spam(user_hash, user)
 end
 
 def username
-    session[:username] ? session[:username] : "Hello stranger"
+  session[:username] ? session[:username] : "Hello stranger"
 end
 
 def get_regex(phrase)
@@ -145,15 +145,14 @@ post "/edit" do
 	@phrase = hash["phrases"][params["id"].to_i]["text"]
 	regex = get_regex(phrase_to_join)
 	redirect "/edit?id=#{params[:id]}&phrase=#{phrase_to_join}" if params["phrase"].empty? || regex.nil?
-    @phrase = [@phrase, regex.to_s].reject(&:empty?).join(" ")
-    hash = edit_set_hash(hash, params["id"].to_i, @phrase, session[:username], regex.to_s)
+  @phrase = [@phrase, regex.to_s].reject(&:empty?).join(" ")
+  hash = edit_set_hash(hash, params["id"].to_i, @phrase, session[:username], regex.to_s)
 	db.set_hash(hash)
 	erb :edited
 end
 
 post "/login" do
 	redirect "/login" if params["username"].empty?
-	p params["username"]
 	session[:username] = params["username"]
 	where_user_came_from = session[:previous_url] || "/"
 	redirect to where_user_came_from
