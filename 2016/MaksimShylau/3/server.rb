@@ -21,7 +21,8 @@ end
 def phrase_in_hash_helper(count, phrase, hash, user)
   hash["phrases"] = [{}] if hash["phrases"].nil?
   hash["phrases"][count] = {}
-  hash["phrases"][count]["word_count"] = 0 if hash["phrases"][count]["word_count"].nil?
+  word_count = hash["phrases"][count]["word_count"]
+  hash["phrases"][count]["word_count"] = 0 if word_count.nil?
   hash["phrases"][count]["word_count"] += 1
   hash["phrases"][count]["text"] = phrase
   hash["phrases"][count]["edited_by"] = user
@@ -61,14 +62,17 @@ def username
 end
 
 def regex(phrase)
-  regex = /([a-zA-Z]+|[а-яА-Яё])+,?;?:?-?/.match(phrase)
+  regex = /([a-zA-Z']+|[а-яА-Яё])+,?;?:?-?/.match(phrase)
   regex
 end
 
 def edit_set_hash(hash, id, phrase, user, regex)
   hash["phrases"][id]["text"] = phrase
   hash["phrases"][id]["edited_by"] = user
-  hash["phrases"][id]["history"] = history_in_hash(hash["phrases"][id]["word_count"], user, regex, hash["phrases"][id]["history"])
+  word_count = hash["phrases"][id]["word_count"]
+  history = hash["phrases"][id]["history"]
+  hash_history = history_in_hash(word_count, user, regex, history)
+  hash["phrases"][id]["history"] = hash_history
   hash["phrases"][id]["word_count"] += 1
   hash
 end
