@@ -13,7 +13,7 @@ class Database
   end
 
   def std_hash
-    hash = unless @redis.get("public").nil?
+    hash = if !@redis.get("public").nil?
              JSON.parse(@redis.get("public")).to_hash
            else {}
            end
