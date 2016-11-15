@@ -24,11 +24,11 @@ def init_hash(hash)
 end
 
 def phrase_in_hash_helper(count, phrase, hash, user)
-  hash["phrases"] = [{}] if hash["phrases"].nil?
-  hash["phrases"][count] = {}
+  hash = init_hash(hash)
   word_count = hash["phrases"][count]["word_count"]
-  hash["phrases"][count]["word_count"] = 0 if word_count.nil?
-  hash["phrases"][count]["word_count"] += 1
+  word_count = 0 if word_count.nil?
+  word_count += 1
+  hash["phrases"][count]["word_count"] = word_count
   hash["phrases"][count]["text"] = phrase
   hash["phrases"][count]["edited_by"] = user
   hash
