@@ -87,7 +87,7 @@ get "/" do
 end
 
 get "/login" do
-  if !session[:username].nil? 
+  if !session[:username].nil?
     erb "<div class='alert alert-message'>You've already been authorized, #{session[:username]}!</div>"
   else
     erb :login

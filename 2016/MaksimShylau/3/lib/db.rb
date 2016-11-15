@@ -22,7 +22,7 @@ class Database
   end
 
   def get_std_user_hash
-    hash = unless @redis.get("users").nil?
+    hash = if !@redis.get("users").nil?
              JSON.parse(@redis.get("users")).to_hash
            else {}
            end
