@@ -27,11 +27,11 @@ Telegram::Bot::Client.run(token) do |bot|
           break
         end
       end
-      bot.listen do |message|
-        if v_date?(message.text) == false
+      bot.listen do |answer|
+        if v_date?(answer.text) == false
           sm.call("#{name}, ты пишешь шляпу. Нормально введи дату!")
         else
-          @date2 = Date.parse(message.text)
+          @date2 = Date.parse(answer.text)
           break
         end
       end
@@ -43,17 +43,17 @@ Telegram::Bot::Client.run(token) do |bot|
 
     when "/subject"
       sm.call("Как называется предмет?")
-      bot.listen do |message|
-        @task = message.text
+      bot.listen do |answer|
+        @task = answer.text
         break
       end
 
       sm.call("Сколько лаб нужно сдать?")
-        bot.listen do |message|
-          if !/\d+/.match(message.text) == true
+        bot.listen do |answer|
+          if !/\d+/.match(answer.text) == true
             sm.call("#{name}, будь человеком введи число!")
           else
-            @task_num = message.text
+            @task_num = answer.text
             sm.call("Принял.")
             break
           end
