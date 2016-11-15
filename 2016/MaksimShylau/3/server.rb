@@ -114,14 +114,14 @@ post "/new_phrase" do
   redirect "/new_phrase?phrase=#{params['phrase']}" if params["phrase"].empty? || regex.nil?
   @phrase_text = regex
   hash = phrase_in_hash(@phrase_text, db.hash, session[:username])
-  db.set_hash(hash)
-  db.set_user_hash(user_hash)
+  db.put_hash(hash)
+  db.put_user_hash(user_hash)
   erb :new_phrase_added
 end
 
 get "/delete_all" do
   hash = { "count" => 0 }
-  db.set_hash(hash)
+  db.put_hash(hash)
   redirect "/"
 end
 
@@ -145,7 +145,7 @@ post "/edit" do
   redirect "/edit?id=#{params[:id]}&phrase=#{phrase_to_join}" if params["phrase"].empty? || regex.nil?
   @phrase = [@phrase, regex.to_s].reject(&:empty?).join(" ")
   hash = edit_set_hash(hash, params["id"].to_i, @phrase, session[:username], regex.to_s)
-  db.set_hash(hash)
+  db.put_hash(hash)
   erb :edited
 end
 

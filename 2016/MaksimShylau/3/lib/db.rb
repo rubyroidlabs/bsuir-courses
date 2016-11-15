@@ -33,7 +33,7 @@ class Database
     JSON.parse(@redis.get("users")).to_hash
   end
 
-  def set_user_hash(hash)
+  def put_user_hash(hash)
     @redis.set("users", hash.to_json)
   end
 
@@ -42,7 +42,7 @@ class Database
     hash
   end
 
-  def set_hash(hash)
+  def put_hash(hash)
     @redis.set("public", hash.to_json)
   end
 end
