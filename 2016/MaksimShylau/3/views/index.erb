@@ -1,0 +1,5 @@
+<div class="list-group">
+<% 1.upto(@count) do |i| %>
+<a href="<% if @hash["phrases"][i - 1]["edited_by"] == @user %><%="#"%><%else%><%= "/edit?id=" +  (i - 1).to_s %><%end%>" class="list-group-item <%= "disabled" if @hash["phrases"][i - 1]["edited_by"] == @user %>"> <%= @phrases[i - 1]["text"] %><span class="badge"><%= i %></span></a>
+<% end %>
+</div>
