@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Фразы
+    meta name="keywords" content="template language"
+    link href="/vendor/css/bootstrap.min.css" rel="stylesheet" type="text/css"
+    link href="/stylesheets/application.css" rel="stylesheet" type="text/css"
+  body
+    - if session["user"].nil?
+      span
+        | Вы не зарегистрировались 
+        a href="/login" Войти
+    - else
+      span 
+        | Привет, 
+        = session["user"]
+    ==yield
