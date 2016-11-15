@@ -4,9 +4,9 @@ require "json"
 require "redis"
 require_relative "./lib/db"
 
-use Rack::Session::Cookie, :key => "session",
-                           :expire_after => Time.now.to_i + 2592000,
-                           :secret => "bla-bla-bla"
+use Rack::Session::Cookie, "key" => "session",
+                           "expire_after" => Time.now.to_i + 2592000,
+                           "secret" => "bla-bla-bla"
 db = Database.new
 
 def history_in_hash(word_number, username, word, history)
@@ -44,16 +44,14 @@ def last_added_phrase(hash, user)
 end
 
 def no_spam(time)
-  (Time.now.to_i < time.to_i + 30) ? true : false
+  Time.now.to_i < time.to_i + 30 ? true : false
 end
 
 def redirect_if_spam(user_hash, user)
   unless user_hash[user].nil?
     unless user_hash[user]["last_phrase_time"].nil?
       old_time = user_hash[user]["last_phrase_time"]
-      if no_spam(old_time)
-        redirect "/new_phrase?error=too_many_phrases"     
-      end
+      redirect "/new_phrase?error=too_many_phrases" if no_spam(old_time)
     end
   end
 end
@@ -89,7 +87,7 @@ get "/" do
 end
 
 get "/login" do
-  unless session[:username].nil? 
+  if !session[:username].nil? 
     erb "<div class='alert alert-message'>You've already been authorized, #{session[:username]}!</div>"
   else
     erb :login
@@ -98,7 +96,7 @@ end
 
 get "/logout" do
   session.delete(:username)
-  erb "<div class='alert alert-message'>You've been logged out</div>" # TODO ERB FILE
+  erb "<div class='alert alert-message'>You've been logged out</div>"
 end
 
 get "/new_phrase" do
@@ -113,7 +111,7 @@ post "/new_phrase" do
   redirect_if_spam(user_hash, session[:username])
   regex = get_regex(params["phrase"])
   last_added_phrase(user_hash, session[:username])
-  redirect "/new_phrase?phrase=#{params["phrase"]}" if params["phrase"].empty? || regex.nil?
+  redirect "/new_phrase?phrase=#{params['phrase']}" if params["phrase"].empty? || regex.nil?
   @phrase_text = regex
   hash = phrase_in_hash(@phrase_text, db.get_hash, session[:username])
   db.set_hash(hash)
@@ -122,14 +120,14 @@ post "/new_phrase" do
 end
 
 get "/delete_all" do
-  hash = {"count" => 0}
+  hash = { "count" => 0 }
   db.set_hash(hash)
   redirect "/"
 end
 
 get "/edit" do
   hash = db.get_hash
-  redirect "/" if params["id"].nil? || params["id"].to_i < 0 || params["id"].to_i > hash["count"].to_i - 1
+  redirect "/" if params["id"].nil? || params["id"].to_i.negative? || params["id"].to_i > hash["count"].to_i - 1
   session[:previous_url] = "/edit?id=" + params["id"]
   redirect "/login" if session[:username].nil?
   @id = params["id"].to_i
