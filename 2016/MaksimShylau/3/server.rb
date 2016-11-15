@@ -5,7 +5,7 @@ require "redis"
 require_relative "./lib/db"
 
 use Rack::Session::Cookie, "key" => "session",
-                           "expire_after" => Time.now.to_i + 2592000,
+                           "expire_after" => Time.now.to_i + 2_592_000,
                            "secret" => "bla-bla-bla"
 db = Database.new
 
