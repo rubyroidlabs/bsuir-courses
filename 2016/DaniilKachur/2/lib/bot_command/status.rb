@@ -9,8 +9,8 @@ module BotCommand
     end
 
     def start
-      send_message("К сегодняшнему дню тебе осталось сдать:\n#{labs_status}")
       user.reset_next_bot_command
+      send_message("К сегодняшнему дню тебе осталось сдать:\n#{labs_status}")
     end
 
     def labs_status

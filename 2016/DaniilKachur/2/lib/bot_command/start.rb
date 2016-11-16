@@ -6,6 +6,7 @@ module BotCommand
     end
 
     def start
+      user.reset_next_bot_command
       send_message("Привет. Я помогу тебе сдать все лабы, " \
                 "чтобы мамка не ругалась. Смотри что я умею:\n" \
               "/start - выводит приветствие и описание всех доступных команд\n" \
@@ -14,7 +15,6 @@ module BotCommand
               "/submit - отмечает какие лабы уже сдал\n" \
               "/status - выводит список лаб, которые тебе предстоит сдать\n" \
               "/reset - сбрасывает для пользователя все данные")
-      user.reset_next_bot_command
     end
   end
 end

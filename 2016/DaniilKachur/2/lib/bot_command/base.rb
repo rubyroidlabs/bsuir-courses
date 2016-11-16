@@ -28,8 +28,11 @@ module BotCommand
     end
 
     def text
-      msg = @message["message"]
-      msg.nil? ? @message["callback_query"]["data"] : msg["text"]
+      @message["message"]["text"] unless @message["message"].nil?
+    end
+
+    def text_from_button
+      @message["callback_query"]["data"] unless @message["callback_query"].nil?
     end
   end
 end

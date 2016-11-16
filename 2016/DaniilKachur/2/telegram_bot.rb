@@ -5,17 +5,16 @@ require "yaml"
 require "json"
 require "pry"
 
-# class for processing webhook
+# this class catch webhook message, create user instance, run dispatcher and send response
 class TelegramBot
   def call(env)
-    @webhook = JSON.parse(env["rack.input"].read)
-    response(dispatcher.new(@webhook, user).process)
+    @webhook_message = JSON.parse(env["rack.input"].read)
+    dispatcher.new(@webhook_message, user).process
+    empty_response
   end
 
-  def response(message)
-    ["200",
-     { "Content-Type" => "application/json" },
-     [message.to_json]]
+  def empty_response
+    ["200", { "Content-Type" => "application/json" }, []]
   end
 
   def dispatcher
@@ -23,10 +22,10 @@ class TelegramBot
   end
 
   def from
-    if @webhook["callback_query"].nil?
-      @webhook["message"]["from"]
+    if @webhook_message["callback_query"].nil?
+      @webhook_message["message"]["from"]
     else
-      @webhook["callback_query"]["from"]
+      @webhook_message["callback_query"]["from"]
     end
   end
 

@@ -43,6 +43,19 @@ GEM
       redis-store (~> 1.2.0)
     redis-store (1.2.0)
       redis (>= 2.2)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.0)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
     slop (3.6.0)
     telegram-bot-ruby (0.6.0.2)
       faraday
@@ -63,6 +76,7 @@ DEPENDENCIES
   rack (= 2.0.1)
   redis
   redis-rack
+  rspec
   telegram-bot-ruby (= 0.6.0.2)
 
 BUNDLED WITH

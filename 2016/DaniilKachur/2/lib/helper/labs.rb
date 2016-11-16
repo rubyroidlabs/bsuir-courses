@@ -1,25 +1,17 @@
 module Helper
   # useful methods for labs pocessing
   module Labs
-    def valid_labs?
-      if (text =~ /\A[0-1]?[0-5]\z/).nil?
-        send_message("Есть конечно разные преподы, но иметь больше 15 лаб вряд ли возможно.")
-      else
-        yield(new_labs)
-      end
-    end
-
     def new_labs
       Array.new(text.to_i) { "not passed" }
     end
 
     def old_labs
-      labs = user.subjects[text] || user.subjects[user.next_bot_command[:data][:subject]]
+      labs = user.subjects[text || text_from_button] || user.subjects[user.next_bot_command[:data][:subject]]
       labs.nil? ? [] : labs
     end
 
-    def update_labs
-      old_labs[text.to_i - 1] = "passed"
+    def submit_lab(lab_number)
+      old_labs[lab_number.to_i - 1] = "passed"
       old_labs
     end
 
