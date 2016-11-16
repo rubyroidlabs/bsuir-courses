@@ -21,13 +21,9 @@ module BotCommand
     def add_labs
       valid_labs? do |labs|
         send_message("Ок")
-        user.subjects.update(subject_name => labs)
+        user.subjects.update(user.next_bot_command[:data][:subject] => labs)
         user.reset_next_bot_command
       end
-    end
-
-    def subject_name
-      user.next_bot_command[:data][:subject]
     end
   end
 end

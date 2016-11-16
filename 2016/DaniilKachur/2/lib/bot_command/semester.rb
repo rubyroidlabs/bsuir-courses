@@ -13,7 +13,7 @@ module BotCommand
     end
 
     def start_date
-      valid_date? do |date|
+      valid_date?(text) do |date|
         user.semester[:start] = date
         send_message("Когда дедлайн по лабам?")
         user.next_bot_command.update(class: self.class, method: :finish_date)
@@ -21,7 +21,7 @@ module BotCommand
     end
 
     def finish_date
-      valid_date? do |date|
+      valid_date?(text) do |date|
         user.semester[:finish] = date
         send_message("Понял, дней до дедлайна: #{time_left}!")
         user.reset_next_bot_command

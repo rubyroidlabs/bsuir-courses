@@ -1,3 +1,4 @@
+require_relative "helper/buttons"
 require_relative "helper/date"
 require_relative "helper/labs"
 

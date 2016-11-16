@@ -2,21 +2,23 @@ module BotCommand
   # command status
   class Status < Base
     include Helper::Date
+    include Helper::Labs
 
     def should_start?
       text == "/status"
     end
 
     def start
-      send_message("К этому времени тебе осталось сдать:\n#{labs_status}")
+      send_message("К сегодняшнему дню тебе осталось сдать:\n#{labs_status}")
       user.reset_next_bot_command
     end
 
     def labs_status
       status = user.subjects.each.inject("") do |status_list, (subject, labs)|
-        status_list << "#{subject} - #{(1..labs.count).to_a.join(" ")} из #{labs.count}\n"
+        not_passed_labs(labs).empty? ? status_list : status_list << "#{subject} - #{not_passed_labs(labs).join(' ')} из #{labs.count}\n"
+        status_list
       end
-      status.empty? ? "Пока что ничего, прям как на каникулах." : status
+      status.empty? ? "Красава, все лабы сдал, или сейчас каникулы." : status
     end
   end
 end
