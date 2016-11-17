@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: rubyroid
+  pool: 2
+  username: colinforzeal
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: rubyroid
+  pool: 2
+  username: colinforzeal
+  password:

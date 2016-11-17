@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Winter
+  body
+    h1 Sing for Sinatra
+
+    #content
+      - unless @phrases.empty?
+        table
+          - @phrases.each do |phrase|
+            p = phrase.content
+      - else
+        p
+          | No phrases found. Add some!
+
