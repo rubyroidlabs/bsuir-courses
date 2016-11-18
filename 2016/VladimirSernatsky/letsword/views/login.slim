@@ -1,0 +1,16 @@
+header.container
+  nav.navbar
+    a.navbar-brand href="/list" Letsword
+.container
+  .row
+    section.col-md-offset-4.col-md-4
+      h1 Вход
+      form
+        .form-group
+          label for="user-name" Ваше имя
+          input.form-control#user-name name="user-name" type="text" placeholder="Имя" autofocus=""
+        .form-group
+          label for="user-password" Ваш пароль
+          input.form-control#user-password name="user-password" type="text" placeholder="Пароль"
+        button.btn type="submit" Войти
+        a.btn.btn-link href="signup" Или зарегестрироваться

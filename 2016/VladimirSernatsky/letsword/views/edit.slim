@@ -1,0 +1,27 @@
+header.container
+  nav.navbar
+    a.navbar-brand href="/list" Letsword
+    ul.nav.navbar-nav.navbar-right
+      li.nav-item
+        a.nav-link href="/logout" Выйти
+.container
+  .row
+    section.col-md-offset-4.col-md-4
+      table.table.table-condensed.table-bordered
+        tr
+          th Время
+          th Автор
+          th Слово
+          - for commit in @sentence.commits
+            tr
+              td = commit.created_at
+              td: a rel="author" = "@#{commit.user.name}"
+              td = commit.word
+      blockquote
+        p.lead = @sentence.text
+      form method="POST"
+        input type="hidden" name="action" value="edit"
+        input type="hidden" name="id" value=@sentence.id
+        .form-group
+          input.form-control name="word" type="text" placeholder="слово" autofocus=""
+        button.btn.btn-success type="submit" Добавить
