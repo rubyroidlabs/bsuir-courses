@@ -16,7 +16,7 @@ $(function () {
     } else {
       $("#shadow").fadeOut(400);
       $("#user-auth-window").dialog("close");
-    };
+    }
   });
 
   $("#shadow").click(function() {

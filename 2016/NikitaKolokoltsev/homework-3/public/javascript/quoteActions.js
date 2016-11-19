@@ -2,7 +2,7 @@ $(function() {
 
   // WEBSOCKETS
   var ws = new WebSocket("wss://" + window.location.host);
-  $("#new-quote-form").submit(function(e) {
+  $("#new-quote-form").submit(function() {
     var input = $("#new-quote-input")[0];
     if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
       ws.send(input.value)
@@ -12,11 +12,11 @@ $(function() {
     }
   });
 
-  $("#edit-quote-form").submit(function(e) {
+  $("#edit-quote-form").submit(function() {
     var input = $("#edit-quote-input")[0];
-    var quote_id = $("#edit-quote-input")[0].baseURI.split("/").pop();
+    var quoteId = $("#edit-quote-input")[0].baseURI.split("/").pop();
     if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
-      ws.send([quote_id, input.value]);
+      ws.send([quoteId, input.value]);
     } else {
       showWordFormatError();
       return false;
@@ -28,7 +28,7 @@ $(function() {
     $(".errors").fadeIn(300);
     setTimeout(function() {
       $(".errors").hide();
-    }, 2250)
+    }, 2250);
   }
 
   var showDotError = function() {
@@ -36,7 +36,7 @@ $(function() {
     $(".errors").fadeIn(300);
     setTimeout(function() {
       $(".errors").hide();
-    }, 2250)
+    }, 2250);
   }
 
   var showWordFormatError = function() {
@@ -52,7 +52,7 @@ $(function() {
       if (e.which == 32) {
         showSpaceError();
         return false;
-      };
+      }
 
       if (e.which == 46) {
         showDotError();
