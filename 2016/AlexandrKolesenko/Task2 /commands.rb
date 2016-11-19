@@ -57,14 +57,14 @@ class Subject < Base
       break
     end
     @sm.call("Сколько лаб нужно сдать?")
-      bot.listen do |answer|
-        if !/\d+/.match(answer.text) == true then @sm.call("#{@name}, будь человеком введи число!")
-        else
-          @sm.call("Принял.")
-          @redis.hmset("#{@user_id}-subj", @task, answer.text)
-          break
-        end
+    bot.listen do |answer|
+      if !/\d+/.match(answer.text) == true then @sm.call("#{@name}, будь человеком введи число!")
+      else
+        @sm.call("Принял.")
+        @redis.hmset("#{@user_id}-subj", @task, answer.text)
+        break
       end
+    end
   end
 end
 # Shows status
