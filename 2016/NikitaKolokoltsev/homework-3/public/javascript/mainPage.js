@@ -42,7 +42,8 @@ $(function() {
   var updateQuoteHTML = function(quoteID, responseText) {
     var html = $.parseHTML(responseText);
     var containerChildren = html[html.length - 1].children;
-    var quotesTableChildren = containerChildren[containerChildren.length - 1].children;
+    var quotesTableChildren =
+      containerChildren[containerChildren.length - 1].children;
     var ulChildren = quotesTableChildren[0];
     var quote = $(ulChildren).find("#" + quoteID);
     $("#" + quoteID)[0].outerHTML = quote[0].outerHTML;
@@ -51,10 +52,12 @@ $(function() {
   var addNewQuoteHTML = function(responseText) {
     var html = $.parseHTML(responseText);
     var containerChildren = html[html.length - 1].children;
-    var quotesTableChildren = containerChildren[containerChildren.length - 1].children;
+    var quotesTableChildren =
+      containerChildren[containerChildren.length - 1].children;
     var ulChildren = quotesTableChildren[0].children;
     var quote = ulChildren[0];
-    $("#quotes-list")[0].innerHTML = quote.outerHTML + $("#quotes-list")[0].innerHTML;
+    $("#quotes-list")[0].innerHTML = 
+      quote.outerHTML + $("#quotes-list")[0].innerHTML;
   };
 
   // WEBSOCKETS
