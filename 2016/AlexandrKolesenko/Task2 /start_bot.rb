@@ -2,7 +2,7 @@ require_relative "logic.rb"
 require_relative "commands.rb"
 require "redis"
 require "telegram/bot"
-token = "278085899:AAG_kHHWkT5DUiEMg-wCKLAQUvNaKV60bAk"
+token = "YOUR_TELEGRAM_TOKEN"
 
 
 
