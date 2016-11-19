@@ -10,10 +10,10 @@ $(function() {
         } else {
           $(this).addClass("redactor-show");
           $("#inline-redactor-for-" + $(this)[0].id).slideDown(500);
-        };
-      };
+        }
+      }
     });
-  };
+  }
 
   // WEBSOCKETS
   var ws = new WebSocket("wss://" + window.location.host);
@@ -28,8 +28,8 @@ $(function() {
       $.get("/", function(data) {
         addNewQuoteHTML(data);
       });
-    };
-  };
+    }
+  }
 
   // AJAX update quote from main page
   $(".inline-redactor-btn").click(function() {
@@ -50,7 +50,7 @@ $(function() {
     } else {
       showWordFormatError(errorsBlock);
       return false;
-    };
+    }
   });
 
   showInlineRedactor();
@@ -61,7 +61,7 @@ $(function() {
     setTimeout(function() {
       $(errorsBlock).hide();
     }, 2250);
-  };
+  }
 
   showDotError = function(errorsBlock) {
     $(errorsBlock)[0].innerHTML = "Dots are not allowed!"
@@ -69,7 +69,7 @@ $(function() {
     setTimeout(function() {
       $(errorsBlock).hide();
     }, 2250);
-  };
+  }
 
   showWordFormatError = function(errorsBlock) {
     $(errorsBlock)[0].innerHTML = "You can't add that!"
@@ -77,20 +77,20 @@ $(function() {
     setTimeout(function() {
       $(errorsBlock).hide();
     }, 2250);
-  };
+  }
 
   $(".inline-redactor-input").on("keypress", function(e) {
     if (e.which == 32) {
       var errorsBlock = $(this).parent()[0].lastChild;
       showSpaceError(errorsBlock);
       return false;
-    };
+    }
 
     if (e.which == 46) {
       var errorsBlock = $(this).parent()[0].lastChild;
       showDotError(errorsBlock);
       return false;
-    };
+    }
   });
 
   updateQuoteHTML = function(quoteID, responseText) {
@@ -100,7 +100,7 @@ $(function() {
     var ulChildren = quotesTableChildren[0];
     var quote = $(ulChildren).find("#" + quoteID);
     $("#" + quoteID)[0].outerHTML = quote[0].outerHTML;
-  };
+  }
 
   addNewQuoteHTML = function(responseText) {
     var html = $.parseHTML(responseText);
@@ -109,6 +109,6 @@ $(function() {
     var ulChildren = quotesTableChildren[0].children;
     var quote = ulChildren[0];
     $("#quotes-list")[0].innerHTML = quote.outerHTML + $("#quotes-list")[0].innerHTML;
-  };
+  }
 
 });
