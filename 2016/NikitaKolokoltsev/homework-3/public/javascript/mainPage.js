@@ -1,6 +1,6 @@
 $(function() {
 
-  showInlineRedactor = function() {
+  var showInlineRedactor = function() {
     $(".quote-able").click(function(event) {
       if ((event.target == this) || (event.target.tagName == "SPAN")) {
         if ($(this).hasClass("redactor-show"))  {
@@ -55,7 +55,7 @@ $(function() {
 
   showInlineRedactor();
 
-  showSpaceError = function(errorsBlock) {
+  var showSpaceError = function(errorsBlock) {
     $(errorsBlock)[0].innerHTML = "Spaces are not allowed!"
     $(errorsBlock).fadeIn(300);
     setTimeout(function() {
@@ -63,7 +63,7 @@ $(function() {
     }, 2250);
   }
 
-  showDotError = function(errorsBlock) {
+  var showDotError = function(errorsBlock) {
     $(errorsBlock)[0].innerHTML = "Dots are not allowed!"
     $(errorsBlock).fadeIn(300);
     setTimeout(function() {
@@ -71,7 +71,7 @@ $(function() {
     }, 2250);
   }
 
-  showWordFormatError = function(errorsBlock) {
+  var showWordFormatError = function(errorsBlock) {
     $(errorsBlock)[0].innerHTML = "You can't add that!"
     $(errorsBlock).fadeIn(300);
     setTimeout(function() {
@@ -93,7 +93,7 @@ $(function() {
     }
   });
 
-  updateQuoteHTML = function(quoteID, responseText) {
+  var updateQuoteHTML = function(quoteID, responseText) {
     var html = $.parseHTML(responseText);
     var containerChildren = html[html.length - 1].children;
     var quotesTableChildren = containerChildren[containerChildren.length - 1].children;
@@ -102,7 +102,7 @@ $(function() {
     $("#" + quoteID)[0].outerHTML = quote[0].outerHTML;
   }
 
-  addNewQuoteHTML = function(responseText) {
+  var addNewQuoteHTML = function(responseText) {
     var html = $.parseHTML(responseText);
     var containerChildren = html[html.length - 1].children;
     var quotesTableChildren = containerChildren[containerChildren.length - 1].children;
