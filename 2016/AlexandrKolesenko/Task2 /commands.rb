@@ -1,3 +1,4 @@
+# Base class for initialization
 class Base
   attr_accessor :bot
 
@@ -10,7 +11,7 @@ class Base
     @name = message.from.first_name
   end
 end
-
+# Shows all availiable commands
 class Start < Base
   def run
   @sm.call("/start - выводит приветствие и описание всех доступных команд
@@ -20,7 +21,7 @@ class Start < Base
 /reset - сбрасывает для пользователя все данные.")
   end
 end
-
+# Input for dates
 class Semester < Base
 
   def run
@@ -50,7 +51,7 @@ class Semester < Base
       end    
     end
 end
-
+# Input for subject
 class Subject < Base
   def run
     @sm.call("Как называется предмет?")
@@ -72,24 +73,25 @@ class Subject < Base
       @redis.hmset("#{@user_id}-subj", @task, @task_num)
   end
 end
-
- class Status < Base
-   def run 
-  if @redis.hget("#{@user_id}-date", "begin").nil?
-        @sm.call("Сначала введи начало и конец семестров (/semester)")
-      else
-        d1 = Date.parse(@redis.hget("#{@user_id}-date", "begin"))
-        d2 = Date.parse(@redis.hget("#{@user_id}-date", "end"))
-        countdown(d1, d2)
-        @sm.call("Осталось времени #{@eta} дней")
-        stack = @redis.hgetall("#{@user_id}-subj")
-        stack.each do |key, value|
-        taskcalc(value.to_i)
-        @sm.call("#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
-      end
-   end
+# Shows status
+class Status < Base
+  def run 
+    if @redis.hget("#{@user_id}-date", "begin").nil?
+      @sm.call("Сначала введи начало и конец семестров (/semester)")
+    else
+      d1 = Date.parse(@redis.hget("#{@user_id}-date", "begin"))
+      d2 = Date.parse(@redis.hget("#{@user_id}-date", "end"))
+      countdown(d1, d2)
+      @sm.call("Осталось времени #{@eta} дней")
+      stack = @redis.hgetall("#{@user_id}-subj")
+      stack.each do |key, value|
+      taskcalc(value.to_i)
+      @sm.call("#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
+    end
+  end
 end
 end
+# Deletes all user data
 class Reset < Base
   def run
     @redis.del("#{@user_id}-date", "#{@user_id}-subj")
