@@ -87,9 +87,9 @@ class Status < Base
       stack.each do |key, value|
       taskcalc(value.to_i)
       @sm.call("#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
+      end
     end
   end
-end
 end
 # Deletes all user data
 class Reset < Base

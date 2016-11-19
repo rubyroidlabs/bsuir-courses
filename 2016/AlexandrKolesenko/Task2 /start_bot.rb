@@ -6,7 +6,6 @@ token = "YOUR_TELEGRAM_TOKEN"
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-  name = message.from.first_name
     case message.text
     when "/start"
        Start.new(bot, message).run
