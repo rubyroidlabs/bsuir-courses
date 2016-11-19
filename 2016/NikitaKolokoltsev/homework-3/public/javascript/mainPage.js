@@ -62,7 +62,7 @@ $(function() {
 
   ws.onmessage = function(msg) {
     if (msg.data.split(",").length == 2) {
-      var quoteID = msg.data.split(",")[0]
+      var quoteID = msg.data.split(",")[0];
       $.get("/", function(data) {
         updateQuoteHTML(quoteID, data);
       });
@@ -71,7 +71,7 @@ $(function() {
         addNewQuoteHTML(data);
       });
     }
-  }
+  };
 
   // AJAX update quote from main page
   $(".inline-redactor-btn").click(function() {
@@ -86,8 +86,7 @@ $(function() {
         data : { text: input.value }
       }).always(function(response) {
         updateQuoteHTML(quoteID, response.responseText);
-        ws.send([quoteID, input.value])
-        console.log(quoteID + " - quoteID; " + input.value + " - input;")
+        ws.send([quoteID, input.value]);
       });
     } else {
       showWordFormatError(errorsBlock);
@@ -98,14 +97,13 @@ $(function() {
   showInlineRedactor();
 
   $(".inline-redactor-input").on("keypress", function(e) {
+    var errorsBlock = $(this).parent()[0].lastChild;
     if (e.which == 32) {
-      var errorsBlock = $(this).parent()[0].lastChild;
       showSpaceError(errorsBlock);
       return false;
     }
 
     if (e.which == 46) {
-      errorsBlock = $(this).parent()[0].lastChild;
       showDotError(errorsBlock);
       return false;
     }
