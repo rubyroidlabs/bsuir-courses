@@ -27,8 +27,7 @@ class Semester < Base
   def run
     @sm.call("Когда начинаем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
     @bot.listen do |message|
-      if v_date?(message.text) == false
-        @sm.call("#{@name}, ты пишешь шляпу. Нормально введи дату!")
+      if v_date?(message.text) == false then @sm.call("#{@name}, ты пишешь шляпу. Нормально введи дату!")
       else
         @date1 = Date.parse(message.text)
         @sm.call("Когда заканчиваем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
@@ -36,15 +35,14 @@ class Semester < Base
       end
   end
     @bot.listen do |answer|
-      if v_date?(answer.text) == false
-        @sm.call("#{name}, ты пишешь шляпу. Нормально введи дату!")
+      if v_date?(answer.text) == false then @sm.call("#{@name}, ты пишешь шляпу. Нормально введи дату!")
       else
         @date2 = Date.parse(answer.text)
         break
       end  
     end
       if countdown(@date1, @date2) == true
-      @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
+        @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
         @sm.call("В запасе дней:#{@eta}")
       else
         @sm.call("Время вышло")
@@ -61,8 +59,7 @@ class Subject < Base
       end
       @sm.call("Сколько лаб нужно сдать?")
         bot.listen do |answer|
-          if !/\d+/.match(answer.text) == true
-            @sm.call("#{@name}, будь человеком введи число!")
+          if !/\d+/.match(answer.text) == true then @sm.call("#{@name}, будь человеком введи число!")
           else
             @task_num = answer.text
             @sm.call("Принял.")
@@ -76,8 +73,7 @@ end
 # Shows status
 class Status < Base
   def run 
-    if @redis.hget("#{@user_id}-date", "begin").nil?
-      @sm.call("Сначала введи начало и конец семестров (/semester)")
+    if @redis.hget("#{@user_id}-date", "begin").nil?  then @sm.call("Сначала введи начало и конец семестров (/semester)")
     else
       d1 = Date.parse(@redis.hget("#{@user_id}-date", "begin"))
       d2 = Date.parse(@redis.hget("#{@user_id}-date", "end"))
