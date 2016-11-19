@@ -7,7 +7,7 @@ class Base
     @message = message
     @bot = bot
     @user_id = message.chat.id
-    @sm = -> { |ms| bot.api.sendMessage(chat_id: @message.chat.id, text: ms) }
+    @sm = ->(ms) { bot.api.sendMessage(chat_id: @message.chat.id, text: ms) }
     @name = message.from.first_name
   end
 end
