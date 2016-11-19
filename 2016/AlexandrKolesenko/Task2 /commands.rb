@@ -46,8 +46,8 @@ class Semester < Base
         @sm.call("В запасе дней:#{@eta}")
       else
         @sm.call("Время вышло")
-      end    
-    end
+      end
+  end
 end
 # Input for subject
 class Subject < Base
@@ -61,13 +61,11 @@ class Subject < Base
         bot.listen do |answer|
           if !/\d+/.match(answer.text) == true then @sm.call("#{@name}, будь человеком введи число!")
           else
-            @task_num = answer.text
             @sm.call("Принял.")
+            @redis.hmset("#{@user_id}-subj", @task, answer.text)
             break
           end
         end
-
-      @redis.hmset("#{@user_id}-subj", @task, @task_num)
   end
 end
 # Shows status
