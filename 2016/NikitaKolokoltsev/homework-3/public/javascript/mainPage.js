@@ -13,7 +13,7 @@ $(function() {
         }
       }
     });
-  }
+  };
 
   var showSpaceError = function(errorsBlock) {
     $(errorsBlock)[0].innerHTML = "Spaces are not allowed!";
@@ -29,7 +29,7 @@ $(function() {
     setTimeout(function() {
       $(errorsBlock).hide();
     }, 2250);
-  }
+  };
 
   var showWordFormatError = function(errorsBlock) {
     $(errorsBlock)[0].innerHTML = "You can't add that!";
@@ -37,7 +37,7 @@ $(function() {
     setTimeout(function() {
       $(errorsBlock).hide();
     }, 2250);
-  }
+  };
 
   var updateQuoteHTML = function(quoteID, responseText) {
     var html = $.parseHTML(responseText);
