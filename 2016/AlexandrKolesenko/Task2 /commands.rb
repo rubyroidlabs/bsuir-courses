@@ -23,7 +23,6 @@ class Start < Base
 end
 # Input for dates
 class Semester < Base
-
   def run
     @sm.call("Когда начинаем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
     @bot.listen do |message|
@@ -53,19 +52,19 @@ end
 class Subject < Base
   def run
     @sm.call("Как называется предмет?")
+    bot.listen do |answer|
+      @task = answer.text
+      break
+    end
+    @sm.call("Сколько лаб нужно сдать?")
       bot.listen do |answer|
-        @task = answer.text
-        break
-      end
-      @sm.call("Сколько лаб нужно сдать?")
-        bot.listen do |answer|
-          if !/\d+/.match(answer.text) == true then @sm.call("#{@name}, будь человеком введи число!")
-          else
-            @sm.call("Принял.")
-            @redis.hmset("#{@user_id}-subj", @task, answer.text)
-            break
-          end
+        if !/\d+/.match(answer.text) == true then @sm.call("#{@name}, будь человеком введи число!")
+        else
+          @sm.call("Принял.")
+          @redis.hmset("#{@user_id}-subj", @task, answer.text)
+          break
         end
+      end
   end
 end
 # Shows status
