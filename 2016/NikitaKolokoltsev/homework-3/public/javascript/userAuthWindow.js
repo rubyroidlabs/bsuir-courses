@@ -16,22 +16,22 @@ $(function () {
     } else {
       $("#shadow").fadeOut(400);
       $("#user-auth-window").dialog("close");
-    }
+    };
   });
 
   $("#shadow").click(function() {
     $("#user-auth-window").dialog("close");
     $("#shadow").fadeOut(400);
-  })
+  });
 
   $("#signUpWindowBtn").click(function() {
     $("#logInWindow").hide();
     $("#signUpWindow").fadeIn(300);
-  })
+  });
 
   $("#logInWindowBtn").click(function() {
     $("#signUpWindow").hide();
     $("#logInWindow").fadeIn(300);
-  })
+  });
  
 });

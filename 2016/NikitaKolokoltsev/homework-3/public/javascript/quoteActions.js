@@ -9,14 +9,14 @@ $(function() {
     } else {
       showWordFormatError();
       return false;
-    }
+    };
   });
 
   $("#edit-quote-form").submit(function(e) {
     input = $("#edit-quote-input")[0];
-    quote_id = $("#edit-quote-input")[0].baseURI.split("/").pop()
+    quote_id = $("#edit-quote-input")[0].baseURI.split("/").pop();
     if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
-      ws.send([quote_id, input.value])
+      ws.send([quote_id, input.value]);
     } else {
       showWordFormatError();
       return false;
@@ -24,7 +24,7 @@ $(function() {
   });
 
   showSpaceError = function() {
-    $(".errors")[0].innerHTML = "Spaces are not allowed!"
+    $(".errors")[0].innerHTML = "Spaces are not allowed!";
     $(".errors").fadeIn(300);
     setTimeout(function() {
       $(".errors").hide();
@@ -32,7 +32,7 @@ $(function() {
   }
 
   showDotError = function() {
-    $(".errors")[0].innerHTML = "Dots are not allowed!"
+    $(".errors")[0].innerHTML = "Dots are not allowed!";
     $(".errors").fadeIn(300);
     setTimeout(function() {
       $(".errors").hide();
@@ -40,7 +40,7 @@ $(function() {
   }
 
   showWordFormatError = function() {
-    $(".errors")[0].innerHTML = "You can't add that!"
+    $(".errors")[0].innerHTML = "You can't add that!";
     $(".errors").fadeIn(300);
     setTimeout(function() {
       $(".errors").hide();
@@ -66,7 +66,7 @@ $(function() {
   checkInput("#edit-quote-input");
 
   $(".disabled").on("click", function() {
-    $(".errors")[0].innerHTML = "You must wait when someone else will add a word."
+    $(".errors")[0].innerHTML = "You must wait when someone else will add a word.";
     $(".errors").fadeIn(300);
     return false;
   })
