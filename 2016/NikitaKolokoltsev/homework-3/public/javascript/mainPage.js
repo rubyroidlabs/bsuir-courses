@@ -15,6 +15,48 @@ $(function() {
     });
   }
 
+  var showSpaceError = function(errorsBlock) {
+    $(errorsBlock)[0].innerHTML = "Spaces are not allowed!";
+    $(errorsBlock).fadeIn(300);
+    setTimeout(function() {
+      $(errorsBlock).hide();
+    }, 2250);
+  }
+
+  var showDotError = function(errorsBlock) {
+    $(errorsBlock)[0].innerHTML = "Dots are not allowed!";
+    $(errorsBlock).fadeIn(300);
+    setTimeout(function() {
+      $(errorsBlock).hide();
+    }, 2250);
+  }
+
+  var showWordFormatError = function(errorsBlock) {
+    $(errorsBlock)[0].innerHTML = "You can't add that!";
+    $(errorsBlock).fadeIn(300);
+    setTimeout(function() {
+      $(errorsBlock).hide();
+    }, 2250);
+  }
+
+  var updateQuoteHTML = function(quoteID, responseText) {
+    var html = $.parseHTML(responseText);
+    var containerChildren = html[html.length - 1].children;
+    var quotesTableChildren = containerChildren[containerChildren.length - 1].children;
+    var ulChildren = quotesTableChildren[0];
+    var quote = $(ulChildren).find("#" + quoteID);
+    $("#" + quoteID)[0].outerHTML = quote[0].outerHTML;
+  };
+
+  var addNewQuoteHTML = function(responseText) {
+    var html = $.parseHTML(responseText);
+    var containerChildren = html[html.length - 1].children;
+    var quotesTableChildren = containerChildren[containerChildren.length - 1].children;
+    var ulChildren = quotesTableChildren[0].children;
+    var quote = ulChildren[0];
+    $("#quotes-list")[0].innerHTML = quote.outerHTML + $("#quotes-list")[0].innerHTML;
+  };
+
   // WEBSOCKETS
   var ws = new WebSocket("wss://" + window.location.host);
 
@@ -55,30 +97,6 @@ $(function() {
 
   showInlineRedactor();
 
-  var showSpaceError = function(errorsBlock) {
-    $(errorsBlock)[0].innerHTML = "Spaces are not allowed!"
-    $(errorsBlock).fadeIn(300);
-    setTimeout(function() {
-      $(errorsBlock).hide();
-    }, 2250);
-  }
-
-  var showDotError = function(errorsBlock) {
-    $(errorsBlock)[0].innerHTML = "Dots are not allowed!"
-    $(errorsBlock).fadeIn(300);
-    setTimeout(function() {
-      $(errorsBlock).hide();
-    }, 2250);
-  }
-
-  var showWordFormatError = function(errorsBlock) {
-    $(errorsBlock)[0].innerHTML = "You can't add that!"
-    $(errorsBlock).fadeIn(300);
-    setTimeout(function() {
-      $(errorsBlock).hide();
-    }, 2250);
-  }
-
   $(".inline-redactor-input").on("keypress", function(e) {
     if (e.which == 32) {
       var errorsBlock = $(this).parent()[0].lastChild;
@@ -87,28 +105,10 @@ $(function() {
     }
 
     if (e.which == 46) {
-      var errorsBlock = $(this).parent()[0].lastChild;
+      errorsBlock = $(this).parent()[0].lastChild;
       showDotError(errorsBlock);
       return false;
     }
   });
-
-  var updateQuoteHTML = function(quoteID, responseText) {
-    var html = $.parseHTML(responseText);
-    var containerChildren = html[html.length - 1].children;
-    var quotesTableChildren = containerChildren[containerChildren.length - 1].children;
-    var ulChildren = quotesTableChildren[0];
-    var quote = $(ulChildren).find("#" + quoteID);
-    $("#" + quoteID)[0].outerHTML = quote[0].outerHTML;
-  }
-
-  var addNewQuoteHTML = function(responseText) {
-    var html = $.parseHTML(responseText);
-    var containerChildren = html[html.length - 1].children;
-    var quotesTableChildren = containerChildren[containerChildren.length - 1].children;
-    var ulChildren = quotesTableChildren[0].children;
-    var quote = ulChildren[0];
-    $("#quotes-list")[0].innerHTML = quote.outerHTML + $("#quotes-list")[0].innerHTML;
-  }
 
 });
