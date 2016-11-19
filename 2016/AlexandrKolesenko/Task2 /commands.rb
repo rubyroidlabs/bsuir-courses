@@ -33,20 +33,20 @@ class Semester < Base
         @sm.call("Когда заканчиваем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
         break
       end
-  end
+    end
     @bot.listen do |answer|
       if v_date?(answer.text) == false then @sm.call("#{@name}, ты пишешь шляпу. Нормально введи дату!")
       else
         @date2 = Date.parse(answer.text)
         break
-      end  
-    end
-      if countdown(@date1, @date2) == true
-        @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
-        @sm.call("В запасе дней:#{@eta}")
-      else
-        @sm.call("Время вышло")
       end
+    end
+    if countdown(@date1, @date2) == true
+      @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
+      @sm.call("В запасе дней:#{@eta}")
+    else
+      @sm.call("Время вышло")
+    end
   end
 end
 # Input for subject
@@ -70,8 +70,8 @@ class Subject < Base
 end
 # Shows status
 class Status < Base
-  def run 
-    if @redis.hget("#{@user_id}-date", "begin").nil?  then @sm.call("Сначала введи начало и конец семестров (/semester)")
+  def run
+    if @redis.hget("#{@user_id}-date", "begin").nil? then @sm.call("Сначала введи начало и конец семестров (/semester)")
     else
       d1 = Date.parse(@redis.hget("#{@user_id}-date", "begin"))
       d2 = Date.parse(@redis.hget("#{@user_id}-date", "end"))
@@ -79,8 +79,8 @@ class Status < Base
       @sm.call("Осталось времени #{@eta} дней")
       stack = @redis.hgetall("#{@user_id}-subj")
       stack.each do |key, value|
-      taskcalc(value.to_i)
-      @sm.call("#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
+        taskcalc(value.to_i)
+        @sm.call("#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
       end
     end
   end
