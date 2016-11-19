@@ -22,8 +22,8 @@ link href="/stylesheets/jquery/jquery-ui.css" rel="stylesheet"
       | uote
 
   .quote-edit.text-center
-    - @quote.words.each do |w|
-      span data-toggle="popover" data-placement="top" title="Added by:" data-content="#{w.user.try(:first_name)} #{w.user.try(:last_name)}"
+    - @quote.words.each do |word|
+      span data-toggle="popover" data-placement="top" title="Added by:" data-content="#{word.user.try(:first_name)} #{word.user.try(:last_name)}"
         = w.text
         |  
 
@@ -50,7 +50,7 @@ link href="/stylesheets/jquery/jquery-ui.css" rel="stylesheet"
     - @quote.try(:words).reverse.each_with_index do |w, i|
       div
         = w.try(:user).first_name + " " + w.try(:user).last_name
-        = " - " + w.created_at.to_time.getlocal.strftime("%Y-%m-%d %H:%M:%S")
+        = " - " + w.created_at.in_time_zone("Europe/Minsk").strftime("%Y-%m-%d %H:%M:%S")
       div
         - @quote.try(:words).first(@quote.try(:words).size - i - 1).each do |wrd|
           = wrd.text + " "
