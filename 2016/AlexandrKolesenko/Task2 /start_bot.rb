@@ -16,8 +16,7 @@ Telegram::Bot::Client.run(token) do |bot|
     when "/status"
       Status.new(bot, message).run
     when "/reset"
-      Reset.new(bot,message).run
+      Reset.new(bot, message).run
     end
   end
 end
-
