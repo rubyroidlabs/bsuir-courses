@@ -1,0 +1,28 @@
+<form  method="POST" class="form-inline well" action="/new_phrase">
+  <h2 class="form-signin-heading">New phrase</h2>
+  <label for="inputWord" class="sr-only">Word</label>
+  <input size="60px" type="word1" id="inputWord" class="form-control" placeholder="New word" name="word1" required autofocus>
+  <% if session[:user_name] == nil %>
+    <button class="btn btn-primary" type="submit" disabled="true"> Add </button>
+  <% else %> 
+    <button class="btn btn-primary" type="submit" > Add </button>
+  <% end %>
+</form>
+<div class="container">
+  <h2>Current Phrases:</h2>
+  <ul class="list-group">
+  <% 1.upto @output.length do |i| %>
+  <li class="list-group-item" >
+    <form method='POST'action="/phrases/<%= @output[i - 1][0]%>" class="form-inline well">
+    <h3 id="redacted_phrase"> <%= @output[i -1][0]%> </h3>
+   <input type="text" name='phrase' placeholder="Continue a phrase" autofocus>
+   <% if ((@output[i - 1][1] == session[:user_name]) || (session[:user_name] == nil))%>
+     <input class="btn btn-success" type='submit' value='Submit' disabled="true">
+   <% else %>
+     <input class="btn btn-success" type='submit' value='Submit'>
+    <% end %>
+ </form>
+     </li>
+  <% end %>
+  </ul>
+</div>

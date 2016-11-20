@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+# gem "rails"
+gem 'sinatra'
+gem 'slim'
+gem 'redis'
+gem 'json'
+gem 'rack', '~> 1.5'
+  gem 'heroku'
+
+	gem 'pg'
