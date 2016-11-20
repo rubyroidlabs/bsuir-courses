@@ -17,32 +17,28 @@
   margin-top: 10px;
   border-left: 5px solid #a94442;
   padding-left: 10px;
-}
 
-#errors ul {
-  margin: 0px;
-  padding-left: 10px;
-}
+  ul {
+    margin: 0px;
+    padding-left: 10px;
+  }
 
-#errors li {
-  list-style-type: none;
-}
+  li {
+    list-style-type: none;
+  }
 
-#errors li:before {
-  content: '\b7\a0';
+  &::before {
+    content: '\b7\a0';
+  }
 }
 
 .phrases-table tbody tr:first-child td { border-top: 0px; }
 
 table thead tr th {
-  text-align: center !important;
-  border-bottom: 0px !important;
-}
-
-.navbar {
-  border-radius: 0px 0px 4px 4px !important;
+  text-align: center;
+  border-bottom: 0px;
 }
 
 .cannot-add {
-  color: #777 !important;
+  color: darkgrey;
 }
