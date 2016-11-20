@@ -76,12 +76,12 @@ class Base
           end
 
         when "/reset"
-        	@begin = nil
-        	@end = nil
-        	@sub = nil
-        	@num = nil
+          @begin = nil
+          @end = nil
+          @sub = nil
+          @num = nil
           @hash = {}
-        	bot.api.send_message(chat_id: message.chat.id, text: "rm -rf /, gentlemans. Have a nice day! c:")
+          bot.api.send_message(chat_id: message.chat.id, text: "rm -rf /, gentlemans. Have a nice day! c:")
       end
     end
   end
