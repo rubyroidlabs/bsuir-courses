@@ -61,7 +61,7 @@ $(function() {
   };
 
   // WEBSOCKETS
-  var ws = new WebSocket("wss://" + window.location.host);
+  var ws = new WebSocket("ws://" + window.location.host);
 
   ws.onmessage = function(msg) {
     if (msg.data.split(",").length == 2) {

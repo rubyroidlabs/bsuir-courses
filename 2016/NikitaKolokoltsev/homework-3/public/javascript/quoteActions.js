@@ -1,7 +1,7 @@
 $(function() {
 
   // WEBSOCKETS
-  var ws = new WebSocket("wss://" + window.location.host);
+  var ws = new WebSocket("ws://" + window.location.host);
   $("#new-quote-form").submit(function() {
     var input = $("#new-quote-input")[0];
     if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
