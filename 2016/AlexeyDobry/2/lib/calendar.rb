@@ -1,5 +1,7 @@
-def initislization
+def initialization
+  @begin_sem = begin_sem
   @end_sem = end_sem
+  @num = num
 end
 
 def sem_date (begin_sem, end_sem)
