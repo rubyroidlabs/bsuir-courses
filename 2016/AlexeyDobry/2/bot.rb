@@ -12,13 +12,13 @@ class Base
       case message.text
         when "/start"
           bot.api.send_message(chat_id: message.chat.id, text: "Здраствуй, #{message.from.first_name}!")
-          bot.api.send_message(chat_id: message.chat.id, text: "Пару вещей, которые ты должен знать: \n
-            /start - ты его видишь \n
-            /semestr - напоминание, чтобы не приуныть перед сессией (Даты вводить в стиле год-месяц-день или наоборот)\n
-            /subject - выплесни свой страх сюда, и кол-во страха тоже с: \n
-            /status - познай страх, чтобы не приуныть \n
-            /reset - rm -rf /dev/null \n
-            Развлекайся ;3")
+          bot.api.send_message(chat_id: message.chat.id, text: "Пару вещей, которые ты должен знать: \n")
+          bot.api.send_message(chat_id: message.chat.id, text: "/start - ты его видишь")
+          bot.api.send_message(chat_id: message.chat.id, text: "/semestr - напоминание, чтобы не приуныть перед сессией (Даты вводить в стиле год-месяц-день или наоборот)")
+          bot.api.send_message(chat_id: message.chat.id, text: "/subject - выплесни свой страх сюда, и кол-во страха тоже с: ")
+          bot.api.send_message(chat_id: message.chat.id, text: "/status - познай страх, чтобы не приуныть ")
+          bot.api.send_message(chat_id: message.chat.id, text: "/reset - rm -rf /dev/null ")
+          bot.api.send_message(chat_id: message.chat.id, text: "Развлекайся ;3")
         when "/semestr"
           bot.api.send_message(chat_id: message.chat.id, text: "Напомни дату, когда ТЗ было оформлено: ")
           if @today.nil?

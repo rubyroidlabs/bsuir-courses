@@ -18,4 +18,3 @@ def valid?(date_string)
 rescue
   return false
 end
-#fix
