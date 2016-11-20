@@ -1,4 +1,4 @@
-require 'bundler'
+require "bundler"
 Bundler.require
 
 ActiveRecord::Base.establish_connection(
@@ -6,4 +6,4 @@ ActiveRecord::Base.establish_connection(
   database: "db/development.sqlite"
 )
 
-require_all 'app'
+require_all "app"
