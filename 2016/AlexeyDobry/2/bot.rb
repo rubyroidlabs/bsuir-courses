@@ -3,7 +3,7 @@ require "telegram/bot"
 require_relative "./lib/calendar.rb"
 require_relative "./lib/subject.rb"
 
-# я не могу понять, тут коммент просят? Нуок, тип база
+# comment? pfffffff, here it is. Main base, blablabla, etc.
 class Base
   token = "273396926:AAEP9YaekvsgpG0gcMSmKMOWMXZWrrfZHLs"
   @hash = {}
