@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #check
+=======
+#tabs
+>>>>>>> b3108cfd7b3008f91f997aaffd2e350147258bc0
 module RequestsMethods
 	DELAY = 30
 	def output_all_phrases(redis)
