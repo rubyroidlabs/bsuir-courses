@@ -1,15 +1,15 @@
-require 'erb'
-require 'date'
+require "erb"
+require "date"
 # ApplicationController
 class ApplicationController < Sinatra::Base
   configure do
-    set :public_folder, File.expand_path("", Dir.pwd) + '/app/public'
-    set :views, File.expand_path("", Dir.pwd) + '/app/views'
+    set :public_folder, File.expand_path("", Dir.pwd) + "/app/public"
+    set :views, File.expand_path("", Dir.pwd) + "/app/views"
     enable :sessions
     set :session_secret, "password_security"
   end
 
-  get '/' do
+  get "/" do
     # binding.pry
     if !logged_in?
       erb :signup_login, layout: nil
@@ -18,28 +18,28 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/log_out' do
+  get "/log_out" do
     session[:user_id] = nil
-    redirect to '/'
+    redirect to "/"
   end
 
-  post '/sign_up' do
+  post "/sign_up" do
     @user = User.create(
-      first_name: params['first_name'],
-      last_name: params['last_name'],
-      email: params['email'],
-      password: params['password']
+      first_name: params["first_name"],
+      last_name: params["last_name"],
+      email: params["email"],
+      password: params["password"]
     )
     session[:user_id] = @user.id
-    redirect to '/'
+    redirect to "/"
   end
 
-  post '/login' do
+  post "/login" do
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
     end
-    redirect to '/'
+    redirect to "/"
   end
 
   get "/new_phrase" do
@@ -54,17 +54,17 @@ class ApplicationController < Sinatra::Base
     redirect to "/"
   end
 
-  get '/phrase/:id' do
+  get "/phrase/:id" do
     @phrase = Phrase.find(params[:id])
     erb :phrase_edit
   end
 
-  post '/phrase/:id' do
+  post "/phrase/:id" do
     word = params[:word]
     redirect to "/phrase/#{params[:id]}" if word.match(/^[\w]+$/).nil?
     Word.create(data: word, published_at: DateTime.now, user_id: session[:user_id], phrase_id: params[:id])
     Phrase.find(params[:id]).update(last_user: session[:user_id])
-    redirect to '/'
+    redirect to "/"
   end
 
   def logged_in?
