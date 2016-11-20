@@ -3,9 +3,9 @@ require "telegram/bot"
 require_relative "./lib/calendar.rb"
 require_relative "./lib/subject.rb"
 
-
+# я не могу понять, тут коммент просят? Нуок, тип база
 class Base
-  token = '273396926:AAEP9YaekvsgpG0gcMSmKMOWMXZWrrfZHLs'
+  token = "273396926:AAEP9YaekvsgpG0gcMSmKMOWMXZWrrfZHLs"
   @hash = {}
   Telegram::Bot::Client.run(token) do |bot|
     bot.listen do |message|
@@ -43,7 +43,7 @@ class Base
               bot.api.send_message(chat_id: message.chat.id, text: "У тя #{@today} дней до дедлайна")
             end
           else
-          	bot.api.send_message(chat_id: message.chat.id, text: "У тя #{@today} дней до дедлайна")
+            bot.api.send_message(chat_id: message.chat.id, text: "У тя #{@today} дней до дедлайна")
           end
         when "/subject"
           bot.api.send_message(chat_id: message.chat.id, text: "От какого предмета избавляемся?")
