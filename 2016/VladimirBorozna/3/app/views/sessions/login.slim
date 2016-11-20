@@ -1,0 +1,15 @@
+form.form-horizontal method="post" action="/sessions/login"
+  .modal-header
+    button.close data-dismiss="modal" type="button" &times;
+    h4.modal-title Log In
+  .modal-body
+    .form-group
+      .col-sm-12
+        input#name.form-control name="name" placeholder="Name"
+    .row
+      .col-sm-12
+        input#pwd.form-control name="password" placeholder="Password" type="password"
+  .modal-footer
+    .row
+      .col-sm-offset-3.col-sm-9
+        button.btn.btn-default type="submit" Submit
