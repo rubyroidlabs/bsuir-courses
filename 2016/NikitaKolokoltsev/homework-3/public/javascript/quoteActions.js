@@ -29,7 +29,7 @@ $(function() {
     setTimeout(function() {
       $(".errors").hide();
     }, 2250);
-  }
+  };
 
   var showDotError = function() {
     $(".errors")[0].innerHTML = "Dots are not allowed!";
@@ -37,7 +37,7 @@ $(function() {
     setTimeout(function() {
       $(".errors").hide();
     }, 2250);
-  }
+  };
 
   var showWordFormatError = function() {
     $(".errors")[0].innerHTML = "You can't add that!";
@@ -45,7 +45,7 @@ $(function() {
     setTimeout(function() {
       $(".errors").hide();
     }, 2250);
-  }
+  };
 
   var checkInput = function(input) {
     $(input).on("keypress", function(e) {
@@ -59,7 +59,7 @@ $(function() {
         return false;
       }
     });
-  }
+  };
 
   // Do not allow to enter spaces or dots
   checkInput("#new-quote-input");
