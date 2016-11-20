@@ -1,0 +1,9 @@
+== slim :header
+
+.container
+  .vert-center.well
+    form.form-inline action='/new' method='post'
+      .col-md-8
+        input.form-control type='text' name='word' placeholder='Введите слово' autofocus=true required="required" pattern="[A-Za-zА-Яа-я0-9]+[,.!?:-]?" title="Разрешенные символы: буквы, цифры. Знаки препинания в конце слова"
+      .col-md-4
+        input.btn.btn-success type='submit' value='Добавить'
