@@ -7,7 +7,7 @@ configure do
 end
 
 set :redis, Redis.new
-# for heroku 
+# for heroku
 # set :uri, URI.parse(ENV["REDISTOGO_URL"])
 # set :redis, Redis.new(:host => settings.uri.host, :port => settings.uri.port, :password => settings.uri.password)
 
