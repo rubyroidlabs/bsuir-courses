@@ -1,4 +1,4 @@
-
+#tabs
 module RequestsMethods
 	DELAY = 30
 	def output_all_phrases(redis)
