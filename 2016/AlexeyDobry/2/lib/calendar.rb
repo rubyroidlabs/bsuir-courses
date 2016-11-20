@@ -4,7 +4,7 @@ def initialization
   @num = num
 end
 
-def sem_date (begin_sem, end_sem)
+def sem_date(begin_sem, end_sem)
   a = Date.today
   @today = (end_sem - a).to_i
   true

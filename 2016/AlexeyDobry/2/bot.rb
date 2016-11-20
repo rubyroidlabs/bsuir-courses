@@ -20,7 +20,7 @@ class Base
             Развлекайся ;3")
         when "/semestr"
           bot.api.send_message(chat_id: message.chat.id, text: "Напомни дату, когда ТЗ было оформлено: ")
-          if @now.nil?
+          if @today.nil?
             bot.listen do |anwser|
               if valid?(anwser.text) == false
                 bot.api.send_message(chat_id: message.chat.id, text: "Так и приуныть можно, введи дату правильно")
@@ -53,7 +53,7 @@ class Base
           end
           bot.api.send_message(chat_id: message.chat.id, text: "Сколько лаб?")
           bot.listen do |anwser|
-            if !/\d+/.match(anwser.text) == true then 
+            if !/\d+/.match(anwser.text) == true then
               bot.api.send_message(chat_id: message.chat.id, text: "Пффф, я не телепат. Введи число: ")
             else
               @num = anwser.text
