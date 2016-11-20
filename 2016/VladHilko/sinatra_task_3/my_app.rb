@@ -6,9 +6,10 @@ configure do
   enable :sessions
 end
 
-# set :redis, Redis.new
-set :uri, URI.parse(ENV["REDISTOGO_URL"])
-set :redis, Redis.new(:host => settings.uri.host, :port => settings.uri.port, :password => settings.uri.password)
+set :redis, Redis.new
+# for heroku 
+# set :uri, URI.parse(ENV["REDISTOGO_URL"])
+# set :redis, Redis.new(:host => settings.uri.host, :port => settings.uri.port, :password => settings.uri.password)
 
 helpers do
   def username
