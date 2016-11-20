@@ -21,7 +21,7 @@ $(function() {
     setTimeout(function() {
       $(errorsBlock).hide();
     }, 2250);
-  }
+  };
 
   var showDotError = function(errorsBlock) {
     $(errorsBlock)[0].innerHTML = "Dots are not allowed!";
