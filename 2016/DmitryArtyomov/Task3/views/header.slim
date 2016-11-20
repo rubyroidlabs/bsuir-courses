@@ -1,0 +1,30 @@
+== slim :head
+body
+  .container
+    nav.navbar.navbar-inverse
+      .navbar-header
+        button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
+          span.sr-only Меню
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand href="/" E-Phrase
+
+      .navbar-collapse.collapse        
+        - if session[:username]
+          ul.nav.navbar-nav
+            li
+              a href="/new" Добавить фразу
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
+              a.dropdown-toggle href="#" data-toggle="dropdown"
+                | Привет, #{session[:username]} 
+                b.caret
+              ul.dropdown-menu
+                li
+                  a href="/logout" Выйти
+        - else
+          form.navbar-form.navbar-right action='/login' method='post'
+            .form-group
+              input.form-control type="text" name="username" required="required" pattern="\s*\S.{1,28}\S\s*" placeholder="Логин" title="Введите имя (от 3 до 30 символов)"
+            button.btn.btn-success#btn-login type="submit" Войти
