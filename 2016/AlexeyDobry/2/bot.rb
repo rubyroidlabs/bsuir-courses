@@ -62,6 +62,7 @@ class Base
             end
           end
           @hash = @hash.merge(Hash[@sub, @num])
+
         when "/status"
           if @today.nil?
             bot.api.send_message(chat_id: message.chat.id, text: ":")
@@ -73,6 +74,7 @@ class Base
               bot.api.send_message(chat_id: message.chat.id, text: "Ты должен был сдать #{@lab} из #{value} лаб")
             end
           end
+
         when "/reset"
           @begin = nil
           @end = nil

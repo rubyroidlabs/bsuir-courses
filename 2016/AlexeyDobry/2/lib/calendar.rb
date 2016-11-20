@@ -14,7 +14,7 @@ def valid?(date_string)
   x = Date.parse(date_string).to_s
   y, m, d = x.split "-"
   Date.valid_date? y.to_i, m.to_i, d.to_i
-  return true
-rescue
-  return false
+    return true
+  rescue
+    return false
 end
