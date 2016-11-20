@@ -50,13 +50,21 @@ class ApplicationController < Sinatra::Base
 
   def create_web_socket_connection
     request.websocket do |ws|
-      ws.onopen { settings.sockets << ws }
+      ws.onopen { add_websocket(ws) }
       ws.onmessage { |msg| send_message(msg) }
-      ws.onclose { settings.sockets.delete(ws) }
+      ws.onclose { delete_websocket(ws) }
     end
   end
 
   def send_message(msg)
     EM.next_tick { settings.sockets.each { |s| s.send(msg) } }
+  end
+
+  def add_websocket(ws)
+    settings.sockets << ws
+  end
+
+  def delete_websocket(ws)
+    settings.sockets.delete(ws)
   end
 end
