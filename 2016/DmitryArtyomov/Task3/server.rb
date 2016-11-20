@@ -11,7 +11,7 @@ helpers do
   end
 
   def acceptable_word?(word)
-    word =~ /^[A-Za-zА-Яа-я0-9]+[,.!?:-]?$/
+    word =~ /[A-Za-zА-Яа-я0-9]{1,20}[,!?:-]?/ && word.length < 32
   end
 
   def can_write?(phrase_id)

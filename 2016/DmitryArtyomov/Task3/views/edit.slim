@@ -7,7 +7,7 @@
     form action="/edit/#{@id}/" method='post'
       .row
         .col-md-4.col-md-offset-3
-          input.form-control type='text' name='word' placeholder='Введите слово' autofocus=true required="required" pattern="[A-Za-zА-Яа-я0-9]+[,!?:-]?" title="Разрешенные символы: буквы, цифры. Знаки препинания в конце слова"
+          input.form-control type='text' name='word' placeholder='Введите слово' autofocus=true required="required" maxlength=31 pattern="[A-Za-zА-Яа-я0-9]{1,30}[,!?:-]?" title="Разрешенные символы: буквы, цифры. Знаки препинания в конце слова. Длина слова не более 30 символов"
         .col-md-2
           input.btn.btn-block.btn-success type='submit' value='Добавить'
   .well.history
