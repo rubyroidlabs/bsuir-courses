@@ -3,15 +3,23 @@ html
   head
     title Фразы
     meta name="keywords" content="template language"
-    link href="/vendor/css/bootstrap.min.css" rel="stylesheet" type="text/css"
+    link href="/vendor/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen"
     link href="/stylesheets/application.css" rel="stylesheet" type="text/css"
+    script src="//code.jquery.com/jquery-1.12.0.min.js"
+    script src="/js/application.js"
   body
-    - if session["user"].nil?
-      span
-        | Вы не зарегистрировались 
-        a href="/login" Войти
-    - else
-      span 
-        | Привет, 
-        = session["user"]
+    div.header
+      a href="/" Главная 
+      div.login
+        - if session["user"].nil?
+          span
+            | Вы не зарегистрировались 
+            a href="/login" Войти
+        - else
+          span 
+            | Привет, 
+            = session["user"]
+            |  
+            a href="/exit" Выйти
+      hr
     ==yield

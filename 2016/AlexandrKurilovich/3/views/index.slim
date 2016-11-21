@@ -1,1 +1,13 @@
-link href="/stylesheets/index.css" rel="stylesheet" type="text/css"
+span.success_update = @success_update
+div.phrases
+  h1 Фразы
+  - @phrases.each do |phrase|
+    div.content
+      - if phrase[2]
+        div.not_update
+          a href="/show?id=#{phrase[1]}" ==phrase[0].join(" ")
+      - else 
+        div.can_update
+          a href="/show?id=#{phrase[1]}" ==phrase[0].join(" ")
+  br
+  a href="/new" class="btn btn-success" Создать фразу 

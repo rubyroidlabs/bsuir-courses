@@ -1,1 +1,31 @@
+$green: rgb(63, 254, 111)
+$red: rgb(238, 62, 31)
 
+body
+  padding: 10px
+  margin-left: 20px
+  margin-right: 20px
+span.invalid_text
+  color: red
+div.can_update
+  border-left: 3px solid $green
+  padding: 8px
+  font-size: 20px
+  margin-bottom: 2px
+div.not_update
+  @extend div.can_update
+  border-left: 3px solid $red
+  a
+    color: rgb(143, 143, 143)
+div.header
+  padding-top: 10px
+  font-size: 20px
+div.login
+  float: right
+span.success_update
+  color: $red
+strong
+  color: rgb(50, 148, 184)
+span.not_add
+  color: rgb(50, 148, 184)
+  font-size: 16px
