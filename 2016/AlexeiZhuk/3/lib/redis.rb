@@ -1,4 +1,5 @@
 # work
+
 module Database
   # work with redis
   def self.set(key, data)
