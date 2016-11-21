@@ -37,7 +37,7 @@ get "/exit" do
   redirect to("/")
 end
 
-get '/new' do
+get "/new" do
   redirect to("/") if session["user"].nil?
   slim :new
 end
@@ -68,7 +68,7 @@ end
 post "/show" do
   show_help = ShowHelp.new(redis, session, params)
   if show_help.valid_word?
-    redirect to("/show?id=#{@params[:word]["id"]}&fail=true")
+    redirect to("/show?id=#{@params[:word]['id']}&fail=true")
   else
     show_help.save
     redirect to("/")
