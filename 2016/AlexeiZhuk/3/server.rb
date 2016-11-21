@@ -63,31 +63,22 @@ data = Database.get_db("db")
   end
 
   post "/new_create" do
-    add_phrase(params["phrase"] )
+    add_phrase(params["phrase"])
     redirect to "/"
   end
 
   def add_phrase(value)
-    if Database.get_db("db") != nil
-      data = Database.get_db("db") 
-      @hash = data["phrase"]
-      if @hash.nil?
-        history_hash = create_history(session[:username], value)      
-        @hash ={ "0" => {"text" => value ,  "id_user" => session[:username], "history" => { 1 =>history_hash }}}
-      else  
-        @count = @hash.count
-        history_hash = create_history(session[:username], value)      
-        @hash[@count]  = {"text" => value ,  "id_user" => session[:username], "history" => { 1 =>history_hash }}
-      end
+    @hash = data["phrase"]
+    history_hash = create_history(session[:username], value)
+    if @hash.nil?
+      @hash = { "0" => { "text" => value ,  "id_user" => session[:username], "history" => { 1 => history_hash } } }
     else
-      @hash = { 0 => value }
+      @hash[@hash.count] = { "text" => value ,  "id_user" => session[:username], "history" => { 1 => history_hash } }
     end
-      Database.set("db", "phrase" => @hash)
+    Database.set("db", "phrase" => @hash)
   end
 
   def create_history(id_user, word)
     current_time = (Date.today).to_s
-    history_hash = { "id_user" => id_user, "text" => word, "time" => current_time }
+    { "id_user" => id_user, "text" => word, "time" => current_time }
   end
-
-   
