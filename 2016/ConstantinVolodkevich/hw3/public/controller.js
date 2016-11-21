@@ -56,9 +56,6 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
             console.log($scope.word)
             var postData = {'word': $scope.word, 'user': $window.localStorage['user']};
             $http.post('api/phrases/' + id + '/words', postData)
-                .success(function(data) {
-
-                })
 
         };
 
@@ -76,7 +73,7 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
             $state.go('history')
 
         }
-    }])
+    }]);
 
     gameApp.factory('httpRequestInterceptor', ['$window', function ($window) {
         return {
@@ -87,7 +84,7 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
                 return config;
             }
         };
-    }])
+    }]);
 
 gameApp.config(["$httpProvider", function ($httpProvider) {
      $httpProvider.interceptors.push('httpRequestInterceptor');
@@ -103,7 +100,7 @@ gameApp.component('myContent', {
         $ctrl.dataForModal = {
             name: 'NameToEdit',
             value: 'ValueToEdit'
-        }
+        };
         $ctrl.open = function() {
             $uibModal.open({
                 component: "myModal",
@@ -114,10 +111,10 @@ gameApp.component('myContent', {
                 }
             }).result.then(function(result) {
 
-                console.info("I was closed, so do what I need to do myContent's controller now.  Result was->");
+                console.info("I was closed.  Result was->");
                 console.info(result);
             }, function(reason) {
-                console.info("I was dimissed, so do what I need to do myContent's controller now.  Reason was->" + reason);
+                console.info("I was dimissed. Reason was->" + reason);
             });
         };
     }
@@ -143,10 +140,6 @@ gameApp.component('myModal', {
         $scope.addPhrase = function() {
             var postData = {'phrase': $scope.phrase, 'user': $window.localStorage['user']};
             $http.post('api/phrases', postData)
-                .success(function(data){
-
-                })
-
         };
         $ctrl.handleDismiss = function() {
             console.info("in handle dismiss");
