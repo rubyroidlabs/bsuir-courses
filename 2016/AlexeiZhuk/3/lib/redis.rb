@@ -1,7 +1,5 @@
-# work
-
+# work with Database
 module Database
-  # work with redis
   def self.set(key, data)
     params = Redis.new.get(key)
     if params return updated_params = JSON.parse(params).merge(data)
