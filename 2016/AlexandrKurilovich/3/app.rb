@@ -59,7 +59,7 @@ get '/show' do
   @phrase_id = show_help.phrase_id
   redirect to('/') if show_help.valid_params?
   @phrase = show_help.phrase
-  @phrase_info = show_help.get_info_show
+  @phrase_info = show_help.info_show
   @user_last = show_help.user_last?
   @alert = "Может быть только 1 знак препинания. Нельзя использовать точки" if params[:fail] == "true"
   slim :show
@@ -71,6 +71,6 @@ post '/show' do
     redirect to("/show?id=#{@params[:word]["id"]}&fail=true")
   else
     show_help.save
-    redirect to('/')
+    redirect to("/")
   end
 end

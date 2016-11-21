@@ -1,4 +1,4 @@
-class ShowHelp
+class ShowHelp # :nodoc:
   def initialize(redis, session, params)
     @redis = redis
     @session = session
@@ -26,9 +26,12 @@ class ShowHelp
     @all_phrase.map { |ph| ph.split(".").first }
   end
 
-  def get_info_show
+  def info_show
     current_info = []
-    @all_phrase.size.times { |t| @t = t; current_info.push generate_array }
+    @all_phrase.size.times do |t|
+      @t = t
+      current_info.push generate_array
+    end
     current_info
   end
 
@@ -37,7 +40,7 @@ class ShowHelp
   end
 
   def valid_word?
-    word.chars.select {|x| x =~ /[,!:;-]/}.size > 1 || word.include?(".")
+    word.chars.select { |x| x =~ /[,!:;-]/ }.size > 1 || word.include?(".")
   end
 
   def current
@@ -64,7 +67,7 @@ class ShowHelp
     [phrase_without_last_word, current_words.last, last_date, last_name]
   end
 
-  #for post
+  # for post
 
   def current_time
     DateTime.now.strftime("%Y-%m-%d %H:%M")
@@ -76,17 +79,17 @@ class ShowHelp
   end
 
   def word_data
-    "#{word}.#{current_time}.#{@session["user"]}"
+    "#{word}.#{current_time}.#{@session['user']}"
   end
 
   def phrase_for_post
-    JSON.parse(@redis.get("phrase:#{@params[:word]["id"]}"))
+    JSON.parse(@redis.get("phrase:#{@params[:word]['id']}"))
   end
 
   def save
     phr = phrase_for_post
     phr.push word_data
-    @redis.set("phrase:#{@params[:word]["id"]}", phr.to_json)
+    @redis.set("phrase:#{@params[:word]['id']}", phr.to_json)
     @session["flash"] = "Слово успешно добавлено"
   end
 end

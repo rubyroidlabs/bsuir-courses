@@ -1,11 +1,11 @@
-class IndexHelp
+class IndexHelp # :nodoc:
   def initialize(redis, session)
     @redis = redis
     @session = session
   end
 
   def keys
-    @redis.keys.select {|x| x.include?("phrase:")}
+    @redis.keys.select { |x| x.include?("phrase:") }
   end
 
   def phrases

@@ -1,4 +1,4 @@
-class NewHelp
+class NewHelp # :nodoc:
   def initialize(redis, session, params)
     @redis = redis
     @session = session
@@ -14,7 +14,7 @@ class NewHelp
   end
 
   def word_data
-    "#{word}.#{current_time}.#{@session["user"]}"
+    "#{word}.#{current_time}.#{@session['user']}"
   end
 
   def current_time
@@ -22,11 +22,11 @@ class NewHelp
   end
 
   def valid?
-    word.chars.select {|x| x =~ /[,!:;\"-]/}.size > 1 || word.include?(".")
+    word.chars.select { |x| x =~ /[,!:;\"-]/ }.size > 1 || word.include?(".")
   end
 
   def keys
-    @redis.keys.select {|x| x.include?("phrase:")}
+    @redis.keys.select { |x| x.include?("phrase:") }
   end
 
   def ind
@@ -34,7 +34,7 @@ class NewHelp
   end
 
   def phrase_index
-    phrase_index = ind.empty? ? 1 : ind.max.to_i + 1
+    ind.empty? ? 1 : ind.max.to_i + 1
   end
 
   def save
