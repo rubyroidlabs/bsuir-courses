@@ -12,28 +12,28 @@ use Rack::Session::Cookie, :key => 'session',
 data = Database.get_db("db")
   get '/' do
     @hash = data["phrase"]
-    if @hash == nil 
+    if @hash.nil?
       erb :no_phrase
-    else  
+    else
       erb :index
     end
   end
 
-  get '/login' do
-    erb :login 
+  get "/login" do
+    erb :login
   end
 
-  get '/create' do
-    redirect to "/login" if session[:username].nil? 
-    erb :create 
+  get "/create" do
+    redirect to "/login" if session[:username].nil?
+    erb :create
   end
 
-  get '/logout' do
+  get "/logout" do
     session.delete(:username)
     redirect to "/"
   end
 
-  get '/edit' do
+  get "/edit" do
     @id = params["id"]
     redirect to "/login" if session[:username].nil? 
     if session[:username]  == data["phrase"][@id]["id_user"] 
@@ -75,6 +75,7 @@ data = Database.get_db("db")
     else
       @hash[@hash.count] = { "text" => value ,  "id_user" => session[:username], "history" => { 1 => history_hash } }
     end
+
     Database.set("db", "phrase" => @hash)
   end
 
