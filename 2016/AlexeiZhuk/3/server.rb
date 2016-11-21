@@ -34,7 +34,7 @@ end
 
 get "/edit" do
   @id = params["id"]
-  redirect to "/login" if session[:username].nil? 
+  redirect to "/login" if session[:username].nil?
   if session[:username] == data["phrase"][@id]["id_user"]
     erb "<div class='alert alert-message'>Wait, please</div>"
   else
@@ -46,7 +46,7 @@ end
 post "/edit" do
   @id = params["id"]
   @hash = data["phrase"][@id]["text"]
-  @hash += " #{ params["new_word"] }"
+  @hash += " #{params['new_word']}"
   data["phrase"][@id]["text"] = @hash
   data["phrase"][@id]["id_user"] = session[:username]
   @count = data["phrase"][@id]["history"].count + 1
