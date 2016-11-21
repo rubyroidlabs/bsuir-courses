@@ -5,7 +5,6 @@ require "byebug"
 require_relative "./lib/redis.rb"
 
 use Rack::Session::Cookie, "key" => "session",
-                           "expire_after" => 2592000,
                            "secret" => "some_secret"
 
 data = Database.get_db("db")
@@ -47,7 +46,8 @@ end
 post "/edit" do
   @id = params["id"]
   @hash = data["phrase"][@id]["text"]
-  @hash += " #{ params["new_word"] }"
+  @hash += " "
+  @hash += "#{ params['new_word'] }"
   data["phrase"][@id]["text"] = @hash
   data["phrase"][@id]["id_user"] = session[:username]
   @count = data["phrase"][@id]["history"].count + 1
@@ -68,6 +68,7 @@ post "/new_create" do
 end
 
 def add_phrase(value)
+  data = Database.get_db("db")
   @hash = data["phrase"]
   history_hash = create_history(session[:username], value)
   if @hash.nil?
@@ -75,7 +76,6 @@ def add_phrase(value)
   else
     @hash[@hash.count] = { "text" => value,  "id_user" => session[:username], "history" => { 1 => history_hash } }
   end
-
   Database.set("db", "phrase" => @hash)
 end
 

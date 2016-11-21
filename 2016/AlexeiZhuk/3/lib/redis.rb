@@ -1,4 +1,4 @@
-#comment
+# work with redis
 module Database
   def self.set(key, data)
     params = Redis.new.get(key)
