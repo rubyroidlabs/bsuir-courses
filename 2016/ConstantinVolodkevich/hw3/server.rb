@@ -76,7 +76,6 @@ class Public < Sinatra::Base
   end
 
   get '/phrases' do
-p Phrase.all.to_json
    phrases = Phrase.all.sort_by { |phrase| phrase.words.size }.reverse!
    phrases.to_json
   end

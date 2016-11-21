@@ -5,7 +5,7 @@ var gameApp = angular.module('routerApp.mainController',['ngAnimate', 'ui.bootst
 gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', '$window', '$filter', '$state',
     function ($scope,$pusher, $http, $rootScope, $window, $filter, $state) {
 
-    console.log($window.localStorage['user'])
+    console.log($window.localStorage['user']);
 
 
     if (typeof $rootScope.subscribed == 'undefined'){
@@ -15,9 +15,8 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
             });
         $rootScope.pusher = $pusher($rootScope.client);
 
-            console.log('im here')
             var channel = $rootScope.pusher.subscribe('messages');
-        $rootScope.subscribed = true
+        $rootScope.subscribed = true;
 
         channel.bind('my_event',
             function(data) {
@@ -29,10 +28,8 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
                             }else{
                                 item['editable'] = false
                             }
-                        })
+                        });
                         $scope.phrases = data;
-                        console.log($scope.phrases)
-                        console.log("recieved updated array!")
                     })
             }
         );
@@ -47,13 +44,12 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
                    }else{
                        item['editable'] = false
                    }
-               })
+               });
                 $scope.phrases = data;
 
-            })
+            });
 
         $scope.addWord = function(id) {
-            console.log($scope.word)
             var postData = {'word': $scope.word, 'user': $window.localStorage['user']};
             $http.post('api/phrases/' + id + '/words', postData)
 
@@ -64,12 +60,12 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
             var text = '';
             var phrase = $filter('filter')($scope.phrases, { _id: { $oid: id}})[0];
             phrase.words.forEach(function (word) {
-                var time = word.time.slice(0, -6)
+                var time = word.time.slice(0, -6);
                 text += word.text + ' ';
                 var line = word.username + ' (' + time + ') "' + text + '"';
                 $rootScope.hitories.push(line)
-            })
-            $rootScope.hitories.reverse()
+            });
+            $rootScope.hitories.reverse();
             $state.go('history')
 
         }
@@ -86,7 +82,7 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
         };
     }]);
 
-gameApp.config(["$httpProvider", function ($httpProvider) {
+gameApp.config(['$httpProvider', function ($httpProvider) {
      $httpProvider.interceptors.push('httpRequestInterceptor');
 
 
@@ -94,8 +90,10 @@ gameApp.config(["$httpProvider", function ($httpProvider) {
 }]);
 
 gameApp.component('myContent', {
-    template: '<button type="button" class="btn btn-default" ng-click="$ctrl.open()">Add Phrase</button>',
-    controller: function($uibModal, $scope) {
+    template: '<button class="btn btn-warning" type="button" class="btn btn-default" ng-click="$ctrl.open()">' +
+    'Add Phrase' +
+    '</button>',
+    controller: function($uibModal) {
         $ctrl = this;
         $ctrl.dataForModal = {
             name: 'NameToEdit',
@@ -111,39 +109,45 @@ gameApp.component('myContent', {
                 }
             }).result.then(function(result) {
 
-                console.info("I was closed.  Result was->");
+                console.info('I was closed.  Result was->');
                 console.info(result);
             }, function(reason) {
-                console.info("I was dimissed. Reason was->" + reason);
+                console.info('I was dimissed. Reason was->' + reason);
             });
         };
     }
 });
 
 gameApp.component('myModal', {
+    /*jshint esversion: 6 */
     template: `<div class="modal-body"><div>{{$ctrl.greeting}}</div>     
     <label>First Word</label> <input ng-model="phrase.first"><br>    
-    <button class="btn btn-warning" type="button" ng-click="$ctrl.handleClose()">Close</button>
-    <button class="btn btn-warning" type="button" ng-click="addPhrase();$ctrl.handleDismiss();">Add</button>
+    <button class="btn btn-info" type="button" ng-click="$ctrl.handleClose()">
+    Close
+    </button>
+    <button class="btn btn-info" type="button" ng-click="addPhrase();$ctrl.handleDismiss();">
+    Add
+    </button>
     </div>`,
     bindings: {
         modalInstance: "<",
         resolve: "<"
     },
-    controller: ['$scope', '$http', '$window', function($scope, $http, $window) {
+    controller: ['$scope', '$http', '$window',
+        function($scope, $http, $window) {
         var $ctrl = this;
         $ctrl.modalData = $ctrl.resolve.modalData;
         $ctrl.handleClose = function() {
-            console.info("in handle close");
+            console.info('in handle close');
             $ctrl.modalInstance.close($ctrl.modalData);
         };
         $scope.addPhrase = function() {
-            var postData = {'phrase': $scope.phrase, 'user': $window.localStorage['user']};
+            var postData = {'phrase': $scope.phrase, 'user': $window.localStorage.user};
             $http.post('api/phrases', postData)
         };
         $ctrl.handleDismiss = function() {
-            console.info("in handle dismiss");
-            $ctrl.modalInstance.dismiss("cancel");
+            console.info('in handle dismiss');
+            $ctrl.modalInstance.dismiss('cancel');
         };
     }]
 });
