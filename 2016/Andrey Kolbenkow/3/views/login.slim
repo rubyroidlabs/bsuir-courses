@@ -1,0 +1,48 @@
+doctype html
+html 
+    head
+   
+      link rel="stylesheet"  href="stylesheets/css/style.css"
+      
+      script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+     
+      javascript:
+        $(document).ready(function(){
+        $("#flip").click(function(){
+        $("#main-wrap").slideToggle("fast");
+           });
+            });
+      style 
+        #panel {
+        padding: 5px;
+        text-align: center;
+        background-color: #e5eecc;
+        border: solid 1px #c3c3c3;
+            }
+        #flip {  
+        padding: 5px;
+        text-align: center;
+        background-color: #e5eecc;
+        border: solid 1px #c3c3c3;
+            } 
+        #panel {
+        padding: 50px;
+             }            
+
+body
+ 
+ div class="main-wrap" id="main-wrap"  
+   div class="login-main"  
+     form id="login" action="/dologin" method="post"
+      input type="text" placeholder="firstname" class="box1 border1" name="firstname" 
+      input type="text" placeholder="surname" class="box1 border2" name="secondname"
+      input type="submit" class="send" value="Play"   
+       
+ /div id="flip" Click to slide up panel
+ /div id="panel" Hello world
+        
+            
+
+
+  
+    
