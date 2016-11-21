@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="//js.pusher.com/3.2/pusher.min.js"></script>
+    <script src="//cdn.jsdelivr.net/angular.pusher/latest/pusher-angular.min.js"></script>
+    <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.1.2.js"></script>
+    <script src="app.js"></script>
+    <script src="controller.js"></script>
+    <script src="loginController.js"></script>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <style>
+        .navbar { border-radius:0; }
+    </style>
+
+</head>
+
+<body ng-app="routerApp">
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="phrases">Game of Phrases</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="login">Login</a></li>
+        <li><a ui-sref="about">Current User</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <div ui-view></div>
+
+</div>
+
+</body>
+</html>

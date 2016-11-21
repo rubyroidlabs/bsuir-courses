@@ -1,0 +1,21 @@
+<div id="phrases-list" class="row">
+    <div>
+        <my-content></my-content>
+        Add Word: <input type="text" ng-model="word.text"/>
+        <!--ng-pattern="/^\S*$/"required-->
+    </div>
+    <div class="col-sm-8 col-sm-offset-3" ng-repeat="phrase in phrases">
+        <div>
+            <button class="btn btn-info" ng-click="getHistory(phrase._id.$oid)">
+              history
+            </button>
+            <button class="btn btn-info" ng-click="addWord(phrase._id.$oid)" ng-show="phrase.editable">
+                Add Word
+            </button>
+        <span class="col-sd-4" ng-repeat="word in phrase.words track by $index">
+            {{word.text}}
+        </span>
+        </div>
+    </div>
+
+</div>
