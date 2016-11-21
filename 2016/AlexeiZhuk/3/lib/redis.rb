@@ -3,7 +3,7 @@ module Database
   def self.set(key, data)
     params = Redis.new.get(key)
     if params
-      updated_params = JSON.parse(params).merge(data)
+      return updated_params = JSON.parse(params).merge(data)
     else
       updated_params = data
     end

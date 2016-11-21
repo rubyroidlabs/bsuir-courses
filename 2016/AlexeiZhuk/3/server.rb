@@ -46,8 +46,7 @@ end
 post "/edit" do
   @id = params["id"]
   @hash = data["phrase"][@id]["text"]
-  @hash += " "
-  @hash += "#{ params['new_word'] }"
+  @hash += " #{ params["new_word"] }"
   data["phrase"][@id]["text"] = @hash
   data["phrase"][@id]["id_user"] = session[:username]
   @count = data["phrase"][@id]["history"].count + 1
