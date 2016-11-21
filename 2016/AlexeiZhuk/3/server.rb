@@ -1,17 +1,16 @@
-require 'sinatra'
+require "sinatra"
 require "json"
 require "redis"
 require "byebug"
 require_relative "./lib/redis.rb"
 
-use Rack::Session::Cookie, :key => 'session',
-                           :path => '/',
-                           :expire_after => 2592000,
-                           :secret => 'some_secret'
+use Rack::Session::Cookie, "key" => "session",
+                           "expire_after" => 2592000,
+                           "secret" => "some_secret"
 
 data = Database.get_db("db")
 
-get '/' do
+get "/" do
   @hash = data["phrase"]
   if @hash.nil?
     erb :no_phrase
@@ -37,7 +36,7 @@ end
 get "/edit" do
   @id = params["id"]
   redirect to "/login" if session[:username].nil? 
-  if session[:username]  == data["phrase"][@id]["id_user"]
+  if session[:username] == data["phrase"][@id]["id_user"]
     erb "<div class='alert alert-message'>Wait, please</div>"
   else
     @hash = data["phrase"]
@@ -48,7 +47,7 @@ end
 post "/edit" do
   @id = params["id"]
   @hash = data["phrase"][@id]["text"]
-  @hash += ' #{ params["new_word"] }'
+  @hash += " #{ params["new_word"] }"
   data["phrase"][@id]["text"] = @hash
   data["phrase"][@id]["id_user"] = session[:username]
   @count = data["phrase"][@id]["history"].count + 1
@@ -72,15 +71,16 @@ def add_phrase(value)
   @hash = data["phrase"]
   history_hash = create_history(session[:username], value)
   if @hash.nil?
-    @hash = { "0" => { "text" => value ,  "id_user" => session[:username], "history" => { 1 => history_hash } } }
+    @hash = { "0" => { "text" => value,  "id_user" => session[:username], "history" => { 1 => history_hash } } }
   else
-    @hash[@hash.count] = { "text" => value ,  "id_user" => session[:username], "history" => { 1 => history_hash } }
+    @hash[@hash.count] = { "text" => value,  "id_user" => session[:username], "history" => { 1 => history_hash } }
   end
 
   Database.set("db", "phrase" => @hash)
 end
 
 def create_history(id_user, word)
-  current_time = (Date.today).to_s
+  time = Date.today
+  current_time = time.to_s
   { "id_user" => id_user, "text" => word, "time" => current_time }
 end

@@ -1,3 +1,4 @@
+#comment
 module Database
   def self.set(key, data)
     params = Redis.new.get(key)
@@ -12,7 +13,7 @@ module Database
   end
 
   def self.get_db(key)
-    if (params = Redis.new.get(key)) != 'null'
+    if (params = Redis.new.get(key)) != "null"
       JSON.parse(params)
     end
   end
