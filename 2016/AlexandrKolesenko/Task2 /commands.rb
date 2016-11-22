@@ -61,6 +61,7 @@ class Subject < Base
       break
     end
   end
+  
   def second_question
     sm("Сколько лаб нужно сдать?")
     bot.listen do |answer|
@@ -72,7 +73,7 @@ class Subject < Base
       end
     end
   end
-  
+
   def run
     first_question
     second_question
@@ -87,6 +88,7 @@ class Status < Base
       sm("#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
     end
   end
+  
   def run
     if @redis.hget("#{@user_id}-date", "begin").nil? then sm("Сначала введи начало и конец семестров (/semester)")
     else
