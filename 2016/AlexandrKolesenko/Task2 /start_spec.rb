@@ -4,13 +4,13 @@ require_relative "logic.rb"
 
 RSpec.describe Base do
   it "should check if 2nd date bigger then today date" do
-    d2 = Date.new(2020,12,15)
+    d2 = Date.new(2020, 12, 15)
     expect(countdown(Date.today, d2)).to eq true
   end
-  
+
   it "should check if 2nd date bigger then today date" do
-    d1 = Date.new(2016,10,15)
-    d2 = Date.new(2015,12,15)
+    d1 = Date.new(2016, 10, 15)
+    d2 = Date.new(2015, 12, 15)
     expect(countdown(d1, d2)).to eq false
   end
 

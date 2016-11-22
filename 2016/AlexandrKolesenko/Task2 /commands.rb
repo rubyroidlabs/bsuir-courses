@@ -7,12 +7,14 @@ class Base
     @message = message
     @bot = bot
     @user_id = message.chat.id
-    #sm = ->(ms) { bot.api.sendMessage(chat_id: @message.chat.id, text: ms) }
+    # sm = ->(ms) { bot.api.sendMessage(chat_id: @message.chat.id, text: ms) }
     @name = message.from.first_name
   end
+  
   def sm(text)
     bot.api.sendMessage(chat_id: @message.chat.id, text: text)
   end
+  
 end
 # Shows all availiable commands
 class Start < Base
@@ -26,7 +28,6 @@ class Start < Base
 end
 # Input for dates
 class Semester < Base
-
   def run
     sm("Когда начинаем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
     @bot.listen do |message|
@@ -61,14 +62,14 @@ class Subject < Base
         break
       end
       sm("Сколько лаб нужно сдать?")
-        bot.listen do |answer|
-          if !/\d+/.match(answer.text) == true then sm("#{@name}, будь человеком введи число!")
-          else
-            sm("Принял.")
-            @redis.hmset("#{@user_id}-subj", @task, answer.text)
-            break
-          end
+      bot.listen do |answer|
+        if !/\d+/.match(answer.text) == true then sm("#{@name}, будь человеком введи число!")
+        else
+          sm("Принял.")
+          @redis.hmset("#{@user_id}-subj", @task, answer.text)
+          break
         end
+      end
   end
 end
 # Shows status

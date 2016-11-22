@@ -1,3 +1,4 @@
+# Base class for initialization
 class Base
   # method returns how much time you have
   def countdown(bgn_d, end_d)
