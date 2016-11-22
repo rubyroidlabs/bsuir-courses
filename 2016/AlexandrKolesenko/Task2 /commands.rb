@@ -47,11 +47,11 @@ class Semester < Base
         break
       end
     end
-    if countdown(@date1, @date2) == true then @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
-    sm("В запасе дней:#{@eta}")
-    else
-      sm("Время вышло")
-    end
+      if countdown(@date1, @date2) == true then @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
+        sm("В запасе дней:#{@eta}")
+      else
+        sm("Время вышло")
+      end
   end
 
   def run
