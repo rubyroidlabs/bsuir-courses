@@ -45,13 +45,16 @@ class Semester < Base
       else
         @date2 = Date.parse(answer.text)
         break
-      end
+      count_for_sq
     end
-      if countdown(@date1, @date2) == true then @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
-        sm("В запасе дней:#{@eta}")
-      else
-        sm("Время вышло")
-      end
+  end
+
+  def count_for_sq
+    if countdown(@date1, @date2) == true then @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
+      sm("В запасе дней:#{@eta}")
+    else
+      sm("Время вышло")
+    end
   end
 
   def run
