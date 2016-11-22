@@ -31,8 +31,7 @@ class Semester < Base
     sm("Когда начинаем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
     @bot.listen do |message|
       if v_date?(message.text) == false then sm("#{@name}, ты пишешь шляпу. Нормально введи дату!")
-      else
-        @date1 = Date.parse(message.text)
+      else @date1 = Date.parse(message.text)
         sm("Когда заканчиваем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
         break
       end
@@ -42,16 +41,13 @@ class Semester < Base
   def second_question
     @bot.listen do |answer|
       if v_date?(answer.text) == false then sm("#{@name}, ты пишешь шляпу. Нормально введи дату!")
-      else
-        @date2 = Date.parse(answer.text)
+      else @date2 = Date.parse(answer.text)
         break
       end
     end
-    if countdown(@date1, @date2) == true
-      @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
+    if countdown(@date1, @date2) == true then @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
       sm("В запасе дней:#{@eta}")
-    else
-      sm("Время вышло")
+    else sm("Время вышло")
     end
   end
     
