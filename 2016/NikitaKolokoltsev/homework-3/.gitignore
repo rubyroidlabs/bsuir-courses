@@ -3,3 +3,4 @@ public/images/*
 public/stylesheets/*
 public/javascript/bootstrap/*
 public/javascript/jquery/*
+db/schema.rb
