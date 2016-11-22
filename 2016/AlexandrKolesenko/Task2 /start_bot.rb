@@ -2,7 +2,7 @@ require_relative "logic.rb"
 require_relative "commands.rb"
 require "redis"
 require "telegram/bot"
-token = "YOUR_TELEGRAM_TOKEN"
+token = ENV["YOUR_TELEGRAM_TOKEN"]
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
