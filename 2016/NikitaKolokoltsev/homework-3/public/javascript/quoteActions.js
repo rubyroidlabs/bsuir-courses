@@ -1,28 +1,5 @@
 $(function() {
 
-  // WEBSOCKETS
-  var ws = new WebSocket("ws://" + window.location.host);
-  $("#new-quote-form").submit(function() {
-    var input = $("#new-quote-input")[0];
-    if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
-      ws.send(input.value)
-    } else {
-      showWordFormatError();
-      return false;
-    }
-  });
-
-  $("#edit-quote-form").submit(function() {
-    var input = $("#edit-quote-input")[0];
-    var quoteId = $("#edit-quote-input")[0].baseURI.split("/").pop();
-    if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
-      ws.send([quoteId, input.value]);
-    } else {
-      showWordFormatError();
-      return false;
-    }
-  });
-
   var showSpaceError = function() {
     $(".errors")[0].innerHTML = "Spaces are not allowed!";
     $(".errors").fadeIn(300);
@@ -60,6 +37,29 @@ $(function() {
       }
     });
   };
+
+  // WEBSOCKETS
+  var ws = new WebSocket("ws://" + window.location.host);
+  $("#new-quote-form").submit(function() {
+    var input = $("#new-quote-input")[0];
+    if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
+      ws.send(input.value);
+    } else {
+      showWordFormatError();
+      return false;
+    }
+  });
+
+  $("#edit-quote-form").submit(function() {
+    var input = $("#edit-quote-input")[0];
+    var quoteId = $("#edit-quote-input")[0].baseURI.split("/").pop();
+    if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
+      ws.send([quoteId, input.value]);
+    } else {
+      showWordFormatError();
+      return false;
+    }
+  });
 
   // Do not allow to enter spaces or dots
   checkInput("#new-quote-input");
