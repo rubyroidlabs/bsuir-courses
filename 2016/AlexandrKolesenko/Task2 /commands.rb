@@ -54,12 +54,14 @@ class Semester < Base
 end
 # Input for subject
 class Subject < Base
-  def run
+  def first_question
     sm("Как называется предмет?")
     bot.listen do |answer|
       @task = answer.text
       break
     end
+  end
+  def second_question
     sm("Сколько лаб нужно сдать?")
     bot.listen do |answer|
       if !/\d+/.match(answer.text) == true then sm("#{@name}, будь человеком введи число!")
@@ -70,9 +72,21 @@ class Subject < Base
       end
     end
   end
+  
+  def run
+    first_question
+    second_question
+  end
 end
 # Shows status
 class Status < Base
+  def subj_status
+    stack = @redis.hgetall("#{@user_id}-subj")
+    stack.each do |key, value|
+      taskcalc(value.to_i)
+      sm("#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
+    end
+  end
   def run
     if @redis.hget("#{@user_id}-date", "begin").nil? then sm("Сначала введи начало и конец семестров (/semester)")
     else
@@ -80,11 +94,7 @@ class Status < Base
       d2 = Date.parse(@redis.hget("#{@user_id}-date", "end"))
       countdown(d1, d2)
       sm("Осталось времени #{@eta} дней")
-      stack = @redis.hgetall("#{@user_id}-subj")
-      stack.each do |key, value|
-        taskcalc(value.to_i)
-        sm("#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
-      end
+      subj_status
     end
   end
 end
