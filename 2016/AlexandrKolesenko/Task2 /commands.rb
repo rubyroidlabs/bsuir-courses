@@ -27,7 +27,7 @@ class Start < Base
 end
 # Input for dates
 class Semester < Base
-  def run
+  def first_question
     sm("Когда начинаем учиться?(ГГГГ-ММ-ДД или ДД-ММ-ГГГГ)")
     @bot.listen do |message|
       if v_date?(message.text) == false then sm("#{@name}, ты пишешь шляпу. Нормально введи дату!")
@@ -37,6 +37,9 @@ class Semester < Base
         break
       end
     end
+  end
+  
+  def second_question
     @bot.listen do |answer|
       if v_date?(answer.text) == false then sm("#{@name}, ты пишешь шляпу. Нормально введи дату!")
       else
@@ -50,6 +53,11 @@ class Semester < Base
     else
       sm("Время вышло")
     end
+  end
+    
+  def run
+    first_question
+    second_question
   end
 end
 # Input for subject
