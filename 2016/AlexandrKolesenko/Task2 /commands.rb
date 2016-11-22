@@ -37,20 +37,22 @@ class Semester < Base
       end
     end
   end
-  
+
   def second_question
     @bot.listen do |answer|
       if v_date?(answer.text) == false then sm("#{@name}, ты пишешь шляпу. Нормально введи дату!")
-      else @date2 = Date.parse(answer.text)
+      else
+        @date2 = Date.parse(answer.text)
         break
       end
     end
     if countdown(@date1, @date2) == true then @redis.hmset("#{@user_id}-date", "begin", @date1, "end", @date2)
       sm("В запасе дней:#{@eta}")
-    else sm("Время вышло")
+    else
+      sm("Время вышло")
     end
   end
-    
+
   def run
     first_question
     second_question
@@ -65,7 +67,7 @@ class Subject < Base
       break
     end
   end
-  
+
   def second_question
     sm("Сколько лаб нужно сдать?")
     bot.listen do |answer|
@@ -92,7 +94,7 @@ class Status < Base
       sm("#{key} - #{@accomplished} из #{value} предметов должны быть уже сданы")
     end
   end
-  
+
   def run
     if @redis.hget("#{@user_id}-date", "begin").nil? then sm("Сначала введи начало и конец семестров (/semester)")
     else
