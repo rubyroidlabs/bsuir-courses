@@ -1,0 +1,29 @@
+doctype html 
+html
+  head
+   
+  body
+    
+   div class="all" id="all"
+    -phrase = Phrase.find params[:id]
+    p =phrase.value
+    
+    -unless phrase.last_changer.eql?(session[:user_id])
+      div class='add_form' id='add_phrase' 
+       form  method="post"  action="/phrase/#{params[:id]}/edit"
+         input type='text'  placeholder='your word' name='word'
+         button action="submit" id="panel"  Add
+    -else 
+      p YOU CANT ADD WORDS TO THIS PHRASE ¯\_(ツ)_/¯    
+     
+    -for word in phrase.words do 
+      span = [User.find(word.user_id).firstname, User.find(word.user_id).secondname].join(' ') 
+      span == " #{word.added_at}" 
+      -@pre_word = [@pre_word,word.value].reject(&nil).to_a.join(' ')
+      -@last = @pre_word.split(' ').delete_at(@pre_word.split(' ').size - 1)
+      span == @pre_word.gsub(@last," ")
+      b = @last
+      br ---------------------------------------------------------
+      
+    a  href="/game" back
+        

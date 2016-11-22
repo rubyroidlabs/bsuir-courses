@@ -1,0 +1,53 @@
+doctype html
+html 
+    head
+      
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+   
+    javascript:
+      $(document).ready(function(){
+      $("#title").click(function(){
+      $("#add_phrase").slideToggle("fast");
+         });
+          });
+    
+     
+    javascript:
+       function redirect(path) {
+          window.location.href = `"${path}"`
+       }    
+      
+    link rel="stylesheet"  href="stylesheets/css/game.css"
+      
+      
+    body 
+    
+     div class="user" id="user"
+      - user =  User.find session[:user_id]
+      span =['Hi, ',user.firstname, user.secondname].join(' ') 
+    
+     
+    
+     div class="main" 
+      span id="title" PHRASES
+     
+     div class='add_form' id='add_phrase' hidden="true"
+      form  method="post" action='/add_phrase'
+        input type='text' placeholder='your phrase' name='phrase'
+        button action="submit" id="panel"  Add
+    
+          
+     div class='phrases'
+      -phrases = Phrase.all.reverse 
+      -unless phrases.empty?
+          -for phrase in phrases do 
+              p 
+                -if phrase.last_changer.eql?(session[:user_id])
+                  img src="http://s1.iconbird.com/ico/0612/49handdrawnicons/w256h2561339857695error.png"
+                -else
+                  img src="http://iconizer.net/files/49_hand_drawn_icons/orig/tick.png"  
+                a href="/phrase/#{phrase.id}" == phrase.value 
+                 
+      - else
+        p No phrases found
+    

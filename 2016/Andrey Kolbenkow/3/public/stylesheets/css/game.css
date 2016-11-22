@@ -1,0 +1,56 @@
+*{
+  box-sizing: border-box;
+}
+.main{
+    text-align: center;
+}
+.main span{
+  font-family: Mine;
+  font-size: 80px;
+  margin: 10px;
+}
+.main span::before{
+  position: absolute;
+  width: 163px;
+  height: 8px;
+  top: 103px;
+  left: 370px;
+  content: '';
+  background: url(images/title-line.png) no-repeat;
+}
+.main span::after{
+  position: absolute;
+  width: 163px;
+  height: 8px;
+  top: 103px;
+  right: 360px;
+  content: '';
+  background: url(images/title-line-right.png) no-repeat;
+}
+.user{
+  margin: 25px;
+}
+.user span{
+  margin: 10px;
+  padding-left: 25px;
+  font-family: Times;
+}
+.add_form{
+  text-align: center;
+}
+.phrases{
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.phrases img{
+  margin-top: 14px;
+  align-content: center;
+  width: 35px;
+  height: 25px;
+}
+
+@font-face {
+  font-family: Mine; /* Гарнитура шрифта */
+  src: url(fonts/blox3.ttf); /* Путь к файлу со шрифтом */
+ }

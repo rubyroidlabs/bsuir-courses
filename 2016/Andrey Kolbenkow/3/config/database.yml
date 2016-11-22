@@ -1,0 +1,16 @@
+development:
+  adapter: sqlite3
+  encoding: utf-8
+  database: db/database.sqlite
+  host: localhost
+  pool: 5
+  username: kolba
+  password:
+
+production:
+  adapter: sqlite3
+  encoding: utf-8
+  database: db/database.sqlite
+  pool: 2
+  username: kolba
+  password: 123
