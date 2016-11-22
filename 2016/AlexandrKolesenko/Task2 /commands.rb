@@ -14,7 +14,6 @@ class Base
   def sm(text)
     bot.api.sendMessage(chat_id: @message.chat.id, text: text)
   end
-
 end
 # Shows all availiable commands
 class Start < Base
