@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 var gameApp = angular.module('routerApp.mainController',['ngAnimate', 'ui.bootstrap','pusher-angular']);
 
 
@@ -39,10 +40,10 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
        $http.get('/phrases')
             .success(function(data) {
                data.forEach(function(item){
-                   if(item.last_user != $window.localStorage['user']){
-                        item.editable = true
+                   if(item.last_user != $window.localStorage.user){
+                        item.editable = true;
                    }else{
-                       item.editable = false
+                       item.editable = false;
                    }
                });
                 $scope.phrases = data;
@@ -50,7 +51,7 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
             });
 
         $scope.addWord = function(id) {
-            var postData = {'word': $scope.word, 'user': $window.localStorage['user']};
+            var postData = {'word': $scope.word, 'user': $window.localStorage.user};
             $http.post('api/phrases/' + id + '/words', postData);
 
         };
@@ -63,7 +64,7 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
                 var time = '(' + word.time.slice(0, -6) + ')';
                 var line = {'user_name': word.username, 'time': time, 'text': text, 'last_word': word.text};
                 text += word.text + ' ';
-                $rootScope.hitories.push(line)
+                $rootScope.hitories.push(line);
             });
             $rootScope.hitories.reverse();
             $state.go('history');
@@ -109,17 +110,11 @@ gameApp.component('myContent', {
                         return $ctrl.dataForModal;
                     }
                 }
-            }).result.then(function(result) {
-
-                console.info('I was closed.  Result was->');
-                console.info(result);
-            }, function(reason) {
-                console.info('I was dimissed. Reason was->' + reason);
-            });
+            })
         };
     }
 });
-/*jshint esversion: 6 */
+
 gameApp.component('myModal', {
 
     template: `<div class="modal-body"><div>{{$ctrl.greeting}}</div> 
