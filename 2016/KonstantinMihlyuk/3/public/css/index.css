@@ -1,0 +1,106 @@
+html {
+    font-family: Times, serif;
+}
+
+body {
+    background-image: url(../img/textura.jpg)
+}
+
+.create-phrase {
+    width: 80%;
+}
+
+.create-phrase-popup {
+    white-space: nowrap;
+}
+
+.phrases {
+    width: 80%;
+}
+
+.create-phrase button {
+    width: 100%;
+    height: 39px;
+    margin-bottom: 20px;
+}
+
+.proposal {
+    float: left;
+}
+
+.controls {
+    display: inline-block;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.word {
+    color: black;
+    padding-right: 0;
+    padding-left: 0;
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 33px;
+}
+
+.word:hover {
+    background-color: #d8bb45;
+
+}
+
+.word:last-child {
+    margin-right: 10px;
+}
+
+.phrase {
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: inset 0 0 20px 1px #ded6c4;
+    border-radius: 20px;
+}
+
+
+.phrase:active {
+    box-shadow: inset 0 9px 14px -4px #ded6c4;
+}
+
+.phrase .controls {
+    display: none;
+}
+
+.strap:before,
+.strap:after {
+    content:"";
+    display:table;
+}
+.strap:after {
+    clear:both;
+}
+
+.hello-user {
+    margin-top: 15px;
+}
+
+.hello-user a {
+    color: #9d9d9d;
+}
+
+.phrase .add-phrase {
+    width: 175px;
+    margin-left: 10px;
+    float: left;
+}
+
+.remove-phrase {
+    margin-left: 3px;
+}
+
+.create-phrase-popup .input-group {
+    width: 92%;
+    float: left;
+}
+
