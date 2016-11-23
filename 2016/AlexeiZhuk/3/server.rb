@@ -34,7 +34,7 @@ end
 
 get "/edit" do
   @id = params["id"]
-  redirect to "/login" if session[:username].nil? 
+  redirect to "/login" if session[:username].nil?
   if session[:username] == data["phrase"][@id]["id_user"]
     erb "<div class='alert alert-message'>Wait, please</div>"
   else
@@ -62,18 +62,18 @@ post "/login" do
 end
 
 post "/new_create" do
-  add_phrase(params["phrase"])
+  data = Database.get_db("db")
+  add_phrase(params["phrase"], data)
   redirect to "/"
 end
 
-def add_phrase(value)
-  data = Database.get_db("db")
+def add_phrase(value, data)
   @hash = data["phrase"]
   history_hash = create_history(session[:username], value)
   if @hash.nil?
-    @hash << { "0" => { "text" => value,  "id_user" => session[:username], "history" => { 1 => history_hash } } }
+    @hash = { "0" => { "text" => value,  "id_user" => session[:username], "history" => { 1 => history_hash } } }
   else
-    @hash[@hash.count] << { "text" => value,  "id_user" => session[:username], "history" => { 1 => history_hash } }
+    @hash[@hash.count] = { "text" => value,  "id_user" => session[:username], "history" => { 1 => history_hash } }
   end
   Database.set("db", "phrase" => @hash)
 end
