@@ -1,0 +1,32 @@
+<h1 style="color: white; margin: 30px 10px;">Edit Category</h1>
+
+<div class="container" >
+  <div class="row">
+
+    <div class="col-sm-4">
+    </div>
+
+    <div class="col-sm-4">
+
+      <div class="form-box">
+          <div class="form-top">
+          </div>
+
+        <div class="form-bottom">
+          <form  action="/categories/<%= @category.id%>" method="post" >
+            <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+            <div class="form-group">
+              <label class="sr-only" for="form-description">Name</label>
+              <input type="text" name="name" class="form-name form-control" id="form-name" value= "<%= @category.name%>">
+            </div>
+
+              <button type="submit" class="btn btn-info">Update</button>
+          </form>
+
+    </div> <!-- end col-sm-4-->
+
+  </div><!-- end row -->
+
+
+</div><!-- end container -->

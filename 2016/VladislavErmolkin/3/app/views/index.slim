@@ -1,0 +1,25 @@
+.quotes-table.text-center
+  ul.nav.nav-pills.nav-stacked.navigation#quotes-list
+    - @quotes.each do |q|
+      - if logged_in?
+        - if q.updates.last.user_id == session[:user_id]
+          a.link-to-quote.list-group-item.list-group-item-disabled.align-center href="#" id="#{q.id}"
+            li.quote-disabled
+              span id="span-#{q.id}"
+                = q.body
+        - else
+          div
+            li.quote-able.list-group-item.list-group-item-enabled.align-center id="#{q.id}"
+              span
+                = q.body 
+              .inline-redactor id="inline-redactor-for-#{q.id}"
+                input.form-control.inline-redactor-input maxlength="30"
+                btn.btn.btn-default.inline-redactor-btn id="#{q.id}"
+                  | Add word
+                a.btn.btn-default href="/phrases/edit/#{q.id}"
+                  | Go to edit page
+                .errors
+      - else
+        a.list-group-item.align-center href="/login"
+          span id="span-#{q.id}"
+            = q.body

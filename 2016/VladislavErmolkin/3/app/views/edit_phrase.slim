@@ -1,0 +1,21 @@
+h2
+  == @phrase.body + "<br>"
+
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .row
+        .col-lg-12
+          form#new-phrase-form action="/phrases/edit/#{@phrase.id}" method="post" role="form" style=("display: block;") 
+
+            .form-group
+              input.form-control type="text" id="inputWord" name="word" placeholder="Input word" autocomplete="off"
+
+            .form-group
+              button.btn.btn-success type="submit"
+                | OK
+
+            ul.updates-ul
+              - @updates.each do |update|
+                li
+                  ==update
