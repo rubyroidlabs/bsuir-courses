@@ -4,6 +4,6 @@ gameApp.controller('historyController', ['$scope', '$state',
     function ($scope, $state) {
 
     $scope.back = function() {
-        $state.go('phrases')
+        $state.go('phrases');
     };
 }]);

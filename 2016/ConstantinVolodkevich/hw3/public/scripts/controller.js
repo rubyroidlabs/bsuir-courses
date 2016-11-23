@@ -51,7 +51,7 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
 
         $scope.addWord = function(id) {
             var postData = {'word': $scope.word, 'user': $window.localStorage['user']};
-            $http.post('api/phrases/' + id + '/words', postData)
+            $http.post('api/phrases/' + id + '/words', postData);
 
         };
 
@@ -66,11 +66,11 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
                 $rootScope.hitories.push(line)
             });
             $rootScope.hitories.reverse();
-            $state.go('history')
+            $state.go('history');
 
-        }
+        };
         $scope.back = function() {
-            $state.go('phrases')
+            $state.go('phrases');
         };
     }]);
 
@@ -78,7 +78,7 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
         return {
             request: function (config) {
 
-                config.headers['AUTHORIZATION'] = $window.localStorage.token;
+                config.headers.AUTHORIZATION = $window.localStorage.token;
 
                 return config;
             }
@@ -91,7 +91,8 @@ gameApp.config(['$httpProvider', function ($httpProvider) {
 }]);
 
 gameApp.component('myContent', {
-    template: '<button class="btn btn-warning" type="button" class="btn btn-default" ng-click="$ctrl.open()">' +
+    template: '<button class="btn btn-warning" type="button" ' +
+    '          class="btn btn-default" ng-click="$ctrl.open()">' +
     'Add Phrase' +
     '</button>',
     controller: function($uibModal) {
@@ -118,13 +119,16 @@ gameApp.component('myContent', {
         };
     }
 });
-
+/*jshint esversion: 6 */
 gameApp.component('myModal', {
-    /*jshint esversion: 6 */
+
     template: `<div class="modal-body"><div>{{$ctrl.greeting}}</div> 
+   
     <form name="form">
-    <label>First Word</label> <input ng-model="phrase.first"  ng-pattern="/^[a-zA-Z,';:-]+$/" required><br> 
+    <label>First Word</label>
+    <input ng-model="phrase.first"  ng-pattern="/^[a-zA-Z,';:-]+$/" required><br> 
     </form>>
+   
     <button class="btn btn-info" type="button" ng-click="$ctrl.handleClose()">
     Close
     </button>
@@ -145,7 +149,8 @@ gameApp.component('myModal', {
             $ctrl.modalInstance.close($ctrl.modalData);
         };
         $scope.addPhrase = function() {
-            var postData = {'phrase': $scope.phrase, 'user': $window.localStorage.user};
+            var postData = {'phrase': $scope.phrase,
+                            'user': $window.localStorage.user};
             $http.post('api/phrases', postData)
         };
         $ctrl.handleDismiss = function() {
