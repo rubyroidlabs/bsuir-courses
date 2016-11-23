@@ -1,5 +1,5 @@
 class ShowHelp # :nodoc:
-  def initialize(redis, session, params, json_on=false)
+  def initialize(redis, session, params, json_on = false)
     @redis = redis
     @session = session
     @params = params

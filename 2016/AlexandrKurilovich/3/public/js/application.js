@@ -14,10 +14,11 @@ $(document).ready(function() {
       type: "POST",
       data: { word: { name: value, id: id } },
       complete: function(xhr){
-        message = JSON.parse(xhr.responseText).message;
+        var message = JSON.parse(xhr.responseText).message;
         switch (message) {
           case "error":
-            alert("Можно использовать только 1 знак препинания. Нельзя использовать точки");
+            $("span.success_update")
+            .text("Можно использовать только 1 знак препинания. Нельзя использовать точки");
             break;
           case "success":
             var $can = $this.parents(".can_update");
@@ -31,7 +32,7 @@ $(document).ready(function() {
             $("span.success_update").text("Слово успешно добавлено");
             break;
           default:
-            alert("Ошибка");
+            window.alert("Ошибка");
         }
       },
     });
