@@ -1,0 +1,25 @@
+h3
+  | Edit
+hr
+
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .row
+        .col-lg-12
+          form#edit-form action="/users/edit/#{@user.id}" method="post" role="form" style=("display: block;") 
+            
+            .form-group
+              input.form-control name="first_name" placeholder="" tabindex="1" type="text" value="#{@user.first_name}" /
+
+            .form-group
+              input.form-control name="last_name" placeholder="" tabindex="1" type="text" value="#{@user.last_name}" 
+
+
+            .form-group
+              input.form-control name="email" placeholder="" tabindex="1" type="email" value="#{@user.email}" /
+
+            .form-group
+              .row
+                .col-sm-6.col-sm-offset-3
+                  input#register-submit.form-control.btn.btn-register name="register-submit" tabindex="4" type="submit" value=("Comfirm") /
