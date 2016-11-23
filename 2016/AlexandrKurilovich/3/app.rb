@@ -74,3 +74,14 @@ post "/show" do
     redirect to("/")
   end
 end
+
+post "/create" do
+  content_type :json
+  show_help = ShowHelp.new(redis, session, params, true)
+  if show_help.valid_word?
+    { message: "error" }.to_json
+  else
+    show_help.save
+    { message: "success" }.to_json
+  end
+end

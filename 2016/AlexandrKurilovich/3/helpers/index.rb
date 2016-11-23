@@ -5,7 +5,8 @@ class IndexHelp # :nodoc:
   end
 
   def keys
-    @redis.keys.select { |x| x.include?("phrase:") }
+    unsort_keys = @redis.keys.select { |x| x.include?("phrase:") }
+    unsort_keys.sort.reverse
   end
 
   def phrases

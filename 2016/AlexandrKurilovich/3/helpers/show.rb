@@ -1,9 +1,10 @@
 class ShowHelp # :nodoc:
-  def initialize(redis, session, params)
+  def initialize(redis, session, params, json_on=false)
     @redis = redis
     @session = session
     @params = params
     @all_phrase = all_phrase
+    @json_on = json_on
   end
 
   def phrase_id
@@ -90,6 +91,6 @@ class ShowHelp # :nodoc:
     phr = phrase_for_post
     phr.push word_data
     @redis.set("phrase:#{@params[:word]['id']}", phr.to_json)
-    @session["flash"] = "Слово успешно добавлено"
+    @session["flash"] = "Слово успешно добавлено" unless @json_on
   end
 end
