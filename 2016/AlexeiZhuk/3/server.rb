@@ -72,9 +72,9 @@ def add_phrase(value, data)
   @hash = data["phrase"]
   history_hash = create_history(session[:username], value)
   if @hash.nil?
-    @hash = { "0" => { "text" => value,  "id_user" => session[:username], "history" => { 1 => history_hash } } }
+    @hash = { "0" => { "text" => value, "id_user" => session[:username], "history" => { 1 => history_hash } } }
   else
-    @hash[@hash.count] = { "text" => value,  "id_user" => session[:username], "history" => { 1 => history_hash } }
+    @hash[@hash.count] = { "text" => value, "id_user" => session[:username], "history" => { 1 => history_hash } }
   end
   Database.set("db", "phrase" => @hash)
 end
