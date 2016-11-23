@@ -5,8 +5,8 @@ var gameApp = angular.module('routerApp.mainController',['ngAnimate', 'ui.bootst
 gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', '$window', '$filter', '$state',
     function ($scope,$pusher, $http, $rootScope, $window, $filter, $state) {
 
-    console.log($window.localStorage['user']);
-
+        $rootScope.user_name = $window.localStorage.user;
+        $rootScope.logged = $window.localStorage.logged;
 
     if (typeof $rootScope.subscribed == 'undefined'){
         $rootScope.client = new Pusher('1404da432444b8f9e7aa', {
@@ -23,10 +23,10 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
                 $http.get('/phrases')
                     .success(function(data) {
                         data.forEach(function(item){
-                            if(item.last_user != $window.localStorage['user']){
-                                item['editable'] = true
+                            if(item.last_user != $window.localStorage.user){
+                                item.editable = true
                             }else{
-                                item['editable'] = false
+                                item.editable = false
                             }
                         });
                         $scope.phrases = data;
@@ -40,9 +40,9 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
             .success(function(data) {
                data.forEach(function(item){
                    if(item.last_user != $window.localStorage['user']){
-                        item['editable'] = true
+                        item.editable = true
                    }else{
-                       item['editable'] = false
+                       item.editable = false
                    }
                });
                 $scope.phrases = data;
@@ -60,22 +60,25 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
             var text = '';
             var phrase = $filter('filter')($scope.phrases, { _id: { $oid: id}})[0];
             phrase.words.forEach(function (word) {
-                var time = word.time.slice(0, -6);
+                var time = '(' + word.time.slice(0, -6) + ')';
+                var line = {'user_name': word.username, 'time': time, 'text': text, 'last_word': word.text};
                 text += word.text + ' ';
-                var line = word.username + ' (' + time + ') "' + text + '"';
                 $rootScope.hitories.push(line)
             });
             $rootScope.hitories.reverse();
             $state.go('history')
 
         }
+        $scope.back = function() {
+            $state.go('phrases')
+        };
     }]);
 
     gameApp.factory('httpRequestInterceptor', ['$window', function ($window) {
         return {
             request: function (config) {
 
-                config.headers['AUTHORIZATION'] = $window.localStorage['token'];
+                config.headers['AUTHORIZATION'] = $window.localStorage.token;
 
                 return config;
             }
@@ -84,8 +87,6 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
 
 gameApp.config(['$httpProvider', function ($httpProvider) {
      $httpProvider.interceptors.push('httpRequestInterceptor');
-
-
 
 }]);
 
@@ -101,7 +102,7 @@ gameApp.component('myContent', {
         };
         $ctrl.open = function() {
             $uibModal.open({
-                component: "myModal",
+                component: 'myModal',
                 resolve: {
                     modalData: function() {
                         return $ctrl.dataForModal;
@@ -120,25 +121,27 @@ gameApp.component('myContent', {
 
 gameApp.component('myModal', {
     /*jshint esversion: 6 */
-    template: `<div class="modal-body"><div>{{$ctrl.greeting}}</div>     
-    <label>First Word</label> <input ng-model="phrase.first"><br>    
+    template: `<div class="modal-body"><div>{{$ctrl.greeting}}</div> 
+    <form name="form">
+    <label>First Word</label> <input ng-model="phrase.first"  ng-pattern="/^[a-zA-Z,';:-]+$/" required><br> 
+    </form>>
     <button class="btn btn-info" type="button" ng-click="$ctrl.handleClose()">
     Close
     </button>
-    <button class="btn btn-info" type="button" ng-click="addPhrase();$ctrl.handleDismiss();">
+    <button class="btn btn-info" type="button" ng-disabled="form.$invalid"
+            ng-click="addPhrase();$ctrl.handleDismiss();">
     Add
     </button>
     </div>`,
     bindings: {
-        modalInstance: "<",
-        resolve: "<"
+        modalInstance: '<',
+        resolve: '<'
     },
-    controller: ['$scope', '$http', '$window',
+    controller: ['$scope', '$http', '$window', '$rootScope',
         function($scope, $http, $window) {
         var $ctrl = this;
         $ctrl.modalData = $ctrl.resolve.modalData;
         $ctrl.handleClose = function() {
-            console.info('in handle close');
             $ctrl.modalInstance.close($ctrl.modalData);
         };
         $scope.addPhrase = function() {
@@ -146,7 +149,6 @@ gameApp.component('myModal', {
             $http.post('api/phrases', postData)
         };
         $ctrl.handleDismiss = function() {
-            console.info('in handle dismiss');
             $ctrl.modalInstance.dismiss('cancel');
         };
     }]

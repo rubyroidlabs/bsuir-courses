@@ -36,6 +36,11 @@
     margin-left: 0.5em;
 }
 
+.italic{
+    front-family: 'Timest New Roman', Times, serif;
+    front-style: italic;
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }

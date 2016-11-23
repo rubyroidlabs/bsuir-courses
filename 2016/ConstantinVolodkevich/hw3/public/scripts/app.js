@@ -1,4 +1,4 @@
-var routerApp = angular.module('routerApp', ['ui.router', 'routerApp.mainController', 'routerApp.loginController']);
+var routerApp = angular.module('routerApp', ['ui.router', 'routerApp.mainController', 'routerApp.loginController', 'routerApp.historyController']);
 
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {
@@ -23,7 +23,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         .state('history', {
             url: '/phrase/history',
             templateUrl: 'history.html',
-            controller: 'mainController'
+            controller: 'historyController'
         });
 
 
