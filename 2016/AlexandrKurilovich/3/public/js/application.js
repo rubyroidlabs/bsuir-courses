@@ -17,8 +17,9 @@ $(document).ready(function() {
         var message = JSON.parse(xhr.responseText).message;
         switch (message) {
           case "error":
+            var mes = "Можно использовать только 1 знак препинания. Нельзя использовать точки"
             $("span.success_update")
-            .text("Можно использовать только 1 знак препинания. Нельзя использовать точки");
+            .text(mes);
             break;
           case "success":
             var $can = $this.parents(".can_update");
