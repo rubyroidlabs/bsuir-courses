@@ -1,0 +1,35 @@
+
+doctype html
+html 
+ head 
+  link rel="stylesheet"  href="stylesheets/css/game.css"
+  link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+  script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+ body 
+  
+  
+   nav class="navbar navbar-inverse"
+    div class="container-fluid"
+     div class="navbar-header"
+       a class="navbar-brand" 
+      
+     ul class="nav navbar-nav"
+       li class="active" 
+         a href='/game' Home
+         
+       li class="dropdown"
+          -user = User.find session[:user_id] 
+          a class="dropdown-toggle" data-toggle="dropdown" href="#" #{user.firstname} #{user.secondname} <span class="caret"></span>  
+       
+          ul class="dropdown-menu"
+            li 
+              a href="/login" Logout
+      
+       li 
+         a href="/login" Rules
+            
+   div class="main"
+      span  id="title" PHRASES     
+    
+   == yield      

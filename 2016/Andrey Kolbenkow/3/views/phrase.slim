@@ -1,29 +1,47 @@
-doctype html 
-html
+doctype html
+html 
+  title phrase 
   head
-   
-  body
-    
-   div class="all" id="all"
-    -phrase = Phrase.find params[:id]
-    p =phrase.value
-    
-    -unless phrase.last_changer.eql?(session[:user_id])
-      div class='add_form' id='add_phrase' 
-       form  method="post"  action="/phrase/#{params[:id]}/edit"
-         input type='text'  placeholder='your word' name='word'
-         button action="submit" id="panel"  Add
-    -else 
-      p YOU CANT ADD WORDS TO THIS PHRASE ¯\_(ツ)_/¯    
-     
-    -for word in phrase.words do 
-      span = [User.find(word.user_id).firstname, User.find(word.user_id).secondname].join(' ') 
-      span == " #{word.added_at}" 
-      -@pre_word = [@pre_word,word.value].reject(&nil).to_a.join(' ')
-      -@last = @pre_word.split(' ').delete_at(@pre_word.split(' ').size - 1)
-      span == @pre_word.gsub(@last," ")
-      b = @last
-      br ---------------------------------------------------------
       
-    a  href="/game" back
-        
+   script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+     
+   javascript:
+     function goBack(){
+      window.location = '/game'
+     }    
+      
+   link rel="stylesheet"  href="stylesheets/css/phrase.css"
+   link rel="stylesheet" href="stylesheets/css/bootstrap.min.css"     
+      
+  body 
+    
+    div class="all" id="all"
+     -phrase = Phrase.find params[:id]
+     strong Phrase:
+     =phrase.value
+     
+     -unless phrase.last_changer.eql?(session[:user_id])
+       div class='add_form' id='add_phrase' 
+        form  method="post"  action="/phrase/#{params[:id]}/edit"
+          input type='text'  placeholder='your word' name='word'
+          button action="submit" class="btn btn-success" id="panel"  Add
+     -else 
+       div class="alert alert-info" 
+         strong Info!  
+         indicates You can't add a word to this phrase  ¯\_(ツ)_/¯   
+    table class="table" id="table"
+     thead 
+       tr 
+         th User 
+         th Edited at
+         th Word
+     -for word in phrase.words do
+       tr 
+         td = [User.find(word.user_id).firstname, User.find(word.user_id).secondname].join(' ') 
+         td = " #{word.added_at}"  
+         td 
+           b = word.value
+           
+    div class='under-table'       
+     button  class="btn btn-primary" onclick="goBack()" Back
+         

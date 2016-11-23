@@ -1,0 +1,14 @@
+
+.all p{
+  padding-left: 100px;
+  text-align: center;
+}
+.all span{
+  padding-left: 100px;
+}
+.add_form{
+  display: block;
+  margin: 50px;
+  background-color: black;
+  text-align: center;
+}
