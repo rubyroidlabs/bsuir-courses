@@ -1,15 +1,15 @@
-.quotes-table.text-center
-  ul.nav.nav-pills.nav-stacked.navigation#quotes-list
-    - @quotes.each do |q|
+.phrases-table.text-center
+  ul.nav.nav-pills.nav-stacked.navigation#phrases-list
+    - @phrases.each do |q|
       - if logged_in?
         - if q.updates.last.user_id == session[:user_id]
-          a.link-to-quote.list-group-item.list-group-item-disabled.align-center href="#" id="#{q.id}"
-            li.quote-disabled
+          a.link-to-phrase.list-group-item.list-group-item-disabled.align-center href="#" id="#{q.id}"
+            li.phrase-disabled
               span id="span-#{q.id}"
                 = q.body
         - else
           div
-            li.quote-able.list-group-item.list-group-item-enabled.align-center id="#{q.id}"
+            li.phrase-able.list-group-item.list-group-item-enabled.align-center id="#{q.id}"
               span
                 = q.body 
               .inline-redactor id="inline-redactor-for-#{q.id}"

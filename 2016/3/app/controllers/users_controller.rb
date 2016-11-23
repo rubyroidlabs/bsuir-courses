@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         password: params[:password]
       )
       session[:user_id] = user.id
-      redirect to "/"
+      redirect_to_home_page
     end
   end
 
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
            params[:last_name].empty? ||
            params[:email].empty?
       User.update(params[:id], first_name: params[:first_name], last_name: params[:last_name], email: params[:email])
-      redirect to "/"
+      redirect_to_home_page
     end
   end
 

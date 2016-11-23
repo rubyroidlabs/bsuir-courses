@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    @quotes = Phrase.all
+    @phrases = Phrase.all
     slim :index
   end
 

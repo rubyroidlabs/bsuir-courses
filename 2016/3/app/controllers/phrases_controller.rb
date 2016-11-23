@@ -9,7 +9,7 @@ class PhrasesController < ApplicationController
   post "/phrases/new" do
     if word_validate params[:first_word]
       phrase = Phrase.create(body: params[:first_word])
-      Update.create(update_time: DateTime.now, word: params[:first_word], prev_phrase: "", user_id: session[:user_id], phrase_id: phrase.id)
+      Update.create(word: params[:first_word], prev_phrase: "", user_id: session[:user_id], phrase_id: phrase.id)
       redirect_to_home_page
     else
       redirect to "phrases/new"
@@ -25,7 +25,7 @@ class PhrasesController < ApplicationController
   post "/phrases/edit/:id" do
     if word_validate params[:word]
       phrase = Phrase.find(params[:id])
-      Update.create(update_time: DateTime.now, word: params[:word], prev_phrase: phrase.body, user_id: session[:user_id], phrase_id: phrase.id)
+      Update.create(word: params[:word], prev_phrase: phrase.body, user_id: session[:user_id], phrase_id: phrase.id)
       Phrase.update(params[:id], body: phrase.body + " " + params[:word])
       redirect_to_home_page
     else
@@ -43,7 +43,7 @@ class PhrasesController < ApplicationController
       result = []
       updates.each do |update|
         current_first_name = User.find(update.user_id).first_name
-        result << %(#{current_first_name} (#{update.update_time}): "#{update.prev_phrase} <b>#{update.word}</b>")
+        result << %(#{current_first_name} (#{update.updated_at}): "#{update.prev_phrase} <b>#{update.word}</b>")
       end
       result
     end
