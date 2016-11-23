@@ -1,9 +1,7 @@
 # migration
 class AddingTimestamps < ActiveRecord::Migration[5.0]
   def up
-    change_table :updates do |t|
-      t.timestamps
-    end
+    change_table(:updates).map(&:timestamps)
     remove_column :updates, :update_time
   end
 
