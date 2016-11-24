@@ -30,17 +30,14 @@ def check_and_save(word, continue, username, id)
   if check_word(word)
     save_word_or_phrase(word, continue, username, id)
     return true
-  else
-    return false
+  else return false
   end
 end
 
 def check_word(word)
   i = word.scan(".").size
-  if i.zero?
-    return true
-  else
-    return false
+  return true if i.zero?
+  else return false
   end
 end	
 
