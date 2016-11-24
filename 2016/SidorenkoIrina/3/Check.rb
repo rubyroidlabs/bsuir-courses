@@ -7,7 +7,8 @@ end
 def check_unique_login(login)
   db = db_get
   result = db.execute "SELECT username FROM users WHERE username = '#{login}';"
-  return true if result.any?
+  if result.any?
+    return false
   else
     return true
   end
@@ -17,7 +18,8 @@ def check_password(login, password)
   db = db_get
   result = db.execute "SELECT password FROM users WHERE username = '#{login}';"
   result.each do |value|
-    return true if value['password'] == password 
+    if value['password'] == password 
+      return true
     else
       return false
     end
@@ -25,16 +27,18 @@ def check_password(login, password)
 end	
 
 def check_and_save(word, continue, username, id)
-  return false if !check_word(word)
-  else 
+  if check_word(word)
     save_word_or_phrase(word, continue, username, id)
     return true
+  else
+    return false
   end
 end
 
 def check_word(word)
   i = word.scan(".").size
-  return true if i.zero?
+  if i.zero?
+    return true
   else
     return false
   end
@@ -54,7 +58,8 @@ def get_id_phrase(id_phrase, max_id)
 end
 
 def get_flag(continue)
-  return flag = 0 if continue.nil?
+  if continue.nil?
+    flag = 0
   else 
     flag = 1
   end
