@@ -44,7 +44,7 @@ def check_word(word)
   end
 end	
 
-def get_id_phrase(id)
+def get_id_phrase(id, max_id)
   if !max_id[0][0].nil? && id.zero?
     max_id = max_id.flatten
     @id = max_id[0][0]
@@ -58,17 +58,18 @@ def get_id_phrase(id)
 end
 
 def get_flag(continue)
-  if continue.nil?
-    flag = 0
-  else 
+ unless continue.nil?
     flag = 1
+  else 
+    flag = 0
   end
+  return flag
 end
 
 def save_word_or_phrase(word, continue, user, id)
   @db = db_get
   max_id = @db.execute "SELECT MAX(id) FROM phrases;"
-  @id = get_id_phrase(id)
+  @id = get_id_phrase(id, max_id)
   flag = get_flag(continue)
   date_time = Time.now.strftime("%Y-%m-%d %H:%M")
   id_user = @db.execute "SELECT id FROM users WHERE username = '#{user}'"
