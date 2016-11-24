@@ -1,0 +1,21 @@
+<section class="section-signin">
+	<h3 class="text-center">LOG IN</h3>
+	<div class="panel-default">
+		<div class="panel-body">
+			<form  action="/login" method="post">
+				<div class="form-group">	
+					<input class="form-control" name = "username" required placeholder="Username/Email" type="text">
+					<br>
+					<input class="form-control" name="password" required placeholder="Password" type="text">
+				</div>
+				<%if @error then %>
+					    <div class="alert alert-danger" style="color:red;"><%=@error%></div>
+	            <% end %>
+				<div class="form-group">
+					<button class="btn btn-block btn-default" type="submit">Sign in</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+

@@ -1,0 +1,23 @@
+<section class=" section-signin">
+	<h3 class="text-center">ADD NEW PHRASE</h3>
+	<div class="panel-default">
+		<div class="panel-body">
+			<form  action="/new_phrase" method="post" role="form">
+				<div class="form-group">
+					<input class="form-control" name = "word" required placeholder="Enter new phrase" type="text">
+					<br>
+					<label><input type="checkbox" name = "continue"> Continue the phrase? </label>
+				</div>
+				<%if @error then %>
+					    <div class="alert alert-danger" style="color:red;"><%=@error%></div>
+	            <% end %>
+				<div class="form-group">
+					<button class="btn btn-block btn-default" type="submit">ADD</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+
+	
