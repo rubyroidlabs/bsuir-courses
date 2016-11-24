@@ -60,8 +60,7 @@ end
 def get_flag(continue)
   if continue.nil?
     flag = 0
-  else 
-    flag = 1
+  else flag = 1
   end
   return flag
 end
@@ -75,4 +74,3 @@ def save_word_or_phrase(word, continue, user, id)
   id_user = @db.execute "SELECT id FROM users WHERE username = '#{user}'"
   @db.execute "INSERT INTO phrases (id, word, id_user, date_time, flag) VALUES (?, ?, ?, ?, ?);", [@id, word, id_user[0][0], date_time.to_s, flag]
 end
-
