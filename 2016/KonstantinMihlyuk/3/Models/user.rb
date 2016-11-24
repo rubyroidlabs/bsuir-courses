@@ -1,12 +1,10 @@
 # Class User
 class User
+  attr_reader :client
+
   def initialize(options = {})
     @client = options[:client] ? options[:client] : Mongo::Client.new(["127.0.0.1:27017"], database: "phrases")
     @collection = @client[:users]
-  end
-
-  def client
-    @client
   end
 
   def insert_one(name, username, password)

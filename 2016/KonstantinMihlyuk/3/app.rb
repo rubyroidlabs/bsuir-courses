@@ -77,6 +77,45 @@ EventMachine.run do
 
   @clients = []
 
+  def create_word(username, text)
+    user = User.new
+    word = Word.new(client: user.client)
+
+    user.find_by_username(username)
+    word.insert_one(user[:_id], text, Time.now)
+  end
+
+  def create_phrase(user_id, word_id)
+    user = User.new
+    phrase = Phrase.new(client: user.client)
+
+    phrase_id = phrase.insert_one(user_id, Time.now)
+    phrase.add_word(BSON::ObjectId(phrase_id), word_id)
+
+    phrase_id
+  end
+
+  def add_word(phrase_id, word_id)
+    user = User.new
+    phrase = Phrase.new(client: user.client)
+
+    phrase.add_word(BSON::ObjectId(phrase_id), word_id)
+  end
+
+  def send_data(type, data, phrase_id, word_id)
+    user = User.new
+    word = Word.new(client: user.client)
+    user = user.find_by_username(data["username"])
+
+    send_data(type,
+              phrase_id: phrase_id.to_s,
+              word_id: word_id.to_s,
+              word_text: data["text"],
+              username: user[:username],
+              name: user[:name],
+              time: word.find_by_id(word_id)[:date])
+  end
+
   EM::WebSocket.start(host: "0.0.0.0", port: "3001", secure_proxy: true) do |ws|
     enable :sessions
 
@@ -93,61 +132,18 @@ EventMachine.run do
 
     ws.onmessage do |message|
       message = JSON.parse(message)
+      data = message["data"]
 
       case message["type"]
       when "create_phrase" then
-        create_phrase(message["data"])
+        word_id = create_word(data[:username], data[:text])
+        phrase_id = create_phrase(message["data"])
+        send_data(message["type"], message["data"], phrase_id, word_id)
       when "add_word" then
-        add_word(message["data"])
+        word_id = create_word(data[:username], data[:text])
+        add_word(data["phrase_id"], word_id)
+        send_data(message["type"], message["data"], data["phrase_id"], word_id)
       end
-    end
-
-    def send_data(type, data)
-      @clients.each do |socket|
-        result = {
-          type: type,
-          data: data
-        }.to_json
-
-        socket.send result
-      end
-    end
-
-    def create_phrase(data)
-      user = User.new
-      word = Word.new(client: user.client)
-      phrase = Phrase.new(client: user.client)
-
-      user = user.find_by_username(data["username"])
-      word_id = word.insert_one(user[:_id], data["text"], Time.now)
-      phrase_id = phrase.insert_one(user[:_id], Time.now)
-      phrase.add_word(BSON::ObjectId(phrase_id), word_id)
-
-      send_data("create_phrase",
-                phrase_id: phrase_id.to_s,
-                word_id: word_id.to_s,
-                word_text: data["text"],
-                username: user[:username],
-                name: user[:name],
-                time: word.find_by_id(word_id)[:date])
-    end
-
-    def add_word(data)
-      user = User.new
-      word = Word.new(client: user.client)
-      phrase = Phrase.new(client: user.client)
-
-      user = user.find_by_username(data["username"])
-      word_id = word.insert_one(user[:_id], data["text"], Time.now)
-      phrase.add_word(BSON::ObjectId(data["phrase_id"]), word_id)
-
-      send_data("create_phrase",
-                phrase_id: data["phrase_id"],
-                word_id: word_id.to_s,
-                word_text: data["text"],
-                username: user[:username],
-                name: user[:name],
-                time: word.find_by_id(word_id)[:date])
     end
   end
 end
