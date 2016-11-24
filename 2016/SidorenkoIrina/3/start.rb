@@ -33,15 +33,22 @@ get "/login" do
   erb :login
 end
 
+get "/logout" do
+  last_url = session[:last_url]
+  session.delete(:current_user)
+  redirect to last_url || '/'
+end 
+
 post "/login" do
   @username = params[:username]
   @password = params[:password]
-  session[:current_user] = @username
   if check_unique_login(@username)
     @db = db_get
     @db.execute "INSERT INTO users (username, password) VALUES (?, ?);", [@username, @password]
+    session[:current_user] = @username
     redirect to("/")
   elsif check_password(@username, @password)
+    session[:current_user] = @username
     redirect to("/")
   else
     @error = "This username is not available! Or incorrect password!"
@@ -101,4 +108,3 @@ end
 get "/*" do
   redirect "/"
 end
-
