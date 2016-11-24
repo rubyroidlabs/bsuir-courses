@@ -38,11 +38,10 @@ EventMachine.run do
             name: user[:name]
         }
 
-        return {result: true}.to_json
+        { result: true }.to_json
       else
-        return {result: false}.to_json
+        { result: false }.to_json
       end
-
     end
 
     get "/logout" do
@@ -57,27 +56,27 @@ EventMachine.run do
       password = request.params["password"]
 
       if User.new.is_exist(username)
-        return {result: false}.to_json
+        { result: false }.to_json
       else
         User.new.insert_one(name, username, password)
         session[:user] = {
-            name: name,
-            username: username,
-            password: password
+          name: name,
+          username: username,
+          password: password
         }
 
-        return {result: true}.to_json
+        { result: true }.to_json
       end
     end
   end
 
   # our WebSockets server logic will go here
 
-  App.run! :port => 3000
+  App.run! port: 3000
 
   @clients = []
 
-  EM::WebSocket.start(:host => "0.0.0.0", :port => "3001", :secure_proxy => true) do |ws|
+  EM::WebSocket.start(host: "0.0.0.0", port: "3001", secure_proxy: true) do |ws|
     enable :sessions
 
     ws.onopen do |handshake|
@@ -105,8 +104,8 @@ EventMachine.run do
     def send_data(type, data)
       @clients.each do |socket|
         result = {
-            type: type,
-            data: data
+          type: type,
+          data: data
         }.to_json
 
         socket.send result
@@ -123,14 +122,9 @@ EventMachine.run do
       phrase_id = phrase.insert_one(user[:_id], Time.now)
       phrase.add_word(BSON::ObjectId(phrase_id), word_id)
 
-      send_data("create_phrase", {
-          phrase_id: phrase_id.to_s,
-          word_id: word_id.to_s,
-          word_text: data["text"],
-          username: user[:username],
-          name: user[:name],
-          time: word.find_by_id(word_id)[:date]
-      })
+      send_data("create_phrase", phrase_id: phrase_id.to_s, word_id: word_id.to_s,
+                word_text: data["text"], username: user[:username],
+                name: user[:name], time: word.find_by_id(word_id)[:date])
     end
 
     def add_word(data)
@@ -142,14 +136,9 @@ EventMachine.run do
       word_id = word.insert_one(user[:_id], data["text"], Time.now)
       phrase.add_word(BSON::ObjectId(data["phrase_id"]), word_id)
 
-      send_data("create_phrase", {
-          phrase_id: data["phrase_id"],
-          word_id: word_id.to_s,
-          word_text: data["text"],
-          username: user[:username],
-          name: user[:name],
-          time: word.find_by_id(word_id)[:date]
-      })
+      send_data("create_phrase", phrase_id: data["phrase_id"], word_id: word_id.to_s,
+                word_text: data["text"], username: user[:username],
+                name: user[:name], time: word.find_by_id(word_id)[:date])
     end
   end
 end
