@@ -1,0 +1,117 @@
+
+body {
+    background-image: url(../img/background_index.jpg);
+    background-size: auto;
+    width: 100%;
+    height: 100%;
+}
+
+/*---------------NAVBAR---------------*/
+
+.navbar.ontop-now {
+  box-shadow: none;
+  background: transparent;
+}
+.navbar-inverse.ontop-now {
+    border-bottom: 0 none;
+}
+.navbar {
+    border-radius: 0;
+    padding: 12px 0;
+    margin-bottom: 0;
+}
+.navbar .navbar-brand {
+    padding: 0 0 0 15px;
+    margin: 12px 0 0 0;
+}
+.navbar-inverse .navbar-brand img {
+    display: block;
+    margin-top: -8px;
+}
+
+/*--------------HEAD---------------*/
+.head-default .lead {
+    font-family: Raleway, "Open sans", helvetica, "Helvetica Neue", arial;
+    font-weight: bold;
+    font-size: 45px;
+    margin: 150px 0 6px 0;
+    color: #fff;
+    line-height: 1.15em;
+}
+.head-default .tagline {
+    font-family: helvetica, "Helvetica Neue", "Open Sans", Arial, sans-serif;
+    font-weight: normal;
+    margin-bottom: 25px;
+    font-size: 18px;
+    color: #eee;
+    opacity: .85;
+}
+.head-default .btn-default {
+    text-shadow: none;
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #eee;
+}
+.head-default .btn {
+    font-size: 16px;
+}
+
+/*---------BUTTONS----------*/
+.btn-lg {
+    padding: 14px 65px;
+}
+.btn {
+    padding: 9px 40px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.prokrutka {
+    color: black;
+    height: 300px;
+    background: #fff;
+    opacity: 0.8;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #C1C1C1;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+.section-signin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -225px 0 0 -180px;
+    width: 360px;
+    height: 450px;
+    color: black;
+}
+h3.text-center {
+	color: #fff;
+	font-weight: 500;
+}
+.form-control {
+    border-radius: 3px;
+    padding: 9px 12px;
+    height: 40px;
+}
+form label{
+	color: #fff;
+}
+
+a.disabled{
+    pointer-events: none;
+    color: #999;
+}
+.history-area{
+    color: black;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #fff;
+    opacity: 0.8;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #C1C1C1;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
