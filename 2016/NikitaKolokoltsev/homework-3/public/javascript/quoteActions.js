@@ -43,6 +43,9 @@ $(function() {
   $("#new-quote-form").submit(function() {
     var input = $("#new-quote-input")[0];
     if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
+      $("#new-quote-form").submit(function() {
+        false;
+      });
       ws.send(input.value);
     } else {
       showWordFormatError();
@@ -54,6 +57,9 @@ $(function() {
     var input = $("#edit-quote-input")[0];
     var quoteId = $("#edit-quote-input")[0].baseURI.split("/").pop();
     if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
+      $("#edit-quote-form").submit(function() {
+        return false;
+      });
       ws.send([quoteId, input.value]);
     } else {
       showWordFormatError();

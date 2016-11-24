@@ -1,0 +1,63 @@
+link href="/stylesheets/users.css" rel="stylesheet"
+link href="/stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet"
+link href="/stylesheets/jquery/jquery-ui.css" rel="stylesheet"
+
+.container
+  
+  .header
+    - if @user.role == "admin"
+      img.user-icon src="/images/admin.png"
+    - else
+      img.user-icon src="/images/user.png"
+    br
+
+    = @user.first_name + " " + @user.last_name
+
+  .user-info-table
+    ul.nav.nav-tabs.nav-justified
+      li.active
+        a data-toggle="tab" href="#home"
+          | Started Quotes
+      li
+        a data-toggle="tab" href="#menu1"
+          | Added Words
+      li
+        a data-toggle="tab" href="#menu2"
+          | Achievments
+
+    .tab-content
+      #home.tab-pane.fade.in.active
+        - @user.quotes.each do |quote|
+          small
+            = quote.created_at.in_time_zone("Europe/Minsk").strftime("%Y-%m-%d %H:%M:%S") + ":"
+          - quote.words.first(10).each do |word|
+            =  " " + word.text
+          - if quote.words.count > 10
+            | ...
+          br
+      #menu1.tab-pane.fade
+        - @words.each do |word|
+          small
+            = word.created_at.in_time_zone("Europe/Minsk").strftime("%Y-%m-%d %H:%M:%S") + ": "
+          - word.quote.words.each do |w|
+            - if w != word
+              = w.text + " "
+            - else 
+              u.added-word
+                = w.text
+              |  
+          br
+      #menu2.tab-pane.fade
+        | Soon...
+
+  .back-to-site-link.text-center
+    a href="/"
+      .btn.btn-info
+        span.glyphicon.glyphicon-chevron-left
+        | Back to site
+
+      
+
+script src="/javascript/jquery/jquery-1.12.1.min.js"
+script src="/javascript/jquery/jquery-ui-1.12.1.min.js"
+script src="/javascript/bootstrap/bootstrap.min.js"

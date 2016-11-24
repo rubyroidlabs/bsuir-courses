@@ -77,11 +77,15 @@ $(function() {
   };
 
   // AJAX update quote from main page
-  $(".inline-redactor-btn").click(function() {
+  $(".inline-redactor-btn").on("click", function() {
     var input = $(this)[0].previousSibling;
+    var btn = $(this)
     var errorsBlock = $(this).parent()[0].lastChild;
     var quoteID = $(this)[0].parentElement.id.split("-").slice(-1)[0];
     if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
+      btn.on("click", function() {
+        return false;
+      });
       $.ajax({
         url: "/quotes/edit/" + quoteID,
         dataType: "json",
@@ -108,6 +112,18 @@ $(function() {
 
     if (e.which == 46) {
       showDotError(errorsBlock);
+      return false;
+    }
+  });
+
+  $("#inputFirstName").on("keypress", function(e) {
+    if (e.which == 32) {
+      return false;
+    }
+  });
+
+  $("#inputLastName").on("keypress", function(e) {
+    if (e.which == 32) {
       return false;
     }
   });

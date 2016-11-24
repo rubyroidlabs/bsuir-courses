@@ -4,7 +4,13 @@ link href="/stylesheets/jquery/jquery-ui.css" rel="stylesheet"
 
 
 / User icon which opens auth window
-img#user-auth-open.user-icon src="/images/user-icon.png"
+- if user_signed_in? 
+  - if current_user.role == "admin"
+    img#user-auth-open.user-icon src="/images/admin.png"
+  - else
+    img#user-auth-open.user-icon src="/images/user.png"
+- else
+  img#user-auth-open.user-icon src="/images/user-icon.png"
 
 / User auth window or greetings
 #user-auth-window hidden="hidden"
@@ -16,9 +22,13 @@ img#user-auth-open.user-icon src="/images/user-icon.png"
 
     hr
 
-    form action="/users/logout" method="get"
-      button.btn.btn-danger
+    form.logout-form action="/users/logout" method="get"
+      button.btn.btn-danger type="submit"
         | Log Out
+    a href="/users/#{current_user.id}"  
+      button.btn.btn-warning.pull-right
+        | Your Page
+        span.glyphicon.glyphicon-chevron-right
 
   - else 
     == render :slim, :_login_window

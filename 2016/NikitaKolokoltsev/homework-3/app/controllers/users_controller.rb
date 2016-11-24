@@ -11,7 +11,7 @@ class UsersController < ApplicationController
            params[:last_name].empty? ||
            params[:email].empty? ||
            params[:password].empty?
-      user = User.create(
+      user = User.create!(
         first_name: params[:first_name],
         last_name: params[:last_name],
         email: params[:email],
@@ -25,5 +25,12 @@ class UsersController < ApplicationController
   get "/users/logout" do
     session[:user_id] = nil
     redirect_to_root_path
+  end
+
+  get "/users/:id" do
+    @user = User.find(params[:id])
+
+    @words = Word.all.includes(:user, :quote).where(user_id: params[:id])
+    slim :user_page
   end
 end
