@@ -6,7 +6,7 @@ var gameApp = angular.module('routerApp.mainController',['ngAnimate', 'ui.bootst
 gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', '$window', '$filter', '$state',
     function ($scope,$pusher, $http, $rootScope, $window, $filter, $state) {
 
-        $rootScope.user_name = $window.localStorage.user;
+        $rootScope.userName = $window.localStorage.user;
         $rootScope.logged = $window.localStorage.logged;
 
     if (typeof $rootScope.subscribed == 'undefined'){
@@ -20,18 +20,18 @@ gameApp.controller('mainController', ['$scope','$pusher', '$http','$rootScope', 
         $rootScope.subscribed = true;
 
         channel.bind('my_event',
-            function(data) {
+            function() {
                 $http.get('/phrases')
                     .success(function(data) {
                         data.forEach(function(item){
                             if(item.last_user != $window.localStorage.user){
-                                item.editable = true
+                                item.editable = true;
                             }else{
-                                item.editable = false
+                                item.editable = false;
                             }
                         });
                         $scope.phrases = data;
-                    })
+                    });
             }
         );
 
@@ -110,7 +110,7 @@ gameApp.component('myContent', {
                         return $ctrl.dataForModal;
                     }
                 }
-            })
+            });
         };
     }
 });
@@ -121,7 +121,8 @@ gameApp.component('myModal', {
    
     <form name="form">
     <label>First Word</label>
-    <input ng-model="phrase.first"  ng-pattern="/^[a-zA-Z,';:-]+$/" required><br> 
+    <input ng-model="phrase.first" ng-maxlength="15"
+           ng-pattern="/^[a-zA-Z,';:-]+$/" required><br> 
     </form>>
    
     <button class="btn btn-info" type="button" ng-click="$ctrl.handleClose()">

@@ -13,7 +13,7 @@ gameApp.controller('loginController', ['$scope', '$http','$window','$rootScope',
                 $window.localStorage.token = JSON.stringify(data);
                 $window.localStorage.user = $scope.user.name;
                 $window.localStorage.logged = true;
-                $rootScope.user_name = $scope.user.name;
+                $rootScope.userName = $window.localStorage.user;
                 $rootScope.logged = $window.localStorage.logged;
             });
     };

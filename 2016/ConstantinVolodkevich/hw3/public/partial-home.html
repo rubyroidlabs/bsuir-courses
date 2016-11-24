@@ -2,7 +2,8 @@
     <div>
         <my-content></my-content>
         <form name="form">
-        Word: <input type="text" name="word" ng-pattern="/^[a-zA-Z,';:-]+$/" ng-model="word.text"required/>
+        Word: <input type="text" name="word" ng-maxlength="15"
+              ng-pattern="/^[a-zA-Z,';:-]+$/" ng-model="word.text"required/>
         </form>
     </div>
     <div class="col-sm-8 col-sm-offset-3" ng-repeat="phrase in phrases">
