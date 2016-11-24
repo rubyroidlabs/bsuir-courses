@@ -1,4 +1,6 @@
 (function () {
+    var updatePhraseListeners = null;
+
     try {
         socket.onmessage = function (msg) {
             var response = msg.data ? JSON.parse(msg.data) : "";
@@ -7,28 +9,32 @@
                 case "create_phrase": {
                     var data = response.data;
 
-                    createPhrase(data['phrase_id'], data['word_id'], data['word_text'],
-                        data['name'], data['time'], data['username']);
+                    createPhrase(data.phraseId,
+                        data.wordId, data.wordText,
+                        data.name, data.time, data.username);
                     updatePhraseListeners();
                     break;
                 }
                 case "add_word": {
                     var data1 = response.data;
 
-                    addWord(data1['phrase_id'], data1['word_id'], data1['word_text'],
-                        data1['name'], data1['time'], data1['username']);
+                    addWord(data1.phraseId, data1.wordId, data1.wordText,
+                        data1.name, data1.time, data1.username);
                     updatePhraseListeners();
                     break;
                 }
             }
         };
+    } catch (exception) {
+
     }
 
     function createPhrase(phraseId, wordId, text, name, time, username) {
         var phrase =
             "<div class=\"well phrase\" data-id=" + phraseId + ">" +
             "<div class=\"proposal\">" +
-            "<span class=\"word\" data-id=" + wordId + " data-username=" + username + " data-name=" +
+            "<span class=\"word\" data-id=" + wordId +
+            " data-username=" + username + " data-name=" +
                 name + " data-time=\"" + time + "\">" + text + "</span>" +
             "<div class=\"controls\">" +
             "<div class=\"add-phrase input-group\">" +
@@ -54,8 +60,10 @@
     function addWord(phraseId, wordId, text, username, time) {
         var phrase = $(".phrase[data-id=" + phraseId + "]");
 
-        phrase.find(".proposal .word:last-of-type").after("<span class=\"word\" data-id=" + wordId +
-            " data-name=" + username + " data-time=" + time + ">" + text + "</span>");
+        phrase.find(".proposal .word:last-of-type")
+            .after("<span class=\"word\" data-id=" + wordId +
+            " data-name=" + username + " data-time=" +
+                time + ">" + text + "</span>");
     }
 
 })();

@@ -1,5 +1,6 @@
 var updatePhraseListeners = function () {
     var phrases = $(".phrases");
+    var socket = null;
 
     phrases.off();
     phrases.find(".btn").off();
@@ -28,7 +29,7 @@ var updatePhraseListeners = function () {
         }
 
         if (username == word_name) {
-            var self = this;
+            var self1 = this;
 
             $(this).popover({
                 content: "Ваше сообщение последнее!",
@@ -37,7 +38,7 @@ var updatePhraseListeners = function () {
             }).popover("show");
 
             setTimeout(function () {
-                $(self).popover("destroy");
+                $(self1).popover("destroy");
             }, 3000);
 
             return;
@@ -48,17 +49,18 @@ var updatePhraseListeners = function () {
         var data = {
             text: text,
             username: username,
-            phrase_id: phrase_id
+            phraseId: phraseId
         };
 
         socket.send(JSON.stringify({
             type: "add_word",
             data: data
-        }))
+        }));
 
     });
 
     $(".word").each(function () {
+        var moment = null;
         $(this).popover({
             trigger: "hover",
             title: $(this).data("name"),
