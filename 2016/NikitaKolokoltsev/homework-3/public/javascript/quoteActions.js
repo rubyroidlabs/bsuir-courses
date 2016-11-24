@@ -44,7 +44,7 @@ $(function() {
     var input = $("#new-quote-input")[0];
     if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
       $("#new-quote-form").submit(function() {
-        false;
+        return false;
       });
       ws.send(input.value);
     } else {
@@ -72,7 +72,8 @@ $(function() {
   checkInput("#edit-quote-input");
 
   $(".disabled").on("click", function() {
-    $(".errors")[0].innerHTML = "You must wait when someone else will add a word.";
+    $(".errors")[0].innerHTML = 
+      "You must wait when someone else will add a word.";
     $(".errors").fadeIn(300);
     return false;
   });
