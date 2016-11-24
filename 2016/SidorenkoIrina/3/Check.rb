@@ -44,17 +44,16 @@ def check_word(word)
   end
 end	
 
-def get_id_phrase(id, max_id)
-  if !max_id[0][0].nil? && id.zero?
+def get_id_phrase(id_phrase, max_id)
+  if !max_id[0][0].nil? && id_phrase.zero?
     max_id = max_id.flatten
-    @id = max_id[0][0]
-    @id += 1
-  elsif id.nonzero?
-    @id = id
-  elsif max_id[0][0].nil? && id.zero?
-    @id = 1
+    id = max_id[0][0]
+    id += 1
+  elsif id_phrase.nonzero?
+    id = id_phrase
+  elsif max_id[0][0].nil? && id_phrase.zero?
+    id = 1
   end
-  return @id
 end
 
 def get_flag(continue)
@@ -63,7 +62,6 @@ def get_flag(continue)
   else 
     flag = 0
   end
-  return flag
 end
 
 def save_word_or_phrase(word, continue, user, id)
@@ -73,5 +71,5 @@ def save_word_or_phrase(word, continue, user, id)
   flag = get_flag(continue)
   date_time = Time.now.strftime("%Y-%m-%d %H:%M")
   id_user = @db.execute "SELECT id FROM users WHERE username = '#{user}'"
-  @db.execute "INSERT INTO phrases (id, word, id_user, date_time, flag) VALUES (?, ?, ?, ?, ?);", [@id, @word, id_user[0][0], date_time.to_s, flag]
+  @db.execute "INSERT INTO phrases (id, word, id_user, date_time, flag) VALUES (?, ?, ?, ?, ?);", [@id, word, id_user[0][0], date_time.to_s, flag]
 end
