@@ -37,7 +37,8 @@ end
 
 def check_word(word)
   i = word.scan(".").size
-  return true if i.zero?
+  if i.zero?
+    return true
   else 
     return false
   end
@@ -59,7 +60,8 @@ end
 def get_flag(continue)
   if continue.nil?
     flag = 0
-  else flag = 1
+  else 
+    flag = 1
   end
   return flag
 end
