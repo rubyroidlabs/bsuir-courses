@@ -12,6 +12,7 @@ require_relative "Models/word.rb"
 require_relative "Models/phrase.rb"
 
 EventMachine.run do
+  #class App Sinatra Base
   class App < Sinatra::Base
     enable :sessions
 
@@ -23,7 +24,7 @@ EventMachine.run do
     end
 
     post "/add_phrase" do
-      erb :index, :layout => false
+      erb :index, layout: false
     end
 
     post "/sign_in" do
@@ -34,8 +35,8 @@ EventMachine.run do
         user = User.new.find_by_username(username)
 
         session["user"] = {
-            username: username,
-            name: user[:name]
+          username: username,
+          name: user[:name]
         }
 
         { result: true }.to_json
@@ -122,9 +123,13 @@ EventMachine.run do
       phrase_id = phrase.insert_one(user[:_id], Time.now)
       phrase.add_word(BSON::ObjectId(phrase_id), word_id)
 
-      send_data("create_phrase", phrase_id: phrase_id.to_s, word_id: word_id.to_s,
-                word_text: data["text"], username: user[:username],
-                name: user[:name], time: word.find_by_id(word_id)[:date])
+      send_data("create_phrase",
+                phrase_id: phrase_id.to_s,
+                word_id: word_id.to_s,
+                word_text: data["text"],
+                username: user[:username],
+                name: user[:name],
+                time: word.find_by_id(word_id)[:date])
     end
 
     def add_word(data)
@@ -136,9 +141,13 @@ EventMachine.run do
       word_id = word.insert_one(user[:_id], data["text"], Time.now)
       phrase.add_word(BSON::ObjectId(data["phrase_id"]), word_id)
 
-      send_data("create_phrase", phrase_id: data["phrase_id"], word_id: word_id.to_s,
-                word_text: data["text"], username: user[:username],
-                name: user[:name], time: word.find_by_id(word_id)[:date])
+      send_data("create_phrase",
+                phrase_id: data["phrase_id"],
+                word_id: word_id.to_s,
+                word_text: data["text"],
+                username: user[:username],
+                name: user[:name],
+                time: word.find_by_id(word_id)[:date])
     end
   end
 end
