@@ -21,7 +21,6 @@ configure do
 	`date_time`	TEXT NOT NULL);' 
 end
 
-
 get "/" do
      unless session[:current_user].nil?
 	@user = session[:current_user]
@@ -54,18 +53,18 @@ post "/login" do
      end
 end
 
-post "/add_wor" do
+post "/add_word" do
      @username = session[:current_user]
      @id = params[:id]
      @word = params[:word]
      @continue = params[:continue]
      if check_and_save(@word, @continue, @username, @id)
-    	redirect "/"
+       redirect "/"
      else
-	@error = "Invalid value!"
-	if @error
-	   erb :history
-	end
+       @error = "Invalid value!"
+       if @error
+	 erb :history
+       end
      end
 end
 
@@ -76,7 +75,7 @@ get "/history" do
     @db = db_get
     @result = @db.execute "SELECT u.username, p.date_time, p.word FROM users u INNER JOIN phrases p ON p.id_user = u.id WHERE p.id = '#{@id}'"
     if @result.any?
-	erb :history
+      erb :history
     end
 end
 
@@ -92,12 +91,12 @@ post "/new_phrase" do
      @word = params[:word]
      @continue = params[:continue]
      if check_and_save(@word, @continue, @username, 0)
-    	redirect "/"
+          redirect "/"
      else
-	@error = "Invalid value!"
-	if @error
- 	   erb :new_phrase
-	end
+	  @error = "Invalid value!"
+	  if @error
+ 	     erb :new_phrase
+	  end
      end
 end
 
