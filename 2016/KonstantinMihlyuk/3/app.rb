@@ -12,7 +12,7 @@ require_relative "Models/word.rb"
 require_relative "Models/phrase.rb"
 
 EventMachine.run do
-  #class App Sinatra Base
+  # class App Sinatra Base
   class App < Sinatra::Base
     enable :sessions
 
@@ -31,7 +31,7 @@ EventMachine.run do
       username = request.params["username"]
       password = request.params["password"]
 
-      if User.new.is_exist(username) && User.new.check_password(username, password)
+      if User.new.exist?(username) && User.new.check_password(username, password)
         user = User.new.find_by_username(username)
 
         session["user"] = {
@@ -56,7 +56,7 @@ EventMachine.run do
       username = request.params["username"]
       password = request.params["password"]
 
-      if User.new.is_exist(username)
+      if User.new.exist?(username)
         { result: false }.to_json
       else
         User.new.insert_one(name, username, password)
@@ -115,8 +115,8 @@ EventMachine.run do
 
     def create_phrase(data)
       user = User.new
-      word = Word.new(client: user.get_client)
-      phrase = Phrase.new(client: user.get_client)
+      word = Word.new(client: user.client)
+      phrase = Phrase.new(client: user.client)
 
       user = user.find_by_username(data["username"])
       word_id = word.insert_one(user[:_id], data["text"], Time.now)
@@ -134,8 +134,8 @@ EventMachine.run do
 
     def add_word(data)
       user = User.new
-      word = Word.new(client: user.get_client)
-      phrase = Phrase.new(client: user.get_client)
+      word = Word.new(client: user.client)
+      phrase = Phrase.new(client: user.client)
 
       user = user.find_by_username(data["username"])
       word_id = word.insert_one(user[:_id], data["text"], Time.now)
