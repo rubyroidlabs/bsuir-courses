@@ -32,7 +32,6 @@
             $(addPhrase).click(function () {
                 var text = $(phrasePopupInput).val();
                 var username = $(".username-handler").data("username");
-                var socket = null;
 
                 if (!username) {
                     var self = this;
@@ -51,16 +50,6 @@
                 }
 
                 $(phrasePopup).remove();
-
-                var data = {
-                    text: text,
-                    username: username
-                };
-
-                socket.send(JSON.stringify({
-                    type: "create_phrase",
-                    data: data
-                }));
             });
         }
     });
