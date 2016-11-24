@@ -1,0 +1,32 @@
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">The Phrases</a>
+    </div>
+
+    <div class="navbar-collapse collapse" style="height: 1px;">
+      <div class="hello-user navbar-form navbar-right">
+
+        <% if @user %>
+            <a class="username-handler dropdown-toggle" data-toggle="dropdown" data-username=<%= @user[:username] %> href="#" aria-expanded="false">Привет, <%= @user[:name] %>
+              <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/logout">Выйти</a></li>
+            </ul>
+        <% else %>
+            <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#signInModal">Sign in
+            </button>
+            <button type="submit" class="btn btn-default" data-toggle="modal" data-target="#signUpModal">Sign up
+            </button>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
