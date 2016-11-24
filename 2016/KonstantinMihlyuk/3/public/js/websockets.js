@@ -1,13 +1,5 @@
 (function () {
     try {
-        socket.onopen = function () {
-            console.log("Socket Status: " + socket.readyState + " (open)");
-        };
-
-        socket.onclose = function () {
-            console.log("Socket Status: " + socket.readyState + " (closed)");
-        };
-
         socket.onmessage = function (msg) {
             var response = msg.data ? JSON.parse(msg.data) : "";
 
@@ -15,32 +7,33 @@
                 case "create_phrase": {
                     var data = response.data;
 
-                    createPhrase(data.phrase_id, data.word_id, data.word_text, data.name, data.time, data.username);
+                    createPhrase(data['phrase_id'], data['word_id'], data['word_text'],
+                        data['name'], data['time'], data['username']);
                     updatePhraseListeners();
                     break;
                 }
                 case "add_word": {
-                    var data = response.data;
+                    var data1 = response.data;
 
-                    addWord(data.phrase_id, data.word_id, data.word_text, data.name, data.time, data.username);
+                    addWord(data1['phrase_id'], data1['word_id'], data1['word_text'],
+                        data1['name'], data1['time'], data1['username']);
                     updatePhraseListeners();
                     break;
                 }
-
             }
-        }
-    } catch (exception) {
-        console.log("Error: " + exception);
+        };
     }
 
     function createPhrase(phraseId, wordId, text, name, time, username) {
         var phrase =
             "<div class=\"well phrase\" data-id=" + phraseId + ">" +
             "<div class=\"proposal\">" +
-            "<span class=\"word\" data-id=" + wordId + " data-username="+ username + " data-name=" + name + " data-time=\"" + time + "\">" + text + "</span>" +
+            "<span class=\"word\" data-id=" + wordId + " data-username=" + username + " data-name=" +
+                name + " data-time=\"" + time + "\">" + text + "</span>" +
             "<div class=\"controls\">" +
             "<div class=\"add-phrase input-group\">" +
-            "<input placeholder=\"Добавьте слово\" type=\"text\" class=\"form-control\" maxlength=\"12\">" +
+            "<input placeholder=\"Добавьте слово\" type=\"text\" " +
+            "class=\"form-control\" maxlength=\"12\">" +
             "<span class=\"input-group-btn\">" +
             "<button class=\"btn btn-success\" type=\"button\">" +
             "<span class=\"glyphicon glyphicon-ok\"></span>" +
@@ -61,7 +54,8 @@
     function addWord(phraseId, wordId, text, username, time) {
         var phrase = $(".phrase[data-id=" + phraseId + "]");
 
-        phrase.find(".proposal .word:last-of-type").after("<span class=\"word\" data-id=" + wordId + " data-name=" + username + " data-time=" + time+ ">" + text + "</span>");
+        phrase.find(".proposal .word:last-of-type").after("<span class=\"word\" data-id=" + wordId +
+            " data-name=" + username + " data-time=" + time + ">" + text + "</span>");
     }
 
 })();
