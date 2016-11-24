@@ -37,7 +37,7 @@ end
 
 def check_word(word)
   i = word.scan(".").size
-  if i == 0
+  if i.zero?
     return true
   else
     return false
