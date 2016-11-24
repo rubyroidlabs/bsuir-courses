@@ -15,7 +15,6 @@
             "</div>";
 
         var phrasePopup = ".phrases .create-phrase-popup";
-        var phrasePopupInput = phrasePopup + " input";
         var addPhrase = phrasePopup + " .add-phrase";
         var removePhrase = phrasePopup + " .remove-phrase";
         var phrases = ".phrases";
@@ -30,7 +29,6 @@
             });
 
             $(addPhrase).click(function () {
-                var text = $(phrasePopupInput).val();
                 var username = $(".username-handler").data("username");
 
                 if (!username) {
