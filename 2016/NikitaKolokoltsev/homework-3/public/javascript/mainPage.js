@@ -79,6 +79,7 @@ $(function() {
   // AJAX update quote from main page
   $(".inline-redactor-btn").on("click", function() {
     var input = $(this)[0].previousSibling;
+    var btn = $(this);
     var errorsBlock = $(this).parent()[0].lastChild;
     var quoteID = $(this)[0].parentElement.id.split("-").slice(-1)[0];
     if (input.value.match(/^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/)) {
