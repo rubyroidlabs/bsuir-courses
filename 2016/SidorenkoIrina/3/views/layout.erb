@@ -18,11 +18,10 @@
 	</div>
 	<div>
 	    <ul class="nav navbar-nav pull-right">
-		  <%if @user then %>
-  	      <li> <a> Hello, <%= @user %>! </a> </li>
-  	  <% elsif %>  
-  		    <li><a class="btn btn-rounded" href="/login">SIGN IN </a></li>
-		  <% end %>
+              <%if session[:current_user] then %>
+  	      <li> <a> Hello, <%= session[:current_user] %>! </a> </li>
+              <li> <a href="/logout"> Logout </a></li>
+  	      <% elsif %>  
 	   </ul>
   </div>
 	</div>
