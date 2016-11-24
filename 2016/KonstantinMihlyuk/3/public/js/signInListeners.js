@@ -14,12 +14,9 @@
                 data = JSON.parse(data);
 
                 if (data.result) {
-                    window.location.href = "/"
-                } else {
-
+                    window.location.href = "/";
                 }
             }
-        })
+        });
     });
-
 })();

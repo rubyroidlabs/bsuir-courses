@@ -1,5 +1,6 @@
 (function () {
     var updatePhraseListeners = null;
+    var socket = null;
 
     try {
         socket.onmessage = function (msg) {

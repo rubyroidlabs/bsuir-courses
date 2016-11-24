@@ -9,8 +9,9 @@ var updatePhraseListeners = function () {
         var phrase = $(this).parents(".phrase"),
             text = phrase.find("input").val(),
             username = $(".username-handler").data("username"),
-            phrase_id = phrase.data("id"),
-            word_name = $(this).parents(".phrase").find(".word:last").data("username");
+            phraseId = phrase.data("id"),
+            wordName = $(this).parents(".phrase")
+                .find(".word:last").data("username");
 
         if (!username) {
             var self = this;
@@ -28,7 +29,7 @@ var updatePhraseListeners = function () {
             return;
         }
 
-        if (username == word_name) {
+        if (username == wordName) {
             var self1 = this;
 
             $(this).popover({
@@ -64,7 +65,8 @@ var updatePhraseListeners = function () {
         $(this).popover({
             trigger: "hover",
             title: $(this).data("name"),
-            content: moment($(this).data("time"), "YYYY-MM-DD HH-mm-ss UTC").locale("ru").fromNow(),
+            content: moment($(this).data("time"),
+                "YYYY-MM-DD HH-mm-ss UTC").locale("ru").fromNow(),
             animation: true,
             placement: "top"
         });
