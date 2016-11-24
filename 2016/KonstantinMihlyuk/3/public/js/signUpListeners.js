@@ -1,12 +1,12 @@
 (function () {
-    $('#signUpModal .signUpButton').click(function () {
-        var username = $('#signUpModal .usernameInput').val();
-        var name = $('#signUpModal .nameInput').val();
-        var password = $('#signUpModal .passwordInput').val();
+    $("#signUpModal .signUpButton").click(function () {
+        var username = $("#signUpModal .usernameInput").val();
+        var name = $("#signUpModal .nameInput").val();
+        var password = $("#signUpModal .passwordInput").val();
 
         $.ajax({
-            type: 'POST',
-            url: '/sign_up',
+            type: "POST",
+            url: "/sign_up",
             data: {
                 username: username,
                 name: name,
@@ -16,7 +16,7 @@
                 data = JSON.parse(data);
 
                 if (data.result) {
-                    window.location.href = '/'
+                    window.location.href = "/"
                 } else {
 
                 }

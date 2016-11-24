@@ -21,7 +21,7 @@ class Phrase
     phrase = @collection.find({_id: phrase_id}).first
     phrase[:words].push(word_id)
 
-    result = @collection.update_one({_id: phrase_id}, {"$set": {words: phrase[:words]}})
+    result = @collection.update_one({_id: phrase_id}, {"$set" => {words: phrase[:words]}})
 
     p result
   end

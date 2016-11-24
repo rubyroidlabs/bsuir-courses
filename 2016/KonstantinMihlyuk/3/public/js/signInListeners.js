@@ -1,11 +1,11 @@
 (function () {
-    $('#signInModal .signInButton').click(function () {
-        var username = $('#signInModal .usernameInput').val();
-        var password = $('#signInModal .passwordInput').val();
+    $("#signInModal .signInButton").click(function () {
+        var username = $("#signInModal .usernameInput").val();
+        var password = $("#signInModal .passwordInput").val();
 
         $.ajax({
-            type: 'POST',
-            url: '/sign_in',
+            type: "POST",
+            url: "/sign_in",
             data: {
                 username: username,
                 password: password
@@ -14,7 +14,7 @@
                 data = JSON.parse(data);
 
                 if (data.result) {
-                    window.location.href = '/'
+                    window.location.href = "/"
                 } else {
 
                 }

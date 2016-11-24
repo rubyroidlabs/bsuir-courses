@@ -1,27 +1,27 @@
 var updatePhraseListeners = function () {
-    var phrases = $('.phrases');
+    var phrases = $(".phrases");
 
     phrases.off();
-    phrases.find('.btn').off();
+    phrases.find(".btn").off();
 
-    phrases.find('.add-phrase button').on('click', function () {
-        var phrase = $(this).parents('.phrase'),
-            text = phrase.find('input').val(),
-            username = $('.username-handler').data('username'),
-            phrase_id = phrase.data('id'),
-            word_name = $(this).parents('.phrase').find('.word:last').data('username');
+    phrases.find(".add-phrase button").on("click", function () {
+        var phrase = $(this).parents(".phrase"),
+            text = phrase.find("input").val(),
+            username = $(".username-handler").data("username"),
+            phrase_id = phrase.data("id"),
+            word_name = $(this).parents(".phrase").find(".word:last").data("username");
 
         if (!username) {
             var self = this;
 
             $(this).popover({
-                content: 'Необходимо залогиниться!',
+                content: "Необходимо залогиниться!",
                 animation: true,
-                placement: 'top'
-            }).popover('show');
+                placement: "top"
+            }).popover("show");
 
             setTimeout(function () {
-                $(self).popover('destroy');
+                $(self).popover("destroy");
             }, 3000);
 
             return;
@@ -31,19 +31,19 @@ var updatePhraseListeners = function () {
             var self = this;
 
             $(this).popover({
-                content: 'Ваше сообщение последнее!',
+                content: "Ваше сообщение последнее!",
                 animation: true,
-                placement: 'top'
-            }).popover('show');
+                placement: "top"
+            }).popover("show");
 
             setTimeout(function () {
-                $(self).popover('destroy');
+                $(self).popover("destroy");
             }, 3000);
 
             return;
         }
 
-        $(this).parents('.controls').find('input').val('');
+        $(this).parents(".controls").find("input").val("");
 
         var data = {
             text: text,
@@ -52,25 +52,25 @@ var updatePhraseListeners = function () {
         };
 
         socket.send(JSON.stringify({
-            type: 'add_word',
+            type: "add_word",
             data: data
         }))
 
     });
 
-    $('.word').each(function () {
+    $(".word").each(function () {
         $(this).popover({
-            trigger: 'hover',
-            title: $(this).data('name'),
-            content: moment($(this).data('time'), 'YYYY-MM-DD HH-mm-ss UTC').locale('ru').fromNow(),
+            trigger: "hover",
+            title: $(this).data("name"),
+            content: moment($(this).data("time"), "YYYY-MM-DD HH-mm-ss UTC").locale("ru").fromNow(),
             animation: true,
-            placement: 'top'
+            placement: "top"
         });
     });
 
-    $('.phrase').click(function () {
-        $(this).parent().find('.controls').css('display', 'none');
-        $(this).find('.controls').css('display', 'inline-block');
+    $(".phrase").click(function () {
+        $(this).parent().find(".controls").css("display", "none");
+        $(this).find(".controls").css("display", "inline-block");
     });
 };
 
