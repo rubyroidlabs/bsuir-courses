@@ -1,9 +1,9 @@
-require_relative 'word.rb'
+require_relative "word.rb"
 
 class Phrase
 
   def initialize(options = {})
-    @client = options[:client] ? options[:client] : Mongo::Client.new(['127.0.0.1:27017'], :database => 'phrases')
+    @client = options[:client] ? options[:client] : Mongo::Client.new(["127.0.0.1:27017"], :database => "phrases")
     @collection = @client[:phrases]
   end
 

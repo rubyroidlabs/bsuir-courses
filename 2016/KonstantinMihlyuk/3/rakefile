@@ -1,8 +1,8 @@
-require 'connection_pool'
-Redis::Objects.redis = ConnectionPool.new(size: 5, timeout: 5) { Redis.new(:host => '127.0.0.1', :port => 6379) }
-require_relative 'Models/user.rb'
+require "connection_pool"
+Redis::Objects.redis = ConnectionPool.new(size: 5, timeout: 5) { Redis.new(:host => "127.0.0.1", :port => 6379) }
+require_relative "Models/user.rb"
 
-desc 'This task is initializes database'
+desc "This task is initializes database"
 task :init do
   user = User.new
 

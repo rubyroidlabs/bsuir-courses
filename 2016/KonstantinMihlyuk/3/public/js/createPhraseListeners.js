@@ -1,11 +1,14 @@
 (function () {
+    var socket = null;
+
     $(".create-phrase").on("click", function () {
         var beginPhrase =
             "<div class=\"create-phrase-popup well phrase\">" +
             "<div class=\"input-group\">" +
             "<input type=\"text\" class=\"form-control\">" +
             "<span class=\"input-group-btn\">" +
-            "<button class=\"add-phrase btn btn-success\" type=\"button\">Начните фразу!</button>" +
+            "<button class=\"add-phrase btn btn-success\" " +
+            "type=\"button\">Начните фразу!</button>" +
             "</span>" +
             "</div>" +
             "<button class=\"remove-phrase btn btn-danger\" type=\"button\">" +

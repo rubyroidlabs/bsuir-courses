@@ -1,8 +1,8 @@
 class User
 
   def initialize(options = {})
-    @client = options[:client] ? options[:client] : Mongo::Client.new(['127.0.0.1:27017'], :database => 'phrases')
-    @collection = Mongo::Client.new(['127.0.0.1:27017'], :database => 'phrases')[:users]
+    @client = options[:client] ? options[:client] : Mongo::Client.new(["127.0.0.1:27017"], :database => "phrases")
+    @collection = Mongo::Client.new(["127.0.0.1:27017"], :database => "phrases")[:users]
   end
 
   def get_client

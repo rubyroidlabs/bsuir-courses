@@ -1,9 +1,9 @@
-require_relative 'user.rb'
+require_relative "user.rb"
 
 class Word
 
   def initialize(options = {})
-    @client = options[:client] ? options[:client] : Mongo::Client.new(['127.0.0.1:27017'], :database => 'phrases')
+    @client = options[:client] ? options[:client] : Mongo::Client.new(["127.0.0.1:27017"], :database => "phrases")
     @collection = @client[:words]
   end
 
