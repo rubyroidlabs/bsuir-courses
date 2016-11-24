@@ -12,7 +12,7 @@ configure do
      `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
      `username`	TEXT NOT NULL UNIQUE,
      `password`	TEXT NOT NULL);
-      
+
      CREATE TABLE IF NOT EXISTS `phrases` (
 	`id`	INTEGER NOT NULL,
 	`word`	TEXT NOT NULL,
@@ -22,7 +22,7 @@ configure do
 end
 
 
-get '/' do
+get "/" do
      unless session[:current_user].nil?
 	@user = session[:current_user]
      end
@@ -31,21 +31,21 @@ get '/' do
      erb :index
 end
 
-get '/login' do
-     redirect to('/') unless @user.nil?
+get "/login" do
+     redirect to("/") unless @user.nil?
      erb :login
 end
 
-post '/login' do
+post "/login" do
      @username = params[:username]
      @password = params[:password]
      session[:current_user] = @username
      if check_unique_login(@username)
 	@db = db_get
     	@db.execute 'INSERT INTO users (username, password) VALUES (?, ?);', [@username, @password]
-    	redirect to('/')
+    	redirect to("/")
      elsif check_password(@username, @password)
-	redirect to('/')
+	redirect to("/")
      else
 	@error = "This username is not available! Or incorrect password!"
 	if @error
@@ -54,13 +54,13 @@ post '/login' do
      end
 end
 
-post '/add_word' do
+post "/add_wor" do
      @username = session[:current_user]
      @id = params[:id]
      @word = params[:word]
      @continue = params[:continue]
      if check_and_save(@word, @continue, @username, @id)
-    	redirect '/'
+    	redirect "/"
      else
 	@error = "Invalid value!"
 	if @error
@@ -69,9 +69,9 @@ post '/add_word' do
      end
 end
 
-get '/history' do
+get "/history" do
     @user = session[:current_user]
-    redirect to('/login') if @user.nil?
+    redirect to("/login") if @user.nil?
     @id = params[:id]
     @db = db_get
     @result = @db.execute "SELECT u.username, p.date_time, p.word FROM users u INNER JOIN phrases p ON p.id_user = u.id WHERE p.id = '#{@id}'"
@@ -80,19 +80,19 @@ get '/history' do
     end
 end
 
-get '/new_phrase' do 
+get "/new_phrase" do 
     @user = session[:current_user]
     redirect to("/login") if @user.nil?
     erb :new_phrase
 end
 
-post '/new_phrase' do
+post "/new_phrase" do
      redirect to("/login") if session[:current_user].nil?
      @username = session[:current_user]
      @word = params[:word]
      @continue = params[:continue]
      if check_and_save(@word, @continue, @username, 0)
-    	redirect '/'
+    	redirect "/"
      else
 	@error = "Invalid value!"
 	if @error
@@ -101,6 +101,6 @@ post '/new_phrase' do
      end
 end
 
-get '/*' do
-  redirect '/'
+get "/*" do
+  redirect "/"
 end
