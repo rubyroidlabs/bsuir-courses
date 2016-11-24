@@ -45,12 +45,10 @@ var updatePhraseListeners = function () {
         }
 
         $(this).parents(".controls").find("input").val("");
-        var phraseId = phrase.data("id");
 
         var data = {
             text: text,
-            username: username,
-            phraseId: phraseId
+            username: username
         };
 
         socket.send(JSON.stringify({

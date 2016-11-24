@@ -1,6 +1,4 @@
 (function () {
-    var socket = null;
-
     $(".create-phrase").on("click", function () {
         var beginPhrase =
             "<div class=\"create-phrase-popup well phrase\">" +
