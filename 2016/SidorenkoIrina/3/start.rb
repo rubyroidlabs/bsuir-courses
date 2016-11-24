@@ -1,18 +1,16 @@
-require 'sinatra'
-require 'sqlite3'
-require 'pry'
-require 'date'
-require './Check'
+require "sinatra"
+require "sqlite3"
+require "pry"
+require "date"
+require "./Check"
 
 set :sessions, true
-
 configure do 
   @db = db_get
   @db.execute "CREATE TABLE IF NOT EXISTS `users` (
   `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   `username`	TEXT NOT NULL UNIQUE,
   `password`	TEXT NOT NULL);
-      
   CREATE TABLE IF NOT EXISTS `phrases` (
   `id`	INTEGER NOT NULL,
   `word`	TEXT NOT NULL,
@@ -20,7 +18,6 @@ configure do
   `flag`	INTEGER NOT NULL,
   `date_time`	TEXT NOT NULL);" 
 end
-
 
 get "/" do
   unless session[:current_user].nil?
