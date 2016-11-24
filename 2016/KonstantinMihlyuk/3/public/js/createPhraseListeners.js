@@ -34,6 +34,7 @@
             $(addPhrase).click(function () {
                 var text = $(phrasePopupInput).val();
                 var username = $(".username-handler").data("username");
+                var socket = null;
 
                 if (!username) {
                     var self = this;

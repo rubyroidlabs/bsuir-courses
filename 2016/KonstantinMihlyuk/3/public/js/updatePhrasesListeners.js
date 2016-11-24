@@ -9,7 +9,6 @@ var updatePhraseListeners = function () {
         var phrase = $(this).parents(".phrase"),
             text = phrase.find("input").val(),
             username = $(".username-handler").data("username"),
-            phraseId = phrase.data("id"),
             wordName = $(this).parents(".phrase")
                 .find(".word:last").data("username");
 
@@ -46,6 +45,7 @@ var updatePhraseListeners = function () {
         }
 
         $(this).parents(".controls").find("input").val("");
+        var phraseId = phrase.data("id");
 
         var data = {
             text: text,
