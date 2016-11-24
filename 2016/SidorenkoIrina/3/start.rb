@@ -49,24 +49,24 @@ post "/login" do
     else
         @error = "This username is not available! Or incorrect password!"
         if @error
-            erb :login
+          erb :login
         end
     end
 end
 
 post "/add_word" do
   @username = session[:current_user]
-    @id = params[:id]
-    @word = params[:word]
-    @continue = params[:continue]
-    if check_and_save(@word, @continue, @username, @id)
-        redirect "/"
-    else
-      @error = "Invalid value!"
-        if @error
-          erb :history
-        end
+  @id = params[:id]
+  @word = params[:word]
+  @continue = params[:continue]
+  if check_and_save(@word, @continue, @username, @id)
+    redirect "/"
+  else
+    @error = "Invalid value!"
+    if @error
+      erb :history
     end
+  end
 end
 
 get "/history" do
