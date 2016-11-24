@@ -54,14 +54,16 @@ def get_id_phrase(id_phrase, max_id)
   elsif max_id[0][0].nil? && id_phrase.zero?
     id = 1
   end
+  return id
 end
 
 def get_flag(continue)
- unless continue.nil?
-    flag = 1
-  else 
+  if continue.nil?
     flag = 0
+  else 
+    flag = 1
   end
+  return flag
 end
 
 def save_word_or_phrase(word, continue, user, id)
