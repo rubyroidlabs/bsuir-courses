@@ -1,4 +1,5 @@
 require 'telegram/bot'
+require 'redis'
 
 # The general class to send messages
 class BotMain
@@ -7,6 +8,8 @@ class BotMain
   def initialize(bot, message_chat_id)
     @bot = bot
     @user_id = message_chat_id
+
+    @redis = Redis.new
   end
 
   def telegram_send_message(text)
@@ -45,8 +48,9 @@ class BotSemester < BotMain
     end
 
     if timing(@semestr_begin, @semestr_end) == true
-      telegram_send_message("Продолжительность семестра с #{@semestr_begin.strftime('%d-%m-%Y')} по #{@semestr_end.strftime('%d-%m-%Y')} составляет #{$days_semestr} дней.\nПо состоянию на сегодня, осталось #{$days_remain} дней.")
-    else telegram_send_message("Смотри, какая штука...\nЛибо ты ошибся при вводе конца семестра, либо время сдачи уже прошло.\nКонец семестра: #{@semestr_end.strftime('%d-%m-%Y')}, а сегодня уже #{$today.strftime('%d-%m-%Y')}.")
+      @redis.hmset("#{@user_id}-semestr", 'days_remain', @days_remain, 'days_semestr', @days_semestr, 'days_passed', @days_passed)
+      telegram_send_message("Продолжительность семестра с #{@semestr_begin.strftime('%d-%m-%Y')} по #{@semestr_end.strftime('%d-%m-%Y')} составляет #{@days_semestr} дней.\nПо состоянию на сегодня, осталось #{@days_remain} дней.")
+    else telegram_send_message("Смотри, какая штука...\nЛибо ты ошибся при вводе конца семестра, либо время сдачи уже прошло.\nКонец семестра: #{@semestr_end.strftime('%d-%m-%Y')}, а сегодня уже #{@today.strftime('%d-%m-%Y')}.")
     end
   end
 
@@ -60,11 +64,11 @@ class BotSemester < BotMain
   end
 
   def timing(begin_date, last_date)
-    $today = Date.today
-    if last_date > $today
-      $days_remain = (last_date - $today).to_i
-      $days_semestr = (last_date - begin_date).to_i
-      $days_passed = ($today - begin_date).to_i
+    @today = Date.today
+    if last_date > @today
+      @days_remain = (last_date - @today).to_i
+      @days_semestr = (last_date - begin_date).to_i
+      @days_passed = (@today - begin_date).to_i
       true
     end
   end
@@ -87,6 +91,7 @@ class BotSubject < BotMain
       if /^\d(\d)*?$/ =~ answer.text && answer.text.to_i <= 28
         @lesson_numlab = answer.text
         telegram_send_message('Ок, записал.')
+        @redis.hmset("#{@user_id}-subject", @lesson, @lesson_numlab)
         break
       elsif /^\d(\d)*?$/ =~ answer.text && answer.text.to_i > 28
         telegram_send_message('Ух ты, а в универе знают об этом?.')
@@ -94,23 +99,23 @@ class BotSubject < BotMain
         telegram_send_message('Подход, конечно оригинальный,только количество нужно вводить цифрами.')
       end
     end
-
-    $content_subject = Hash[@lesson, @lesson_numlab]
-    $stack = {} if $stack.nil?
-    $stack = $stack.merge($content_subject)
   end
 end
 
 # Class command '/status'
 class BotStatus < BotMain
   def status_message
-    if $stack.nil?
+    @days_remain = @redis.hget("#{@user_id}-semestr", 'days_remain')
+    @days_passed = @redis.hget("#{@user_id}-semestr", 'days_passed')
+    @days_semestr = @redis.hget("#{@user_id}-semestr", 'days_semestr').to_i
+
+    if @redis.hgetall("#{@user_id}-subject") == {}
       telegram_send_message("Определи задачу.\nДобавить предмет и количество лабораторных работ по нему можно с помощью '/subject'")
-    elsif $days_remain.nil?
+    elsif @days_remain.nil?
       telegram_send_message("Давай обозначим сроки.\nУстановить начало и конец семестра можно с помощью команды '/semester'")
     else
-      telegram_send_message("Сегодня #{$today.strftime('%d-%m-%Y')}. Прошло #{$days_passed}, осталось #{$days_remain} дней.\n\nК этому времени у тебя должны быть сдано:")
-      $stack.each do |key, value|
+      telegram_send_message("Сегодня #{Date.today.strftime('%d-%m-%Y')}. Прошло #{@days_passed}, осталось #{@days_remain} дней.\n\nК этому времени у тебя должны быть сдано:")
+      @redis.hgetall("#{@user_id}-subject").each do |key, value|
         lesson_complete(value.to_i)
         telegram_send_message("#{key} - #{@accomplished} из #{value} работ")
       end
@@ -119,9 +124,9 @@ class BotStatus < BotMain
   end
 
   def lesson_complete(workshops)
-    days_per_workshop = $days_semestr / workshops
-    days_gone = $days_semestr - $days_remain
-    @accomplished = if days_gone > 0
+    days_per_workshop = @days_semestr / workshops
+    days_gone = @days_semestr - @days_remain.to_i
+    @accomplished = if days_per_workshop.positive?
                       days_gone / days_per_workshop
                     else 0
                     end
@@ -138,14 +143,11 @@ end
 # Class command '/reset'
 class BotReset < BotMain
   def reset_message
-    if ($days_remain.nil? || $days_semestr.nil?) && $stack.nil?
+    if @redis.hgetall("#{@user_id}-semestr") == {} && @redis.hgetall("#{@user_id}-subject") == {}
       telegram_send_message("Что бы что-то удалить, сначала надо что-то добавить...\nПодробнее смотри '/start'")
     else
       telegram_send_message('Твои данные будут удалены безвозвратно. Продолжить?')
-      $stack = nil
-      $days_remain = nil
-      $days_semestr = nil
-      $content_subject = nil
+      @redis.del("#{@user_id}-subject", "#{@user_id}-semestr")
       telegram_send_message('Готово. Все успешно очищено.')
     end
   end
@@ -165,17 +167,17 @@ Command_list = "Я могу тебе помочь сдать вовремя вс
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     case message.text
-    when '/start'
+    when "/start"
       StartMessage.new(bot, message.chat.id).start_command
-    when '/semester'
+    when "/semester"
       BotSemester.new(bot, message.chat.id).semester_message
-    when '/subject'
+    when "/subject"
       BotSubject.new(bot, message.chat.id).subject_message
-    when '/status'
+    when "/status"
       BotStatus.new(bot, message.chat.id).status_message
-    when '/submit'
+    when "/submit"
       BotSubmit.new(bot, message.chat.id).submit_message
-    when '/reset'
+    when "/reset"
       BotReset.new(bot, message.chat.id).reset_message
     else
       bot.api.send_message(chat_id: message.chat.id, text: "И что бы это значило..? Я тебя не понимаю =(\nСпиок известных мне комманд можно посмотреть с помощью '/start'.")
