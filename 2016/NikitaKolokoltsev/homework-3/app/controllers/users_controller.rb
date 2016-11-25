@@ -58,5 +58,4 @@ class UsersController < ApplicationController
       slim :main_page
     end
   end
-
 end

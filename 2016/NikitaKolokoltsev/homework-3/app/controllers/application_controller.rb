@@ -46,7 +46,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def user_signed_in?
-      if !session[:user_id].nil? 
+      unless session[:user_id].nil? 
         # Instance variable for optimizing DB queries
         @user_exists ||= User.find(session[:user_id])
         true
