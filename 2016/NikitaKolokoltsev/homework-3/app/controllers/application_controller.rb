@@ -21,6 +21,7 @@ class ApplicationController < Sinatra::Base
   }
 
   get "/" do
+    redirect to "/ban" if user_banned?
     if !request.websocket?
       @quotes = Quote.all.includes(:words).order(created_at: :desc)
       @random_quote = random_quotes.keys.sample
@@ -31,18 +32,34 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get "/ban" do
+    if user_banned?
+      slim :ban
+    else
+      redirect_to_root_path
+    end
+  end
+
   helpers do
     def redirect_to_root_path
       redirect to "/"
     end
 
     def user_signed_in?
-      !session[:user_id].nil?
+      if !session[:user_id].nil? 
+        # Instance variable for optimizing DB queries
+        @user_exists ||= User.find(session[:user_id])
+        true
+      end
+    rescue ActiveRecord::RecordNotFound
+      session.clear
+      false
     end
 
     def current_user
-      @user ||= User.find(session[:user_id])
-      @user
+      # DB optimize
+      @current_user ||= @user_exists
+      @current_user
     end
   end
 
@@ -66,5 +83,9 @@ class ApplicationController < Sinatra::Base
 
   def delete_websocket(ws)
     settings.sockets.delete(ws)
+  end
+
+  def user_banned?
+    user_signed_in? ? current_user.ban : false
   end
 end

@@ -2,6 +2,7 @@ link href="/stylesheets/users.css" rel="stylesheet"
 link href="/stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet"
 link href="/stylesheets/jquery/jquery-ui.css" rel="stylesheet"
 
+
 .container
   
   .header
@@ -15,40 +16,60 @@ link href="/stylesheets/jquery/jquery-ui.css" rel="stylesheet"
 
   .user-info-table
     ul.nav.nav-tabs.nav-justified
-      li.active
+      li.tab.active.no-outline
         a data-toggle="tab" href="#home"
           | Started Quotes
-      li
+      li.tab.no-outline
         a data-toggle="tab" href="#menu1"
           | Added Words
-      li
+      li.tab.no-outline
         a data-toggle="tab" href="#menu2"
           | Achievments
+      - if current_user.role == "admin" && @user == current_user
+        li.tab.no-outline
+          a data-toggle="tab" href="#tribunal"
+            | TRIBUNAL
 
     .tab-content
       #home.tab-pane.fade.in.active
         - @user.quotes.each do |quote|
           small
             = quote.created_at.in_time_zone("Europe/Minsk").strftime("%Y-%m-%d %H:%M:%S") + ":"
-          - quote.words.first(10).each do |word|
-            =  " " + word.text
-          - if quote.words.count > 10
-            | ...
+          a.text-no-decoration href="/quotes/edit/#{quote.id}"
+            - quote.words.limit(13).each do |word|
+              =  " " + word.text
+            - if quote.words.count > 13
+              | ...
           br
       #menu1.tab-pane.fade
         - @words.each do |word|
           small
             = word.created_at.in_time_zone("Europe/Minsk").strftime("%Y-%m-%d %H:%M:%S") + ": "
-          - word.quote.words.each do |w|
-            - if w != word
-              = w.text + " "
-            - else 
-              u.added-word
-                = w.text
-              |  
+          a.text-no-decoration href="/quotes/edit/#{word.quote.id}"
+            - word.quote.words.each do |w|
+              - if w != word
+                = w.text + " "
+              - else 
+                u.added-word
+                  = w.text
+                |  
           br
       #menu2.tab-pane.fade
         | Soon...
+      - if current_user.role == "admin" && @user == current_user
+        #tribunal.tab-pane.fade
+          - @users.each do |user|
+            .col-lg-12
+              = user.first_name + " " + user.last_name + " - " + user.email
+              .pull-right
+                - if user.ban
+                  a#ban href="/users/unban/#{user.id}"
+                    .btn.btn-warning
+                      | MERCY
+                - else
+                  a#unban href="/users/ban/#{user.id}"
+                    .btn.btn-danger
+                      | BAN
 
   .back-to-site-link.text-center
     a href="/"

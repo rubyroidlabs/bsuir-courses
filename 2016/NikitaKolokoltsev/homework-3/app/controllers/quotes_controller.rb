@@ -3,6 +3,7 @@ class QuotesController < ApplicationController
   WORD_REGEX = /^[\w\d]+[;,:&\(\)\[\]\{\}=+-]?$/
 
   get "/quotes/new" do
+    redirect to "/ban" if user_banned?
     if !request.websocket?
       if user_signed_in?
         slim :quotes_new
@@ -15,6 +16,7 @@ class QuotesController < ApplicationController
   end
 
   post "/quotes/new" do
+    redirect to "/ban" if user_banned?
     if params[:text] =~ WORD_REGEX
       quote = current_user.quotes.create
       Word.create(user: current_user, quote: quote, text: params[:text])
@@ -26,6 +28,7 @@ class QuotesController < ApplicationController
   end
 
   get "/quotes/edit/:id" do
+    redirect to "/ban" if user_banned?
     if user_signed_in?
       @quote = Quote.includes(:words).find(params[:id])
       @disable_input = true if @quote.words.last.user.id == current_user.id
@@ -36,10 +39,11 @@ class QuotesController < ApplicationController
   end
 
   post "/quotes/edit/:id" do
-    if params[:text] =~ WORD_REGEX
-      quote = Quote.find(params[:id])
-      Word.create(quote: quote, user: current_user, text: params[:text])
-      quote.update!(last_user_edited: current_user.id)
+    redirect to "/ban" if user_banned?
+    @quote = Quote.find(params[:id])
+    if params[:text] =~ WORD_REGEX && @quote.last_user_edited != current_user.id
+      Word.create(quote: @quote, user: current_user, text: params[:text])
+      @quote.update!(last_user_edited: current_user.id)
       redirect_to_root_path
     else
       slim :quotes_edit
