@@ -13,7 +13,7 @@ module Database
   end
 
   def self.get_db(key)
-    if !(params = Redis.new.get(key)).nil?
+    unless (params = Redis.new.get(key)).nil?
       JSON.parse(params)
     end
   end
