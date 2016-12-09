@@ -20,7 +20,7 @@ h1 {
   margin-bottom: 10px;
  }
 }
-/* typography */
+// typography
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -47,7 +47,7 @@ p {
   line-height: 1.7em;
 }
 
-/* header */
+// header
 
 #logo {
   color: white;
@@ -58,24 +58,25 @@ p {
   margin-right: 10px;
   padding-top: 9px;
   text-transform: uppercase;
+
 &:hover {
   color: white;
   text-decoration: none;
    }
 }
 
-/* mixins, vars, etc. */
-
 $gray-medium-light: #eaeaea;
 @mixin box_sizing {
-  -moz-box-sizing:    border-box;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+  box-sizing: border-box;
 }
 
-/* forms */
+// forms
 
-input, textarea, select, .uneditable-input {
+input,
+textarea,
+select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
@@ -83,6 +84,6 @@ input, textarea, select, .uneditable-input {
 }
 
 input {
-  height: auto !important;
+  height: auto;
 }
 
