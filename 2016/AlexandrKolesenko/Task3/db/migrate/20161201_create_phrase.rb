@@ -9,4 +9,3 @@ class CreatePhrase < ActiveRecord::Migration
     end
   end
 end
-

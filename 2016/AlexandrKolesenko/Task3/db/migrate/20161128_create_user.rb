@@ -7,4 +7,3 @@ class CreateUser < ActiveRecord::Migration
     end
   end
 end
-

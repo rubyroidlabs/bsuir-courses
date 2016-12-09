@@ -147,4 +147,3 @@ class Phrase < ActiveRecord::Base
   belongs_to :user
   validates :phrase, presence: true, length: 1..255
 end
-
