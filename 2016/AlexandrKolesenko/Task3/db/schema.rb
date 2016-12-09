@@ -28,10 +28,9 @@ ActiveRecord::Schema.define(version: 201_612_01) do
   create_table "words", force: :cascade do |t|
     t.integer "user_id"
     t.integer "phrase_id"
-    t.string  "word",      null: false
+    t.string  "word", null: false
   end
 
   add_index "words", ["phrase_id"], name: "index_words_on_phrase_id"
   add_index "words", ["user_id"], name: "index_words_on_user_id"
-
 end

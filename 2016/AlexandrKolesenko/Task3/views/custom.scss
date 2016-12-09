@@ -4,6 +4,8 @@ $light-gray: #777;
 
 $darker-gray: #bbb;
 
+$white-1: #ffffff;
+
 body {
   padding-top: 60px;
 }
@@ -58,7 +60,7 @@ p {
 // header
 
 .logo {
-  color: #ffffff;
+  color: $white-1;
   float: left;
   font-size: 1.7em;
   font-weight: bold;
@@ -68,7 +70,7 @@ p {
   text-transform: uppercase;
 
   &:hover {
-  color: #ffffff;
+  color: $white-1;
   text-decoration: none;
    }
 }
