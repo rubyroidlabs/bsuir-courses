@@ -2,6 +2,8 @@
 
 $light-gray: #777;
 
+$darker-gray: #bbb;
+
 body {
   padding-top: 60px;
 }
@@ -84,7 +86,7 @@ input,
 textarea,
 select,
 .uneditable-input {
-  border: 1px solid #bbb;
+  border: 1px solid $darker-gray;
   margin-bottom: 15px;
   width: 100%;
   @include box_sizing;

@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201) do
-
+ActiveRecord::Schema.define(version: 201_612_01) do
   create_table "phrases", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "phrase"

@@ -7,8 +7,8 @@ require "unicode"
 require "sinatra/flash"
 require "bootstrap-sass"
 require "sass"
-require 'i18n'
-require 'i18n/backend/fallbacks'
+require "i18n"
+require "i18n/backend/fallbacks"
 #require "rack/contrib"
 
 configure :development do
@@ -16,12 +16,12 @@ configure :development do
 end
 
 configure :production do
-  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+  ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"] || "postgres://localhost/mydb")
 end
 
 configure do
   I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
-  I18n.load_path = Dir[File.join(settings.root, 'locales', '*.yml')]
+  I18n.load_path = Dir[File.join(settings.root, "locales", "*.yml")]
   I18n.backend.load_translations
   I18n.default_locale = :ru
   enable :sessions
@@ -68,18 +68,17 @@ post "/submit_word/:id" do
   redirect "/"
 end
 
-get '/custom.css' do 
+get "/custom.css" do
   scss :custom
 end
 
 def create_phrase
   if word_valid?(params[:phrase])
-    User.find_by(name: "#{session[:name]}").phrases.create phrase: Unicode::capitalize(params[:phrase])
+    User.find_by(name: session[:name].to_s).phrases.create phrase: Unicode::capitalize(params[:phrase])
     flash[:success] = "Вы успешно добавили фразу!"
     redirect "/"
   else
-    flash[:danger] = @word.errors.full_messages.to_sentence
-    redirect "/add_phrase"
+    flash[:danger] = @word.errors.full_messages.to_sentence then redirect "/add_phrase"
   end
 end
 
@@ -109,7 +108,7 @@ def update_phrase
 end
 
 def create_word
-  User.find_by(name: "#{session[:name]}").words.create word: (params[:word])
+  User.find_by(name: session[:name].to_s).words.create word: (params[:word])
 end
 
 def user_valid?
@@ -124,15 +123,21 @@ def word_valid?(word)
   Word.new(word: word).valid?
 end
 
+# User class
+
 class User < ActiveRecord::Base
   has_many :phrases
   validates :name, presence: true, length: 2..20, uniqueness: { case_sensitive: false }
 end
 
+# Word class
+
 class Word < ActiveRecord::Base
   REGEX = /\A[[А-Яа-я]\w\,]+\z/i
-  validates :word, presence: true, length: 1..15, format: {with: REGEX }
+  validates :word, presence: true, length: 1..15, format: { with: REGEX }
 end
+
+# Phrase class
 
 class Phrase < ActiveRecord::Base
   belongs_to :user
