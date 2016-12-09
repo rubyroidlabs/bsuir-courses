@@ -12,7 +12,7 @@ require "i18n/backend/fallbacks"
 #require "rack/contrib"
 
 configure :development do
-  set :database, {adapter: "sqlite3", database: "./db/db.sqlite"}
+  set :database, { adapter: "sqlite3", database: "./db/db.sqlite" }
 end
 
 configure :production do
@@ -29,7 +29,7 @@ configure do
 end
 
 get "/"  do
-  if session[:name] == nil
+  if session[:name].nil?
     @title = "Login"
     slim :login
   else
@@ -45,7 +45,6 @@ end
 get "/users" do
   @title = "Пользователи"
   @users = User.all
-  bg = "Hi there!"
   slim :users
 end
 
