@@ -30,6 +30,7 @@ db/*.sqlite3
 *.rbc
 *.sassc
 .redcar/
+.gitignore
 .sass-cache
 /config/config.yml
 /coverage.data

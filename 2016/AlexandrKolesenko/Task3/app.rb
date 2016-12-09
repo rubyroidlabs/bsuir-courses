@@ -76,7 +76,7 @@ def create_phrase
   if word_valid?(params[:phrase])
     User.find_by(name: session[:name].to_s).phrases.create phrase: Unicode::capitalize(params[:phrase])
     flash[:success] = "Вы успешно добавили фразу!"
-    redirect "/"
+    redirect_root
   else
     flash[:danger] = @word.errors.full_messages.to_sentence then redirect "/add_phrase"
   end
@@ -88,10 +88,10 @@ def create_user
     session[:name] = params[:name]
     session[:user_id] = User.find_by(name: params[:name]).id
     flash[:success] = "Вы успешно вошли, #{session[:name]}!"
-    redirect "/"
+    redirect_root
   else
     flash[:danger] = @user.errors.full_messages.to_sentence
-    redirect "/"
+    redirect_root
   end
 end
 
@@ -121,6 +121,10 @@ def word_valid?(word)
   @word = Word.new(word: word)
   @word.validate
   Word.new(word: word).valid?
+end
+
+def redirect_root
+  redirect "/"
 end
 
 # User class
