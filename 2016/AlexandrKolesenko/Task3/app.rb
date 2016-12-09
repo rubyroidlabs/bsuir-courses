@@ -99,7 +99,7 @@ def update_phrase
   if word_valid?(params[:word])
     word = params[:word]
     phrase = Phrase.find_by(id: params[:id]).phrase
-    Phrase.find_by(id: params[:id]).update phrase: phrase <<" "<< word, user_id: session[:user_id]
+    Phrase.find_by(id: params[:id]).update phrase: phrase << " " << word, user_id: session[:user_id]
     flash[:success] = "Вы успешно обновили фразу!"
   else
     flash[:danger] = @word.errors.full_messages.to_sentence
