@@ -1,4 +1,5 @@
 # Migration for Word class
+
 class CreatePhrase < ActiveRecord::Migration
   def change
     create_table :phrases do |t|
@@ -8,3 +9,4 @@ class CreatePhrase < ActiveRecord::Migration
     end
   end
 end
+

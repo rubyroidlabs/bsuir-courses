@@ -25,10 +25,10 @@ configure do
   I18n.backend.load_translations
   I18n.default_locale = :ru
   enable :sessions
-  #use Rack::Locale
+  # use Rack::Locale
 end
 
-get "/"  do
+get "/" do
   if session[:name].nil?
     @title = "Login"
     slim :login
@@ -147,3 +147,4 @@ class Phrase < ActiveRecord::Base
   belongs_to :user
   validates :phrase, presence: true, length: 1..255
 end
+
