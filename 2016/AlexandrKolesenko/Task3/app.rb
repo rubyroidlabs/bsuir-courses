@@ -78,7 +78,8 @@ def create_phrase
     flash[:success] = "Вы успешно добавили фразу!"
     redirect_root
   else
-    flash[:danger] = @word.errors.full_messages.to_sentence then redirect "/add_phrase"
+    flash[:danger] = @word.errors.full_messages.to_sentence
+    redirect "/add_phrase"
   end
 end
 
