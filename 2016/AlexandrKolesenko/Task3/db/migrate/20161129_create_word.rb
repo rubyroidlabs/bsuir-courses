@@ -1,4 +1,4 @@
-# Migration for Word class
+# Migration for Word class skolko ne komentiruj oshibka hound ne uhodit :(
 
 class CreateWord < ActiveRecord::Migration
   def change
