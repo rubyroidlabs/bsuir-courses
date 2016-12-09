@@ -50,16 +50,16 @@ p {
 /* header */
 
 #logo {
+  color: white;
   float: left;
-  margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
   font-weight: bold;
+  letter-spacing: -1px;
+  margin-right: 10px;
+  padding-top: 9px;
+  text-transform: uppercase;
 &:hover {
-  color: #fff;
+  color: white;
   text-decoration: none;
    }
 }
