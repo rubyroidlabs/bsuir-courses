@@ -22,7 +22,12 @@ h1 {
 }
 // typography
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1;
 }
 
@@ -34,12 +39,12 @@ h1 {
 }
 
 h2 {
+  color: $light-gray;
   font-size: 1.2em;
+  font-weight: normal;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
-  font-weight: normal;
-  color: $light-gray;
 }
 
 p {
@@ -49,8 +54,8 @@ p {
 
 // header
 
-#logo {
-  color: white;
+.logo {
+  color: #ffffff;
   float: left;
   font-size: 1.7em;
   font-weight: bold;
@@ -60,7 +65,7 @@ p {
   text-transform: uppercase;
 
 &:hover {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
    }
 }
@@ -76,10 +81,11 @@ $gray-medium-light: #eaeaea;
 
 input,
 textarea,
-select, .uneditable-input {
+select,
+.uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
   margin-bottom: 15px;
+  width: 100%;
   @include box_sizing;
 }
 
