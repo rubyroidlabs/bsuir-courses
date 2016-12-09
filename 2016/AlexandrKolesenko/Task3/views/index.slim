@@ -1,0 +1,19 @@
+h1 Все фразы
+- if Phrase.count.zero?
+  div class="container"
+    h3 Нет ни одной фразы
+    a<> href="#{url "/add_phrase"}" Добавить фразу
+- else
+  div class="container"
+    h4
+      a<> href="#{url "/add_phrase"}" Добавить фразу
+    p Привет, #{session[:name]}! Хочешь добавить словечко? Выбери фразу:
+div class="container"
+  div class="center jumbotron"
+    - Phrase.all.each do |e|
+      - if e.user_id == session[:user_id]
+          p.=e.phrase
+      - else
+          a<> href='#{url}add_word/#{e.id}' 
+                                        p.=e.phrase
+

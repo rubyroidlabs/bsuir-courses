@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      user:
+      word: 
+    attributes:
+      word:
+        word: "Word"
+      user:
+        name: "User"
+
