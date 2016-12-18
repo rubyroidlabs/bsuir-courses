@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    artii (2.1.1)
+    colorize (0.7.7)
+    ruby-terminfo (0.1.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  artii (~> 2.1.1)
+  colorize (~> 0.7.7)
+  ruby-terminfo (~> 0.1.1)
