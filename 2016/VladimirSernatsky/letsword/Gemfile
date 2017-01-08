@@ -1,0 +1,13 @@
+source "http://rubygems.org"
+
+gem "sinatra"
+gem "slim"
+gem "sqlite3"
+gem "sinatra-activerecord"
+gem "rake"
+gem "sinatra-websocket"
+gem "json"
+
+gem "pry", group: :development
+
+gem "rspec", group: [:test, :development]

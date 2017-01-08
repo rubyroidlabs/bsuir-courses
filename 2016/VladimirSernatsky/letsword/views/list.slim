@@ -1,0 +1,29 @@
+header.container
+  nav.navbar
+    a.navbar-brand href="/list" Letsword
+    ul.nav.navbar-nav.navbar-right
+      li.nav-item
+        a.nav-link href="/logout" Выйти
+    form.navbar-form.navbar-right method="POST" action="/edit"
+      input type="hidden" name="action" value="create"
+      .form-group.input-group
+        input.form-control name="word" type="text" placeholder="Слово" autofocus=""
+        span.input-group-btn
+          button.btn.btn-success type="submit" Начать
+.container
+  .row
+    section.col-md-offset-4.col-md-4
+      - for sentence in Sentence.all.reverse
+        article data-id=sentence.id
+          blockquote
+            - if @user.id != sentence.commits.last.user.id
+              a.lead = sentence.text
+            - else
+              span.lead.bg-danger = sentence.text
+            footer
+              a rel="author" = "@#{sentence.commits.last.user.name}"
+            - if @user.id != sentence.commits.last.user.id
+              a.btn.btn-default href="/edit/#{sentence.id}" Добавить слово
+            - else
+              a.btn.btn-default.disabled href="/edit/#{sentence.id}" Добавить слово
+script type="text/javascript" src="/list.js"
