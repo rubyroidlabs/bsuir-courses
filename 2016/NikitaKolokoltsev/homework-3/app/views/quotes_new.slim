@@ -1,0 +1,39 @@
+link href="/stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet"
+link href="/stylesheets/quotes.css" rel="stylesheet"
+link href="/stylesheets/jquery/jquery-ui.css" rel="stylesheet"
+
+.container
+  / Header "Quotes"
+  .header
+    a.no-decoration href="/"
+      / Q should be bigger than other letters
+      span.Q
+        | Q
+      span
+        | uotes
+
+  / Small description about what you can do on this page
+  .content
+    span
+      | Start a new 
+    span.small_q
+      | Q
+    span
+      | uote
+
+  / Errors will appear in that div
+  .errors
+
+  / Input field for first word in quote
+  form#new-quote-form.text-center action="/quotes/new" method="post"
+    input#new-quote-input.text-center maxlength="30" name="text" autocomplete="off"
+    br
+    button.btn.btn-success.create-button type="submit"
+      | Create
+      span.glyphicon.glyphicon-chevron-right
+
+
+script src="/javascript/jquery/jquery-1.12.1.min.js"
+script src="/javascript/jquery/jquery-ui-1.12.1.min.js"
+script src="/javascript/bootstrap/bootstrap.min.js"
+script src="/javascript/quoteActions.js"
