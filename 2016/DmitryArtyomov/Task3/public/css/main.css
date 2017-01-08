@@ -1,0 +1,32 @@
+#btn-login {
+	margin-left: 5px;
+}
+
+.vert-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.phrase {
+	margin-top: 30px;
+	font-size: 1.5em;
+}
+
+.history {
+	margin-top: 25px;
+	font-size: 1.2em;
+}
+
+.can-write {
+	background-color: #90EE90;
+}
+
+.cannot-write {
+	background-color: #FFB6C1;
+}
+
+.phrase-list {
+	margin-top: 25px;
+}
