@@ -1,0 +1,26 @@
+<div class="container receipt" style="width:400px;">
+  <div class="row">
+    <div class="jumbotron" style="background: white; border-radius:20px;">
+      <% if flash.has?(:message) %>
+      <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <p><%= flash[:message] %> </p>
+      </div>
+      <% end %>
+      <h2 style="margin:auto;"><span class="glyphicon glyphicon-user"></span> User Card</h2>
+      <hr>
+      <h3>Username</h3>
+      <p ><%= current_user.username %></p>
+      <h3>Email</h3>
+      <p ><%= current_user.email %></p>
+      <a href="/expenses"><span class="glyphicon glyphicon-th-list"></span> View Expenses</a>
+    </div> <!-- end jumbotron -->
+  </div> <!-- end row -->
+</div> <!-- end container -->
+
+<div class="row">
+  <form action="/users/<%= current_user.id %>/delete" method="post">
+      <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <button type="submit" class="btn btn-danger">Delete Acount</button>
+  </form>
+</div> <!-- end row -->

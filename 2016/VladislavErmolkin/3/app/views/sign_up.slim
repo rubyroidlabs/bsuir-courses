@@ -1,0 +1,45 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-login
+        .panel-heading
+          .row
+            .col-xs-6
+              a#login-form-link.active href="#"  Login
+            .col-xs-6
+              a#register-form-link href="#"  Register
+          hr/
+        .panel-body
+          .row
+            .col-lg-12
+              form#login-form action="/login" method="post" role="form" style=("display: block;") 
+                
+                .form-group
+                  input.form-control name="email" placeholder="Email" tabindex="1" type="email" value="" /
+
+                .form-group
+                  input#password.form-control name="password" placeholder="Password" tabindex="2" type="password" /
+
+                .form-group
+                  .row
+                    .col-sm-6.col-sm-offset-3
+                      input#login-submit.form-control.btn.btn-login name="login-submit" tabindex="4" type="submit" value=("Log In") /
+              
+              form#register-form action="/users/signup" method="post" role="form" style=("display: none;")
+
+                .form-group
+                  input.form-control name="first_name" placeholder="First Name" tabindex="1" type="text" value="" /
+
+                .form-group
+                  input.form-control name="last_name" placeholder="Last Name" tabindex="1" type="text" value="" /
+
+                .form-group
+                  input.form-control name="email" placeholder=("Email Address") tabindex="1" type="email" value="" /
+
+                .form-group
+                  input#password.form-control name="password" placeholder="Password" tabindex="2" type="password" /
+
+                .form-group
+                  .row
+                    .col-sm-6.col-sm-offset-3
+                      input#register-submit.form-control.btn.btn-register name="register-submit" tabindex="4" type="submit" value=("Register") /

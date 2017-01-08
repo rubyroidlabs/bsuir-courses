@@ -1,0 +1,57 @@
+  <h1 style="color: white; margin: 30px 10px;">Expense Categories</h1>
+
+  <div class="container" >
+    <div class="row">
+
+      <div class="col-sm-8">
+        <div class="jumbotron" style="background: white; border-radius:10px; margin-top: 10px;">
+          <% if flash.has?(:message) %>
+          <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <p><%= flash[:message] %> </p>
+          </div>
+          <% end %>
+          <table class="table table-hover table-striped" >
+          <tr class="info">
+            <th><h3>Name</h3></th>
+            <th><h3>Items</h3></th>
+            <th><h3>Total</h3></th>
+            <th><h3>Edit</h3></th>
+            <th><h3>Delete</h3></th>
+          </tr>
+            <% current_user.categories_sort_by_name.each do |category| %>
+              <tr style="text-align:left;">
+                <td><a href="categories/<%= category.id %>"><%= category.name %></a></td>
+                <td><a href="categories/<%= category.id %>"><%= category.expenses.size %></a></td>
+                <td>$ <%= category.total_amount %></td>
+                <td><a href="categories/<%= category.id %>/edit">Edit <span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td><form action="/categories/<%= category.id %>/delete" method="post">
+                    <input type="hidden" id="hidden" name="_method" value="DELETE">
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form></td>
+              </tr>
+            <% end %>
+          </table> <!-- end table -->
+
+        </div><!-- end jumbotron -->
+      </div> <!-- end col-sm-8-->
+
+      <div class="col-sm-4">
+        <div class="form-box">
+            <div class="form-top">
+              <div class="form-top-left">
+                <h3>Create Category</h3>
+              </div>
+            </div>
+
+          <div class="form-bottom">
+            <form  action="/categories" method="post" >
+              <div class="form-group">
+                <label class="sr-only" for="form-description">Name</label>
+                <input type="text" name="name" placeholder="Category Name..." class="form-name form-control" id="form-name" >
+              </div> <!-- end form-group -->
+              <button type="submit" class="btn btn-success">Create</button>
+            </form> <!-- end form-->
+          </div> <!-- end col-sm-4-->
+    </div><!-- end row -->
+  </div><!-- end container -->

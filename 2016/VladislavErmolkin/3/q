@@ -1,0 +1,72 @@
+=> [[32m#<User:0x00000003587c50[0m
+  id: [1;34m2[0m,
+  first_name: [31m[1;31m"[0m[31mNikita[1;31m"[0m[31m[0m,
+  last_name: [31m[1;31m"[0m[31mTop[1;31m"[0m[31m[0m,
+  email: [31m[1;31m"[0m[31mnikita@top.com[1;31m"[0m[31m[0m,
+  password_digest:
+   [31m[1;31m"[0m[31m$2a$10$Nio9qrpAfy4iATWS7n5d8uMKKSKtE4Xh5kcLNNBCtcQ5S.kM6ju.m[1;31m"[0m[31m[0m,
+  created_at: [1;34m2016[0m-[1;34m11[0m-[1;34m17[0m [1;34m15[0m:[1;34m44[0m:[1;34m54[0m [1;34;4mUTC[0m,
+  updated_at: [1;34m2016[0m-[1;34m11[0m-[1;34m17[0m [1;34m15[0m:[1;34m44[0m:[1;34m54[0m [1;34;4mUTC[0m[32m>[0m,
+ [32m#<User:0x00000003584320[0m
+  id: [1;34m4[0m,
+  first_name: [31m[1;31m"[0m[31mOleg[1;31m"[0m[31m[0m,
+  last_name: [31m[1;31m"[0m[31mErmolkin[1;31m"[0m[31m[0m,
+  email: [31m[1;31m"[0m[31mOlegErm@gmail.com[1;31m"[0m[31m[0m,
+  password_digest:
+   [31m[1;31m"[0m[31m$2a$10$N1SGg1QnK2hq30rWDG6nQuHvKsPShr7J14bcrxmwsChhcBMuZ7dgu[1;31m"[0m[31m[0m,
+  created_at: [1;34m2016[0m-[1;34m11[0m-[1;34m20[0m [1;34m12[0m:[1;34m07[0m:[1;34m17[0m [1;34;4mUTC[0m,
+  updated_at: [1;34m2016[0m-[1;34m11[0m-[1;34m20[0m [1;34m12[0m:[1;34m07[0m:[1;34m17[0m [1;34;4mUTC[0m[32m>[0m,
+ [32m#<User:0x000000035841e0[0m
+  id: [1;34m5[0m,
+  first_name: [31m[1;31m"[0m[31mMax[1;31m"[0m[31m[0m,
+  last_name: [31m[1;31m"[0m[31mKintsugi[1;31m"[0m[31m[0m,
+  email: [31m[1;31m"[0m[31mMadmax@tut.by[1;31m"[0m[31m[0m,
+  password_digest:
+   [31m[1;31m"[0m[31m$2a$10$iuRAPnbwE26UsysOUyD42.B66ZDKmSuHuIKTxw1sAaazGjuHKpQlS[1;31m"[0m[31m[0m,
+  created_at: [1;34m2016[0m-[1;34m11[0m-[1;34m20[0m [1;34m19[0m:[1;34m54[0m:[1;34m47[0m [1;34;4mUTC[0m,
+  updated_at: [1;34m2016[0m-[1;34m11[0m-[1;34m20[0m [1;34m19[0m:[1;34m54[0m:[1;34m47[0m [1;34;4mUTC[0m[32m>[0m,
+ [32m#<User:0x000000035840a0[0m
+  id: [1;34m6[0m,
+  first_name: [31m[1;31m"[0m[31mEugen[1;31m"[0m[31m[0m,
+  last_name: [31m[1;31m"[0m[31mProtas[1;31m"[0m[31m[0m,
+  email: [31m[1;31m"[0m[31mZheka@gmail.com[1;31m"[0m[31m[0m,
+  password_digest:
+   [31m[1;31m"[0m[31m$2a$10$Efp8k/zqKrrKhhd4u/N01OJKl6UMrw6pDTk1MktQxOMB3EurxfOX2[1;31m"[0m[31m[0m,
+  created_at: [1;34m2016[0m-[1;34m11[0m-[1;34m21[0m [1;34m14[0m:[1;34m45[0m:[1;34m56[0m [1;34;4mUTC[0m,
+  updated_at: [1;34m2016[0m-[1;34m11[0m-[1;34m21[0m [1;34m14[0m:[1;34m45[0m:[1;34m56[0m [1;34;4mUTC[0m[32m>[0m,
+ [32m#<User:0x00000001573978[0m
+  id: [1;34m7[0m,
+  first_name: [31m[1;31m"[0m[31mMatt[1;31m"[0m[31m[0m,
+  last_name: [31m[1;31m"[0m[31mSmith[1;31m"[0m[31m[0m,
+  email: [31m[1;31m"[0m[31mMath@gmail.com[1;31m"[0m[31m[0m,
+  password_digest:
+   [31m[1;31m"[0m[31m$2a$10$OjFpIHbNG08GHshhcBXoRe5yeldLNVTTw.Ks8WFuoAH2q3uHKLgAK[1;31m"[0m[31m[0m,
+  created_at: [1;34m2016[0m-[1;34m11[0m-[1;34m22[0m [1;34m13[0m:[1;34m08[0m:[1;34m47[0m [1;34;4mUTC[0m,
+  updated_at: [1;34m2016[0m-[1;34m11[0m-[1;34m22[0m [1;34m13[0m:[1;34m08[0m:[1;34m47[0m [1;34;4mUTC[0m[32m>[0m,
+ [32m#<User:0x00000001572988[0m
+  id: [1;34m8[0m,
+  first_name: [31m[1;31m"[0m[31mVladislav[1;31m"[0m[31m[0m,
+  last_name: [31m[1;31m"[0m[31mRumpilstinskin[1;31m"[0m[31m[0m,
+  email: [31m[1;31m"[0m[31mRump@gmail.com[1;31m"[0m[31m[0m,
+  password_digest:
+   [31m[1;31m"[0m[31m$2a$10$xsV4X6xDTCieE65oq2UmI.VHu8N4uD5tMgqufvVLPv6WQCS1MexD2[1;31m"[0m[31m[0m,
+  created_at: [1;34m2016[0m-[1;34m11[0m-[1;34m22[0m [1;34m15[0m:[1;34m01[0m:[1;34m15[0m [1;34;4mUTC[0m,
+  updated_at: [1;34m2016[0m-[1;34m11[0m-[1;34m22[0m [1;34m15[0m:[1;34m01[0m:[1;34m15[0m [1;34;4mUTC[0m[32m>[0m,
+ [32m#<User:0x00000001572050[0m
+  id: [1;34m3[0m,
+  first_name: [31m[1;31m"[0m[31mVladik[1;31m"[0m[31m[0m,
+  last_name: [31m[1;31m"[0m[31mErmolkin[1;31m"[0m[31m[0m,
+  email: [31m[1;31m"[0m[31mJaVlad@tut.by[1;31m"[0m[31m[0m,
+  password_digest:
+   [31m[1;31m"[0m[31m$2a$10$Ls.Q6InXY8A/pmIO1Uuvge/TrgBzvjWv.t/6UAvyMCqO6AFwcMPbq[1;31m"[0m[31m[0m,
+  created_at: [1;34m2016[0m-[1;34m11[0m-[1;34m20[0m [1;34m12[0m:[1;34m01[0m:[1;34m14[0m [1;34;4mUTC[0m,
+  updated_at: [1;34m2016[0m-[1;34m11[0m-[1;34m22[0m [1;34m15[0m:[1;34m18[0m:[1;34m42[0m [1;34;4mUTC[0m[32m>[0m,
+ [32m#<User:0x00000001571ad8[0m
+  id: [1;34m1[0m,
+  first_name: [31m[1;31m"[0m[31mlucky[1;31m"[0m[31m[0m,
+  last_name: [31m[1;31m"[0m[31mLucky[1;31m"[0m[31m[0m,
+  email: [31m[1;31m"[0m[31mvlad@k.y[1;31m"[0m[31m[0m,
+  password_digest:
+   [31m[1;31m"[0m[31m$2a$10$/aV/q.my8txVaWpy.N7D1u4J2QtzqKimMiHfwjRYf8.95okXac2LO[1;31m"[0m[31m[0m,
+  created_at: [1;34m2016[0m-[1;34m11[0m-[1;34m17[0m [1;34m15[0m:[1;34m43[0m:[1;34m10[0m [1;34;4mUTC[0m,
+  updated_at: [1;34m2016[0m-[1;34m11[0m-[1;34m22[0m [1;34m20[0m:[1;34m12[0m:[1;34m30[0m [1;34;4mUTC[0m[32m>[0m]

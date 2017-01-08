@@ -1,0 +1,32 @@
+<h1 style="color: white; margin: 30px 10px;">Hi, <%= current_user.username.capitalize %> your total expenses are $<%= current_user.total_amount %></h1>
+
+<div class="container" >
+  <div class="row">
+    <div class="jumbotron" style="background: white; border-radius:20px;">
+      <% if flash.has?(:message) %>
+      <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <p><%= flash[:message] %> </p>
+      </div>
+      <% end %>
+      <table class="table table-hover table-striped" >
+      <tr class="info">
+        <th><h3>Description</h3></th>
+        <th><h3>Amount</h3></th>
+        <th><h3>Date</h3></th>
+        <th><h3>Category</h3></th>
+        <th><h3></h3></th>
+      </tr>
+        <% current_user.expenses_sort_by_date.each do |expense| %>
+          <tr style="text-align:left;">
+            <td><a href="expenses/<%= expense.id %>"><%= expense.description %></a></td>
+            <td>$ <%= expense.amount %></td>
+            <td><%= expense.date %></td>
+            <td><a href="categories/<%= expense.category.id %>"><%= expense.category.name %></a></td>
+            <td><a href="expenses/<%= expense.id %>/edit">Edit <span class="glyphicon glyphicon-pencil"></span></a></td>
+          </tr>
+        <% end %>
+      </table>
+    </div><!-- end well -->
+  </div><!-- end row -->
+</div><!-- end container -->
