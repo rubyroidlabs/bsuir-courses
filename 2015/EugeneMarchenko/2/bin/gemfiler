@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require 'pry'
+require_relative '../lib/version_fetcher'
+require_relative '../lib/parameter_parser'
+
+ParameterParser.parse %w(--help) if ARGV.size < 1
+
+options = ParameterParser.parse ARGV
+VersionFetcher.new(options.name, options.list).fetch
