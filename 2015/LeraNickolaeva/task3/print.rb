@@ -17,13 +17,13 @@ class Print
   def print(teachers, comments)
     puts "#{teachers}\n ====="
     if case estimate(comments[i])
-         when -1 then
-           puts "#{comments[i]}".red
-         when 1 then
-           puts "#{comments[i]}".green
-         else
-           puts "#{comments[i]}"
-       end
+      when -1 then
+        puts "#{comments[i]}".red
+      when 1 then
+        puts "#{comments[i]}".green
+      else
+        puts "#{comments[i]}"
+      end
       puts
     end
     else
@@ -32,4 +32,3 @@ class Print
       return
   end
 end
-

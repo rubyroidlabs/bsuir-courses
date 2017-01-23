@@ -1,0 +1,11 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.2.1)
+    gosu (0.7.45)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  gosu
