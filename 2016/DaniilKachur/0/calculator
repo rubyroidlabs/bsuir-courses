@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require './rpn_calculator'
+require './exception_handler'
+require './immediately_io'
+
+# adding immediately output
+class IO
+  include ImmediatelyIO
+end
+
+def beautify(value)
+  (value % 1).zero? ? value.to_i : value
+end
+
+ExceptionHandler.handle do
+  input = ''
+  buffer = ''
+
+  loop do
+    buffer << gets
+    if buffer =~ /q/
+      exit
+    elsif buffer == input
+      $stdin.imm_out(input, $stdout) do |rpn|
+        beautify(RPNCalculator.calculate(rpn))
+      end
+    end
+    input = buffer
+  end
+end
