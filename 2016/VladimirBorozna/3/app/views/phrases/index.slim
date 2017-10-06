@@ -1,0 +1,24 @@
+- unless @phrases&.empty?
+  .panel.panel-default.margin-bottom-5
+    - if logged_in?
+      .panel-heading
+        .text-right
+          a.btn.btn-default[href="/phrases/new" data-modal="true"] New phrase
+
+    .panel-body
+      table.table.table-condensed.phrases-table#phrases
+        - @phrases.each do |phrase|
+          tr
+            td[id="phrase_#{phrase.id}"]
+              - path = "/phrases/show/#{phrase.id}"
+              - full_phrase = phrase.words.order(word_id: :asc).pluck(:content).join(' ')
+              - additional_class = "cannot-add" if current_user_id == phrase.words.last.user_id
+              a[href=path class=additional_class] = full_phrase
+
+div[style="display: none;"]
+  h1
+    | Phrases
+  #chat-log
+    ul
+  input id="message" type="text"
+  button id="disconnect" Disconnect

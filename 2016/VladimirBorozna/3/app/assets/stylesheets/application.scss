@@ -1,0 +1,44 @@
+//= require_tree .
+//= require_self
+
+.content {
+  min-height: 100vh;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.phrases-table tr td {
+  text-overflow: ellipsis;
+}
+
+#errors {
+  margin-top: 10px;
+  border-left: 5px solid #a94442;
+  padding-left: 10px;
+
+  ul {
+    margin: 0px;
+    padding-left: 10px;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  &::before {
+    content: '\b7\a0';
+  }
+}
+
+.phrases-table tbody tr:first-child td { border-top: 0px; }
+
+table thead tr th {
+  text-align: center;
+  border-bottom: 0px;
+}
+
+.cannot-add {
+  color: darkgrey;
+}

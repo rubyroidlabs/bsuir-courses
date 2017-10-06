@@ -1,0 +1,21 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+
+    title Phrases
+    link href="/assets/css/application.min.css" rel="stylesheet" media="all"
+    /![if lt IE 9]
+      | <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script
+      | <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script
+  body
+    .container
+      .row
+        .col-sm-offset-3.col-sm-6
+          == partial(:navbar)
+          == yield
+
+  #modal-container
+  script src="/assets/js/application.min.js" type="text/javascript"

@@ -1,0 +1,23 @@
+- if logged_in? && @words.order(word_id: :asc).last.user_id != current_user_id
+  .panel.panel-default
+    .panel-heading
+      .text-right
+        - add_word_path = "/phrases/#{params[:id]}/words/new"
+        a.btn.btn-default[href=add_word_path data-modal="true"] Add word
+
+.panel.panel-default
+  .panel-body[id="phrase_#{params[:id]}"]
+    = @words.pluck(:content).join(' ')
+
+.panel.panel-default
+  table.table.text-center
+    thead
+      tr
+        th Name
+        th Word
+        th Added
+    - @words.reverse_each do |word|
+      tr
+        td = word.user.name
+        td = word.content
+        td = word.created_at.in_time_zone('Minsk').strftime("%d.%m.%Y / %H:%M:%S")
