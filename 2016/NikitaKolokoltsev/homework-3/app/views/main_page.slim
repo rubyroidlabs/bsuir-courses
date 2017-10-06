@@ -1,0 +1,117 @@
+link href="/stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet"
+link href="/stylesheets/main_page.css" rel="stylesheet"
+link href="/stylesheets/jquery/jquery-ui.css" rel="stylesheet"
+
+
+/ User icon which opens auth window
+- if user_signed_in? 
+  - if current_user.role == "admin"
+    img#user-auth-open.user-icon src="/images/admin.png"
+  - else
+    img#user-auth-open.user-icon src="/images/user.png"
+- else
+  img#user-auth-open.user-icon src="/images/user-icon.png"
+
+/ User auth window or greetings
+#user-auth-window hidden="hidden"
+  - if user_signed_in?
+    h2
+      | Hello, 
+      = current_user.first_name
+      | !
+
+    hr
+
+    form.logout-form action="/users/logout" method="get"
+      button.btn.btn-danger type="submit"
+        | Log Out
+    a href="/users/#{current_user.id}"  
+      button.btn.btn-warning.pull-right
+        | Your Page
+        span.glyphicon.glyphicon-chevron-right
+
+  - else 
+    == render :slim, :_login_window
+    == render :slim, :_signup_window
+
+/ When auth window appears everything should become darker
+#shadow
+
+
+.container
+  
+  / Header "Quotes"
+  .header
+    a.no-decoration href="/"
+      / Q should be bigger than other letters
+      span.Q
+        | Q
+      span
+        | uotes
+
+  .random-quote
+    span.quot
+      | “
+    = @random_quote
+    span.quot
+      | ” 
+    .random-quote-author
+      = @random_quote_author
+
+  / Check if user have permissions to use "New Quote" button
+  - if user_signed_in?
+    .create-new-quote
+      a.btn.btn-warning.new-quote href="/quotes/new"
+        | New Quote
+        span.glyphicon.glyphicon-chevron-right
+
+  .recently-updated-quotes
+    | Recently updated quotes
+    hr.hr
+
+  / Table for recently updated quotes
+  .quotes-table.text-center
+    ul.nav.nav-pills.nav-stacked#quotes-list
+      / If user is logged in we need to show him to which quotes he can add words
+      - if user_signed_in?
+        - @quotes.each do |q|
+          / Check if user have ability to add a word to the quote
+          - if q.last_user_edited == current_user.id
+            a.link-to-quote href="/quotes/edit/#{q.id}" id="#{q.id}"
+              li.quote-disabled
+                - q.words.each do |w|
+                  span
+                    = w.text
+                    |  
+              hr.hr
+          - else
+            div
+              li.quote-able id="#{q.id}"
+                - q.words.each do |w|
+                  span.quote-text
+                    = w.text
+                    |  
+                .inline-redactor id="inline-redactor-for-#{q.id}"
+                  input.form-control.inline-redactor-input maxlength="30"
+                  btn.btn.btn-success.inline-redactor-btn
+                    | Add word
+                  a.btn.btn-warning href="/quotes/edit/#{q.id}"
+                    | Go to quote page
+                  .errors
+            hr.hr
+      - else
+        - @quotes.each do |q|
+          a.link-to-quote id="#{q.id}"
+            li.quote
+              - q.words.each do |w|
+                span
+                  = w.text
+                  |  
+            hr.hr
+
+
+script src="/javascript/jquery/jquery-1.12.1.min.js"
+script src="/javascript/jquery/jquery-ui-1.12.1.min.js"
+script src="/javascript/bootstrap/bootstrap.min.js"
+script src="/javascript/userAuthWindow.js"
+script src="/javascript/mainPage.js"

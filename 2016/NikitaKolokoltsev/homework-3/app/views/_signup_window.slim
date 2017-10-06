@@ -1,0 +1,36 @@
+form.form-horizontal action="/users/signup" method="post" id="signUpWindow"
+
+  h3
+    | Sign Up
+  hr
+
+  .form-group
+    label.col-sm-3.control-label for="inputFirstName"
+      | First Name
+    .col-sm-9
+      input.form-control id="inputFirstName" name="first_name" placeholder="First Name" autocomplete="off" required="true"
+
+  .form-group
+    label.col-sm-3.control-label for="inputLastName"
+      | Last Name
+    .col-sm-9
+      input.form-control id="inputLastName" name="last_name" placeholder="Last Name" autocomplete="off" required="true"
+
+  .form-group
+    label.col-sm-3.control-label for="inputEmail"
+      | Email
+    .col-sm-9
+      input.form-control type="email" id="inputEmail" name="email" placeholder="Email" autocomplete="off" required="true"
+
+  .form-group
+    label.col-sm-3.control-label for="inputPassword"
+      | Password
+    .col-sm-9
+      input.form-control type="password" id="inputPassword" name="password" placeholder="Password" autocomplete="off" required="true"
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      button.btn.btn-success type="submit"
+        | Sign Up
+      .btn.btn-default id="logInWindowBtn"
+        | Log In

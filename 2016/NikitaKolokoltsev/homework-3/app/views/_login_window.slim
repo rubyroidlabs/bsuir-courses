@@ -1,0 +1,31 @@
+form.form-horizontal action="/users/login" method="post" id="logInWindow"
+
+  h3
+    | Log In
+  hr
+  
+  .form-group
+    label.col-sm-3.control-label for="inputEmail"
+      | Email
+    .col-sm-9
+      input.form-control type="email" id="inputEmail" name="email" placeholder="Email" autocomplete="off" required="true"
+
+  .form-group
+    label.col-sm-3.control-label for="inputPassword"
+      | Password
+    .col-sm-9
+      input.form-control type="password" id="inputPassword" name="password" placeholder="Password" autocomplete="off" required="true"
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .checkbox
+        label
+          input type="checkbox"
+            | Remember me
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      button.btn.btn-success type="submit"
+        | Log In
+      .btn.btn-default id="signUpWindowBtn"
+        | Sign Up
