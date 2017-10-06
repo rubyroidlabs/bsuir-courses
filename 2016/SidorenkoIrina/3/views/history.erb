@@ -1,0 +1,27 @@
+<div class="history-area" style="margin-top: 200px;">
+    <table class="table">
+	<% @size = @result.size %>
+	<% for i in 0..@size-1 %>
+	<tr>
+	    <td><%= @result[i][0] %> &nbsp;(
+		    <%= @result[i][1] %> ): "
+	        <% if i != 0 then %> 
+		        <% for x in 0..i-1 %>
+		              <%= @result[x][2] %>
+		        <% end %>
+	        <% end %>
+		    <strong><%= @result[i][2] %> "</strong>
+	    </td>
+	</tr>
+	<% end %>
+    </table>
+</div>
+<br>
+<form  action="/add_word?id=<%= params['id']%>" method="post" role="form">
+	<input class="form-control" name = "word" required placeholder="Enter word" type="text">
+	<label><input type="checkbox" name = "continue"> Continue the phrase? </label>
+	<button class="btn btn-block btn-default" type="submit"> ADD </button>
+	<%if @error then %>
+	    <div class="alert alert-danger" style="color:red;"><%= @error %></div>
+	<% end %>
+</form>
