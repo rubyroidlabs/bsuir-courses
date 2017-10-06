@@ -1,0 +1,6 @@
+test:
+  database_url: 'redis://localhost:6379/0'
+development:
+  database_url: 'redis://localhost:6379/0'
+production:
+  database_url: <%= ENV["REDIS_URL"] %>
