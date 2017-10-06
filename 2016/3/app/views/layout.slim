@@ -1,0 +1,47 @@
+doctype html
+html lang="en"
+  head
+    title Phrases
+    link href="/css/bootstrap.css" rel="stylesheet"
+    link href="/css/custom.css" rel="stylesheet"
+    link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+  
+body
+  nav.navbar.my-navbar
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand.my-navbar-brand href="/" Phrases
+
+      .collapse.navbar-collapse#bs-example-navbar-collapse-1
+        - if !logged_in?
+           ul.nav.navbar-nav.navbar-right
+            li.navbar-right
+              a.my-navbar-element href="/login" Log In
+        - else
+          ul.nav.navbar-nav
+            li
+              a.my-navbar-element href="/phrases/new" New phrase
+
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown.navbar-right
+              a.dropdown-toggle.my-navbar-element data-toggle="dropdown" href="#" 
+                = User.find(session[:user_id]).first_name + " " + User.find(session[:user_id]).last_name
+              ul.dropdown-menu.my-dropdown-menu.navigation
+                li
+                  a href="/users/edit/#{session[:user_id]}"  Edit
+                li.divider role="separator" 
+                li
+                  a href="/logout"  Log out
+
+
+  == yield
+  script src="/js/jquery-3.1.1.js"
+  script src="/js/bootstrap.min.js"
+  script src="/js/custom.js"
+  script src="https://code.jquery.com/jquery-1.12.4.js" 
+  script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" 
