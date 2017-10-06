@@ -1,0 +1,32 @@
+<%= form_for([@saying, @word]) do |f| %>
+  <% if word.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(word.errors.count, "error") %> prohibited this word from being saved:</h2>
+
+      <ul>
+      <% word.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_word %>
+    <%= f.text_field :user_word, :required => true, :pattern => '[^ \f\n\r\t\v.]+'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_name %>
+    <%= f.text_field :user_name, :value => current_user.username, :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :saying_id %>
+    <%= f.text_field :saying_id, :readonly => true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
