@@ -1,0 +1,51 @@
+.dialogdemoBasicUsage #popupContainer {
+    position: relative; }
+
+.dialogdemoBasicUsage .footer {
+    width: 100%;
+    text-align: center;
+    margin-left: 20px; }
+
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+    font-size: 0.8em;
+    margin-top: 50px; }
+
+.dialogdemoBasicUsage button {
+    width: 200px; }
+
+.dialogdemoBasicUsage div#status {
+    color: #c60008; }
+
+.dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
+    margin-bottom: 0; }
+
+.container {
+    width: 970px;
+    padding-top:10px;
+    margin: 0 auto;
+}
+
+.pure-form input.ng-dirty.ng-invalid {
+    border-color: #e9322d;
+}
+
+.field-message {
+    display: inline-block;
+    color:#e9322d;
+    font-size: 90%;
+    margin-left: 0.5em;
+}
+
+.italic{
+    front-family: 'Timest New Roman', Times, serif;
+    front-style: italic;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+*/

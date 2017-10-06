@@ -1,0 +1,19 @@
+<div id="history-list" class="row">
+    <div class="col-sm-8 col-sm-offset-3"  ng-repeat="history in hitories" np-style="{width: contentSize.width + 'px'}">
+        <span class="col-sd-4" style="color:steelblue">
+            {{history.user_name}}
+        </span>
+        <span class="italic">
+            <i>{{history.time}}</i>
+        </span>
+        <span class="col-sd-4">
+            {{history.text}}
+        </span>
+        <span class="col-sd-4" style="color:darkred">
+            {{history.last_word}}
+        </span>
+    </div>
+    <button class="btn btn-info" ng-click="back()">
+        Back
+    </button>
+</div>
