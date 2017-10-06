@@ -1,0 +1,19 @@
+span.success_update = @success_update
+div.phrases
+  h1 Фразы
+  - @phrases.each do |phrase|
+    div.content
+      - if phrase[2]
+        div.not_update
+          a href="/show?id=#{phrase[1]}" ==phrase[0].join(" ")
+      - else 
+        div.can_update data-id="#{phrase[1]}"
+          a href="/show?id=#{phrase[1]}" ==phrase[0].join(" ")
+          - unless @user.nil?
+            div.form_content
+              form action="/create" method="post"
+                input type="text" placeholder="Слово" name="word[name]"
+                |  
+                input type="button" value="Добавить слово" class="btn btn-success submit_form"
+  br
+  a href="/new" class="btn btn-success" Создать фразу 
