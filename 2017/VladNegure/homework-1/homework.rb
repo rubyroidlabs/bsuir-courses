@@ -9,7 +9,7 @@ if ENV['NAME'].nil?
     tree.print
     puts Lumberjack.think(tree)
     unless i == forest.length - 2
-      print "\nDo you want to see next one? [y/n]: "
+      print "\nDo you want to see the next one? [y/n]: "
       break if gets.chomp == 'n'
     end
   end
