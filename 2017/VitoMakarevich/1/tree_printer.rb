@@ -14,17 +14,14 @@ class TreePrinter
       pointers = ['/', '\\']
       layer.each_with_index do |element, inner_index|
         if inner_index.even?
-          pointers_level << ' '
-          pointers_level << pointers[inner_index % 2]
+          pointers_level << ' ' << pointers[inner_index % 2]
         else
-          pointers_level << pointers[inner_index % 2]
-          pointers_level << ' '
+          pointers_level << pointers[inner_index % 2] << ' '
         end
         if inner_index != (layer.count - 1)
           pointers_level << ' ' * (2**(index + 2) - 2)
         end
-        numbers_level << (element / 10 > 0 ? element / 10 : ' ').to_s
-        numbers_level << (element % 10).to_s
+        numbers_level << (element / 10 > 0 ? element / 10 : ' ').to_s << (element % 10).to_s
         if inner_index != (layer.count - 1)
           numbers_level << ' ' * (2**(index + 2) - 2)
         end
