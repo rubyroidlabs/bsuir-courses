@@ -2,7 +2,9 @@ require_relative './tree_parser'
 require_relative './tree_printer'
 MAX_DEPTH = 5
 MAX_SUM = 5000
+# frozen_string_literal
 CONTINUE_STATUS = 'y'.freeze
+# frozen_string_literal
 STOP_STATUS = 'n'.freeze
 
 def print_tree(name)
