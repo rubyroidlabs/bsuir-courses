@@ -1,6 +1,5 @@
 require 'json'
 class TreeParser
-
   attr_accessor :depth
 
   public
@@ -46,12 +45,10 @@ class TreeParser
 
   def array_depth(array) 
     b, depth = array, 1
-    until b==b.flatten
-      depth+=1
-      b=b.flatten(1)
+    until b == b.flatten
+      depth += 1
+      b = b.flatten(1)
     end
     depth
   end 
-
-
 end

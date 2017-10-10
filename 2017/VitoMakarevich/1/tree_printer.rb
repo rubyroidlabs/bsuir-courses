@@ -1,12 +1,11 @@
 class TreePrinter
-
   def initialize(parsed_tree)
-  	@parsed_tree = parsed_tree
+    @parsed_tree = parsed_tree
     @rendered_tree = []
   end
 
-  def render()
-  	@parsed_tree.reverse!
+  def render
+    @parsed_tree.reverse!
    	@parsed_tree[0...@parsed_tree.length].each_with_index do |layer, index|
       numbers_level = ''
       numbers_level << ' ' * (2**(index + 1) - 2)
@@ -34,7 +33,6 @@ class TreePrinter
       if index != (@parsed_tree.count - 1)
         @rendered_tree.push(pointers_level)
       end
-
     end
     @rendered_tree.reverse
   end

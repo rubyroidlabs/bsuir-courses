@@ -1,5 +1,5 @@
-require_relative "./TreeParser"
-require_relative "./TreePrinter"
+require_relative "./tree_parser"
+require_relative "./tree_printer"
 
 def print_tree(name)
   path = "./trees/#{name}"
