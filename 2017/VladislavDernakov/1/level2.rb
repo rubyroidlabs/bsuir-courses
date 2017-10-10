@@ -16,7 +16,8 @@ else
       puts "Please enter 'y' or 'n'"
       user_answer = gets.chomp.downcase
     end
-    next if user_answer == 'y'
+    next  if user_answer == 'y'
     break if user_answer == 'n'
   end
 end
+

@@ -3,17 +3,18 @@ require_relative 'node'
 class Tree
   attr_accessor :root
   SEPARATOR = ' '.freeze
+
   def initialize(root)
     @root = root
   end
 
   def show
     levels = divide_into_levels
-    depth  = levels.size
-    levels.each_with_index do |level, level_index|
-      left_indent = 2**(depth - level_index) - 2
-      between_indent = 2**(depth - level_index + 1) - 2
-      if level_index > 0
+    depth = levels.size
+    levels.each_with_index do |level, level_idx|
+      left_indent = 2**(depth - level_idx) - 2
+      between_indent = 2**(depth - level_idx + 1) - 2
+      if level_idx > 0
         connections_str = SEPARATOR * (left_indent + 1)
         is_left = true
         level.each do |value|
@@ -30,11 +31,12 @@ class Tree
         puts connections_str
       end
       processed_level = level.map.with_index do |value, index|
-        value = if value.nil?
-                  '  '
-                elsif value.digits.count == 1
-                  index.even? ? value.to_s + ' ' : ' ' + value.to_s
-                end
+        if value.nil?
+          value = '  '
+        elsif value.digits.count == 1
+          value = index.even? ? value.to_s + ' ' : ' ' + value.to_s
+        end
+        value
       end
       values_str = SEPARATOR * left_indent
       values_str += processed_level.join(SEPARATOR * between_indent)
@@ -65,17 +67,13 @@ class Tree
   def divide_into_levels
     queue = []
     queue.push(@root)
-
     levels = []
     current_level = 0
-
     until queue.empty?
       level = []
-
       elements_count = 2**current_level
       nil_count = 0
-
-      elements_count.times do
+      elements_count.times do |n|
         node = queue.shift
         if node.nil?
           nil_count += 1
@@ -83,7 +81,7 @@ class Tree
           break if nil_count == elements_count
           queue.push(nil)
           queue.push(nil)
-        else
+        else 
           level.push(node.value)
           queue.push(node.left ? node.left : nil)
           queue.push(node.right ? node.right : nil)

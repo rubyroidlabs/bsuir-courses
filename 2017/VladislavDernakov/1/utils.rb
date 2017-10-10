@@ -2,17 +2,16 @@ require 'json'
 
 require_relative 'models/tree_grower'
 
-PATH_TO_TREES = './trees/'
-TREE_EXT   = ".tree"
+PATH_TO_TREES = './trees/'.freeze
+TREE_EXT   = '.tree'.freeze
 
-module Utils 
+module Utils
   def tree_name
     ENV['NAME']
   end
   def tree_by_name(name)
     file_name = PATH_TO_TREES + name + TREE_EXT
-    tree = tree_by_file_name(file_name)   
-    tree
+    tree = tree_by_file_name(file_name)
   end
   def trees
     tree_files = Dir[PATH_TO_TREES + '*' + TREE_EXT]
@@ -23,9 +22,12 @@ module Utils
     tree_files
   end
 
+  private
+
   def tree_by_file_name(path)
     tree = File.read(path)
     tree = JSON.parse(tree)
-    TreeGrower.grow(tree)
+    # tree = [1 ,[[2 ,[3 , [1, [2, 4]] ]],[3,[5,2]]]]
+    tree = TreeGrower.grow(tree)
   end
 end
