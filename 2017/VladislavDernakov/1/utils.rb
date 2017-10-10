@@ -1,6 +1,6 @@
-require "json"
+require 'json'
 
-require_relative "models/tree_grower"
+require_relative 'models/tree_grower'
 
 PATH_TO_TREES = "./trees/"
 TREE_EXT   = ".tree"

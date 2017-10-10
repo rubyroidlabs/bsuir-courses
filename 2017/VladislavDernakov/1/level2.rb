@@ -1,4 +1,4 @@
-require_relative "utils"
+require_relative 'utils'
 
 include Utils
 
