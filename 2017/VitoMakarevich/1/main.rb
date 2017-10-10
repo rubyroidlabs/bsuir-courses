@@ -20,8 +20,9 @@ def print_tree(name)
   print 'Желаете продолжить? [y/n] '
 end
 
-tree_names = Dir.entries('./trees')
-              .delete_if { |filename| filename == '.' || filename == '..' }.sort!
+tree_names = 
+Dir.entries('./trees')
+  .delete_if { |filename| filename == '.' || filename == '..' }.sort!
 
 iterator = 1
 print_tree(tree_names[0])
@@ -37,4 +38,3 @@ while iterator != (tree_names.count - 1)
 end
 
 puts 'Спасибо что были в нашем лесу'
-

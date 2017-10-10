@@ -13,7 +13,7 @@ class TreeParser
     @array = JSON.parse(text)
   end
 
-  def get_layers 
+  def get_layers
     get_array
     @layers
   end

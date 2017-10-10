@@ -6,7 +6,8 @@ class TreePrinter
 
   def render
     @parsed_tree.reverse!
-   	@parsed_tree[0...@parsed_tree.length].each_with_index do |layer, index|
+   	@parsed_tree[0...@parsed_tree.length]
+      .each_with_index do |layer, index|
       numbers_level = ''
       numbers_level << ' ' * (2**(index + 1) - 2)
       pointers_level = ''
@@ -22,7 +23,7 @@ class TreePrinter
           pointers_level << ' ' * (2**(index + 2) - 2)
         end
         numbers_level << (element / 10 > 0 ? element / 10 : ' ').to_s 
-          << (element % 10).to_s
+        numbers_level << (element % 10).to_s
         if inner_index != (layer.count - 1)
           numbers_level << ' ' * (2**(index + 2) - 2)
         end
