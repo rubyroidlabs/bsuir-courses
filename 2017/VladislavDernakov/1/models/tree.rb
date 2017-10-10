@@ -81,7 +81,7 @@ class Tree
           break if nil_count == elements_count
           queue.push(nil)
           queue.push(nil)
-        else 
+        else
           level.push(node.value)
           queue.push(node.left ? node.left : nil)
           queue.push(node.right ? node.right : nil)

@@ -12,9 +12,9 @@ module Utils
 
   def tree_by_name(name)
     file_name = PATH_TO_TREES + name + TREE_EXT
-    tree = tree_by_file_name(file_name)
+    tree_by_file_name(file_name)
   end
-  
+
   def trees
     tree_files = Dir[PATH_TO_TREES + '*' + TREE_EXT]
     tree_files.sort!
@@ -30,6 +30,6 @@ module Utils
     tree = File.read(path)
     tree = JSON.parse(tree)
     # tree = [1 ,[[2 ,[3 , [1, [2, 4]] ]],[3,[5,2]]]]
-    tree = TreeGrower.grow(tree)
+    TreeGrower.grow(tree)
   end
 end

@@ -4,8 +4,8 @@ include Utils
 
 tree_name = Utils.tree_name
 if tree_name
-  tree = tree_by_name(tree_name)
-  tree.show
+  single_tree = tree_by_name(tree_name)
+  single_tree.show
 else
   trees = Utils.trees
   trees.each do |tree|
