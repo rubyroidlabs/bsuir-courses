@@ -3,9 +3,7 @@ class TreeParser
   attr_accessor :depth
 
   def sum
-    sum = 0
-    @layers.each { |layer| layer.each { |item| sum += item } }
-    sum
+    @layers.flatten.inject(:+)
   end
 
   def initialize(text)
