@@ -23,11 +23,11 @@ module Utils
     tree_files
   end
 
-  private
-
   def tree_by_file_name(path)
     tree = File.read(path)
     tree = JSON.parse(tree)
     tree = TreeGrower.grow(tree)
   end
+
+  private_class_method :tree_by_file_name
 end
