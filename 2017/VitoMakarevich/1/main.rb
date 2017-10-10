@@ -2,8 +2,8 @@ require_relative './tree_parser'
 require_relative './tree_printer'
 MAX_DEPTH = 5
 MAX_SUM = 5000
-CONTINUE_STATUS = 'y'
-STOP_STATUS = 'n'
+CONTINUE_STATUS = 'y'.freeze
+STOP_STATUS = 'n'.freeze
 
 def print_tree(name)
   path = "./trees/#{name}"
@@ -24,7 +24,7 @@ end
 
 tree_names =
   Dir.entries('./trees')
-  .delete_if { |filename| filename == '.' || filename == '..' }.sort!
+      .delete_if { |filename| filename == '.' || filename == '..' }.sort!
 
 iterator = 1
 print_tree(tree_names[0])
@@ -32,7 +32,7 @@ while iterator != (tree_names.count - 1)
   user_answer = gets.chomp
   if user_answer == CONTINUE_STATUS
     print_tree(tree_names[iterator += 1])
-  else user_answer == STOP_STATUS
+  elsif user_answer == STOP_STATUS
     abort 'Спасибо что были в нашем лесу'
   end
 end
