@@ -94,4 +94,3 @@ class Tree
     levels
   end
 end
-
