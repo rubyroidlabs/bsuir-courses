@@ -17,25 +17,22 @@ class Tree
     levels.each_with_index do |level, level_index|
       left_indent = 2**(depth - level_index) - 2
       between_indent = 2**(depth - level_index + 1) - 2
-
-      # if current level is not first 
       if level_index > 0
         connections_str = SEPARATOR * (left_indent + 1)
         is_left = true
         level.each do |value|
           if value
             connections_str += '/' if is_left
-            connections_str += '\\' if !is_left
-          else 
+            connections_str += '\\' unless is_left
+          else
             connections_str += ' '
           end
           connections_str += SEPARATOR * between_indent if is_left
-          connections_str += SEPARATOR * (between_indent + 2) if !is_left
+          connections_str += SEPARATOR * (between_indent + 2) unless is_left
           is_left = !is_left
         end
         puts connections_str
       end
-
       processed_level = level.map.with_index do |value, index|
         if value.nil?
           value = '  '
@@ -86,13 +83,13 @@ class Tree
       elements_count.times do
         node = queue.shift
         
-        if node == nil 
+        if node.nil?
           nil_count += 1
           level.push(nil)
           break if nil_count == elements_count
           queue.push(nil)
           queue.push(nil)
-        else 
+        else
           level.push(node.value)
           queue.push(node.left ? node.left : nil)
           queue.push(node.right ? node.right : nil)
