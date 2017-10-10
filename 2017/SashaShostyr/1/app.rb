@@ -1,11 +1,10 @@
-#!/usr/bin/env ruby
 require_relative('tree')
 require 'pry'
 require 'json'
 
 list_of_files = []
 Dir.foreach('trees') do |filename|
-	list_of_files << filename if filename =~ /^\w/
+  list_of_files << filename if filename =~ /^\w/
 end
 list_of_files.sort!
 if ENV['NAME'].nil?
@@ -21,7 +20,7 @@ if ENV['NAME'].nil?
     loop do
       print 'Желаете продолжить? [y/n] '
       answer = gets.chomp
-      break if ['n', 'y'].include? answer
+      break if %w(y n).include? answer
       puts 'Введите: [y/n]'
     end
     if answer == 'n'
