@@ -67,7 +67,7 @@ class Tree
       spaces1 = spaces / 2**level - 1
       list.each do |elem|
         str += ' ' * spaces1 + wp(elem) + ' ' * spaces1
-        str2 += ' ' * (spaces1 - 1) + "/  \\" + ' ' * (spaces1 - 1)
+        str2 += ' ' * (spaces1 - 1) + '/  \\' + ' ' * (spaces1 - 1)
       end
       puts str
       puts str2 unless level == @depth
