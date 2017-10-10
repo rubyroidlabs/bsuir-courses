@@ -2,18 +2,15 @@ require_relative 'node'
 
 class Tree
 
-  SEPARATOR = ' '
-
   attr_accessor :root
-
+  SEPARATOR = ' '.freeze
   def initialize(root)
     @root = root
   end
 
   def show
     levels = divide_into_levels
-    depth  = levels.size
-    
+    depth  = levels.size    
     levels.each_with_index do |level, level_index|
       left_indent = 2**(depth - level_index) - 2
       between_indent = 2**(depth - level_index + 1) - 2
@@ -82,7 +79,6 @@ class Tree
 
       elements_count.times do
         node = queue.shift
-        
         if node.nil?
           nil_count += 1
           level.push(nil)

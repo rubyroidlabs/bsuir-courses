@@ -15,10 +15,10 @@ class TreeGrower
                 end
 
     node.right = if array[1][1].is_a?(Numeric)
-                  Node.new(array[1][1])
-                else
-                  make_tree(array[1][1])
-                end
+                   Node.new(array[1][1])
+                 else
+                   make_tree(array[1][1])
+                 end
 
     node
   end
