@@ -1,17 +1,17 @@
-require_relative "./tree_parser"
-require_relative "./tree_printer"
+require_relative './tree_parser'
+require_relative './tree_printer'
 
 def print_tree(name)
   path = "./trees/#{name}"
   json_tree = File.read(path)
   tree_parser = TreeParser.new(json_tree)
-  parsed_tree = tree_parser.get_layers()
-  tree_printer = TreePrinter.new (parsed_tree)
+  parsed_tree = tree_parser.get_layers
+  tree_printer = TreePrinter.new(parsed_tree)
   puts
   puts name
-  puts tree_printer.render()
+  puts tree_printer.render
   puts
-  if (tree_parser.depth > 5 || tree_parser.sum() > 100)
+  if tree_parser.depth > 5 || tree_parser.sum > 100
     puts 'Срубить.'
   else
     puts 'Оставить.'
@@ -21,7 +21,7 @@ def print_tree(name)
 end
 
 tree_names = Dir.entries('./trees')
-  .delete_if { |filename| filename == '.' || filename == '..' }.sort!
+              .delete_if { |filename| filename == '.' || filename == '..' }.sort!
 
 iterator = 1
 print_tree(tree_names[0])

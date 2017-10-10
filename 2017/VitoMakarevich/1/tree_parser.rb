@@ -1,8 +1,8 @@
 require 'json'
 class TreeParser
   attr_accessor :depth
-  
-  def sum 
+
+  def sum
     sum = 0
     @layers.each { |layer| layer.each { |item| sum += item } }
     sum
@@ -22,10 +22,10 @@ class TreeParser
 
   def get_array
     @depth = array_depth(@array) - 1
-    @layers = Array.new(@depth) { Array.new}
+    @layers = Array.new(@depth) { Array.new }
     parse(@array[1], 0)
     @layers[0].push(@array[0])
-    @layers.delete_if { |layer| layer.count == 0 }
+    @layers.delete_if { |layer| layer.count.zero? }
   end
 
   def parse(tree, level)
