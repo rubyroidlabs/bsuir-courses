@@ -3,14 +3,14 @@ class Tree
 
   def initialize(v)
     @root = Node.new(v)
-    @depth =  0
+    @depth = 0
     @sum_nodes = 0
   end
 
   def wp(elem)
     elem = elem.to_s
     if elem.length == 1
-      elem = " " + elem
+      elem = ' ' + elem
     end
     elem
   end
@@ -23,7 +23,7 @@ class Tree
 
   def depth_of_tree(root)
     if root.class == Node
-      @depth +=1
+      @depth += 1
       depth_of_tree(root.left)
     end
   end
@@ -52,12 +52,12 @@ class Tree
       list << root.value if level.zero?
       get_elems(root.right, level - 1, list)
     else
-      list << root if level == 0
+      list << root if level.zero?
     end
     list
   end
 
-  def print_tree()
+  def print_tree
     spaces = 2**(@depth + 1)
     (@depth + 1).times do |level|
       list = []
@@ -67,7 +67,7 @@ class Tree
       spaces1 = spaces / 2**level - 1
       list.each do |elem|
         str += ' ' * spaces1 + wp(elem) + ' ' * spaces1
-        str2 += ' ' * (spaces1-1) + "/  \\" + ' ' * (spaces1-1)
+        str2 += ' ' * (spaces1 - 1) + "/  \\" + ' ' * (spaces1 - 1)
       end
       puts str
       puts str2 unless level == @depth
