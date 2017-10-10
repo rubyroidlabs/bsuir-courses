@@ -51,8 +51,8 @@ class Tree
       get_elems(root.left, level - 1, list)
       list << root.value if level.zero?
       get_elems(root.right, level - 1, list)
-    else
-      list << root if level.zero?
+    elsif level.zero?
+      list << root
     end
     list
   end
