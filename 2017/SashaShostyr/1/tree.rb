@@ -89,6 +89,7 @@ class Tree
       get_sum_nodes(root.right)
     end
   end
+  
 end
 
 class Node < Tree

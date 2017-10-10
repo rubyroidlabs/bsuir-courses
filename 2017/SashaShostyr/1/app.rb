@@ -28,7 +28,7 @@ if ENV['NAME'].nil?
       break
     end
   end
-elsif list_of_files.include? ENV['NAME'] + ".tree"
+elsif list_of_files.include? ENV['NAME'] + '.tree'
   file_name = 'trees/' + ENV['NAME'] + '.tree'
   tree_str = File.read(file_name).delete!("\n")
   tree_arr = JSON.parse(tree_str)
