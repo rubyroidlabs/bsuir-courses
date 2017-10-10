@@ -5,8 +5,6 @@ class TreeGrower
     Tree.new self.make_tree(tree_array)
   end
 
-  private
-
   def self.make_tree(array)
     node = Node.new array[0]
     node.left  = array[1][0].is_a?(Numeric) 
@@ -17,4 +15,6 @@ class TreeGrower
       : make_tree(array[1][1])
     node
   end
+
+  private_class_method :make_tree
 end
