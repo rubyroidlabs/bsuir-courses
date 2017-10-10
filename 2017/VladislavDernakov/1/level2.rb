@@ -10,14 +10,13 @@ else
   trees = Utils.trees
   trees.each do |tree|
     tree.show
-    puts "Do you want to continue? [y/n]?"
+    puts 'Do you want to continue? [y/n]?'
     user_answer = gets.chomp.downcase
-    until user_answer == "y" || user_answer == "n"
+    until user_answer == 'y' || user_answer == 'n'
       puts "Please enter 'y' or 'n'"
       user_answer = gets.chomp.downcase
     end
-    next  if user_answer == "y"
-    break if user_answer == "n"
+    next if user_answer == 'y'
+    break if user_answer == 'n'
   end
 end
-

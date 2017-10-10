@@ -4,7 +4,7 @@ class Node
   
   def initialize(value, left = nil, right = nil)
     @value = value
-    @left  = left
+    @left = left
     @right = right 
   end
 end

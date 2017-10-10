@@ -12,6 +12,5 @@ if tree_name
     puts "Tree '#{tree_name}' does not exist!"
   end
 else
-  puts "Tree name is not specified!"
+  puts 'Tree name is not specified!'
 end
-  

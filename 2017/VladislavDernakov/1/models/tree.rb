@@ -1,8 +1,8 @@
-require_relative "node"
+require_relative 'node'
 
 class Tree
 
-  SEPARATOR = " "
+  SEPARATOR = ' '
 
   attr_accessor :root
 
@@ -15,7 +15,7 @@ class Tree
     depth  = levels.size
     
     levels.each_with_index do |level, index|
-      left_indent    = 2 ** (depth - index) - 2
+      left_indent = 2 ** (depth - index) - 2
       between_indent = 2 ** (depth - index + 1) - 2
 
       # if current level is not first 
@@ -24,10 +24,10 @@ class Tree
         is_left = true
         level.each do |value|
           if value
-            connections_str += "/" if is_left
-            connections_str += "\\" if !is_left
+            connections_str += '/' if is_left
+            connections_str += '\\' if !is_left
           else 
-            connections_str += " "
+            connections_str += ' '
           end
           connections_str += SEPARATOR * between_indent if is_left
           connections_str += SEPARATOR * (between_indent + 2) if !is_left
@@ -38,9 +38,9 @@ class Tree
 
       processed_level = level.map.with_index do |value, index|
         if value == nil
-          value = "  "
+          value = '  '
         elsif value.digits.count == 1
-          value = index.even? ? value.to_s + " " : " " + value.to_s
+          value = index.even? ? value.to_s + ' ' : ' ' + value.to_s
         end
         value
       end
@@ -82,7 +82,7 @@ class Tree
       level = []
 
       elements_count = 2 ** current_level
-      nil_count      = 0
+      nil_count = 0
 
       elements_count.times do |n|
         node = queue.shift

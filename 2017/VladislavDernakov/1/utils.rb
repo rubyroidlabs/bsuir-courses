@@ -2,12 +2,12 @@ require 'json'
 
 require_relative 'models/tree_grower'
 
-PATH_TO_TREES = "./trees/"
+PATH_TO_TREES = './trees/'
 TREE_EXT   = ".tree"
 
 module Utils 
   def tree_name
-    ENV["NAME"]
+    ENV['NAME']
   end
   def tree_by_name(name)
     file_name = PATH_TO_TREES + name + TREE_EXT
@@ -15,7 +15,7 @@ module Utils
     tree
   end
   def trees
-    tree_files = Dir[PATH_TO_TREES + "*" + TREE_EXT]
+    tree_files = Dir[PATH_TO_TREES + '*' + TREE_EXT]
     tree_files.sort!
     tree_files.map! do |path|
       tree_by_file_name(path)
