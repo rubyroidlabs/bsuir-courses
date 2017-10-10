@@ -55,7 +55,6 @@ class Tree
       list << root if level == 0
     end
     list
-    end
   end
 
   def print_tree()
@@ -89,7 +88,6 @@ class Tree
       get_sum_nodes(root.right)
     end
   end
-  
 end
 
 class Node < Tree
