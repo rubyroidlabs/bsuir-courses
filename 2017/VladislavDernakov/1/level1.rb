@@ -14,4 +14,3 @@ if tree_name
 else
   puts 'Tree name is not specified!'
 end
-
