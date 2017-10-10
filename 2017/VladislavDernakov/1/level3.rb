@@ -4,13 +4,13 @@ include Utils
 
 tree_name = Utils.tree_name
 if tree_name
-  tree = tree_by_name(tree_name)
-  tree.show
+  signle_tree = tree_by_name(tree_name)
+  signle_tree.show
 else
   trees = Utils.trees
   trees.each do |tree|
     tree.show
-    puts tree.sum_of_nodes > 100 || tree.depth > 5 ? 'Chop down!' : 'Leave.' 
+    puts tree.sum_of_nodes() > 100 || tree.depth() > 5 ? 'Chop down!' : 'Leave.'
     puts 'Do you want to continue? [y/n]?'
     user_answer = gets.chomp.downcase
     until user_answer == 'y' || user_answer == 'n'

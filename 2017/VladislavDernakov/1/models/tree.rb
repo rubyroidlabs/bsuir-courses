@@ -1,7 +1,6 @@
 require_relative 'node'
 
 class Tree
-
   attr_accessor :root
   SEPARATOR = ' '.freeze
   def initialize(root)
@@ -10,7 +9,7 @@ class Tree
 
   def show
     levels = divide_into_levels
-    depth  = levels.size    
+    depth  = levels.size
     levels.each_with_index do |level, level_index|
       left_indent = 2**(depth - level_index) - 2
       between_indent = 2**(depth - level_index + 1) - 2
@@ -31,12 +30,11 @@ class Tree
         puts connections_str
       end
       processed_level = level.map.with_index do |value, index|
-        if value.nil?
-          value = '  '
-        elsif value.digits.count == 1
-          value = index.even? ? value.to_s + ' ' : ' ' + value.to_s
-        end
-        value
+        value = if value.nil?
+                  '  '
+                elsif value.digits.count == 1
+                  index.even? ? value.to_s + ' ' : ' ' + value.to_s
+                end
       end
       values_str = SEPARATOR * left_indent
       values_str += processed_level.join(SEPARATOR * between_indent)
