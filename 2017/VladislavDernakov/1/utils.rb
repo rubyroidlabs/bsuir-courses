@@ -9,10 +9,12 @@ module Utils
   def tree_name
     ENV['NAME']
   end
+
   def tree_by_name(name)
     file_name = PATH_TO_TREES + name + TREE_EXT
     tree = tree_by_file_name(file_name)
   end
+  
   def trees
     tree_files = Dir[PATH_TO_TREES + '*' + TREE_EXT]
     tree_files.sort!

@@ -20,4 +20,3 @@ else
     break if user_answer == 'n'
   end
 end
-
