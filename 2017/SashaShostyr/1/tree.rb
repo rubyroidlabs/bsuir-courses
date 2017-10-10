@@ -46,40 +46,39 @@ class Tree
   end
 
   def get_elems(root, level, list)
-    if root == nil
-      #p "empty"
+    if root.nil?
+    elsif root.class == Node
+      get_elems(root.left, level - 1, list)
+      list << root.value if level.zero?
+      get_elems(root.right, level - 1, list)
     else
-      if root.class == Node
-        get_elems(root.left, level - 1, list)
-        list << root.value if level == 0
-        get_elems(root.right, level -1, list)
-      else
-        list << root if level == 0
-      end
-      list
+      list << root if level == 0
+    end
+    list
     end
   end
+
   def print_tree()
-    spaces = 2**(@depth+1)
-    (@depth+1).times do |level|
+    spaces = 2**(@depth + 1)
+    (@depth + 1).times do |level|
       list = []
       get_elems(@root, level, list)
-      str = ""
-      str2 = ""
-      spaces1 = spaces /  2**level - 1
+      str = ''
+      str2 = ''
+      spaces1 = spaces / 2**level - 1
       list.each do |elem|
-        str += " "*spaces1 + wp(elem)   + " "*spaces1
-        str2 += " "*(spaces1-1) + "/  \\"   + " "*(spaces1-1)
+        str += ' ' * spaces1 + wp(elem) + ' ' * spaces1
+        str2 += ' ' * (spaces1-1) + "/  \\" + ' ' * (spaces1-1)
       end
       puts str
       puts str2 unless level == @depth
     end
     if @sum_nodes > 100
-      puts "Срубить."
+      puts 'Срубить.'
     elsif @depth > 5
-      puts "Обрезать."
+      puts 'Обрезать.'
     else
-      puts "Оставить."
+      puts 'Оставить.'
     end
   end
 
