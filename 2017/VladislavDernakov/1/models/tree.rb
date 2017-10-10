@@ -15,8 +15,8 @@ class Tree
     depth  = levels.size
     
     levels.each_with_index do |level, index|
-      left_indent = 2 ** (depth - index) - 2
-      between_indent = 2 ** (depth - index + 1) - 2
+      left_indent = 2**(depth - index) - 2
+      between_indent = 2**(depth - index + 1) - 2
 
       # if current level is not first 
       if index > 0
@@ -81,18 +81,16 @@ class Tree
     until queue.empty?
       level = []
 
-      elements_count = 2 ** current_level
+      elements_count = 2**current_level
       nil_count = 0
 
-      elements_count.times do |n|
+      elements_count.times do
         node = queue.shift
         
-        if (node == nil) 
+        if node == nil 
           nil_count += 1
           level.push(nil)
-
           break if nil_count == elements_count
-
           queue.push(nil)
           queue.push(nil)
         else 

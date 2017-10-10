@@ -26,6 +26,6 @@ module Utils
   def tree_by_file_name(path)
     tree = File.read(path)
     tree = JSON.parse(tree)
-    tree = TreeGrower.grow(tree)
+    TreeGrower.grow(tree)
   end
 end
