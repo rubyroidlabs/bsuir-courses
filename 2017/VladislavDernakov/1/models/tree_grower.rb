@@ -22,4 +22,3 @@ class TreeGrower
 
   private_class_method :make_tree
 end
-
