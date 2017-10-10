@@ -14,12 +14,12 @@ class Tree
     levels = divide_into_levels
     depth  = levels.size
     
-    levels.each_with_index do |level, index|
-      left_indent = 2**(depth - index) - 2
-      between_indent = 2**(depth - index + 1) - 2
+    levels.each_with_index do |level, level_index|
+      left_indent = 2**(depth - level_index) - 2
+      between_indent = 2**(depth - level_index + 1) - 2
 
       # if current level is not first 
-      if index > 0
+      if level_index > 0
         connections_str = SEPARATOR * (left_indent + 1)
         is_left = true
         level.each do |value|
@@ -37,14 +37,13 @@ class Tree
       end
 
       processed_level = level.map.with_index do |value, index|
-        if value == nil
+        if value.nil?
           value = '  '
         elsif value.digits.count == 1
           value = index.even? ? value.to_s + ' ' : ' ' + value.to_s
         end
         value
       end
-       
       values_str = SEPARATOR * left_indent
       values_str += processed_level.join(SEPARATOR * between_indent)
       puts values_str

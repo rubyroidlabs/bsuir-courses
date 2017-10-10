@@ -1,18 +1,24 @@
-require_relative "tree"
+require_relative 'tree'
 
 class TreeGrower
   def self.grow(tree_array)
-    Tree.new self.make_tree(tree_array)
+    Tree.new make_tree(tree_array)
   end
 
   def self.make_tree(array)
     node = Node.new array[0]
-    node.left  = array[1][0].is_a?(Numeric) \
-      ? Node.new(array[1][0]) \
-      : make_tree(array[1][0])
-    node.right = array[1][1].is_a?(Numeric) \
-      ? Node.new(array[1][1]) \
-      : make_tree(array[1][1])
+
+    if array[1][0].is_a?(Numeric)
+      node.left = Node.new(array[1][0])
+    else
+      node.left = make_tree(array[1][0])
+    end
+
+    if array[1][1].is_a?(Numeric)
+      node.right = Node.new(array[1][1])
+    else
+      node.right = make_tree(array[1][1])
+    end
     node
   end
 
