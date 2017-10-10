@@ -22,7 +22,7 @@ class TreePrinter
         if inner_index != (layer.count - 1)
           pointers_level << ' ' * (2**(index + 2) - 2)
         end
-        numbers_level << (element / 10 > 0 ? element / 10 : ' ').to_s 
+        numbers_level << (element / 10 > 0 ? element / 10 : ' ').to_s
         numbers_level << (element % 10).to_s
         if inner_index != (layer.count - 1)
           numbers_level << ' ' * (2**(index + 2) - 2)
