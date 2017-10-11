@@ -11,7 +11,7 @@ def spaces(maxlvl, curlvl)
   return ' ' * a
 end
 
-class Binary_Tree
+class BinaryTree
   attr_accessor :data, :left, :right, :level, :max
 
   def initialize(key = nil, lvl = nil)
@@ -24,27 +24,30 @@ class Binary_Tree
 
   def create_tree(arr, lvl)
     if arr.class == nil.class
-      return Binary_Tree.new
+      return BinaryTree.new
     end
     @data = arr[0]
     @level = lvl
     children = arr[1]
     if is_numeric?(children[0]) == false
-      @left = Binary_Tree.new(nil, level + 1).create_tree(children[0], level + 1)
+      @left = BinaryTree.new(nil, level + 1)
+      @left = @left.create_tree(children[0], level + 1)
     elsif children[0].class == nil.class
-        @left = Binary_Tree.new
+      @left = BinaryTree.new
     else
-      @left = Binary_Tree.new(children[0], level + 1)
+      @left = BinaryTree.new(children[0], level + 1)
     end
     if is_numeric?(children[1]) == false
-      @right = Binary_Tree.new(nil, level + 1).create_tree(children[1], level + 1)
+      @right = BinaryTree.new(nil, level + 1)
+      @right = @right.create_tree(children[1], level + 1)
     elsif children[1].class == nil.class
-        @right = Binary_Tree.new
+      @right = BinaryTree.new
     else
-      @right = Binary_Tree.new(children[1], level + 1)
+      @right = BinaryTree.new(children[1], level + 1)
     end
     self
   end
+  
   def cut_thehigh
     if @level < 5
       left.cut_thehigh
@@ -67,18 +70,14 @@ class Binary_Tree
 
   def fake_it(depth)
     if level < depth
-      if !left.nil?
-        left.fake_it(depth)
-      end
+      left.fake_it(depth) if !left.nil?
       if left.nil?
-        left = Binary_Tree.new(nil, level + 1)
+        left = BinaryTree.new(nil, level + 1)
         left.fake_it(depth)
       end
-      if !right.nil?
-        right.fake_it(depth)
-      end
+      right.fake_it(depth) if !right.nil?
       if right.nil?
-        right = Binary_Tree.new(nil, level + 1)
+        right = BinaryTree.new(nil, level + 1)
         right.fake_it(depth)
       end
     end
@@ -90,7 +89,7 @@ class Binary_Tree
       (str[1])[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
       str[0] += spaces(maxlevel, lvl)
       if !data.nil?
-        buf = "%2s" % data.to_s
+        buf = '%2s' % data.to_s
         str[0] += buf
       elsif left.data.nil?
         str[0] += '  '
@@ -113,7 +112,7 @@ class Binary_Tree
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       if !left.data.nil?
-        buf = "%2s" % left.data.to_s
+        buf = '%2s' % left.data.to_s
         str[0] += buf
         str[0] += spaces(maxlevel, lvl)
         buf = spaces(maxlevel, lvl)
@@ -135,7 +134,7 @@ class Binary_Tree
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       if !right.data.nil?
-        buf = "%2s" % right.data.to_s
+        buf = '%2s' % right.data.to_s
         str[0] += buf
         buf = spaces(maxlevel, lvl)
         buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
@@ -159,8 +158,8 @@ class Binary_Tree
     end
     (1..depth).each do |lvl|
       str = Array.new(2)
-      str[0] = ""
-      str[1] = ""
+      str[0] = ''
+      str[1] = ''
       str = print_lvl(depth, lvl, str)
       puts str[0]
       puts str[1] if lvl != depth
@@ -178,7 +177,7 @@ end
 def tree_finder(entry)
   a = entry.get_input_stream.read
   a = JSON a
-  tree = Binary_Tree.new(a[0], 1)
+  tree = BinaryTree.new(a[0], 1)
   tree.create_tree(a, 1)
   tree.max = 0
   tree.max_depth(tree)
@@ -235,7 +234,7 @@ else
         puts entry.name
         a = entry.get_input_stream.read
         a = JSON a
-        tree = Binary_Tree.new(a[0], 1)
+        tree = BinaryTree.new(a[0], 1)
         tree.create_tree(a, 1); tree.max = 0
         tree.max_depth(tree)
         tree.fake_it(tree.max)
