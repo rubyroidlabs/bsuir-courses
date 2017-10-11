@@ -2,7 +2,6 @@ require_relative 'tree'
 require 'json'
 
 class Forest
-
   attr_accessor :path
 
   def initialize(path)

@@ -1,7 +1,6 @@
 require_relative 'tree_output_builder'
 
 class Tree
-
   attr_reader :name, :tree
 
   def initialize(name, tree)
@@ -65,5 +64,4 @@ class Tree
   def go_right(node)
     node.last.last if node.is_a? Array
   end
-
 end
