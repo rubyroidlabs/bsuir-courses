@@ -5,7 +5,7 @@ name_env = ENV['NAME']
 def show_tree(name)
   puts name.split('/')[1]
   tree = Tree.new
-  tree.get_level([Node.new( Array.instance_eval(File.read(name)))])
+  tree.get_level([Node.new(Array.instance_eval(File.read(name)))])
   tree.show
 end
 
