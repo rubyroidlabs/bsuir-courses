@@ -2,6 +2,8 @@ require 'rubygems'
 require 'json'
 require 'zip/zip'
 
+#comment
+
 def numeric?(obj)
   !obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/).nil?
 end
@@ -105,7 +107,7 @@ class BinaryTree
       str = left.print_lvl(maxlevel, lvl, str)
       str[0] += '  '
       str[1] += '  '
-      str = right.print_lvl(maxlevel, lvl, str)
+      right.print_lvl(maxlevel, lvl, str)
     elsif level == lvl - 1
       buf = spaces(maxlevel, lvl)
       buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
@@ -202,7 +204,7 @@ def what_to_do(sum, max)
   end
 end
 
-if ENV['NAME'].nil?
+def name_not_given()
   Zip::File.open('trees.zip') do |zip_file|
     zip_file.each do |entry|
       if entry.directory?
@@ -222,6 +224,10 @@ if ENV['NAME'].nil?
       end
     end
   end
+end
+
+if ENV['NAME'].nil?
+  name_not_given()
 else
   name = 'trees/' + ENV['NAME'] + '.tree'
   checker = 0
