@@ -1,16 +1,16 @@
 class Tree
-  attr_accessor :maxDepth,:sumNodes,:arrayLevels
+  attr_accessor :array_levels
   def initialize
-    @arrayLevels = []
+    @array_levels = []
   end
 
-  def getLevel(arrayNodes)
-    if self.arrayLevels.empty?
-      arrayLevels << arrayNodes
+  def get_level(array_nodes)
+    if self.array_levels.empty?
+      array_levels << array_nodes
     end
     level = []
-    arrayNodes.each do |node|
-      if node.nil?||(node.left.nil? && node.right.nil?)
+    array_nodes.each do |node|
+      if node.nil? || (node.left.nil? && node.right.nil?)
         level << nil
         level << nil
       else
@@ -20,48 +20,49 @@ class Tree
     end
     level.each do |node|
       unless node.nil?
-        self.arrayLevels << level
-        getLevel(level)
+        self.array_levels << level
+        get_level(level)
         break
       end
     end
   end
 
   def show
-    sumNodes = 0
-    arrayIdent = []
-    n=2
-    (1..self.arrayLevels.size).each do |i|
-      arrayIdent[self.arrayLevels.size-i] = n
-      n=2*(n+1)
+    sum_nodes = 0
+    array_ident = []
+    n = 2
+    (1..array_levels.size).each do |i|
+      array_ident[array_levels.size - i] = n
+      n = 2 * (n + 1)
     end
-    arrayIdent << 0
-    i=0
-    self.arrayLevels.each do|level|
-      connectionLevel = ' '*((arrayIdent[i]+arrayIdent[i+1])/4)
-      nodesLevel =  ' '*(arrayIdent[i]/2)
+    array_ident << 0
+    i = 0
+    array_levels.each do |level|
+      connection_level = ' ' * ((array_ident[i] + array_ident[i + 1]) / 4)
+      nodes_level =  ' ' * (array_ident[i] / 2)
       level.each do |node|
         if node.nil?
-          nodesLevel += sprintf('%2s',nil)
-          connectionLevel+=' '*((arrayIdent[i+1]+2)/2+arrayIdent[i+1]*3/2+3)
+          nodes_level += format('%2s', nil)
+          connection_level += ' ' * ((array_ident[i + 1] + 2) / 2 + array_ident[i + 1] * 3 / 2 + 3)
         else
-          sumNodes+=node.weight
-          nodesLevel += sprintf('%2s',node.weight)
+          sum_nodes += node.weight
+          nodes_level += format('%2s', node.weight)
           if node.left.nil? && node.right.nil?
-            connectionLevel+=' '*((arrayIdent[i+1]+2)/2+arrayIdent[i+1]*3/2+3)
+            connection_level += ' ' * ((array_ident[i + 1] + 2) / 2 + array_ident[i + 1] * 3 / 2 + 3)
           else
-            connectionLevel+='/'+' '*((arrayIdent[i+1]+2)/2) + '\\' + ' '*(arrayIdent[i+1]*3/2+1)
+            connection_level += '/' + ' ' * ((array_ident[i + 1] + 2) / 2)
+            connection_level += '\\' + ' ' * (array_ident[i + 1] * 3 / 2 + 1)
           end
         end
-        nodesLevel += ' '*arrayIdent[i]
+        nodes_level += ' ' * array_ident[i]
       end
-      puts nodesLevel
-      puts connectionLevel
-      i+=1
+      puts nodes_level
+      puts connection_level
+      i += 1
     end
-    if sumNodes>5000
+    if sum_nodes > 5000
       puts 'Срубить'
-    elsif self.arrayLevels.size>5
+    elsif array_levels.size > 5
       puts 'Обрезать'
     else
       puts 'Оставить'
