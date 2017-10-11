@@ -70,12 +70,12 @@ class BinaryTree
 
   def fake_it(depth)
     if level < depth
-      left.fake_it(depth) unless !left.nil?
+      left.fake_it(depth) || !left.nil?
       if left.nil?
         left = BinaryTree.new(nil, level + 1)
         left.fake_it(depth)
       end
-      right.fake_it(depth) unless !right.nil?
+      right.fake_it(depth) || !right.nil?
       if right.nil?
         right = BinaryTree.new(nil, level + 1)
         right.fake_it(depth)
