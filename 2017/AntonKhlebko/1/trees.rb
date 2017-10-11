@@ -63,7 +63,7 @@ class BinaryTree
       if level > head.max
         head.max = level
         left.max_depth(head) if left.class != nil.class
-        right.max_depth(head) if right.class != nil.class
+        right.max_deёpth(head) if right.class != nil.class
       end
     end
   end
@@ -89,7 +89,7 @@ class BinaryTree
       (str[1])[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
       str[0] += spaces(maxlevel, lvl)
       if !data.nil?
-        buf = sprintf('%2s', data.to_s)
+        buf = format('%2s', data.to_s)
         str[0] += buf
       elsif left.data.nil?
         str[0] += '  '
@@ -112,7 +112,7 @@ class BinaryTree
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       if !left.data.nil?
-        buf = sprintf('%2s', left.data.to_s)
+        buf = format('%2s', left.data.to_s)
         str[0] += buf
         str[0] += spaces(maxlevel, lvl)
         buf = spaces(maxlevel, lvl)
@@ -134,7 +134,7 @@ class BinaryTree
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       if !right.data.nil?
-        buf = sprintf('%2s', right.data.to_s)
+        buf = format('%2s', right.data.to_s)
         str[0] += buf
         buf = spaces(maxlevel, lvl)
         buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
