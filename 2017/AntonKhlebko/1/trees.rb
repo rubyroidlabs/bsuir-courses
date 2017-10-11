@@ -2,13 +2,13 @@ require 'rubygems'
 require 'json'
 require 'zip/zip'
 
-def is_numeric?(obj)
-   obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+def numeric?(obj)
+  !obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/).nil?
 end
 
 def spaces(maxlvl, curlvl)
   a = 2**(maxlvl - curlvl + 1) - 2
-  return ' ' * a
+  ' ' * a
 end
 
 class BinaryTree
@@ -29,7 +29,7 @@ class BinaryTree
     @data = arr[0]
     @level = lvl
     children = arr[1]
-    if is_numeric?(children[0]) == false
+    if numeric?(children[0]) == false
       @left = BinaryTree.new(nil, level + 1)
       @left = @left.create_tree(children[0], level + 1)
     elsif children[0].class == nil.class
@@ -37,7 +37,7 @@ class BinaryTree
     else
       @left = BinaryTree.new(children[0], level + 1)
     end
-    if is_numeric?(children[1]) == false
+    if numeric?(children[1]) == false
       @right = BinaryTree.new(nil, level + 1)
       @right = @right.create_tree(children[1], level + 1)
     elsif children[1].class == nil.class
@@ -45,9 +45,9 @@ class BinaryTree
     else
       @right = BinaryTree.new(children[1], level + 1)
     end
-    self
+  self
   end
-  
+
   def cut_thehigh
     if @level < 5
       left.cut_thehigh
@@ -70,12 +70,12 @@ class BinaryTree
 
   def fake_it(depth)
     if level < depth
-      left.fake_it(depth) if !left.nil?
+      left.fake_it(depth) unless !left.nil?
       if left.nil?
         left = BinaryTree.new(nil, level + 1)
         left.fake_it(depth)
       end
-      right.fake_it(depth) if !right.nil?
+      right.fake_it(depth) unless !right.nil?
       if right.nil?
         right = BinaryTree.new(nil, level + 1)
         right.fake_it(depth)
@@ -89,7 +89,7 @@ class BinaryTree
       (str[1])[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
       str[0] += spaces(maxlevel, lvl)
       if !data.nil?
-        buf = '%2s' % data.to_s
+        buf = sprintf('%2s', data.to_s)
         str[0] += buf
       elsif left.data.nil?
         str[0] += '  '
@@ -112,7 +112,7 @@ class BinaryTree
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       if !left.data.nil?
-        buf = '%2s' % left.data.to_s
+        buf = sprintf('%2s', left.data.to_s)
         str[0] += buf
         str[0] += spaces(maxlevel, lvl)
         buf = spaces(maxlevel, lvl)
@@ -123,7 +123,7 @@ class BinaryTree
         str[0] += '  '
         str[1] += '  '
         buf = spaces(maxlevel, lvl)
-        buf[(2**(maxlevel - lvl +  1) - 2) / 2] = '\\'
+        buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
         str[1] += buf
         str[0] += spaces(maxlevel, lvl)
       end
@@ -134,7 +134,7 @@ class BinaryTree
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       if !right.data.nil?
-        buf = '%2s' % right.data.to_s
+        buf = sprintf('%2s', right.data.to_s)
         str[0] += buf
         buf = spaces(maxlevel, lvl)
         buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
