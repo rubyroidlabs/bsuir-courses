@@ -39,8 +39,15 @@ if name
 
       str = []
       (0..2 * @n).each { |i| str[i] = ' ' * (4 * 2**@n) }
-      (0...@n).each { |y| (0...2**y).each { |x| str[2 * y + 1][2**(@n + 1 - y) + x * 2**(@n + 2 - y) + 1, 2] = '/\\' } }
-      @hash.each { |key, value| str[key[0] * 2][2**(@n + 1 - key[0]) + key[1] * 2**(@n + 2 - key[0]), 4] = '%3d ' % value }
+      (0...@n).each do |y|
+        (0...2**y).each do |x|
+          str[2 * y + 1][2**(@n + 1 - y) + x * 2**(@n + 2 - y) + 1, 2] = '/\\'
+        end
+      end
+      @hash.each do |key, value|
+        str[key[0] * 2][2**(@n + 1 - key[0]) + key[1] * 2**(@n + 2 - key[0]), 4] = \
+          format('%3d ', value)
+      end
       str.each { |s| puts s }
     else
       puts 'Данное дерево не растет в данном лесу.'
