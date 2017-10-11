@@ -202,7 +202,7 @@ def what_to_do(sum, max)
   end
 end
 
-def name_not_given()
+def name_not_given
   Zip::File.open('trees.zip') do |zip_file|
     zip_file.each do |entry|
       if entry.directory?
