@@ -20,8 +20,7 @@ def print_tree(name)
   else
     puts '', 'Оставить.'
   end
-  puts
-  print 'Желаете продолжить? [y/n] '
+  print "\nЖелаете продолжить? [y/n] "
 end
 
 def continue?

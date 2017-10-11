@@ -8,7 +8,6 @@ class TreeParser
   end
 
   def initialize(text)
-    @text = text
     @array = JSON.parse(text)
   end
 
@@ -20,8 +19,8 @@ class TreeParser
   private
 
   def array
-    @depth = array_depth
-    @layers = Array.new(@depth) { [] }
+    depth = array_depth
+    @layers = Array.new(depth) { [] }
     parse(@array[1], 0)
     @layers[0].push(@array[0])
     @layers.delete_if { |layer| layer.count.zero? }
