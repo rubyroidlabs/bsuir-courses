@@ -3,7 +3,7 @@ require 'json'
 require_relative 'models/tree_grower'
 
 PATH_TO_TREES = './trees/'.freeze
-TREE_EXT   = '.tree'.freeze
+TREE_EXT = '.tree'.freeze
 
 module Utils
   def tree_name
