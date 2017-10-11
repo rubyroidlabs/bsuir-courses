@@ -3,7 +3,6 @@ require 'rubygems'
 require 'json'
 require 'zip/zip'
 
-
 def is_numeric?(obj)
    obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
 end
@@ -99,39 +98,68 @@ class Binary_Tree
 
   def print_lvl(maxlevel, lvl, str)
     if lvl == 1
-      str += spaces(maxlevel, lvl)
+      str[1] += spaces(maxlevel, lvl)
+      (str[1])[(2 ** (maxlevel - lvl + 1) - 2)/2] = '/'
+      str[0] += spaces(maxlevel, lvl)
       if self.data != nil
         buf = "%2s" % "#{self.data}"
-        str += buf
+        str[0] += buf
       elsif self.left.data == nil
-        str += "  "
+        str[0] += "  "
+        str[1] += "  "
       end
-      str += spaces(maxlevel, lvl)
+      buf = spaces(maxlevel, lvl)
+      buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '\\'
+      str[1] += buf
+      str[0] += spaces(maxlevel, lvl)
       return str
     end
     if self.level < lvl - 1
       str = self.left.print_lvl(maxlevel, lvl, str)
-      str += "  "
+      str[0] += "  "
+      str[1] += "  "
       str = self.right.print_lvl(maxlevel, lvl, str)
     elsif self.level == lvl - 1
-      str += spaces(maxlevel, lvl)
+      buf = spaces(maxlevel, lvl)
+      buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '/'
+      str[1] += buf
+      str[0] += spaces(maxlevel, lvl)
       if self.left.data != nil
         buf = "%2s" % "#{self.left.data}"
-        str += buf
-        str += spaces(maxlevel, lvl)
+        str[0] += buf
+        str[0] += spaces(maxlevel, lvl)
+        buf = spaces(maxlevel, lvl)
+        buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '\\'
+        str[1] += "  "
+        str[1] += buf
       elsif self.left.data == nil
-        str += '  '
-        str += spaces(maxlevel, lvl)
+        str[0] += '  '
+        str[1] += '  '
+        buf = spaces(maxlevel, lvl)
+        buf[(2 ** (maxlevel - lvl +  1) - 2)/2] = '\\'
+        str[1] += buf
+        str[0] += spaces(maxlevel, lvl)
       end
-      str += "  "
-      str += spaces(maxlevel, lvl)
+      str[0] += "  "
+      str[1] += "  "
+      buf = spaces(maxlevel, lvl)
+      buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '/'
+      str[1] += buf
+      str[0] += spaces(maxlevel, lvl)
       if self.right.data != nil
         buf = "%2s" % "#{self.right.data}"
-        str += buf
-        str += spaces(maxlevel, lvl)
+        str[0] += buf
+        buf = spaces(maxlevel, lvl)
+        buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '\\'
+        str[1] += "  "
+        str[1] += buf
+        str[0] += spaces(maxlevel, lvl)
       elsif self.right.data == nil
-        str += "  "
-        str += spaces(maxlevel, lvl)
+        str[0] += "  "
+        buf = spaces(maxlevel, lvl)
+        buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '\\'
+        str[1] += buf
+        str[0] += spaces(maxlevel, lvl)
       end
       return str
     end
@@ -139,10 +167,16 @@ class Binary_Tree
   end
 
   def print_tree(depth)
+    if depth > 6
+      depth = 6
+    end
     (1..depth).each do |lvl|
-      str = ""
+      str = Array.new(2)
+      str[0] = ""
+      str[1] = ""
       str = self.print_lvl(depth, lvl, str)
-      puts str
+      puts str[0]
+      puts str[1] if lvl != depth
     end
   end
 
@@ -177,14 +211,21 @@ if ENV['NAME'] == nil
           tree.max_depth(tree)
           tree.fake_it(tree.max)
           tree.print_tree(tree.max)
-          if tree.max > 5
-            puts "Cрубить это дерево"
-          end
+          checker = 0
+          conclusion = ""
           sum = tree.sum_elements
           if sum > 5000
-            puts "Обрезать это дерево!"
+            checker += 1
+            puts "\nОбрезать это дерево!"
           end
-          puts "\nХотите ли вы пройти к следующему дереву? [y/n]: "
+          if tree.max > 5 and checker == 0
+            puts "\nЭто дерево слишком высокое, срубить его!"
+            checker += 1
+          end
+          if checker == 0
+            puts "\nЭто дерево и не слишком высокое и не слишком разрослось, оставьте его в покое."
+          end
+          puts "\nХотите продолжить? [y/n]: "
           e = gets.to_s
           if e[0].downcase == ('n')
             p "Спасибо, что были в нашем лесу!"
