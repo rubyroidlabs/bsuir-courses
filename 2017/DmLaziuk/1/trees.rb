@@ -44,9 +44,9 @@ if name
           str[2 * y + 1][2**(@n + 1 - y) + x * 2**(@n + 2 - y) + 1, 2] = '/\\'
         end
       end
-      @hash.each do |key, value|
-        str[key[0] * 2][2**(@n + 1 - key[0]) + key[1] * 2**(@n + 2 - key[0]), 4] = \
-          format('%3d ', value)
+      @hash.each do |yx, value|
+        str[yx[0] * 2][2**(@n + 1 - yx[0]) + yx[1] * 2**(@n + 2 - yx[0]), 4]\
+          = format('%3d ', value)
       end
       str.each { |s| puts s }
     else
