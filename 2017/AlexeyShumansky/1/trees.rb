@@ -1,6 +1,6 @@
 require "json"
 
-#methods
+# methods
 def convert_to_tree(datajson) 
   arr = JSON.parse(datajson)
   tree_arr = [] 
@@ -67,8 +67,8 @@ def convert_to_tree(datajson)
     arr_reverse.each { |i| puts i }    
   end
 
-  if (tree_arr.size > 7)
-    puts "Слишком огромное дерево, не хочется его выводить даже"
+  if tree_arr.size > 7
+    puts 'Слишком огромное дерево, не хочется его выводить даже'
     puts "Глубина дерева #{tree_arr.size}"
     sum = 0
     fl_tree = tree_arr.flatten  
@@ -86,25 +86,25 @@ def convert_to_tree(datajson)
     sum += i.to_i
   end
 
-  if (sum > 5000)
+  if sum > 5000
     puts ' '
-    puts "Срубить"
-  elsif (tree_arr.size > 5)
+    puts 'Срубить'
+  elsif tree_arr.size > 5
     puts
-    puts "Обрезать"
+    puts 'Обрезать'
   else
     puts ' '
-    puts "Оставить"
+    puts 'Оставить'
   end
 end 
 
-#main
-evnname = ENV["NAME"] 
+# main
+evnname = ENV['NAME'] 
 arraytrees = Dir.entries('trees').sort!
 arraytrees.delete('.')
 arraytrees.delete('..')
 
-if (evnname == nil)  
+if evnname.nil?  
   arraytrees.each do |i|
     pathname = 'trees/' + i
     file = File.new(pathname)
@@ -117,13 +117,12 @@ if (evnname == nil)
     puts ' '
     print 'Желаете продолжить? [y/n] '
     answer = gets.chomp
-    if answer == 'n' || answer == 'N'
+    if answer == 'n'
       puts ' '
       puts 'Спасибо, что были в нашем лесу'
       break
     end
-  end
-  
+  end 
 else 
   fulltreename = evnname + '.tree'
   if arraytrees.include? fulltreename
@@ -132,11 +131,8 @@ else
     data = file.read
     file.close
     convert_to_tree(data)
-
   else 
-
     puts 'Данное дерево не растет в нашем лесу' 
-
   end        
 end
 
