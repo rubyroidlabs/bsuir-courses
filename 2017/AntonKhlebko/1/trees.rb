@@ -2,8 +2,6 @@ require 'rubygems'
 require 'json'
 require 'zip/zip'
 
-#comment
-
 def numeric?(obj)
   !obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/).nil?
 end
@@ -227,7 +225,7 @@ def name_not_given()
 end
 
 if ENV['NAME'].nil?
-  name_not_given()
+  name_not_given
 else
   name = 'trees/' + ENV['NAME'] + '.tree'
   checker = 0
@@ -241,7 +239,8 @@ else
         a = entry.get_input_stream.read
         a = JSON a
         tree = BinaryTree.new(a[0], 1)
-        tree.create_tree(a, 1); tree.max = 0
+        tree.create_tree(a, 1)
+        tree.max = 0
         tree.max_depth(tree)
         tree.fake_it(tree.max)
         tree.print_tree(tree.max)
