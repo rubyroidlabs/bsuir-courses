@@ -26,36 +26,32 @@ class Binary_Tree
     if arr.class == nil.class
       return Binary_Tree.new
     end
-    self.data = arr[0]
-    self.level = lvl
+    @data = arr[0]
+    @level = lvl
     children = arr[1]
     if is_numeric?(children[0]) == false
-      @left = Binary_Tree.new(nil, self.level + 1).create_tree(children[0], self.level + 1)
-    elsif
-      if children[0].class == nil.class
+      @left = Binary_Tree.new(nil, self.level + 1).create_tree(children[0], level + 1)
+    elsif children[0].class == nil.class
         @left = Binary_Tree.new
-      end
     else
-      @left = Binary_Tree.new(children[0], self.level + 1)
+      @left = Binary_Tree.new(children[0], level + 1)
     end
     if is_numeric?(children[1]) == false
-      @right = Binary_Tree.new(nil, self.level + 1).create_tree(children[1], self.level + 1)
-    elsif
-      if children[1].class == nil.class
+      @right = Binary_Tree.new(nil, level + 1).create_tree(children[1], level + 1)
+    elsif children[1].class == nil.class
         @right = Binary_Tree.new
-      end
     else
-      @right = Binary_Tree.new(children[1], self.level + 1)
+      @right = Binary_Tree.new(children[1], level + 1)
     end
-    return self
+    self
   end
   def cut_thehigh
     if @level < 5
-      self.left.cut_thehigh
-      self.right.cut_thehigh
+      left.cut_thehigh
+      right.cut_thehigh
     else
-      self.left = nil
-      self.right = nil
+      left = nil
+      right = nil
     end
   end
 
@@ -173,22 +169,15 @@ class Binary_Tree
 
   def sum_elements(sum = 0)
     sum += data
-    if !left.nil?
-      if !left.data.nil?
-        sum += left.sum_elements
-      end
-    end
-    if !right.nil?
-      if !right.data.nil?
-        sum += right.sum_elements
-      end
-    end
-    return sum
+    sum += left.sum_elements if !left.nil? && !left.data.nil?
+    sum += right.sum_elements if !right.nil? && !right.data.nil?
+    sum
   end
 end
 
 def tree_finder(entry)
-  a = JSON (entry.get_input_stream.read)
+  a = entry.get_input_stream.read
+  a = JSON a
   tree = Binary_Tree.new(a[0], 1)
   tree.create_tree(a, 1)
   tree.max = 0
@@ -197,39 +186,41 @@ def tree_finder(entry)
   tree
 end
 
+def what_to_do(sum, max)
+  checker = 0
+  if sum > 5000
+    checker += 1
+    puts "\nОбрезать это дерево!"
+  end
+  if max > 5 && checker.zero?
+    puts "\nЭто дерево слишком высокое, срубить его! " \
+    "Его высота #{max}"
+    checker += 1
+  end
+  if checker.zero?
+    puts "\nЭто дерево и не слишком высокое и не слишком разрослось, "\
+    ' оставьте его в покое.'
+  end
+end
+
 if ENV['NAME'].nil?
   Zip::File.open('trees.zip') do |zip_file|
     zip_file.each do |entry|
-        if entry.directory?
-          puts "Добро пожаловать в наш лес!"
-        else
-          puts entry.name
-          tree = tree_finder(entry)
-          tree.print_tree(tree.max)
-          checker = 0
-          conclusion = ""
-          sum = tree.sum_elements
-          if sum > 5000
-            checker += 1
-            puts "\nОбрезать это дерево!"
-          end
-          if tree.max > 5 && checker.zero?
-            puts "\nЭто дерево слишком высокое, срубить его! " \
-            "Его высота #{tree.max}"
-            checker += 1
-          end
-          if checker.zero?
-            puts "\nЭто дерево и не слишком высокое и не слишком разрослось, "\
-            ' оставьте его в покое.'
-          end
-          puts "\nХотите продолжить? [y/n]: "
-          e = gets.to_s
-          e[0] = e[0].downcase
-          if e[0] == 'n'
-            p 'Спасибо, что были в нашем лесу!'
-            break
-          end
+      if entry.directory?
+        puts 'Добро пожаловать в наш лес!'
+      else
+        puts entry.name
+        tree = tree_finder(entry)
+        tree.print_tree(tree.max)
+        what_to_do(tree.sum_elements, tree.max)
+        puts "\nХотите продолжить? [y/n]: "
+        e = gets.to_s
+        e[0] = e[0].downcase
+        if e[0] == 'n'
+          p 'Спасибо, что были в нашем лесу!'
+          break
         end
+      end
     end
   end
 else
@@ -241,7 +232,8 @@ else
       else
         checker = 1
         puts entry.name
-        a = JSON (entry.get_input_stream.read)
+        a = entry.get_input_stream.read
+        a = JSON a
         tree = Binary_Tree.new(a[0], 1)
         tree.create_tree(a, 1); tree.max = 0
         tree.max_depth(tree)
