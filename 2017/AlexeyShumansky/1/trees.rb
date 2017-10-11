@@ -57,16 +57,17 @@ def convert_to_tree(datajson)
       m = m * 2 + 2 
       c /= 2  
       i += 1
+
     end
 
     arr_reverse = arr_reverse.reverse!   
     m /= 2
     last = tree_arr.last
-    last = " " * (m - 1) + last.to_s
+    last = ' ' * (m - 1) + last.to_s
     arr_reverse.unshift(last)
-    arr_reverse.each { |i| puts i }    
-  end
+    arr_reverse.each { |el| puts el } 
 
+  end
   if tree_arr.size > 7
     puts 'Слишком огромное дерево, не хочется его выводить даже'
     puts "Глубина дерева #{tree_arr.size}"
