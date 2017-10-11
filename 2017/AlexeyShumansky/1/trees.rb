@@ -87,56 +87,56 @@ def convert_to_tree(datajson)
   end
 
   if (sum > 5000)
-    puts
+    puts ' '
     puts "Срубить"
   elsif (tree_arr.size > 5)
     puts
     puts "Обрезать"
   else
-    puts
+    puts ' '
     puts "Оставить"
   end
 end 
 
 #main
 evnname = ENV["NAME"] 
+arraytrees = Dir.entries('trees').sort!
+arraytrees.delete('.')
+arraytrees.delete('..')
+
 if (evnname == nil)  
-  arraytrees = Dir.entries("trees").sort!
-  arraytrees.delete(".")
-  arraytrees.delete("..")
-  
   arraytrees.each do |i|
-    pathname = "trees/" + i
+    pathname = 'trees/' + i
     file = File.new(pathname)
     data = file.read
     file.close
-    puts
+    puts ' '
     puts i
-    puts
+    puts ' '
     convert_to_tree(data)
-    puts
-    print "Желаете продолжить? [y/n] "
+    puts ' '
+    print 'Желаете продолжить? [y/n] '
     answer = gets.chomp
-    if (answer == "n" || answer == "N")
-      puts
-      puts "Спасибо, что были в нашем лесу"
+    if answer == 'n' || answer == 'N'
+      puts ' '
+      puts 'Спасибо, что были в нашем лесу'
       break
     end
   end
+  
 else 
-  arraytrees = Dir.entries("trees").sort!
-  arraytrees.delete(".")
-  arraytrees.delete("..")
-
-  fulltreename = evnname + ".tree"
-  if (arraytrees.include?(fulltreename))
-    pathname = "trees/" + fulltreename
+  fulltreename = evnname + '.tree'
+  if arraytrees.include? fulltreename
+    pathname = 'trees/' + fulltreename
     file = File.new(pathname)
     data = file.read
     file.close
     convert_to_tree(data)
+
   else 
-    puts "Данное дерево не растет в нашем лесу"      
+
+    puts 'Данное дерево не растет в нашем лесу' 
+
   end        
 end
 
