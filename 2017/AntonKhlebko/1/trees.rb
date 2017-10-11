@@ -45,7 +45,7 @@ class BinaryTree
     else
       @right = BinaryTree.new(children[1], level + 1)
     end
-  self
+    self
   end
 
   def cut_thehigh
@@ -63,7 +63,7 @@ class BinaryTree
       if level > head.max
         head.max = level
         left.max_depth(head) if left.class != nil.class
-        right.max_deёpth(head) if right.class != nil.class
+        right.max_depth(head) if right.class != nil.class
       end
     end
   end
