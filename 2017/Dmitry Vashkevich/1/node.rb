@@ -1,5 +1,5 @@
 class Node
-  attr_accessor :weight,:left, :right
+  attr_accessor :weight, :left, :right
   def initialize(array)
     if array.is_a? Integer
       @weight = array

@@ -5,7 +5,7 @@ class Tree
   end
 
   def get_level(array_nodes)
-    if self.array_levels.empty?
+    if array_levels.empty?
       array_levels << array_nodes
     end
     level = []
@@ -19,11 +19,10 @@ class Tree
       end
     end
     level.each do |node|
-      unless node.nil?
-        self.array_levels << level
-        get_level(level)
-        break
-      end
+      next if node.nil?
+      array_levels << level
+      get_level(level)
+      break
     end
   end
 
@@ -39,16 +38,18 @@ class Tree
     i = 0
     array_levels.each do |level|
       connection_level = ' ' * ((array_ident[i] + array_ident[i + 1]) / 4)
-      nodes_level =  ' ' * (array_ident[i] / 2)
+      nodes_level = ' ' * (array_ident[i] / 2)
       level.each do |node|
         if node.nil?
           nodes_level += format('%2s', nil)
-          connection_level += ' ' * ((array_ident[i + 1] + 2) / 2 + array_ident[i + 1] * 3 / 2 + 3)
+          connection_level += ' ' * ((array_ident[i + 1] + 2) / 2)
+          connection_level += ' ' * (array_ident[i + 1] * 3 / 2 + 3)
         else
           sum_nodes += node.weight
           nodes_level += format('%2s', node.weight)
           if node.left.nil? && node.right.nil?
-            connection_level += ' ' * ((array_ident[i + 1] + 2) / 2 + array_ident[i + 1] * 3 / 2 + 3)
+            connection_level += ' ' * ((array_ident[i + 1] + 2) / 2)
+            connection_level += ' ' * (array_ident[i + 1] * 3 / 2 + 3)
           else
             connection_level += '/' + ' ' * ((array_ident[i + 1] + 2) / 2)
             connection_level += '\\' + ' ' * (array_ident[i + 1] * 3 / 2 + 1)
