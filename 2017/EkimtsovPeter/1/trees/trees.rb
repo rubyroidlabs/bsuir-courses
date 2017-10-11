@@ -1,6 +1,6 @@
 def file_check(file_name)
   if File.exist?("#{file_name}.tree")
-    lvl_sum_chk(h_lvl_sum(h_spc_clr(h_clr_f(str_to_h(File.read("#{file_name}.tree"))))))
+    l_sum_ch(h_l_sum(h_spc_clr(h_clr(s_to_h(File.read("#{file_name}.tree"))))))
   elsif file_name.nil?
     puts 'Write a file name, please!'
   else
@@ -25,7 +25,7 @@ def all_trees_out
     puts "Want to continue? [y/n] #{filename}: "
     input = gets.chomp
     case input
-    when 'y' then lvl_sum_chk(h_lvl_sum(h_spc_clr(h_clr_f(str_to_h(str)))))
+    when 'y' then l_sum_ch(h_l_sum(h_spc_clr(h_clr(s_to_h(str)))))
     when 'n' then puts 'Thank you for visiting! Have a good day!'
                   break
     else puts 'Type error!'
@@ -34,31 +34,31 @@ def all_trees_out
   end
 end
 
-def str_cleaner(str)
+def s_cleaner(str)
   str.each_char { |char| str.gsub!(char, ' ') if char == ',' }
 end
 
-def str_arr_leveler(str)
+def s_a_leveler(str)
   str_level = str.scan(/\[\d*\s*\d*\]/).to_s
-  str_cleaner(str_level)
+  s_cleaner(str_level)
 end
 
-def str_arr_level_deleter(str)
+def s_a_lvl_del(str)
   str.gsub!(/\[\d*\s*\d*\]/, '')
 end
 
-def str_to_h(str, lvl = 0, lvl_hash = {})
+def s_to_h(str, lvl = 0, lvl_hash = {})
   level = lvl + 1
   levels_hash = lvl_hash
-  levels_hash[level] ||= str_arr_leveler(str_cleaner(str))
-  if str_arr_level_deleter(str_cleaner(str)) =~ /\d/
-    levels_hash[level + 1] = str_arr_leveler(str_cleaner(str))
-    str_to_h(str_arr_level_deleter(str_cleaner(str)), level, levels_hash)
+  levels_hash[level] ||= s_a_leveler(s_cleaner(str))
+  if s_a_lvl_del(s_cleaner(str)) =~ /\d/
+    levels_hash[level + 1] = s_a_leveler(s_cleaner(str))
+    s_to_h(s_a_lvl_del(s_cleaner(str)), level, levels_hash)
   end
   h_rev(levels_hash)
 end
 
-def h_lvl_sum(hash)
+def h_l_sum(hash)
   arr_output = []
   sum = 0
   size = hash.size
@@ -71,7 +71,7 @@ def h_lvl_sum(hash)
   arr_output
 end
 
-def lvl_sum_chk(arr)
+def l_sum_ch(arr)
   size = arr[1]
   sum = arr[0]
   hash = arr[-1]
@@ -87,7 +87,7 @@ def h_rev(hash)
   Hash[hash.to_a.reverse]
 end
 
-def h_clr(hash)
+def h_clr_a(hash)
   hash.each_value do |value|
     value.each_char do |char|
       value.delete!(char) if %w([ ]).include?(char)
@@ -118,9 +118,11 @@ def h_value_out(hash)
   end
 end
 
-def h_clr_f(hash)
+def h_clr(hash)
   hash.each_value do |value|
-    value.each_char { |char| value.delete!(char) if %w([ " '\' , ]).include?(char) }
+    value.each_char do |char|
+      value.delete!(char) if %w([ " '\' , ]).include?(char)
+    end
   end
   hash
 end
