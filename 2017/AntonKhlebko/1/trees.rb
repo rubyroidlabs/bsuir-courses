@@ -7,7 +7,7 @@ def is_numeric?(obj)
 end
 
 def spaces(maxlvl, curlvl)
-  a = 2 ** (maxlvl - curlvl + 1) - 2
+  a = 2**(maxlvl - curlvl + 1) - 2
   return ' ' * a
 end
 
@@ -30,7 +30,7 @@ class Binary_Tree
     @level = lvl
     children = arr[1]
     if is_numeric?(children[0]) == false
-      @left = Binary_Tree.new(nil, self.level + 1).create_tree(children[0], level + 1)
+      @left = Binary_Tree.new(nil, level + 1).create_tree(children[0], level + 1)
     elsif children[0].class == nil.class
         @left = Binary_Tree.new
     else
@@ -50,8 +50,8 @@ class Binary_Tree
       left.cut_thehigh
       right.cut_thehigh
     else
-      left = nil
-      right = nil
+      @left = nil
+      @right = nil
     end
   end
 
@@ -87,17 +87,17 @@ class Binary_Tree
   def print_lvl(maxlevel, lvl, str)
     if lvl == 1
       str[1] += spaces(maxlevel, lvl)
-      (str[1])[(2**(maxlevel - lvl + 1) - 2)/2] = '/'
+      (str[1])[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
       str[0] += spaces(maxlevel, lvl)
       if !data.nil?
-        buf = "%2s" % "#{data}"
+        buf = "%2s" % data.to_s
         str[0] += buf
       elsif left.data.nil?
         str[0] += '  '
         str[1] += '  '
       end
       buf = spaces(maxlevel, lvl)
-      buf[(2**(maxlevel - lvl + 1) - 2)/2] = '\\'
+      buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       return str
@@ -109,43 +109,43 @@ class Binary_Tree
       str = right.print_lvl(maxlevel, lvl, str)
     elsif level == lvl - 1
       buf = spaces(maxlevel, lvl)
-      buf[(2**(maxlevel - lvl + 1) - 2)/2] = '/'
+      buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       if !left.data.nil?
-        buf = "%2s" % "#{left.data}"
+        buf = "%2s" % left.data.to_s
         str[0] += buf
         str[0] += spaces(maxlevel, lvl)
         buf = spaces(maxlevel, lvl)
-        buf[(2**(maxlevel - lvl + 1) - 2)/2] = '\\'
+        buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
         str[1] += '  '
         str[1] += buf
       elsif left.data.nil?
         str[0] += '  '
         str[1] += '  '
         buf = spaces(maxlevel, lvl)
-        buf[(2**(maxlevel - lvl +  1) - 2)/2] = '\\'
+        buf[(2**(maxlevel - lvl +  1) - 2) / 2] = '\\'
         str[1] += buf
         str[0] += spaces(maxlevel, lvl)
       end
       str[0] += '  '
       str[1] += '  '
       buf = spaces(maxlevel, lvl)
-      buf[(2**(maxlevel - lvl + 1) - 2)/2] = '/'
+      buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       if !right.data.nil?
-        buf = "%2s" % "#{right.data}"
+        buf = "%2s" % right.data.to_s
         str[0] += buf
         buf = spaces(maxlevel, lvl)
-        buf[(2**(maxlevel - lvl + 1) - 2)/2] = '\\'
+        buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
         str[1] += '  '
         str[1] += buf
         str[0] += spaces(maxlevel, lvl)
       elsif right.data.nil?
         str[0] += '  '
         buf = spaces(maxlevel, lvl)
-        buf[(2**(maxlevel - lvl + 1) - 2)/2] = '\\'
+        buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
         str[1] += buf
         str[0] += spaces(maxlevel, lvl)
       end
@@ -194,7 +194,7 @@ def what_to_do(sum, max)
   end
   if max > 5 && checker.zero?
     puts "\nЭто дерево слишком высокое, срубить его! " \
-    "Его высота #{max}"
+    'Его высота = ' + max.to_s
     checker += 1
   end
   if checker.zero?
@@ -224,7 +224,8 @@ if ENV['NAME'].nil?
     end
   end
 else
-  name = 'trees/' + ENV['NAME'] + '.tree'; checker = 0
+  name = 'trees/' + ENV['NAME'] + '.tree'
+  checker = 0
   Zip::File.open('trees.zip') do |zip_file|
     zip_file.each do |entry|
       if entry.name != name
@@ -245,7 +246,7 @@ else
         end
       end
     end
-    if checker == 0
+    if checker.zero?
       puts 'Такого дерева в лесу нет :СССССССССССССС'
     end
   end
