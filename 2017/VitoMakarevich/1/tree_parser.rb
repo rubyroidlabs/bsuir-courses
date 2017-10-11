@@ -1,9 +1,10 @@
 require 'json'
+# this class parses tree from multidimensional array and returns by layers
 class TreeParser
   attr_accessor :depth
 
   def sum
-    @layers.flatten.inject(:+)
+    @layers.flatten.sum
   end
 
   def initialize(text)
@@ -11,36 +12,33 @@ class TreeParser
     @array = JSON.parse(text)
   end
 
-  def get_layers
-    get_array
+  def layers
+    array
     @layers
   end
 
   private
 
-  def get_array
-    @depth = array_depth(@array) - 1
-    @layers = Array.new(@depth) { Array.new }
+  def array
+    @depth = array_depth
+    @layers = Array.new(@depth) { [] }
     parse(@array[1], 0)
     @layers[0].push(@array[0])
     @layers.delete_if { |layer| layer.count.zero? }
   end
 
   def parse(tree, level)
-    if tree[0].is_a? Array
-      parse(tree[0], level + 1)
-    else
-      @layers[level].push(tree[0])
-    end
-    if tree[1].is_a? Array
-      parse(tree[1], level + 1)
-    else
-      @layers[level].push(tree[1])
+    tree.each do |elem|
+      if elem.is_a? Array
+        parse(elem, level + 1)
+      else
+        @layers[level].push(elem)
+      end
     end
   end
 
-  def array_depth(array)
-    b = array
+  def array_depth
+    b = @array
     depth = 1
     until b == b.flatten
       depth += 1

@@ -11,7 +11,7 @@ def print_tree(name)
   path = "./trees/#{name}"
   json_tree = File.read(path)
   tree_parser = TreeParser.new(json_tree)
-  parsed_tree = tree_parser.get_layers
+  parsed_tree = tree_parser.layers
   tree_printer = TreePrinter.new(parsed_tree)
   puts '', name
   puts tree_printer.render
@@ -24,19 +24,24 @@ def print_tree(name)
   print 'Желаете продолжить? [y/n] '
 end
 
+def continue?
+  user_answer = gets.chomp
+
+  if user_answer == STOP_STATUS
+    abort 'Спасибо что были в нашем лесу'
+  elsif user_answer == CONTINUE_STATUS
+    return
+  else
+    continue?
+  end
+end
+
 tree_names =
   Dir.entries('./trees')
-      .delete_if { |filename| filename == '.' || filename == '..' }.sort!
-
-iterator = 1
-print_tree(tree_names[0])
-while iterator != (tree_names.count - 1)
-  user_answer = gets.chomp
-  if user_answer == CONTINUE_STATUS
-    print_tree(tree_names[iterator += 1])
-  elsif user_answer == STOP_STATUS
-    abort 'Спасибо что были в нашем лесу'
-  end
+     .delete_if { |filename| filename == '.' || filename == '..' }.sort!
+tree_names.each do |tree_name|
+  print_tree(tree_name)
+  continue?
 end
 
 puts 'Спасибо что были в нашем лесу'
