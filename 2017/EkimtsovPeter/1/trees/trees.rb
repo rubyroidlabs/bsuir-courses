@@ -1,6 +1,6 @@
 def file_check(file_name)
   if File.exist?("#{file_name}.tree")
-    lvl_sum_chk(h_lvl_sum(h_spc_clr(str_to_h(File.read("#{file_name}.tree")))))
+    lvl_sum_chk(h_lvl_sum(h_spc_clr(h_clr_f(str_to_h(File.read("#{file_name}.tree"))))))
   elsif file_name.nil?
     puts 'Write a file name, please!'
   else
@@ -25,7 +25,7 @@ def all_trees_out
     puts "Want to continue? [y/n] #{filename}: "
     input = gets.chomp
     case input
-    when 'y' then lvl_sum_chk(h_lvl_sum(h_spc_clr(str_to_h(str))))
+    when 'y' then lvl_sum_chk(h_lvl_sum(h_spc_clr(h_clr_f(str_to_h(str)))))
     when 'n' then puts 'Thank you for visiting! Have a good day!'
                   break
     else puts 'Type error!'
@@ -35,7 +35,7 @@ def all_trees_out
 end
 
 def str_cleaner(str)
-  str.each_char { |char| str.delete!(char) if %w[, "].include?(char) }
+  str.each_char { |char| str.gsub!(char, ' ') if char == ',' }
 end
 
 def str_arr_leveler(str)
@@ -44,7 +44,7 @@ def str_arr_leveler(str)
 end
 
 def str_arr_level_deleter(str)
-  str.gsub!(/\[\d*\s*\d*\]/, ' ')
+  str.gsub!(/\[\d*\s*\d*\]/, '')
 end
 
 def str_to_h(str, lvl = 0, lvl_hash = {})
@@ -116,6 +116,13 @@ def h_value_out(hash)
   hash.each_value do |value|
     puts(puts(value.center(center_counter(hash))))
   end
+end
+
+def h_clr_f(hash)
+  hash.each_value do |value|
+    value.each_char { |char| value.delete!(char) if %w([ " '\' , ]).include?(char) }
+  end
+  hash
 end
 
 file_check(ENV['NAME'])
