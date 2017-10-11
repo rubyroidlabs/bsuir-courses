@@ -202,14 +202,11 @@ if ENV['NAME'] == nil
         if entry.directory?
           puts "Добро пожаловать в наш лес!"
         else
-          puts "#{entry.name}"
-          a = entry.get_input_stream.read
-          a = eval a
+          puts entry.name
+          a = JSON (entry.get_input_stream.read)
           tree = Binary_Tree.new(a[0], 1)
-          tree.create_tree(a, 1)
-          tree.max = 0
-          tree.max_depth(tree)
-          tree.fake_it(tree.max)
+          tree.create_tree(a, 1); tree.max = 0
+          tree.max_depth(tree); tree.fake_it(tree.max)
           tree.print_tree(tree.max)
           checker = 0
           conclusion = ""
@@ -218,16 +215,19 @@ if ENV['NAME'] == nil
             checker += 1
             puts "\nОбрезать это дерево!"
           end
-          if tree.max > 5 and checker == 0
-            puts "\nЭто дерево слишком высокое, срубить его!"
+          if tree.max > 5 && checker.zero?
+            puts "\nЭто дерево слишком высокое, срубить его! " \
+            "Его высота #{tree.max}"
             checker += 1
           end
-          if checker == 0
-            puts "\nЭто дерево и не слишком высокое и не слишком разрослось, оставьте его в покое."
+          if checker.zero?
+            puts "\nЭто дерево и не слишком высокое и не слишком разрослось, "\
+            " оставьте его в покое."
           end
           puts "\nХотите продолжить? [y/n]: "
           e = gets.to_s
-          if e[0].downcase == ('n')
+          e[0] = e[0].downcase
+          if e[0] == 'n'
             p "Спасибо, что были в нашем лесу!"
             break
           end
@@ -235,36 +235,34 @@ if ENV['NAME'] == nil
     end
   end
 else
-  name = 'trees/' + ENV['NAME'] + '.tree'
-  checker = 0
+  name = 'trees/' + ENV['NAME'] + '.tree'; checker = 0
   Zip::File.open('trees.zip') do |zip_file|
     zip_file.each do |entry|
-      if entry.name == name
-          checker =1
-          puts "#{entry.name}"
-          a = entry.get_input_stream.read
-          a = eval a
-          tree = Binary_Tree.new(a[0], 1)
-          tree.create_tree(a, 1)
-          tree.max = 0
-          tree.max_depth(tree)
-          tree.fake_it(tree.max)
-          tree.print_tree(tree.max)
-          if tree.max > 5
-            puts "Cрубить это дерево"
-          end
-          sum = tree.sum_elements
-          if sum > 5000
-            puts "Обрезать это дерево!"
-          end
-          if checker == 1
-            p "Спасибо, что посмотрели на наше дерево!"
-            break
-          end
+      if entry.name != name
+        next
+      else
+        checker = 1
+        puts entry.name
+        a = JSON (entry.get_input_stream.read)
+        tree = Binary_Tree.new(a[0], 1)
+        tree.create_tree(a, 1); tree.max = 0
+        tree.max_depth(tree)
+        tree.fake_it(tree.max)
+        tree.print_tree(tree.max)
+        if tree.max > 5
+          puts 'Cрубить это дерево'
         end
+        if tree.sum_elements > 5000
+          puts 'Обрезать это дерево!'
+        end
+        if checker == 1
+          puts 'Спасибо, что посмотрели на наше дерево!'
+          break
+        end
+      end
     end
     if checker == 0
-      puts "Такого дерева в лесу нет :СССССССССССССС"
+      puts 'Такого дерева в лесу нет :СССССССССССССС'
     end
   end
 end
