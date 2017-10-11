@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require 'rubygems'
 require 'json'
 require 'zip/zip'
@@ -14,13 +13,6 @@ end
 
 class Binary_Tree
   attr_accessor :data, :left, :right, :level, :max
-  def initialize(key = nil)
-    @max = nil
-    @data = key
-    @left = nil
-    @right = nil
-    @level = nil
-  end
 
   def initialize(key = nil, lvl = nil)
     @data = nil
@@ -68,30 +60,30 @@ class Binary_Tree
   end
 
   def max_depth(head)
-    if self.data != nil && self.level != nil
-      if self.level > head.max
-        head.max = self.level
-        self.left.max_depth(head) if self.left.class != nil.class
-        self.right.max_depth(head) if self.right.class != nil.class
+    if !data.nil? && !level.nil?
+      if level > head.max
+        head.max = level
+        left.max_depth(head) if left.class != nil.class
+        right.max_depth(head) if right.class != nil.class
       end
     end
   end
 
   def fake_it(depth)
-    if self.level < depth
-      if self.left != nil
-        self.left.fake_it(depth)
+    if level < depth
+      if !left.nil?
+        left.fake_it(depth)
       end
-      if self.left == nil
-        self.left = Binary_Tree.new(nil, self.level + 1)
-        self.left.fake_it(depth)
+      if left.nil?
+        left = Binary_Tree.new(nil, level + 1)
+        left.fake_it(depth)
       end
-      if self.right != nil
-        self.right.fake_it(depth)
+      if !right.nil?
+        right.fake_it(depth)
       end
-      if self.right == nil
-        self.right = Binary_Tree.new(nil, self.level + 1)
-        self.right.fake_it(depth)
+      if right.nil?
+        right = Binary_Tree.new(nil, level + 1)
+        right.fake_it(depth)
       end
     end
   end
@@ -99,71 +91,70 @@ class Binary_Tree
   def print_lvl(maxlevel, lvl, str)
     if lvl == 1
       str[1] += spaces(maxlevel, lvl)
-      (str[1])[(2 ** (maxlevel - lvl + 1) - 2)/2] = '/'
+      (str[1])[(2**(maxlevel - lvl + 1) - 2)/2] = '/'
       str[0] += spaces(maxlevel, lvl)
-      if self.data != nil
-        buf = "%2s" % "#{self.data}"
+      if !data.nil?
+        buf = "%2s" % "#{data}"
         str[0] += buf
-      elsif self.left.data == nil
-        str[0] += "  "
-        str[1] += "  "
+      elsif left.data.nil?
+        str[0] += '  '
+        str[1] += '  '
       end
       buf = spaces(maxlevel, lvl)
-      buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '\\'
+      buf[(2**(maxlevel - lvl + 1) - 2)/2] = '\\'
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
       return str
     end
-    if self.level < lvl - 1
-      str = self.left.print_lvl(maxlevel, lvl, str)
-      str[0] += "  "
-      str[1] += "  "
-      str = self.right.print_lvl(maxlevel, lvl, str)
-    elsif self.level == lvl - 1
+    if level < lvl - 1
+      str = left.print_lvl(maxlevel, lvl, str)
+      str[0] += '  '
+      str[1] += '  '
+      str = right.print_lvl(maxlevel, lvl, str)
+    elsif level == lvl - 1
       buf = spaces(maxlevel, lvl)
-      buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '/'
+      buf[(2**(maxlevel - lvl + 1) - 2)/2] = '/'
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
-      if self.left.data != nil
-        buf = "%2s" % "#{self.left.data}"
+      if !left.data.nil?
+        buf = "%2s" % "#{left.data}"
         str[0] += buf
         str[0] += spaces(maxlevel, lvl)
         buf = spaces(maxlevel, lvl)
-        buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '\\'
-        str[1] += "  "
+        buf[(2**(maxlevel - lvl + 1) - 2)/2] = '\\'
+        str[1] += '  '
         str[1] += buf
-      elsif self.left.data == nil
+      elsif left.data.nil?
         str[0] += '  '
         str[1] += '  '
         buf = spaces(maxlevel, lvl)
-        buf[(2 ** (maxlevel - lvl +  1) - 2)/2] = '\\'
+        buf[(2**(maxlevel - lvl +  1) - 2)/2] = '\\'
         str[1] += buf
         str[0] += spaces(maxlevel, lvl)
       end
-      str[0] += "  "
-      str[1] += "  "
+      str[0] += '  '
+      str[1] += '  '
       buf = spaces(maxlevel, lvl)
-      buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '/'
+      buf[(2**(maxlevel - lvl + 1) - 2)/2] = '/'
       str[1] += buf
       str[0] += spaces(maxlevel, lvl)
-      if self.right.data != nil
-        buf = "%2s" % "#{self.right.data}"
+      if !right.data.nil?
+        buf = "%2s" % "#{right.data}"
         str[0] += buf
         buf = spaces(maxlevel, lvl)
-        buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '\\'
-        str[1] += "  "
+        buf[(2**(maxlevel - lvl + 1) - 2)/2] = '\\'
+        str[1] += '  '
         str[1] += buf
         str[0] += spaces(maxlevel, lvl)
-      elsif self.right.data == nil
-        str[0] += "  "
+      elsif right.data.nil?
+        str[0] += '  '
         buf = spaces(maxlevel, lvl)
-        buf[(2 ** (maxlevel - lvl + 1) - 2)/2] = '\\'
+        buf[(2**(maxlevel - lvl + 1) - 2)/2] = '\\'
         str[1] += buf
         str[0] += spaces(maxlevel, lvl)
       end
-      return str
+      str
     end
-
   end
 
   def print_tree(depth)
@@ -174,22 +165,22 @@ class Binary_Tree
       str = Array.new(2)
       str[0] = ""
       str[1] = ""
-      str = self.print_lvl(depth, lvl, str)
+      str = print_lvl(depth, lvl, str)
       puts str[0]
       puts str[1] if lvl != depth
     end
   end
 
   def sum_elements(sum = 0)
-    sum += self.data
-    if self.left != nil
-      if self.left.data != nil
-        sum += self.left.sum_elements
+    sum += data
+    if !left.nil?
+      if !left.data.nil?
+        sum += left.sum_elements
       end
     end
-    if self.right != nil
-      if self.right.data != nil
-        sum += self.right.sum_elements
+    if !right.nil?
+      if !right.data.nil?
+        sum += right.sum_elements
       end
     end
     return sum
@@ -197,51 +188,48 @@ class Binary_Tree
 end
 
 def tree_finder(entry)
-  a = entry.get_input_stream.read
-  a = JSON a
+  a = JSON (entry.get_input_stream.read)
   tree = Binary_Tree.new(a[0], 1)
   tree.create_tree(a, 1)
   tree.max = 0
   tree.max_depth(tree)
   tree.fake_it(tree.max)
-  return tree
-end
-
-def what_to_do(tree)
-  checker = 0
-  if tree.sum_elements > 5000
-    checker += 1
-    puts "\nОбрезать это дерево!"
-  end
-  if tree.max > 5 && checker.zero?
-    puts "\nЭто дерево слишком высокое, срубить его! " \
-    "Его высота #{tree.max}"
-    checker += 1
-  end
-  if checker.zero?
-    puts "\nЭто дерево и не слишком высокое и не слишком разрослось, "\
-    'оставьте его в покое.'
-  end
+  tree
 end
 
 if ENV['NAME'].nil?
   Zip::File.open('trees.zip') do |zip_file|
     zip_file.each do |entry|
-      if entry.directory?
-        puts 'Добро пожаловать в наш лес!'
-      else
-        puts entry.name
-        tree = tree_finder(entry)
-        tree.print_tree(tree.max)
-        what_to_do(tree)
-        puts "\nХотите продолжить? [y/n]: "
-        e = gets.to_s
-        e[0] = e[0].downcase
-        if e[0] == 'n'
-          p "Спасибо, что были в нашем лесу!"
-          break
+        if entry.directory?
+          puts "Добро пожаловать в наш лес!"
+        else
+          puts entry.name
+          tree = tree_finder(entry)
+          tree.print_tree(tree.max)
+          checker = 0
+          conclusion = ""
+          sum = tree.sum_elements
+          if sum > 5000
+            checker += 1
+            puts "\nОбрезать это дерево!"
+          end
+          if tree.max > 5 && checker.zero?
+            puts "\nЭто дерево слишком высокое, срубить его! " \
+            "Его высота #{tree.max}"
+            checker += 1
+          end
+          if checker.zero?
+            puts "\nЭто дерево и не слишком высокое и не слишком разрослось, "\
+            ' оставьте его в покое.'
+          end
+          puts "\nХотите продолжить? [y/n]: "
+          e = gets.to_s
+          e[0] = e[0].downcase
+          if e[0] == 'n'
+            p 'Спасибо, что были в нашем лесу!'
+            break
+          end
         end
-      end
     end
   end
 else
@@ -253,7 +241,11 @@ else
       else
         checker = 1
         puts entry.name
-        tree = tree_finder(entry)
+        a = JSON (entry.get_input_stream.read)
+        tree = Binary_Tree.new(a[0], 1)
+        tree.create_tree(a, 1); tree.max = 0
+        tree.max_depth(tree)
+        tree.fake_it(tree.max)
         tree.print_tree(tree.max)
         if checker == 1
           puts 'Спасибо, что посмотрели на наше дерево!'
@@ -261,7 +253,7 @@ else
         end
       end
     end
-    if checker.zero?
+    if checker == 0
       puts 'Такого дерева в лесу нет :СССССССССССССС'
     end
   end
