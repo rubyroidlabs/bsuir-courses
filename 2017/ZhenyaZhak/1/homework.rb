@@ -2,32 +2,31 @@ require 'json'
 
 def steep(value)
   (0...value).each do
-    print " "
+    print ' '
   end
 end
 
 def decision(kol, level)
   if kol > 5000
-    puts "Срубить"
+    puts 'Срубить'
   else
-    puts "Оставить"
+    puts 'Оставить'
   end
   if level > 6
-    puts "Дерево обрезанно"
+    puts 'Дерево обрезанно'
   else
-    puts "Дерево целое"
+    puts 'Дерево целое'
   end
 end
 
-def rendering(vec, level)
-  level > 6 ? vrem = 6 : vrem = level
+def rendering(vec, vrem)
   t = 0
   steep(2**vrem - 2)
   vec.length.times do |i|
-    if vec[i] == nil
-      puts " "
+    if vec[i].nil?
+      puts ' '
       vrem -= 1
-      if vrem == 0
+      if vrem.zero?
         break
       end
       steep(2**vrem - 2)
@@ -35,7 +34,7 @@ def rendering(vec, level)
     else
       t == 1 ? steep(2**(vrem + 1) - 2) : t = 1
       if vec[i] < 10
-        print " "
+        print ' '
       end
       print vec[i]
     end
@@ -47,14 +46,12 @@ class Tree
     vec = Array.new
     array = Array.new
     array_temp = Array.new
-    file_name = "/tmp/bsuir-courses/2017/ZhenyaZhak/1/trees/" + name
+    file_name = '/tmp/bsuir-courses/2017/ZhenyaZhak/1/trees/' + name
     tree_string = File.read(file_name)
     tree_inf = JSON.parse(tree_string)
     array << tree_inf
     while !array.empty?
-
       array.length.times do |i|
-
         if array[i][0].is_a? Integer
           vec << array[i][0]
         else
@@ -69,7 +66,9 @@ class Tree
       array = Array.new
       array += array_temp
       array_temp = Array.new
-      if !vec[vec.length - 1].nil?
+      if vec[vec.length - 1].nil?
+        next
+      else
         vec << nil
       end
     end
@@ -78,7 +77,7 @@ class Tree
     vec.length.times do |i|
       vec[i].nil? ? level += 1 : kol += vec[i]
     end
-    rendering(vec, level)
+    level > 6 ? rendering(vec, 6) : rendering(vec, level)
     decision(kol, level)
   end
 end
