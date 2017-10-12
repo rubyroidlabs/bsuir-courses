@@ -7,13 +7,13 @@ def convert_to_tree(datajson)
   row = arr.shift
   arr.flatten!(2)
   tree_arr.push(row)
-  
+
   while true do
     row = arr.select { |i| i.class == Integer }
     if(row != [])
       tree_arr.push(row)
     end
-      
+
     arr.delete_if { |i| i.class == Integer }
     arr.flatten!(1)
     numbers = arr.select {|i| i.class == Integer}
@@ -24,33 +24,37 @@ def convert_to_tree(datajson)
 
   tree_arr.push(numbers)
   tree_arr.reverse!
-    
+
   def maker_tree(tree_arr)
     def tab(x)
       x.map! do |i|
         i = i.to_s
         if (i.size == 1)
-          i = i + " "
+          i = i + ' '
         elsif (i.size == 2)
           i
         end
       end
     end
-  
+
     arr_size = tree_arr.size
-    arr = tree_arr.select { |el| el.class == Array}
-    
-    n, m, i, z, x = 0, 2, 0, 1, 4
-    c = 2 ** (arr_size-2)
-        
+    arr = tree_arr.select { |el| el.class == Array }
+
+    n = 0
+    m = 2
+    i = 0
+    z = 1
+    x = 4
+    c = 2**(arr_size - 2)
+
     arr_reverse = []
-    while i < arr_size-1
+    while i < arr_size - 1
       tab(arr[i])
-      arr[i] = " " * n + arr[i].join(" " * m)
-      arr_reverse.push(arr[i])      
-      slash = " " * z + ("/  \\" + " " * x) * c
+      arr[i] = ' ' * n + arr[i].join(' ' * m)
+      arr_reverse.push(arr[i])
+      slash = ' ' * z + ('/  \\' + ' ' * x) * c
       arr_reverse.push(slash)
-      
+
       z = z * 2 + 3
       x = x * 2 + 4
       n = n * 2 + 2
@@ -65,7 +69,6 @@ def convert_to_tree(datajson)
     last = ' ' * (m - 1) + last.to_s
     arr_reverse.unshift(last)
     arr_reverse.each { |el| puts el }
-
   end
   if tree_arr.size > 7
     puts 'Слишком огромное дерево, не хочется его выводить даже'
@@ -76,7 +79,7 @@ def convert_to_tree(datajson)
     fl_tree.each do |i|
       sum += i.to_i
     end
-    
+
     puts "Сумма узлов данного дерева равна #{sum}"
   else
     maker_tree(tree_arr)
@@ -137,8 +140,6 @@ else
     puts 'Данное дерево не растет в нашем лесу'
   end
 end
-
-
 
 
 
