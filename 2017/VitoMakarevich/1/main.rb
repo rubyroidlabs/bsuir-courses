@@ -11,7 +11,7 @@ def print_tree(name)
   path = "./trees/#{name}"
   json_tree = File.read(path)
   tree_parser = TreeParser.new(json_tree)
-  parsed_tree = tree_parser.layers
+  parsed_tree = tree_parser.parse_layers
   tree_printer = TreePrinter.new(parsed_tree)
   puts '', name
   puts tree_printer.render

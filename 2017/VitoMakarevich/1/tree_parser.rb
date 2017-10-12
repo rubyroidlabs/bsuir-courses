@@ -7,14 +7,14 @@ class TreeParser
     @array = JSON.parse(text)
   end
 
-  def layers
-    array
+  def parse_layers
+    layers_from_array
     @layers
   end
 
   private
 
-  def array
+  def layers_from_array
     depth = array_depth
     @layers = Array.new(depth) { [] }
     parse(@array[1], 0)
