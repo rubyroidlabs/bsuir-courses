@@ -20,6 +20,8 @@ class Menu
         unless extension_check
           break
         end
+      else
+        next
       end
     end
   end
@@ -55,7 +57,6 @@ class Menu
     loop do
       p 'Would you like to continue browsing the trees?(y/n)'
       answer = gets.chomp
-      flg = nil
       flg = case answer.to_s
         when 'yes', 'Yes', 'y', 'YES'
           true
@@ -63,7 +64,7 @@ class Menu
           false
         else
           nil
-      end
+            end
       if flg.nil?
         p 'Input Error. Try again.'
       else

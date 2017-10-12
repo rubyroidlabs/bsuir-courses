@@ -3,5 +3,4 @@ class FileStream
     file = File.read(file_name)
     JSON.parse(file)
   end
-
 end
