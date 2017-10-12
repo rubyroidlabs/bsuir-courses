@@ -52,7 +52,7 @@ module Tree
       if i == 0
         write_spaces(spaces)
       else
-        write_spaces(2*spaces)
+        write_spaces(2 * spaces)
       end
       print level_nodes[i]
     end
@@ -81,36 +81,35 @@ module Tree
 
   def self.what_to_do(summ,deep)
     if summ > 5000
-      puts "Это дерево слишком тяжелое. Нужно его срубить"
+      puts 'Это дерево слишком тяжелое. Нужно его срубить'
     end
     if deep > 5 && summ < 5001
-      puts "Это дерево слишком высокое. Нужно его обрезать"
+      puts 'Это дерево слишком высокое. Нужно его обрезать'
     end
     if deep < 6 && summ < 5001
-      puts "Дерево еще нормальное. Можно его оставить"
+      puts 'Дерево еще нормальное. Можно его оставить'
     end
   end
 end
 
-names = Dir.entries("/home/nikita/Документы/trees")
+names = Dir.entries('/home/nikita/Документы/trees')
 names.sort!
 if ENV['NAME'].nil?
   2.upto(names.length) do |i|
     Tree.draw(names[i])
-    puts "Хотите посмотреть еще одно дерево?<д/н>"
+    puts 'Хотите посмотреть еще одно дерево?<д/н>'
     choise = gets.chomp
-    if choise != "д" then
-      puts "Всего хорошего!"
+    if choise != 'д' then
+      puts 'Всего хорошего!'
       break
     end
   end
 else
-  name_of_file = ENV['NAME'] + ".tree"
+  name_of_file = ENV['NAME'] + '.tree'
   names.length.times do |i|
     if names[i] == name_of_file
       Tree.draw(name_of_file)
-      puts "Всего хорошего!"
+      puts 'Всего хорошего!'
     end
   end
 end
-
