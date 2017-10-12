@@ -6,35 +6,29 @@ class Tree
   attr_reader :tree_root
 
   def initialization(array, code, tree_node, depth)
-    if check_valid_number(array) && code == 0
+    if check_valid_number(array) && code.zero?
       tree_node.value = array
       tree_node.depth = depth
       return
     end
 
-    if array[0]
-      if code == 1
-        self.initialization(array[0], 0, tree_node.create_left_node, depth + 1)
-      else
-        if check_valid_number(array[0])
-          tree_node.value = array[0]
-          tree_node.depth = depth
-        end
-      end
+    if array[0] && code == 1
+      self.initialization(array[0], 0, tree_node.create_left_node, depth + 1)
+    elsif array[0] && check_valid_number(array[0])
+      tree_node.value = array[0]
+      tree_node.depth = depth
     end
 
-    if array[1]
-      if code == 1
-        self.initialization(array[1], 0, tree_node.create_right_node, depth + 1)
-      else
-        self.initialization(array[1], 1, tree_node, depth)
-      end
+    if array[1] && code == 1
+      self.initialization(array[1], 0, tree_node.create_right_node, depth + 1)
+    elsif array[1]
+      self.initialization(array[1], 1, tree_node, depth)
     end
   end
 
   def check_valid_number(elem)
-    (elem.to_s).each_char do |index|
-      unless (48..57).include?(elem.to_s[index].ord)
+    elem.to_s.each_char do |index|
+      unless (48..57).cover?(elem.to_s[index].ord)
         return false
       end
     end
@@ -106,7 +100,7 @@ class Tree
     true
   end
 
-  ####Горизонтальный вывод дерева
+  # Горизонтальный вывод дерева
   # def get_tree_leveled(tree_root, level)
   #   unless tree_root
   #     return 0
@@ -125,9 +119,9 @@ class Tree
 
   def output_level(tree_root, level, current_depth)
     if tree_root.depth == level
-      print ' ' * (4 * current_depth).to_i
+      print (' ' * (4 * current_depth).to_i).to_s
       print "#{tree_root.value}"
-      print ' ' * (current_depth * 4 - tree_root.value.to_s.size).to_i
+      print (' ' * (current_depth * 4 - tree_root.value.to_s.size).to_i).to_s
     end
     if tree_root.left_node
       output_level(tree_root.left_node, level, current_depth)
@@ -148,4 +142,5 @@ class Tree
       level += 1
     end
   end
+
 end

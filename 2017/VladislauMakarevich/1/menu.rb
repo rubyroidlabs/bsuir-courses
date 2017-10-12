@@ -57,18 +57,19 @@ class Menu
       answer = gets.chomp
       flg = nil
       flg = case answer.to_s
-              when 'yes', 'Yes', 'y', 'YES'
-                true
-              when 'No', 'no', 'n', 'Not', 'not', 'NO', 'NOT'
-                false
-              else
-                nil
-            end
-      if flg == nil
+        when 'yes', 'Yes', 'y', 'YES'
+          true
+        when 'No', 'no', 'n', 'Not', 'not', 'NO', 'NOT'
+          false
+        else
+          nil
+        end
+      if flg.nil?
         p 'Input Error. Try again.'
       else
         return flg
       end
     end
   end
+
 end
