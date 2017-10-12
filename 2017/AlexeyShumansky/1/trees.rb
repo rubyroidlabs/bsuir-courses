@@ -38,8 +38,7 @@ def maker_tree(tree_arr)
 end
 
 def tab(x)
-  x.map! do |i|
-    i = i.to_s
+  x.map(&:to_s).map! do |i|
     if i.size == 1
       i += ' '
     elsif i.size == 2
@@ -66,9 +65,8 @@ def convert_to_tree(datajson)
     arr.flatten!(1)
     numbers = arr.select { |i| i.class == Integer }
 
-    if arr.size == numbers.size then
-      break
-    end
+    break if arr.size == numbers.size
+
   end
 
   tree_arr.push(numbers)
@@ -123,11 +121,9 @@ if evnname.nil?
     puts ' '
     print 'Желаете продолжить? [y/n] '
     answer = gets.chomp
-    if answer == 'n'
-      puts 'Спасибо, что были в нашем лесу'
-      break
-    end
+    break if answer == 'n'
   end
+  puts 'Спасибо, что были в нашем лесу'
 else
   fulltreename = evnname + '.tree'
   if arraytrees.include? fulltreename
