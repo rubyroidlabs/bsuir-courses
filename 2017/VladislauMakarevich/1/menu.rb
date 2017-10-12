@@ -60,7 +60,7 @@ class Menu
               true
             when 'No', 'no', 'n', 'Not', 'not', 'NO', 'NOT'
               false
-            else-clause
+            else - clause
               nil
             end
       if flg.nil?
