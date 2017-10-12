@@ -1,7 +1,43 @@
 require 'json'
 
 # methods
-def tab (x)
+def maker_tree(tree_arr)
+  arr_size = tree_arr.size
+  arr = tree_arr.select { |el| el.class == Array }
+
+  n = 0
+  m = 2
+  i = 0
+  z = 1
+  x = 4
+  c = 2**(arr_size - 2)
+
+  arr_reverse = []
+
+  while i < arr_size - 1
+    tab(arr[i])
+    arr[i] = ' ' * n + arr[i].join(' ' * m)
+    arr_reverse.push(arr[i])
+    slash = ' ' * z + ('/  \\' + ' ' * x) * c
+    arr_reverse.push(slash)
+
+    z = z * 2 + 3
+    x = x * 2 + 4
+    n = n * 2 + 2
+    m = m * 2 + 2
+    c /= 2
+    i += 1
+  end
+
+  arr_reverse = arr_reverse.reverse!
+  m /= 2
+  last = tree_arr.last
+  last = ' ' * (m - 1) + last.to_s
+  arr_reverse.unshift(last)
+  arr_reverse.each { |el| puts el }
+end
+
+def tab(x)
   x.map! do |i|
     i = i.to_s
     if i.size == 1
@@ -12,7 +48,7 @@ def tab (x)
   end
 end
 
-def convert_to_tree (datajson)
+def convert_to_tree(datajson)
   arr = JSON.parse(datajson)
   tree_arr = []
   row = arr.shift
@@ -30,49 +66,14 @@ def convert_to_tree (datajson)
     arr.flatten!(1)
     numbers = arr.select { |i| i.class == Integer }
 
-    if arr.size == numbers.size
+    if arr.size == numbers.size then
       break
     end
-  end 
+  end
 
   tree_arr.push(numbers)
   tree_arr.reverse!
-
-  def maker_tree (tree_arr)
-    arr_size = tree_arr.size
-    arr = tree_arr.select { |el| el.class == Array }
-
-    n = 0
-    m = 2
-    i = 0
-    z = 1
-    x = 4
-    c = 2**(arr_size - 2)
-
-    arr_reverse = []
-
-    while i < arr_size - 1
-      tab(arr[i])
-      arr[i] = ' ' * n + arr[i].join(' ' * m)
-      arr_reverse.push(arr[i])
-      slash = ' ' * z + ('/  \\' + ' ' * x) * c
-      arr_reverse.push(slash)
-
-      z = z * 2 + 3
-      x = x * 2 + 4
-      n = n * 2 + 2
-      m = m * 2 + 2
-      c /= 2
-      i += 1
-    end
-
-    arr_reverse = arr_reverse.reverse!
-    m /= 2
-    last = tree_arr.last
-    last = ' ' * (m - 1) + last.to_s
-    arr_reverse.unshift(last)
-    arr_reverse.each { |el| puts el }
-  end
+    
   if tree_arr.size > 7
     puts 'Слишком огромное дерево, не хочется его выводить даже'
     puts "Глубина дерева #{tree_arr.size}"
