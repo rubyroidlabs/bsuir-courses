@@ -9,7 +9,7 @@ module Gardener
     end
 
     def recursion_tree(arr)
-      if arr[0].kind_of?(Array)
+      if arr[0].is_a?(Array)
         left = arr[0]
         right = arr[1]
         @stack << @lev
@@ -21,9 +21,17 @@ module Gardener
 
       else
         @lev += 1
-        @conv_arr[@lev].nil? ? @conv_arr[@lev] = [arr[0]] : @conv_arr[@lev] << arr[0]
+        if @conv_arr[@lev].nil?
+          @conv_arr[@lev] = [arr[0]]
+        else
+          @conv_arr[@lev] << arr[0]
+        end
 
-        arr[1].kind_of?(Array) ? recursion_tree(arr[1]) : @conv_arr[@lev] << arr[1]
+        if arr[1].is_a?(Array)
+          recursion_tree(arr[1])
+        else
+          @conv_arr[@lev] << arr[1]
+        end
       end
     end
   end

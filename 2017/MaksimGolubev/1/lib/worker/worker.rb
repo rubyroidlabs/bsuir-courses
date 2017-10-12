@@ -1,13 +1,16 @@
 require 'terminfo'
 require 'colorize'
 require 'yaml'
+require 'json'
 
 $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)))
 
 module Gardener
   class Worker
     SEPARATOR = '======='.red
-    FILE_LIST = (Dir.entries("#{$LOAD_PATH.first}/trees") - %w[. ..]).map { |tree| tree.sub('.tree', '') }.freeze
+    FILE_LIST = (Dir.entries("#{$LOAD_PATH[0]}/trees") - %w[. ..]).map do |tree|
+      tree.sub('.tree', '')
+    end.freeze
 
     def initialize(params)
       @tree_name = find_name(params)
@@ -27,7 +30,7 @@ module Gardener
         tree = plant_tree(@tree_name)
         work_with_tree_result(tree)
       else
-        return puts 'Данное дерево не растет в данном лесу.'.yellow
+        puts 'Данное дерево не растет в данном лесу.'.yellow
       end
     end
 
@@ -44,9 +47,13 @@ module Gardener
       tree = rec.conv_arr.reverse
 
       if @tree_range < 4 * tree[0].count
-        message_for_valik = "А в pyton-e бы влезло...Шучу-шучу, оставьте на курсах)"
-        message_for_valik_separator = (@tree_range - message_for_valik.size) / 2 > 0 ? '.' * ((@tree_range - message_for_valik.size) / 2) : ''
-        puts "#{message_for_valik_separator}#{message_for_valik}#{message_for_valik_separator}".center(@tree_range).blue
+        msg_for_valik = 'А в pyton-e бы влезло...Шучу-шучу, оставьте на курсах)'
+        msg_sep = if (@tree_range - msg_for_valik.size) / 2 > 0
+                    '.' * ((@tree_range - msg_for_valik.size) / 2)
+                  else
+                    ''
+                  end
+        puts "#{msg_sep}#{msg_for_valik}#{msg_sep}".center(@tree_range).blue
       end
 
       tree.each do |node|
@@ -60,12 +67,11 @@ module Gardener
 
     def open_tree(tree_name)
       file_path = "#{$LOAD_PATH.first}/trees/#{tree_name}.tree"
-      tree = File.open(file_path) { |file| file.read.chomp }
-      eval tree
+      tree = File.open(file_path) { |file| JSON.parse(file.read) }
+      tree
     end
 
     def find_name(params)
-      # params.each { |arg| return arg.match(/NAME=(\w*)/)[1] if arg.match(/NAME=(\w*)/) }
       return nil if params.empty?
       if params[0] =~ /NAME=(\w*)/
         params[0].match(/NAME=(\w*)/)[1]
