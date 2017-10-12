@@ -1,14 +1,15 @@
 require 'json'
 
 # methods
-def convert_to_tree(datajson)
+def convert_to_tree datajson
   arr = JSON.parse(datajson)
   tree_arr = []
   row = arr.shift
   arr.flatten!(2)
   tree_arr.push(row)
 
-  while true do
+  t = true
+  while t 
     row = arr.select { |i| i.class == Integer }
     if row != []
       tree_arr.push(row)
@@ -19,6 +20,7 @@ def convert_to_tree(datajson)
     numbers = arr.select { |i| i.class == Integer }
     if arr.size == numbers.size
       break
+
     end
 
   end 
@@ -26,7 +28,7 @@ def convert_to_tree(datajson)
   tree_arr.push(numbers)
   tree_arr.reverse!
 
-  def maker_tree(tree_arr)
+  def maker_tree tree_arr
     def tab x
       x.map! do |i|
         i = i.to_s
@@ -94,13 +96,10 @@ def convert_to_tree(datajson)
   end
 
   if sum > 5000
-    puts ' '
     puts 'Срубить'
   elsif tree_arr.size > 5
-    puts ' '
     puts 'Обрезать'
   else
-    puts ' '
     puts 'Оставить'
   end
 end
@@ -124,7 +123,6 @@ if evnname.nil?
     print 'Желаете продолжить? [y/n] '
     answer = gets.chomp
     if answer == 'n'
-      puts ' '
       puts 'Спасибо, что были в нашем лесу'
       break
     end
@@ -140,4 +138,5 @@ else
   else
     puts 'Данное дерево не растет в нашем лесу'
   end
+  
 end
