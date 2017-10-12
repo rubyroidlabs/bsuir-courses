@@ -67,9 +67,7 @@ def convert_to_tree(datajson)
     numbers = arr.select { |i| i.class == Integer }
 
     break if arr.size == numbers.size
-
   end
-
   tree_arr.push(numbers)
   tree_arr.reverse!
 
