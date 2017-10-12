@@ -38,9 +38,10 @@ def maker_tree(tree_arr)
 end
 
 def tab(x)
-  x.map(&:to_s).map! do |i|
+  x.map! do |i|
+    i = i.to_s 
     if i.size == 1
-      i += ' '
+      i << ' '
     elsif i.size == 2
       i
     end
