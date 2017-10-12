@@ -15,5 +15,4 @@ class TreeNode
   def create_right_node
     @right_node = TreeNode.new
   end
-
 end

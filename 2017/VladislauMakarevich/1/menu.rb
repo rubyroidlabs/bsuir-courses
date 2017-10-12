@@ -63,7 +63,7 @@ class Menu
           false
         else
           nil
-        end
+      end
       if flg.nil?
         p 'Input Error. Try again.'
       else
@@ -71,5 +71,4 @@ class Menu
       end
     end
   end
-
 end
