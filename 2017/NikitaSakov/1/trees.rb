@@ -22,11 +22,11 @@ module Tree
           end
         end
       end
-      if level_nodes.length != 0 
+      if level_nodes.length != 0
         deep += 1
         if deep < 5
           spaces /= 2
-          if deep > 1 
+          if deep > 1
             write_slash(level_nodes, spaces)
           end
           puts
@@ -65,9 +65,9 @@ module Tree
       else
         write_spaces(2 * spaces)
       end
-      if (i % 2).zero? 
+      if (i % 2).zero?
         print ' /'
-      else 
+      else
         print '\ '
       end
     end
@@ -99,7 +99,7 @@ if ENV['NAME'].nil?
     Tree.draw(names[i])
     puts 'Хотите посмотреть еще одно дерево?<д/н>'
     choise = gets.chomp
-    if choise != 'д' 
+    if choise != 'д'
       puts 'Всего хорошего!'
       break
     end
@@ -113,4 +113,5 @@ else
     end
   end
 end
+
 
