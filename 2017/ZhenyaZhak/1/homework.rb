@@ -50,7 +50,7 @@ class Tree
     tree_string = File.read(file_name)
     tree_inf = JSON.parse(tree_string)
     array << tree_inf
-    while array.length > 0
+    while !array.first.nil?
       array.length.times do |i|
         if array[i][0].is_a? Integer
           vec << array[i][0]
@@ -86,15 +86,16 @@ if ENV['NAME'].nil?
   list = Dir.entries('/tmp/bsuir-courses/2017/ZhenyaZhak/1/trees/')
   list.sort!
   list.length.times do |i|
-    if !list[i].include?('.tree')
+    if list[i].include?('.tree')
+      puts "\n" + list[i].to_s
+      Tree.draw(list[i])
+      print 'Do it! [y/n]'
+      per = gets
+      if per.include?('n')
+        break
+      end
+    else
       next
-    end
-    puts "\n" + list[i].to_s
-    Tree.draw(list[i])
-    print 'Do it! [y/n]'
-    per = gets
-    if per.include?('n')
-      break
     end
   end
 else
