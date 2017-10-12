@@ -1,4 +1,4 @@
-require "json"
+require 'json'
 
 # methods
 def convert_to_tree(datajson)
@@ -10,28 +10,29 @@ def convert_to_tree(datajson)
 
   while true do
     row = arr.select { |i| i.class == Integer }
-    if(row != [])
+    if row != []
       tree_arr.push(row)
     end
 
     arr.delete_if { |i| i.class == Integer }
     arr.flatten!(1)
-    numbers = arr.select {|i| i.class == Integer}
-    if (arr.size == numbers.size)
+    numbers = arr.select { |i| i.class == Integer }
+    if arr.size == numbers.size
       break
     end
+
   end 
 
   tree_arr.push(numbers)
   tree_arr.reverse!
 
   def maker_tree(tree_arr)
-    def tab(x)
+    def tab x
       x.map! do |i|
         i = i.to_s
-        if (i.size == 1)
-          i = i + ' '
-        elsif (i.size == 2)
+        if i.size == 1
+          i += ' '
+        elsif i.size == 2
           i
         end
       end
@@ -96,13 +97,13 @@ def convert_to_tree(datajson)
     puts ' '
     puts 'Срубить'
   elsif tree_arr.size > 5
-    puts
+    puts ' '
     puts 'Обрезать'
   else
     puts ' '
     puts 'Оставить'
   end
-end 
+end
 
 # main
 evnname = ENV['NAME']
@@ -140,19 +141,3 @@ else
     puts 'Данное дерево не растет в нашем лесу'
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
