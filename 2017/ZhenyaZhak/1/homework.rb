@@ -44,10 +44,10 @@ end
 
 class Tree
   def self.draw(name)   
-    vec = Array.new()
-    array = Array.new()
-    array_temp = Array.new()
-    file_name = "/home/zhenya/Документы/trees/" + name
+    vec = Array.new
+    array = Array.new
+    array_temp = Array.new
+    file_name = "/tmp/bsuir-courses/2017/ZhenyaZhak/1/trees/" + name
     tree_string = File.read(file_name)
     tree_inf = JSON.parse(tree_string)
     array << tree_inf
@@ -64,17 +64,17 @@ class Tree
           array_temp << array[i][1]
         end       
       end     
-      if vec[vec.length - 1] != nil
+      if !vec[vec.length - 1].nil?
         vec << nil      
       end
-      array = Array.new()
+      array = Array.new
       array += array_temp
-      array_temp = Array.new()
+      array_temp = Array.new
     end
     kol = 0
     level = 0
     vec.length.times do |i|
-      vec[i] == nil ? level += 1 : kol += vec[i]
+      vec[i].nil? ? level += 1 : kol += vec[i]
     end   
     rendering(vec, level)   
     decision(kol, level)
@@ -82,17 +82,18 @@ class Tree
 end
 
 if ENV['NAME'].nil?
-  list = Dir.entries("/home/zhenya/Документы/trees")  
+  list = Dir.entries('/tmp/bsuir-courses/2017/ZhenyaZhak/1/trees/')
   list.sort!  
   list.length.times do |i|
-    if list[i].include?(".tree")
+    if list[i].include?('.tree')
+      puts "\n" + list[i].to_s
       Tree.draw(list[i])
-      print "Do it! [y/n]"; per = gets  
-      if per.include?("n")        
+      print "Do it! [y/n]"; per = gets
+      if per.include?('n')        
         break
       end
     end   
   end   
 else
-  Tree.draw(ENV['NAME'] + ".tree")
+  Tree.draw(ENV['NAME'] + '.tree')
 end
