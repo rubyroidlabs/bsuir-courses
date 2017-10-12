@@ -3,7 +3,7 @@ require 'json'
 def steep(value)
   (0...value).each do
     print " "
-  end             
+  end
 end
 
 def decision(kol, level)
@@ -12,7 +12,7 @@ def decision(kol, level)
   else
     puts "Оставить"
   end
-  if level > 6 
+  if level > 6
     puts "Дерево обрезанно"
   else
     puts "Дерево целое"
@@ -43,7 +43,7 @@ def rendering(vec, level)
 end
 
 class Tree
-  def self.draw(name)   
+  def self.draw(name)
     vec = Array.new
     array = Array.new
     array_temp = Array.new
@@ -53,54 +53,50 @@ class Tree
     array << tree_inf
     while !array.empty?
 
-      array.length.times do |i|       
+      array.length.times do |i|
 
-        if array[i][0].is_a? Integer          
+        if array[i][0].is_a? Integer
           vec << array[i][0]
         else
           array_temp << array[i][0]
         end
-        
-        if array[i][1].is_a? Integer          
+        if array[i][1].is_a? Integer
           vec << array[i][1]
         else
           array_temp << array[i][1]
-        end       
-
-      end     
-      if !vec[vec.length - 1].nil?
-        vec << nil      
+        end
       end
       array = Array.new
       array += array_temp
       array_temp = Array.new
-
+      if !vec[vec.length - 1].nil?
+        vec << nil
+      end
     end
     kol = 0
     level = 0
     vec.length.times do |i|
       vec[i].nil? ? level += 1 : kol += vec[i]
-    end   
-    rendering(vec, level)   
+    end
+    rendering(vec, level)
     decision(kol, level)
   end
 end
 
 if ENV['NAME'].nil?
   list = Dir.entries('/tmp/bsuir-courses/2017/ZhenyaZhak/1/trees/')
-  list.sort!  
+  list.sort!
   list.length.times do |i|
-
     if list[i].include?('.tree')
       puts "\n" + list[i].to_s
       Tree.draw(list[i])
-      print 'Do it! [y/n]'; per = gets
-      if per.include?('n')        
+      print 'Do it! [y/n]'
+      per = gets
+      if per.include?('n')
         break
       end
-    end   
-
-  end   
+    end
+  end
 else
   Tree.draw(ENV['NAME'] + '.tree')
 end
