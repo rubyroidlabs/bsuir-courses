@@ -18,6 +18,7 @@ module Utils
 
   def self.show_all_trees
     trees = Dir['./trees/*.tree']
+    trees.sort!
     trees.each do |tree_name|
       puts tree_name.split('/').last
       tree = read_tree_by_path(tree_name)
