@@ -27,10 +27,10 @@ module Tree
         if deep < 5
           spaces /= 2
           if deep > 1 
-            write_slash(level_nodes,spaces)
+            write_slash(level_nodes, spaces)
           end
           puts
-          write_level(level_nodes,spaces)
+          write_level(level_nodes, spaces)
           puts
         end
       end
@@ -40,16 +40,14 @@ module Tree
       level_nodes = Array.new
     end
     if deep > 4
-      puts "Остальная часть дерева скрылась за облаками"
+      puts 'Остальная часть дерева скрылась за облаками'
     end
-    what_to_do(summ,deep)
+    what_to_do(summ, deep)
   end
-
-  private
 
   def self.write_level(level_nodes,spaces)
     level_nodes.length.times do |i|
-      if i == 0
+      if i.zero?
         write_spaces(spaces)
       else
         write_spaces(2 * spaces)
@@ -63,9 +61,9 @@ module Tree
       if i == 0
         write_spaces(spaces)
       else
-        write_spaces(2*spaces)
+        write_spaces(2 * spaces)
       end
-      if i % 2 == 0 
+      if (i % 2).zero? 
         print ' /'
       else 
         print '\ '
@@ -79,7 +77,7 @@ module Tree
     end
   end
 
-  def self.what_to_do(summ,deep)
+  def self.what_to_do(summ, deep)
     if summ > 5000
       puts 'Это дерево слишком тяжелое. Нужно его срубить'
     end
