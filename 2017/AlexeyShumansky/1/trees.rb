@@ -71,6 +71,7 @@ def convert_to_tree(datajson)
   if tree_arr.size > 7
     puts 'Слишком огромное дерево, не хочется его выводить даже'
     puts "Глубина дерева #{tree_arr.size}"
+
     sum = 0
     fl_tree = tree_arr.flatten  
     fl_tree.each do |i|
@@ -82,6 +83,7 @@ def convert_to_tree(datajson)
   end
 
   sum = 0
+
   fl_tree = tree_arr.flatten  
   fl_tree.each do |i|
     sum += i.to_i
@@ -104,7 +106,6 @@ evnname = ENV['NAME']
 arraytrees = Dir.entries('trees').sort!
 arraytrees.delete('.')
 arraytrees.delete('..')
-
 if evnname.nil?  
   arraytrees.each do |i|
     pathname = 'trees/' + i
