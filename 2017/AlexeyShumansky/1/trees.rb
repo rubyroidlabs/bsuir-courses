@@ -39,7 +39,7 @@ end
 
 def tab(x)
   x.map! do |i|
-    i = i.to_s 
+    i = i.to_s
     if i.size == 1
       i << ' '
     elsif i.size == 2
@@ -58,10 +58,7 @@ def convert_to_tree(datajson)
   t = true
   while t
     row = arr.select { |i| i.class == Integer }
-    if row != []
-      tree_arr.push(row)
-    end
-
+    tree_arr.push(row) if row != []
     arr.delete_if { |i| i.class == Integer }
     arr.flatten!(1)
     numbers = arr.select { |i| i.class == Integer }
