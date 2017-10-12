@@ -77,6 +77,7 @@ def convert_to_tree(datajson)
     fl_tree.each do |i|
       sum += i.to_i
     end
+    
     puts "Сумма узлов данного дерева равна #{sum}" 
   else
     maker_tree(tree_arr)
@@ -134,8 +135,8 @@ else
     file.close
     convert_to_tree(data)
   else 
-    puts 'Данное дерево не растет в нашем лесу' 
-  end        
+    puts 'Данное дерево не растет в нашем лесу'
+  end       
 end
 
 
