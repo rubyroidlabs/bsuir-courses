@@ -9,7 +9,7 @@ module Utils
   def self.read_tree_by_path(path)
     begin
       contents = File.read(path)
-    rescue SystemCallError => ex
+    rescue SystemCallError
       puts 'Данное дерево не растет в данном лесу.'
       exit
     end

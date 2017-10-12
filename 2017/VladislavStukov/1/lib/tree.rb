@@ -2,9 +2,7 @@ require_relative 'node.rb'
 
 class Tree
   def initialize(array)
-    if array[0] != nil
-      @root = make_tree(array)
-    end
+    @root = make_tree(array)
     @sum = 0
     @max_deep = 0
   end
@@ -13,11 +11,9 @@ class Tree
     if array.is_a?(Integer)
       Node.new(array)
     else
-      Node.new(array[0], make_tree(array[1][0]), make_tree(array[1][1]));
+      Node.new(array[0], make_tree(array[1][0]), make_tree(array[1][1]))
     end
   end
-
-
 
   def divide_by_level
     @q = Array.new
@@ -50,13 +46,13 @@ class Tree
   end
 
   def show_tree
-    self.divide_by_level
-    num_of_spaces = (2 ** @q.size - 1) / 2
+    divide_by_level
+    num_of_spaces = (2**@q.size - 1) / 2
     @q.each do |array|
       space = '  ' * num_of_spaces
       (array.count / 2).times do
         print space
-        print  '--' * (num_of_spaces * 2 + 3)
+        print '--' * (num_of_spaces * 2 + 3)
         print space + '  '
       end
       puts
@@ -78,10 +74,8 @@ class Tree
     if node.nil?
       return
     end
-    if node.left == nil && node.right == nil
-      @sum += node.value
-    else
-      @sum += node.value
+    @sum += node.value
+    if !(node.left.nil? && node.right.nil?)
       get_sum(node.left)
       get_sum(node.right)
     end
