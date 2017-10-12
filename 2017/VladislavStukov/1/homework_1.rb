@@ -6,7 +6,6 @@ if name.nil?
   puts "\nСпасибо что были в нашем лесу"
   exit
 end
-
 tree = Utils.read_tree_by_name(name)
 tree.show_tree
 tree.check
