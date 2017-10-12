@@ -1,7 +1,18 @@
 require 'json'
 
 # methods
-def convert_to_tree datajson
+def tab (x)
+  x.map! do |i|
+    i = i.to_s
+    if i.size == 1
+      i += ' '
+    elsif i.size == 2
+      i
+    end
+  end
+end
+
+def convert_to_tree (datajson)
   arr = JSON.parse(datajson)
   tree_arr = []
   row = arr.shift
@@ -9,7 +20,7 @@ def convert_to_tree datajson
   tree_arr.push(row)
 
   t = true
-  while t 
+  while t
     row = arr.select { |i| i.class == Integer }
     if row != []
       tree_arr.push(row)
@@ -18,28 +29,16 @@ def convert_to_tree datajson
     arr.delete_if { |i| i.class == Integer }
     arr.flatten!(1)
     numbers = arr.select { |i| i.class == Integer }
+
     if arr.size == numbers.size
       break
-
     end
-
   end 
 
   tree_arr.push(numbers)
   tree_arr.reverse!
 
-  def maker_tree tree_arr
-    def tab x
-      x.map! do |i|
-        i = i.to_s
-        if i.size == 1
-          i += ' '
-        elsif i.size == 2
-          i
-        end
-      end
-    end
-
+  def maker_tree (tree_arr)
     arr_size = tree_arr.size
     arr = tree_arr.select { |el| el.class == Array }
 
@@ -51,6 +50,7 @@ def convert_to_tree datajson
     c = 2**(arr_size - 2)
 
     arr_reverse = []
+
     while i < arr_size - 1
       tab(arr[i])
       arr[i] = ' ' * n + arr[i].join(' ' * m)
@@ -138,5 +138,5 @@ else
   else
     puts 'Данное дерево не растет в нашем лесу'
   end
-  
+
 end
