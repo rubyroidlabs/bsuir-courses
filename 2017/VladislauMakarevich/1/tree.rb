@@ -120,7 +120,7 @@ class Tree
   def output_level(tree_root, level, current_depth)
     if tree_root.depth == level
       print ' ' * (4 * current_depth).to_i
-      print "#{tree_root.value}"
+      print tree_root.value.to_s
       print ' ' * (current_depth * 4 - tree_root.value.to_s.size).to_i
     end
     if tree_root.left_node

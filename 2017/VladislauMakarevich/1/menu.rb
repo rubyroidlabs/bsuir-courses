@@ -20,8 +20,6 @@ class Menu
         unless extension_check
           break
         end
-      else
-        next
       end
     end
   end
@@ -46,7 +44,7 @@ class Menu
   end
 
   def get_directory
-    directory = Dir.new(Dir.pwd)
+    Dir.new(Dir.pwd)
   end
 
   def load_forest
@@ -58,11 +56,11 @@ class Menu
       p 'Would you like to continue browsing the trees?(y/n)'
       answer = gets.chomp
       flg = case answer.to_s
-        when 'yes', 'Yes', 'y', 'YES'
-          true
-        when 'No', 'no', 'n', 'Not', 'not', 'NO', 'NOT'
-          false
-        else nil
+              when 'yes', 'Yes', 'y', 'YES'
+                true
+              when 'No', 'no', 'n', 'Not', 'not', 'NO', 'NOT'
+                false
+              else nil
             end
       if flg.nil?
         p 'Input Error. Try again.'
