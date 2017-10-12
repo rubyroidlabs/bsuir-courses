@@ -15,7 +15,7 @@ def print_tree(name)
   tree_printer = TreePrinter.new(parsed_tree)
   puts '', name
   puts tree_printer.render
-  if parsed_tree.count > MAX_DEPTH || tree_parser.sum > MAX_SUM
+  if parsed_tree.count > MAX_DEPTH || parsed_tree.flatten.sum > MAX_SUM
     puts '', 'Срубить.'
   else
     puts '', 'Оставить.'

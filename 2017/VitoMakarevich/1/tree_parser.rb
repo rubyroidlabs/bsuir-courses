@@ -3,10 +3,6 @@ require 'json'
 class TreeParser
   attr_accessor :depth
 
-  def sum
-    @layers.flatten.sum
-  end
-
   def initialize(text)
     @array = JSON.parse(text)
   end
