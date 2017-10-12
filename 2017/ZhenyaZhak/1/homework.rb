@@ -84,8 +84,8 @@ end
 
 if ENV['NAME'].nil?
   list = Dir.entries('/tmp/bsuir-courses/2017/ZhenyaZhak/1/trees/')
-  list.sort!
   list.delete_if { |value| !value.include?('.tree') }
+  list.sort!
   list.length.times do |i|
     puts "\n" + list[i].to_s
     Tree.draw(list[i])
