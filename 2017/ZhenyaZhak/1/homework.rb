@@ -85,17 +85,14 @@ end
 if ENV['NAME'].nil?
   list = Dir.entries('/tmp/bsuir-courses/2017/ZhenyaZhak/1/trees/')
   list.sort!
+  list.delete_if{|item| !item.include?('.tree') }
   list.length.times do |i|
-    if list[i].include?('.tree')
-      puts "\n" + list[i].to_s
-      Tree.draw(list[i])
-      print 'Do it! [y/n]'
-      per = gets
-      if per.include?('n')
-        break
-      end
-    else
-      next
+    puts "\n" + list[i].to_s
+    Tree.draw(list[i])
+    print 'Do it! [y/n]'
+    per = gets
+    if per.include?('n')
+      break
     end
   end
 else
