@@ -83,14 +83,14 @@ class Tree
 				secondLine += '/' + ' ' * firstTab + '\\' + ' ' * (firstTab+2)
 			end
 			puts firstLine
-			puts secondLine if i!=depth-1
+			puts secondLine if i != depth - 1
 		end
 		if @sum > 5000
-			puts "Срубить."
+			puts 'Срубить.'
 		elsif @depth > 5
-		  puts "Обрезать."
+		  puts 'Обрезать.'
 		else 
-			puts "Оставить."
+			puts 'Оставить.'
 		end
 	end
 end
@@ -98,7 +98,7 @@ end
 class Node < Tree
 	attr_accessor :left, :right, :data
 
-	def initialize (item)
+	def initialize(item)
 		@data = item
 	end
 end
