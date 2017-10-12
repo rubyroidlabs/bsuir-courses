@@ -45,7 +45,9 @@ module Tree
     what_to_do(summ, deep)
   end
 
-  def self.write_level(level_nodes,spaces)
+  private_class_method
+
+  def self.write_level(level_nodes, spaces)
     level_nodes.length.times do |i|
       if i.zero?
         write_spaces(spaces)
@@ -56,9 +58,9 @@ module Tree
     end
   end
 
-  def self.write_slash(level_nodes,spaces)
+  def self.write_slash(level_nodes, spaces)
     level_nodes.length.times do |i|
-      if i == 0
+      if i.zero?
         write_spaces(spaces)
       else
         write_spaces(2 * spaces)
@@ -97,7 +99,7 @@ if ENV['NAME'].nil?
     Tree.draw(names[i])
     puts 'Хотите посмотреть еще одно дерево?<д/н>'
     choise = gets.chomp
-    if choise != 'д' then
+    if choise != 'д' 
       puts 'Всего хорошего!'
       break
     end
@@ -111,3 +113,4 @@ else
     end
   end
 end
+
