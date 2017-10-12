@@ -60,6 +60,7 @@ class Tree
         else
           array_temp << array[i][0]
         end
+        
         if array[i][1].is_a? Integer          
           vec << array[i][1]
         else
