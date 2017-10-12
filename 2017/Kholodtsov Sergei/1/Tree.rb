@@ -81,8 +81,8 @@ class Tree
 					firstLine += j + '  ' * (firstTab+1)
 				end
 				secondLine += '/' + ' ' * firstTab + '\\' + ' ' * (firstTab+2)
-			end
-			puts firstLine
+		end
+		puts firstLine
 			puts secondLine if i != depth - 1
 		end
 		if @sum > 5000
@@ -96,9 +96,9 @@ class Tree
 end
 
 class Node < Tree
-	attr_accessor :left, :right, :data
+attr_accessor  :left,:right,:data
 
 	def initialize(item)
-		@data = item
+	 @data = item
 	end
 end
