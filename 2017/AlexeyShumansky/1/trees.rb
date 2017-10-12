@@ -72,7 +72,7 @@ def convert_to_tree(datajson)
 
   tree_arr.push(numbers)
   tree_arr.reverse!
-    
+
   if tree_arr.size > 7
     puts 'Слишком огромное дерево, не хочется его выводить даже'
     puts "Глубина дерева #{tree_arr.size}"
