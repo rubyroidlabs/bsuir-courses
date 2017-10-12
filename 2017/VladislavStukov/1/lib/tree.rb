@@ -75,7 +75,8 @@ class Tree
       return
     end
     @sum += node.value
-    if !(node.left.nil? && node.right.nil?)
+    if node.left.nil? && node.right.nil?
+    else
       get_sum(node.left)
       get_sum(node.right)
     end
