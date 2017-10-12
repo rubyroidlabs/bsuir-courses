@@ -56,11 +56,12 @@ class Menu
       p 'Would you like to continue browsing the trees?(y/n)'
       answer = gets.chomp
       flg = case answer.to_s
-              when 'yes', 'Yes', 'y', 'YES'
-                true
-              when 'No', 'no', 'n', 'Not', 'not', 'NO', 'NOT'
-                false
-              else nil
+            when 'yes', 'Yes', 'y', 'YES'
+              true
+            when 'No', 'no', 'n', 'Not', 'not', 'NO', 'NOT'
+              false
+            else-clause
+              nil
             end
       if flg.nil?
         p 'Input Error. Try again.'
