@@ -7,7 +7,6 @@ def spaces(maxlvl, curlvl)
   ' ' * a
 end
 
-
 def tree_finder(entry)
   a = entry.get_input_stream.read
   a = JSON a

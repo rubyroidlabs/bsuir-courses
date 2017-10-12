@@ -136,6 +136,7 @@ class BinaryTree
       str
     end
   end
+
   def print_tree(depth)
     if depth > 6
       depth = 6

@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'json'
 require 'zip/zip'
-require_relative 'BinaryTree'
+require_relative 'Binary_Tree'
 require_relative 'functions'
 
 if ENV['NAME'].nil?
