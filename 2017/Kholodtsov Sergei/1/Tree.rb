@@ -11,7 +11,7 @@ class Tree
 
   def createAndOut(item)
     addNode(item, @root)
-    outTree(@root, @depth)
+    out_Tree(@root, @depth)
   end
 
   def addNode(item, node)
@@ -48,43 +48,42 @@ class Tree
       end
       elems = getElemLevel(level - 1, root.left, elems)
       elems = getElemLevel(level - 1, root.right, elems)
-    else
-      if level.zero?
-        elems << root
-      end
+    elsif level.zero?
+      elems << root
     end
     elems
   end
 
-  def outTree(root, depth)
-    counter = (2 ** (depth + 1) - 2) / 2
+  def out_Tree(root, depth)
+    counter = (2 **(depth + 1) - 2) / 2
     depth.times do |i|
       list = []
       list = getElemLevel(i, root, list)
-      counter = counter - 1
-      firstTab = counter
-      counter = counter / 2
-      secondTab = counter
-      if secondTab != 0
-        firstLine = ' ' * (secondTab+1)
+      counter -= counter
+      first_Tab = counter
+      counter /= 2
+      second_Tab = counter
+      if second_Tab != 0
+        first_Line = ' ' * (second_Tab + 1)
       else
-        firstLine = ' ' * firstTab
+        first_Line = ' ' * first_Tab
       end
-      secondLine = ' ' * secondTab
+      second_Line = ' ' * second_Tab
       list.each do |j|
         j = j.to_s
         if j.size == 1
           j += ' '
         end
-        if secondTab != 0 and secondTab + 1 != firstTab
-          firstLine += '_' * (firstTab-secondTab-1) + j + '_' * (firstTab-secondTab-1) + ' ' * (2*secondTab+4)
+        if second_Tab != 0 && second_Tab + 1 != first_Tab
+        	l = first_Tab - second_Tab - 1
+          first_Line += '_' * l + j + '_' * l + ' ' * (2 * second_Tab + 4)
         else
-          firstLine += j + '  ' * (firstTab+1)
+          first_Line += j + '  ' * (first_Tab + 1)
         end
-        secondLine += '/' + ' ' * firstTab + '\\' + ' ' * (firstTab+2)
+        second_Line += '/' + ' ' * first_Tab + '\\' + ' ' * (first_Tab + 2)
       end
-      puts firstLine
-      puts secondLine if i != depth - 1
+      puts first_Line
+      puts second_Line if i != depth - 1
     end
     if @sum > 5000
       puts 'Срубить.'
