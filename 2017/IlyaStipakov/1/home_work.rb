@@ -16,13 +16,12 @@ def transform(arr)
     @level += 1
     transform(second)
   elsif first.class == Array && second.class == Array
-    if !first.nil?
+    unless first.nil?
       lvl = @level
       transform(first)
-    else
-      @level = lvl
-      transform(second)
     end
+    @level = lvl
+    transform(second)
   elsif first.class == Integer && second.class == Integer
     @hash[[@level, @number]] = first
     @number += 1
