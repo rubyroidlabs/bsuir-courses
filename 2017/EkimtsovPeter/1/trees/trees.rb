@@ -34,8 +34,7 @@ def s_cleaner(str)
 end
 
 def s_a_leveler(str)
-  str_level = str.scan(/\[\d*\s*\d*\]/).to_s
-  s_cleaner(str_level)
+  str.scan(/\[\d*\s*\d*\]/).to_s
 end
 
 def s_a_lvl_del(str)
@@ -67,18 +66,14 @@ end
 
 def l_sum_ch(arr)
   size = arr[1]
-  sum = arr[0]
-  arr = arr[-1]
+  sum = arr.first
+  arr = arr.last
   a_value_out(arr)
   if size > 5 || sum > 5000
     puts "Tree size is #{size}.Tree sum is #{sum}. We need to cut it"
   else
     puts "Tree size is #{size}.Tree sum is #{sum}. We don't need to cut it"
   end
-end
-
-def h_rev(hash)
-  Hash[hash.to_a.reverse]
 end
 
 def a_spc_clr(arr)
