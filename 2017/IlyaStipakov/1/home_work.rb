@@ -35,17 +35,18 @@ def print_tree
   if @hash.size > 1000
     puts 'Это дерево было слишком старое мы его срубили'
   end
-  for i in 0..@level
-    for n in 0..2**(@level + 1)
-      if !@hash[[i, n]].nil?
-        str << ' ' * (2**(@level - i))
-        str << @hash[[i, n]].to_s
-        str << ' ' * (2**(@level - i) / 2)
+  (0..@level).to_a.each do |l|
+    (0..2**(@level + 1)).to_a.each do |n|
+      if !@hash[[l, n]].nil?
+        str << ' ' * (2**(@level - l))
+        str << @hash[[l, n]].to_s
+        str << ' ' * (2**(@level - l) / 2)
       end
     end
-    if i < 5
+    if l < 4
       puts
       print str
+      str.clear
       puts
     else
       puts 'Дерево обрезали'
@@ -54,15 +55,13 @@ def print_tree
       @hash.clear
       break
     end
-    str.clear
   end
 end
 
 name = ENV['NAME']
 
 if name
-  a = File.open("/home/ilya/Documents/bsuir-courses/2017/
-  IlyaStipakov/1/trees/#{name}.tree")
+  a = File.open("/home/ilya/Documents/bsuir-courses/2017/IlyaStipakov/1/trees/#{name}.tree")
   content = a.read
   tree = JSON.parse(content)
   transform(tree)
