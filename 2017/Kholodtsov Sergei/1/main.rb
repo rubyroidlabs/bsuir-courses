@@ -10,7 +10,7 @@ end
 file_list.sort!
 2.times { file_list.shift }
 if file_name.nil?
-  while !file_list[0].nil? do
+  while !file_list[0].nil?
     ans != 'y' ? break : ans = 'm'
     file_name = file_list.shift
     puts file_name
@@ -21,7 +21,7 @@ if file_name.nil?
     print 'Желаете продолжить? [y/n] '
     ans = gets.chomp.downcase
     while ans != 'y' do
-      ans == 'n' ? break : ans = 'm'
+      break if ans == 'n'
       print 'Неверный выбор, повторите. '
       ans = gets.chomp.downcase
     end

@@ -57,11 +57,11 @@ class Tree
     depth.times do |i|
       list = []
       list = get_elem_level(i, root, list)
-      counter -= counter
+      counter -= 1
       f_t = counter
       counter /= 2
       s_t = counter
-      counter.zero? ? f_l = ' ' * (s_t + 1) : f_l = ' ' * f_t
+      !counter.zero? ? f_l = ' ' * (s_t + 1) : f_l = ' ' * f_t
       s_l = ' ' * s_t
       list.each do |j|
         j = j.to_s
@@ -69,8 +69,7 @@ class Tree
           j += ' '
         end
         if s_t != 0 && s_t + 1 != f_t
-          l = f_t - s_t - 1
-          f_l += '_' * l + j + '_' * l + ' ' * (2 * s_t + 4)
+          f_l += '_' * (f_t - s_t - 1) + j + '_' * (f_t - s_t - 1) + ' ' * (2 * s_t + 4)
         else
           f_l += j + '  ' * (f_t + 1)
         end
