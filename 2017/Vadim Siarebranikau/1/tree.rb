@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby 
 require"json"
-if ENV['NAME']==nil
+if ENV['NAME'] == nil
     puts "Безымянных деревьев нет"
 else
-filename ='trees/'+ENV['NAME']+'.tree'
+filename = 'trees/' + ENV['NAME'] + '.tree'
 if (File.file?(filename))
 $hight = 1
 $b = 1
@@ -35,7 +35,7 @@ def do_array(tree)
     $b += 1
     do_array(tree.left)
   end
-  if tree.right!=nil
+  if tree.right != nil
     $b += 1
     do_array(tree.right)
   end
@@ -49,7 +49,7 @@ def do_hight(tree)
     end
     do_hight(tree.left)
   end
-  if tree.right!=nil
+  if tree.right != nil
     if $bool
       $b += 1
     end
@@ -96,7 +96,7 @@ $a = Array.new($hight) { [] }
 $as = Array.new($hight) { '' }
 $b = 0
 do_array(root)
-output()
+output
 else puts 'такого дерева нет'
 end
 end
