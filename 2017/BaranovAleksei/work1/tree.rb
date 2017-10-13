@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 all_trees = Dir['*/**/*.tree'].each { |f| File.open(f) if File.file?(f) }
 
 def look_tree(name_search)
@@ -64,4 +63,4 @@ while answer_search != 3
     answer_search = gets.to_i
   end
 end
-print 'Пока!'
+print 'Пока!!!'
