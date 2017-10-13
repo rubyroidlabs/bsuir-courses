@@ -45,20 +45,22 @@ module Gardener
       rec = Gardener::Recursion.new
       rec.recursion_tree(open_tree(tree_name))
       tree = rec.conv_arr.reverse
+      tree_leaf_cut = true
 
       if @tree_range < 4 * tree[0].count
-        msg_for_valik = 'А в pyton-e бы влезло...Шучу-шучу, оставьте на курсах)'
+        msg_for_valik = 'А в Python\'e бы влезло...Шучу-шучу, оставьте на курсах)'
         msg_sep = if (@tree_range - msg_for_valik.size) / 2 > 0
                     '.' * ((@tree_range - msg_for_valik.size) / 2)
                   else
                     ''
                   end
+
         puts "#{msg_sep}#{msg_for_valik}#{msg_sep}".center(@tree_range).blue
       end
-
+      
       tree.each do |node|
         if @tree_range > 4 * node.count
-          puts(('\ / ' * node.count).center(@tree_range).green)
+          tree_leaf_cut ? tree_leaf_cut = false : puts(('\ / ' * node.count).center(@tree_range).green)
           puts node.join('  ').center(@tree_range).green
         end
       end
@@ -72,7 +74,7 @@ module Gardener
     end
 
     def find_name(params)
-      return nil if params.empty?
+      return if params.empty?
       if params[0] =~ /NAME=(\w*)/
         params[0].match(/NAME=(\w*)/)[1]
       else
