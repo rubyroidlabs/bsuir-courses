@@ -1,5 +1,4 @@
-#!/usr/bin/env ruby
-
+# /usr/bin/env ruby
 
 tree_name = ENV['NAME']
 arr = []
@@ -18,33 +17,33 @@ max = vertex
 tree = []
 tree[vertex] = arr[j]
 while i < str.size - 1
-  if str[i]+str[i + 1] == ',['
+  if str[i] + str[i + 1] == ',['
     vertex *= 2
-   
-    if tree[vertex * 2] != nil
+
+    unless tree[vertex * 2].nil?
       vertex += 1
     end
 
     j += 1
     tree[vertex] = arr[j]
-  elsif str[i] == ',' 
+  elsif str[i] == ','
     vertex += 1
     j += 1
     tree[vertex] = arr[j]
-  elsif str[i] == ']' 
-    if tree[vertex * 2] != nil && tree[(vertex * 2) + 1] == nil
-        vertex *= 2
+  elsif str[i] == ']'
+    if !tree[vertex * 2].nil? && tree[(vertex * 2) + 1].nil?
+      vertex *= 2
     end
     vertex /= 2
   end
   i += 1
-  if max < vertex 
+  if max < vertex
     max = vertex
   end
-end 
+end
 
 met = max
-count = 0  
+count = 0
 while met != 0
   count += 1
   met /= 2
@@ -52,15 +51,15 @@ end
 
 i = 1
 vertex = 1
-while max != 0 
+while max != 0
   print ' ' * (max - 1)
   met = 0
   while met != i
     print tree[vertex]
     if tree[vertex].to_i < 10
-      print ' ' * (2 ** (count + 1) - 1)
+      print ' ' * (2**(count + 1) - 1)
     else
-      print ' ' * (2 ** (count + 1) - 2)
+      print ' ' * (2**(count + 1) - 2)
     end
     vertex += 1
     met += 1
