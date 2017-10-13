@@ -63,7 +63,7 @@ class Tree
   def get_sum(node = @root, sum = 0)
     return 0 unless node
     sum += get_sum(node.left, sum) + get_sum(node.right, sum)
-    sum += node.value
+    sum + node.value
   end
 
   def get_max_deep(node = @root, deep = 0)
