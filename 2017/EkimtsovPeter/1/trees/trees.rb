@@ -1,6 +1,6 @@
 def file_check(file_name)
   if File.exist?("#{file_name}.tree")
-    l_sum_ch(h_l_sum(h_spc_clr(h_clr(s_to_h(File.read("#{file_name}.tree"))))))
+    l_sum_ch(a_l_sum(s_to_h(File.read("#{file_name}.tree"))))
   elsif file_name.nil?
     puts 'Write a file name, please!'
   else
@@ -9,14 +9,9 @@ def file_check(file_name)
 end
 
 def dir_check
-  files = []
   curr_dir = Dir.pwd
-  file_list = Dir.entries(curr_dir)
-  file_list.sort!
-  file_list.each do |filename|
-    files.push(filename) if filename =~ /.tree/
-  end
-  files
+  file_list = Dir.entries(curr_dir).sort
+  file_list.select { |file_name| file_name =~ /.tree$/ }
 end
 
 def all_trees_out
@@ -25,11 +20,11 @@ def all_trees_out
     puts "Want to continue? [y/n] #{filename}: "
     input = gets.chomp
     case input
-    when 'y' then l_sum_ch(h_l_sum(h_spc_clr(h_clr(s_to_h(str)))))
-    when 'n' then puts 'Thank you for visiting! Have a good day!'
-                  break
-    else puts 'Type error!'
-         redo
+      when 'y' then l_sum_ch(a_l_sum(s_to_h(str)))
+      when 'n' then puts 'Thank you for visiting! Have a good day!'
+      break
+      else puts 'Type error!'
+      redo
     end
   end
 end
@@ -55,27 +50,26 @@ def s_to_h(str, lvl = 0, lvl_hash = {})
     levels_hash[level + 1] = s_a_leveler(s_cleaner(str))
     s_to_h(s_a_lvl_del(s_cleaner(str)), level, levels_hash)
   end
-  h_rev(levels_hash)
+  a_clr(levels_hash.values.reverse)
 end
 
-def h_l_sum(hash)
+def a_l_sum(arr)
   arr_output = []
   sum = 0
-  size = hash.size
-  hash.each_value do |value|
+  size = arr.length
+  arr.each do |value|
     value.split(' ').each do |elem|
       sum += elem.to_i
     end
   end
-  arr_output.push(sum).push(size).push(hash)
-  arr_output
+  arr_output.push(sum, size, arr)
 end
 
 def l_sum_ch(arr)
   size = arr[1]
   sum = arr[0]
-  hash = arr[-1]
-  h_value_out(hash)
+  arr = arr[-1]
+  a_value_out(arr)
   if size > 5 || sum > 5000
     puts "Tree size is #{size}.Tree sum is #{sum}. We need to cut it"
   else
@@ -87,44 +81,29 @@ def h_rev(hash)
   Hash[hash.to_a.reverse]
 end
 
-def h_clr_a(hash)
-  hash.each_value do |value|
-    value.each_char do |char|
-      value.delete!(char) if %w([ ]).include?(char)
-    end
-  end
-  hash
-end
-
-def h_spc_clr(hash)
-  h_clr(hash)
-  hash.each_value do |value|
+def a_spc_clr(arr)
+  arr.each do |value|
     value.strip!
     value.squeeze!(' ')
   end
-  hash
+  arr
 end
 
-def center_counter(hash)
-  r_hash = h_rev(hash)
-  r_hash.each_value do |value|
-    return value.length
+def center_counter(arr)
+  arr.last.length
+end
+
+def a_value_out(arr)
+  arr.each do |value|
+    puts(puts(value.center(center_counter(arr))))
   end
 end
 
-def h_value_out(hash)
-  hash.each_value do |value|
-    puts(puts(value.center(center_counter(hash))))
+def a_clr(arr)
+  arr.each do |value|
+    value.gsub!(/\D/, ' ')
   end
-end
-
-def h_clr(hash)
-  hash.each_value do |value|
-    value.each_char do |char|
-      value.delete!(char) if %w([ " '\' , ]).include?(char)
-    end
-  end
-  hash
+  a_spc_clr(arr)
 end
 
 file_check(ENV['NAME'])
