@@ -9,11 +9,11 @@ else
   Dir.foreach("trees") {|tree_recording| hash_of_trees[tree_recording] = "name" }
   key_check = hash_of_trees.has_key?("#{entry}.tree")
   if key_check
-    file = File.new ("trees/#{entry}.tree")
+    file = File.new("trees/#{entry}.tree")
     content = file.read
     array = JSON.parse(content)
     parsing(array)
-    after_update_content=@after_parsing_arr
+    after_update_content = @after_parsing_arr
     after_update_content.each_with_index do |lvl ,index|
       print "lvl #{index + 1} дерева : "
       lvl.each{|node| print"#{node} "}
