@@ -20,10 +20,10 @@ def all_trees_out
     puts "Want to continue? [y/n] #{filename}: "
     input = gets.chomp
     case input
-      when 'y' then l_sum_ch(a_l_sum(s_to_h(str)))
-      when 'n' then puts 'Thank you for visiting! Have a good day!'
+    when 'y' then l_sum_ch(a_l_sum(s_to_h(str)))
+    when 'n' then puts 'Thank you for visiting! Have a good day!'
       break
-      else puts 'Type error!'
+    else puts 'Type error!'
       redo
     end
   end
