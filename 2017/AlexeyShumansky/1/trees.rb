@@ -67,28 +67,20 @@ def convert_to_tree(datajson)
   end
   tree_arr.push(numbers)
   tree_arr.reverse!
+  fl_tree = tree_arr.flatten
 
   if tree_arr.size > 7
     puts 'Слишком огромное дерево, не хочется его выводить даже'
-    puts "Глубина дерева #{tree_arr.size}"
-
-    sum = 0
-    fl_tree = tree_arr.flatten
-    fl_tree.each do |i|
-      sum += i.to_i
-    end
-
-    puts "Сумма узлов данного дерева равна #{sum}"
   else
     maker_tree(tree_arr)
   end
 
-  sum = 0
+  sum = fl_tree.inject(0) { |s, i| s + i }
 
-  fl_tree = tree_arr.flatten
-  fl_tree.each do |i|
-    sum += i.to_i
-  end
+  puts
+  puts "Сумма узлов данного дерева равна #{sum}"
+  puts "Глубина дерева #{tree_arr.size}"
+  puts
 
   if sum > 5000
     puts 'Срубить'
@@ -101,7 +93,7 @@ end
 
 # main
 evnname = ENV['NAME']
-arraytrees = Dir.entries('trees').sort!
+arraytrees = Dir.entries('trees').sort
 arraytrees.delete('.')
 arraytrees.delete('..')
 if evnname.nil?
@@ -110,11 +102,11 @@ if evnname.nil?
     file = File.new(pathname)
     data = file.read
     file.close
-    puts ' '
+    puts
     puts i
-    puts ' '
+    puts
     convert_to_tree(data)
-    puts ' '
+    puts
     print 'Желаете продолжить? [y/n] '
     answer = gets.chomp
     break if answer == 'n'
