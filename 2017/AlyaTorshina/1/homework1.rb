@@ -20,28 +20,28 @@ class Tree
   def add_node(node, arr)
     left = arr[0][0]
     right = arr[0][1]
-    if left.class.equal?Array
+    if left.class.equal? Array
       node.left = Node.new(left.shift)
       node.left.root = node
       check_level(node.left, node.left)
       @elements.push([node.left.level, node.left.value])
       @sum += node.left.value
       add_node(node.left, left)
-    elsif left.class.equal?Integer
+    elsif left.class.equal? Integer
       node.left = Node.new(left)
       node.left.root = node
       check_level(node.left, node.left)
       @elements.push([node.left.level, node.left.value])
       @sum += node.left.value
     end
-    if right.class.equal?Array
+    if right.class.equal? Array
       node.right = Node.new(right.shift)
       node.right.root = node
       check_level(node.right, node.right)
       @elements.push([node.right.level, node.right.value])
       @sum += node.left.value
       add_node(node.right, right)
-    elsif right.class.equal?Integer
+    elsif right.class.equal? Integer
       node.right = Node.new(right)
       node.right.root = node
       check_level(node.right, node.right)
