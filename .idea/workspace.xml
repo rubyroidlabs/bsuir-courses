@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e3a4b29b-a09e-47cc-8465-faf9e604568a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="e3a4b29b-a09e-47cc-8465-faf9e604568a" name="Default" comment="" />
     <ignored path="bsuir-courses.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -28,8 +26,8 @@
       <file leaf-file-name="home_work.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/home_work.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-612">
-              <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+            <state relative-caret-position="252">
+              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="96" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -425,16 +423,15 @@
       <workItem from="1507844336676" duration="6151000" />
       <workItem from="1507873403152" duration="3912000" />
       <workItem from="1507883415687" duration="10097000" />
-      <workItem from="1507930440074" duration="720000" />
+      <workItem from="1507930440074" duration="1471000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134744000" />
+    <option name="totallyTimeSpent" value="135495000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1870" y="-4" width="1839" height="1084" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26491913" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -781,8 +778,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/home_work.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-612">
-          <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+        <state relative-caret-position="252">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="96" selection-end-column="5" />
           <folding />
         </state>
       </provider>
