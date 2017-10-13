@@ -25,7 +25,7 @@ module Tree
           end
         end
       end
-      if level_nodes.length != 0
+      if level_nodes.first.is_a? Integer
         deep += 1
         spaces = level_with_slashes(level_nodes, spaces, deep)
       end
@@ -119,4 +119,3 @@ else
     end
   end
 end
-
