@@ -131,13 +131,13 @@ class Node
 end
 
 files = []
-Dir['trees/*.tree'].sort.each { |filename| files.push(filename) }
+Dir['trees/*.tree'].sort.each { |filename| filename.slice!(0..5); files.push(filename) }
 
 if ENV['NAME'].nil?
   answer = ''
   files.each do |filename|
     puts 'Дерево: ' + filename
-    content = File.read(filename)
+    content = File.read('trees/' + filename)
     input = JSON.parse(content)
     our_tree = Tree.new(input.shift)
     our_tree.create input
@@ -153,9 +153,9 @@ if ENV['NAME'].nil?
     end  
    end
 elsif files.include?(ENV['NAME'] + '.tree')
-  filename = ENV['NAME']
+  filename = ENV['NAME'] + '.tree'
   puts 'Дерево: ' + filename
-  content = File.read(filename)
+  content = File.read('trees/' + filename)
   input = JSON.parse(content)
   our_tree = Tree.new(input.shift)
   our_tree.create input
