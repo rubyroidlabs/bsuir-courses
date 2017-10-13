@@ -20,7 +20,7 @@ require 'json'
 # @ob -- number of trees in the 'trees.zip' to trim
 @ob = 0
 
-# @ob -- number of trees in the 'trees.zip' to cut
+# @ox -- number of trees in the 'trees.zip' to cut
 @ox = 0
 
 # parse -- recursively parse all nodes of the tree, stored in arr[]
