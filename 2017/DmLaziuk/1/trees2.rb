@@ -56,6 +56,8 @@ def parse(arr, lvl = 0)
   end
 end
 
+# print_tree -- prints tree stored in @hash = { [y, x] = value }
+#
 def print_tree
   # preparing string array to output
   str = []
