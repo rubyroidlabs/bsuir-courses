@@ -5,7 +5,6 @@ class Tree
   @@b = 1
   @@bool = true
   @@hight = 1
-  @@a=[][]
   def initialize(value = nil,left = nil,right = nil)
     @value = value
     @left = left
@@ -69,11 +68,10 @@ class Tree
       end
       puts string    
       l = l / 2
-      s = space(l)
       i += 1
-    end   
+    end
   end
-
+    
   def space(length)
     i = 1
     s = ' '
