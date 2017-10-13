@@ -45,8 +45,6 @@ module Tree
     what_to_do(summ, deep)
   end
 
-  private_class_method
-
   def self.write_level(level_nodes, spaces)
     level_nodes.length.times do |i|
       if i.zero?
@@ -113,4 +111,3 @@ else
     end
   end
 end
-
