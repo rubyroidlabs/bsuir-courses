@@ -22,9 +22,9 @@ def all_trees_out
     case input
     when 'y' then l_sum_ch(a_l_sum(s_to_h(str)))
     when 'n' then puts 'Thank you for visiting! Have a good day!'
-      break
+                  break
     else puts 'Type error!'
-      redo
+              redo
     end
   end
 end
