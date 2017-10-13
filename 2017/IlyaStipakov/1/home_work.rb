@@ -41,8 +41,6 @@ def print_tree
         str << ' ' * (2**(@level - i))
         str << @hash[[i, n]].to_s
         str << ' ' * (2**(@level - i) / 2)
-      else
-        
       end
     end
     if i < 5
@@ -84,7 +82,7 @@ else
   @tree_array = @tree_array.sort
   @w = 0
   while @answer == true
-    c = File.open("#{@tree_array[@w]}")
+    c = File.open(@tree_array[@w].to_s)
     @w += 1
     content = c.read
     tree = JSON.parse(content)
