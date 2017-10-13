@@ -24,7 +24,7 @@ def all_trees_out
     when 'n' then puts 'Thank you for visiting! Have a good day!'
                   break
     else puts 'Type error!'
-              redo
+         redo
     end
   end
 end
