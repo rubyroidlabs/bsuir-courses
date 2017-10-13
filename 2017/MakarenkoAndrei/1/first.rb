@@ -74,10 +74,10 @@ class Tree
     end   
   end
 
-  def space (length)
+  def space(length)
     i = 1
-    s = ' '    
-    while i<length
+    s = ' '
+    while i < length
       s += ' '
       i += 1
     end
