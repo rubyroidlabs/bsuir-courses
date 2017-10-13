@@ -81,26 +81,25 @@ class Tree
       s +=' '
       i += 1
     end
-    s    
+  s    
   end
+  
   def main()
     require 'json'
     file ='trees/' + ENV['NAME'] + '.tree'
     if ENV['NAME'] = nil
-    puts 'Пустых деревьев не растет'      
+      puts 'Пустых деревьев не растет'      
     elsif File.file? file  
-    forest = Tree.make_tree(JSON.parse(File.read(file))) 
-    
+      forest = Tree.make_tree(JSON.parse(File.read(file))) 
     do_hight(forest)
     @@hight = @@b
-    
     @@a = Array.new(@@hight) { [] }
     @@b = 0
     do_array(forest)
-    output()
+    output
     else
-    puts 'Такого дерева не растет'  
+      puts 'Такого дерева не растет'  
     end       
-    end
+  end
 end
-Tree.new.main()
+Tree.new.main
