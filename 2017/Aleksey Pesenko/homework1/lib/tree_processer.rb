@@ -4,7 +4,6 @@ require 'pry'
 class TreeProcesser
   def self.print_tree(tree)
     depth = tree_depth tree
-
     1.upto(depth) do |i|
       @@spaces = depth - i + 1
       print '  ' * (2 ** @@spaces / 2)
@@ -18,7 +17,6 @@ class TreeProcesser
       end
       puts
     end
-
     puts
   end
 

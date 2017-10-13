@@ -13,21 +13,19 @@ if ENV['NAME'].nil?
 
     if TreeProcesser.tree_age(tree) > 5000
       puts "Дерево слишком старое, его нужно срубить...\n\r"
-      puts
     elsif TreeProcesser.tree_depth(tree) > 5
       puts "Дерево слишком высокое, его нужно обрезать.\n\r"
-      puts
     else
       puts "Хорошее дерево! Оставим его!\n\r"
-      puts
     end
+    puts
 
     print 'Хотите продолжить? [y/n] '
 
     answer = ''
     loop do
       answer = gets.chomp
-      break if answer == 'y' || answer == 'n'
+      break if %W(y n).include?(answer)
     end
     break if answer == 'n'
 
