@@ -22,11 +22,11 @@ if ENV['NAME'].nil?
 elsif ENV['NAME']
   files_list.each do |file_name|
     next unless file_name.include? ENV['NAME']
-      tree_name = File.basename(file_name)
-      tree_array = JSON.parse(File.read(file_name))
-      tree = Tree.new(tree_name, JSON.parse(File.read(file_name)))
-      puts tree.name
-      tree.print_nodes(tree.tree_array)
+    tree_name = File.basename(file_name)
+    tree_array = JSON.parse(File.read(file_name))
+    tree = Tree.new(tree_name, tree_array)
+    puts tree.name
+    tree.print_nodes(tree.tree_array)
   end
 end
 puts 'Спасибо что были в нашем лесу.'
