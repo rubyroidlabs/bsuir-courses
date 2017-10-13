@@ -3,13 +3,14 @@ require 'zip'
 require 'json'
 
 def number? string
-  true if Float(string) else false
+  true if Float(string) rescue false
 end
 
 def build_tree_divide_and_conquer(tree_array, level_of_depth, branch_dir)
   l = tree_array[0]
   r = tree_array[1]
-  @maximal_depth = level_of_depth > @maximal_depth ? level_of_depth : @maximal_depth
+  @maximal_depth = level_of_depth > @maximal_depth ? level_of_depth
+    : @maximal_depth
   if l.is_a?(Integer)
     @a[level_of_depth].push([l, branch_dir])
     @vertex_sum += l
@@ -25,7 +26,7 @@ def build_tree_divide_and_conquer(tree_array, level_of_depth, branch_dir)
   end
 
   if l.is_a?(Array)
-    build_tree_divide_dnd_donquer(l, level_of_depth, 'l')
+    build_tree_divide_and_conquer(l, level_of_depth, 'l')
   end
 
   if r.is_a?(Array)
