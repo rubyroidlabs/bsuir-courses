@@ -75,8 +75,8 @@ def print_tree
 
     flag = false
     k = 0
-    str.split('').each do |i|
-      if is_number?(i) && !flag
+    str.split('').each do |j|
+      if is_number?(j) && !flag
         if k.zero?
           print '/'
           k = 1
@@ -85,9 +85,9 @@ def print_tree
           k = 0
         end
         flag = true
-      elsif is_number?(i) && flag
+      elsif is_number?(j) && flag
         print ' '
-      elsif i == ' '
+      elsif j == ' '
         print ' '
         flag = false
       end
