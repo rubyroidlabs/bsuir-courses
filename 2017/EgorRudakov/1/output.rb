@@ -1,5 +1,4 @@
 require 'zip/filesystem'
-require 'pry'
 require_relative 'tree'
 
 list_of_trees = []
