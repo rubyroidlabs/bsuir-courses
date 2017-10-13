@@ -2,8 +2,6 @@ require 'rubygems'
 require 'zip'
 require 'json'
 
-name = ENV["NAME"]
-
 def is_number? string
   true if Float(string) rescue false
 end
@@ -37,7 +35,7 @@ def buildTreeDivideAndConquer(treeArray, levelOfDepth, branchDir)
 
 end
 
-def buildPrintTree()
+def buildPrintTree
   19.times do
     @a.push([])
   end
@@ -55,17 +53,17 @@ def printTree()
     str = String.new("")
     count = 0
     #Вывод значений
-    (1..(2**(n-i)-1)).each do
+    (1..(2**(n - i) - 1)).each do
       str += ' '
     end
     str += @a[i + 1][count][0].to_s
     count += 1
     k = 1
-    (1 .. (2**i)-1).each do
-      (1..2**(n-i+1) - 1).each do
+    (1 .. (2**i) - 1).each do
+      (1..2**(n - i + 1) - 1).each do
         str += ' '
       end
-      if (k == 0)
+      if k.zero?
         str += @a[i + 1][count][0].to_s
         count += 1
         k = 1
@@ -79,19 +77,19 @@ def printTree()
     flag = false
     k = 0
     calc = 0
-    str.split("").each do |i|
-      if (is_number?(i)) && !flag
-        if (k == 0)
-          print"/"
+    str.split('').each do |i|
+      if is_number?(i) && !flag
+        if k.zero?
+          print '/'
           k = 1
         else
-          print "\\"
+          print '\\'
           k = 0
         end
         flag = true
-      elsif (is_number?(i) && flag)
+      elsif is_number?(i) && flag
         print ' '
-      elsif (i == ' ')
+      elsif i == ' '
         print ' '
         calc += 1
         flag = false
@@ -102,7 +100,7 @@ def printTree()
   end
 end
 
-def makeChoise()
+def make_choise
   puts
   if @vertex_sum > 5000
     puts 'Срубить'
@@ -113,28 +111,26 @@ def makeChoise()
   end
 end
 
-
-def level3()
+def level3
   Zip::File.open('trees.zip') do |zip_file|
     zip_file.each do |entry|
-      if !entry.directory?
-        puts entry.name
-        content = entry.get_input_stream.read
-        @a = []
-        buildPrintTree
-        @vertex_sum = 0
-        @maximal_depth = 0
-        parsed_json_tree = JSON.parse(content)
-        buildTreeDivideAndConquer(parsed_json_tree, 1, 'c')
-        printTree
-        makeChoise
-        puts "\nХотите продолжить? [y/n]: "
-        user_ans = gets.to_s
-        user_ans[0] = user_ans[0].downcase
-        if user_ans[0] == 'n'
-          p 'Спасибо, что были в нашем лесу!'
-          break
-        end
+      next if entry.directory?
+      puts entry.name
+      content = entry.get_input_stream.read
+      @a = []
+      buildPrintTree
+      @vertex_sum = 0
+      @maximal_depth = 0
+      parsed_json_tree = JSON.parse(content)
+      buildTreeDivideAndConquer(parsed_json_tree, 1, 'c')
+      printTree
+      make_choise
+      puts "\nХотите продолжить? [y/n]: "
+      user_ans = gets.to_s
+      user_ans[0] = user_ans[0].downcase
+      if user_ans[0] == 'n'
+        p 'Спасибо, что были в нашем лесу!'
+        break
       end
     end
   end
@@ -142,7 +138,7 @@ end
 # =>                                           BEGINNING
 ::Zip.sort_entries = true
 puts 'Добро пожаловать в наш лес!'
-name = ENV["NAME"]
+name = ENV['NAME']
 if name.nil?
   level3
 else
