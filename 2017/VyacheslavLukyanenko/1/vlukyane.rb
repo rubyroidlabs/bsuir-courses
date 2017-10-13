@@ -43,10 +43,10 @@ end
 
 def print_tree
   n = @maximal_depth
-  (0..2 * (2**(n - 1))).each do |i|
+  (0..2 * (2**(n - 1))).each do
     print ' '
   end
-  print @[1][0][0]
+  print @A[1][0][0]
   puts
 
   (1..n - 1).each do |i|
