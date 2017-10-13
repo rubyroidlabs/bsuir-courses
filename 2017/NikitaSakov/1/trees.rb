@@ -11,7 +11,7 @@ module Tree
     tree_string = File.read(name_of_file)
     tree_inf = JSON.parse(tree_string)
     queue << tree_inf
-    while queue.length != 0
+    while !queue.empty?
       queue.length.times do |i|
         2.times do |j|
           if queue[i][j].is_a? Integer
@@ -45,6 +45,12 @@ module Tree
     what_to_do(summ, deep)
   end
 
+  def self.write_spaces(spaces)
+    spaces.times do
+      print ' '
+    end
+  end
+
   def self.write_level(level_nodes, spaces)
     level_nodes.length.times do |i|
       if i.zero?
@@ -68,12 +74,6 @@ module Tree
       else
         print '\ '
       end
-    end
-  end
-
-  def self.write_spaces(spaces)
-    spaces.times do
-      print ' '
     end
   end
 
