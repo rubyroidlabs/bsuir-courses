@@ -127,7 +127,6 @@ class Tree
 end
 
 tree_name = ENV['NAME']
-all_trees = []
 all_trees = Dir['trees/*.tree']
 all_trees.sort!
 if tree_name.nil?
@@ -153,4 +152,5 @@ elsif all_trees.include?('trees/' + tree_name + '.tree')
   tree.print_tree
 else
   puts 'Данное дерево не растет в данном лесу.'
+  puts ''
 end
