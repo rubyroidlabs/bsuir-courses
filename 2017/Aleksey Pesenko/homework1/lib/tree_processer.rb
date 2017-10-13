@@ -21,14 +21,14 @@ class TreeProcesser
   end
 
   def self.tree_depth(brunch)
-    left = brunch[1][0].class == Fixnum ? 1 : tree_depth(brunch[1][0])
-    right = brunch[1][1].class == Fixnum ? 1 : tree_depth(brunch[1][1])
+    left = brunch[1][0].is_a?(Integer) ? 1 : tree_depth(brunch[1][0])
+    right = brunch[1][1].is_a?(Integer) ? 1 : tree_depth(brunch[1][1])
     (left >= right ? left : right) + 1
   end
 
   def self.tree_age(brunch)
-    left = brunch[1][0].class == Fixnum ? brunch[1][0] : tree_age(brunch[1][0])
-    right = brunch[1][1].class == Fixnum ? brunch[1][1] : tree_age(brunch[1][1])
+    left = brunch[1][0].is_a?(Integer) ? brunch[1][0] : tree_age(brunch[1][0])
+    right = brunch[1][1].is_a?(Integer) ? brunch[1][1] : tree_age(brunch[1][1])
     brunch[0] + left + right
   end
 
