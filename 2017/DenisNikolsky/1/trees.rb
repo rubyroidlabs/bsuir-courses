@@ -128,9 +128,9 @@ end
 
 tree_name = ENV['NAME']
 all_trees = []
+all_trees = Dir['trees/*.tree']
+all_trees.sort!
 if tree_name.nil?
-  all_trees = Dir['trees/*.tree']
-  all_trees.sort!
   all_trees.each do |name|
     puts name
     arr = JSON.parse(File.open(name.to_s, &:read))
