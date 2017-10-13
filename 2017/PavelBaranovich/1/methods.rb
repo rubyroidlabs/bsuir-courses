@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#/usr/bin/env ruby
 
 def print_tree(depth, space_count, prev_space_count, tree, max_depth)
   if depth >= 0
@@ -45,7 +45,7 @@ def create_tree(numbers, str)
     if str[i] + str[i + 1] == ',['
       vertex <<= 1
 
-      if !tree[vertex << 1].nil?
+      unless tree[vertex << 1].nil?
         vertex += 1
       end
 

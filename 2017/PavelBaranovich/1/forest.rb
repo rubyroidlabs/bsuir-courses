@@ -1,7 +1,7 @@
-#!/usr/bin/env ruby
+#/usr/bin/env ruby
 require_relative('methods')
 
-dir = Dir.new("trees")
+dir = Dir.new('trees')
 path = dir.entries.each.map do |file|
   next if !(file =~ /\.tree/)
   file
@@ -25,15 +25,15 @@ else
     
     array = solve(file_name)
 
-    if  array.inject{ |sum, n| sum.to_i + n.to_i }.to_i > 5000
+    if  array.inject { |sum, n| sum.to_i + n.to_i }.to_i > 5000
       puts 'Срубить'
     elsif get_depth(array.size) > 5
-      puts 'Обрезать' 
+      puts 'Обрезать'
     else
-      puts 'Оставить' 
+      puts 'Оставить'
     end
 
-    print 'Желаете продолжить? [y/n] '  
+    print 'Желаете продолжить? [y/n] '
     input = gets.chomp.downcase
     if input == 'n' || 'trees/' + path[path.size - 1] == file_name
       break;
