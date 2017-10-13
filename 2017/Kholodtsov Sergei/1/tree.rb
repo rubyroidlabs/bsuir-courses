@@ -61,7 +61,7 @@ class Tree
       f_t = counter
       counter /= 2
       s_t = counter
-      s_t.zero? ? f_l = ' ' * (s_t + 1) : f_l = ' ' * f_t
+      counter.zero? ? f_l = ' ' * (s_t + 1) : f_l = ' ' * f_t
       s_l = ' ' * s_t
       list.each do |j|
         j = j.to_s

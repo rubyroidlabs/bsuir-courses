@@ -9,9 +9,9 @@ Dir.foreach('trees') do |i|
 end
 file_list.sort!
 2.times { file_list.shift }
-unless file_name.nil?
-  while !file_list[0].nil? && ans == 'y' do
-    ans = 'm'
+if file_name.nil?
+  while !file_list[0].nil? do
+    ans != 'y' ? break : ans = 'm'
     file_name = file_list.shift
     puts file_name
     data = File.read('trees/' + file_name)
@@ -20,13 +20,14 @@ unless file_name.nil?
     tree.create_and_out(elements)
     print 'Желаете продолжить? [y/n] '
     ans = gets.chomp.downcase
-    while ans!='y' && ans!='n' do
+    while ans != 'y' do
+      ans == 'n' ? break : ans = 'm'
       print 'Неверный выбор, повторите. '
       ans = gets.chomp.downcase
     end
   end
 else
-	if file_name == ''
+  if file_name == ''
     puts 'Безымянных деревьев у нас не растет.'
     exit
   end
