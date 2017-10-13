@@ -60,10 +60,9 @@ class Tree
     end
   end
 
-  def get_sum(node = @root, sum = 0)
+  def get_sum(node = @root)
     return 0 unless node
-    sum += get_sum(node.left, sum) + get_sum(node.right, sum)
-    sum + node.value
+    get_sum(node.left) + get_sum(node.right) + node.value
   end
 
   def get_max_deep(node = @root, deep = 0)
@@ -73,6 +72,7 @@ class Tree
   end
 
   def check
+    puts get_sum
     if get_sum > 5000
       puts 'Срубить.'
     elsif get_max_deep > 5
