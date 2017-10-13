@@ -13,7 +13,7 @@ def decision(kol, level)
     puts 'Оставить'
   end
   if level > 6
-    puts 'Дерево обрезанно'
+    puts 'Дерево обрезано'
   else
     puts 'Дерево целое'
   end
@@ -22,7 +22,7 @@ end
 def slesh(kol, space)
   steep(2**space - 2)
   (0...kol).each do |i|
-    (i % 2).zero? ? ( printf ' /' ) : ( printf '\ ' )
+    (i % 2).zero? ? (printf ' /') : (printf '\ ')
     steep(2**(space + 1) - 2)
   end
   puts ' '
@@ -61,7 +61,10 @@ class Tree
     tree_string = File.read(file_name)
     tree_inf = JSON.parse(tree_string)
     array << tree_inf
-    while !array.first.nil?
+    while true
+      if array.empty?
+        break
+      end
       array.length.times do |i|
         if array[i][0].is_a? Integer
           vec << array[i][0]
