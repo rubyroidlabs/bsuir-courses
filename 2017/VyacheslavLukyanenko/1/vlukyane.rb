@@ -40,7 +40,7 @@ def build_print_tree
     @a.push([])
   end
 end
-
+# Special for houndci-bot arrr
 def print_tree
   n = @maximal_depth
   (0..2 * (2**(n - 1))).each do
