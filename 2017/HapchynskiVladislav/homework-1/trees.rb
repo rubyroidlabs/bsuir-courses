@@ -1,21 +1,23 @@
 require 'json'
 require 'pry'
 
-name = ENV['NAME']
+name = ENV['NAME'] + '.tree'
 forest = []
 Dir.foreach('trees') do |filename|
   forest << filename if filename =~ /^\w/
 end
 forest.sort!
-if forest.include? (name + '.tree')
-  f = 'trees/' + name + '.tree'
+
+if forest.include? (name)
+  f = 'trees/' + name
   tree_str = File.read(f).delete!("\n")
   tree = JSON.parse(tree_str)
   print tree
-elsif
-  puts 'Данное дерево не растет в данном лесу.'
 elsif name.empty?
   puts 'Безымянных деревев у нас не растет.'
+else
+  puts 'Данное дерево не растет в данном лесу.'
+
   answer = ''
   forest.each do |filename|
     puts filename
