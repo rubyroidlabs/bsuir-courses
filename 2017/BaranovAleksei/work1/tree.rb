@@ -20,17 +20,18 @@ def look_tree(name_search)
     print "\nС деревом все впорядке! Его не надо трогать!\n"
   end
 end
-print "Вы ищете  какое-то конкретное дерево[1] или показать все[2]?\n"
-answer_search = nil
-while answer_search == nil
-  answer_search = gets.to_i
+print "Если Вы ищете какое-то конкретное дерево[1], показать все[2], для выхода нажмите[3]\n"
+answer_search = gets.to_i
+while answer_search != 3
   if answer_search == 1
     print "Как зовут дерево, что вы ищете?\n"
     name_search = gets.chomp
-    name_search = "trees/" + name_search + ".tree"
+    name_search = 'trees/' + name_search + '.tree'
     if all_trees.include?( name_search ) == true
-      print "такое дерево есть, вот оно ...\n"
+      print 'такое дерево есть, вот оно ...' + "\n"
       look_tree(name_search)
+      print "если желаете продолжить введите - 1, если нет - 3\n"
+      answer_search = gets.to_i
     else
       print "нет такого дерева\n"
     end
@@ -50,10 +51,13 @@ while answer_search == nil
         len += 1
         print "\nЖелаете продолжить? [y/n]"
         repeat = gets.chomp
+        if repeat != 'y'
+          answer_search = 3
+        end
       end
     end
   else
     print "Ваш выбор мне не понятен, попробуйте ещё раз...\n"
-    answer_search = 1
+    answer_search = gets.to_i
   end
 end
