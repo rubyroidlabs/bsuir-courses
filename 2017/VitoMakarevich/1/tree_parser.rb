@@ -18,7 +18,7 @@ class TreeParser
     depth = array_depth
     @layers = Array.new(depth) { [] }
     parse(@array[1], 0)
-    @layers[0].push(@array[0])
+    @layers.first.push(@array.first)
     @layers.delete_if { |layer| layer.count.zero? }
   end
 
