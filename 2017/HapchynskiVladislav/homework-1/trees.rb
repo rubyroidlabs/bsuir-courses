@@ -6,9 +6,10 @@ forest = []
 Dir.foreach('trees') do |filename|
   forest << filename if filename =~ /^\w/
 end
+
 forest.sort!
 
-if forest.include? (name)
+if forest.include?name
   f = 'trees/' + name
   tree_str = File.read(f).delete!("\n")
   tree = JSON.parse(tree_str)
@@ -29,7 +30,7 @@ else
       print tree
       print 'Желаете продолжить? [y/n] '
       answer = gets.chomp
-      break if %w(y n).include? answer
+      break if %w[y n].include? answer
       puts 'Желаете продолжить? [y/n] '
     end
     if answer == 'n'
