@@ -68,16 +68,29 @@ def parse(arr, lvl = 0)
 end
 
 def print_tree
+  # preparing string array to output
   str = []
-  (0..2 * @n).each { |i| str[i] = ' ' * (4 * 2**@n) }
+  # initialize each string with 4 spaces for 2**n elements
+  (0..2 * @n).each { |i| str[i] = '    ' * 2**@n }
+  # print branches /\
   (0...@n).each do |y|
     (0...2**y).each do |x|
-      str[2 * y + 1][2**(@n + 1 - y) + x * 2**(@n + 2 - y) + 1, 2] = '/\\'
+      # curr_str -- every odd line in str[]
+      curr_str = str[2 * y + 1]
+      # curr_x -- offset from the beginning of line
+      curr_x = 2**(@n + 1 - y) + x * 2**(@n + 2 - y) + 1
+      curr_str[curr_x, 2] = '/\\'
     end
   end
-  @hash.each do |key, value|
-    str[key[0] * 2][2**(@n + 1 - key[0]) + key[1] * 2**(@n + 2 - key[0]), 4] = \
-      format('%3d ', value)
+  # print nodes with values
+  @hash.each do |yx, value|
+    # (y, x) -- coordinates of node
+    y = yx[0]
+    x = yx[1]
+    # curr_str -- every even line in str[]
+    curr_str = str[2 * y]
+    curr_x = 2**(@n + 1 - y) + x * 2**(@n + 2 - y)
+    curr_str[curr_x, 4] = format('%3d ', value)
   end
   str.each { |s| puts s }
 end
