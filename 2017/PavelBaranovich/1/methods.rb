@@ -1,31 +1,31 @@
 #!/usr/bin/env ruby
 
 def print_tree(depth, space_count, prev_space_count, tree, max_depth)
-  if depth >= 0 
+  if depth >= 0
     print_tree(depth - 1, 2 * space_count + 1, space_count - 1, tree, max_depth)
 
     count = 1 << depth
-    answer= " " * prev_space_count
+    answer = " " * prev_space_count
     while count < (1 << (depth + 1))
-      if tree[count] == nil
-        answer += " " * (space_count + 1)
+      if tree[count].nil?
+        answer += ' ' * (space_count + 1)
       elsif tree[count].to_i < 10
-        answer += tree[count] + " " * space_count
+        answer += tree[count] + ' ' * space_count
       else
-        answer += tree[count] + " " * (space_count - 1)
+        answer += tree[count] + ' ' * (space_count - 1)
       end
       count += 1
-    end 
+    end
 
-    if depth > 0  
-      slashes = " " * answer.size
+    if depth > 0
+      slashes = ' ' * answer.size
       i = space_count
       indent = 1 << (max_depth - depth)
       distance = indent << 3
       while i < answer.size
         slashes[i - indent - 1] = '/'
         slashes[i + indent - 1] = '\\'
-        i += distance;
+        i += distance
       end
 
       puts slashes
@@ -34,7 +34,7 @@ def print_tree(depth, space_count, prev_space_count, tree, max_depth)
   end
 end
 
-def create_tree(file, numbers, str)
+def create_tree(numbers, str)
   vertex = 1
   i = 1
   j = 0
@@ -45,8 +45,8 @@ def create_tree(file, numbers, str)
     if str[i] + str[i + 1] == ',['
       vertex <<= 1
 
-      if tree[vertex << 1] != nil
-        vertex += 1 
+      if !tree[vertex << 1].nil?
+        vertex += 1
       end
 
       j += 1
@@ -56,7 +56,7 @@ def create_tree(file, numbers, str)
       j += 1
       tree[vertex] = numbers[j]
     elsif str[i] == ']'
-      if tree[vertex << 1] != nil && tree[(vertex << 1) + 1] == nil
+      if !tree[vertex << 1].nil? && tree[(vertex << 1) + 1].nil?
         vertex <<= 1
       end
       vertex >>= 1
@@ -87,7 +87,7 @@ def solve(file_name)
     numbers = file.scan(/\d\d*/)
     str = file.delete('0-9')
       
-    tree = create_tree(file, numbers, str)
+    tree = create_tree(numbers, str)
 
     depth = get_depth(tree.size)
 
