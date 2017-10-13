@@ -61,7 +61,7 @@ class Tree
     tree_string = File.read(file_name)
     tree_inf = JSON.parse(tree_string)
     array << tree_inf
-    while true
+    loop do
       if array.empty?
         break
       end
