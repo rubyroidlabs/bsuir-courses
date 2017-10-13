@@ -3,8 +3,6 @@ require_relative 'node.rb'
 class Tree
   def initialize(array)
     @root = make_tree(array)
-    @sum = 0
-    @max_deep = 0
   end
 
   def make_tree(array)
@@ -62,28 +60,21 @@ class Tree
     end
   end
 
-  def get_sum(node = @root)
-    return unless node
-    @sum += node.value
-    get_sum(node.left) if node.left
-    get_sum(node.right) if node.right
-    @sum
+  def get_sum(node = @root, sum = 0)
+    return 0 unless node
+    sum += get_sum(node.left, sum) + get_sum(node.right, sum)
+    sum += node.value
   end
 
   def get_max_deep(node = @root, deep = 0)
-    return unless node
+    return deep unless node
     deep += 1
-    @max_deep = deep if @max_deep < deep
-    get_max_deep(node.left, deep)
-    get_max_deep(node.right, deep)
-    @max_deep
+    left_deep = get_max_deep(node.left, deep)
+    right_deep = get_max_deep(node.right, deep)
+    [left_deep, right_deep].max
   end
 
   def check
-    puts get_sum
-    puts get_max_deep
-    @sum = 0
-    @max_deep = 0
     if get_sum > 5000
       puts 'Срубить.'
     elsif get_max_deep > 5
