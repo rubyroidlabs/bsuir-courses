@@ -5,7 +5,7 @@ class Tree
   @@b = 1
   @@bool = true
   @@hight = 1
-  
+  @@a=[][]
   def initialize(value = nil,left = nil,right = nil)
     @value = value
     @left = left
