@@ -69,9 +69,7 @@ class Tree
   def get_max_deep(node = @root, deep = 0)
     return deep unless node
     deep += 1
-    left_deep = get_max_deep(node.left, deep)
-    right_deep = get_max_deep(node.right, deep)
-    [left_deep, right_deep].max
+    [get_max_deep(node.left, deep), get_max_deep(node.right, deep)].max
   end
 
   def check
