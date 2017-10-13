@@ -16,11 +16,11 @@ def look_tree (name_search)
 
 	print content
 
-	if age_tree >= 5000 and height_tree > 5
+	if age_tree >= 5000 && height_tree > 5
 		print "\n Дерево большое и старое - его надо срубить.\n"
-	elsif age_tree >= 5000 and height_tree < 5
+	elsif age_tree >= 5000 && height_tree < 5
 		print "\n Дерево старое - его надо срубить.\n"
-	elsif age_tree < 5000 and height_tree > 5
+	elsif age_tree < 5000 && height_tree > 5
 		print "\n Дерево большое - его надо подрезать.\n"
 	else
 		print "\nС деревом все впорядке! Его не надо трогать!\n"
