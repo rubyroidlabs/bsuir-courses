@@ -4,7 +4,7 @@ require 'zip/zip'
 require_relative 'binary_tree'
 require_relative 'functions'
 
-if ENV['NAME'].nil? || ENV['NAME'] == ""
+if ENV['NAME'].nil? || ENV['NAME'] == ''
   name_not_given
 else
   name = 'trees/' + ENV['NAME'] + '.tree'

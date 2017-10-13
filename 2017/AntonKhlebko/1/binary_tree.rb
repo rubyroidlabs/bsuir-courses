@@ -122,8 +122,8 @@ class BinaryTree
 
   def sum_elements(sum = 0)
     sum += data
-    sum += left.sum_elements if left&.data
-    sum += right.sum_elements if right&.data
+    sum += left.sum_elements if !left.nil? && !left.data.nil?
+    sum += right.sum_elements if !right.nil? && !right.data.nil?
     sum
   end
 end
