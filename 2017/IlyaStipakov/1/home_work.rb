@@ -95,4 +95,4 @@ else
     break if gets.chomp == 'n'
     c.close
   end
-end
+end"\n"
