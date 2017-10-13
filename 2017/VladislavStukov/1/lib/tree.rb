@@ -27,11 +27,11 @@ class Tree
   def go_deep(node, deep)
     deep += 1
     @tree_divided_by_level[deep] ||= Array.new
-    unless node.left.nil?
+    if node.left
       @tree_divided_by_level[deep] << node.left
       go_deep(node.left, deep)
     end
-    unless node.right.nil?
+    if node.right
       @tree_divided_by_level[deep] << node.right
       go_deep(node.right, deep)
     end
