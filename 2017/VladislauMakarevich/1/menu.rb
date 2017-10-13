@@ -58,7 +58,6 @@ class Menu
               true
             when 'No', 'no', 'n', 'Not', 'not', 'NO', 'NOT'
               false
-            else nil
             end
       if flg.nil?
         p 'Input Error. Try again.'
