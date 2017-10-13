@@ -15,11 +15,10 @@ class Menu
   def menu_forest(file_stream, tree)
     array_trees = load_forest.sort
     array_trees.each do |index|
-      if array_trees.to_s[index].include?('.tree')
-        menu_single_tree(file_stream, array_trees.to_s[index], tree)
-        unless extension_check
-          break
-        end
+      next unless array_trees.to_s[index].include?('.tree')
+      menu_single_tree(file_stream, array_trees.to_s[index], tree)
+      unless extension_check
+        break
       end
     end
   end
@@ -29,10 +28,9 @@ class Menu
     tree.initialization(array, 0, tree.create_root, 1)
     p "==={#{file_name}}==="
     tree.get_tree(tree.tree_root)
-
     if tree.count_sum_nodes(tree.tree_root) > 5000
       p 'To cut down.'
-      File.delete(file_name)
+      #File.delete(file_name)
     elsif !tree.check_depth(tree.tree_root)
       p 'Crop.'
       tree.crop(tree.tree_root)

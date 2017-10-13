@@ -12,17 +12,22 @@ class Tree
       return
     end
 
-    if array[0] && code == 1
-      self.initialization(array[0], 0, tree_node.create_left_node, depth + 1)
-    elsif array[0] && check_valid_number(array[0])
-      tree_node.value = array[0]
-      tree_node.depth = depth
-    end
+    if code == 1
+      if array[0]
+        self.initialization(array[0], 0, tree_node.create_left_node, depth + 1)
+      end
+      if array[1]
+        self.initialization(array[1], 0, tree_node.create_right_node, depth + 1)
+      end
+    else
+      if array[0] && check_valid_number(array[0])
+        tree_node.value = array[0]
+        tree_node.depth = depth
+      end
 
-    if array[1] && code == 1
-      self.initialization(array[1], 0, tree_node.create_right_node, depth + 1)
-    elsif array[1]
-      self.initialization(array[1], 1, tree_node, depth)
+      if array[1]
+        self.initialization(array[1], 1, tree_node, depth)
+      end
     end
   end
 
@@ -100,23 +105,6 @@ class Tree
     true
   end
 
-  # Horizontal tree output
-  # def get_tree_leveled(tree_root, level)
-  #   unless tree_root
-  #     return 0
-  #   end
-  #   count = get_tree_leveled(tree_root.left_node, level + 1)
-  #   i = 0
-  #   while i < level
-  #     print "\t"
-  #     i += 1
-  #   end
-  #
-  #   print "#{tree_root.value}(#{tree_root.depth})\n"
-  #   count += get_tree_leveled(tree_root.right_node, level + 1)
-  #   count + 1
-  # end
-
   def output_level(tree_root, level, current_depth)
     if tree_root.depth == level
       print ' ' * (4 * current_depth).to_i
@@ -136,7 +124,7 @@ class Tree
     level = 1
     max_depth = get_max_depth(tree_root) + 1
     while level < max_depth
-      current_depth = 2 ** (max_depth - level - 2)
+      current_depth = 2**(max_depth - level - 2)
       output_level(tree_root, level,  current_depth)
       print "\n"
       level += 1

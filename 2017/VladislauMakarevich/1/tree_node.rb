@@ -2,7 +2,7 @@ class TreeNode
   def initialize
     @left_node = nil
     @right_node = nil
-    @value = nil
+    @value = 0
     @depth = 0
   end
 
