@@ -24,15 +24,7 @@ module Tree
       end
       if level_nodes.length != 0
         deep += 1
-        if deep < 5
-          spaces /= 2
-          if deep > 1
-            write_slash(level_nodes, spaces)
-          end
-          puts
-          write_level(level_nodes, spaces)
-          puts
-        end
+        spaces = level_with_slashes(level_nodes, spaces, deep)
       end
       queue = Array.new
       queue += queue_temp
@@ -49,6 +41,19 @@ module Tree
     spaces.times do
       print ' '
     end
+  end
+
+  def self.level_with_slashes(level_nodes, spaces, deep)
+    if deep < 5
+      spaces /= 2
+      if deep > 1
+        write_slash(level_nodes, spaces)
+      end
+      puts
+      write_level(level_nodes, spaces)
+      puts
+    end
+    spaces
   end
 
   def self.write_level(level_nodes, spaces)
