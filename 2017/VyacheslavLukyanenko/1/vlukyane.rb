@@ -13,7 +13,7 @@ def build_tree_divide_and_conquer(tree_array, level_of_depth, branch_dir)
     @maximal_depth = level_of_depth
   end
   if l.is_a?(Integer)
-    @a[level_of_depth].push([l, branch_dir])
+    @A[level_of_depth].push([l, branch_dir])
     @vertex_sum += l
     level_of_depth += 1
   end
@@ -22,7 +22,7 @@ def build_tree_divide_and_conquer(tree_array, level_of_depth, branch_dir)
     if l.is_a?(Integer)
       level_of_depth -= 1
     end
-    @a[level_of_depth].push([r, branch_dir])
+    @A[level_of_depth].push([r, branch_dir])
     @vertex_sum += r
   end
 
@@ -37,7 +37,7 @@ end
 
 def build_print_tree
   19.times do
-    @a.push([])
+    @A.push([])
   end
 end
 
@@ -46,7 +46,7 @@ def print_tree
   (0..2 * (2**(n - 1))).each do |i|
     print ' '
   end
-  print @a[1][0][0]
+  print @[1][0][0]
   puts
 
   (1..n - 1).each do |i|
@@ -56,7 +56,7 @@ def print_tree
     (1..(2**(n - i) - 1)).each do
       str += ' '
     end
-    str += @a[i + 1][count][0].to_s
+    str += @A[i + 1][count][0].to_s
     count += 1
     k = 1
     (1..(2**i) - 1).each do
@@ -64,11 +64,11 @@ def print_tree
         str += ' '
       end
       if k.zero?
-        str += @a[i + 1][count][0].to_s
+        str += @A[i + 1][count][0].to_s
         count += 1
         k = 1
       else
-        str += @a[i + 1][count][0].to_s
+        str += @A[i + 1][count][0].to_s
         count += 1
         k = 0
       end
@@ -115,7 +115,7 @@ def level3
       next if entry.directory?
       puts entry.name
       content = entry.get_input_stream.read
-      @a = []
+      @A = []
       build_print_tree
       @vertex_sum = 0
       @maximal_depth = 0
@@ -143,7 +143,7 @@ else
   Zip::File.open('trees.zip') do |zip_file|
     if zip_file.find_entry("trees/#{name}.tree")
       content = zip_file.read("trees/#{name}.tree")
-      @a = []
+      @A = []
       build_print_tree
       @vertex_sum = 0
       @maximal_depth = 0
