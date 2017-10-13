@@ -9,7 +9,7 @@ end
 
 forest.sort!
 
-if forest.include?name
+if forest.include? name
   f = 'trees/' + name
   tree_str = File.read(f).delete!("\n")
   tree = JSON.parse(tree_str)
