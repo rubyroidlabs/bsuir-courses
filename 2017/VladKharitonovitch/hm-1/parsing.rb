@@ -3,10 +3,10 @@ def parsing (array)
   array_of_nodes=[]
   current_list=[]
   array.each do |x|
-    if  x.class.to_s != "Array"
-      current_list.push(x)
-    else
+    if  x.is_a? Array
       array_of_nodes += x
+    else
+      current_list.push(x)
     end
   end
   if current_list.empty? == false 

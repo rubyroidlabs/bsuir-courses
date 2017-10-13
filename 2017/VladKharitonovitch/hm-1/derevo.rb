@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'json'
-require_relative ("parsing.rb")
-entry=ENV["NAME"].to_s.downcase
+require_relative("parsing.rb")
+entry = ENV["NAME"].to_s.downcase
 if entry.empty?
   puts "Безымянных деревьев у нас не растет."
 else
@@ -14,10 +14,8 @@ else
     array=JSON.parse(content)
     parsing(array)
     after_update_content=@after_parsing_arr
-    @counter=1
-    after_update_content.each do |lvl|
-      print "lvl #{@counter} дерева : "
-      @counter+=1
+    after_update_content.each_with_index do |lvl ,index|
+      print "lvl #{index + 1} дерева : "
       lvl.each{|node| print"#{node} "}
       puts  
     end             
