@@ -1,3 +1,5 @@
+require 'json'
+
 class Node
   attr_accessor :data, :left, :right
 
@@ -80,7 +82,7 @@ if ENV['NAME'].nil?
       fn = open filename
       content = fn.read
       fn.close
-      array = eval content
+      array = JSON.parse(content)
       tree = Node.new.grow_tree(array)
       tree.show_tree
       puts 'do you want to go deeper into the forest? '
@@ -95,7 +97,7 @@ else
   fn = open filename
   content = fn.read
   fn.close
-  array = eval content
+  array = JSON.parse(content)
   tree = Node.new.grow_tree(array)
   tree.show_tree
 end
