@@ -1,5 +1,5 @@
 class Tree
-  attr_accessor :left
+    attr_accessor :left
   attr_accessor :right
   attr_accessor :value
   def initialize(value=nil)
