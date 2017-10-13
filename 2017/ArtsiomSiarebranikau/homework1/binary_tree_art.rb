@@ -93,22 +93,22 @@ end
   def user_int
     Zip::File.open('trees.zip') do |zip_file|
       zip_file.each do |entry|
-      if entry.directory?
-        puts 'Добро пожаловать в наш лес!'
-      else
-        puts entry.name
-        tree = tree_finder(entry)
-        operations(tree.sum_elements, tree.max)
-        puts "\nХотите продолжить? [y/n]: "
-        e = gets.to_s
-        e[0] = e[0].downcase
-        if e[0] == 'n'
-          p 'Мы обрезали ' + @cut.to_s + '  деревьев'
-          p 'Мы срубили ' + @kill.to_s + '  деревьев'
-          p 'Спасибо, что были в нашем лесу!'
-          break
+        if entry.directory?
+          puts 'Добро пожаловать в наш лес!'
+        else
+          puts entry.name
+          tree = tree_finder(entry)
+          operations(tree.sum_elements, tree.max)
+          puts "\nХотите продолжить? [y/n]: "
+          e = gets.to_s
+          e[0] = e[0].downcase
+          if e[0] == 'n'
+            p 'Мы обрезали ' + @cut.to_s + '  деревьев'
+            p 'Мы срубили ' + @kill.to_s + '  деревьев'
+            p 'Спасибо, что были в нашем лесу!'
+            break
+          end
         end
-      end
       end
     end
   end
