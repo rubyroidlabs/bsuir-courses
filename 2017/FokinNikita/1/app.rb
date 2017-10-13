@@ -17,16 +17,13 @@ if ENV['NAME'].nil?
     puts 'Желаете продолжить? [y/n]'
     break if gets.chomp == 'n'
   end
+elsif File.exist?('trees/' + ENV['NAME'] + '.tree')
+  file = File.read('trees/' + ENV['NAME'] + '.tree')
+  array = JSON.parse(file)
+  node = Node.new(array.shift)
+  node.insert(node, array.shift) until array.nil?
+  # node.print
+  node.check(node)
 else
-  if File.exist?('trees/' + ENV['NAME']+ '.tree')
-    file = File.read('trees/' + ENV['NAME'] + '.tree')
-    array = JSON.parse(file)
-    node = Node.new(array.shift)
-    node.insert(node, array.shift) until array.nil?
-    # node.print
-    node.check(node)
-  else
-    puts 'Дерева с таким именем нет'
-
-  end
+  puts 'Дерева с таким именем нет'
 end
