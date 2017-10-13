@@ -4,3 +4,4 @@ class FileStream
     JSON.parse(file)
   end
 end
+

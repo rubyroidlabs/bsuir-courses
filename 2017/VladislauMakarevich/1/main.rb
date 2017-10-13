@@ -8,3 +8,4 @@ tree = Tree.new
 file_stream = FileStream.new
 
 main_menu.menu(file_stream, tree, ENV['NAME'])
+
