@@ -1,4 +1,4 @@
-#/usr/bin/env ruby
+# /usr/bin/env ruby
 
 def print_tree(depth, space_count, prev_space_count, tree, max_depth)
   if depth >= 0
@@ -95,4 +95,5 @@ def solve(file_name)
 
     numbers
   end
+
 end

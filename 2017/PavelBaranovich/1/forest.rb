@@ -1,9 +1,9 @@
-#/usr/bin/env ruby
+# /usr/bin/env ruby
 require_relative('methods')
 
 dir = Dir.new('trees')
 path = dir.entries.each.map do |file|
-  next if !(file =~ /\.tree/)
+  next unless file =~ /\.tree/
   file
 end.compact.sort
 
@@ -22,7 +22,7 @@ if tree_name
 else
   path.each do |file_name|
     puts file_name
-    
+
     array = solve(file_name)
 
     if  array.inject { |sum, n| sum.to_i + n.to_i }.to_i > 5000
@@ -36,9 +36,10 @@ else
     print 'Желаете продолжить? [y/n] '
     input = gets.chomp.downcase
     if input == 'n' || 'trees/' + path[path.size - 1] == file_name
-      break;
+      break
     end
   end
 
   puts 'Спасибо что были в нашём лесу'
+
 end
