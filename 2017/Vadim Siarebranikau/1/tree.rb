@@ -79,28 +79,28 @@ def output(array)
           j += 1
       end
       puts string
-      l = l / 2
+      l /= 2
       s = space(l)
       i += 1
-   end
+    end
 end
 
-def space (length)
-     i = 1
-     s = ' '
-     while i<length
-        s+=' '
-        i+= 1
-     end
-     s
+def space(length)
+  i = 1
+  s = ' '
+  while i < length
+    s += ' '
+    i += 1
+  end
+  s
 end
 do_hight(root)
 $hight = $b
-$a = Array.new($hight){ |index| [] }
-$as = Array.new($hight){ |index| '' }
+$a = Array.new($hight) { |index| [] }
+$as = Array.new($hight) { |index| '' }
 $b = 0
 do_array(root)
-output ($a)
- else puts "такого дерева нет"
- end
+output($a)
+else puts "такого дерева нет"
+end
 end
