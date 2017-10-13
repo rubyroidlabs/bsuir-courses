@@ -97,4 +97,3 @@ else
     c.close
   end
 end
-
