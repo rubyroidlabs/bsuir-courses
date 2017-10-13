@@ -1,5 +1,4 @@
 class Tree
-
   attr_accessor :name, :tree_array, :root, :depth, :sum, :shift_array
 
   def initialize(name = nil, tree_array = nil)
@@ -19,9 +18,8 @@ class Tree
     think
   end
 
-
   def print_nodes(tree_array = @tree_array, prefix = '', more = false)
-    if tree_array.is_a? Fixnum
+    if tree_array.is_a? Integer
       print prefix + "#{(more ? ' |— ' : ' \\—')}#{tree_array}" + "\n"
       print_nodes(nil, prefix + (more ? ' | ' : ' '), true)
       print_nodes(nil, prefix + (more ? ' | ' : ' '), false)
@@ -33,7 +31,6 @@ class Tree
   end
 
   def get_data(tree_array = @shift_array, root = @root)
-
     left = tree_array[0][0]
     right = tree_array[0][1]
     if left.is_a? Array
@@ -42,7 +39,7 @@ class Tree
       root.left = Node.new(new_left)
       @depth += 1
       get_data(left, root.left)
-    elsif left.is_a? Fixnum
+    elsif left.is_a? Integer
       root.left = left
       @sum += left
       @depth += 1
@@ -52,7 +49,7 @@ class Tree
       @sum += new_right
       root.right = Node.new(new_right)
       get_data(right, root.right)
-    elsif right.is_a? Fixnum
+    elsif right.is_a? Integer
       root.right = right
       @sum += right
     end
@@ -75,7 +72,6 @@ class Tree
 end
 
 class Node < Tree
-
   attr_accessor :value, :left, :right
 
   def initialize(value)
@@ -84,11 +80,3 @@ class Node < Tree
     @right = nil
   end
 end
-
-
-
-
-
-
-
-
