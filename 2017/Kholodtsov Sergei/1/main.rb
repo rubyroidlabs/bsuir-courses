@@ -8,7 +8,7 @@ Dir.foreach('trees') do |i|
   file_list << i
 end
 file_list.sort!
-2.times {file_list.shift}
+2.times { file_list.shift }
 if file_name.nil?
   while !file_list[0].nil?
     ans != 'y' ? break : ans = 'm'
@@ -39,5 +39,8 @@ else
   else
     puts 'Данное дерево не растет в данном лесу.'
   end
+
   puts 'Спасибо, что были в нашем лесу.'
+
 end
+
