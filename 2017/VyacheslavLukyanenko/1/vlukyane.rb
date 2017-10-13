@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'zip'
-require "json"
+require 'json'
 
 name = ENV["NAME"]
 
@@ -12,10 +12,10 @@ def buildTreeDivideAndConquer(treeArray, levelOfDepth, branchDir)
 
   l = treeArray[0]
   r = treeArray[1]
-  @maximalDepth = levelOfDepth > @maximalDepth? levelOfDepth : @maximalDepth
+  @maximal_depth = levelOfDepth > @maximal_depth? levelOfDepth : @maximal_depth
   if (l.is_a?(Integer))
     @a[levelOfDepth].push([l, branchDir])
-    @vertexSum += l
+    @vertex_sum += l
     levelOfDepth += 1
   end
 
@@ -24,7 +24,7 @@ def buildTreeDivideAndConquer(treeArray, levelOfDepth, branchDir)
        levelOfDepth -= 1
     end
     @a[levelOfDepth].push([r, branchDir])
-    @vertexSum += r
+    @vertex_sum += r
   end
 
   if (l.is_a?(Array))
@@ -44,7 +44,7 @@ def buildPrintTree()
 end
 
 def printTree()
-  n = @maximalDepth
+  n = @maximal_depth
   (0..2*(2**(n-1))).each do |i|
     print ' '
   end
@@ -104,12 +104,12 @@ end
 
 def makeChoise()
   puts
-  if @vertexSum > 5000
-    puts "Срубить"
-  elsif @maximalDepth > 5
-    puts "Обрезать"
+  if @vertex_sum > 5000
+    puts 'Срубить'
+  elsif @maximal_depth > 5
+    puts 'Обрезать'
   else
-    puts "Оставить его как есть"
+    puts 'Оставить его как есть'
   end
 end
 
@@ -121,17 +121,17 @@ def level3()
         puts entry.name
         content = entry.get_input_stream.read
         @a = []
-        buildPrintTree()
-        @vertexSum = 0
-        @maximalDepth = 0
-        parsedJsonTree = JSON.parse(content)
-        buildTreeDivideAndConquer(parsedJsonTree, 1, 'c')
-        printTree()
-        makeChoise()
+        buildPrintTree
+        @vertex_sum = 0
+        @maximal_depth = 0
+        parsed_json_tree = JSON.parse(content)
+        buildTreeDivideAndConquer(parsed_json_tree, 1, 'c')
+        printTree
+        makeChoise
         puts "\nХотите продолжить? [y/n]: "
-        userAns = gets.to_s
-        userAns[0] = userAns[0].downcase
-        if userAns[0] == 'n'
+        user_ans = gets.to_s
+        user_ans[0] = user_ans[0].downcase
+        if user_ans[0] == 'n'
           p 'Спасибо, что были в нашем лесу!'
           break
         end
@@ -139,29 +139,26 @@ def level3()
     end
   end
 end
-
-
 # =>                                           BEGINNING
-
 ::Zip.sort_entries = true
-puts "Добро пожаловать в наш лес!"
+puts 'Добро пожаловать в наш лес!'
 name = ENV["NAME"]
-if (name.nil?)
+if name.nil?
   level3
 else
   Zip::File.open('trees.zip') do |zip_file|
     if zip_file.find_entry("trees/#{name}.tree")
       content = zip_file.read("trees/#{name}.tree")
       @a = []
-      buildPrintTree()
-      @vertexSum = 0
-      @maximalDepth = 0
-      parsedJsonTree = JSON.parse(content)
-      buildTreeDivideAndConquer(parsedJsonTree, 1, 'c')
-      printTree()
+      buildPrintTree
+      @vertex_sum = 0
+      @maximal_depth = 0
+      parsed_json_tree = JSON.parse(content)
+      buildTreeDivideAndConquer(parsed_json_tree, 1, 'c')
+      printTree
     else
-      puts "Данное дерево тут не растёт!"
+      puts 'Данное дерево тут не растёт!'
     end
-    puts "Спасибо, что были в нашем лесу!"
+    puts 'Спасибо, что были в нашем лесу!'
   end
 end
