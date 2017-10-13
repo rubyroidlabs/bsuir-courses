@@ -68,9 +68,9 @@ Zip::File.open("trees.zip") do |zipfile|
             max += val
 						print "#{' ' * interval_right}#{val}#{' ' * interval_left}"
 					end
-					puts
-				end
-        if levels.keys.count > 5
+          puts
+        end
+        if levels.keys.count>5
           puts 'clip'
         elsif max_count > 5000
           puts 'chop down'
