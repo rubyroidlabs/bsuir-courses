@@ -71,11 +71,11 @@ Zip::File.open("trees.zip") do |zipfile|
 					puts
 				end
         if levels.keys.count > 5
-          puts "clip"
+          puts 'clip'
         elsif max_count > 5000
-          puts "chop down"
+          puts 'chop down'
         else
-          puts "leave"
+          puts 'leave'
         end
 			end
     else
