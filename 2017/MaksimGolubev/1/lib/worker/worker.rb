@@ -45,7 +45,7 @@ module Gardener
       rec = Gardener::Recursion.new
       rec.recursion_tree(open_tree(tree_name))
       tree = rec.conv_arr.reverse
-      tree_leaf_cut = true
+      leaf = true
 
       if @tree_range < 4 * tree[0].count
         msg_for_valik = 'А в Питоне бы влезло...Шучу-шучу, оставьте на курсах)'
@@ -59,11 +59,8 @@ module Gardener
 
       tree.each do |node|
         if @tree_range > 4 * node.count
-          if tree_leaf_cut
-            tree_leaf_cut = false
-          else
-            puts(('\ / ' * node.count).center(@tree_range).green)
-          end
+          leaf ? leaf = false : puts(('\ / ' * node.count).center(@tree_range).green)
+        end
           puts node.join('  ').center(@tree_range).green
         end
       end
