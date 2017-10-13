@@ -4,7 +4,7 @@ require 'zip/zip'
 require_relative 'binary_tree'
 require_relative 'functions'
 
-if ENV['NAME'].nil?
+if ENV['NAME'].nil? || ENV['NAME'] == ""
   name_not_given
 else
   name = 'trees/' + ENV['NAME'] + '.tree'
@@ -24,7 +24,7 @@ else
         tree.max_depth(tree)
         tree.fake_it(tree.max)
         tree.print_tree(tree.max)
-        puts 'Спасибо, что посмотрели на наше дерево!' if checker
+        puts 'Спасибо, что посмотрели на наше дерево!'
         break
       end
     end

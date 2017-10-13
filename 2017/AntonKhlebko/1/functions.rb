@@ -11,6 +11,12 @@ def add_str(str, maxlevel, lvl, slashline)
   str[1] += buf
 end
 
+def paste_into_str(str, first = '  ', second = '  ')
+  str[0] += first
+  str[1] += second
+  true
+end
+
 def tree_finder(entry)
   a = entry.get_input_stream.read
   a = JSON a
@@ -23,17 +29,12 @@ def tree_finder(entry)
 end
 
 def what_to_do(sum, max)
-  checker = 0
   if sum > 5000
-    checker += 1
     puts "\nОбрезать это дерево!"
-  end
-  if max > 5 && checker.zero?
+  elsif max > 5
     puts "\nЭто дерево слишком высокое, срубить его! " \
     'Его высота = ' + max.to_s
-    checker += 1
-  end
-  if checker.zero?
+  else
     puts "\nЭто дерево и не слишком высокое и не слишком разрослось, "\
     ' оставьте его в покое.'
   end
