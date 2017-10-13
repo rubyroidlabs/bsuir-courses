@@ -14,10 +14,10 @@ class Tree
 
     if code == 1
       if array[0]
-        self.initialization(array[0], 0, tree_node.create_left_node, depth + 1)
+        initialization(array[0], 0, tree_node.create_left_node, depth + 1)
       end
       if array[1]
-        self.initialization(array[1], 0, tree_node.create_right_node, depth + 1)
+        initialization(array[1], 0, tree_node.create_right_node, depth + 1)
       end
     else
       if array[0] && check_valid_number(array[0])
@@ -26,7 +26,7 @@ class Tree
       end
 
       if array[1]
-        self.initialization(array[1], 1, tree_node, depth)
+        initialization(array[1], 1, tree_node, depth)
       end
     end
   end

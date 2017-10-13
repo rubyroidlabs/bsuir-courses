@@ -30,7 +30,7 @@ class Menu
     tree.get_tree(tree.tree_root)
     if tree.count_sum_nodes(tree.tree_root) > 5000
       p 'To cut down.'
-      #File.delete(file_name)
+      # File.delete(file_name)
     elsif !tree.check_depth(tree.tree_root)
       p 'Crop.'
       tree.crop(tree.tree_root)
