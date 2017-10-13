@@ -14,7 +14,7 @@ class BinaryTree
     @data = arr[0]
     @level = lvl
     children = arr[1]
-    if numeric?(children[0]) == false
+    if (children[0]).is_a?(Array)
       @left = BinaryTree.new(nil, level + 1)
       @left = @left.create_tree(children[0], level + 1)
     elsif children[0].nil?
@@ -22,7 +22,7 @@ class BinaryTree
     else
       @left = BinaryTree.new(children[0], level + 1)
     end
-    if numeric?(children[1]) == false
+    if (children[1]).is_a?(Array)
       @right = BinaryTree.new(nil, level + 1)
       @right = @right.create_tree(children[1], level + 1)
     elsif children[1].nil?
@@ -68,11 +68,17 @@ class BinaryTree
     end
   end
 
+ def add_str(str, maxlevel, lvl, slashline)
+   str[0] += spaces(maxlevel, lvl)
+   slash = (2**(maxlevel - lvl + 1) - 2) / 2
+   buf = spaces(maxlevel, lvl)
+   buf[slash] = slashline
+   str[1] += buf
+ end
+
   def print_lvl(maxlevel, lvl, str)
     if lvl == 1
-      str[1] += spaces(maxlevel, lvl)
-      (str[1])[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
-      str[0] += spaces(maxlevel, lvl)
+      add_str(str, maxlevel, lvl, '/')
       if !data.nil?
         buf = format('%2s', data.to_s)
         str[0] += buf
@@ -80,10 +86,7 @@ class BinaryTree
         str[0] += '  '
         str[1] += '  '
       end
-      buf = spaces(maxlevel, lvl)
-      buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
-      str[1] += buf
-      str[0] += spaces(maxlevel, lvl)
+      add_str(str, maxlevel, lvl, '\\')
       return str
     end
     if level < lvl - 1
@@ -92,46 +95,28 @@ class BinaryTree
       str[1] += '  '
       right.print_lvl(maxlevel, lvl, str)
     elsif level == lvl - 1
-      buf = spaces(maxlevel, lvl)
-      buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
-      str[1] += buf
-      str[0] += spaces(maxlevel, lvl)
+      add_str(str, maxlevel, lvl, '/')
       if !left.data.nil?
         buf = format('%2s', left.data.to_s)
         str[0] += buf
-        str[0] += spaces(maxlevel, lvl)
-        buf = spaces(maxlevel, lvl)
-        buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
         str[1] += '  '
-        str[1] += buf
+        add_str(str, maxlevel, lvl, '/')
       elsif left.data.nil?
         str[0] += '  '
         str[1] += '  '
-        buf = spaces(maxlevel, lvl)
-        buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
-        str[1] += buf
-        str[0] += spaces(maxlevel, lvl)
+        add_str(str, maxlevel, lvl, '\\')
       end
       str[0] += '  '
       str[1] += '  '
-      buf = spaces(maxlevel, lvl)
-      buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '/'
-      str[1] += buf
-      str[0] += spaces(maxlevel, lvl)
+      add_str(str, maxlevel, lvl, '/')
       if !right.data.nil?
         buf = format('%2s', right.data.to_s)
         str[0] += buf
-        buf = spaces(maxlevel, lvl)
-        buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
         str[1] += '  '
-        str[1] += buf
-        str[0] += spaces(maxlevel, lvl)
+        add_str(str, maxlevel, lvl, '\\')
       elsif right.data.nil?
         str[0] += '  '
-        buf = spaces(maxlevel, lvl)
-        buf[(2**(maxlevel - lvl + 1) - 2) / 2] = '\\'
-        str[1] += buf
-        str[0] += spaces(maxlevel, lvl)
+        add_str(str, maxlevel, lvl, '\\')
       end
       str
     end

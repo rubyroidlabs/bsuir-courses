@@ -1,4 +1,6 @@
 def numeric?(obj)
+  require 'pry'
+  binding.pry
   !obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/).nil?
 end
 
