@@ -84,15 +84,15 @@ end
      @kill += 1
      puts "\nЭто дерево слишком высокое, срубить его! " \
           'Его высота = ' + max.to_s
-   else
+    else
      puts "\nЭто отличное дерево,сумма его узлов= " + sum.to_s + \
      ' Высота= ' + max.to_s
-   end
+    end
   end
 
   def user_int
     Zip::File.open('trees.zip') do |zip_file|
-     zip_file.each do |entry|
+    zip_file.each do |entry|
       if entry.directory?
         puts 'Добро пожаловать в наш лес!'
       else
