@@ -29,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/HomeWork-1.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="352">
-              <caret line="87" column="30" lean-forward="false" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="30" />
+              <caret line="87" column="20" lean-forward="true" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -438,7 +438,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125005000" />
+    <option name="totallyTimeSpent" value="125680000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1447" y="-4" width="1839" height="1084" extended-state="6" />
@@ -821,7 +821,7 @@
     <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/HomeWork-1.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
-          <caret line="87" column="30" lean-forward="false" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="30" />
+          <caret line="87" column="20" lean-forward="true" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="20" />
           <folding />
         </state>
       </provider>

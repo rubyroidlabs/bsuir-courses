@@ -30,30 +30,30 @@ def transform(arr)
   end
 end
 
-  def print_tree
+def print_tree
   str = ' '
   if @hash.size < 1000
-  for i in 0..@level
-    for n in 0..2**(@level + 1)
-      if @hash[[i, n]] != nil
-        str << ' ' * (2**(@level - i))
-        str << @hash[[i, n]].to_s
-        str << ' ' * (2**(@level - i) / 2)
+    for i in 0..@level
+      for n in 0..2**(@level + 1)
+        if @hash[[i, n]] != nil
+          str << ' ' * (2**(@level - i))
+          str << @hash[[i, n]].to_s
+          str << ' ' * (2**(@level - i) / 2)
+        end
       end
+      if i < 5
+        puts
+        print str
+        puts
+      else
+        puts 'Дерево обрезали'
+        @level = 0
+        @number = 0
+        @hash.clear
+        break
+      end
+      str.clear
     end
-    if i < 5
-      puts
-      print str
-      puts
-    else
-      puts 'Дерево обрезали'
-      @level = 0
-      @number = 0
-      @hash.clear
-      break
-    end
-    str.clear
-  end
   else
     puts 'Это дерево было слишком старое мы его срубили'
   end
@@ -79,6 +79,7 @@ else
     @tree_array[index] = file
     index += 1
   end
+  d.close
   @tree_array = @tree_array.sort
   @w = 0
   while @answer == true
@@ -93,6 +94,7 @@ else
     @hash.clear
     print 'Желаете продолжить? [y/n]'
     break if gets.chomp == 'n'
+    c.close
   end
 end
 
