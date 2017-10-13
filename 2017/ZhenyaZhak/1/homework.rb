@@ -8,9 +8,9 @@ end
 
 def decision(kol, level)
   if kol > 5000
-    puts 'Срубить'
+    puts 'Дерево нужно срубить'
   else
-    puts 'Оставить'
+    puts 'Дерево можно Оставить'
   end
   if level > 6
     puts 'Дерево обрезано'
