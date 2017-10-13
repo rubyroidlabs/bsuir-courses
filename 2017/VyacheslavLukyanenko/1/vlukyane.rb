@@ -6,61 +6,60 @@ def is_number? string
   true if Float(string) rescue false
 end
 
-def buildTreeDivideAndConquer(treeArray, levelOfDepth, branchDir)
+def build_Tree_Divide_And_Conquer(tree_Array, level_Of_Depth, branch_Dir)
 
-  l = treeArray[0]
-  r = treeArray[1]
-  @maximal_depth = levelOfDepth > @maximal_depth? levelOfDepth : @maximal_depth
+  l = tree_Array[0]
+  r = tree_Array[1]
+  @maximal_depth = level_Of_Depth > @maximal_depth? level_Of_Depth : @maximal_depth
   if (l.is_a?(Integer))
-    @a[levelOfDepth].push([l, branchDir])
+    @a[level_Of_Depth].push([l, branch_Dir])
     @vertex_sum += l
-    levelOfDepth += 1
+    level_Of_Depth += 1
   end
 
-  if (r.is_a?(Integer))
+  if r.is_a?(Integer)
     if l.is_a?(Integer)
-       levelOfDepth -= 1
+      level_Of_Depth -= 1
     end
-    @a[levelOfDepth].push([r, branchDir])
+    @a[level_Of_Depth].push([r, branch_Dir])
+  end
     @vertex_sum += r
+
+  if l.is_a?(Array)
+    build_Tree_Divide_And_Conquer(l, level_Of_Depth, 'l')
   end
 
-  if (l.is_a?(Array))
-    buildTreeDivideAndConquer(l, levelOfDepth, 'l')
+  if r.is_a?(Array)
+    build_Tree_Divide_And_Conquer(r, level_Of_Depth, 'r')
   end
-
-  if (r.is_a?(Array))
-    buildTreeDivideAndConquer(r, levelOfDepth, 'r')
-  end
-
 end
 
-def buildPrintTree
+def build_Print_Tree
   19.times do
     @a.push([])
   end
 end
 
-def printTree()
+def print_Tree
   n = @maximal_depth
-  (0..2*(2**(n-1))).each do |i|
+  (0..2 * (2 ** (n - 1))).each do |i|
     print ' '
   end
   print @a[1][0][0]
   puts
 
   (1 .. n - 1).each do |i|
-    str = String.new("")
+    str = String.new('')
     count = 0
-    #Вывод значений
-    (1..(2**(n - i) - 1)).each do
+    # Вывод значений
+    (1..(2 ** (n - i) - 1)).each do
       str += ' '
     end
     str += @a[i + 1][count][0].to_s
     count += 1
     k = 1
-    (1 .. (2**i) - 1).each do
-      (1..2**(n - i + 1) - 1).each do
+    (1 .. (2 ** i) - 1).each do
+      (1..2 ** (n - i + 1) - 1).each do
         str += ' '
       end
       if k.zero?
@@ -76,7 +75,6 @@ def printTree()
 
     flag = false
     k = 0
-    calc = 0
     str.split('').each do |i|
       if is_number?(i) && !flag
         if k.zero?
@@ -118,12 +116,12 @@ def level3
       puts entry.name
       content = entry.get_input_stream.read
       @a = []
-      buildPrintTree
+      build_Print_Tree
       @vertex_sum = 0
       @maximal_depth = 0
       parsed_json_tree = JSON.parse(content)
-      buildTreeDivideAndConquer(parsed_json_tree, 1, 'c')
-      printTree
+      build_Tree_Divide_And_Conquer(parsed_json_tree, 1, 'c')
+      print_Tree
       make_choise
       puts "\nХотите продолжить? [y/n]: "
       user_ans = gets.to_s
@@ -150,8 +148,8 @@ else
       @vertex_sum = 0
       @maximal_depth = 0
       parsed_json_tree = JSON.parse(content)
-      buildTreeDivideAndConquer(parsed_json_tree, 1, 'c')
-      printTree
+      build_Tree_Divide_And_Conquer(parsed_json_tree, 1, 'c')
+      print_Tree
     else
       puts 'Данное дерево тут не растёт!'
     end
