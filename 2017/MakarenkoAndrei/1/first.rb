@@ -49,7 +49,7 @@ class Tree
     @@b
   end
 
-  def output()
+  def output
     i = 0
     l = 0
     while i<@@a[@@hight-1].size
@@ -78,13 +78,13 @@ class Tree
     i = 1
     s = ' '    
     while i<length
-      s +=' '
+      s += ' '
       i += 1
     end
-  s    
+    s  
   end
   
-  def main()
+  def main
     require 'json'
     file ='trees/' + ENV['NAME'] + '.tree'
     if ENV['NAME'] = nil
