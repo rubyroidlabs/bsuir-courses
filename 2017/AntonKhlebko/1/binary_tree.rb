@@ -92,7 +92,7 @@ class BinaryTree
         buf = format('%2s', left.data.to_s)
         str[0] += buf
         str[1] += '  '
-        add_str(str, maxlevel, lvl, '/')
+        add_str(str, maxlevel, lvl, '\\')
       elsif left.data.nil?
         str[0] += '  '
         str[1] += '  '
