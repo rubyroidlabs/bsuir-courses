@@ -41,6 +41,8 @@ def print_tree
         str << ' ' * (2**(@level - i))
         str << @hash[[i, n]].to_s
         str << ' ' * (2**(@level - i) / 2)
+      else
+        
       end
     end
     if i < 5
