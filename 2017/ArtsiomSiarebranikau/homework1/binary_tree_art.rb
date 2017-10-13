@@ -10,7 +10,7 @@ begin
     !obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/).nil?
   end
 
- class BinaryTree
+class BinaryTree
   attr_accessor :data, :left, :right, :level, :max
 
   def initialize(key = nil, lvl = nil)
@@ -65,32 +65,33 @@ begin
   end
  end
 
- def tree_finder(entry)
-  a = entry.get_input_stream.read
-  a = JSON a
-  tree = BinaryTree.new(a[0], 1)
-  tree.create_tree(a, 1)
-  tree.max = 0
-  tree.max_depth(tree)
-  tree
- end
+  def tree_finder(entry)
+    a = entry.get_input_stream.read
+    a = JSON a
+    tree = BinaryTree.new(a[0], 1)
+    tree.create_tree(a, 1)
+    tree.max = 0
+    tree.max_depth(tree)
+    tree
+  end
 
- def operations(sum, max)
+  def operations(sum, max)
    if sum > 5000
-     @cut += 1
+    @cut += 1
      puts "\nОбрезать это дерево!" \
      'Cумма всех его узлов = ' + sum.to_s
    elsif max > 5 
-     @kill += 1
+    @kill += 1
      puts "\nЭто дерево слишком высокое, срубить его! " \
      'Его высота = ' + max.to_s
    else
-     puts "\nЭто отличное дерево,сумма его узлов= " + sum.to_s + ' Высота= ' + max.to_s
+     puts "\nЭто отличное дерево,сумма его узлов= " + sum.to_s + \
+     ' Высота= ' + max.to_s
    end
   end
 
- def user_int
-   Zip::File.open('trees.zip') do |zip_file|
+  def user_int
+    Zip::File.open('trees.zip') do |zip_file|
     zip_file.each do |entry|
       if entry.directory?
         puts 'Добро пожаловать в наш лес!'
@@ -111,5 +112,5 @@ begin
     end
   end
 end
- user_int
+  user_int
 end
