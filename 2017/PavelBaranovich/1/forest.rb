@@ -25,7 +25,7 @@ else
 
     array = solve(file_name)
 
-    if array.inject {|sum, n| sum.to_i + n.to_i}.to_i > 5000
+    if  array.inject { |sum, n| sum.to_i + n.to_i }.to_i > 5000
       puts 'Срубить'
     elsif get_depth(array.size) > 5
       puts 'Обрезать'
