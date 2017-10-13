@@ -1,11 +1,11 @@
 require 'pry'
 require 'json'
 
-file = IO.read("./trees/" + ENV["NAME"] + ".tree")
-# folder =IO.read("./trees") 
+file = IO.read('./trees/' + ENV['NAME'] + '.tree')
+# folder = IO.read("./trees") 
 puts file
 
-tree = JSON.parse(file.gsub(/(\d+)/,'\1'))
+tree = JSON.parse(file.gsub(/(\d+)/, '\1'))
 
 def draw(tree)
   tree.each do |item|
