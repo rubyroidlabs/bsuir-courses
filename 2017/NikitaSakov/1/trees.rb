@@ -11,10 +11,7 @@ module Tree
     tree_string = File.read(name_of_file)
     tree_inf = JSON.parse(tree_string)
     queue << tree_inf
-    while true
-      if queue.length == 0
-        break
-      end
+    while queue.length != 0
       queue.length.times do |i|
         2.times do |j|
           if queue[i][j].is_a? Integer
@@ -25,7 +22,7 @@ module Tree
           end
         end
       end
-      if level_nodes.length != 0
+      if !level_nodes.empty?
         deep += 1
         spaces = level_with_slashes(level_nodes, spaces, deep)
       end
