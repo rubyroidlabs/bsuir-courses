@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require 'json'
 require_relative ("parsing.rb")
-entry=Dir.entries('trees')
 array_of_trees=Array.new
 Dir.foreach("trees") {|x| array_of_trees<<x }
 entry=array_of_trees.sort!

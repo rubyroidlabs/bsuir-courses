@@ -5,7 +5,6 @@ entry=ENV["NAME"].to_s.downcase
   if entry.empty?
     puts "Безымянных деревьев у нас не растет."
   else
-    a=Dir.entries('trees')
     hash_of_trees=Hash.new ("")
     Dir.foreach("trees") {|tree_recording| hash_of_trees[tree_recording]="name" }
     key_check=hash_of_trees.has_key?("#{entry}.tree")
