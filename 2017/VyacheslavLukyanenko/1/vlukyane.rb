@@ -9,8 +9,9 @@ end
 def build_tree_divide_and_conquer(tree_array, level_of_depth, branch_dir)
   l = tree_array[0]
   r = tree_array[1]
-  @maximal_depth = level_of_depth > @maximal_depth ? level_of_depth
-    : @maximal_depth
+  if level_of_depth > @maximal_depth
+    @maximal_depth = level_of_depth
+  end
   if l.is_a?(Integer)
     @a[level_of_depth].push([l, branch_dir])
     @vertex_sum += l
