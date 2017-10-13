@@ -86,7 +86,7 @@ begin
       'Его высота = ' + max.to_s
     else
       puts "\nЭто отличное дерево,сумма его узлов= " + sum.to_s + \
-      ' Высота= ' + max.to_s
+           ' Высота= ' + max.to_s
     end
   end
 
