@@ -68,14 +68,6 @@ class BinaryTree
     end
   end
 
- def add_str(str, maxlevel, lvl, slashline)
-   str[0] += spaces(maxlevel, lvl)
-   slash = (2**(maxlevel - lvl + 1) - 2) / 2
-   buf = spaces(maxlevel, lvl)
-   buf[slash] = slashline
-   str[1] += buf
- end
-
   def print_lvl(maxlevel, lvl, str)
     if lvl == 1
       add_str(str, maxlevel, lvl, '/')

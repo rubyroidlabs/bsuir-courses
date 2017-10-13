@@ -1,12 +1,14 @@
-def numeric?(obj)
-  require 'pry'
-  binding.pry
-  !obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/).nil?
-end
-
 def spaces(maxlvl, curlvl)
   a = 2**(maxlvl - curlvl + 1) - 2
   ' ' * a
+end
+
+def add_str(str, maxlevel, lvl, slashline)
+  str[0] += spaces(maxlevel, lvl)
+  slash = (2**(maxlevel - lvl + 1) - 2) / 2
+  buf = spaces(maxlevel, lvl)
+  buf[slash] = slashline
+  str[1] += buf
 end
 
 def tree_finder(entry)
