@@ -18,10 +18,8 @@ def build_tree_divide_and_conquer(tree_array, level_of_depth, branch_dir)
     level_of_depth += 1
   end
 
-  if r.is_a?(Integer)
-    if l.is_a?(Integer)
-      level_of_depth -= 1
-    end
+  if r.is_a?(Integer) && if l.is_a?(Integer)
+    level_of_depth -= 1
     @a[level_of_depth].push([r, branch_dir])
     @vertex_sum += r
   end
