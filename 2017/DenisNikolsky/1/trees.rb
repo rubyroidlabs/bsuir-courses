@@ -152,5 +152,5 @@ elsif all_trees.include?('trees/' + tree_name + '.tree')
   tree.print_tree
 else
   puts 'Данное дерево не растет в данном лесу.'
-  puts ''
 end
+puts ''
