@@ -19,9 +19,10 @@ def transform(arr)
     if !first.nil?
       lvl = @level
       transform(first)
+    else
+      @level = lvl
+      transform(second)
     end
-    @level = lvl
-    transform(second)
   elsif first.class == Integer && second.class == Integer
     @hash[[@level, @number]] = first
     @number += 1
@@ -61,7 +62,8 @@ end
 name = ENV['NAME']
 
 if name
-  a = File.open("/home/ilya/Documents/bsuir-courses/2017/IlyaStipakov/1/trees/#{name}.tree")
+  a = File.open("/home/ilya/Documents/bsuir-courses/2017/IlyaStipakov
+                /1/trees/#{name}.tree")
   content = a.read
   tree = JSON.parse(content)
   transform(tree)
