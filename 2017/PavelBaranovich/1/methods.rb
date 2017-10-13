@@ -96,3 +96,4 @@ def solve(file_name)
     numbers
   end
 end
+
