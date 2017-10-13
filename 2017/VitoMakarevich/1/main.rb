@@ -37,7 +37,7 @@ end
 
 tree_names =
   Dir.entries('./trees')
-     .delete_if { |filename| filename == '.' || filename == '..' }.sort!
+     .delete_if { |filename| filename == '.' || filename == '..' }.sort
 tree_names.each do |tree_name|
   print_tree(tree_name)
   continue?
