@@ -10,7 +10,7 @@ class TreeProcesser
       print_level(tree, i)
       if i != depth
         print "\n" + '  ' * ((2**(@spaces - 1)) / 2)
-        (2 ** (i - 1)).times do
+        (2**(i - 1)).times do
           print ' /' + '  ' * ((2**(@spaces - 1)) - 1)
           print '\\ ' + '  ' * ((2**(@spaces - 1)) - 1)
         end
@@ -36,7 +36,7 @@ class TreeProcesser
     level -= 1
     if level.zero?
       p = brunch.class == Array ? brunch[0] : brunch
-      print "%-2d" % p
+      print '%-2d' % p
       print '  ' * (2**@spaces - 1)
     else
       print_level(brunch[1][0], level)
