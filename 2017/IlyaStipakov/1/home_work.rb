@@ -37,7 +37,7 @@ def print_tree
   end
   (0..@level).to_a.each do |l|
     (0..2**(@level + 1)).to_a.each do |n|
-      if !@hash[[l, n]].nil?
+      unless @hash[[l, n]].nil?
         str << ' ' * (2**(@level - l))
         str << @hash[[l, n]].to_s
         str << ' ' * (2**(@level - l) / 2)
