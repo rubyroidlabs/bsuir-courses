@@ -24,10 +24,10 @@ class Node
     else
       @right = Node.new(subtree[1])
     end
-    return self
+    self
   end
 
-  def tree_to_array(lvl: , array: )
+  def tree_to_array(lvl:, array:)
     spaces = get_spaces(lvl)
     string = spaces + @data.to_s + spaces
     array[lvl - 1] += string
@@ -52,13 +52,13 @@ class Node
   end
 
   def get_spaces(lvl)
-    '  ' * lvl 
+    '  ' * lvl
   end
 
   def show_tree
-    tree_lvl = self.get_tree_lvl
+    tree_lvl = get_tree_lvl
     a = Array.new(tree_lvl, '')
-    a = self.tree_to_array(lvl: tree_lvl ,array: a)
+    a = tree_to_array(lvl: tree_lvl, array: a)
     a.each do |element|
       printf element
       printf "\n"
