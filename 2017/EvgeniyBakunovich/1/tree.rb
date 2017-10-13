@@ -27,22 +27,19 @@ class Node
     return self
   end
 
-
-
-
-  def tree_to_array(lvl:, depth:0, array:)
+  def tree_to_array(lvl: , array: )
     spaces = get_spaces(lvl)
     string = spaces + @data.to_s + spaces
-    array[lvl-1] += string
+    array[lvl - 1] += string
     if @left.class == nil.class && @right.class == nil.class
       return
     else
       left_lvl = @left.get_tree_lvl
-      @left.tree_to_array(lvl:left_lvl, depth:left_lvl, array:array)
+      @left.tree_to_array(lvl: left_lvl, array: array)
       right_lvl = @right.get_tree_lvl
-      @right.tree_to_array(lvl:right_lvl, depth:left_lvl, array:array)
-    end 
-    array 
+      @right.tree_to_array(lvl: right_lvl, array: array)
+    end
+    array
   end
 
   def get_tree_lvl(lvl = 0)
@@ -55,21 +52,21 @@ class Node
   end
 
   def get_spaces(lvl)
-    return '  ' * lvl 
+    '  ' * lvl 
   end
 
   def show_tree
     tree_lvl = self.get_tree_lvl
-    a = Array.new(tree_lvl,'')
-    a = self.tree_to_array(lvl:tree_lvl,depth:tree_lvl ,array:a)
+    a = Array.new(tree_lvl, '')
+    a = self.tree_to_array(lvl: tree_lvl ,array: a)
     a.each do |element|
-    printf element
-    printf "\n"
+      printf element
+      printf "\n"
     end
   end
 end
 
-if ENV['NAME'] == nil
+if ENV['NAME'].nil?
   answer = 'y'
   home_dir = ENV['HOME']
   home_dir += '/trees/*tree'
@@ -89,7 +86,7 @@ if ENV['NAME'] == nil
       puts 'do you want to go deeper into the forest? '
       answer = gets.chomp
     else
-      puts 'thanks for stiking around'
+      puts 'thanks for sticking around'
       break
     end
   end
