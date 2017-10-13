@@ -13,56 +13,56 @@ begin
  class BinaryTree
    attr_accessor :data, :left, :right, :level, :max
 
-  def initialize(key = nil, lvl = nil)
-    @data = nil
-    @data = key
-    @left = nil
-    @right = nil
-    @level = lvl
-  end
+   def initialize(key = nil, lvl = nil)
+     @data = nil
+     @data = key
+     @left = nil
+     @right = nil
+     @level = lvl
+   end
 
-  def create_tree(arr, lvl)
-    if arr.class == nil.class
-      return BinaryTree.new
-    end
-    @data = arr[0]
-    @level = lvl
-    children = arr[1]
-    if numeric?(children[0]) == false
-      @left = BinaryTree.new(nil, level + 1)
-      @left = @left.create_tree(children[0], level + 1)
-    elsif children[0].class == nil.class
-      @left = BinaryTree.new
-    else
-      @left = BinaryTree.new(children[0], level + 1)
-    end
-    if numeric?(children[1]) == false
-      @right = BinaryTree.new(nil, level + 1)
-      @right = @right.create_tree(children[1], level + 1)
-    elsif children[1].class == nil.class
-      @right = BinaryTree.new
-    else
-      @right = BinaryTree.new(children[1], level + 1)
-    end
-    self
-  end
+   def create_tree(arr, lvl)
+     if arr.class == nil.class
+       return BinaryTree.new
+     end
+     @data = arr[0]
+     @level = lvl
+     children = arr[1]
+     if numeric?(children[0]) == false
+       @left = BinaryTree.new(nil, level + 1)
+       @left = @left.create_tree(children[0], level + 1)
+     elsif children[0].class == nil.class
+       @left = BinaryTree.new
+     else
+       @left = BinaryTree.new(children[0], level + 1)
+     end
+     if numeric?(children[1]) == false
+       @right = BinaryTree.new(nil, level + 1)
+       @right = @right.create_tree(children[1], level + 1)
+     elsif children[1].class == nil.class
+       @right = BinaryTree.new
+     else
+       @right = BinaryTree.new(children[1], level + 1)
+     end
+     self
+   end
 
-  def max_depth(head)
-    if !data.nil? && !level.nil?
-      if level > head.max
-        head.max = level
-        left.max_depth(head) if left.class != nil.class
-        right.max_depth(head) if right.class != nil.class
-      end
-    end
-  end
+   def max_depth(head)
+     if !data.nil? && !level.nil?
+       if level > head.max
+         head.max = level
+         left.max_depth(head) if left.class != nil.class
+         right.max_depth(head) if right.class != nil.class
+       end
+     end
+   end
 
-  def sum_elements(sum = 0)
-    sum += data
-    sum += left.sum_elements if !left.nil? && !left.data.nil?
-    sum += right.sum_elements if !right.nil? && !right.data.nil?
-    sum
-  end
+   def sum_elements(sum = 0)
+     sum += data
+     sum += left.sum_elements if !left.nil? && !left.data.nil?
+     sum += right.sum_elements if !right.nil? && !right.data.nil?
+     sum
+   end
  end
 
   def tree_finder(entry)
