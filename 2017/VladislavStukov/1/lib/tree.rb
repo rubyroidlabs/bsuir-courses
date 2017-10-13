@@ -16,39 +16,31 @@ class Tree
   end
 
   def divide_by_level
-    @q = Array.new
+    @tree_divided_by_level = Array.new
     deep = 0
-    @q[deep] = Array.new
-    @q[deep] << @root
+    @tree_divided_by_level[deep] = Array.new
+    @tree_divided_by_level[deep] << @root
     go_deep(@root, deep)
-    if @q.last.empty?
-      @q.pop
-    end
+    @tree_divided_by_level.pop if @tree_divided_by_level.last.empty?
   end
 
   def go_deep(node, deep)
     deep += 1
-    if @q[deep].is_a?(NilClass)
-      @q[deep] = Array.new
-    end
-    if node.left.nil?
-      nil
-    else
-      @q[deep] << node.left
+    @tree_divided_by_level[deep] ||= Array.new
+    unless node.left.nil?
+      @tree_divided_by_level[deep] << node.left
       go_deep(node.left, deep)
     end
-    if node.right.nil?
-      nil
-    else
-      @q[deep] << node.right
+    unless node.right.nil?
+      @tree_divided_by_level[deep] << node.right
       go_deep(node.right, deep)
     end
   end
 
   def show_tree
     divide_by_level
-    num_of_spaces = (2**@q.size - 1) / 2
-    @q.each do |array|
+    num_of_spaces = (2**@tree_divided_by_level.size - 1) / 2
+    @tree_divided_by_level.each do |array|
       space = '  ' * num_of_spaces
       (array.count / 2).times do
         print space
@@ -71,30 +63,27 @@ class Tree
   end
 
   def get_sum(node = @root)
-    if node.nil?
-      return
-    end
+    return unless node
     @sum += node.value
-    if node.left.nil? && node.right.nil?
-    else
-      get_sum(node.left)
-      get_sum(node.right)
-    end
+    get_sum(node.left) if node.left
+    get_sum(node.right) if node.right
     @sum
   end
 
   def get_max_deep(node = @root, deep = 0)
-    if node.nil?
-      return 0
-    end
+    return unless node
     deep += 1
-    deep > @max_deep ? @max_deep = deep : nil
+    @max_deep = deep if @max_deep < deep
     get_max_deep(node.left, deep)
     get_max_deep(node.right, deep)
     @max_deep
   end
 
   def check
+    puts get_sum
+    puts get_max_deep
+    @sum = 0
+    @max_deep = 0
     if get_sum > 5000
       puts 'Срубить.'
     elsif get_max_deep > 5
