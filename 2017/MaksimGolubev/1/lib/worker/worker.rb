@@ -48,19 +48,22 @@ module Gardener
       tree_leaf_cut = true
 
       if @tree_range < 4 * tree[0].count
-        msg_for_valik = 'А в Python\'e бы влезло...Шучу-шучу, оставьте на курсах)'
+        msg_for_valik = 'А в Питоне бы влезло...Шучу-шучу, оставьте на курсах)'
         msg_sep = if (@tree_range - msg_for_valik.size) / 2 > 0
                     '.' * ((@tree_range - msg_for_valik.size) / 2)
                   else
                     ''
                   end
-
         puts "#{msg_sep}#{msg_for_valik}#{msg_sep}".center(@tree_range).blue
       end
-      
+
       tree.each do |node|
         if @tree_range > 4 * node.count
-          tree_leaf_cut ? tree_leaf_cut = false : puts(('\ / ' * node.count).center(@tree_range).green)
+          if tree_leaf_cut
+            tree_leaf_cut = false
+          else
+            puts(('\ / ' * node.count).center(@tree_range).green)
+          end
           puts node.join('  ').center(@tree_range).green
         end
       end
