@@ -30,7 +30,7 @@ def show(arr)
     lvl += 1
   end
 end
-  name_file = 'trees/#{ENV['NAME']}.tree'
+  name_file = "trees/#{ENV["NAME"]}.tree"
   if ENV["NAME"] == nil
     puts "Безымянных деревьев у нас не растет."
     forest = []
