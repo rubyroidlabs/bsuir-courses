@@ -2,15 +2,14 @@ require 'rubygems'
 require 'zip'
 require 'json'
 
-def is_number? string
-  true if Float(string) rescue false
+def number? string
+  true if Float(string) else false
 end
 
 def build_tree_divide_and_conquer(tree_array, level_of_depth, branch_dir)
-
   l = tree_array[0]
   r = tree_array[1]
-  @maximal_depth = level_of_depth > @maximal_depth? level_of_depth : @maximal_depth
+  @maximal_depth = level_of_depth > @maximal_depth ? level_of_depth : @maximal_depth
   if l.is_a?(Integer)
     @a[level_of_depth].push([l, branch_dir])
     @vertex_sum += l
@@ -76,7 +75,7 @@ def print_tree
     flag = false
     k = 0
     str.split('').each do |j|
-      if is_number?(j) && !flag
+      if number?(j) && !flag
         if k.zero?
           print '/'
           k = 1
@@ -85,7 +84,7 @@ def print_tree
           k = 0
         end
         flag = true
-      elsif is_number?(j) && flag
+      elsif number?(j) && flag
         print ' '
       elsif j == ' '
         print ' '
