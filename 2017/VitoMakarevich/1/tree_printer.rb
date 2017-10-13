@@ -8,8 +8,9 @@ class TreePrinter
   def render
     @parsed_tree.reverse!
     @parsed_tree.each_with_index do |layer, index|
-      numbers_level = '' << ' ' * (2**(index + 1) - 2)
-      pointers_level = '' << ' ' * (2**(index + 1) - 2)
+      padding_left = ' ' * (2**(index + 1) - 2)
+      numbers_level = '' << padding_left
+      pointers_level = '' << padding_left
       pointers = ['/', '\\']
       layer.each_with_index do |element, inner_index|
         if inner_index.even?
@@ -17,11 +18,12 @@ class TreePrinter
         else
           pointers_level << pointers[inner_index % 2] << ' '
         end
+        padding_between = ' ' * (2**(index + 2) - 2)
         inner_index != (layer.count - 1) &&
-          pointers_level << ' ' * (2**(index + 2) - 2)
+          pointers_level << padding_between
         numbers_level << numeric_to_str(element)
         inner_index != (layer.count - 1) &&
-          numbers_level << ' ' * (2**(index + 2) - 2)
+          numbers_level << padding_between
       end
       @rendered_tree.push(numbers_level)
       @rendered_tree.push(pointers_level) if index != (@parsed_tree.count - 1)
