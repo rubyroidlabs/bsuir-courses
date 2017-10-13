@@ -6,11 +6,9 @@ require 'zip'
 @kill = 0
 
 begin
-
-def numeric?(obj)
+  def numeric?(obj)
   !obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/).nil?
-end
-
+  end
 
 class BinaryTree
   attr_accessor :data, :left, :right, :level, :max
@@ -49,16 +47,15 @@ class BinaryTree
     self
   end
 
-   def max_depth(head)
-    if !data.nil? && !level.nil?
+    def max_depth(head)
+     if !data.nil? && !level.nil?
       if level > head.max
         head.max = level
         left.max_depth(head) if left.class != nil.class
         right.max_depth(head) if right.class != nil.class
       end
+     end
     end
-  end
-
 
   def sum_elements(sum = 0)
     sum += data
@@ -80,18 +77,16 @@ end
 
 def operations(sum, max)
   if sum > 5000
-    @cut += 1
-    puts "\nОбрезать это дерево!" \
-    'Cумма всех его узлов = ' + sum.to_s
-  
+   @cut += 1
+   puts "\nОбрезать это дерево!" \
+   'Cумма всех его узлов = ' + sum.to_s
   elsif max > 5 
-    @kill += 1
-    puts "\nЭто дерево слишком высокое, срубить его! " \
-    'Его высота = ' + max.to_s
-     
+   @kill += 1
+   puts "\nЭто дерево слишком высокое, срубить его! " \
+   'Его высота = ' + max.to_s
   else
-    puts "\nЭто отличное дерево,сумма его узлов= "+ sum.to_s +
-    ' Высота= ' + max.to_s
+   puts "\nЭто отличное дерево,сумма его узлов= " + sum.to_s +
+   ' Высота= ' + max.to_s
   end
 end
 
@@ -117,7 +112,5 @@ def user_int
     end
   end
 end
-
 user_int
-
 end
