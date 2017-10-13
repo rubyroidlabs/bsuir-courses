@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3a4b29b-a09e-47cc-8465-faf9e604568a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/bsuir-courses.iml" afterPath="$PROJECT_DIR$/.idea/bsuir-courses.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2017/IlyaStipakov/1/HomeWork-1.rb" afterPath="$PROJECT_DIR$/2017/IlyaStipakov/1/HomeWork-1.rb" />
     </list>
     <ignored path="bsuir-courses.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +28,8 @@
       <file leaf-file-name="HomeWork-1.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/HomeWork-1.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+            <state relative-caret-position="352">
+              <caret line="87" column="30" lean-forward="false" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -52,6 +50,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>level</find>
+      <find>lvl</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -439,7 +438,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123381000" />
+    <option name="totallyTimeSpent" value="125005000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1447" y="-4" width="1839" height="1084" extended-state="6" />
@@ -512,7 +511,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="12" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -821,8 +820,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/HomeWork-1.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        <state relative-caret-position="352">
+          <caret line="87" column="30" lean-forward="false" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="30" />
           <folding />
         </state>
       </provider>

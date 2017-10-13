@@ -6,7 +6,6 @@ require 'json'
 @tree_array = Array.[]
 @number = 0
 @level = 0
-@max_level = 5
 
 def transform(arr)
   first = arr[0]
@@ -14,14 +13,14 @@ def transform(arr)
   if first.class == Integer && second.class == Array
     @hash[[@level, @number]] = first
     @number += 1
-    @level = @level + 1
+    @level += 1
     transform(second)
   elsif first.class == Array && second.class == Array
-    if first != nil
-      level_1 = @level
+    if !first.nil?
+      lvl = @level
       transform(first)
     end
-    @level = level_1
+    @level = lvl
     transform(second)
   elsif first.class == Integer && second.class == Integer
     @hash[[@level, @number]] = first
@@ -31,15 +30,15 @@ def transform(arr)
   end
 end
 
-def print_tree
+  def print_tree
   str = ' '
   if @hash.size < 1000
   for i in 0..@level
     for n in 0..2**(@level + 1)
-      if @hash[[i,n]] != nil
-        str << ' '*(2**(@level - i))
-        str << @hash[[i,n]].to_s
-        str << ' '*(2**(@level - i)/2)
+      if @hash[[i, n]] != nil
+        str << ' ' * (2**(@level - i))
+        str << @hash[[i, n]].to_s
+        str << ' ' * (2**(@level - i) / 2)
       end
     end
     if i < 5
@@ -60,11 +59,11 @@ def print_tree
   end
 end
 
-# переменная окружения NAME
-name = ENV["NAME"]
+name = ENV['NAME']
 
 if name
-  a = File.open("/home/ilya/Documents/bsuir-courses/2017/IlyaStipakov/1/trees/#{name}.tree")
+  a = File.open("/home/ilya/Documents/bsuir-courses/2017/
+  IlyaStipakov/1/trees/#{name}.tree")
   content = a.read
   tree = JSON.parse(content)
   transform(tree)
@@ -73,18 +72,18 @@ if name
   tree.clear
 else
   index = 0
-  d = Dir.new("/home/ilya/Documents/bsuir-courses/2017/IlyaStipakov/1/trees/")
+  d = Dir.new('/home/ilya/Documents/bsuir-courses/2017/IlyaStipakov/1/trees/')
   d.entries.each do |e|
     next if e =~ /^\./
     file = File.join(d.path, e)
     @tree_array[index] = file
-    index = index + 1
+    index += 1
   end
-  sort_tree_array = @tree_array.sort
+  @tree_array = @tree_array.sort
   @w = 0
   while @answer == true
-    c = File.open("#{sort_tree_array[@w]}")
-    @w = @w + 1
+    c = File.open("#{@tree_array[@w]}")
+    @w += 1
     content = c.read
     tree = JSON.parse(content)
     transform(tree)
