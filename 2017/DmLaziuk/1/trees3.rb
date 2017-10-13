@@ -1,31 +1,64 @@
 require 'zip'
 require 'json'
 
+# @n -- depth of tree
 @n = 0
 
+# @sum -- sum of all nodes of the tree
 @sum = 0
 
+# @hash -- hash table with coordinates and value of each node of the tree
+#          { [y, x] = value }
 @hash = Hash.new([0, 0])
 
+# @x -- temporary array of current x for current level y
+#       needed for recursion function parse()
+#       x[y] = current x
+#       10 -- maximum depth of the tree
 @x = Array.new(10) { 0 }
 
+# @ob -- number of trees in the 'trees.zip' to trim
 @ob = 0
+
+# @ob -- number of trees in the 'trees.zip' to cut
 @ox = 0
 
+# parse -- recursively parse all nodes of the tree, stored in arr[]
+#          and form hash table @hash = { [y, x] = value }
+#            y -- level of the tree (0 -- root)
+#            x -- x position in tree (0...2**y)
+#
+# arguments:
+#   arr -- array representing tree
+#          for example
+#          arr = [1 ,[[2 ,[4 , 5 ]],[3,[6,7]]]]
+#          is for tree:
+#             1
+#            /  \
+#           2    3
+#          / \  / \
+#         4  5 6  7
+#
+#   lvl -- current level
+#          start parse from lvl = 0 (root)
+#
 def parse(arr, lvl = 0)
   @n = lvl > @n ? lvl : @n
   left = arr[0]
   right = arr[1]
 
   if left.is_a?(Integer) && right.is_a?(Array)
+    # node [Integer, Array]
     @hash[[lvl, @x[lvl]]] = left
     @sum += left
     @x[lvl] += 1
     parse(right, lvl + 1)
   elsif left.is_a?(Array) && right.is_a?(Array)
+    # node [Array, Array]
     parse(left, lvl)
     parse(right, lvl)
   else
+    # node [Integer, Integer]
     @hash[[lvl, @x[lvl]]] = left
     @x[lvl] += 1
     @hash[[lvl, @x[lvl]]] = right
@@ -34,7 +67,7 @@ def parse(arr, lvl = 0)
   end
 end
 
-def print
+def print_tree
   str = []
   (0..2 * @n).each { |i| str[i] = ' ' * (4 * 2**@n) }
   (0...@n).each do |y|
@@ -49,6 +82,7 @@ def print
   str.each { |s| puts s }
 end
 
+# environment variable NAME='tree_name'
 name = ENV['NAME']
 
 if name
@@ -56,7 +90,7 @@ if name
     if zip_file.find_entry("trees/#{name}.tree")
       tree = JSON.parse(zip_file.read("trees/#{name}.tree"))
       parse(tree)
-      print
+      print_tree
       if @sum > 5000
         puts 'Срубить.'
         @ox += 1
@@ -78,7 +112,7 @@ else
       @x = Array.new(10) { 0 }
       parse(tree)
       puts entry.name
-      print
+      print_tree
       if @sum > 5000
         puts 'Срубить.'
         @ox += 1
