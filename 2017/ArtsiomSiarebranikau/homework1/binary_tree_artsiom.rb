@@ -11,7 +11,7 @@ begin
   end
 
  class BinaryTree
-  attr_accessor :data, :left, :right, :level, :max
+   attr_accessor :data, :left, :right, :level, :max
 
   def initialize(key = nil, lvl = nil)
     @data = nil
@@ -63,7 +63,7 @@ begin
     sum += right.sum_elements if !right.nil? && !right.data.nil?
     sum
   end
-end
+ end
 
   def tree_finder(entry)
     a = entry.get_input_stream.read
