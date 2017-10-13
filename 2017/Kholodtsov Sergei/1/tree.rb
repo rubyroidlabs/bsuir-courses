@@ -69,7 +69,8 @@ class Tree
           j += ' '
         end
         if s_t != 0 && s_t + 1 != f_t
-          f_l += '_' * (f_t - s_t - 1) + j + '_' * (f_t - s_t - 1) + ' ' * (2 * s_t + 4)
+          buf = f_t - s_t - 1
+          f_l += '_' * buf + j + '_' * buf + ' ' * (2 * s_t + 4)
         else
           f_l += j + '  ' * (f_t + 1)
         end
