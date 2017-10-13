@@ -25,7 +25,7 @@ if ENV['NAME'].nil?
     answer = ''
     loop do
       answer = gets.chomp
-      break if %W(y n).include?(answer)
+      break if %w(y n).include?(answer)
     end
     break if answer == 'n'
 
