@@ -16,9 +16,9 @@ if tree_name
 		puts 'Безымянных деревьев у нас не растёт'
 	elsif path.include?(tree_name)
 		solve(tree_name)
-	else	
-		puts 'Данное дерево не растет в данном лесу'	
-	end	
+	else
+		puts 'Данное дерево не растет в данном лесу'
+	end
 else
 	path.each do |file_name|
 		puts file_name
@@ -35,9 +35,9 @@ else
 
 		print 'Желаете продолжить? [y/n] '	
 		input = gets.chomp.downcase
-		if input == 'n' || "trees/" + path[path.size - 1] == file_name
+		if input == 'n' || 'trees/' + path[path.size - 1] == file_name
 			break;
-		end 
+		end
 	end
 
 	puts 'Спасибо что были в нашём лесу'
