@@ -58,27 +58,25 @@ def do_hight(tree)
   $bool = false
 end
 
-def output(array)
+def output
   i = 0
   l = 0
-  while i<$a[$hight - 1].size
-    l += $a[$hight - 1][i].to_s.length;
+  while i < $a[$hight - 1].size
+    l += $a[$hight - 1][i].to_s.length
     i += 1
   end
-  l = l + $a[$hight - 1].size
+  l += $a[$hight - 1].size
   i = 0
-  while i<$hight
+  while i < $hight
     j = 0
     string = ''
     while j < $a[i].size
-      s = space((l - $a[i][j].to_s.size))
       s2 = space(l)
       string = string + s2 + $a[i][j].to_s + s2
       j += 1
     end
     puts string
     l /= 2
-    s = space(l)
     i += 1
   end
 end
@@ -94,11 +92,11 @@ def space(length)
 end
 do_hight(root)
 $hight = $b
-$a = Array.new($hight) { |index| [] }
-$as = Array.new($hight) { |index| '' }
+$a = Array.new($hight) { [] }
+$as = Array.new($hight) { '' }
 $b = 0
 do_array(root)
-output($a)
-else puts "такого дерева нет"
+output()
+else puts 'такого дерева нет'
 end
 end
