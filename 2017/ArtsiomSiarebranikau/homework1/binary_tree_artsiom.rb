@@ -10,7 +10,7 @@ begin
     !obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/).nil?
   end
 
-class BinaryTree
+ class BinaryTree
   attr_accessor :data, :left, :right, :level, :max
 
   def initialize(key = nil, lvl = nil)
@@ -77,13 +77,13 @@ end
 
   def operations(sum, max)
     if sum > 5000
-     @cut += 1
-     puts "\nОбрезать это дерево!" \
-     'Cумма всех его узлов = ' + sum.to_s
+      @cut += 1
+      puts "\nОбрезать это дерево!" \
+      'Cумма всех его узлов = ' + sum.to_s
     elsif max > 5 
-     @kill += 1
-     puts "\nЭто дерево слишком высокое, срубить его! " \
-          'Его высота = ' + max.to_s
+      @kill += 1
+      puts "\nЭто дерево слишком высокое, срубить его! " \
+           'Его высота = ' + max.to_s
     else
       puts "\nЭто отличное дерево,сумма его узлов= " + sum.to_s + \
            ' Высота= ' + max.to_s
