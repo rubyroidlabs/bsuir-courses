@@ -32,30 +32,29 @@ end
 
 def print_tree
   str = ' '
-  if @hash.size < 1000
-    for i in 0..@level
-      for n in 0..2**(@level + 1)
-        if @hash[[i, n]] != nil
-          str << ' ' * (2**(@level - i))
-          str << @hash[[i, n]].to_s
-          str << ' ' * (2**(@level - i) / 2)
-        end
-      end
-      if i < 5
-        puts
-        print str
-        puts
-      else
-        puts 'Дерево обрезали'
-        @level = 0
-        @number = 0
-        @hash.clear
-        break
-      end
-      str.clear
-    end
-  else
+  if @hash.size > 1000
     puts 'Это дерево было слишком старое мы его срубили'
+  end
+  for i in 0..@level
+    for n in 0..2**(@level + 1)
+      if @hash[[i, n]] != nil
+        str << ' ' * (2**(@level - i))
+        str << @hash[[i, n]].to_s
+        str << ' ' * (2**(@level - i) / 2)
+      end
+    end
+    if i < 5
+      puts
+      print str
+      puts
+    else
+      puts 'Дерево обрезали'
+      @level = 0
+      @number = 0
+      @hash.clear
+      break
+    end
+    str.clear
   end
 end
 

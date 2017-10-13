@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3a4b29b-a09e-47cc-8465-faf9e604568a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2017/IlyaStipakov/1/HomeWork-1.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2017/IlyaStipakov/1/home_work.rb" afterPath="$PROJECT_DIR$/2017/IlyaStipakov/1/home_work.rb" />
     </list>
     <ignored path="bsuir-courses.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Main.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/Downloads/timbersaw-master/Main.rb">
+      <file leaf-file-name="home_work.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/home_work.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+            <state relative-caret-position="294">
+              <caret line="40" column="38" lean-forward="true" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -89,6 +88,7 @@
         <option value="$USER_HOME$/Downloads/timbersaw-master/Main.rb" />
         <option value="$PROJECT_DIR$/2017/IlyaStipakov/1/file_1.rb" />
         <option value="$PROJECT_DIR$/2017/IlyaStipakov/1/HomeWork-1.rb" />
+        <option value="$PROJECT_DIR$/2017/IlyaStipakov/1/home_work.rb" />
       </list>
     </option>
   </component>
@@ -429,7 +429,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126502000" />
+    <option name="totallyTimeSpent" value="127684000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1447" y="-4" width="1839" height="1084" extended-state="6" />
@@ -507,13 +507,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/2016/UladzislauBondar/2/libs/command.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="30" column="45" lean-forward="false" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/2016/UladzislauBondar/2/client.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -811,8 +804,16 @@
     </entry>
     <entry file="file://$USER_HOME$/Downloads/timbersaw-master/Main.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        <state relative-caret-position="144">
+          <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/home_work.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="40" column="38" lean-forward="true" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
           <folding />
         </state>
       </provider>
