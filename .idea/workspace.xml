@@ -26,8 +26,8 @@
       <file leaf-file-name="home_work.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/home_work.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+            <state relative-caret-position="432">
+              <caret line="89" column="14" lean-forward="false" selection-start-line="89" selection-start-column="14" selection-end-line="89" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -424,12 +424,12 @@
       <workItem from="1507873403152" duration="3912000" />
       <workItem from="1507883415687" duration="10097000" />
       <workItem from="1507930440074" duration="1471000" />
-      <workItem from="1507978310335" duration="603000" />
+      <workItem from="1507978310335" duration="808000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136098000" />
+    <option name="totallyTimeSpent" value="136303000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1870" y="-4" width="1841" height="1092" extended-state="6" />
@@ -780,8 +780,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/2017/IlyaStipakov/1/home_work.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+        <state relative-caret-position="432">
+          <caret line="89" column="14" lean-forward="false" selection-start-line="89" selection-start-column="14" selection-end-line="89" selection-end-column="14" />
           <folding />
         </state>
       </provider>
