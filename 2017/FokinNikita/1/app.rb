@@ -6,7 +6,6 @@ if ENV['NAME'].nil?
   Dir.foreach('trees') do |i|
     file_arr << i
   end
-
   until file_arr[0].nil?
     file = File.read('trees/' + file_arr.shift)
     array = JSON.parse(file)
