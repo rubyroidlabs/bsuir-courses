@@ -45,9 +45,7 @@ def create_tree(numbers, str)
     if str[i] + str[i + 1] == ',['
       vertex <<= 1
 
-      unless tree[vertex << 1].nil?
-        vertex += 1
-      end
+      vertex += 1 unless tree[vertex << 1].nil?
 
       j += 1
       tree[vertex] = numbers[j]
@@ -56,9 +54,7 @@ def create_tree(numbers, str)
       j += 1
       tree[vertex] = numbers[j]
     elsif str[i] == ']'
-      if !tree[vertex << 1].nil? && tree[(vertex << 1) + 1].nil?
-        vertex <<= 1
-      end
+      vertex <<= 1 if !tree[vertex << 1].nil? && tree[(vertex << 1) + 1].nil?
       vertex >>= 1
     end
 

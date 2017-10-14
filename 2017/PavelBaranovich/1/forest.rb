@@ -35,9 +35,7 @@ else
 
     print 'Желаете продолжить? [y/n] '
     input = gets.chomp.downcase
-    if input == 'n' || 'trees/' + path[path.size - 1] == file_name
-      break
-    end
+    break if input == 'n' || 'trees/' + path[path.size - 1] == file_name
   end
 
   puts 'Спасибо что были в нашём лесу'
