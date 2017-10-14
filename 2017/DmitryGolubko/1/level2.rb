@@ -30,7 +30,7 @@ class TreeParser
   end
 
   def self.get_first_children(str)
-    if /\A\[\d+[,]\d+\]/ === str
+    if str =~ /\A\[\d+[,]\d+\]/
       str = str.slice(1, str.size - 2)
       str = str.split(',')
       return str
@@ -62,7 +62,7 @@ class TreeParser
       return nil
     end
     node = TreeNode.new
-    if /\A\d+/ === str
+    if str =~ /\A\d+/
       node.value = str
       return node
     end
