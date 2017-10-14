@@ -16,7 +16,7 @@ class TreeParser
     tree_root = TreeNode.new
     str.gsub!(/\s/, '')
     str             = str.slice(1, str.size - 2)
-    val, *_         = str.split(/,/)
+    val,            = str.split(/,/)
     children_part   = str.slice(val.size + 1, str.size - val.size)
     tree_root.value = val
     self.handle_children(children_part, tree_root)
@@ -30,7 +30,7 @@ class TreeParser
   end
 
   def self.get_first_children(str)
-    if (/\A\[\d+[,]\d+\]/ === str)
+    if /\A\[\d+[,]\d+\]/ === str
       str = str.slice(1, str.size - 2)
       str = str.split(",")
       return str
@@ -38,15 +38,15 @@ class TreeParser
     res     = ''
     counter = nil
     str     = str.slice(1, str.size - 1)
-    while (counter != 0)
+    while counter != 0
       res += str[0]
       if str[0] == '['
-        if counter == nil
+        if counter.nil?
           counter = 0
         end
         counter += 1
       elsif str[0] == ']'
-        if counter == nil
+        if counter.nil?
           counter = 0
         end
         counter -= 1
@@ -54,30 +54,30 @@ class TreeParser
 
       str = str.slice(1, str.size - 1)
     end
-    return [res, str.slice(1, str.size - 2)]
+    [res, str.slice(1, str.size - 2)]
   end
 
   def self.handle_node(str)
-    if str.size == 0
+    if str.empty?
       return nil
     end
     node = TreeNode.new
-    if (/\A\d+/) === str
+    if /\A\d+/ === str
       node.value = str
       return node
     end
     str           = str.slice(1, str.size - 2)
-    val, *_       = str.split(/,/)
+    val,          = str.split(/,/)
     children_part = str.slice(val.size + 1, str.size - val.size)
     node.value    = val
-    self.handle_children(children_part, node)
-    return node
+    handle_children(children_part, node)
+    node
   end
 end
 
 class TreePrinter
   def self.out(node, offset)
-    if !node.nil?
+    unless node.nil?
       out(node.right_node, offset + 1)
       offset.times do
         print('   ')
@@ -88,15 +88,13 @@ class TreePrinter
   end
 end
 
-# binding.pry
+
 if (file_name.nil?)
   puts 'Безымянных деревьев у нас не растет.'
+elsif File.exist?('trees/' + file_name + '.tree')
+  arr  = File.read('trees/' + file_name + '.tree')
+  tree = TreeParser.parse(arr)
+  TreePrinter.out(tree, 0)
 else
-  if File.exist?('trees/' + file_name + '.tree')
-    arr  = File.read('trees/' + file_name + '.tree')
-    tree = TreeParser.parse(arr)
-    TreePrinter.out(tree, 0)
-  else
-    puts 'Данное дерево не растет в данном лесу.'
-  end
+  puts 'Данное дерево не растет в данном лесу.'
 end
