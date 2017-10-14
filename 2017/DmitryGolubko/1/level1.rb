@@ -19,20 +19,20 @@ class TreeParser
     val,            = str.split(/,/)
     children_part   = str.slice(val.size + 1, str.size - val.size)
     tree_root.value = val
-    self.handle_children(children_part, tree_root)
-    return tree_root
+    handle_children(children_part, tree_root)
+    tree_root
   end
 
   def self.handle_children(str, parent)
-    children          = self.get_first_children(str)
-    parent.left_node  = self.handle_node(children[0])
-    parent.right_node = self.handle_node(children[1])
+    children          = get_first_children(str)
+    parent.left_node  = handle_node(children[0])
+    parent.right_node = handle_node(children[1])
   end
 
   def self.get_first_children(str)
     if /\A\[\d+[,]\d+\]/ === str
       str = str.slice(1, str.size - 2)
-      str = str.split(",")
+      str = str.split(',')
       return str
     end
     res     = ''
@@ -88,8 +88,7 @@ class TreePrinter
   end
 end
 
-
-if (file_name.nil?)
+if file_name.nil?
   puts 'Безымянных деревьев у нас не растет.'
 elsif File.exist?('trees/' + file_name + '.tree')
   arr  = File.read('trees/' + file_name + '.tree')
