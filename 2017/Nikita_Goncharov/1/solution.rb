@@ -1,6 +1,6 @@
 require 'json'
-require_relative 'Tree'
-require_relative 'Decision'
+require_relative 'tree'
+require_relative 'decision'
 name = ENV['NAME']
 tree = Tree.new
 filenames = Dir.glob('*/*.tree')
@@ -18,9 +18,7 @@ begin
       depth = tree.depth
       get_decision(sum, depth)
       puts 'Желаете продолжить?[y/n] '
-      if gets == "n\n"
-        break
-      end
+      break if gets == "n\n"
     end
   else
     file = File.read("./trees/#{name}.tree")
