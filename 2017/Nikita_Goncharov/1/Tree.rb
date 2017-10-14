@@ -16,12 +16,13 @@ class Tree
   def print_leveled_tree(tree, level, side)
     return if tree.nil?
     print_leveled_tree(tree.right, level + 1, 0)
-    i = 0
+    puts "#{output_tree_signs(level, side)}#{tree.value} \n"
+    print_leveled_tree(tree.left, level + 1, 1)
+  end
+
+  def output_tree_signs(level, side)
     str = ''
-    while i < level
-      str += '    '
-      i += 1
-    end
+    level.times { str += '    ' }
     str +=
       if side.zero?
         ' /---'
@@ -30,8 +31,6 @@ class Tree
       else
         ' \\---'
       end
-    puts "#{str}#{tree.value} \n"
-    print_leveled_tree(tree.left, level + 1, 1)
   end
 
   def get_tree_sum(tree)
@@ -43,15 +42,22 @@ class Tree
 
   def rec_arr(tree, tree_arr)
     tree = Tree.new if tree.nil?
-    if !tree_arr[0].is_a?(Array) && tree_arr[1].is_a?(Array)
-      tree.value = tree_arr[0]
-      tree.left = rec_arr(tree.left, tree_arr[1][0])
-      memory_work(tree, tree_arr) if tree.left.nil?
-      tree.right = rec_arr(tree.right, tree_arr[1][1])
-      memory_work(tree, tree_arr) if tree.right.nil?
-    end
+    branches_work(tree, tree_arr) if
+    !tree_arr[0].is_a?(Array) && tree_arr[1].is_a?(Array)
     return nil if !tree_arr[0].is_a?(Array) && !tree_arr[1].is_a?(Array)
     tree
+  end
+
+  def branches_work(tree, tree_arr)
+    tree.value = tree_arr[0]
+    fill_nodes(tree, tree_arr)
+  end
+
+  def fill_nodes(tree, tree_arr)
+    tree.left = rec_arr(tree.left, tree_arr[1][0])
+    memory_work(tree, tree_arr) if tree.left.nil?
+    tree.right = rec_arr(tree.right, tree_arr[1][1])
+    memory_work(tree, tree_arr) if tree.right.nil?
   end
 
   def memory_work(tree, tree_arr)

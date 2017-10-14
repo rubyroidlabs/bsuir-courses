@@ -1,6 +1,6 @@
 require 'json'
-require_relative 'tree'
-require_relative 'decision'
+require_relative 'Tree'
+require_relative 'Decision'
 name = ENV['NAME']
 tree = Tree.new
 filenames = Dir.glob('*/*.tree')
