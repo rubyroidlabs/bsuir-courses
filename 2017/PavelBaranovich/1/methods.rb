@@ -1,37 +1,43 @@
 # /usr/bin/env ruby
 
-def print_tree(depth, space_count, prev_space_count, tree, max_depth)
-  if depth >= 0
-    print_tree(depth - 1, 2 * space_count + 1, space_count - 1, tree, max_depth)
-
-    count = 1 << depth
-    answer = ' ' * prev_space_count
-    while count < (1 << (depth + 1))
-      if tree[count].nil?
-        answer += ' ' * (space_count + 1)
-      elsif tree[count].to_i < 10
-        answer += tree[count] + ' ' * space_count
-      else
-        answer += tree[count] + ' ' * (space_count - 1)
-      end
-      count += 1
-    end
-
-    if depth > 0
-      slashes = ' ' * answer.size
-      i = space_count
-      indent = 1 << (max_depth - depth)
-      distance = indent << 3
-      while i < answer.size
-        slashes[i - indent - 1] = '/'
-        slashes[i + indent - 1] = '\\'
-        i += distance
-      end
-
-      puts slashes
-    end
-    puts answer
+def get_slash_line(depth, space_count, max_depth, numbers_line)
+  answer = ' ' * numbers_line.size
+  i = space_count
+  indent = 1 << (max_depth - depth)
+  distance = indent << 3
+  while i < numbers_line.size
+    answer[i - indent - 1] = '/'
+    answer[i + indent - 1] = '\\'
+    i += distance
   end
+
+  answer
+end
+
+def get_numbers_line(depth, space_count, prev_space_count, tree)
+  count = 1 << depth
+  answer = ' ' * prev_space_count
+  space_count -= 1
+  while count < (1 << (depth + 1))
+    answer += tree[count] + ' ' * space_count
+    answer += ' ' if tree[count].to_i < 10
+
+    count += 1
+  end
+
+  answer
+end
+
+def print_tree(depth, space_count, prev_space_count, tree, max_depth)
+  return if depth < 0
+
+  print_tree(depth - 1, 2 * space_count + 1, space_count - 1, tree, max_depth)
+
+  numbers_line = get_numbers_line(depth, space_count, prev_space_count, tree)
+
+  puts get_slash_line(depth, space_count, max_depth, numbers_line) if depth > 0
+
+  puts numbers_line
 end
 
 def create_tree(numbers, str)
@@ -67,7 +73,7 @@ end
 def get_depth(size)
   depth = 0
   count = size - 1
-  while count != 0
+  while count > 0
     depth += 1
     count >>= 1
   end
