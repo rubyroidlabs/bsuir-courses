@@ -11,7 +11,7 @@ if ENV['NAME'].nil?
     array = JSON.parse(file)
     node = Node.new(array.shift)
     node.insert(node, array.shift) until array.nil?
-    # node.print
+    # node print
     node.check(node)
     puts 'Желаете продолжить? [y/n]'
     break if gets.chomp == 'n'
@@ -21,7 +21,7 @@ elsif File.exist?('trees/' + ENV['NAME'] + '.tree')
   array = JSON.parse(file)
   node = Node.new(array.shift)
   node.insert(node, array.shift) until array.nil?
-  # node.print
+  # node print
   node.check(node)
 else
   puts 'Дерева с таким именем нет'
