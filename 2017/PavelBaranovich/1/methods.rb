@@ -5,7 +5,7 @@ def print_tree(depth, space_count, prev_space_count, tree, max_depth)
     print_tree(depth - 1, 2 * space_count + 1, space_count - 1, tree, max_depth)
 
     count = 1 << depth
-    answer = " " * prev_space_count
+    answer = ' ' * prev_space_count
     while count < (1 << (depth + 1))
       if tree[count].nil?
         answer += ' ' * (space_count + 1)
@@ -86,7 +86,7 @@ def solve(file_name)
     file = file.read
     numbers = file.scan(/\d\d*/)
     str = file.delete('0-9')
-      
+
     tree = create_tree(numbers, str)
 
     depth = get_depth(tree.size)
