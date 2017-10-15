@@ -8,13 +8,12 @@ class TreeCreate
       @spaces = depth - i + 1
       print '  ' * (2**@spaces / 2)
       print_level(tree, i)
-      if i != depth
+       next unless i != depth
         print "\n" + '  ' * ((2**(@spaces - 1)) / 2)
         (2**(i - 1)).times do
           print ' /' + '  ' * ((2**(@spaces - 1)) - 1)
           print '\\ ' + '  ' * ((2**(@spaces - 1)) - 1)
         end
-      end
     end
   end
 
@@ -54,8 +53,8 @@ if ENV['NAME'].nil?
         answer = gets.chomp
         break if %w[y n].include?(answer)
       end
-        break if answer == 'n'
-      end
+      break if answer == 'n'
+end
   puts "Спасибо что побывали в нашем лесу!\n\r"
 elsif dir.include? ENV['NAME']
   tree = JSON.parse(File.new("trees/@ENV['NAME'.to_s").read)
