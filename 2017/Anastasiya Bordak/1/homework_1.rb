@@ -1,5 +1,3 @@
-require 'pry'
-require 'json'
 class Tree
   attr_accessor :value, :left, :right
   def (initialize value)
