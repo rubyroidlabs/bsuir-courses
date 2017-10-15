@@ -37,10 +37,11 @@ def base(tree)
   if list_now != [] 
     $list_arr << list_now 
   end
-  if arr_node.size.empty? 
+  if arr_node.size.empty?
     base(arr_node)
   end
 end
+
   if input.empty?
     puts 'problem'
   else
