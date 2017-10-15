@@ -8,7 +8,7 @@ def base(tree)
       arr_node += node
     end
   end
-  if list_now != [] 
+  if list_now != []
     @list_arr << list_now
   end
   unless arr_node.size.zero?
@@ -55,4 +55,3 @@ input = ENV['NAME'].to_s.downcase
       draw(filtred_array)
     end
   end
-
