@@ -82,7 +82,7 @@ class TreeHash
         @sum += left
       end
       if right
-        @hash[[lvl, x[lvl]]] = right if right
+        @hash[[lvl, x[lvl]]] = right
         x[lvl] += 1
         @sum += right
       end
