@@ -61,7 +61,6 @@ if ENV['NAME'].nil?
     puts
   end
   puts "Спасибо что побывали в нашем лесу!\n\r"
-
 elsif dir.include? ENV['NAME']
 
   tree = JSON.parse(File.new("trees/@ENV['NAME'.to_s").read)
