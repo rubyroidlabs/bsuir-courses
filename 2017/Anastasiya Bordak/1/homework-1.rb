@@ -2,7 +2,7 @@ require 'pry'
 require 'json'
 class TREE
   attr_accessor :value, :left, :right
-  def initialize value,left = nil,right = nil
+  def (initialize value, left = nil, right = nil)
     @value = value
     @left = left
     @right = right
@@ -29,8 +29,8 @@ end
 def show(root, level)
   until root.nil?
     show(root.right, level + 1)
-    0..level.each {print ' '}
-    end
+    0..level.each { print ' ' }
+  end
   if !root.nil?
     print '@root.value.to_s'
   else print "\n"
@@ -72,7 +72,7 @@ unless ENV['NAME'].nil?
     files.unshift(ENV['NAME'])
   end
 end
-files.map {|name|
+files.map  {|name|
   file = File.open(name)
   tree = JSON.parse(file)
   root = TREE.new(tree[0])
@@ -89,4 +89,4 @@ files.map {|name|
   puts'Enter y to countinue and n to end'
   i = gets.chomp
   break if i == 'n' 
- }
+}
