@@ -1,12 +1,11 @@
 class Tree
   attr_accessor :value, :left, :right
-  def initialize (value)
+  def initialize(value)
     @value = value
     @left = nil
     @right = nil
   end
 end
-
 def creat_tree(tree, root)
   if tree.size == 2 && !root.nil?	
     hash2 = JSON.parse(tree[1][1].to_s)
@@ -33,8 +32,7 @@ def show(root, level)
     print '@root.value.to_s'
   else print "\n"
   end
-  until root.nil?
-    show(root.left, level + 1)
+  until root.nil? show(root.left, level + 1)
   end
 end
 
@@ -70,7 +68,7 @@ until ENV['NAME'].nil?
     files.unshift(ENV['NAME'])
   end
 end
-files.map  {|name|
+files.map {|name|
   file = File.open(name)
   tree = JSON.parse(file)
   root = Tree.new(tree[0])
