@@ -2,10 +2,10 @@ require 'pry'
 require 'json'
 class TREE
   attr_accessor :value, :left, :right
-  def (initialize value, left = nil, right = nil)
+  def (initialize value)
     @value = value
-    @left = left
-    @right = right
+    @left = nil
+    @right = nil
   end
 end
 
