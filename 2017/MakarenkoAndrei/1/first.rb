@@ -6,10 +6,10 @@ class Tree
     @right = right
   end
 
-  def self.make(array)
-    tree = Tree.new(array[0])
-    tree.left = array[1][0].is_a?(Numeric) ? Tree.new(array[1][0]) : make(array[1][0])
-    tree.right = array[1][1].is_a?(Numeric) ? Tree.new(array[1][1]) : make(array[1][1])
+  def self.make(a)
+    tree = Tree.new(a[0])
+    tree.left = a[1][0].is_a?(Numeric) ? Tree.new(a[1][0]) : make(a[1][0])
+    tree.right = mass[1][1].is_a?(Numeric) ? Tree.new(a[1][1]) : make(a[1][1])
     tree
   end
 end
