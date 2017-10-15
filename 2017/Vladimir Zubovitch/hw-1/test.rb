@@ -36,6 +36,7 @@ def draw(tree)
     puts
   end
 end
+
 # !/usr/bin/env ruby
 require 'json'
 input = ENV['NAME'].to_s.downcase
@@ -47,6 +48,7 @@ input = ENV['NAME'].to_s.downcase
     Dir.foreach('trees') { |x| garden << x }
     if garden.include?("#{input}.tree")
       puts 'Есть такое дерево'
+      f = File.new "trees/#{input}.tree"
       content = f.read
       b = JSON.parse(content)
       base(b)
