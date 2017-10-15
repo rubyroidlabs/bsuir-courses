@@ -33,7 +33,7 @@ def show(root, level)
     print '@root.value.to_s'
   else print "\n"
   end
-  unless root.nil?
+  until root.nil?
     show(root.left, level + 1)
   end
 end
@@ -65,7 +65,7 @@ def sum(node, i)
 end
 
 files = Dir.glob('/home/anastasiya/Desktop/trees/*').sort
-unless ENV['NAME'].nil? 
+until ENV['NAME'].nil? 
   if File.exist?(ENV['NAME'])
     files.unshift(ENV['NAME'])
   end
