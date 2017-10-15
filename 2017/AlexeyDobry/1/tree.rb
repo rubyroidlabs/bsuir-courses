@@ -3,7 +3,11 @@ require 'pry'
 
 class Tree
 
-  attr_accessor :file_name, :data
+  attr_accessor :file_name, :tree
+
+  def initialize(tree = nil)
+    @tree = tree
+  end
 
   def main
 
@@ -18,9 +22,13 @@ class Tree
     if ENV['NAME'].nil?
       links.each do |file_name|
         read(file_name)
+        puts
+        puts @name
+        puts
+        puts @json
+        puts
         print 'Желаете продолжить? [y\n]'
         sol = gets.chomp
-        binding.pry
         break if sol == 'n'
       end
     elsif ENV['NAME']
@@ -31,7 +39,11 @@ class Tree
         end
         if file_name.include? ENV['NAME']
           read(file_name)
-          binding.pry
+          puts
+          puts @name
+          puts
+          puts @json
+          puts
         else
           next
         end
@@ -41,10 +53,10 @@ class Tree
 
   def read(file_name)
     @name = File.basename(file_name)
-    @tree =JSON.parse(File.read(file_name))
-    @tree
+    @json =JSON.parse(File.read(file_name))
+    @name = File.basename(file_name, ".tree")
+    @json
   end
-
 end
 
 Tree.new.main
