@@ -4,24 +4,24 @@ require 'json'
 input=ENV["NAME"].to_s.downcase
 $list_arr=[]
 def draw (tree)
-        tree.each do |lvl|
-                sp=128/(lvl.size+1)
-               sp+=1
-                if tree[0] != lvl
-                  lvl.size.times do |i|
-                    if (i % 2).zero?
-                      print "%#{sp}s" % ["/"]
-                    else
-                      print "%#{sp}s" % ["\\"]
-                    end
-                  end
-                end
-                puts
-                lvl.size.times do |i|
-                  print "%#{sp}s" % [lvl[i]]
-                end
-                puts
+  tree.each do |lvl|
+    sp=128/(lvl.size+1)
+    sp+=1
+      if tree[0] != lvl
+        lvl.size.times do |i|
+          if (i % 2).zero?
+            print "%#{sp}s" % ["/"]
+          else
+            print "%#{sp}s" % ["\\"]
+          end
         end
+      end
+    puts
+    lvl.size.times do |i|
+      print "%#{sp}s" % [lvl[i]]
+    end
+    puts
+  end
 end
 
 def base(tree)
