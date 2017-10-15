@@ -34,8 +34,8 @@ def show(hash)
   array_to_print = tree_array.map { |item| item.to_s.scan(/\d+/).join(' ') }
   array_to_print.each_index do |x|
     array_to_print[x] = array_to_print[x].center(array_to_print.last.length)
-    forest_control(array_to_print)
-  end
+    end
+  forest_control(array_to_print)
 end
 
 def draw_directory
@@ -81,4 +81,3 @@ def forest_control(arr, sum = 0)
   trees_array
 end
 open_files(ENV['NAME'])
-
