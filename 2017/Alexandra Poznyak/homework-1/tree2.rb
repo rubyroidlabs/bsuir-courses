@@ -3,7 +3,6 @@ require 'pry'
 
 class TreeCreate
   def self.print_tree(tree)
-
     depth = tree_depth tree
     1.upto(depth) do |i|
       @spaces = depth - i + 1
@@ -22,14 +21,12 @@ class TreeCreate
   end
 
   def self.tree_depth(way)
-
     left = way[1][0].class == Integer ? 1 : tree_depth(way[1][0])
     right = way[1][1].class == Integer ? 1 : tree_depth(way[1][1])
     (left >= right ? left : right) + 1
   end
 
   def self.print_level(way, level)
-
     level -= 1
     if level.zero?
       p = way.class == Array ? way[0] : way
@@ -68,7 +65,6 @@ if ENV['NAME'].nil?
 elsif dir.include? ENV['NAME']
 
   tree = JSON.parse(File.new("trees/#{ENV['NAME']}").read)
-
   TreeCreate.print_tree tree
 
 else
