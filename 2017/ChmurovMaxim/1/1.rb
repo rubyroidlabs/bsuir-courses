@@ -49,7 +49,7 @@ def print_digit(levels, interval, key, max_count)
     print "#{' ' * interval_right}#{val}#{' ' * interval_left}"
     max_count += val
   end
-  return max_count
+  max_count
 end
 
 def print_tree(tree, levels, max_count)
