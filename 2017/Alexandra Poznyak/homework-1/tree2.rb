@@ -37,14 +37,14 @@ class TreeCreate
       print_level(way[1][1], level)
     end
   end
+
 end
 
 dir = Dir.entries('/home/artser/work/trees').sort
 dir.delete('.')
 dir.delete('..')
-
-if ENV['NAME'].nil?
-  dir.each do |i|
+	if ENV['NAME'].nil?
+  	dir.each do |i|
     puts "\n#{i}"
     tree = JSON.parse(File.new("@i.to_s").read)
 
