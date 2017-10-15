@@ -21,7 +21,6 @@ class TreeCreate
     puts
   end
 
-
   def self.tree_depth(way)
 
     left = way[1][0].class == Integer ? 1 : tree_depth(way[1][0])
@@ -34,7 +33,7 @@ class TreeCreate
     level -= 1
     if level.zero?
       p = way.class == Array ? way[0] : way
-      print format ('%-2d', p)
+      print format('%-2d', p)
       print '  ' * (2**@spaces - 1)
     else
       print_level(way[1][0], level)
@@ -53,7 +52,6 @@ if ENV['NAME'].nil?
     tree = JSON.parse(File.new("#{i}").read)
 
     TreeCreate.print_tree tree
-
 
     print 'Хотите продолжить? [y/n] '
 
