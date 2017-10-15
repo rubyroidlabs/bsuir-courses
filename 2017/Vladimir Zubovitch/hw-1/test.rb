@@ -31,8 +31,8 @@ def base (tree)
       list_now << node 
     else 
     arr_node += node 
-  end
-  end
+    end
+   end
   if list_now != [] 
     $list_arr << list_now 
   end
