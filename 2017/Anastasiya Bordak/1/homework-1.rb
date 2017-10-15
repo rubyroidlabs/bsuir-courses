@@ -29,18 +29,18 @@ end
 
 def show(root, level)
   if !root.nil?
-    show(root.right, level+1)
-    for i in 0..level
+    show(root.right, level + 1)
+    0..level.each {
       print ' '
-      i+=1
+    }
     end
   end
   if !root.nil?
-    print "#{root.value}"
+    print "@root.value.to_s"
   else print "\n"
   end
-  if !root.nil?
-    show(root.left, level+1)
+  unless root.nil?
+    show(root.left, level + 1)
   end
 end
 
@@ -55,8 +55,8 @@ def hight(node)
   if node.nil?
     return 0
   else
-   left = hight(node.left)
-   right = hight(node.right)
+    left = hight(node.left)
+    right = hight(node.right)
   if(left>right)
     return left + 1
   else return right + 1
@@ -64,7 +64,7 @@ def hight(node)
   end
 end
 
-def sum(node,i)
+def sum(node, i)
   if node.nil?
     return i
   end
@@ -73,15 +73,15 @@ def sum(node,i)
   sum(node.right, i)
 end
 
-files = Dir.glob("/home/anastasiya/Desktop/trees/*").sort
-if !ENV['NAME'].nil? 
-  if File.exist? (ENV['NAME'])
+files = Dir.glob('/home/anastasiya/Desktop/trees/*').sort
+unless ENV['NAME'].nil? 
+  if File.exist?(ENV['NAME'])
     files.unshift(ENV['NAME'])
   end
 end
-files.map{|name|
+files.map {|name|
   file = File.open(name)
-  tree = JSON.load(file)
+  tree = JSON.parse(file)
   root = TREE.new(tree[0])
   file.close
   creat_tree(tree, root)
@@ -93,8 +93,7 @@ files.map{|name|
     puts 'Crop'
   else puts 'Keep'
   end
-  puts 'Enter y to countinue and n to end'
+  puts'Enter y to countinue and n to end'
   i = gets.chomp
   break if i == 'n' 
 }
-binding.pry
