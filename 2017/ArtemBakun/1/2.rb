@@ -4,7 +4,6 @@ def create(arr, str)
   vertex = 1
   i = 0
   j = 0
-  max = vertex
   tree = []
   tree[vertex] = arr[j]
   while i < str.size - 1

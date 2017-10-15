@@ -1,6 +1,6 @@
 # /usr/bin/env ruby
 
-require_relative ('2.rb')
+require_relative('2.rb')
 
 dir = Dir.new('trees')
 path = dir.entries.each.map do |file|
@@ -9,7 +9,6 @@ path = dir.entries.each.map do |file|
 end.compact.sort
 
 tree_name = ENV['NAME']
-
 
 if tree_name
   if tree_name == ''
@@ -34,7 +33,7 @@ if tree_name
     tree_show(tree, level, max_vertex)
   else puts('Данное дерево в этом лесу не растёт.')
   end
-else 
+else
   path.each do |file_name|
     puts file_name
     arr = []
@@ -55,7 +54,7 @@ else
     max_vertex = arr.size
     tree_show(tree, level, max_vertex)
 
-    if  arr.inject { |sum, n| sum.to_i + n.to_i }.to_i > 5000
+    if arr.inject { |sum, n| sum.to_i + n.to_i }.to_i > 5000
       puts 'Срубить.'
     elsif get_tree_level(arr) > 5
       puts 'Обрезать.'
@@ -65,12 +64,8 @@ else
 
     print 'Желаете продолжить? [y/n] '
     choise = gets.chomp.downcase
-    if choise == 'n' || 'trees/' + path[path.size - 1] == file_name
-      break
-    end
+    break if choise == 'n' || 'trees/' + path[path.size - 1] == file_name
   end
 
   puts 'Спасибо что были в нашём лесу.'
 end
-
-
