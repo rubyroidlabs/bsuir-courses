@@ -72,7 +72,7 @@ class Tree
       puts str
       puts str2 unless level == @depth
     end
-    if @sum_nodes > 100
+    if @sum_nodes > 5000
       puts 'Срубить.'
     elsif @depth > 5
       puts 'Обрезать.'
