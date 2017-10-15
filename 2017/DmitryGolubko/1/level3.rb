@@ -88,9 +88,7 @@ class TreePrinter
   end
 end
 
-
 class NodeCounter
-
   def self.sum_count(node, sum)
     unless node.nil?
       sum += node.value.to_i
@@ -106,7 +104,6 @@ class NodeCounter
     end
     depth
   end
-
 end
 
 def decision(sum, depth)
@@ -122,7 +119,7 @@ end
 
 if file_name.nil?
   file_list = []
-  Dir.foreach("trees") do |file|
+  Dir.foreach('trees') do |file|
     file_list.push(file)
   end
   file_list.sort!
@@ -132,7 +129,7 @@ if file_name.nil?
     tree = TreeParser.parse(arr)
     p file
     TreePrinter.out(tree, 0)
-    sum = NodeCounter.sum_count(tree , 0)
+    sum = NodeCounter.sum_count(tree, 0)
     depth = NodeCounter.depth_count(tree, 0)
     decision(sum, depth)
     p 'Желаете продолжить? [y/n]'
@@ -151,4 +148,4 @@ elsif File.exist?('trees/' + file_name + '.tree')
   decision(sum, depth)
 else
   puts 'Данное дерево не растет в данном лесу.'
-  end
+end
