@@ -1,71 +1,76 @@
 # /usr/bin/env ruby
 
+require_relative ('2.rb')
+
+dir = Dir.new('trees')
+path = dir.entries.each.map do |file|
+  next unless file =~ /\.tree/
+  file
+end.compact.sort
+
 tree_name = ENV['NAME']
-arr = []
-str = ''
-file_name = 'trees/' + tree_name + '.tree'
-File.open(file_name) do |file|
-  file = file.read
-  arr = file.scan(/\d\d*/)
-  str = file.delete '0-9'
-end
 
-vertex = 1
-i = 0
-j = 0
-max = vertex
-tree = []
-tree[vertex] = arr[j]
-while i < str.size - 1
-  if str[i] + str[i + 1] == ',['
-    vertex *= 2
 
-    unless tree[vertex * 2].nil?
-      vertex += 1
+if tree_name
+  if tree_name == ''
+    puts('Безымянных деревьев у нас не растёт.')
+  elsif path.include?(tree_name + '.tree')
+    arr = []
+    str = ''
+    file_name = 'trees/' + tree_name + '.tree'
+    File.open(file_name) do |file|
+      file = file.read
+      arr = file.scan(/\d\d*/)
+      str = file.delete '0-9'
     end
 
-    j += 1
-    tree[vertex] = arr[j]
-  elsif str[i] == ','
-    vertex += 1
-    j += 1
-    tree[vertex] = arr[j]
-  elsif str[i] == ']'
-    if !tree[vertex * 2].nil? && tree[(vertex * 2) + 1].nil?
-      vertex *= 2
+    tree = []
+    tree = create(arr, str)
+
+    level = 0
+    level = get_tree_level(arr)
+
+    max_vertex = arr.size
+    tree_show(tree, level, max_vertex)
+  else puts('Данное дерево в этом лесу не растёт.')
+  end
+else 
+  path.each do |file_name|
+    puts file_name
+    arr = []
+    str = ''
+    file_name = 'trees/' + file_name
+    File.open(file_name) do |file|
+      file = file.read
+      arr = file.scan(/\d\d*/)
+      str = file.delete '0-9'
     end
-    vertex /= 2
-  end
-  i += 1
-  if max < vertex
-    max = vertex
-  end
-end
 
-met = max
-count = 0
-while met != 0
-  count += 1
-  met /= 2
-end
+    tree = []
+    tree = create(arr, str)
 
-i = 1
-vertex = 1
-while max != 0
-  print ' ' * (max - 1)
-  met = 0
-  while met != i
-    print tree[vertex]
-    if tree[vertex].to_i < 10
-      print ' ' * (2**(count + 1) - 1)
+    level = 0
+    level = get_tree_level(arr)
+
+    max_vertex = arr.size
+    tree_show(tree, level, max_vertex)
+
+    if  arr.inject { |sum, n| sum.to_i + n.to_i }.to_i > 5000
+      puts 'Срубить.'
+    elsif get_tree_level(arr) > 5
+      puts 'Обрезать.'
     else
-      print ' ' * (2**(count + 1) - 2)
+      puts 'Оставить.'
     end
-    vertex += 1
-    met += 1
+
+    print 'Желаете продолжить? [y/n] '
+    choise = gets.chomp.downcase
+    if choise == 'n' || 'trees/' + path[path.size - 1] == file_name
+      break
+    end
   end
-  i *= 2
-  max /= 2
-  count -= 1
-  print "\n\n"
+
+  puts 'Спасибо что были в нашём лесу.'
 end
+
+
