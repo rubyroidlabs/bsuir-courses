@@ -41,7 +41,7 @@ def draw_directory
   dir_of_files = Dir.entries(work_directory)
   dir_of_files.sort!
   dir_of_files.each do |files_to_push|
-    files.push(files_to_push) if files_to_push =~ /.tree/ }
+    files.push(files_to_push) if files_to_push =~ /.tree/
     files
   end
 end
