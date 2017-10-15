@@ -37,9 +37,9 @@ def base(tree)
   end
 end
 
-#!/usr/bin/env ruby
+# !/usr/bin/env ruby
 require 'json'
-input = ENV["NAME"].to_s.downcase
+input = ENV['NAME'].to_s.downcase
 $list_arr = []
   if input.empty?
     puts 'problem'
