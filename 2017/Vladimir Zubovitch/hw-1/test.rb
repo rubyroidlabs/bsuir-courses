@@ -32,7 +32,7 @@ def base(tree)
   if list_now != [] 
     @list_arr<< list_now
   end
-  if !arr_node.size.empty?
+  if !arr_node.size.zero?
     base(arr_node)
   end
 end
