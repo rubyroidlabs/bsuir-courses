@@ -1,8 +1,7 @@
 class TreeHash
-
   attr_reader :depth, :sum
 
-  def initialize (arr = [])
+  def initialize(arr = [])
     @depth = 0
     @sum = 0
     @hash = Hash.new([0, 0])
@@ -37,6 +36,7 @@ class TreeHash
   end
 
   private
+
 # parse -- recursively parse all nodes of the tree, stored in arr[]
 #          and form hash table @hash = { [y, x] = value }
 #            y -- level of the tree (0 -- root)
@@ -57,7 +57,7 @@ class TreeHash
 #          start parse from lvl = 0 (root)
 #
 #   x -- temporary array of current x for current level y
-#        x[y] = current x
+#       x[y] = current x
 #
   def parse(arr, lvl, x)
     if lvl > @depth
@@ -66,7 +66,6 @@ class TreeHash
     end
     left = arr[0]
     right = arr[1]
-
     if left.is_a?(Integer) && right.is_a?(Array)
       # node [Integer, Array]
       @hash[[lvl, x[lvl]]] = left
@@ -90,5 +89,4 @@ class TreeHash
       end
     end
   end
-
 end
