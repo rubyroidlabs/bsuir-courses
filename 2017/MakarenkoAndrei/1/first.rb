@@ -1,4 +1,3 @@
-#! /usr/bin/env ruby	
 class Tree
   attr_accessor :value, :left, :right
   def initialize(value = nil, left = nil, right = nil)
@@ -8,19 +7,17 @@ class Tree
   end
 
   def self.make_tree(array)
-    tree = Tree.new(array[0])    
-    tree.left = 
-    if array[1][0].is_a?(Numeric)
+    tree = Tree.new(array[0])
+    tree.left = if array[1][0].is_a?(Numeric)
       Tree.new(array[1][0])
-    else
+                else
       make_tree(array[1][0])
-    end
-    tree.right = 
-    if array[1][1].is_a?(Numeric)
-      Tree.new(array[1][1])
-    else
+                end
+    tree.right = if array[1][1].is_a?(Numeric)
+                Tree.new(array[1][1])
+                else
       make_tree(array[1][1])
-    end
+                end
     tree
   end
 end
@@ -94,14 +91,14 @@ class Root
     end
     s
   end
-  
+
   def main
     require 'json'
     file = 'trees/' + ENV['NAME'] + '.tree'
     if ENV['NAME'] = nil
       puts 'Пустых деревьев не растет'
     elsif File.file? file
-      @tree = Tree.make_tree(JSON.parse(File.read(file))) 
+      @tree = Tree.make_tree(JSON.parse(File.read(file)))
       do_hight(@tree)
       @mass = Array.new(@hight) { [] }
       do_array(@tree)
