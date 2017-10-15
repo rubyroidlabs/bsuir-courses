@@ -64,7 +64,7 @@ if ENV['NAME'].nil?
 
 elsif dir.include? ENV['NAME']
 
-  tree = JSON.parse(File.new("trees/#{ENV['NAME']}").read)
+  tree = JSON.parse(File.new("trees/@ENV['NAME'.to_s").read)
   TreeCreate.print_tree tree
 
 else
