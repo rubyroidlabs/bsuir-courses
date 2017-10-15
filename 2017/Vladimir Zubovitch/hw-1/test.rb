@@ -1,11 +1,6 @@
-#!/usr/bin/env ruby
-require 'json'
-
-input = ENV["NAME"].to_s.downcase
-$list_arr = []
 def draw(tree)
   tree.each do |lvl|
-    sp = 128/(lvl.size+1)
+    sp = 128 / (lvl.size + 1)
     sp += 1
       if tree[0] != lvl
         lvl.size.times do |i|
@@ -42,11 +37,15 @@ def base(tree)
   end
 end
 
+#!/usr/bin/env ruby
+require 'json'
+input = ENV["NAME"].to_s.downcase
+$list_arr = []
   if input.empty?
     puts 'problem'
   else
     garden = []
-    Dir.foreach("trees") { |x| garden << x }
+    Dir.foreach('trees') { |x| garden << x }
     if garden.include?("#{input}.tree")
       puts "Есть такое дерево"
       f = File.new ("trees/#{input}.tree")
