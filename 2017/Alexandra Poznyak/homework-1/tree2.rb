@@ -37,14 +37,13 @@ class TreeCreate
       print_level(way[1][1], level)
     end
   end
-
 end
 
 dir = Dir.entries('/home/artser/work/trees').sort
 dir.delete('.')
 dir.delete('..')
-	if ENV['NAME'].nil?
-  	dir.each do |i|
+if ENV['NAME'].nil?
+  dir.each do |i|
     puts "\n#{i}"
     tree = JSON.parse(File.new("@i.to_s").read)
 
@@ -57,16 +56,13 @@ dir.delete('..')
       answer = gets.chomp
       break if %w[y n].include?(answer)
     end
-    break if answer == 'n'
-    puts
-  end
+      break if answer == 'n'
+      puts
+    end
   puts "Спасибо что побывали в нашем лесу!\n\r"
 elsif dir.include? ENV['NAME']
   tree = JSON.parse(File.new("trees/@ENV['NAME'.to_s").read)
   TreeCreate.print_tree tree
-
 else
-
   puts "\nВ нашем лесу нет такого дерева.\n\r"
-
 end
