@@ -69,7 +69,8 @@ until ENV['NAME'].nil?
     files.unshift(ENV['NAME'])
   end
 end
-files.map { |name|
+files.map
+{ |name|
   file = File.open(name)
   tree = JSON.parse(file)
   root = Tree.new(tree[0])
