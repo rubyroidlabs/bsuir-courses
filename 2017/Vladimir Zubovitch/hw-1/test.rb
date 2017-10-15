@@ -1,3 +1,7 @@
+# !/usr/bin/env ruby
+require 'json'
+input = ENV['NAME'].to_s.downcase
+
 def draw(tree)
   tree.each do |lvl|
     sp = 128 / (lvl.size + 1)
@@ -37,9 +41,6 @@ def base(tree)
   end
 end
 
-# !/usr/bin/env ruby
-require 'json'
-input = ENV['NAME'].to_s.downcase
 @list_arr = []
   if input.empty?
     puts 'problem'
