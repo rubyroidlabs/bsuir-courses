@@ -33,8 +33,8 @@ def show(hash)
   tree_array = hash.values.reverse
   array_to_print = tree_array.map { |item| item.to_s.scan(/\d+/).join(' ') }
   array_to_print.each_index do |x|
-  array_to_print[x] = array_to_print[x].center(array_to_print.last.length)
-  forest_control(array_to_print)
+    array_to_print[x] = array_to_print[x].center(array_to_print.last.length)
+    forest_control(array_to_print)
   end
 end
 
@@ -51,17 +51,17 @@ end
 
 def all_trees
   draw_directory.each do |files_name|
-  puts 'Do you want to continue?[y/n]'
-  name = gets.chomp
-  if ['Y','y'].include? name
-    puts add_to_level(File.read(files_name.to_s))
-  elsif ['N','n'].include? name
-    puts 'Good bye'
-    exit
-  else
-    puts 'wrong'
-    redo
-  end
+    puts 'Do you want to continue?[y/n]'
+    name = gets.chomp
+    if ['Y','y'].include? name
+      puts add_to_level(File.read(files_name.to_s))
+    elsif ['N','n'].include? name
+      puts 'Good bye'
+      exit
+    else
+      puts 'wrong'
+      redo
+    end
   end
 end
 
@@ -75,7 +75,6 @@ def forest_control(arr, sum = 0)
   'cut down'
   else
   'leave alone'
-  end 
   end
   trees_array[0] = arr_for_sum
   trees_array[2] = decision.center(arr_for_sum.last.length)
