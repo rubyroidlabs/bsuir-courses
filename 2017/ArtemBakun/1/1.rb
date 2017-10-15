@@ -16,8 +16,8 @@ if tree_name
   elsif path.include?(tree_name + '.tree')
     arr = []
     str = ''
-    file_name = 'trees/' + tree_name + '.tree'
-    File.open(file_name) do |file|
+    tree_name = 'trees/' + tree_name + '.tree'
+    File.open(tree_name) do |file|
       file = file.read
       arr = file.scan(/\d\d*/)
       str = file.delete '0-9'
