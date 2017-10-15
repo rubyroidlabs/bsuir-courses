@@ -3,38 +3,39 @@ require 'pry'
 
 class TreeCreate
   def self.print_tree(tree)
-    depth = tree_depth tree
 
+    depth = tree_depth tree
     1.upto(depth) do |i|
       @spaces = depth - i + 1
-      print '  '*(2**@spaces / 2)
+      print '  '* (2**@spaces / 2)
       print_level(tree, i)
       if i != depth
-        print "\n" + '  '*((2**(@spaces - 1)) / 2)
+        print "\n" + '  '* ((2**(@spaces - 1)) / 2)
         (2** (i - 1)).times do
-          print ' /' + '  '*((2**(@spaces - 1)) - 1)
-          print '\\ ' + '  '*((2**(@spaces - 1)) - 1)
+          print ' /' + '  '* ((2**(@spaces - 1)) - 1)
+          print '\\ ' + '  '* ((2**(@spaces - 1)) - 1)
         end
       end
       puts
     end
-
     puts
   end
 
 
   def self.tree_depth(way)
+
     left = way[1][0].class == Integer ? 1 : tree_depth(way[1][0])
     right = way[1][1].class == Integer ? 1 : tree_depth(way[1][1])
     (left >= right ? left : right) + 1
   end
 
   def self.print_level(way, level)
+
     level -= 1
     if level.zero?
       p = way.class == Array ? way[0] : way
-      print '%-2d' % p
-      print '  ' *(2**@spaces - 1)
+      print format ('%-2d', p)
+      print '  ' * (2**@spaces - 1)
     else
       print_level(way[1][0], level)
       print_level(way[1][1], level)
@@ -59,10 +60,9 @@ if ENV['NAME'].nil?
     answer = ''
     loop do
       answer = gets.chomp
-      break if answer == 'y' || answer == 'n'
+      break if %w[y n].include?(answer)
     end
     break if answer == 'n'
-
     puts
   end
   puts "Спасибо что побывали в нашем лесу!\n\r"
@@ -70,6 +70,7 @@ if ENV['NAME'].nil?
 elsif dir.include? ENV['NAME']
 
   tree = JSON.parse(File.new("trees/#{ENV['NAME']}").read)
+
   TreeCreate.print_tree tree
 
 else
