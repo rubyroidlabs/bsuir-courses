@@ -34,7 +34,7 @@ def show(hash)
   array_to_print = tree_array.map { |item| item.to_s.scan(/\d+/).join(' ') }
   array_to_print.each_index do |x|
     array_to_print[x] = array_to_print[x].center(array_to_print.last.length)
-    end
+  end
   forest_control(array_to_print)
 end
 
@@ -45,8 +45,8 @@ def draw_directory
   dir_of_files.sort!
   dir_of_files.each do |files_to_push|
     files.push(files_to_push) if files_to_push =~ /.tree/
-    files
   end
+  files
 end
 
 def all_trees
