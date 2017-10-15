@@ -53,9 +53,9 @@ def all_trees
   draw_directory.each do |files_name|
     puts 'Do you want to continue?[y/n]'
     name = gets.chomp
-    if ['Y','y'].include? name
+    if %w[ y Y ].include? name
       puts add_to_level(File.read(files_name.to_s))
-    elsif ['N','n'].include? name
+    elsif %w[ n N ].include? name
       puts 'Good bye'
       exit
     else
@@ -70,15 +70,15 @@ def forest_control(arr, sum = 0)
   kek = arr_for_sum.join.scan(/\d+/)
   kek.each { |item| sum += item.to_i }
   trees_array = []
-  counter = arr_for_sum.count
-  decision= if sum > 5000 || arr_for_sum.count > 5
-  'cut down'
-  else
-  'leave alone'
-  end
+  decision = if sum > 5000 || arr_for_sum.count > 5
+              'cut down'
+            else
+              'leave alone'
+            end
   trees_array[0] = arr_for_sum
   trees_array[2] = decision.center(arr_for_sum.last.length)
   trees_array[1] = ' '
   trees_array
 end
+
 open_files(ENV['NAME'])
