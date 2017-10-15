@@ -28,25 +28,25 @@ class Root
   
   def do_array(tree) 
     @mass[@index].push(tree.value)
-    if tree.left != nil
-      @index += 1        
-      do_array(tree.left) 
+    if tree.left.nil?
+      @index += 1
+      do_array(tree.left)
     end
-    if tree.right!=nil  
+    if tree.right.nil?
       @index += 1
       do_array(tree.right)
     end
-      @index -= 1
+    @index -= 1
   end
 
-  def do_hight(tree) 
-    if tree.left != nil  
-      if @bool  
+  def do_hight(tree)
+    if tree.left.nil?
+      if @bool
         @hight += 1
-      end       
-      do_hight(tree.left) 
+      end
+      do_hight(tree.left)
     end
-    if tree.right != nil    
+    if tree.right.nil?
       if @bool
         @hight += 1
       end
@@ -78,7 +78,7 @@ class Root
       i += 1
     end
   end
-    
+
   def space(length)
     i = 1
     s = ' '
