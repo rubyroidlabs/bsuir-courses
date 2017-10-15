@@ -2,6 +2,7 @@ require 'pry'
 require 'json'
 class TREE
   attr_accessor :value, :left, :right
+
   def (initialize value)
     @value = value
     @left = nil
