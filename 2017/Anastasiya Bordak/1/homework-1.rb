@@ -30,9 +30,8 @@ def show(root, level)
   until root.nil?
     show(root.right, level + 1)
     0..level.each
-    {
-      print ' '
-    }
+     {print ' '
+     }
     end
   if !root.nil?
     print '@root.value.to_s'
@@ -76,7 +75,7 @@ unless ENV['NAME'].nil?
   end
 end
 files.map 
-{ |name|
+ {|name|
   file = File.open(name)
   tree = JSON.parse(file)
   root = TREE.new(tree[0])
@@ -93,4 +92,4 @@ files.map
   puts'Enter y to countinue and n to end'
   i = gets.chomp
   break if i == 'n' 
-}
+ }
