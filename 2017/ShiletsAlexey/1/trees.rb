@@ -52,31 +52,29 @@ def all_trees
   if name == 'Y' || name =='y'
     puts add_to_level(File.read(files_name.to_s))
   elsif name == 'N' || name == 'n'
-    puts "Good bye"
+    puts 'Good bye'
     exit
   else 
-    puts "wrong"
+    puts 'wrong'
     redo
     end
   end 
 end
 
 def forest_control(arr, sum = 0) 
-  arr_for_sum=arr
-  kek= arr_for_sum.join.scan(/\d+/)
-  kek.each{|item| sum += item.to_i } 
+  arr_for_sum =arr
+  kek = arr_for_sum.join.scan(/\d+/)
+  kek.each { |item| sum += item.to_i } 
   trees_array = []
   if sum > 5000 || arr_for_sum.count > 5 
-    decision = "cut down"
+    decision = 'cut down'
   else
-    decision = "leave alone"
+    decision = 'leave alone'
   end 
- trees_array[0] = arr_for_sum
- trees_array[2] = decision.center(arr_for_sum.last.length)
- trees_array[1] = " "
- trees_array
- 
+  trees_array[0] = arr_for_sum
+  trees_array[2] = decision.center(arr_for_sum.last.length)
+  trees_array[1] = ' '
+  trees_array 
 end  
 open_files(ENV['NAME'])
-
 
