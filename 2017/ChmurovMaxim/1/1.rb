@@ -16,12 +16,12 @@ def func(arr, levels, level)
 end
 Zip::File.open("trees.zip") do |zipfile|
   zipfile.each do |tree|
-    puts "continue? y/n"
+    puts 'continue? y/n'
     if gets.chomp == 'y'
-      if tree.name != "trees/"
+      if tree.name != 'trees/'
         a = tree.get_input_stream.read
         a = JSON.parse(a)
-        levels={}
+        levels = {}
         max_count = 0
         func(a, levels, 0)
         max = levels[levels.keys.last].count * 8
