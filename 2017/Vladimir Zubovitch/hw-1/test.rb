@@ -23,7 +23,8 @@ def draw (tree)
                 puts
         end
 end
-def base (tree)
+
+def base(tree)
   arr_node = []
   list_now = []
   tree.each do |node|
