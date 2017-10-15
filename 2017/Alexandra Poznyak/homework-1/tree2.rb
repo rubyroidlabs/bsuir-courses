@@ -1,56 +1,79 @@
-
-require 'rubygems'
 require 'json'
-  
-class Node
-  attr_reader :left, :right, :data
-  def initialize(data, left = nil, right = nil)
-    @left = left
-    @right = right
-    @data = data
-  end
-end
+require 'pry'
 
-class Tree
-  def initialize_tree(x)
-    if x[0].nil?
-      @root = insert(x)
+class TreeCreate
+  def self.print_tree(tree)
+    depth = tree_depth tree
+
+    1.upto(depth) do |i|
+      @spaces = depth - i + 1
+      print '  '*(2**@spaces / 2)
+      print_level(tree, i)
+      if i != depth
+        print "\n" + '  '*((2**(@spaces - 1)) / 2)
+        (2** (i - 1)).times do
+          print ' /' + '  '*((2**(@spaces - 1)) - 1)
+          print '\\ ' + '  '*((2**(@spaces - 1)) - 1)
+        end
+      end
+      puts
     end
+
+    puts
   end
-  def insert(x)
-    if x.is_a?(Integer)
-      Node.new(x)
+
+
+  def self.tree_depth(way)
+    left = way[1][0].class == Integer ? 1 : tree_depth(way[1][0])
+    right = way[1][1].class == Integer ? 1 : tree_depth(way[1][1])
+    (left >= right ? left : right) + 1
+  end
+
+  def self.print_level(way, level)
+    level -= 1
+    if level.zero?
+      p = way.class == Array ? way[0] : way
+      print '%-2d' % p
+      print '  ' *(2**@spaces - 1)
     else
-      Node.new(x[0], insert(x[1][0]), insert(x[1][1]));
+      print_level(way[1][0], level)
+      print_level(way[1][1], level)
     end
   end
-  def traverse()
-    list = []
-    yield @data
-    list << @left if @left != nil 
-    list << @right if @right != nil  
-    loop do
-    break if list.empty?
-    node = list.shift
-    yield node.data
-      if node.left
-      node.insert(x)
-      end
-      if node.right
-      node.insert(x)
-      end
-      list << node.left if node.left != nil && node.left 
-      list << node.right if node.right != nil && node.right  
-      end
-    end
-  end
-  
-
-trees = Dir["./*.tree"].delete_if{|filename| filename == '.' || filename =='..'}.sort! 
-  trees.each do |tree_name|
-  File.open(tree_name) do |file|
-  json = file.read
-  tree.insert(json) 
-  end	
 end
 
+dir = Dir.entries('/home/artser/work/trees').sort
+dir.delete('.')
+dir.delete('..')
+
+if ENV['NAME'].nil?
+  dir.each do |i|
+    puts "\n#{i}"
+    tree = JSON.parse(File.new("#{i}").read)
+
+    TreeCreate.print_tree tree
+
+
+    print 'Хотите продолжить? [y/n] '
+
+    answer = ''
+    loop do
+      answer = gets.chomp
+      break if answer == 'y' || answer == 'n'
+    end
+    break if answer == 'n'
+
+    puts
+  end
+  puts "Спасибо что побывали в нашем лесу!\n\r"
+
+elsif dir.include? ENV['NAME']
+
+  tree = JSON.parse(File.new("trees/#{ENV['NAME']}").read)
+  TreeCreate.print_tree tree
+
+else
+
+  puts "\nВ нашем лесу нет такого дерева.\n\r"
+
+end
