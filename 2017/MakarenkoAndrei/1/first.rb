@@ -8,16 +8,16 @@ class Tree
 
   def self.make_tree(array)
     tree = Tree.new(array[0])
-    tree.left = if array[1][0].is_a?(Numeric)
-      Tree.new(array[1][0])
-                else
-      make_tree(array[1][0])
-                end
-    tree.right = if array[1][1].is_a?(Numeric)
-                Tree.new(array[1][1])
-                else
-      make_tree(array[1][1])
-                end
+    if array[1][0].is_a?(Numeric)
+      tree.left = Tree.new(array[1][0])
+    else
+      tree.left = make_tree(array[1][0])
+    end
+    if array[1][1].is_a?(Numeric)
+      tree.right = Tree.new(array[1][1])
+    else
+      tree.right = make_tree(array[1][1])
+    end
     tree
   end
 end
