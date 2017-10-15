@@ -7,7 +7,6 @@ class Tree
     @left = nil
     @right = nil
   end
-end
 
 def creat_tree(tree, root)
   if tree.size == 2 && !root.nil?	
