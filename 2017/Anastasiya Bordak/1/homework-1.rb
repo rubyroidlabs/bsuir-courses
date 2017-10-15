@@ -1,8 +1,7 @@
 require 'pry'
 require 'json'
-class TREE
+class Tree
   attr_accessor :value, :left, :right
-
   def (initialize value)
     @value = value
     @left = nil
@@ -15,13 +14,13 @@ def creat_tree(tree, root)
     hash2 = JSON.parse(tree[1][1].to_s)
     if hash2[2] == 1 || hash2[2].zero?
       root.left = TREE.new(hash2)
-    else root.left = TREE.new(hash2[0])
+    else root.left = Tree.new(hash2[0])
       creat_tree(hash2, root.left)
     end
     hash1 = JSON.parse(tree[1][0].to_s)
     if hash1[2] == 1 || hash1[2].zero?
-      root.right = TREE.new(hash1)
-    else root.right = TREE.new(hash1[0])
+      root.right = Tree.new(hash1)
+    else root.right = Tree.new(hash1[0])
       creat_tree(hash1, root.right)
     end
   end
@@ -76,7 +75,7 @@ end
 files.map  {|name|
   file = File.open(name)
   tree = JSON.parse(file)
-  root = TREE.new(tree[0])
+  root = Tree.new(tree[0])
   file.close
   creat_tree(tree, root)
   show(root, 0)
