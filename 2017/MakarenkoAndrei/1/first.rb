@@ -34,11 +34,11 @@ class Root
 
   def do_array(tree)
     @mass[@index].push(tree.value)
-    if unless tree.left.nil?
+    unless tree.left.nil?
       @index += 1
       do_array(tree.left)
     end
-    if unless tree.right.nil?
+    unless tree.right.nil?
       @index += 1
       do_array(tree.right)
     end
@@ -46,13 +46,13 @@ class Root
   end
 
   def do_hight(tree)
-    if unless tree.left.nil?
+    unless tree.left.nil?
       if @bool
         @hight += 1
       end
       do_hight(tree.left)
     end
-    if unless tree.right.nil?
+    unless tree.right.nil?
       if @bool
         @hight += 1
       end
