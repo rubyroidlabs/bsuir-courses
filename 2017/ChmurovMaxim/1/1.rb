@@ -14,6 +14,7 @@ def func(arr, levels, level)
     func(arr.last, levels, level + 1)
   end
 end
+
 def print_slash(levels, interval, key, index)
   if levels[key].count > 1
     levels[key].each do
@@ -36,6 +37,7 @@ def print_slash(levels, interval, key, index)
     end
   end
 end
+
 def print_digit(levels, interval, key, max_count)
   levels[key].each do |val|
     interval_right = interval / 2
@@ -47,8 +49,8 @@ def print_digit(levels, interval, key, max_count)
     max_count += val
     print "#{' ' * interval_right}#{val}#{' ' * interval_left}"
   end
-  return max_count
 end
+
 def print_tree(tree)
   if tree.name != 'trees/'
     a = tree.get_input_stream.read
@@ -74,6 +76,7 @@ def print_tree(tree)
     end
   end
 end
+
 Zip::File.open("trees.zip") do |zipfile|
   zipfile.each do |tree|
     puts 'continue? y/n'
