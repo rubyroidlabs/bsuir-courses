@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 require 'json'
 
-input=ENV["NAME"].to_s.downcase
-$list_arr=[]
-def draw (tree)
+input = ENV["NAME"].to_s.downcase
+$list_arr = []
+def draw(tree)
   tree.each do |lvl|
     sp = 128/(lvl.size+1)
     sp += 1
