@@ -29,9 +29,7 @@ end
 def show(root, level)
   until root.nil?
     show(root.right, level + 1)
-    0..level.each
-     {print ' '
-     }
+    0..level.each {print ' '}
     end
   if !root.nil?
     print '@root.value.to_s'
