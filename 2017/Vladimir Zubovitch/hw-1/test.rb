@@ -9,15 +9,15 @@ def draw(tree)
     if tree[0] != lvl
       lvl.size.times do |i|
         if (i % 2).zero?
-          sprintf("%#{sp}s",'/')
+          format("%#{sp}s", '/')
         else
-          sprintf("%#{sp}s",'\\')
+          format("%#{sp}s", '\\')
         end
       end
     end
     puts
     lvl.size.times do |i|
-      sprintf("%#{sp}s", lvl[i])
+      format("%#{sp}s", lvl[i])
     end
     puts
   end
