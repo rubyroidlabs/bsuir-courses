@@ -46,17 +46,16 @@ def print_digit(levels, interval, key, max_count)
     if val.to_s.length == 2
       interval_left -= 1
     end
-    max_count += val
     print "#{' ' * interval_right}#{val}#{' ' * interval_left}"
+    max_count += val
   end
+  return max_count
 end
 
-def print_tree(tree)
+def print_tree(tree, levels, max_count)
   if tree.name != 'trees/'
     a = tree.get_input_stream.read
     a = JSON.parse(a)
-    levels = {}
-    max_count = 0
     func(a, levels, 0)
     max = levels[levels.keys.last].count * 8
     levels.keys.each do |key|
@@ -81,7 +80,7 @@ Zip::File.open("trees.zip") do |zipfile|
   zipfile.each do |tree|
     puts 'continue? y/n'
     if gets.chomp == 'y'
-      print_tree(tree)
+      print_tree(tree, {}, 0)
     else
       exit(0)
     end
