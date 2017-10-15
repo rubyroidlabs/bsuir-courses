@@ -6,18 +6,10 @@ class Tree
     @right = right
   end
 
-  def self.make_tree(array)
+  def self.make(array)
     tree = Tree.new(array[0])
-    if array[1][0].is_a?(Numeric)
-      tree.left = Tree.new(array[1][0])
-    else
-      tree.left = make_tree(array[1][0])
-    end
-    if array[1][1].is_a?(Numeric)
-      tree.right = Tree.new(array[1][1])
-    else
-      tree.right = make_tree(array[1][1])
-    end
+    tree.left = array[1][0].is_a?(Numeric) ? Tree.new(array[1][0]) : make(array[1][0])
+    tree.right = array[1][1].is_a?(Numeric) ? Tree.new(array[1][1]) : make(array[1][1])
     tree
   end
 end
@@ -98,7 +90,7 @@ class Root
     if ENV['NAME'] = nil
       puts 'Пустых деревьев не растет'
     elsif File.file? file
-      @tree = Tree.make_tree(JSON.parse(File.read(file)))
+      @tree = Tree.make(JSON.parse(File.read(file)))
       do_hight(@tree)
       @mass = Array.new(@hight) { [] }
       do_array(@tree)
