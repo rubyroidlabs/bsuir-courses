@@ -26,32 +26,32 @@ end
 def base (tree)
    arr_node=[]
    list_now=[]
-        tree.each do |node|
-   if  node.class.to_s != "Array" 
-     list_now<< node 
-      else 
-      arr_node += node 
-     end
-    end
- if list_now !=[] 
+  tree.each do |node|
+  if  node.class.to_s != "Array" 
+    list_now << node 
+  else 
+     arr_node += node 
+  end
+  end
+  if list_now != [] 
   $list_arr<<list_now 
   end
-         if arr_node.size.empty? 
-         base(arr_node)
-         end
+  if arr_node.size.empty? 
+  base(arr_node)
+  end
 end
-if input.empty?
-  puts "problem"
-else   
-  garden = []
-  Dir.foreach("trees") { |x| garden << x }
-  if garden.include?("#{input}.tree")
-  puts "Есть такое дерево"
-  f = File.new ("trees/#{input}.tree")
-  content = f.read
-  b = JSON.parse(content)
-  base(b)
-  filtred_array=$list_arr
-  draw(filtred_array)
-end
-end
+  if input.empty?
+   puts "problem"
+  else   
+   garden = []
+   Dir.foreach("trees") { |x| garden << x }
+   if garden.include?("#{input}.tree")
+   puts "Есть такое дерево"
+   f = File.new ("trees/#{input}.tree")
+   content = f.read
+   b = JSON.parse(content)
+   base(b)
+   filtred_array = $list_arr
+   draw(filtred_array)
+  end
+  end
