@@ -3,13 +3,13 @@ def show(numbers, num_count, signs, sig_count, direction, level)
     exit
   elsif signs[sig_count] == '['
     print_number_left(numbers, num_count, direction, level)
-    show(numbers, num_count += 1, signs, sig_count += 1, 'r', level -= 1)
+    show(numbers, num_count + 1, signs, sig_count + 1, 'r', level - 1)
   elsif signs[sig_count] == ','
     print_number_right(numbers, num_count, direction, level)
-    show(numbers, num_count += 1, signs, sig_count += 1, 'l', level)
+    show(numbers, num_count + 1, signs, sig_count + 1, 'l', level)
   elsif signs[sig_count] == ']'
     print_number_left(numbers, num_count, direction, level)
-    show(numbers, num_count += 1, signs, sig_count += 1, 'r', level)
+    show(numbers, num_count + 1, signs, sig_count + 1, 'r', level)
   end
 end
 
