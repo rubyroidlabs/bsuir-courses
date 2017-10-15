@@ -9,7 +9,7 @@ def open_files(file_name)
 end
 
 def comma_delete(str)
-  str.each_char{ |char| str.sub!(char,' ') if char == ',' }
+  str.each_char { |char| str.sub!(char, ' ') if char == ',' }
 end
 
 def find_level(str)
@@ -21,12 +21,12 @@ end
 def add_to_level(str, lvl = 0, hash = {})
   findlvl = 1 + lvl
   findhs = hash
-  findhsh[find_level_lvl] ||= find_level(str)
+  findhsh[findlvl] ||= find_level(str)
   if comma_delete(str).gsub!(/\[\d*\s*\d*\]/, ' ') =~ /\d/
     findhs[findlvl + 1] = find_level(str)
-    add_to_level(comma_delete(str).gsub!(/\[\d*\s*\d*\]/,' '), findlvl, findhs)
+    add_to_level(comma_delete(str).gsub!(/\[\d*\s*\d*\]/, ' '), findlvl, findhs)
   end
-  show (findhs)
+  show(findhs)
 end
 
 def show(hash)
