@@ -56,8 +56,7 @@ class TreeHash
 #   lvl -- current level
 #          start parse from lvl = 0 (root)
 #
-#   x -- temporary array of current x for current level y
-#       x[y] = current x
+#   x -- temporary array of current x ( x[y] = current x )
 #
   def parse(arr, lvl, x)
     if lvl > @depth
