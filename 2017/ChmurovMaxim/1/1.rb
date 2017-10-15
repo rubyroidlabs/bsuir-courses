@@ -18,9 +18,7 @@ Zip::File.open("trees.zip") do |zipfile|
   zipfile.each do |tree|
     puts "continue? y/n"
     if gets.chomp == 'y'
-      if tree.name == "trees/"
-        a = 5
-      else
+      if tree.name != "trees/"
         a = tree.get_input_stream.read
         a = JSON.parse(a)
         levels={}
