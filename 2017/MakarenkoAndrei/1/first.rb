@@ -47,7 +47,7 @@ class Root
       do_hight(tree.left) 
     end
     if tree.right != nil    
-      if @bool  
+      if @bool
         @hight += 1
       end
       do_hight(tree.right)
@@ -59,22 +59,21 @@ class Root
   def output
     i = 0
     l = 0
-    while i < @mass[@hight-1].size
-      l += @mass[@hight-1][i].to_s.length
-      i +=1
+    while i < @mass[@hight - 1].size
+      l += @mass[@hight - 1][i].to_s.length
+      i += 1
     end
-    l = l + @mass[@hight-1].size 
+    l = l + @mass[@hight - 1].size
     i = 0
     while i < @hight
-      j = 0    
-      string = ''    
+      j = 0
+      string = ''
       while j < @mass[i].size  
-        s = space((l - @mass[i][j].to_s.size))  
-        s2 = space(l)  
+        s2 = space(l)
         string = string + s2 + @mass[i][j].to_s + s2
         j += 1
       end
-      puts string    
+      puts string
       l /= 2
       i += 1
     end
@@ -95,7 +94,7 @@ class Root
     file = 'trees/' + ENV['NAME'] + '.tree'
     if ENV['NAME'] = nil
       puts 'Пустых деревьев не растет'
-    elsif File.file? file  
+    elsif File.file? file
       @tree = Tree.make_tree(JSON.parse(File.read(file))) 
       do_hight(@tree)
       @mass = Array.new(@hight) { [] }
@@ -105,5 +104,5 @@ class Root
       puts 'Такого дерева не растет'
     end
   end
-end    
+end
 Root.new.main
