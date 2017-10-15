@@ -30,9 +30,9 @@ def base(tree)
     end
   end
   if list_now != [] 
-    $list_arr<< list_now
+    @list_arr<< list_now
   end
-  if arr_node.size.empty?
+  until arr_node.size.empty?
     base(arr_node)
   end
 end
@@ -40,7 +40,7 @@ end
 # !/usr/bin/env ruby
 require 'json'
 input = ENV['NAME'].to_s.downcase
-$list_arr = []
+@list_arr = []
   if input.empty?
     puts 'problem'
   else
@@ -52,7 +52,7 @@ $list_arr = []
       content = f.read
       b = JSON.parse(content)
       base(b)
-      filtred_array = $list_arr
+      filtred_array = @list_arr
       draw(filtred_array)
     end
   end
