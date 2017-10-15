@@ -37,25 +37,27 @@ class TreeHash
 
   private
 
-# parse -- recursively parse all nodes of the tree, stored in arr[]
-#          and form hash table @hash = { [y, x] = value }
-#            y -- level of the tree (0 -- root)
-#            x -- x position in tree (0...2**y)
-#
-# arguments:
-#   arr -- array representing tree
-#          for example
-#          arr = [1 ,[[2 ,[4 , 5 ]],[3,[6,7]]]]
-#          is for tree:
-#             1
-#            /  \
-#           2    3
-#          / \  / \
-#         4  5 6  7
-#
-#   lvl -- current level
-#          start parse from lvl = 0 (root)
-#
+  # parse -- recursively parse all nodes of the tree, stored in arr[]
+  #          and form hash table @hash = { [y, x] = value }
+  #            y -- level of the tree (0 -- root)
+  #            x -- x position in tree (0...2**y)
+  #
+  # arguments:
+  #   arr -- array representing tree
+  #          for example
+  #          arr = [1 ,[[2 ,[4 , 5 ]],[3,[6,7]]]]
+  #          is for tree:
+  #             1
+  #            /  \
+  #           2    3
+  #          / \  / \
+  #         4  5 6  7
+  #
+  #   lvl -- current level
+  #          start parse from lvl = 0 (root)
+  # @x -- array of current x for current level y
+  #       x[y] = current x
+  #
   def parse(arr, lvl, x)
     if lvl > @depth
       @depth = lvl
