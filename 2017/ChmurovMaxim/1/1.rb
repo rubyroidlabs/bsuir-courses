@@ -80,7 +80,8 @@ Zip::File.open("trees.zip") do |zipfile|
   zipfile.each do |tree|
     puts 'continue? y/n'
     if gets.chomp == 'y'
-      print_tree(tree, {}, 0)
+      levels = {}
+      print_tree(tree, levels, 0)
     else
       exit(0)
     end
