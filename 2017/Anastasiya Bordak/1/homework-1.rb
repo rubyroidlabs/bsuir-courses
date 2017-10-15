@@ -8,168 +8,93 @@ class TREE
     @right = right
   end
 end
+
 def creat_tree(tree, root)
   if tree.size == 2 && root!=nil		
     hash2 = JSON.parse(tree[1][1].to_s)
     if(hash2[2]  == 1 || hash2[2] == 0)
       root.left = TREE.new(hash2)
     else root.left = TREE.new(hash2[0])
-      creat_tree(hash2,root.left)
+      creat_tree(hash2, root.left)
     end
     hash1 = JSON.parse(tree[1][0].to_s)
     if(hash1[2] == 1 || hash1[2] == 0)
       root.right = TREE.new(hash1)
     else root.right = TREE.new(hash1[0])
-      creat_tree(hash1,root.right)
+      creat_tree(hash1, root.right)
     end
   end
   return root
 end
-def show(root,level)
-  if root !=nil
+
+def show(root, level)
+  if !root.nil?
     show(root.right, level+1)
-  for i in 0..level
-    print ' '
-    i+=1
+    for i in 0..level
+      print ' '
+      i+=1
+    end
   end
-  end
-  if root != nil
+  if !root.nil?
     print "#{root.value}"
-  else print "|\n"
+  else print "\n"
   end
-  if root != nil
+  if !root.nil?
     show(root.left, level+1)
   end
-
 end
+
 def pre_order(node)
   return if node.nil?
   puts node.value
   pre_order(node.left)
   pre_order(node.right)
 end
+
 def hight(node)
-  if(node == nil)
+  if node.nil?
     return 0
   else
    left = hight(node.left)
    right = hight(node.right)
   if(left>right)
     return left + 1
-  else return right +1
+  else return right + 1
   end
   end
-  end
+end
+
 def sum(node,i)
-  if node == nil
+  if node.nil?
     return i
   end
   i += node.value
-  i = sum(node.left,i)
-  i = sum(node.right,i)
+  sum(node.left, i)
+  sum(node.right, i)
 end
-if ENV['NAME'] == nil 
-  puts'Enter name, please'
-elsif File.exist? (ENV['NAME'])
-  file = File.open(ENV['NAME'])
+
+files = Dir.glob("/home/anastasiya/Desktop/trees/*").sort
+if !ENV['NAME'].nil? 
+  if File.exist? (ENV['NAME'])
+    files.unshift(ENV['NAME'])
+  end
+end
+files.map{|name|
+  file = File.open(name)
   tree = JSON.load(file)
   root = TREE.new(tree[0])
   file.close
-  creat_tree(tree,root)
-  puts"Tree #{ENV['NAME']}"
-  if sum(root,0) > 5000
-    puts "Chop down"
+  creat_tree(tree, root)
+  show(root, 0)
+  puts "Tree #{name}"
+  if sum(root, 0) > 5000
+    puts 'Chop down'
   elsif hight(root) > 5
-    puts "Crop"
-  else puts"Keep"
+    puts 'Crop'
+  else puts 'Keep'
   end
-  else puts'No file with such name'
-end
-binding.pryrequire 'pry'
-require 'json'
-class TREE
-  attr_accessor :value, :left, :right
-  def initialize value,left = nil,right = nil
-    @value = value
-    @left = left
-    @right = right
-  end
-end
-def creat_tree(tree, root)
-  if tree.size == 2 && root!=nil		
-    hash2 = JSON.parse(tree[1][1].to_s)
-    if(hash2[2]  == 1 || hash2[2] == 0)
-      root.left = TREE.new(hash2)
-    else root.left = TREE.new(hash2[0])
-      creat_tree(hash2,root.left)
-    end
-    hash1 = JSON.parse(tree[1][0].to_s)
-    if(hash1[2] == 1 || hash1[2] == 0)
-      root.right = TREE.new(hash1)
-    else root.right = TREE.new(hash1[0])
-      creat_tree(hash1,root.right)
-    end
-  end
-  return root
-end
-def show(root,level)
-  if root !=nil
-    show(root.right, level+1)
-  for i in 0..level
-    print ' '
-    i+=1
-  end
-  end
-  if root != nil
-    print "#{root.value}"
-  else print "|\n"
-  end
-  if root != nil
-    show(root.left, level+1)
-  end
-
-end
-def pre_order(node)
-  return if node.nil?
-  puts node.value
-  pre_order(node.left)
-  pre_order(node.right)
-end
-def hight(node)
-  if(node == nil)
-    return 0
-  else
-   left = hight(node.left)
-   right = hight(node.right)
-  if(left>right)
-    return left + 1
-  else return right +1
-  end
-  end
-  end
-def sum(node,i)
-  if node == nil
-    return i
-  end
-  i += node.value
-  i = sum(node.left,i)
-  i = sum(node.right,i)
-end
-
-if ENV['NAME'] == nil 
-  puts'Enter name, please'
-elsif File.exist? (ENV['NAME'])
-  file = File.open(ENV['NAME'])
-  tree = JSON.load(file)
-  root = TREE.new(tree[0])
-  file.close
-  creat_tree(tree,root)
-  puts"Tree #{ENV['NAME']}"
-  if sum(root,0) > 5000
-    puts "Chop down"
-  elsif hight(root) > 5
-    puts "Crop"
-  else puts"Keep"
-  end
-  else puts'No file with such name'
-end
+  puts 'Enter y to countinue and n to end'
+  i = gets.chomp
+  break if i == 'n' 
+}
+binding.pry
