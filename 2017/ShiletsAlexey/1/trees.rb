@@ -26,16 +26,16 @@ def add_to_level(str, lvl = 0, hash = {})
     findhs[findlvl + 1] = find_level(str)
     add_to_level(comma_delete(str).gsub!(/\[\d*\s*\d*\]/,' '), findlvl, findhs)
   end
-  show (find_level_hash)
+  show (findhs)
 end
 
 def show(hash)
   tree_array = hash.values.reverse
   array_to_print = tree_array.map { |item| item.to_s.scan(/\d+/).join(' ') }
-  array_to_print.each_index do |index|
-  array_to_print[index] = array_to_print[index].center(array_to_print.last.length)
+  array_to_print.each_index do |x|
+  array_to_print[x] = array_to_print[x].center(array_to_print.last.length)
   forest_control(array_to_print)
-end
+  end
 end
 
 def draw_directory
@@ -53,9 +53,9 @@ def all_trees
   draw_directory.each do |files_name|
   puts 'Do you want to continue?[y/n]'
   name = gets.chomp
-  if name == 'Y' || name == 'y'
+  if ['Y','y'].include? name
     puts add_to_level(File.read(files_name.to_s))
-  elsif name == 'N' || name == 'n'
+  elsif ['N','n'].include? name
     puts 'Good bye'
     exit
   else
@@ -66,15 +66,16 @@ def all_trees
 end
 
 def forest_control(arr, sum = 0)
-  arr_for_sum =arr
+  arr_for_sum = arr
   kek = arr_for_sum.join.scan(/\d+/)
   kek.each { |item| sum += item.to_i }
   trees_array = []
-  counter=arr_for_sum.count
-  if sum > 5000 || counter > 5
-    decision = 'cut down'
+  counter = arr_for_sum.count
+  decision= if sum > 5000 || arr_for_sum.count > 5
+  'cut down'
   else
-    decision = 'leave alone'
+  'leave alone'
+  end 
   end
   trees_array[0] = arr_for_sum
   trees_array[2] = decision.center(arr_for_sum.last.length)
