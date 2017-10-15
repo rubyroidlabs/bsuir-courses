@@ -9,7 +9,7 @@ def open_files(file_name)
 end
 
 def comma_delete(str)
-  str.each_char{ |char| str.sub!(char,' ') if char==',' }
+  str.each_char{ |char| str.sub!(char,' ') if char == ',' }
 end
 
 def find_level(str)
@@ -18,21 +18,24 @@ def find_level(str)
   comma_delete(level)
 end
 
-def add_to_level(str,lvl = 0,hash = {})
-  find_level_lvl = 1 + lvl
-  find_level_hash = hash
-  find_level_hash[find_level_lvl]||= find_level(str)
-  if comma_delete(str).gsub!(/\[\d*\s*\d*\]/,' ') =~ /\d/
-    find_level_hash[find_level_lvl+1] = find_level(str)
-    add_to_level(comma_delete(str).gsub!(/\[\d*\s*\d*\]/,' '),find_level_lvl,find_level_hash)
+def add_to_level(str, lvl = 0, hash = {})
+  findlvl = 1 + lvl
+  findhs = hash
+  findhsh[find_level_lvl] ||= find_level(str)
+  if comma_delete(str).gsub!(/\[\d*\s*\d*\]/, ' ') =~ /\d/
+    findhs[findlvl + 1] = find_level(str)
+    add_to_level(comma_delete(str).gsub!(/\[\d*\s*\d*\]/,' '), findlvl, findhs)
   end
   show (find_level_hash)
 end
+
 def show(hash)
   tree_array = hash.values.reverse
-  array_to_print = tree_array.map {|item| item.to_s.scan(/\d+/).join(" ") }
-  array_to_print.each_index{ |index| array_to_print[index] = array_to_print[index].center(array_to_print.last.length) }
+  array_to_print = tree_array.map { |item| item.to_s.scan(/\d+/).join(' ') }
+  array_to_print.each_index do |index|
+  array_to_print[index] = array_to_print[index].center(array_to_print.last.length)
   forest_control(array_to_print)
+end
 end
 
 def draw_directory
@@ -62,12 +65,13 @@ def all_trees
   end
 end
 
-def forest_control(arr,sum = 0)
+def forest_control(arr, sum = 0)
   arr_for_sum =arr
   kek = arr_for_sum.join.scan(/\d+/)
   kek.each { |item| sum += item.to_i }
   trees_array = []
-  if sum > 5000 || arr_for_sum.count > 5
+  counter=arr_for_sum.count
+  if sum > 5000 || counter > 5
     decision = 'cut down'
   else
     decision = 'leave alone'
