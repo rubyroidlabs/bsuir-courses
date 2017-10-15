@@ -34,7 +34,6 @@ def show(root, level)
       print ' '
     }
     end
-  end
   if !root.nil?
     print "@root.value.to_s"
   else print "\n"
@@ -52,12 +51,10 @@ def pre_order(node)
 end
 
 def hight(node)
-  if node.nil?
-    return 0
-  else
-    left = hight(node.left)
-    right = hight(node.right)
-  if(left>right)
+  return if node.nil?
+  left = hight(node.left)
+  right = hight(node.right)
+  if left>right
     return left + 1
   else return right + 1
   end
