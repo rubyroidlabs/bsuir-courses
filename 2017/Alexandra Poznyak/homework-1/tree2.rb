@@ -6,13 +6,13 @@ class TreeCreate
     depth = tree_depth tree
     1.upto(depth) do |i|
       @spaces = depth - i + 1
-      print '  '* (2**@spaces / 2)
+      print '  ' * (2**@spaces / 2)
       print_level(tree, i)
       if i != depth
-        print "\n" + '  '* ((2**(@spaces - 1)) / 2)
-        (2** (i - 1)).times do
-          print ' /' + '  '* ((2**(@spaces - 1)) - 1)
-          print '\\ ' + '  '* ((2**(@spaces - 1)) - 1)
+        print "\n" + '  ' * ((2**(@spaces - 1)) / 2)
+        (2**(i - 1)).times do
+          print ' /' + '  ' * ((2**(@spaces - 1)) - 1)
+          print '\\ ' + '  ' * ((2**(@spaces - 1)) - 1)
         end
       end
       puts
@@ -46,7 +46,7 @@ dir.delete('..')
 if ENV['NAME'].nil?
   dir.each do |i|
     puts "\n#{i}"
-    tree = JSON.parse(File.new("#{i}").read)
+    tree = JSON.parse(File.new("@i.to_s").read)
 
     TreeCreate.print_tree tree
 
