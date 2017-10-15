@@ -6,6 +6,7 @@ class Tree
     @right = nil
   end
 end
+
 def creat_tree(tree, root)
   if tree.size == 2 && !root.nil?	
     hash2 = JSON.parse(tree[1][1].to_s)
