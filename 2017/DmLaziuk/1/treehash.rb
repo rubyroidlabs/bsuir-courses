@@ -55,7 +55,8 @@ class TreeHash
   #
   #   lvl -- current level
   #          start parse from lvl = 0 (root)
-  # @x -- array of current x for current level y
+  #
+  #   x -- array of current x for current level y
   #       x[y] = current x
   #
   def parse(arr, lvl, x)
@@ -76,6 +77,7 @@ class TreeHash
       parse(left, lvl, x)
       parse(right, lvl, x)
     else
+      # ending branches
       if left
         @hash[[lvl, x[lvl]]] = left
         x[lvl] += 1
