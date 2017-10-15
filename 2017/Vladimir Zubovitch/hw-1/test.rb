@@ -24,14 +24,14 @@ def draw (tree)
         end
 end
 def base (tree)
-   arr_node=[]
-   list_now=[]
+   arr_node = []
+   list_now = []
    tree.each do |node|
-    if node.class.to_s != "Array" 
-      list_now << node 
-    else 
-    arr_node += node 
-    end
+     if node.class.to_s != "Array" 
+       list_now << node 
+     else 
+     arr_node += node 
+     end
    end
   if list_now != [] 
     $list_arr << list_now 
