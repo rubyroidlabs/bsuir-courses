@@ -9,15 +9,15 @@ def draw(tree)
     if tree[0] != lvl
       lvl.size.times do |i|
         if (i % 2).zero?
-          print "%#{sp}s" % ['/']
+          sprintf("%#{sp}s",'/')
         else
-          print "%#{sp}s" % ['\\']
+          sprintf("%#{sp}s",'\\')
         end
       end
     end
     puts
     lvl.size.times do |i|
-      print "%#{sp}s" % [lvl[i]]
+      sprintf("%#{sp}s", lvl[i])
     end
     puts
   end
@@ -36,7 +36,7 @@ def base(tree)
   if list_now != [] 
     @list_arr<< list_now
   end
-  if !arr_node.size.zero?
+  unless arr_node.size.zero?
     base(arr_node)
   end
 end
