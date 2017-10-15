@@ -58,7 +58,6 @@ def hight(node)
     return left + 1
   else return right + 1
   end
-  end
 end
 
 def sum(node, i)
