@@ -11,8 +11,8 @@ class TreeCreate
       next unless i != depth
       print "\n" + '  ' * ((2**(@spaces - 1)) / 2)
       (2**(i - 1)).times do
-          print ' /' + '  ' * ((2**(@spaces - 1)) - 1)
-          print '\\ ' + '  ' * ((2**(@spaces - 1)) - 1)
+        print ' /' + '  ' * ((2**(@spaces - 1)) - 1)
+        print '\\ ' + '  ' * ((2**(@spaces - 1)) - 1)
       end
     end
   end
