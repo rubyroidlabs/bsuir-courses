@@ -8,9 +8,9 @@ class TreeCreate
       @spaces = depth - i + 1
       print '  ' * (2**@spaces / 2)
       print_level(tree, i)
-       next unless i != depth
-        print "\n" + '  ' * ((2**(@spaces - 1)) / 2)
-        (2**(i - 1)).times do
+      next unless i != depth
+      print "\n" + '  ' * ((2**(@spaces - 1)) / 2)
+      (2**(i - 1)).times do
           print ' /' + '  ' * ((2**(@spaces - 1)) - 1)
           print '\\ ' + '  ' * ((2**(@spaces - 1)) - 1)
         end
