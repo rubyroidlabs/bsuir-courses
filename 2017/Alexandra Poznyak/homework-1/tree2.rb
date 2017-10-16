@@ -50,10 +50,10 @@ if ENV['NAME'].nil?
 
     answer = ''
     loop do
-        answer = gets.chomp
+      answer = gets.chomp
       break if %w[y n].include?(answer)
     end
-      break if answer == 'n'
+    break if answer == 'n'
   end
   puts "Спасибо что побывали в нашем лесу!\n\r"
 elsif dir.include? ENV['NAME']
