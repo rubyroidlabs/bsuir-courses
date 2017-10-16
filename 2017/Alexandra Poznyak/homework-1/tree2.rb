@@ -14,9 +14,7 @@ class TreeCreate
           print ' /' + '  ' * ((2**(@spaces - 1)) - 1)
           print '\\ ' + '  ' * ((2**(@spaces - 1)) - 1)
         end
-        puts
     end
-    puts
   end
 
   def self.tree_depth(way)
@@ -43,14 +41,14 @@ dir.delete('.')
 dir.delete('..')
 if ENV['NAME'].nil?
   dir.each do |i|
-  puts "\n#{i}"
-      tree = JSON.parse(File.new('@i.to_s').read)
+    puts "\n#{i}"
+    tree = JSON.parse(File.new('@i.to_s').read)
 
-      TreeCreate.print_tree tree
+    TreeCreate.print_tree tree
 
-      print 'Хотите продолжить? [y/n] '
+    print 'Хотите продолжить? [y/n] '
 
-      answer = ''
+    answer = ''
       loop do
         answer = gets.chomp
         break if %w[y n].include?(answer)
