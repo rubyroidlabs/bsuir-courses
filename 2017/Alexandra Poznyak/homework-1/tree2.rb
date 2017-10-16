@@ -49,10 +49,10 @@ if ENV['NAME'].nil?
     print 'Хотите продолжить? [y/n] '
 
     answer = ''
-      loop do
+    loop do
         answer = gets.chomp
-        break if %w[y n].include?(answer)
-      end
+      break if %w[y n].include?(answer)
+    end
       break if answer == 'n'
   end
   puts "Спасибо что побывали в нашем лесу!\n\r"
