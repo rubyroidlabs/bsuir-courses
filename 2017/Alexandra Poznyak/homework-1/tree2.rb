@@ -13,7 +13,7 @@ class TreeCreate
       (2**(i - 1)).times do
           print ' /' + '  ' * ((2**(@spaces - 1)) - 1)
           print '\\ ' + '  ' * ((2**(@spaces - 1)) - 1)
-        end
+      end
     end
   end
 
