@@ -41,34 +41,18 @@ end
 
 # entry point for program
 def main
-  # if ARGV.length != 1
-  # puts "We need exactly one parameter. The name of a tree.\n"
-  # exit
-  # end
-
-  # filename = ARGV[0]
-  f = File.new('trees/alica.tree')
+  f = File.new(ARGV[0])
   content = f.read
   f.close
-
   content.chop!
   numbers = Marshal.load(Marshal.dump(content))
   signs = Marshal.load(Marshal.dump(content))
-  numbers.delete!(']')
-  numbers.delete!('[')
+  numbers.delete!(']').delete!('[')
   numbers = numbers.split(/[,]/)
-  signs.delete!('0')
-  signs.delete!('1')
-  signs.delete!('2')
-  signs.delete!('3')
-  signs.delete!('4')
-  signs.delete!('5')
-  signs.delete!('6')
-  signs.delete!('7')
-  signs.delete!('8')
-  signs.delete!('9')
-  level = numbers.size
-  show(numbers, 0, signs, 0, 'l', level)
+  0.upto(9) do |i|
+    signs.delete!(i.to_s)
+  end
+  show(numbers, 0, signs, 0, 'l', numbers.size)
 end
 
 main
