@@ -1,6 +1,6 @@
 require 'mechanize'
 require 'json'
-require_relative 'RapParser'
+require_relative 'rap_parser'
 
 class SiteParser
   def start(name = nil, criteria = nil)
@@ -30,6 +30,6 @@ class SiteParser
       next_page = respond['response']['next_page']
       break unless next_page # check last page
     end
-    rap_parser.print_statistic
+    rap_parser.print_statistic if name
   end
 end
