@@ -45,10 +45,10 @@ class RapParser
     # search for the winner by criteria
     criteria = rap_params[:criteria] ? /#{rap_params[:criteria]}/ : /\w/
     name_rate = {}
-    named_texts.each_pair { |name, text| name_rate[name] = text.scan(criteria).size }
+    named_texts.each { |name, text| name_rate[name] = text.scan(criteria).size }
     puts "#{rap_params[:title]} - #{rap_params[:link]}"
     name_rate.each_pair { |name, rate| puts "#{name.capitalize} - #{rate}" }
-    winner = name_rate.max_by { |name, rate| rate }
+    winner = name_rate.max_by { |_name, rate| rate }
     puts "#{winner[0].capitalize} WINS!"
     puts '=' * 100
     if @raper[:name]
