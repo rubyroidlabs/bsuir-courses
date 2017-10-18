@@ -31,7 +31,6 @@ class Kotd
         end
       end
       threads.each { |thread| show_loading(thread) }
-      puts '!'
     end
   end
 
