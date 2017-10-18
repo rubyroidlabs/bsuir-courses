@@ -22,11 +22,8 @@ else
       puts file.name
       sum = Tree.sum(tree) # find nodes sum
       height = Tree.height(tree) # find nodes height
-<<<<<<< HEAD
       puts "Cумма листьев: #{sum}"
-=======
       puts "Сумма листьев: #{sum}"
->>>>>>> 98493229c25789f607da5e7b89803c60a3594fa6
       puts "Глубина дерева: #{height}"
       if sum > 5000
         zip_file.remove(file.name)
