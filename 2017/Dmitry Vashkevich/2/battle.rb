@@ -13,7 +13,7 @@ class Battle
     rounds = text.split(/\[Round [1-3]: /)
     rounds.delete_at(0)
     rounds.each do |round|
-      name = round.slice!(0,round.index(']'))
+      name = round.slice!(0, round.index(']'))
       @first_name ||= name
       if first_name == name
         @first_amount_letters += round.scan(/#{criterion}/).size
@@ -26,19 +26,19 @@ class Battle
 
   def get_winner
     if first_amount_letters > second_amount_letters
-      return first_name
+       first_name
     elsif first_amount_letters < second_amount_letters
-      return second_name
+       second_name
     else
-      return "Draw"
+       'Draw'
     end
   end
 
   def show
-      puts "\n#{first_name} VS #{second_name} - #{link_to_battle}"
-      puts "#{first_name} - #{first_amount_letters}"
-      puts "#{second_name} - #{second_amount_letters}"
-      puts "#{get_winner} WINS!"
-      puts '_'*70
+    puts "\n#{first_name} VS #{second_name} - #{link_to_battle}"
+    puts "#{first_name} - #{first_amount_letters}"
+    puts "#{second_name} - #{second_amount_letters}"
+    puts "#{get_winner} WINS!"
+    puts '_' * 70
   end
 end

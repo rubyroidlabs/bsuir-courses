@@ -10,20 +10,24 @@ class Kotd
     @list_battles = []
   end
 
-  def loading_battles (criterion)
+  def loading_battles(criterion)
     a = Mechanize.new { |agent| agent.user_agent_alias = 'Mac Safari' }
-    list_battles = []
     threads = []
     a.get('https://genius.com/artists/King-of-the-dot') do |page|
-      albums_page = a.click(page.link_with(:text => /Show all albums by King of the Dot/))
-      albums_page.links_with(:href => %r{/albums/King-of-the-dot/} ).each do |page_album|
+      text = 'Show all albums by King of the Dot'
+      albums_page = a.click(page.link_with(text: /#{text}/))
+      link_albums = '/albums/King-of-the-dot/'
+      albums_page.links_with(href: %r{#{link_albums}} ).each do |page_album|
         threads << Thread.new do
           a.get(page_album.href) do |page_battles|
-            page_battles.links_with(:href=>%r{/King-of-the-dot-}).each do |page_battle|
+            link_battle='/King-of-the-dot-'
+            page_battles.links_with(href: %r{#{link_battle}}).each do |page_battle|
               a.get(page_battle.href) do |link_to_battle|
                 battle = Battle.new(link_to_battle.uri)
                 battle.get_data(link_to_battle.css('.lyrics').text, criterion)
-                @list_battles << battle if battle.first_name != nil && battle.second_name != nil
+                if !battle.first_name.nil? && !battle.second_name.nil?
+                @list_battles << battle
+                end
               end
             end
           end
@@ -41,18 +45,16 @@ class Kotd
 
   def show_battles(name)
     if name.nil?
-      list_battles.each do |battle|
-        battle.show
-      end
+      list_battles.each(&:show)
     else
       count_wins = 0
       count_losses = 0
       list_battles.each do |battle|
-        if battle.first_name == name || battle.second_name == name
+        if [battle.first_name,battle.second_name].include?(name)
           battle.show
           if battle.get_winner == name
             count_wins += 1
-          elsif battle.get_winner != "Draw"
+          elsif battle.get_winner != 'Draw'
             count_losses += 1
           end
         end
