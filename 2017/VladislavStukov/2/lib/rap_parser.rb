@@ -2,6 +2,7 @@ class RapParser
   def initialize(raper_name)
     @raper = { name: raper_name, wins: 0, loses: 0 }
   end
+
   def process(rap_params) # title, link, full_text, criteria
     if rap_params[:full_text].scan(/\n/).size < 2 # no text check
       puts "#{rap_params[:title]} - #{rap_params[:link]}"
@@ -44,7 +45,7 @@ class RapParser
     # search for the winner by criteria
     criteria = rap_params[:criteria] ? /#{rap_params[:criteria]}/ : /\w/
     name_rate = {}
-    named_texts.each { |name, text| name_rate[name] = text.scan(criteria).size }
+    named_texts.each_pair { |name, text| name_rate[name] = text.scan(criteria).size }
     puts "#{rap_params[:title]} - #{rap_params[:link]}"
     name_rate.each_pair { |name, rate| puts "#{name.capitalize} - #{rate}" }
     winner = name_rate.max_by { |name, rate| rate }
@@ -58,6 +59,7 @@ class RapParser
       end
     end
   end
+
   def print_statistic
     print "#{@raper[:name].capitalize} "
     puts "wins #{@raper[:wins]} times, loses #{@raper[:loses]} times."
