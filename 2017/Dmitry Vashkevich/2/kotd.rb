@@ -25,11 +25,7 @@ class Kotd
                 battle = Battle.new(link_to_battle.uri)
                 battle.get_data(link_to_battle.css('.lyrics').text, criterion)
                 add_battle(battle)
-              end
-            end
-          end
-        end
-      end
+              end end end end end
       threads.each { |thread| show_loading(thread) }
     end
   end
