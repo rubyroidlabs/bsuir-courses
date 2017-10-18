@@ -33,11 +33,16 @@ class Kotd
         end
       end
       threads.each do |thread|
-        while thread.alive?
-          print '.'; sleep(0.1)
-        end
+        show_loading(thread)
       end
       puts '!'
+    end
+  end
+
+  def show_loading(thread)
+    while thread.alive?
+      print '.'
+      sleep(0.1)
     end
   end
 
