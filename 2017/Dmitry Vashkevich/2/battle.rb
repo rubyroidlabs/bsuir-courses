@@ -1,8 +1,8 @@
 class Battle
+  attr_accessor :link_to_battle, :first_name, :second_name
+  attr_accessor :first_amount_letters, :second_amount_letters
 
-  attr_accessor :link_to_battle, :first_name, :second_name, :first_amount_letters, :second_amount_letters
-
-  def initialize (link_to_battle)
+  def initialize(link_to_battle)
     @link_to_battle = link_to_battle
     @first_amount_letters = 0
     @second_amount_letters = 0
@@ -26,11 +26,11 @@ class Battle
 
   def get_winner
     if first_amount_letters > second_amount_letters
-       first_name
+      first_name
     elsif first_amount_letters < second_amount_letters
-       second_name
+      second_name
     else
-       'Draw'
+      'Draw'
     end
   end
 

@@ -3,7 +3,6 @@ require 'pry'
 require_relative 'battle'
 
 class Kotd
-
   attr_accessor :list_battles
 
   def initialize
@@ -17,16 +16,16 @@ class Kotd
       text = 'Show all albums by King of the Dot'
       albums_page = a.click(page.link_with(text: /#{text}/))
       link_albums = '/albums/King-of-the-dot/'
-      albums_page.links_with(href: %r{#{link_albums}} ).each do |page_album|
+      albums_page.links_with(href: /#{link_albums}/ ).each do |page_album|
         threads << Thread.new do
           a.get(page_album.href) do |page_battles|
-            link_battle='/King-of-the-dot-'
-            page_battles.links_with(href: %r{#{link_battle}}).each do |page_battle|
+            link_bat = '/King-of-the-dot-'
+            page_battles.links_with(href: /#{link_bat}/).each do |page_battle|
               a.get(page_battle.href) do |link_to_battle|
                 battle = Battle.new(link_to_battle.uri)
                 battle.get_data(link_to_battle.css('.lyrics').text, criterion)
                 if !battle.first_name.nil? && !battle.second_name.nil?
-                @list_battles << battle
+                  @list_battles << battle
                 end
               end
             end
@@ -35,8 +34,7 @@ class Kotd
       end
       threads.each do |thread|
         while thread.alive?
-          print '.'
-          sleep(0.1)
+          print '.'; sleep(0.1)
         end
       end
       puts '!'
@@ -50,13 +48,14 @@ class Kotd
       count_wins = 0
       count_losses = 0
       list_battles.each do |battle|
-        if [battle.first_name,battle.second_name].include?(name)
+        if [battle.first_name, battle.second_name].include?(name)
           battle.show
           if battle.get_winner == name
             count_wins += 1
           elsif battle.get_winner != 'Draw'
             count_losses += 1
           end
+        else next
         end
       end
       if count_wins > 0 || count_losses > 0
