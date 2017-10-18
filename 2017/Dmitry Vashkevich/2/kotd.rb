@@ -24,18 +24,20 @@ class Kotd
               a.get(page_battle.href) do |link_to_battle|
                 battle = Battle.new(link_to_battle.uri)
                 battle.get_data(link_to_battle.css('.lyrics').text, criterion)
-                if !battle.first_name.nil? && !battle.second_name.nil?
-                  @list_battles << battle
-                end
+                add_battle(battle)
               end
             end
           end
         end
       end
-      threads.each do |thread|
-        show_loading(thread)
-      end
+      threads.each { |thread| show_loading(thread) }
       puts '!'
+    end
+  end
+
+  def add_battle(battle)
+    if !battle.first_name.nil? && !battle.second_name.nil?
+      @list_battles << battle
     end
   end
 
