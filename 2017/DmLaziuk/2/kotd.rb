@@ -2,7 +2,7 @@ require 'mechanize'
 require_relative 'kotd_battle'
 
 class Kotd
-  START_PAGE = 'https://genius.com/artists/songs?for_artist_page=117146&id=King-of-the-dot&page=1&pagination=true'
+  START_PAGE = 'https://genius.com/artists/songs?for_artist_page=117146&id=King-of-the-dot&page=1&pagination=true'.freeze
 
   attr_reader :links, :name, :criteria
 
