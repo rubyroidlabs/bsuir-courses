@@ -54,8 +54,8 @@ class KotdBattle
       performer.strip!
       key = performer
       if text[i]
-        counter = @criteria ?\
-                  text[i].scan(@criteria).count :\
+        counter = @criteria ? \
+                  text[i].scan(@criteria).count : \
                   text[i].scan(/[A-Za-z]/).count
       end
       if counter
