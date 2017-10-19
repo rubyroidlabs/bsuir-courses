@@ -47,16 +47,18 @@ class KotdBattle
     text.shift
     (0...round.count).each do |i|
       performer = round[i]
-      performer.tr!(/\[/, ' ')
-      performer.tr!(/\]/, ' ')
+      performer.gsub!('[', ' ')
+      performer.gsub!(']', ' ')
       performer.strip!
       performer.gsub!(/Round\s\d\s?[:|\-|\u2013]*\s*/, ' ')
       performer.strip!
       key = performer
       if text[i]
-        counter = @criteria ? \
-                  text[i].scan(@criteria).count : \
-                  text[i].scan(/[A-Za-z]/).count
+        if @criteria
+          counter = text[i].scan(@criteria).count
+        else
+          counter = text[i].scan(/[A-Za-z]/).count
+        end
       end
       if counter
         @count[key] = @count[key] ? @count[key] + counter : counter
