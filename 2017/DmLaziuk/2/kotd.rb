@@ -38,7 +38,7 @@ class Kotd
 
   def run_name
     wins = 0
-    battles = @links.select { |link| link.text.scan(@name).!empty? }
+    battles = @links.select { |link| link.text.scan(@name).size >= 1 }
     battles.each do |link|
       battle = KotdBattle.new(link.click, @criteria)
       wins += 1 if battle.winner == @name
