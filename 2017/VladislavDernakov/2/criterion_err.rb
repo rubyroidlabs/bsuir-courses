@@ -1,0 +1,2 @@
+class CriterionError < RuntimeError
+end
