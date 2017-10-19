@@ -3,12 +3,13 @@ require 'mechanize'
 class KotdBattle
   attr_reader :title, :lyrics, :uri, :winner, :score
 
-  def initialize(page = nil)
+  def initialize(page = nil, criteria = nil)
     @title = ''
     @lyrics = ''
     @count = Hash.new
     @winner = ''
     @score = 0
+    @criteria = criteria
     if page
       @uri = page.uri
       @title = page.title
@@ -51,7 +52,11 @@ class KotdBattle
       performer.gsub!(%r{\]}, '')
       performer.strip!
       performer.gsub!(%r{Round\s\d\s?[:|\-|\u2013]*\s*}, '')
-      counter = text[i].scan(%r{[A-Za-z]}).count if text[i]
+      if @criteria
+        counter = text[i].scan(@criteria).count if text[i]
+      else
+        counter = text[i].scan(%r{[A-Za-z]}).count if text[i]
+      end
       if @count[performer]
         @count[performer] += counter if counter
       else
