@@ -27,4 +27,3 @@ class MasterOfCeremony # aka MC
     @losses += 1
   end
 end
-

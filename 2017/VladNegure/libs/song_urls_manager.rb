@@ -80,4 +80,3 @@ class SongUrlsManager
     Net::HTTP.get(uri)
   end
 end
-

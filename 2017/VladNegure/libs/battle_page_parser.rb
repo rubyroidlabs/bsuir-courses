@@ -29,4 +29,3 @@ module BattlePageParser
     texts.values_at(* texts.each_index.select(&:odd?))
   end
 end
-
