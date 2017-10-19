@@ -6,25 +6,24 @@ class KotdBattle
   def initialize(page = nil, criteria = nil)
     @title = ''
     @lyrics = ''
-    @count = Hash.new
-    @winner = ''
+    @count = {}
+    @winner = ''.to_sym
     @score = 0
     @criteria = criteria
     if page
       @uri = page.uri
       @title = page.title
-      @title.gsub!('King of the Dot –', '')
-      @title.gsub!('Lyrics | Genius Lyrics', '')
+      @title.gsub!('King of the Dot –', ' ')
+      @title.gsub!('Lyrics | Genius Lyrics', ' ')
       @title.strip!
       @lyrics = page.css('.lyrics').text.strip
       # remove [?]
-      @lyrics.gsub!(%r{\[\?\]}, '')
+      @lyrics.gsub!(/\[\?\]/, ' ')
       # remove [...]
-      @lyrics.gsub!(%r{\[\.\.\.\]}, '')
-      # remove […]
-      @lyrics.gsub!(%r{\[…\]}, '')
+      @lyrics.gsub!(/\[\.\.\.\]/, ' ')
+      @lyrics.gsub!(/\[…\]/, '')
       # remove [*text*]
-      @lyrics.gsub!(%r{\[\*.*?\*\]}, '')
+      @lyrics.gsub!(/\[\*.*?\*\]/, ' ')
       battle
       guess_winner
     end
@@ -43,24 +42,26 @@ class KotdBattle
   private
 
   def battle
-    round = @lyrics.scan(%r{\[.*?\]})
-    text = @lyrics.split(%r{\[.*?\]})
+    round = @lyrics.scan(/\[.*?\]/)
+    text = @lyrics.split(/\[.*?\]/)
     text.shift
     (0...round.count).each do |i|
       performer = round[i]
-      performer.gsub!(%r{\[}, '')
-      performer.gsub!(%r{\]}, '')
+      performer.gsub!(/\[/, ' ')
+      performer.gsub!(/\]/, ' ')
       performer.strip!
-      performer.gsub!(%r{Round\s\d\s?[:|\-|\u2013]*\s*}, '')
+      performer.gsub!(/Round\s\d\s?[:|\-|\u2013]*\s*/, ' ')
+      performer.strip!
+      key = performer
       if @criteria
         counter = text[i].scan(@criteria).count if text[i]
       else
-        counter = text[i].scan(%r{[A-Za-z]}).count if text[i]
+        counter = text[i].scan(/[A-Za-z]/).count if text[i]
       end
-      if @count[performer]
-        @count[performer] += counter if counter
+      if @count[key]
+        @count[key] += counter if counter
       else
-        @count[performer] = counter if counter
+        @count[key] = counter if counter
       end
     end
   end

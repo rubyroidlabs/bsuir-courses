@@ -13,12 +13,12 @@ class Kotd
     @name = name
     @criteria = criteria
     puts 'Initializing...'
-    page.links_with(:href => %r{\w+-lyrics} ).each { |link| @links << link }
-    next_page = page.links_with(:class => 'next_page')[0]
+    page.links_with(href: /\w+-lyrics/).each { |link| @links << link }
+    next_page = page.links_with(class: 'next_page')[0]
     while next_page
       page = next_page.click
-      page.links_with(:href => %r{\w+-lyrics} ).each { |link| @links << link }
-      next_page = page.links_with(:class => 'next_page')[0]
+      page.links_with(href: /\w+-lyrics/).each { |link| @links << link }
+      next_page = page.links_with(class: 'next_page')[0]
     end
   end
 
