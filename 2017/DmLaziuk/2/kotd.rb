@@ -6,28 +6,40 @@ def parse(parse_page)
     count = Hash.new
     text = page.css('.lyrics').text.strip
     text.gsub!(%r{\[\?\]}, '')
-    round = text.scan(%r{\[.*?\]\n})
-    lyrics = text.split(%r{\s*\[.*?\]\s*})
+    text.gsub!(%r{\[\.\.\.\]}, '')
+    text.gsub!(%r{\[…\]}, '')
+    text.gsub!(%r{\[\*.*?\*\]}, '')
+    round = text.scan(%r{\[.*?\]})
+    lyrics = text.split(%r{\[.*?\]})
     lyrics.shift # first element = "" (empty string)
     (0...round.count).each do |i|
       performer = round[i]
-      performer[%r{\[}] = ''
-      performer[%r{\]}] = ''
+      performer.gsub!(%r{\[}, '')
+      performer.gsub!(%r{\]}, '')
       performer.strip!
-      performer.gsub!(%r{Round\s\d\s?[:|\u2013]*\s*}, '')
-      #split(%r{:|\u2013})[1].scan(/\w+/)[0]
+      performer.gsub!(%r{Round\s\d\s?[:|\-|\u2013]*\s*}, '')
       word_count = lyrics[i].scan(%r{\S+}).count if lyrics[i]
       if count[performer]
-        count[performer] += word_count
+        count[performer] += word_count if word_count
       else
-        count[performer] = word_count
+        count[performer] = word_count if word_count
       end
     end
     if count.size > 1
-      puts count.keys[0].to_s + ' vs ' + count.keys[1].to_s + ' - ' + page.uri.to_s
-      count.each { |key, value| puts key.to_s + ' - ' + value.to_s }
-      max = count.values[0] > count.values[1] ? 0 : 1
-      puts count.keys[max].to_s + ' WINS!'
+      title = page.title
+      title.gsub!('King of the Dot –', '')
+      title.gsub!('Lyrics | Genius Lyrics', '')
+      puts title.strip + ' - ' + page.uri.to_s
+      winner = count.keys[0]
+      winner_value = count.values[0]
+      count.each do |key, value|
+        puts key.to_s + ' - ' + value.to_s
+        if value > winner_value
+          winner = key
+          winner_value = value
+        end
+      end
+      puts winner.to_s + ' WINS!'
       puts
     end
   end
