@@ -11,28 +11,32 @@ class Kotd
 
   def loading_battles(criterion)
     a = Mechanize.new { |agent| agent.user_agent_alias = 'Mac Safari' }
+    array_links = []
     threads = []
-    a.get('https://genius.com/artists/King-of-the-dot') do |page|
-      text = 'Show all albums by King of the Dot'
-      albums_page = a.click(page.link_with(text: /#{text}/))
-      link_albums = '/albums/King-of-the-dot/'
-      albums_page.links_with(href: /#{link_albums}/ ).each do |page_album|
-        threads << Thread.new do
-          a.get(page_album.href) do |page_battles|
-            link_bat = '/King-of-the-dot-'
-            page_battles.links_with(href: /#{link_bat}/).each do |page_battle|
-              a.get(page_battle.href) do |link_to_battle|
-                battle = Battle.new(link_to_battle.uri)
-                battle.get_data(link_to_battle.css('.lyrics').text, criterion)
-                add_battle(battle)
-              end end end end end
-      threads.each { |thread| show_loading(thread) }
+    page = a.get('https://genius.com/artists/King-of-the-dot')
+    text = 'Show all albums by King of the Dot'
+    albums_page = a.click(page.link_with(text: /#{text}/))
+    link_albums = '/albums/King-of-the-dot/'
+    albums_page.links_with(href: /#{link_albums}/ ).each do |page_album|
+      threads << Thread.new do
+        page_battles = a.get(page_album.href)
+        link_bat = '/King-of-the-dot-'
+        page_battles.links_with(href: /#{link_bat}/).each do |page_battle|
+          array_links << a.get(page_battle.href)
+        end
+      end
     end
+    threads.each { |thread| show_loading(thread) }
+    add_battles(array_links, criterion)
   end
 
-  def add_battle(battle)
-    if !battle.first_name.nil? && !battle.second_name.nil?
-      @list_battles << battle
+  def add_battles(array_links, criterion)
+    array_links.each do |link_to_battle|
+      battle = Battle.new(link_to_battle.uri)
+      battle.get_data(link_to_battle.css('.lyrics').text, criterion)
+      if !battle.first_name.nil? && !battle.second_name.nil?
+        @list_battles << battle
+      end
     end
   end
 
