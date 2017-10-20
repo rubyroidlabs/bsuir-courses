@@ -7,41 +7,50 @@ class Kotd
   attr_reader :links, :name, :criteria
 
   def initialize(name = nil, criteria = nil)
-    agent = Mechanize.new
-    page = agent.get(START_PAGE)
     @links = []
     @name = name
     @criteria = criteria
-    puts 'Initializing...'
-    page.links_with(href: /\w+-lyrics/).each { |link| @links << link }
-    next_page = page.links_with(class: 'next_page')[0]
-    while next_page
-      page = next_page.click
-      page.links_with(href: /\w+-lyrics/).each { |link| @links << link }
-      next_page = page.links_with(class: 'next_page')[0]
-    end
+    parse_links
   end
 
   def run
     if @name
-      run_name
+      run_by_name
     else
-      @links.each do |link|
-        battle = KotdBattle.new(link.click, @criteria)
-        puts battle
-        puts
-      end
+      run_all
     end
   end
 
   private
 
-  def run_name
+  def parse_links
+    puts 'Initializing...'
+    puts
+    agent = Mechanize.new
+    page = agent.get(START_PAGE)
+    page.links_with(href: /\w+-lyrics/).each { |link| @links << link }
+    next_page = page.links_with(class: 'next_page').first
+    while next_page
+      page = next_page.click
+      page.links_with(href: /\w+-lyrics/).each { |link| @links << link }
+      next_page = page.links_with(class: 'next_page').first
+    end
+  end
+
+  def run_all
+    @links.each do |link|
+      battle = KotdBattle.new(link.click, @criteria)
+      puts battle
+      puts
+    end
+  end
+
+  def run_by_name
     wins = 0
     battles = @links.select { |link| link.text.scan(@name).size >= 1 }
     battles.each do |link|
       battle = KotdBattle.new(link.click, @criteria)
-      wins += 1 if battle.winner == @name.to_sym
+      wins += 1 if battle.winners.include?(@name.to_sym)
       puts battle
       puts
     end
@@ -52,6 +61,4 @@ end
 
 name = ENV['NAME']
 criteria = ENV['CRITERIA']
-
-kotd = Kotd.new(name, criteria)
-kotd.run
+Kotd.new(name, criteria).run
