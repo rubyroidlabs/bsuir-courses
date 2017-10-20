@@ -41,7 +41,7 @@ class Kotd
     battles = @links.select { |link| link.text.scan(@name).size >= 1 }
     battles.each do |link|
       battle = KotdBattle.new(link.click, @criteria)
-      wins += 1 if battle.winner == @name
+      wins += 1 if battle.winner == @name.to_sym
       puts battle
       puts
     end
@@ -53,5 +53,5 @@ end
 name = ENV['NAME']
 criteria = ENV['CRITERIA']
 
-kb = Kotd.new(name, criteria)
-kb.run
+kotd = Kotd.new(name, criteria)
+kotd.run

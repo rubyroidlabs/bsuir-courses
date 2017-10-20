@@ -21,7 +21,7 @@ class KotdBattle
       @lyrics.gsub!(/\[\?\]/, ' ')
       # remove [...]
       @lyrics.gsub!(/\[\.\.\.\]/, ' ')
-      @lyrics.gsub!(/\[…\]/, '')
+      @lyrics.gsub!(/\[…\]/, ' ')
       # remove [*text*]
       @lyrics.gsub!(/\[\*.*?\*\]/, ' ')
       battle
@@ -30,7 +30,7 @@ class KotdBattle
   end
 
   def to_s
-    str = @title + ' - ' + @uri.to_s
+    str = @title.to_s + ' - ' + @uri.to_s
     if @count.size > 1
       str += "\n"
       @count.each { |key, value| str += key.to_s + ' - ' + value.to_s + "\n" }
@@ -52,7 +52,7 @@ class KotdBattle
       performer.strip!
       performer.gsub!(/Round\s\d\s?[:|\-|\u2013]*\s*/, ' ')
       performer.strip!
-      key = performer
+      key = performer.to_sym
       if text[i]
         if @criteria
           counter = text[i].scan(@criteria).count
@@ -67,9 +67,9 @@ class KotdBattle
   end
 
   def guess_winner
-    if @count.size > 1
-      @winner = @count.keys[0]
-      @score = @count.values[0]
+    if @count.any?
+      @winner = @count.keys.first
+      @score = @count.values.first
       @count.each do |key, value|
         if value > @score
           @winner = key
