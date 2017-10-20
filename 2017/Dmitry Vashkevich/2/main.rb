@@ -6,4 +6,3 @@ criterion = ENV['CRITERIA']
 kotd = Kotd.new
 kotd.loading_battles(criterion)
 kotd.show_battles(name)
-
