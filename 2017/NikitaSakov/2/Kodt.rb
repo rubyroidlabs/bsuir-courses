@@ -18,8 +18,8 @@ class Kodt
         page = page.link_with(text: /Next/).click
       end
     end
-    if statistics[0] != 0 or statistics[1] != 0
-      puts ENV['NAME'] + ' wins #{statistics[0]} times, loses #{statistics[1]} times'
+    if statistics[0] != 0 || statistics[1] != 0
+      puts ENV['NAME'] + " wins #{statistics[0]} times, loses #{statistics[1]} times"
     end
   end
 
@@ -36,10 +36,8 @@ class Kodt
     if ENV['NAME'].nil?
       summ_of_letters = ProcessText.count_letters(page_of_battle, names, summ_of_letters)
       write_results(names, summ_of_letters, link_of_battle)
-    else
-      if names[0] == ENV['NAME'] or names[1] == ENV['NAME']
-        statistics = battle_by_name(link_of_battle, names, statistics)
-      end
+    elsif names[0] == ENV['NAME'] || names[1] == ENV['NAME']
+      statistics = battle_by_name(link_of_battle, names, statistics)
     end
     statistics
   end
@@ -49,9 +47,9 @@ class Kodt
     summ_of_letters = Array.new(2, 0)
     page_of_battle = agent.get(link_of_battle.uri)
     summ_of_letters = ProcessText.count_letters(page_of_battle, names, summ_of_letters)
-    if names[0].include? ENV['NAME'] and summ_of_letters[0] > summ_of_letters[1]
+    if (names[0].include? ENV['NAME']) && summ_of_letters[0] > summ_of_letters[1]
       statistics[0] += 1
-    elsif names[1].include? ENV['NAME'] and summ_of_letters[0] < summ_of_letters[1]
+    elsif (names[1].include? ENV['NAME']) && summ_of_letters[0] < summ_of_letters[1]
       statistics[0] += 1
     else
       statistics[1] += 1
@@ -61,12 +59,12 @@ class Kodt
   end
 
   def self.write_results(names, summ_of_letters, link_of_battle)
-    puts names[0] + " vs " + names[1] + " - " + link_of_battle.uri.to_s
-    if summ_of_letters[0] < 100 and summ_of_letters[1] < 100 and ENV['CRITERIA'].nil?
+    puts names[0] + ' vs ' + names[1] + ' - ' + link_of_battle.uri.to_s
+    if summ_of_letters[0] < 100 && summ_of_letters[1] < 100 && ENV['CRITERIA'].nil?
       puts 'The battle still has not come out. The results will be later'
       puts
       return
-    elsif summ_of_letters[0] == 0 or summ_of_letters[1] == 0 and ENV['CRITERIA'].nil?
+    elsif (summ_of_letters[0].zero?) && (summ_of_letters[1].zero?) && ENV['CRITERIA'].nil?
       puts 'The text is written in the wrong. It is impossible to calculate the length.'
       puts
       return
@@ -80,7 +78,6 @@ class Kodt
     else
       puts 'DRAW '
     end
-    puts    
+    puts
   end
-
 end
