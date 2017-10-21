@@ -6,15 +6,15 @@ class Parser
   def get_links
     agent = Mechanize.new
     page = agent.get('https://genius.com/artists/King-of-the-dot')
-    f_page = page.link_with(text: %r{Show all songs by King of the Dot}).click
+    f_page = page.link_with(text: /Show all songs by King of the Dot/).click
     links = f_page.links_with(href: %r{https:\/\/genius\.com\/King-of-the-dot})
     link_songs = "\/artists\/songs\?for_artist_page=117146&"
     link_battle = "id=King-of-the-dot&page=\d+&pagination=true"
-    pages = f_page.links_with(href: %r{#{link_songs}#{link_battle}})
+    pages = f_page.links_with(href: /#{link_songs}#{link_battle}/)
     pages.pop
     link_song = "https:\/\/genius\.com\/King-of-the-dot"
     pages.each do |n|
-      n.click.links_with(href: %r{#{link_song}}).each { |p| links << p }
+      n.click.links_with(href: /#{link_song}/).each { |p| links << p }
     end
     links
   end
