@@ -55,7 +55,8 @@ class Kotd2
       str = "#{name_batler[x]} REAL NIGGA!!!"
     end
     puts "\n#{name_batler[0]} vs #{name_batler[1]} - #{link.uri}"
-    puts "#{name_batler[0]} - #{count_batler[0]}\n#{name_batler[1]} - #{count_batler[1]}\n#{str}\n"
+    puts "#{name_batler[0]} - #{count_batler[0]}"
+    puts "#{name_batler[1]} - #{count_batler[1]}\n#{str}\n"
   end
 
   def self.link_run(page)
@@ -80,7 +81,7 @@ class Kotd2
   def self.start
     agent = Mechanize.new
     page = agent.get('https://genius.com/artists/King-of-the-dot')
-    page = agent.page.link_with(text: /Show all songs by King of the Dot/).click
+    page = page.link_with(text: /Show all songs by King of the Dot/).click
     page
   end
 end
