@@ -54,7 +54,7 @@ class Battler
     battle_name = battle_page.text.strip
     pos = battle_name.index(/\([a-zA-Z\d\D]+\)/)
     return if pos.nil?
-    battle_name = battle_name[0, pos-1]
+    battle_name = battle_name[0, pos - 1]
     names = battle_name.split(' vs ')
     c = @agent.click(battle_page)
     battle_text = c.css('.lyrics').css('p').to_s
