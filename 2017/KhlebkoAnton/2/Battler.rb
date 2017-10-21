@@ -121,26 +121,24 @@ class Battler
     end
     1.upto(3) do |round|
       0.upto(1) do |name|
-        unless battle_text.nil?
-          str = '[Round ' + round.to_s + ': ' + names[name].to_s + ']'
-          if battle_text.index(str).nil?
-            start_round = 0
-          else
-            start_round = battle_text.index(str) + str.length
-          end
-          end_round = battle_text.index('[Round ', start_round)
-          end_round = battle_text.length - 1 if end_round.nil?
-          start_text = start_round - str.length
-          end_text = end_round - start_round + str.length
-          text = battle_text[start_text, end_text]
-          break if text.nil?
-          if @criteria.nil?
-            letters[name] += count_letters(text)
-          else
-            letters[name] += count_criteria(text)
-          end
-          battle_text[start_text..end_text - 1] = ''
+        break if battle_text.nil?
+        str = '[Round ' + round.to_s + ': ' + names[name].to_s + ']'
+        temp = battle_text.index(str)
+        start_round = 0
+        start_round = temp + str.length unless temp.nil?
+        end_round = battle_text.index('[Round ', start_round)
+        end_round = battle_text.length - 1 if end_round.nil?
+        start_text = start_round - str.length
+        end_text = end_round - start_round + str.length
+        text = battle_text[start_text, end_text]
+        break if text.nil?
+        if @criteria.nil?
+          letters[name] += count_letters(text)
+        else
+          letters[name] += count_criteria(text)
+          letters
         end
+        battle_text[start_text..end_text - 1] = ''
       end
     end
     puts "\n#{names[0]} - #{letters[0]}"
@@ -172,26 +170,24 @@ class Battler
     end
     1.upto(3) do |round|
       0.upto(1) do |name|
-        unless battle_text.nil?
-          str = '[Round ' + round.to_s + ': ' + names[name].to_s + ']'
-          if battle_text.index(str).nil?
-            start_round = 0
-          else
-            start_round = battle_text.index(str) + str.length
-          end
-          end_round = battle_text.index('[Round ', start_round)
-          end_round = battle_text.length - 1 if end_round.nil?
-          start_text = start_round - str.length
-          end_text = end_round - start_round + str.length
-          text = battle_text[start_text, end_text]
-          break if text.nil?
-          if @criteria.nil?
-            letters[name] += count_letters(text)
-          else
-            letters[name] += count_criteria(text)
-          end
-          battle_text[start_text..end_text - 1] = ''
+        break if battle_text.nil?
+        str = '[Round ' + round.to_s + ': ' + names[name].to_s + ']'
+        start_round = 0
+        temp = battle_text.index(str)
+        start_round = temp + str.length unless temp.nil?
+        end_round = battle_text.index('[Round ', start_round)
+        end_round = battle_text.length - 1 if end_round.nil?
+        start_text = start_round - str.length
+        end_text = end_round - start_round + str.length
+        text = battle_text[start_text, end_text]
+        break if text.nil?
+        if @criteria.nil?
+          letters[name] += count_letters(text)
+        else
+          letters[name] += count_criteria(text)
+          letter
         end
+        battle_text[start_text..end_text - 1] = ''
       end
     end
     puts "\n#{names[0]} - #{letters[0]}"
@@ -207,7 +203,9 @@ class Battler
 
   def make_conclusion
     unless @name.nil?
-      puts "#{@name} wins in #{@wins} battles and loses in #{@loses}."
+      puts "#{@name} wins in #{@wins} battles" \
+      " and loses in #{@loses}."
+      @name
     end
   end
 end
