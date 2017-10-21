@@ -1,7 +1,6 @@
 require_relative 'job_with_rap.rb'
 agent = Mechanize.new
-@count_pages = 1
-page = agent.get("https://genius.com/artists/songs?for_artist_page=117146&id=King-of-the-dot&page=#{@count_pages}&pagination=true")
+page = agent.get("https://genius.com/artists/songs?for_artist_page=117146&id=King-of-the-dot&page=1&pagination=true")
 array_of_links_of_songs = []
 page.css('div#container.mecha--deprecated div#main ul li a.song_name.work_in_progress.song_link span.title_with_artists span.song_title').each do |el|
   array_of_links_of_songs << el.text
