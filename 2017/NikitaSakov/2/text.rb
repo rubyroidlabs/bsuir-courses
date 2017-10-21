@@ -12,16 +12,16 @@ class Text
     text = page_of_battle.css('.lyrics p').to_s
     text = text.split('<br>')
     key = if ENV['CRITERIA'].nil?
-      /\w/
-    else
-      ENV['CRITERIA']
-    end
+            /\w/
+          else
+            ENV['CRITERIA']
+          end
     present_i = 0
     text.size.times do |i|
-      if text[i].include? 'Round' && names[0]
+      if text[i].include? ('Round' && names[0])
         present_i = 0
         next
-      elsif text[i].include? 'Round' && names[1]
+      elsif text[i].include? ('Round' && names[1])
         present_i = 1
         next
       end

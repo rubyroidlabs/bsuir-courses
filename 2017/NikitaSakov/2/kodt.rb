@@ -28,10 +28,10 @@ class Kodt
     names = Array.new(2)
     summ = Array.new(2, 0)
     names = if title.include? 'vs.'
-      Text.find_names(title, names, ' vs. ')
-    else
-      Text.find_names(title, names, ' vs ')
-    end
+              Text.find_names(title, names, ' vs. ')
+            else
+              Text.find_names(title, names, ' vs ')
+            end
     if ENV['NAME'].nil?
       summ = Text.count_letters(page_of_battle, names, summ)
       write_results(names, summ, link_of_battle)
