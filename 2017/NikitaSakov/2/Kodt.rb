@@ -1,21 +1,20 @@
 class Kodt
-
   def self.parse
     agent = Mechanize.new 
     page = agent.get('https://genius.com/artists/King-of-the-dot')
     page = page.link_with(text: /Show all songs by King of the Dot/).click
     statistics = Array.new(2, 0)
     loop do
-      if page.link_with(text:/Next/).nil?
-        page.links_with(text:/vs/).each do |link_of_battle|
+      if page.link_with(text: /Next/).nil?
+        page.links_with(text: /vs/).each do |link_of_battle|
           statistics = process_battle(link_of_battle, agent, statistics)
         end
         break
       else
-        page.links_with(text:/vs/).each do |link_of_battle|
+        page.links_with(text: /vs/).each do |link_of_battle|
           statistics = process_battle(link_of_battle, agent, statistics)
         end
-        page = page.link_with(text:/Next/).click
+        page = page.link_with(text: /Next/).click
       end
     end
     if statistics[0] != 0 || statistics[1] != 0
@@ -44,7 +43,7 @@ class Kodt
 
   def self.battle_by_name(link_of_battle, names, statistics)
     agent = Mechanize.new
-    summ_of_letters = Array.new(2, 0)
+    summ = Array.new(2, 0)
     page_of_battle = agent.get(link_of_battle.uri)
     summ = Text.count_letters(page_of_battle, names, summ)
     if names[0].include? ENV['NAME'] && summ[0] > summ[1]
