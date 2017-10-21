@@ -9,4 +9,7 @@ data.each do |d|
   battle = Battle.new
   battle.start_battle(d, statistic)
 end
-puts "#{statistic.nickname} won #{statistic.victories} times, lost #{statistic.losses} times." unless statistic.nil?
+nick = statistic.nickname
+lost = statistic.losses
+won = statistic.victories
+puts "#{nick} won #{won} times, lost #{lost} times." unless statistic.nil?

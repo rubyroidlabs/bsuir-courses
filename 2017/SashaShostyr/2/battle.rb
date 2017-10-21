@@ -7,14 +7,16 @@ class Battle
   def start_battle(data, stats)
     texts_for_battle = data[:text].split(/\[Round [123].+\]/)
     texts_for_battle.shift
-    if data[:name] =~ /[vV]s.?/ && texts_for_battle.count.even? && texts_for_battle.count != 0
+    count = texts_for_battle.count
+    if data[:name] =~ /[vV]s.?/ && count.even? && count != 0
       @rapper1, @rapper2 = create_rappers(data)
     elsif stats.nil? || data[:name] =~ /#{stats.nickname}/
       puts data[:name] + ' - ' + data[:href]
       puts "I can\'t process this battle. Sorry(\n" + '.' * 60
       return
     end
-    print_result(data, stats) if stats.nil? || data[:name] =~ /#{stats.nickname}/
+    nick = stats.nickname
+    print_result(data, stats) if stats.nil? || data[:name] =~ /#{nick}/
   end
 
   def create_rappers(data)
@@ -31,7 +33,9 @@ class Battle
         text_player2 << e
       end
     end
-    [Rapper.new(name_rapper1, text_player1), Rapper.new(name_rapper2, text_player2)]
+    result = []
+    result << Rapper.new(name_rapper1, text_player1)
+    result << Rapper.new(name_rapper2, text_player2)
   end
 
   def print_result(data, stats)
