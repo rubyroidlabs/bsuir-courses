@@ -18,7 +18,7 @@ class Kodt
       end
     end
     if statistics[0] != 0 || statistics[1] != 0
-      puts ENV['NAME'] + " wins #{statistics[0]} times, loses #{statistics[1]} times"
+      puts ENV['NAME'] + " wins #{statistics[0]} times"
     end
   end
 
@@ -27,10 +27,10 @@ class Kodt
     title = link_of_battle.to_s.strip
     names = Array.new(2)
     summ = Array.new(2, 0)
-    if title.include? 'vs.'
-      names = Text.find_names(title, names, ' vs. ')
+    names = if title.include? 'vs.'
+      Text.find_names(title, names, ' vs. ')
     else
-      names = Text.find_names(title, names, ' vs ')
+      Text.find_names(title, names, ' vs ')
     end
     if ENV['NAME'].nil?
       summ = Text.count_letters(page_of_battle, names, summ)
@@ -46,9 +46,9 @@ class Kodt
     summ = Array.new(2, 0)
     page_of_battle = agent.get(link_of_battle.uri)
     summ = Text.count_letters(page_of_battle, names, summ)
-    if names[0].include? ENV['NAME'] && summ[0] > summ[1]
+    if names[0].include? ENV['NAME'] && (summ[0] > summ[1])
       statistics[0] += 1
-    elsif names[1].include? ENV['NAME'] && summ[0] < summ[1]
+    elsif names[1].include? ENV['NAME'] && (summ[0] < summ[1])
       statistics[0] += 1
     else
       statistics[1] += 1

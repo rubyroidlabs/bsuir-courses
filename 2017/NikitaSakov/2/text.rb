@@ -11,17 +11,17 @@ class Text
   def self.count_letters(page_of_battle, names, summ_of_letters)
     text = page_of_battle.css('.lyrics p').to_s
     text = text.split('<br>')
-    if ENV['CRITERIA'].nil?
-      key = /\w/
+    key = if ENV['CRITERIA'].nil?
+      /\w/
     else
-      key = ENV['CRITERIA']
+      ENV['CRITERIA']
     end
     present_i = 0
     text.size.times do |i|
-      if text[i].include? 'Round' and text[i].include? names[0]
+      if text[i].include? 'Round' && names[0]
         present_i = 0
         next
-      elsif text[i].include? 'Round' and text[i].include? names[1]
+      elsif text[i].include? 'Round' && names[1]
         present_i = 1
         next
       end
