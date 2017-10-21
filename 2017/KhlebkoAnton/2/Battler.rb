@@ -10,7 +10,7 @@ class Battler
     @wins = 0
   end
 
-  def get_battles
+  def getbattles
     b = @home_page.link_with(text: /\Show all songs/)
     @home_page = @agent.click(b)
   end
@@ -46,7 +46,7 @@ class Battler
   def parse_battles
     get_text_and_link(@home_page)
     filter = /^\d+$/
-    @home_page.links_with(:text => filter).each do |link|
+    @home_page.links_with(text: filter).each do |link|
       a = @agent.click(link)
       get_text_and_link(a)
     end
@@ -55,23 +55,22 @@ class Battler
   def page_was_found(battle_page)
     battle_name = battle_page.text.strip
     pos = battle_name.index(/\([a-zA-Z\d\D]+\)/)
-    unless pos.nil?
-      battle_name = battle_name[0, pos-1]
-      names = battle_name.split(' vs ')
-      c = @agent.click(battle_page)
-      battle_text = c.css('.lyrics').css('p').to_s
-      battle_text = clear_text(battle_text.to_s)
-      if !@name.nil?
-        unless battle_name.index(@name).nil?
-          puts battle_name + " - #{battle_page.href}\n"
-          win_or_lose(battle_text, names)
-          puts "************************************\n"
-        end
-      else
+    return if pos.nil?
+    battle_name = battle_name[0, pos-1]
+    names = battle_name.split(' vs ')
+    c = @agent.click(battle_page)
+    battle_text = c.css('.lyrics').css('p').to_s
+    battle_text = clear_text(battle_text.to_s)
+    if !@name.nil?
+      unless battle_name.index(@name).nil?
         puts battle_name + " - #{battle_page.href}\n"
-        find_by_criteria(battle_text, names)
+        win_or_lose(battle_text, names)
         puts "************************************\n"
       end
+    else
+      puts battle_name + " - #{battle_page.href}\n"
+      find_by_criteria(battle_text, names)
+      puts "************************************\n"
     end
   end
 
@@ -84,7 +83,6 @@ class Battler
       end
     end
   end
-
 
   def count_letters(text)
     letters = 0

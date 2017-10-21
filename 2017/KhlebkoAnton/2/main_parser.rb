@@ -6,6 +6,6 @@ name = ENV['NAME']
 criteria = ENV['CRITERIA']
 
 battler = Battler.new(name, criteria)
-battler.get_battles
+battler.getbattles
 battler.parse_battles
 battler.make_conclusion
