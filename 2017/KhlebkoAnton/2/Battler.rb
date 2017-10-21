@@ -190,7 +190,7 @@ class Battler
           else
             letters[name] += count_criteria(text)
           end
-          battle_text[start_text .. end_text - 1] = ""
+          battle_text[start_text..end_text - 1] = ''
         end
       end
     end
