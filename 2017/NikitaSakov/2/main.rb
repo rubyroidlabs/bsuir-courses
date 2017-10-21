@@ -1,5 +1,5 @@
 require 'mechanize'
-require_relative 'Text'
-require_relative 'Kodt'
+require_relative 'text'
+require_relative 'kodt'
 
 Kodt.parse

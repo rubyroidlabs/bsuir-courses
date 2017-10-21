@@ -1,6 +1,6 @@
 class Kodt
   def self.parse
-    agent = Mechanize.new 
+    agent = Mechanize.new
     page = agent.get('https://genius.com/artists/King-of-the-dot')
     page = page.link_with(text: /Show all songs by King of the Dot/).click
     statistics = Array.new(2, 0)
@@ -27,7 +27,7 @@ class Kodt
     title = link_of_battle.to_s.strip
     names = Array.new(2)
     summ = Array.new(2, 0)
-    if title.include? ('vs.')
+    if title.include? 'vs.'
       names = Text.find_names(title, names, ' vs. ')
     else
       names = Text.find_names(title, names, ' vs ')
