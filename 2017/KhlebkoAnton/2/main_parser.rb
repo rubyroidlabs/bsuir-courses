@@ -1,11 +1,11 @@
-require_relative 'Battler'
+require_relative 'battler'
 require 'mechanize'
 require 'pry'
 
 name = ENV['NAME']
 criteria = ENV['CRITERIA']
 
-battler = Battler.new(name, criteria)
-battler.getbattles
-battler.parse_battles
-battler.make_conclusion
+person = Battler.new(name, criteria)
+person.getbattles
+person.parse_battles
+person.make_conclusion

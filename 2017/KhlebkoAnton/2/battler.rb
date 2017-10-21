@@ -2,9 +2,7 @@ class Battler
   def initialize(name = nil, criteria = nil)
     @name = name
     @criteria = criteria
-    @agent = Mechanize.new { |agent1|
-      agent1.user_agent_alias = 'Mac Safari'
-    }
+    @agent = Mechanize.new { |agent1| agent1.user_agent_alias = 'Mac Safari' }
     @home_page = @agent.get('https://genius.com/artists/King-of-the-dot')
     @loses = 0
     @wins = 0
@@ -17,7 +15,7 @@ class Battler
 
   def text_insteadof_html(battle_text)
     until battle_text.index('<a').nil?
-      start =  battle_text.index('<a')
+      start = battle_text.index('<a')
       quote_start = 'possibly-branded="false">'
       start_index = battle_text.index(quote_start)
       quote_end = battle_text.index('</a>')
@@ -159,7 +157,7 @@ class Battler
   end
 
   def find_by_criteria(battle_text, names)
-    letters = Array.new
+    letters = []
     letters.push(0)
     letters.push(0)
     unless battle_text.index('[This battle is yet to be released]').nil?
