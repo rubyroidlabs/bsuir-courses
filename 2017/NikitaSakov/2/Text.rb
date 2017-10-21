@@ -1,4 +1,4 @@
-class ProcessText
+class Text
   def self.find_names(title, names, key)
     title = title.split(key)
     names[0] = title[0]
@@ -18,10 +18,10 @@ class ProcessText
     end
     present_i = 0
     text.size.times do |i|
-      if (text[i].include? ('Round')) && (text[i].include? names[0])
+      if text[i].include? ('Round') && text[i].include? names[0]
         present_i = 0
         next
-      elsif (text[i].include? ('Round')) && (text[i].include? names[1])
+      elsif text[i].include? ('Round') && text[i].include? names[1]
         present_i = 1
         next
       end
