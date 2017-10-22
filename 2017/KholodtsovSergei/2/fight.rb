@@ -1,4 +1,5 @@
-require_relative('user')
+require_relative('user.rb')
+
 require 'mechanize'
 require 'date'
 require 'json'
