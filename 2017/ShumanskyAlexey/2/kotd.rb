@@ -35,10 +35,10 @@ if evnname.nil? && evncrit.nil?
     printer = Printer.new(link)
     printer.print_default(evnname)
   end
-elsif evnname != nil && evncrit.nil?
+elsif !evnname.nil? && evncrit.nil?
   arr_results = review_links.map do |link|
     printer = Printer.new(link)
-    printer.print_evnname(evnname)         
+    printer.print_evnname(evnname)   
   end
 
   arr_results.each do |i|
@@ -50,7 +50,7 @@ elsif evnname != nil && evncrit.nil?
   end
   puts
   puts "#{evnname} wins #{count_wins} times, loses #{count_loses} times."
-elsif evnname.nil? && evncrit != nil
+elsif evnname.nil? && !evncrit.nil?
   review_links.map do |link|
     printer = Printer.new(link)
     printer.print_evncrit(evncrit)
@@ -67,6 +67,6 @@ else
       count_loses += 1
     end
   end
-    puts
-    puts "#{evnname} wins #{count_wins} times, loses #{count_loses} times."
+  puts
+  puts "#{evnname} wins #{count_wins} times, loses #{count_loses} times."
 end

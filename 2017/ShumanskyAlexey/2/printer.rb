@@ -27,7 +27,7 @@ class Printer
         puts
         'lose'
       end
-    else
+    elsif evnname == after
       if count_letters1 > count_letters2
         puts "#{before} WINS"
         puts
@@ -43,8 +43,6 @@ class Printer
   def print_evnname(evnname)
     before = @arr_inf[1]
     after = @arr_inf[2]
-    count_letters1 = @arr_data[2]
-    count_letters2 = @arr_data[3]
 
     if evnname == before || evnname == after
       w_l = print_default(evnname)
@@ -69,13 +67,13 @@ class Printer
     puts "#{after} - #{count2}"
 
     if count1 > count2
-      puts "#{before} WINS!"     
+      puts "#{before} WINS!"
     elsif count1 < count2
-      puts "#{after} WINS!"          
+      puts "#{after} WINS!"
     else
       puts 'Choose other criteria'
     end
-      puts
+    puts
   end
 
   def print_evncrit_evnname(evnname, evncrit)
@@ -103,7 +101,7 @@ class Printer
           puts
           'lose'
         end
-      else
+      elsif evnname == after
         if count1 > count2
           puts "#{before} WINS"
           puts
@@ -113,9 +111,9 @@ class Printer
           puts
           'win'
         end
-    end
-      else
-        return false
       end
+    else
+      return false
+    end
   end
 end
