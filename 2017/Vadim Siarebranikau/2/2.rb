@@ -40,9 +40,9 @@ class Program
   end
     
   def get_names(title)
-    names = if title.include? "vs."
+    names = if title.include? 'vs.'
               title.split(' vs. ')
-            elsif title.include? "Vs"
+            elsif title.include? 'Vs'
               title.split(' Vs ')
             else
               title.split(' vs ')
