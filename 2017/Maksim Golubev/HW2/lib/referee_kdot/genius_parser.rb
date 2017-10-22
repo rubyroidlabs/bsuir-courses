@@ -71,17 +71,19 @@ class GeniusParser
     puts
   end
 
-  def result_score(rival_res, opponent = nil)
-    if rival_res[0][:criteria_count] > rival_res[1][:criteria_count]
-      @wins += 1 if opponent == 0
-      @loses += 1 if opponent == 1
+  def result_score(rival_res, opponent)
+    unless opponent.nil?
+      if rival_res[0][:criteria_count] > rival_res[1][:criteria_count]
+        @wins += 1 if opponent.zero?
+        @loses += 1 if opponent == 1
 
-      puts "#{rival_res[0][:name]} - WINS!".red
-    else
-      @wins += 1 if opponent == 1
-      @loses += 1 if opponent == 0
+        puts "#{rival_res[0][:name]} - WINS!".red
+      else
+        @wins += 1 if opponent == 1
+        @loses += 1 if opponent.zero?
 
-      puts "#{rival_res[1][:name]} - WINS!".red
+        puts "#{rival_res[1][:name]} - WINS!".red
+      end
     end
   end
 end
