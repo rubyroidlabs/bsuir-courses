@@ -18,7 +18,7 @@ class Program
                    "songs/search?page=#{next_page}&q=#{name}&sort=title"
                  else
                    "songs?page=#{next_page}&sort=title"
-                 end    
+                 end
       respond = agent.get(request).content
       respond = JSON.parse(respond)
       song_list = respond['response']['songs'].uniq
