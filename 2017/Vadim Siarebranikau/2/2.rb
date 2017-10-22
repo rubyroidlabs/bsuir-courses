@@ -38,30 +38,30 @@ class Program
   end
     
   def get_names(title)
-   names = if title.include? "vs."
-      title.split(' vs. ')
-    elsif title.include? "Vs"
-      title.split(' Vs ')
-    else
-      title.split(' vs ')
-    end
+    names = if title.include? "vs."
+              title.split(' vs. ')
+            elsif title.include? "Vs"
+              title.split(' Vs ')
+            else
+              title.split(' vs ')
+            end
   end
 
   def counter
     t = if @hesh[@index].scan(/\[Round [123].+\]/).empty?
-      @hesh[@index].split(/\[[^?\]]+\]/)
-    else
-      @hesh[@index].split(/\[Round [123].+\]/)
-    end
+          @hesh[@index].split(/\[[^?\]]+\]/)
+        else
+          @hesh[@index].split(/\[Round [123].+\]/)
+        end
     t.shift
-    player = [0,0]  
+    player = [0 , 0]  
     criterion = '[A-Za-z]'
-    player [0] += t[0].scan(/#{criterion}/).size if t[0] != nil
-    player [1] += t[1].scan(/#{criterion}/).size if t[1] != nil
-    player [0] += t[2].scan(/#{criterion}/).size if t[2] != nil
-    player [1] += t[3].scan(/#{criterion}/).size if t[3] != nil
-    player [0] += t[4].scan(/#{criterion}/).size if t[4] != nil
-    player [1] += t[5].scan(/#{criterion}/).size if t[5] != nil
+    player [0] += t[0].scan(/#{criterion}/).size if !t[0].nil?
+    player [1] += t[1].scan(/#{criterion}/).size if !t[1].nil?
+    player [0] += t[2].scan(/#{criterion}/).size if !t[2].nil?
+    player [1] += t[3].scan(/#{criterion}/).size if !t[3].nil?
+    player [0] += t[4].scan(/#{criterion}/).size if !t[4].nil?
+    player [1] += t[5].scan(/#{criterion}/).size if !t[5].nil?
     player
   end
 
@@ -85,7 +85,6 @@ class Program
       end
     end
   end
-
 
   def result
     puts "#{ENV['NAME']} wins - #{@win} ,lose - #{@lose}"
