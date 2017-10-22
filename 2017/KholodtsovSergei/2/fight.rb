@@ -20,7 +20,7 @@ class Fight
         name2 = @battle.split('-1').shift
       end
       @battle = @battle.sub('-1', ' vs ') + ' - ' + item.href
-      text = item.click.search('.lyrics p').text
+      text = item.click.search('.lyrics p').text.to_s
       text_parse(text, name, name2, criteria, user)
     end
     print user.name + ' wins ' + user.wins.to_s + ' times, loses '
@@ -38,7 +38,7 @@ class Fight
       name1 = @battle.split('-1').shift
       name2 = @battle.split('-1').last.to_s
       @battle = @battle.sub('-1', ' vs ') + ' - ' + item.href
-      text = item.click.search('.lyrics p').text
+      text = item.click.search('.lyrics p').text.to_s
       text_parse_n(text, name1, name2, criteria)
     end
   end
