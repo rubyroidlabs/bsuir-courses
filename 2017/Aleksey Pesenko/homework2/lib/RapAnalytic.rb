@@ -15,13 +15,17 @@ class Analysis
     name = ENV['NAME']
     agent = Mechanize.new
     next_page = 1
-    
+
     loop do 
-      request = ADRESS + (name ? "songs/search?page=#{next_page}&q=#{name}&sort=title" : "songs?page=#{next_page}&sort=title")
+      request = ADRESS + if name 
+                           "songs/search?page=#{next_page}&q=#{name}&sort=title"
+                         else
+                           "songs?page=#{next_page}&sort=title"
+                         end
       respond = JSON.parse(agent.get(request).content)
 
       song_list = respond['response']['songs'].uniq
-      
+
       song_list.each do |song|
         song_page = agent.get(song['url'])
         song_text = song_page.search('.lyrics p').text
@@ -40,22 +44,22 @@ class Analysis
     end
     result
   end
-        
+
   def get_names(title)
     if title.include? 'vs.'
-    title.split(' vs. ')
+      title.split(' vs. ')
     elsif title.include? 'Vs'
-    title.split(' Vs ')
+      title.split(' Vs ')
     else
-    title.split(' vs ')
+      title.split(' vs ')
     end
   end
 
   def counter
     t = if @hash[@index].scan(/\[Round [123].+\]/).empty?
-        @hash[@index].split(/\[[^?\]]+\]/)
+          @hash[@index].split(/\[[^?\]]+\]/)
         else
-        @hash[@index].split(/\[Round [123].+\]/)
+          @hash[@index].split(/\[Round [123].+\]/)
         end
     t.shift
     player = [0, 0]
@@ -72,6 +76,4 @@ class Analysis
   def result
     puts "#{ENV['NAME']} wins - #{@win} ,lose - #{@lose}"
   end
-
-
 end
