@@ -9,13 +9,11 @@ require_relative "parser"
 battler = ENV['NAME']
 word_to_count = ENV['CRITERIA']
 
-agent = Mechanize.new
-
-battles = Parser.get_battles(agent, "https://genius.com/api/artists/117146/songs?page=1", 1)
+battles = Parser.get_battles('https://genius.com/api/artists/117146/songs')
 unless battler.nil?
   battles = Parser.get_battles_by_name(battler)
 end
-Parser.get_content(agent, battles, word_to_count)
+Parser.get_content(battles, word_to_count)
 
 unless battler.nil?
   Parser.count_wins(battles, battler)

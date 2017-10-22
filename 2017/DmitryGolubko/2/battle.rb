@@ -94,4 +94,8 @@ class Battle
     end
     choose_winner(word)
   end
+
+  def has_battler(battler)
+    first_battler == battler || second_battler == battler
+  end
 end

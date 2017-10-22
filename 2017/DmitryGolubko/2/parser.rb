@@ -3,20 +3,21 @@ require 'nokogiri'
 require 'open-uri'
 require 'net/http'
 require 'json'
-require_relative "battle"
+require_relative 'battle'
 
 class Parser
-
-  def self.get_battles(agent, link, page_number)
+  @agent = Mechanize.new
+  def self.get_battles(link)
+    page_number = 1
     @battles = Array.new
     while page_number
-      page = agent.get("https://genius.com/api/artists/117146/songs?page=#{page_number}")
-      json_data  = JSON.parse(page.body)
-      json_response = json_data["response"]["songs"]
+      page = @agent.get("#{link}?page=#{page_number}")
+      json_data = JSON.parse(page.body)
+      json_response = json_data['response']['songs']
       json_response.each do |battle|
-        @battles << Battle.new(battle["title"], battle["url"])
+        @battles << Battle.new(battle['title'], battle['url'])
       end
-      page_number = json_data["response"]["next_page"]
+      page_number = json_data['response']['next_page']
     end
     @battles
   end
@@ -24,21 +25,19 @@ class Parser
   def self.get_battles_by_name(battler)
     battles_list = Array.new
     @battles.each do |battle|
-      if battle.first_battler == battler || battle.second_battler == battler
+      if battle.has_battler(battler)
         battles_list << battle
       end
     end
     battles_list
   end
 
-  def self.get_content(agent, battles, word_to_count)
+  def self.get_content(battles, word_to_count)
     battles.each do |battle|
       text = Array.new
-      content = agent.get(battle.link).search("p")
+      content = @agent.get(battle.link).search('p')
       content.children.each do |element|
-        if element.class == Nokogiri::XML::Text || element.class == Nokogiri::XML::Element
-          text << element.text
-        end
+        text << element.text
       end
       battle.text = text
       battle.parse(word_to_count)
@@ -55,7 +54,6 @@ class Parser
         loses += 1
       end
     end
-    puts battler + ' wins ' + wins.to_s + ' times, loses ' + loses.to_s + ' times'
+    puts battler + ' wins ' + wins.to_s + 'times,loses ' + loses.to_s + 'times'
   end
-
 end
