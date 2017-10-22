@@ -12,10 +12,10 @@ class Program
     loop do
       request = 'https://genius.com/api/artists/117146/'
       request += if name 
-      "songs/search?page=#{next_page}&q=#{name}&sort=title"
-      else
-      "songs?page=#{next_page}&sort=title"
-      end    
+                   "songs/search?page=#{next_page}&q=#{name}&sort=title"
+                 else
+                   "songs?page=#{next_page}&sort=title"
+                 end    
       respond = agent.get(request).content
       respond = JSON.parse(respond)
       song_list = respond['response']['songs'].uniq
@@ -56,12 +56,12 @@ class Program
     t.shift
     player = [0 , 0]  
     criterion = '[A-Za-z]'
-    player [0] += t[0].scan(/#{criterion}/).size if !t[0].nil?
-    player [1] += t[1].scan(/#{criterion}/).size if !t[1].nil?
-    player [0] += t[2].scan(/#{criterion}/).size if !t[2].nil?
-    player [1] += t[3].scan(/#{criterion}/).size if !t[3].nil?
-    player [0] += t[4].scan(/#{criterion}/).size if !t[4].nil?
-    player [1] += t[5].scan(/#{criterion}/).size if !t[5].nil?
+    player [0] += t[0].scan(/#{criterion}/).size unless t[0].nil?
+    player [1] += t[1].scan(/#{criterion}/).size unless t[1].nil?
+    player [0] += t[2].scan(/#{criterion}/).size unless t[2].nil?
+    player [1] += t[3].scan(/#{criterion}/).size unless t[3].nil?
+    player [0] += t[4].scan(/#{criterion}/).size unless t[4].nil?
+    player [1] += t[5].scan(/#{criterion}/).size unless t[5].nil?
     player
   end
 
