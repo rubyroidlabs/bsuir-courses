@@ -11,12 +11,22 @@ class Parse
     battles
   end
 
+  def self.comparing_position(mc_title)
+    position = if mc_title.first.size <= 2 || mc_title.last.size <= 2
+                 2
+               else
+                 3
+               end
+    position
+  end
+
   def self.results_calculating(battle_text, mc_title, regexp)
+    position = comparing_position(mc_title)
     result = { mc_title.first.to_s => 0, mc_title.last.to_s => 0 }
     battle_text.each do |elem|
-      if mc_title.first.include? elem.lstrip[0..1]
+      if mc_title.first.include? elem.lstrip[0...position]
         result[mc_title.first.to_s] += elem.scan(regexp).size
-      elsif mc_title.last.include? elem.lstrip[0..1]
+      elsif mc_title.last.include? elem.lstrip[0...position]
         result[mc_title.last.to_s]  += elem.scan(regexp).size
       end
     end
@@ -31,7 +41,7 @@ class Parse
     unless ENV['CRITERIA'].nil?
       regexp = /#{ENV['CRITERIA']}|#{ENV['CRITERIA'].capitalize}/
     end
-    result = results_calculating(battle_text, mc_title, result, regexp)
+    result = results_calculating(battle_text, mc_title, regexp)
     result
   end
 
@@ -51,7 +61,7 @@ class Parse
 
   def self.get_text(battle_page)
     battle_text = battle_page.parser.css('.lyrics').text
-    battle_text = battle_text.split(/Round \d:|Verse \d:|Round \d|ROUND \d/)
+    battle_text = battle_text.split(/Round \d:|Verse \d:|Round \d|ROUND \d|OT:/)
     battle_text[1..-1]
   end
 end

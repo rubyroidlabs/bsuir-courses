@@ -12,13 +12,13 @@ class Output
   end
 
   def self.conditions_of_print(first_arr, last_arr)
-    if first_arr[1] > last_arr[1]
-      log = "#{first_arr[0]} WINS!"
-    elsif first_arr[1] < last_arr[1]
-      log = "#{last_arr[0]} WINS!"
-    else
-      log = 'DRAW or No information...'
-    end
+    log = if first_arr[1] > last_arr[1]
+            "#{first_arr[0]} WINS!"
+          elsif first_arr[1] < last_arr[1]
+            "#{last_arr[0]} WINS!"
+          else
+            'DRAW or No information...'
+          end
     log
   end
 
@@ -44,7 +44,7 @@ class Output
 
   def self.print_res(hash, total_link, scores)
     first_arr = hash.first
-    last_arr = hash.delete(first_arr.first)
+    hash.delete(first_arr.first)
     last_arr = hash.first
     scores = print_text(first_arr, last_arr, total_link, scores)
     scores

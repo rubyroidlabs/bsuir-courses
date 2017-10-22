@@ -7,7 +7,7 @@ require_relative 'parse'
 require_relative 'multithread'
 require_relative 'output'
 
-MAIN_LINK = 'https://genius.com/artists/King-of-the-dot'
+MAIN_LINK = 'https://genius.com/artists/King-of-the-dot'.freeze
 
 a = Mechanize.new { |agent| agent.follow_meta_refresh = true }
 a.get(MAIN_LINK) do |home_page|

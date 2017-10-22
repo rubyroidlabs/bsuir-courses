@@ -11,10 +11,9 @@ class Multithread
 
   def self.threads_iter(group, threads, total_links, total_results)
     10.times do |n|
-      unless group[n].nil?
-        threads << Thread.new(group[n]) do |link|
-          put_info(total_results, total_links, link)
-        end
+      next if group[n].nil?
+      threads << Thread.new(group[n]) do |link|
+        put_info(total_results, total_links, link)
       end
     end
   end
