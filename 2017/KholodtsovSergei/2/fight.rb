@@ -1,4 +1,4 @@
-require_relative 'user.rb'
+require_relative('user')
 require 'mechanize'
 require 'date'
 require 'json'
@@ -7,8 +7,8 @@ class Fight
   attr_accessor :first_user, :second_user, :winner, :battle
 
   def start_figth(name, criteria)
-    i = name.downcase.sub(' ', '-')
-    page_list = found_page_list(i)
+    fix_name = name.downcase.sub(' ', '-')
+    page_list = found_page_list(fix_name)
     user = User.new(name, 'nil')
     page_list.each do |item|
       @battle = item.text.split(' ').join(' ').delete('["').split(' (').shift
