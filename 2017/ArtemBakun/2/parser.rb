@@ -23,8 +23,9 @@ class Parser
     threads = []
     12.times do |i|
       threads << Thread.new(i) do |j|
-        page = agent.get("https://genius.com/artists/songs?for_artist_page=117146&id=King-of-the-dot&page=#{j+1}&pagination=true")
-        get_link(page);
+        page = agent.get('https://genius.com/artists/songs?for_artist_page=' \
+          "117146&id=King-of-the-dot&page=#{j + 1}&pagination=true")
+        get_link(page)
       end
     end
     threads.each(&:join)
@@ -38,10 +39,11 @@ class Parser
       page = agent.get(b_links[i])
       class_css = '.header_with_cover_art-primary_info-title'
       name_of_battle = page.search(class_css).text
-      if name_of_battle.include?("(") 
-        i = name_of_battle.index("(") - 1
-      else i = name_of_battle.length - 1
-      end
+      i = if name_of_battle.include?('(')
+            name_of_battle.index('(') - 1
+          else 
+            name_of_battle.length - 1
+          end
       get_name(name_of_battle[0..i])
     end
   end

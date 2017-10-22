@@ -2,7 +2,6 @@ require 'mechanize'
 require_relative 'parser'
 require_relative 'rapper'
 
-
 l = Parser.new
 l.parser
 

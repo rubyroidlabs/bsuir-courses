@@ -1,5 +1,4 @@
 class Rapper
-
   def initialize(mc_left, mc_right, link)
     @link = link
     @mc_left = mc_left
