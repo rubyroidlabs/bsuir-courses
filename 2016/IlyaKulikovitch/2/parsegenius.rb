@@ -30,8 +30,8 @@ class ParseGenius < Kodt
     end
   end
 
-  def get_arr_words_for_pattern(text_batle, patern = /\[[^?\]]+\]/)
-    text_batle.split(patern)
+  def get_arr_words_for_pattern(text, patern = /\[[^?\]]+\]/)
+    text.split(patern)
   end
 
   def get_letter_word(arr_slov, sum_odd, sum_even)
@@ -72,7 +72,7 @@ class ParseGenius < Kodt
         print artist_first + ' WINS!'
         wins_loses(artist_first)
       else
-        print artist_second + ' WINS! '
+        print artist_second + ' WINS!'
         wins_loses(artist_second)
       end
     else
