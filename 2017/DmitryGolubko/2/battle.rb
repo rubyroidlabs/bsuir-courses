@@ -1,8 +1,10 @@
 class Battle
-  attr_accessor :first_battler, :second_battler, :first_battler_rounds, :second_battler_rounds
+  attr_accessor :first_battler, :second_battler,
+                :first_battler_rounds, :second_battler_rounds
   attr_accessor :name, :link, :text, :winner
 
   private
+
   def get_name(string)
     string.split(/\[Round \d: /)[1].chomp(']')
   end
@@ -61,6 +63,7 @@ class Battle
   end
 
   public
+
   def initialize(name, link)
     @name = name
     @link = link
@@ -78,10 +81,11 @@ class Battle
     text.each do |string|
       string.delete!("\n")
     end
-    text.delete_if {|string| string == '' || string == ' '}
+    text.delete_if { |string| string == '' || string == ' ' }
     text.each do |string|
       if string =~ /\[Round \d: .+\]/
-        if get_name(string) == @first_battler
+        name = get_name(string)
+        if name == @first_battler
           first_battler_text = true
         else
           first_battler_text = false
@@ -95,7 +99,7 @@ class Battle
     choose_winner(word)
   end
 
-  def has_battler(battler)
+  def battler?(battler)
     first_battler == battler || second_battler == battler
   end
 end

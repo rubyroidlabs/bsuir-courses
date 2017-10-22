@@ -25,7 +25,7 @@ class Parser
   def self.get_battles_by_name(battler)
     battles_list = Array.new
     @battles.each do |battle|
-      if battle.has_battler(battler)
+      if battle.battler?(battler)
         battles_list << battle
       end
     end

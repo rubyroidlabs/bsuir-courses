@@ -3,8 +3,8 @@ require 'nokogiri'
 require 'open-uri'
 require 'net/http'
 require 'json'
-require_relative "battle"
-require_relative "parser"
+require_relative 'battle'
+require_relative 'parser'
 
 battler = ENV['NAME']
 word_to_count = ENV['CRITERIA']
