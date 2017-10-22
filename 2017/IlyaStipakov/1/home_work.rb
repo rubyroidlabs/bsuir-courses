@@ -61,8 +61,7 @@ end
 name = ENV['NAME']
 
 if name
-  a = File.open("/home/ilya/Documents/bsuir-courses/2017/IlyaStipakov
-                /1/trees/#{name}.tree")
+  a = File.open("/home/ilya/Documents/bsuir-courses/2017/IlyaStipakov/1/trees/#{name}.tree")
   content = a.read
   tree = JSON.parse(content)
   transform(tree)
