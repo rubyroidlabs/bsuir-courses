@@ -54,7 +54,7 @@ class GeniusParser
       results(rival_res, name)
     end
 
-    puts "#{name} wins #{@wins}, loses #{@loses} times".green if !name.nil?
+    puts "#{name} wins #{@wins}, loses #{@loses} times".green unless name.nil?
   end
 
   def results(rival_res, name)
@@ -62,7 +62,7 @@ class GeniusParser
       puts "#{opponent[:name]} - #{opponent[:criteria_count]}".green
     end
 
-    opponent_num = if !name.nil?
+    opponent_num = unless name.nil?
                      Regexp.new(name) =~ rival_res[0][:name] ? 0 : 1
                    end
 
