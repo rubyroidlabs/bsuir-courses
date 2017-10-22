@@ -17,17 +17,20 @@ class Restorator
           mc_round += lvl.split(']')
         end
       end
-      raper_1 ,raper_2 = mc_round[0] , mc_round[2]
-      rs_1 , rs_2 = 0 , 0
+      raper1 = mc_round[0]
+      raper2 = mc_round[2]
+      rs1 = 0 
+      rs2 = 0 
       if mc_round[2].nil?
+        next
         mc_round.size.times do |i|
-          if raper_1 == mc_round[i]
-            rs_1 += mc_round[i + 1].size
-          elsif raper_2 == mc_round[i]
-            rs_2 += mc_round[i + 1].size
+          if raper1 == mc_round[i]
+            rs1 += mc_round[i + 1].size
+          elsif raper2 == mc_round[i]
+            rs2 += mc_round[i + 1].size
           end
         end
-      otvet << [raper_1, raper_2, rs_1, rs_2]
+        otvet << [raper1, raper2, rs1, rs2]
       end
     end
     @text = @a.reload
