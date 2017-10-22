@@ -15,25 +15,25 @@ class GeniusParser
   end
 
   def get_song_urls(name = nil)
-    access_token = TOKEN + ACCESS
+    token = TOKEN + ACCESS
     puts 'Please w8 referee.'.blue
-    find_name = name || DEFAULT_NAME
-    page_nn = 1
+    find = name || DEFAULT_NAME
+    page = 1
     loop do
-      request = "https://api.genius.com/search?q=#{find_name}&per_page=20&page=#{page_nn}"
-      response = @agent.get(request, [], nil, { 'Authorization' => access_token }).body
+      fetch = "https://api.genius.com/search?q=#{find}&per_page=20&page=#{page}"
+      response = @agent.get(fetch, [], nil, 'Authorization' => token).body
       response_json = JSON.parse(response)
       break if response_json.dig('response', 'hits').empty?
       @songs << response_json.dig('response', 'hits').map do |s|
         if /(vs | vs\.)/ =~ s['result']['title']
           if name.nil?
             s['result']
-          else
-            s['result'] if Regexp.new(name) =~ s['result']['title']
+          elsif Regexp.new(name) =~ s['result']['title']
+            s['result']
           end
         end
       end
-      page_nn += 1
+      page += 1
     end
 
     @songs.flatten!.compact!
