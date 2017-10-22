@@ -11,7 +11,7 @@ class User
   def found_criteria(criteria)
     @name += '-'
     @text = @text.delete('\n')
-    if criteria.nil?
+    if criteria
       @points = @text.downcase.scan(/[a-zA-Z]/).size
     else
       @points = @text.downcase.scan(criteria).size
