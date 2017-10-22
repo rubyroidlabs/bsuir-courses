@@ -1,7 +1,5 @@
 class Program
-
   attr_accessor :hesh, :index, :first, :second, :win, :lose
-  
   def main
     @index = 0 
     @hesh = Array.new
@@ -14,9 +12,9 @@ class Program
     loop do
       request = 'https://genius.com/api/artists/117146/'
       request += if name 
-                   "songs/search?page=#{next_page}&q=#{name}&sort=title"
+                   'songs/search?page=#{next_page}&q=#{name}&sort=title'
                  else
-                   "songs?page=#{next_page}&sort=title"
+                   'songs?page=#{next_page}&sort=title'
                  end    
       respond = agent.get(request).content
       respond = JSON.parse(respond)
@@ -27,7 +25,7 @@ class Program
         @hesh[@index] = song_text
         @url[@index] = song['url']
         counters = counter
-        names = get_names (song['title'])
+        names = get_names(song['title'])
         @first = names[0]
         @second = names[1]
         output(counters)
@@ -40,13 +38,13 @@ class Program
   end
     
   def get_names(title)
-    names = if title.include? 'vs.'
-              title.split(' vs. ')
-            elsif title.include? 'Vs'
-              title.split(' Vs ')
-            else
-              title.split(' vs ')
-            end
+    if title.include? 'vs.'
+      title.split(' vs. ')
+    elsif title.include? 'Vs'
+      title.split(' Vs ')
+    else
+      title.split(' vs ')
+    end
   end
 
   def counter
