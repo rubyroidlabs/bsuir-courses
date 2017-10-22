@@ -9,7 +9,7 @@ class Fight
   def start_figth(name, criteria)
     i = name.downcase.sub(' ', '-')
     page_list = found_page_list(i)
-    user = User.new(name, '')
+    user = User.new(name, 'nil')
     page_list.each do |item|
       @battle = item.text.split(' ').join(' ').delete('["').split(' (').shift
       @battle = @battle.sub(' vs ', '-1')
