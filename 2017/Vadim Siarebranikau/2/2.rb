@@ -1,5 +1,7 @@
 class Program
-  attr_accessor:hesh, :index, :first, :second, :win, :lose
+
+  attr_accessor :hesh, :index, :first, :second, :win, :lose
+  
   def main
     @index = 0 
     @hesh = Array.new
