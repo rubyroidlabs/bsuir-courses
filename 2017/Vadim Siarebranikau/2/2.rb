@@ -1,7 +1,7 @@
 class Program
   attr_accessor :hesh, :index, :first, :second, :win, :lose
   def main
-    @index = 0 
+    @index = 0
     @hesh = Array.new
     @url = Array.new
     @win = 0
@@ -11,11 +11,11 @@ class Program
     next_page = 1
     loop do
       request = 'https://genius.com/api/artists/117146/'
-      request += if name 
+      request += if name
                    'songs/search?page=#{next_page}&q=#{name}&sort=title'
                  else
                    'songs?page=#{next_page}&sort=title'
-                 end    
+                 end
       respond = agent.get(request).content
       respond = JSON.parse(respond)
       song_list = respond['response']['songs'].uniq
@@ -32,7 +32,7 @@ class Program
         @index += 1
       end
       next_page = respond['response']['next_page']
-      break next_page 
+      break next_page
     end
     result
   end
@@ -54,7 +54,7 @@ class Program
           @hesh[@index].split(/\[Round [123].+\]/)
         end
     t.shift
-    player = [0, 0]  
+    player = [0, 0]
     criterion = '[A-Za-z]'
     player [0] += t[0].scan(/#{criterion}/).size unless t[0].nil?
     player [1] += t[1].scan(/#{criterion}/).size unless t[1].nil?
