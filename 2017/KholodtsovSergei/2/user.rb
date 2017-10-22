@@ -1,5 +1,4 @@
 class User
-
   attr_accessor :name, :text, :wins, :points
 
   def initialize(name, text)
