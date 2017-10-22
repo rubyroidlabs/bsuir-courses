@@ -1,5 +1,5 @@
 class Program
-  attr_accessor :hesh, :index, :first, :second, :win, :lose
+  attr_accessor:hesh, :index, :first, :second, :win, :lose
   def main
     @index = 0 
     @hesh = Array.new
@@ -54,7 +54,7 @@ class Program
           @hesh[@index].split(/\[Round [123].+\]/)
         end
     t.shift
-    player = [0 , 0]  
+    player = [0, 0]  
     criterion = '[A-Za-z]'
     player [0] += t[0].scan(/#{criterion}/).size unless t[0].nil?
     player [1] += t[1].scan(/#{criterion}/).size unless t[1].nil?
