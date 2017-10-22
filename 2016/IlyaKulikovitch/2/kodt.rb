@@ -11,6 +11,6 @@ class Kodt
   end
 
   def show_finish_result
-    if @name then puts "#{@name} wins #{@wins} times, loses #{@loses} times." end
+    if @name then puts "#{@name} wins #{@wins} times, loses #{@loses} times" end
   end
 end

@@ -10,16 +10,16 @@ class ParseGenius < Kodt
         sum_odd = 0
         sum_even = 0
         review = link.click
-        review_track = review.search('.song_body-lyrics')
-        artist = review_track.search('h2')[0].text.gsub('Lyrics', '').gsub('.', '')
-        text_batle = review_track.search('.lyrics p').text.gsub('.', '')
+        review_tr = review.search('.song_body-lyrics')
+        artist = review_tr.search('h2')[0].text.gsub('Lyrics', '').delete('.')
+        text_batle = review_tr.search('.lyrics p').text.delete('.')
         break if get_arr_words_for_pattern(text_batle).size < 7
         if artist =~ /#{@name}/
           puts artist + ' - ' + link.href
           arr_slov = get_arr_words_for_pattern(text_batle)
           get_letter_word(arr_slov, sum_odd, sum_even)
           artist_first = artist.split('vs').first.lstrip
-          artist_second = artist.split('vs').at(1).lstrip.gsub('.', '')
+          artist_second = artist.split('vs').at(1).lstrip.delete('.')
           info_battle(artist_first, artist_second)
           puts
           select_winner(artist_first, artist_second)
