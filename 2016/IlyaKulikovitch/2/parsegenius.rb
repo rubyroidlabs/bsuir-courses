@@ -72,7 +72,7 @@ class ParseGenius < Kodt
         print artist_first + ' WINS!'
         wins_loses(artist_first)
       else
-        print artist_second + ' WINS!'
+        print artist_second + ' WINS! '
         wins_loses(artist_second)
       end
     else
