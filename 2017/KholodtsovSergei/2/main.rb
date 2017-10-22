@@ -1,4 +1,4 @@
-require_relative('fight')
+require_relative('fight.rb')
 
 name = ENV['NAME']
 criteria = ENV['CRITERIA']
