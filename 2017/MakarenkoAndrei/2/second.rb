@@ -1,11 +1,10 @@
 require 'rubygems'
 require 'mechanize'
 require 'json'
-
 class Program
   attr_accessor :hesh, :index, :first, :second, :win, :lose
   def main
-    @index = 0 
+    @index = 0
     @hesh = Array.new
     @url = Array.new
     @win = 0
@@ -15,11 +14,11 @@ class Program
     next_page = 1
     loop do
       request = 'https://genius.com/api/artists/117146/'
-      request += if name 
-      "songs/search?page=#{next_page}&q=#{name}&sort=title"
-      else
-      "songs?page=#{next_page}&sort=title"
-      end    
+      request += if name
+                   "songs/search?page=#{next_page}&q=#{name}&sort=title"
+                 else
+                   "songs?page=#{next_page}&sort=title"
+                 end    
       respond = agent.get(request).content
       respond = JSON.parse(respond)
       song_list = respond['response']['songs'].uniq
@@ -29,38 +28,38 @@ class Program
         @hesh[@index] = song_text
         @url[@index] = song['url']
         counters = counter
-        names = get_names (song['title'])
+        names = get_names(song['title'])
         @first = names[0]
         @second = names[1]
         output(counters)
         @index += 1
       end
       next_page = respond['response']['next_page']
-      break next_page 
+      break next_page
     end
     result
   end
-    
+
   def get_names(title)
-    names = if title.include? "vs."
-      title.split(' vs. ')
-    elsif title.include? "Vs"
-      title.split(' Vs ')
-    else
-      title.split(' vs ')
-    end
+    names = if title.include? 'vs.'
+              title.split(' vs. ')
+            elsif title.include? 'Vs'
+              title.split(' Vs ')
+            else
+              title.split(' vs ')
+            end
     names
   end
 
   def counter
     a = @hesh[@index].scan(/\[Round [123].+\]/)
-    t = if a.empty? 
+    t = if a.empty?
           @hesh[@index].split(/\[[^?\]]+\]/)
         else
           @hesh[@index].split(/\[Round [123].+\]/)
         end
     t.shift
-    player = [0, 0]  
+    player = [0, 0]
     criterion = '[A-Za-z]'
     player [0] += t[0].scan(/#{criterion}/).size unless t[0].nil?
     player [1] += t[1].scan(/#{criterion}/).size unless t[1].nil?
