@@ -23,7 +23,7 @@ class KingOfTheDot
   end
 
   def pages
-    page = main_page.links.find { |l| l.text =~ /#{ALL_SONGS_LINK}/ }.click
+    page = main_page.links.detect { |l| l.text =~ /#{ALL_SONGS_LINK}/ }.click
     @pages = [page]
     page.search(PAGES_XPATH).each do |a|
       puts "Download '#{a[:href]}'"
