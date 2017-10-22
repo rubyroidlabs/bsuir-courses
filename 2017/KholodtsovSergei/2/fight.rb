@@ -9,7 +9,7 @@ class Fight
   def start_figth(name, criteria)
     i = name.downcase.sub(' ', '-')
     page_list = found_page_list(i)
-    user = User.new( name, '')
+    user = User.new(name, '')
     page_list.each do |item|
       @battle = item.text.split(' ').join(' ').delete('["').split(' (').shift
       @battle = @battle.sub(' vs ', '-1')
@@ -92,13 +92,10 @@ class Fight
     authors_of_rounds = text.to_s.scan(/\[[^?\]]+\]/)
     text.to_s.split(/\[[^?\]]+\]/).each do |item|
       if item != ''
-        #puts item
         part = authors_of_rounds.shift.to_s
         if part.include?(first_name)
-         # puts '1111111111111111111111111111111111111111111111'
           text1 += item
-        else #if part.include?(second_name)
-         # puts '2222222222222222222222222222222222222222222222'
+        else
           text2 += item
         end
       end

@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require_relative 'fight.rb'
 
 name = ENV['NAME']
