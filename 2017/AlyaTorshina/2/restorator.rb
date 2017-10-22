@@ -33,11 +33,11 @@ class Restorator
   end
 
   def lyrics
-    if ENV['CRITERIA'].nil?
-      criteria = /\w/
-    else
-      criteria = ENV['CRITERIA']
-    end
+    criteria = if ENV['CRITERIA'].nil?
+                 /\w/
+               else
+                 ENV['CRITERIA']
+               end
     1.upto(3) do |item|
       begin
         @text.slice!("[round #{item}: #{@first_mc.name}]")

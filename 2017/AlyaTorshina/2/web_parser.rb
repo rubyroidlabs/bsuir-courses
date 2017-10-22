@@ -47,11 +47,11 @@ class WebParser
     text = page.at('p').text
     title = page.at('h1').text
     puts "\n#{title} - #{page.uri}"
-    if my_mc.nil?
-      @battle = Restorator.new(text, title)
-    else
-      @battle = Restorator.new(text, title, my_mc)
-    end
+    @battle = if my_mc.nil?
+                Restorator.new(text, title)
+              else
+                Restorator.new(text, title, my_mc)
+              end
     @battle
   end
 end
