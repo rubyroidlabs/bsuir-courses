@@ -1,3 +1,3 @@
-require_relative 'referee_KDOT/GeniusParser'
-require_relative 'referee_KDOT/Parser'
-require_relative 'referee_KDOT/RapParser'
+require_relative 'referee_kdot/genius_parser'
+require_relative 'referee_kdot/parser_dot'
+require_relative 'referee_kdot/rap_parser'
