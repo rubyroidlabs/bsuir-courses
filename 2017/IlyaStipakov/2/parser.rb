@@ -1,4 +1,3 @@
-#
 class Parser
 
   def link_sort(page)
@@ -64,7 +63,7 @@ class Parser
     puts head
     print "#{mc_left} - #{str_left.size}\n"
     print "#{mc_right} - #{str_right.size}\n"
-    if str_right.size > str_right.size
+    if str_left.size > str_right.size
       print "#{mc_left} WINS!!!\n"
     else
       print "#{mc_right} WINS!!!\n"
