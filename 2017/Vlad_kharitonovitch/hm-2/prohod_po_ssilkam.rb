@@ -12,7 +12,14 @@ end
 (array_of_links_of_songs.length).times do  
   @name_of_battle = array_of_links_of_songs[@count_links]
   @count_links += 1 
-  @name_of_battle_for_output = @name_of_battle
+  @name_of_battle_for_output = array_of_links_of_songs[@count_links]
+  if array_of_links_of_songs[@count_links]
+    @name_of_first_raper = array_of_links_of_songs[@count_links].downcase.split('vs')[0]
+    @name_of_second_raper = array_of_links_of_songs[@count_links].downcase.split('vs')[1]
+  else
+    @name_of_first_raper = 'Первый'
+    @name_of_second_raper = 'Второй'
+  end
   @name_of_battle.downcase!.gsub!(' ','-')
   if (@name_of_battle.include? '.') & (@name_of_battle.include? '/')
     @name_of_battle.gsub!('.','')
@@ -52,9 +59,11 @@ end
   end
   if @name_of_battle == 'kid-twist-vs-madness'
     page_of_battle = agent.get("https://genius.com/Grind-time-now-kid-twist-vs-madness-lyrics")
+    @link_on_page = "https://genius.com/Grind-time-now-kid-twist-vs-madness-lyrics"
   else
   page_of_battle =  agent.get("https://genius.com/King-of-the-dot-#{@name_of_battle}-lyrics")
-end
+  @link_on_page = "https://genius.com/King-of-the-dot-#{@name_of_battle}-lyrics"
+  end
   rap_on_paragraph = page_of_battle.css('p').text
   @rap_on_string = rap_on_paragraph.to_json
   JSON.parse(@rap_on_string, :quirks_mode => true)
@@ -77,7 +86,7 @@ end
   @rap_on_string.gsub!('\'','')
   @rap_on_string.gsub!('"','')
   @rap_on_string = @rap_on_string.split('[')
-  start_rap = RapProcessing.new(@rap_on_string , @name_of_battle_for_output)
+  start_rap = RapProcessing.new(@rap_on_string , @name_of_battle_for_output , @link_on_page , @name_of_first_raper , @name_of_second_raper)
   start_rap.winner
 end
 end
