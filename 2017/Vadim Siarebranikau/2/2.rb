@@ -38,31 +38,30 @@ class Program
   end
     
   def get_names(title)
-    if title.include? "vs."
-      names = title.split(' vs. ')
+   names = if title.include? "vs."
+      title.split(' vs. ')
     elsif title.include? "Vs"
-      names = title.split(' Vs ')
+      title.split(' Vs ')
     else
-      names = title.split(' vs ')
+      title.split(' vs ')
     end
   end
 
   def counter
-    a = @hesh[@index].scan(/\[Round [123].+\]/)
-    if a.empty?
-      t = @hesh[@index].split(/\[[^?\]]+\]/)
+    t = if @hesh[@index].scan(/\[Round [123].+\]/).empty?
+      @hesh[@index].split(/\[[^?\]]+\]/)
     else
-      t=@hesh[@index].split(/\[Round [123].+\]/)
+      @hesh[@index].split(/\[Round [123].+\]/)
     end
     t.shift
     player = [0,0]  
-    criterion='[A-Za-z]'
-    player [0] += t[0].scan(/#{criterion}/).size if t[0]!= nil
-    player [1] += t[1].scan(/#{criterion}/).size if t[1]!= nil
-    player [0] += t[2].scan(/#{criterion}/).size if t[2]!= nil
-    player [1] += t[3].scan(/#{criterion}/).size if t[3]!= nil
-    player [0] += t[4].scan(/#{criterion}/).size if t[4]!= nil
-    player [1] += t[5].scan(/#{criterion}/).size if t[5]!= nil
+    criterion = '[A-Za-z]'
+    player [0] += t[0].scan(/#{criterion}/).size if t[0] != nil
+    player [1] += t[1].scan(/#{criterion}/).size if t[1] != nil
+    player [0] += t[2].scan(/#{criterion}/).size if t[2] != nil
+    player [1] += t[3].scan(/#{criterion}/).size if t[3] != nil
+    player [0] += t[4].scan(/#{criterion}/).size if t[4] != nil
+    player [1] += t[5].scan(/#{criterion}/).size if t[5] != nil
     player
   end
 
@@ -71,21 +70,23 @@ class Program
     puts "#{@first} - #{player[0]}"
     puts "#{@second} - #{player[1]}"
     if player[0] > player[1]
-        puts "#{@first} WINS!"
-        if @first.include? ENV['NAME']
-          @win += 1
-        else
-          @lose += 1
-        end
+      puts "#{@first} WINS!"
+      if @first.include? ENV['NAME']
+        @win += 1
+      else
+        @lose += 1
+      end
     else
-        puts "#{@second} WINS!"
-        if @first.include? ENV['NAME']
-          @lose += 1
-        else
-          @win += 1
-        end
+      puts "#{@second} WINS!"
+      if @first.include? ENV['NAME']
+        @lose += 1
+      else
+        @win += 1
+      end
     end
   end
+
+
   def result
     puts "#{ENV['NAME']} wins - #{@win} ,lose - #{@lose}"
   end
