@@ -17,11 +17,12 @@ class Analysis
     next_page = 1
 
     loop do 
-      request = ADRESS + if name 
-                           "songs/search?page=#{next_page}&q=#{name}&sort=title"
-                         else
-                           "songs?page=#{next_page}&sort=title"
-                         end
+      get_adress = if name 
+                      "songs/search?page=#{next_page}&q=#{name}&sort=title"
+                   else
+                      "songs?page=#{next_page}&sort=title"
+                   end
+      request = ADRESS + get_adress
       respond = JSON.parse(agent.get(request).content)
 
       song_list = respond['response']['songs'].uniq
