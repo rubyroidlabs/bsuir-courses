@@ -40,7 +40,7 @@ class Battle
 
   class << self
     def get_singers(title)
-      title.split(' vs ').map { |s| s.split('(').first.strip }
+      title.split(/\svs.?\s/i).map { |s| s.split('(').first.strip }
     end
   end
 end
