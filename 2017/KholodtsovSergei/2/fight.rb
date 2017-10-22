@@ -24,7 +24,8 @@ class Fight
       text_parse(text, name, name2, criteria, user)
     end
     print user.name + ' wins ' + user.wins.to_s + ' times, loses '
-    puts (page_list.length - user.wins).to_s + ' times.'
+    i = page_list.length - user.wins
+    puts i.to_s + ' times.'
   end
 
   def start_figths(name, criteria)

@@ -10,11 +10,13 @@ class User
 
   def found_criteria(criteria)
     if criteria.nil?
-      print name + '-'
+      print name 
+      print '-'
       @text = @text.delete('\n')
       puts @points = @text.downcase.scan(/[a-zA-Z]/).size
     else
-      print name + '-'
+      print name 
+      print '-'
       @text = @text.delete('\n')
       puts @points = @text.downcase.scan(criteria).size
     end
