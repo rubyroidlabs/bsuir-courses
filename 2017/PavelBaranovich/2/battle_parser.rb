@@ -29,15 +29,16 @@ class BattleParser
     threads = []
     @battles_links.count.times do |i|
       threads << Thread.new(i) do |j|
-        battle_title = agent.get(battles_links[j]).search('h1.header_with_cover_art-primary_info-title').text
+        battle_title = agent.get(battles_links[j])
+        .search('h1.header_with_cover_art-primary_info-title').text
 
-        pos = battle_title.index('(') 
+        pos = battle_title.index('(')
         battle_title = battle_title[0, pos - 1] unless pos.nil?
 
         names = battle_title.split(/ [Vv]s.? /)
         @left_mc_name[j] = names[0]
         @right_mc_name[j] = names[1]
-      end  
+      end
     end
     threads.each(&:join)
   end
@@ -46,7 +47,8 @@ class BattleParser
     threads = []
     12.times do |i|
       threads << Thread.new(i) do |j|
-        page_link = "https://genius.com/artists/songs?for_artist_page=117146&id=King-of-the-dot&page=#{j + 1}&pagination=true"
+        page_link = "https://genius.com/artists/songs?for_artist_page=" \
+            "117146&id=King-of-the-dot&page=#{j + 1}&pagination=true"
         get_links(page_link)
       end
     end
