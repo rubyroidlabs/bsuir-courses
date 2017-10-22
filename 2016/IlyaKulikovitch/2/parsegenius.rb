@@ -61,7 +61,7 @@ class ParseGenius < Kodt
       print "- #{@number_words_second} (#{@number_letters_second})"
     else print "- #{@number_letters_second}"
     end
-  end
+    end
 
   def select_winner(artist_first, artist_second)
     if @number_words_first > @number_words_second
