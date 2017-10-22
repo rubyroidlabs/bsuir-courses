@@ -41,7 +41,7 @@ class Parser
       name_of_battle = page.search(class_css).text
       i = if name_of_battle.include?('(')
             name_of_battle.index('(') - 1
-          else 
+          else
             name_of_battle.length - 1
           end
       get_name(name_of_battle[0..i])
