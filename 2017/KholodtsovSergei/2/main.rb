@@ -9,4 +9,3 @@ if name.nil?
 else
   Fight.new.start_figth(name, criteria)
 end
-

@@ -47,7 +47,9 @@ class Fight
     text2 = ''
     authors_of_rounds = text.to_s.scan(/\[[^?\]]+\]/)
     text.to_s.split(/\[[^?\]]+\]/).each do |item|
-      if item != ''
+      if item == ''
+        next
+      else
         part = authors_of_rounds.shift.to_s
         if part.include?(first_name)
           text1 += item
