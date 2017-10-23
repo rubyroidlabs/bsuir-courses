@@ -3,8 +3,6 @@ require 'mechanize'
 require 'json'
 
 class ParseBattles
-  Request = "https://genius.com/api/artists/117146/songs?page="
-
   def process_text(text)
     text = text.split(/\[Round [123].+\]\n/)
     text.shift
@@ -46,7 +44,8 @@ class ParseBattles
     agent = Mechanize.new
     next_page = 1
     until next_page.nil?
-      songs = agent.get(Request + "#{next_page}").content
+      request = 'https://genius.com/api/artists/117146/songs?page='
+      songs = agent.get(request + next_page.to_s).content
       songs = JSON.parse(songs)
       next_page = songs['response']['next_page']
       songs = songs['response']['songs'].uniq
