@@ -32,8 +32,8 @@ def parse_battle(links, agent)
     texts.shift
     first_mc_letters = count_letters(texts, 0)
     scnd_mc_letters = count_letters(texts, 1)
-    first_mc = {name: participants[0], battle: key, letters: first_mc_letters}
-    second_mc = {name: participants[1], battle: key, letters: scnd_mc_letters}
+    first_mc = { name: participants[0], battle: key, letters: first_mc_letters }
+    second_mc = { name: participants[1], battle: key, letters: scnd_mc_letters }
     find_winner(first_mc, second_mc, value)
   end
 end
