@@ -68,5 +68,4 @@ class Battle
     end
     score
   end
-
 end

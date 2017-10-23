@@ -25,11 +25,13 @@ class Parser
 
   def get_battles(name)
     battle_list = []
-    if name.nil?
-      battles = @links
-    else
-      battles = @links.select {|link| link.text.scan(name).size >= 1}
-    end
+    battles = if name.nil?
+                @links
+              else
+                @links.select do |link|
+                  link.text.scan(name).size >= 1
+                end
+              end
     battles.each do |link|
       page = link.click
       title = page.search('.header_with_cover_art-primary_info-title').text
