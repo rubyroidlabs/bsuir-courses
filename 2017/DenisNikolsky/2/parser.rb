@@ -27,23 +27,23 @@ class Parser
   def parse_battle
     @battle_links.each do |key, value|
       page = @agent.get(value)
-      participants = key.split('vs')
-      participants[1] = participants[1].delete('.').strip
+      members = key.split('vs')
+      members[1] = members[1].delete('.').strip
       texts = page.search('.lyrics')[0].text.strip
       first = texts.scan(/Round 1:.+/)[0]
       unless first.nil?
-        if first.include?(participants[1])
-          t = participants[0]
-          participants[0] = participants[1]
-          participants[1] = t
+        if first.include?(members[1])
+          t = members[0]
+          members[0] = members[1]
+          members[1] = t
         end
       end
       texts = texts.split(/Round.+/)
       texts.shift
       first_mc_letters = count_letters(texts, 0)
-      scnd_mc_letters = count_letters(texts, 1)
-      first_mc = { name: participants[0], battle: key, letters: first_mc_letters }
-      second_mc = { name: participants[1], battle: key, letters: scnd_mc_letters }
+      second_mc_letters = count_letters(texts, 1)
+      first_mc = { name: members[0], battle: key, letters: first_mc_letters }
+      second_mc = { name: members[1], battle: key, letters: second_mc_letters }
       find_winner(first_mc, second_mc, value)
     end
   end
