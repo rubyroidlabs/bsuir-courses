@@ -66,7 +66,7 @@ class HashOutput
       puts "#{@names.last} wins!"
       @winner = @names.last
     end
-    wins_loses_counter if !ENV['NAME'].nil?
+    wins_loses_counter unless ENV['NAME'].nil?
     puts '--------------------'
   end
 
