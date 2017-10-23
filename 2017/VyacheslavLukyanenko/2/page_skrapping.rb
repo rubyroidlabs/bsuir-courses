@@ -3,10 +3,8 @@ require 'date'
 require 'json'
 require_relative 'text_parsing'
 
-class Rap_playground
-
-  def initialize
-  end
+class RapPlayground
+  def initialize; end
 
   def load_battles_links(criteria, name)
     a = Mechanize.new { |agent| agent.user_agent_alias = 'Linux Firefox' }
