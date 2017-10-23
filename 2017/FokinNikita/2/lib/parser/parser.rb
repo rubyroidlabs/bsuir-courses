@@ -10,7 +10,7 @@ class Parser
     @agent = Mechanize.new
   end
 
-  def getLinks
+  def get_links
     page = @agent.get(SONGS_LIST)
     page.links_with(href: /King-of-the-dot-/).each do |battle_link|
       @links << battle_link
@@ -23,9 +23,13 @@ class Parser
     end
   end
 
-  def getBattles(name)
+  def get_battles(name)
     battle_list = []
-    name.nil? ? battles = @links : battles = @links.select { |link| link.text.scan(name).size >= 1 }
+    if name.nil?
+      battles = @links
+    else
+      battles = @links.select {|link| link.text.scan(name).size >= 1}
+    end
     battles.each do |link|
       page = link.click
       title = page.search('.header_with_cover_art-primary_info-title').text

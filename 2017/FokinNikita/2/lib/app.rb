@@ -5,11 +5,11 @@ name = ENV['NAME']
 criteria = ENV['CRITERIA']
 
 agent = Parser.new
-agent.getLinks
-battles = agent.getBattles(name)
+agent.get_links
+battles = agent.get_battles(name)
 battles.each do |battle|
-  battle.analyzeText(criteria)
-  battle.printR
-  battle.saveStat(name) unless name.nil?
+  battle.analyze_text(criteria)
+  battle.print_result
+  battle.save_stat(name) unless name.nil?
 end
-Battle.printStat
+Battle.print_stat

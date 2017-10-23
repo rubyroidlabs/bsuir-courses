@@ -1,6 +1,7 @@
 class Battle
   attr_accessor :title, :link, :text, :first_mc,
-                :second_mc, :first_score, :second_score, :winner, :stat_win, :stat_los
+                :second_mc, :first_score, :second_score, :winner,
+                :stat_win, :stat_los
 
   def initialize(title, link, text)
     @title = title
@@ -14,14 +15,14 @@ class Battle
     @@stat_los = 0
   end
 
-  def printR
+  def print_result
     puts @title + ' => ' + @link + "\n"
     puts @first_mc.to_s + ' - ' + @first_score.to_s + "\n"
     puts @second_mc.to_s + ' - ' + @second_score.to_s + "\n"
-    getWinner
+    get_winner
   end
 
-  def getWinner
+  def get_winner
     if @first_score > @second_score
       puts @first_mc.to_s + ' WIN ' + "\n"
       @winner = @first_mc
@@ -31,19 +32,15 @@ class Battle
     end
   end
 
-  def saveStat(name)
-    if winner.include?(name)
-      @@stat_win += 1
-    else
-      @@stat_los += 1
-    end
+  def save_stat(name)
+    winner.include?(name) ? @@stat_win += 1 : @@stat_los += 1
   end
 
-  def self.printStat
+  def self.print_stat
     puts 'Win: ' + @@stat_win.to_s + ' Los: ' + @@stat_los.to_s + "\n"
   end
 
-  def analyzeText(criteria)
+  def analyze_text(criteria)
     first_mc_text = []
     second_mc_text = []
     text = @text.split(/\[Round [123].+\]/)
@@ -54,11 +51,11 @@ class Battle
         second_mc_text << round
       end
     end
-    @first_score = getScore(first_mc_text, criteria)
-    @second_score = getScore(second_mc_text, criteria)
+    @first_score = get_score(first_mc_text, criteria)
+    @second_score = get_score(second_mc_text, criteria)
   end
 
-  def getScore(text, criteria)
+  def get_score(text, criteria)
     score = 0
     if criteria.nil?
       text.each do |round|
