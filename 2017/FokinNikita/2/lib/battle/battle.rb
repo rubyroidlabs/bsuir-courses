@@ -1,7 +1,6 @@
 class Battle
   attr_accessor :title, :link, :text, :first_mc,
-                :second_mc, :first_score, :second_score, :winner,
-                :stat_win, :stat_los
+                :second_mc, :first_score, :second_score, :winner
 
   def initialize(title, link, text)
     @title = title
@@ -11,8 +10,6 @@ class Battle
     @second_mc = title.split(/[vV]s.?/)[1]
     @first_score = 0
     @second_score = 0
-    @@stat_win = 0
-    @@stat_los = 0
   end
 
   def print_result
@@ -32,12 +29,8 @@ class Battle
     end
   end
 
-  def save_stat(name)
-    winner.include?(name) ? @@stat_win += 1 : @@stat_los += 1
-  end
-
-  def self.print_stat
-    puts 'Win: ' + @@stat_win.to_s + ' Los: ' + @@stat_los.to_s + "\n"
+  def win?(name)
+    winner.include?(name) ? true : false
   end
 
   def analyze_text(criteria)
