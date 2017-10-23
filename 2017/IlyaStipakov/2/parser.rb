@@ -1,5 +1,4 @@
 class Parser
-
   def link_sort(page)
     head = page.at('h1').text.strip
     text = page.at('p').text.strip
@@ -31,8 +30,8 @@ class Parser
     array = text.split
     left = true
     right = true
-    left_str = ' '
-    right_str = ' '
+    str_left = ' '
+    str_right = ' '
     number = 1
     array.each do |line|
       first_mc = "[Round#{number}:#{mc_left}]"
@@ -48,14 +47,14 @@ class Parser
         number += 1
       end
       if left == true
-        left_str << line
+        str_left << line
       elsif right == true
-        right_str << line
+        str_right << line
       end
     end
     arr = Array[]
-    arr[0] = left_str
-    arr[1] = right_str
+    arr[0] = str_left
+    arr[1] = str_right
     return arr
   end
 
