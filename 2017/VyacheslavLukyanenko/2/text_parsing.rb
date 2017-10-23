@@ -3,7 +3,7 @@ require 'date'
 require 'json'
 require 'nokogiri'
 
-class Text_parser
+class Text_parserr
 
   attr_accessor :first_count_words, :second_count_words, :link
   attr_accessor :first_battler_name, :second_battler_name
@@ -17,16 +17,17 @@ class Text_parser
   end
 
   def parse_n_choose(criteria, name)
-    text = @link.css(".lyrics").text
+    text = @link.css('.lyrics').text
     rounds = text.split(/\[Round [1-3]: /)
     rounds.shift
     rounds.each do |round|
       name_pos = round.index(']')
-      raper_name = round[0..name_pos-1]
+      raper_name = round[0..name_pos - 1]
       round.slice!(raper_name + ']')
       if @first_battler_name.to_s.empty?
         @first_battler_name = raper_name
-      elsif @first_battler_name != raper_name && @second_battler_name.to_s.empty?
+      elsif @first_battler_name != raper_name
+        && @second_battler_name.to_s.empty?
         @second_battler_name = raper_name
       end
 
@@ -46,12 +47,12 @@ class Text_parser
     end
     if @first_battler_name.to_s.empty? || @second_battler_name.to_s.empty?
       false
+    elsif who_win?(@first_count_words, @second_count_words, criteria)
+      what_to_do?(@first_battler_name, @second_battler_name,
+      @first_count_words, @second_count_words, name, criteria)
     else
-      if who_win?(@first_count_words, @second_count_words, criteria)
-        what_to_do?(@first_battler_name, @second_battler_name, @first_count_words, @second_count_words, name, criteria)
-      else
-        what_to_do?(@second_battler_name, @first_battler_name, @second_count_words, @first_count_words, name, criteria)
-      end
+      what_to_do?(@second_battler_name, @first_battler_name,
+      @second_count_words, @first_count_words, name, criteria)
     end
   end
 
@@ -82,7 +83,9 @@ class Text_parser
   end
 
   def show_wins_count(name)
-    if not name.to_s.empty?
+    if name.to_s.empty?
+      @wins_count = 1
+    else
       puts "#{name} wins #{@wins_count} times, loses #{@loses_count} times"
     end
   end

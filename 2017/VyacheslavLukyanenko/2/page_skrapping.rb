@@ -3,7 +3,6 @@ require 'date'
 require 'json'
 require_relative 'text_parsing'
 
-
 class Rap_playground
 
   def initialize
@@ -26,7 +25,7 @@ class Rap_playground
   end
 
   def new_battle(link_for_battle, criteria, name)
-    text_parser = Text_parser.new(link_for_battle)
+    text_parser = Text_parserr.new(link_for_battle)
     text_parser.parse_n_choose(criteria, name)
   end
 
