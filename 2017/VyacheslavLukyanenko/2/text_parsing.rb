@@ -26,8 +26,8 @@ class Text_parserr
       round.slice!(raper_name + ']')
       if @first_battler_name.to_s.empty?
         @first_battler_name = raper_name
-      elsif @first_battler_name != raper_name
-        && @second_battler_name.to_s.empty?
+      elsif @first_battler_name != raper_name &&
+        @second_battler_name.to_s.empty?
         @second_battler_name = raper_name
       end
 
