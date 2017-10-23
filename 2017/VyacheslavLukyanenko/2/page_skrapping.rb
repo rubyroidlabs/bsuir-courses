@@ -27,6 +27,4 @@ class Rap_playground
     text_parser = Text_parserr.new(link_for_battle)
     text_parser.parse_n_choose(criteria, name)
   end
-
-
 end

@@ -63,7 +63,7 @@ class Text_parserr
     else
       f = false
     end
-    f
+    return f
   end
 
   def what_to_do?(namef, names, x, y, name, criteria)
