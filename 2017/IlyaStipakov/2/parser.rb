@@ -17,12 +17,10 @@ class Parser
         mc_right << word.to_s
       end
     end
-    arr = Array[]
-    arr[0] = head
-    arr[1] = text
-    arr[2] = mc_left
-    arr[3] = mc_right
-    return arr
+    yield head
+    yield text
+    yield mc_left
+    yield mc_right
   end
 
   def line_section(text, mc_left, mc_right)
@@ -52,10 +50,8 @@ class Parser
         str_right << line
       end
     end
-    arr = Array[]
-    arr[0] = str_left
-    arr[1] = str_right
-    return arr
+    yield str_left
+    yield str_right
   end
 
   def print_result(head, mc_left, mc_right, str_left, str_right)
