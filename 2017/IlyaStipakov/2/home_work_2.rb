@@ -20,7 +20,7 @@ pages.links.each do |battle|
   mc_first = info_array[2]
   mc_second = info_array[3]
   info_array.clear
-  parser.line_section(text, mc_first, mc_second){ |x| info_array.push(x) }
+  parser.line_section(text, mc_first, mc_second) { |x| info_array.push(x) }
   left_str = info_array[0]
   right_str = info_array[1]
   parser.print_result(head_post, mc_first, mc_second, left_str, right_str)
