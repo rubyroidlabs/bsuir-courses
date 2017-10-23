@@ -24,28 +24,56 @@ class Parser
     end
   end
 
-  def parse_battle
+  def parse_all_battles
     @battle_links.each do |key, value|
-      page = @agent.get(value)
-      members = key.split('vs')
-      members[1] = members[1].delete('.').strip
-      texts = page.search('.lyrics')[0].text.strip
-      first = texts.scan(/Round 1:.+/)[0]
-      unless first.nil?
-        if first.include?(members[1])
-          t = members[0]
-          members[0] = members[1]
-          members[1] = t
+      parse_battle(key, value)
+    end
+  end
+
+  def parse_one(artist_name)
+    win = 0
+    lose = 0
+    @battle_links.each do |key, value|
+      next unless key.include?(artist_name)
+      result = parse_battle(key, value)
+      unless result.nil?
+        if result.include?(artist_name)
+          win += 1
+        else
+          lose += 1
         end
       end
-      texts = texts.split(/Round.+/)
-      texts.shift
-      first_mc_letters = count_letters(texts, 0)
-      second_mc_letters = count_letters(texts, 1)
-      first_mc = { name: members[0], battle: key, letters: first_mc_letters }
-      second_mc = { name: members[1], battle: key, letters: second_mc_letters }
-      find_winner(first_mc, second_mc, value)
     end
+    puts ''
+    puts "#{artist_name} wins #{win} times, loses #{lose} times"
+  end
+
+  def parse_battle(key, value)
+    page = @agent.get(value)
+    texts = page.search('.lyrics')[0].text.strip
+    first = texts.scan(/Round 1:.+/)[0]
+    members = parse_members(key, first)
+    texts = texts.split(/Round.+/)
+    texts.shift
+    first_mc_letters = count_letters(texts, 0)
+    second_mc_letters = count_letters(texts, 1)
+    first_mc = { name: members[0], letters: first_mc_letters }
+    second_mc = { name: members[1], letters: second_mc_letters }
+    puts ''
+    find_winner(first_mc, second_mc, key, value)
+  end
+
+  def parse_members(key, first)
+    members = key.split('vs')
+    members[1] = members[1].delete('.').strip
+    unless first.nil?
+      if first.include?(members[1])
+        t = members[0]
+        members[0] = members[1]
+        members[1] = t
+      end
+    end
+    members
   end
 
   def enter_battle_title(battle)
@@ -70,21 +98,24 @@ class Parser
     letters
   end
 
-  def find_winner(first_mc, second_mc, value)
+  def find_winner(first_mc, second_mc, key, value)
     first_letters = first_mc[:letters]
     second_letters = second_mc[:letters]
     first_name = first_mc[:name]
     second_name = second_mc[:name]
-    puts "#{first_mc[:battle]} - #{value}"
+    puts "#{key} - #{value}"
     puts "#{first_name} - #{first_letters}"
     puts "#{second_name} - #{second_letters}"
     if first_letters > second_letters
-      puts "#{first_name} wins!"
+      str = "#{first_name} wins!"
+      puts str
+      str
     elsif first_letters < second_letters
-      puts "#{second_name} wins!"
+      str = "#{second_name} wins!"
+      puts str
+      str
     else
       puts "can't find winner"
     end
-    puts ''
   end
 end
