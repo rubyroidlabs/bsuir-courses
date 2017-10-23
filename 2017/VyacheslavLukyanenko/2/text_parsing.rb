@@ -27,7 +27,7 @@ class Text_parserr
       if @first_battler_name.to_s.empty?
         @first_battler_name = raper_name
       elsif @first_battler_name != raper_name &&
-        @second_battler_name.to_s.empty?
+            @second_battler_name.to_s.empty?
         @second_battler_name = raper_name
       end
 
@@ -49,10 +49,10 @@ class Text_parserr
       false
     elsif who_win?(@first_count_words, @second_count_words, criteria)
       what_to_do?(@first_battler_name, @second_battler_name,
-      @first_count_words, @second_count_words, name, criteria)
+                  @first_count_words, @second_count_words, name, criteria)
     else
       what_to_do?(@second_battler_name, @first_battler_name,
-      @second_count_words, @first_count_words, name, criteria)
+                  @second_count_words, @first_count_words, name, criteria)
     end
   end
 
