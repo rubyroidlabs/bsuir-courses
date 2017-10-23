@@ -13,19 +13,15 @@ class BattlesList
     page = agent.get('https://genius.com/artists/songs?for_artist_page=117146&id=King-of-the-dot')
     flag = true
     while flag
+
+      page.links_with(text: / vs/).each do |link|
+        battle = Battle.new(link)
+        battle.final_results
+        battle.print_results
+      end
       if page.links_with(text: /Next/).empty?
-        page.links_with(text: / vs/).each do |link|
-          battle = Battle.new(link)
-          battle.final_results
-          battle.print_results
-        end
         flag = false
       else
-        page.links_with(text: / vs/).each do |link|
-          battle = Battle.new(link)
-          battle.final_results
-          battle.print_results
-        end
         page = page.link_with(text: /Next/).click
       end
     end
