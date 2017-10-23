@@ -1,7 +1,7 @@
 # Count conditions and output them on the screen
 class HashOutput
   def initialize(hsh_links)
-    @wins_loses = {wins: 0, loses: 0}
+    @wins_loses = { wins: 0, loses: 0 }
     @link = ''
     @hash = hsh_links
     @names = []
@@ -42,11 +42,11 @@ class HashOutput
     first_words = second_words = 0
 
     @text.odd_values.each do |text_first|
-      text_first.split(' ').each { |word| first_words += 1 if word == @word}
+      text_first.split(' ').each { |word| first_words += 1 if word == @word }
     end
 
     @text.even_values.each do |text_second|
-      text_second.split(' ').each { |word| second_words += 1 if word == @word}
+      text_second.split(' ').each { |word| second_words += 1 if word == @word }
     end
     display_header(first_words, second_words)
     result_output(first_words, second_words)
@@ -66,7 +66,7 @@ class HashOutput
       puts "#{@names.last} wins!"
       @winner = @names.last
     end
-    wins_loses_counter if ENV['NAME'] != nil
+    wins_loses_counter if !ENV['NAME'].nil?
     puts '--------------------'
   end
 
@@ -79,7 +79,7 @@ class HashOutput
   end
 
   def wins_loses_output
-    if ENV['NAME'] != nil
+    if !ENV['NAME'].nil?
       puts "Wins: #{@wins_loses[:wins]}"
       puts "Loses: #{@wins_loses[:loses]}"
     else
@@ -90,7 +90,7 @@ class HashOutput
   def name_check
     if @names.include?(ENV['NAME']) && ENV['CRITERIA'].nil?
       counter_ltrs
-    elsif @names.include?(ENV['NAME']) && ENV['CRITERIA'] != nil
+    elsif @names.include?(ENV['NAME']) && !ENV['CRITERIA'].nil?
       @word = ENV['CRITERIA']
       counter_cond
     elsif ENV['NAME'].nil?
