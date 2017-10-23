@@ -1,15 +1,5 @@
 require 'mechanize'
 
-class Artist
-  attr_accessor :name, :battle
-
-  def initialize(name = 'Anon', rivals = 'xxx', letters = 0)
-    @name = name
-    @battle = {}
-    @battle[rivals] = letters
-  end
-end
-
 def parse_site(page)
   links = {}
   loop do
@@ -32,13 +22,19 @@ def parse_battle(links, agent)
     participants = key.split('vs')
     participants[1] = participants[1].delete('.').strip
     texts = page.search('.lyrics')[0].text.strip
+    index = texts.index(participants[1])
+    if !index.nil? && index < 10
+      t = participants[0]
+      participants[0] = participants[1]
+      participants[1] = t
+    end
     texts = texts.split(/Round.+/)
     texts.shift
     first_mc_letters = count_letters(texts, 0)
-    second_mc_letters = count_letters(texts, 1)
-    first_mc = Artist.new(participants[0], key, first_mc_letters)
-    second_mc = Artist.new(participants[1], key, second_mc_letters)
-    find_winner(first_mc, second_mc, key, value)
+    scnd_mc_letters = count_letters(texts, 1)
+    first_mc = {name: participants[0], battle: key, letters: first_mc_letters}
+    second_mc = {name: participants[1], battle: key, letters: scnd_mc_letters}
+    find_winner(first_mc, second_mc, value)
   end
 end
 
@@ -64,19 +60,22 @@ def count_letters(texts, speech)
   letters
 end
 
-def find_winner(first_mc, second_mc, key, value)
-  first_mc_letters = first_mc.battle[key]
-  second_mc_letters = second_mc.battle[key]
-  puts "#{key} - #{value}"
-  puts "#{first_mc.name} - #{first_mc_letters}"
-  puts "#{second_mc.name} - #{second_mc_letters}"
-  if first_mc_letters > second_mc_letters
-    puts "#{first_mc.name} wins!"
-  elsif first_mc_letters < second_mc_letters
-    puts "#{second_mc.name} wins!"
-  elsif first_mc_letters.zero? && second_mc_letters.zero?
+def find_winner(first_mc, second_mc, value)
+  first_letters = first_mc[:letters]
+  second_letters = second_mc[:letters]
+  first_name = first_mc[:name]
+  second_name = second_mc[:name]
+  puts "#{first_mc[:battle]} - #{value}"
+  puts "#{first_name} - #{first_letters}"
+  puts "#{second_name} - #{second_letters}"
+  if first_letters > second_letters
+    puts "#{first_name} wins!"
+  elsif first_letters < second_letters
+    puts "#{second_name} wins!"
+  elsif first_letters && second_letters
     puts "can't parse battle"
   end
+  puts ''
 end
 
 agent = Mechanize.new
@@ -84,5 +83,4 @@ agent.user_agent_alias = 'Mac Safari'
 link = 'https://genius.com/artists/songs?for_artist_page=117146&id=King-of-the-dot&page=1&pagination=true'
 page = agent.get(link)
 links = parse_site(page)
-
 parse_battle(links, agent)
