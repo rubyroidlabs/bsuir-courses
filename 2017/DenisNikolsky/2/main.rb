@@ -5,7 +5,7 @@ link = 'https://genius.com/artists/songs?for_artist_page=117146&id=King-of-the-d
 parser.parse_site(link)
 artist_name = ENV['NAME']
 if artist_name.nil?
-parser.parse_all_battles
+  parser.parse_all_battles
 else
   parser.parse_one(artist_name)
 end
