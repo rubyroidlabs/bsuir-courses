@@ -18,8 +18,8 @@ pages.links.each do |battle|
   text = info_array[1]
   mc_first = info_array[2]
   mc_second = info_array[3]
-  info_array = parser.line_section(text,mc_first,mc_second)
+  info_array = parser.line_section(text, mc_first, mc_second)
   left_str = info_array[0]
   right_str = info_array[1]
-  parser.print_result(head_post,mc_first,mc_second,left_str,right_str)
+  parser.print_result(head_post, mc_first, mc_second, left_str, right_str)
 end
