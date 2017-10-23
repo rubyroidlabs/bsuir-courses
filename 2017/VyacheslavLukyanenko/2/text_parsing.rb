@@ -56,13 +56,11 @@ class TextParserr
   end
 
   def who_win?(x, y, _word)
-    f = false
     if x > y
-      f = true
+      true
     else
-      f = false
+      false
     end
-    f
   end
 
   def what_to_do?(namef, names, x, y, name, criteria)
