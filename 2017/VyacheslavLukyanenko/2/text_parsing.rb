@@ -3,8 +3,7 @@ require 'date'
 require 'json'
 require 'nokogiri'
 
-class Text_parserr
-
+class TextParserr
   attr_accessor :first_count_words, :second_count_words, :link
   attr_accessor :first_battler_name, :second_battler_name
 
@@ -56,14 +55,14 @@ class Text_parserr
     end
   end
 
-  def who_win?(x, y, word)
+  def who_win?(x, y, _word)
     f = false
     if x > y
       f = true
     else
       f = false
     end
-    return f
+    f
   end
 
   def what_to_do?(namef, names, x, y, name, criteria)

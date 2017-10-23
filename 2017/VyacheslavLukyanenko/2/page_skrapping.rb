@@ -22,7 +22,7 @@ class RapPlayground
   end
 
   def new_battle(link_for_battle, criteria, name)
-    text_parser = Text_parserr.new(link_for_battle)
+    text_parser = TextParserr.new(link_for_battle)
     text_parser.parse_n_choose(criteria, name)
   end
 end
