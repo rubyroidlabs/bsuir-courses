@@ -1,7 +1,6 @@
 # Printer
 class PrettyPrinter
   def print_info(battles)
-  	puts battles.size
     battles.each do |battle|
       puts '---------------------------------------------------------------'
       puts "#{battle.title} (#{battle.link})".blue

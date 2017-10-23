@@ -6,7 +6,7 @@ require 'colorize'
 
 # Battle text for duelers
 class BattlesParser
-  FLANKS = %w[left right]
+  FLANKS = %w[left right].freeze
 
   attr_reader :song_urls, :agent, :left_mc, :right_mc
 
