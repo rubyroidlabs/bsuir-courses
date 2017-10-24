@@ -43,36 +43,32 @@ class Judge
     lyrics.each do |speech|
       meta_data = speech.split("\n")[0]
       text = speech.split("\n")[1..-1].join "\n"
-      left_mc.song += text if contain? meta_data, left_mc.name
-      right_mc.song += text if contain? meta_data, right_mc.name
+      left_mc.song += text if contain?(meta_data, left_mc.name)
+      right_mc.song += text if contain?(meta_data, right_mc.name)
     end
     { left_mc: left_mc, right_mc: right_mc }
   end
 
   def char_criterion(left_mc, right_mc)
-    left_mc_results = left_mc.song.scan(/\w/).size
-    right_mc_results = right_mc.song.scan(/\w/).size
-    { left_mc: left_mc_results, right_mc: right_mc_results }
+    regex = /\w/
+    { left_mc: results(left_mc, regex), right_mc: results(right_mc, regex) }
   end
 
   def fuck_criterion(left_mc, right_mc)
-    left_mc_results = left_mc.song.scan(/fuck|Fuck/).size
-    right_mc_results = right_mc.song.scan(/fuck|Fuck/).size
-    { left_mc: left_mc_results, right_mc: right_mc_results }
+    regex = /fuck|Fuck/
+    { left_mc: results(left_mc, regex), right_mc: results(right_mc, regex) }
   end
 
   def singer_names(song_name)
-    delimiter = if song_name.include? ' vs. '
-                  ' vs. '
-                elsif  song_name.include? ' Vs '
-                  ' Vs '
-                else
-                  ' vs '
-                end
+    delimiter = song_name.match(/ vs. | Vs | vs /)[0] # the first coincidence
     song_name.split delimiter
   end
 
   def contain?(meta, name)
     meta.include? name
+  end
+
+  def results(mc, regex)
+    mc.song.scan(regex).size
   end
 end

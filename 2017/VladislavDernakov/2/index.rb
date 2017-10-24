@@ -3,8 +3,7 @@ require './criterion_err'
 
 analyzer = Analyzer.new
 
-puts "\n"
-puts '*** King of the Dot ***'
+puts "\n*** King of the Dot ***"
 puts '- Пошумим, БЛ***!'
 begin
   analyzer.run

@@ -1,5 +1,6 @@
 require 'mechanize'
 require 'json'
+require 'uri'
 
 require './song'
 
@@ -20,11 +21,13 @@ class KODTScraper
     agent = Mechanize.new
     page_number = 1
     until page_number.nil?
-      json_response = agent.get api_url page_number
+      json_response = agent.get api_url(page_number)
       response = JSON.parse(json_response.body)['response']
       response['songs'].each do |song|
         if name
-          yield scrape_song agent.get song['url'] if song['title'].include? name
+          if song['title'].include?(name)
+            yield scrape_song agent.get song['url']
+          end
         else
           yield scrape_song agent.get song['url']
         end
@@ -36,7 +39,9 @@ class KODTScraper
   private_class_method
 
   def self.api_url(page_number)
-    "https://genius.com/api/artists/117146/songs?page=#{page_number}&sort"
+    uri = URI('https://genius.com/api/artists/117146/songs')
+    uri.query = "page=#{page_number}"
+    uri.to_s
   end
 
   def self.all_songs_page
