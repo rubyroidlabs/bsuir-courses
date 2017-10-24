@@ -27,7 +27,7 @@ class Printer
         puts
         'lose'
       end
-    else
+    elsif evnname != before
       if count_letters1 > count_letters2
         puts "#{before} WINS"
         puts
