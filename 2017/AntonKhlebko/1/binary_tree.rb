@@ -67,15 +67,41 @@ class BinaryTree
     end
   end
 
+  def print_element(maxlevel, lvl, str)
+    add_str(str, maxlevel, lvl, '/')
+    if !left.data.nil?
+      paste_into_str(str, format('%2s', left.data.to_s))
+      add_str(str, maxlevel, lvl, '\\')
+    elsif left.data.nil?
+      paste_into_str(str)
+      add_str(str, maxlevel, lvl, '\\')
+    end
+    paste_into_str(str)
+    add_str(str, maxlevel, lvl, '/')
+    if !right.data.nil?
+      paste_into_str(str, format('%2s', right.data.to_s))
+      add_str(str, maxlevel, lvl, '\\')
+    elsif right.data.nil?
+      paste_into_str(str)
+      add_str(str, maxlevel, lvl, '\\')
+    end
+    str
+  end
+
+  def print_head(str, maxlevel, lvl)
+    add_str(str, maxlevel, lvl, '/')
+    if !data.nil?
+      paste_into_str(str, format('%2s', data.to_s))
+    elsif left.data.nil?
+      paste_into_str(str)
+    end
+    add_str(str, maxlevel, lvl, '\\')
+    str
+  end
+
   def print_lvl(maxlevel, lvl, str)
     if lvl == 1
-      add_str(str, maxlevel, lvl, '/')
-      if !data.nil?
-        paste_into_str(str, format('%2s', data.to_s))
-      elsif left.data.nil?
-        paste_into_str(str)
-      end
-      add_str(str, maxlevel, lvl, '\\')
+      str = print_head(str, maxlevel, lvl)
       return str
     end
     if level < lvl - 1
@@ -83,24 +109,7 @@ class BinaryTree
       paste_into_str(str)
       right.print_lvl(maxlevel, lvl, str)
     elsif level == lvl - 1
-      add_str(str, maxlevel, lvl, '/')
-      if !left.data.nil?
-        paste_into_str(str, format('%2s', data.to_s))
-        add_str(str, maxlevel, lvl, '\\')
-      elsif left.data.nil?
-        paste_into_str(str)
-        add_str(str, maxlevel, lvl, '\\')
-      end
-      paste_into_str(str)
-      add_str(str, maxlevel, lvl, '/')
-      if !right.data.nil?
-        paste_into_str(str, format('%2s', data.to_s))
-        add_str(str, maxlevel, lvl, '\\')
-      elsif right.data.nil?
-        paste_into_str(str)
-        add_str(str, maxlevel, lvl, '\\')
-      end
-      str
+      str = print_element(maxlevel, lvl, str)
     end
   end
 
@@ -120,10 +129,10 @@ class BinaryTree
     end
   end
 
-  def sum_elements(sum = 0)
-    sum += data
-    sum += left.sum_elements if !left.nil? && !left.data.nil?
-    sum += right.sum_elements if !right.nil? && !right.data.nil?
-    sum
+  def sumelements(a)
+    array = Array.new
+    #При использовании метода sum
+    #Возникала ошибка 'NoMethodError'
+    a.flatten.inject(:+)
   end
 end
