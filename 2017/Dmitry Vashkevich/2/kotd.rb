@@ -17,7 +17,7 @@ class Kotd
     text = 'Show all albums by King of the Dot'
     albums_page = a.click(page.link_with(text: /#{text}/))
     link_albums = '/albums/King-of-the-dot/'
-    albums_page.links_with(href: /#{link_albums}/ ).each do |page_album|
+    albums_page.links_with(href: /#{link_albums}/).each do |page_album|
       threads << Thread.new do
         page_battles = a.get(page_album.href)
         link_bat = '/King-of-the-dot-'
