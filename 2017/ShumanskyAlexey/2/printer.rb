@@ -17,26 +17,31 @@ class Printer
     puts before + ' - ' + count_letters1.to_s
     puts after + ' - ' + count_letters2.to_s
 
-    if evnname == before
+    if !evnname.nil?
       if count_letters1 > count_letters2
         puts "#{before} WINS"
         puts
-        'win'
+        if evnname == before
+          'win'
+        else
+          'lose'
+        end
       else
         puts "#{after} WINS"
         puts
-        'lose'
+        if evnname == after
+          'win'
+        else
+          'lose'
+        end
       end
-    elsif evnname == after
+    elsif evnname.nil?
       if count_letters1 > count_letters2
         puts "#{before} WINS"
-        puts
-        'lose'
       else
         puts "#{after} WINS"
-        puts
-        'win'
       end
+      puts
     end
   end
 

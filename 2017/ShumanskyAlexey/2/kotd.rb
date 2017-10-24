@@ -38,7 +38,7 @@ if evnname.nil? && evncrit.nil?
 elsif !evnname.nil? && evncrit.nil?
   arr_results = review_links.map do |link|
     printer = Printer.new(link)
-    printer.print_evnname(evnname)   
+    printer.print_evnname(evnname)
   end
 
   arr_results.each do |i|
