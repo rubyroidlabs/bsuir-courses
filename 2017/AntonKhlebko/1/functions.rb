@@ -17,9 +17,7 @@ def paste_into_str(str, first = '  ', second = '  ')
   true
 end
 
-def tree_finder(entry)
-  a = entry.get_input_stream.read
-  a = JSON a
+def tree_finder(a)
   tree = BinaryTree.new(a[0], 1)
   tree.create_tree(a, 1)
   tree.max = 0
@@ -47,9 +45,11 @@ def name_not_given
         puts 'Добро пожаловать в наш лес!'
       else
         puts entry.name
-        tree = tree_finder(entry)
+        a = entry.get_input_stream.read
+        a = JSON a
+        tree = tree_finder(a)
         tree.print_tree(tree.max)
-        what_to_do(tree.sum_elements, tree.max)
+        what_to_do(tree.sumelements(a), tree.max)
         puts "\nХотите продолжить? [y/n]: "
         e = gets.to_s
         e[0] = e[0].downcase
