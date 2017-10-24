@@ -56,7 +56,7 @@ class Kotd2
     end
     puts "\n#{name_batler[0]} vs #{name_batler[1]} - #{link.uri}"
     puts "#{name_batler[0]} - #{count_batler[0]}"
-    puts "#{name_batler[1]} - #{count_batler[1]}\n#{str}\n"
+    puts "#{name_batler[1]} - #{count_batler[1]}\n#{str}\n"    
   end
 
   def self.link_run(page)
