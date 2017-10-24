@@ -32,8 +32,7 @@ class Battle
 
     if after.include? 'Title Match'
       arr_after = after.split(' ')
-      arr_after.pop
-      arr_after.pop
+      arr_after.pop(2)
       after = arr_after[0]
     end
 
@@ -53,16 +52,10 @@ class Battle
     mc1 = [battle_text[0], battle_text[2], battle_text[4]].flatten.join(', ')
     mc2 = [battle_text[1], battle_text[3], battle_text[5]].flatten.join(', ')
 
-    count_letters1 = 0
-    mc1.each_char do |i|
-      count_letters1 += 1 if i =~ /[A-Za-z0-9]/
-    end
+    count_letters1 = mc1.scan(/\w+/).join.size
     count_letters1 -= before.size
 
-    count_letters2 = 0
-    mc2.each_char do |i|
-      count_letters2 += 1 if i =~ /[A-Za-z0-9]/
-    end
+    count_letters2 = mc2.scan(/\w+/).join.size
     count_letters2 -= after.size
 
     [mc1, mc2, count_letters1, count_letters2]
