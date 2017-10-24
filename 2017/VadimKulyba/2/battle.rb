@@ -2,12 +2,12 @@ require 'mechanize'
 
 class Battle
   def initialize
-    @agn = Mechanize.new
+    @agent = Mechanize.new
   end
 
   def parse(raper = '', criteria = '')
-    @agn.get('https://genius.com/artists/King-of-the-dot')
-    page = @agn.page.link_with(text: /Show all songs by King of the Dot/).click
+    @agent.get('https://genius.com/artists/King-of-the-dot')
+    page = @agent.page.link_with(text: /Show all songs by King of the D/).click
 
     loop do
       links = []
@@ -15,11 +15,11 @@ class Battle
         links.push(link) if link.text.split(' ').include?('vs')
       end
       links.each do |link|
-        txt = @agn.get(link.href).search('.song_body-lyrics').text.split("\n")
+        txt = @agent.get(link.href).search('.song_body-lyrics').text.split("\n")
         name = txt[2].split(' Lyrics')
         name = name.first.split('        ')
-        names = name.last
-        name = name.last.split(' vs ')
+        name = names = name.last
+        name = name.include?('VS') ? name.split(' VS ') : name.split(' vs ')
         if name.include?(raper)
           out(scan(txt, name, criteria), names, link)
         elsif raper == ''
@@ -35,13 +35,15 @@ class Battle
     end
   end
 
-  private def out(battle, name, link)
+  private
+
+  def out(battle, name, link)
     puts "#{name} - #{link.href}"
     battle.each do |key, value|
       puts "#{key} - #{value}" if key != ''
     end
     battle = battle.sort_by(&:last)
-    puts battle.last.first + ' WINS!'
+    puts "#{battle.last.first} WINS!"
     puts
   end
 
@@ -53,7 +55,7 @@ class Battle
     text.each do |line|
       if line.include?('[Round') && line.include?(name.first + ']')
         key = name.first
-      elsif line.include?('[Round') && line.include?(name.last + ']')
+      elsif line.include?(name.last + ']')
         key = name.last
       else
         results[key] += line.scan(criteria).size
