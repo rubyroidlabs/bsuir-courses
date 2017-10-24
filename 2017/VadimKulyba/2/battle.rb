@@ -12,14 +12,15 @@ class Battle
     loop do
       links = []
       page.links.each do |link|
-        links.push(link) if link.text.split(' ').include?('vs')
+        text = link.text.split(' ')
+        links.push(link) if text.include?('vs') || text.include?('Vs')
       end
       links.each do |link|
         txt = @agent.get(link.href).search('.song_body-lyrics').text.split("\n")
         name = txt[2].split(' Lyrics')
         name = name.first.split('        ')
         name = names = name.last
-        name = name.include?('VS') ? name.split(' VS ') : name.split(' vs ')
+        name = name.include?('Vs') ? name.split(' Vs ') : name.split(' vs ')
         if name.include?(raper)
           out(scan(txt, name, criteria), names, link)
         elsif raper == ''
