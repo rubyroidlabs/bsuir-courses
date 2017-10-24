@@ -130,7 +130,7 @@ class BinaryTree
   end
 
   def sumelements(a)
-    # method sum rescues 
+    # method sum rescues
     # 'NoMethodError' exception
     a.flatten.inject(:+)
   end
