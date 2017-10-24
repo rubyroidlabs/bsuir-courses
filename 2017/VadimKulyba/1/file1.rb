@@ -7,7 +7,7 @@ begin
   tree = Tree.new
   tree.create(file)
   tree.print
-rescue
+rescue TypeError
   if ENV['NAME'].nil?
     puts 'Безымянных деревьев у нас не растет'
   else
