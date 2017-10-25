@@ -1,50 +1,43 @@
 class Battle
-  attr_accessor :arr_inf, :arr_data
+  attr_accessor :rappers, :rounds
 
   def initialize(link)
-    @arr_inf = make_inf(link)
-    @arr_data = get_text(link)
+    @rappers = get_names(link)
+    @rounds = get_text(link)
   end
 
-  def make_inf(link)
+  def get_names(link)
     text_link = link.href
     arr_link = text_link.split('-').drop(4)
     arr_link.pop
     index = arr_link.index('vs')
-    before_vs = []
-    after_vs = []
+    left_rapper = []
+    right_rapper = []
 
     i = 0
     while i < index
-      before_vs << arr_link[i].capitalize
+      left_rapper << arr_link[i].capitalize
       i += 1
     end
 
     j = index + 1
     while j < arr_link.size
-      after_vs << arr_link[j].capitalize
-      j = j += 1
+      right_rapper << arr_link[j].capitalize
+      j += 1
     end
 
-    before = before_vs.join(' ')
-    after = after_vs.join(' ')
-    str_vs = before + ' vs ' + after
+    right_rapper.pop(2) if right_rapper.include? 'Title'
 
-    if after.include? 'Title Match'
-      arr_after = after.split(' ')
-      arr_after.pop(2)
-      after = arr_after[0]
-    end
+    left_rapper = left_rapper.join(' ')
+    right_rapper = right_rapper.join(' ')
+    name_battle = left_rapper + ' vs ' + right_rapper
 
-    inf_battle = str_vs + ' - ' + text_link
+    info_battle = name_battle + ' - ' + text_link
 
-    [inf_battle, before, after]
+    [info_battle, left_rapper, right_rapper]
   end
 
   def get_text(link)
-    before = @arr_inf[1]
-    after = @arr_inf[2]
-
     review = link.click
     battle_text = review.search('.lyrics p').text.split('Round ')
     battle_text.shift
@@ -52,11 +45,8 @@ class Battle
     mc1 = [battle_text[0], battle_text[2], battle_text[4]].flatten.join(', ')
     mc2 = [battle_text[1], battle_text[3], battle_text[5]].flatten.join(', ')
 
-    count_letters1 = mc1.scan(/\w+/).join.size
-    count_letters1 -= before.size
-
-    count_letters2 = mc2.scan(/\w+/).join.size
-    count_letters2 -= after.size
+    count_letters1 = mc1.scan(/\w+/).join.size - @rappers[1].size
+    count_letters2 = mc2.scan(/\w+/).join.size - @rappers[2].size
 
     [mc1, mc2, count_letters1, count_letters2]
   end

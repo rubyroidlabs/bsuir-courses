@@ -3,42 +3,43 @@ require './printer.rb'
 require 'mechanize'
 
 url_page = 'https://genius.com/artists/King-of-the-dot'
-review_links = []
+links = []
 
 agent = Mechanize.new
 agent.get(url_page)
 page = agent.page.link_with(text: /Show all songs by King of the Dot/).click
 
-q = 0
+count_pages = 0
 # Open 1, 2 and 3 page
-while q < 2
-  review_links << page.links_with(href: %r{https://genius.com/King-of-the-dot})
-  review_links.flatten!
+while count_pages < 2
+  links << page.links_with(href: %r{https://genius.com/King-of-the-dot})
+  links.flatten!
   page = agent.page.link_with(text: /Next »/).click
-  q += 1
+  count_pages += 1
 end
 
-review_links.each do |el|
-  review_links.delete(el) unless el.text.include? 'vs'
+links.each do |link|
+  links.delete(link) unless link.text.include? 'vs'
 end
 
-review_links.delete_at(139)
+links.delete_at(139)
 
-evnname = ENV['NAME']
-evncrit = ENV['CRITERIA']
+envname = ENV['NAME']
+envcrit = ENV['CRITERIA']
 
 count_wins = 0
 count_loses = 0
 
-if evnname.nil? && evncrit.nil?
-  review_links.map do |link|
+if envname.nil? && envcrit.nil?
+  links.map do |link|
     printer = Printer.new(link)
-    printer.print_default(evnname)
+    printer.print_default(envname)
   end
-elsif !evnname.nil? && evncrit.nil?
-  arr_results = review_links.map do |link|
+
+elsif !envname.nil? && envcrit.nil?
+  arr_results = links.map do |link|
     printer = Printer.new(link)
-    printer.print_evnname(evnname)
+    printer.print_envname(envname)
   end
 
   arr_results.each do |i|
@@ -49,17 +50,20 @@ elsif !evnname.nil? && evncrit.nil?
     end
   end
   puts
-  puts "#{evnname} wins #{count_wins} times, loses #{count_loses} times."
-elsif evnname.nil? && !evncrit.nil?
-  review_links.map do |link|
+  puts "#{envname} wins #{count_wins} times, loses #{count_loses} times."
+
+elsif envname.nil? && !envcrit.nil?
+  links.map do |link|
     printer = Printer.new(link)
-    printer.print_evncrit(evncrit)
+    printer.print_envcrit(envcrit)
   end
+
 else
-  arr_results = review_links.map do |link|
+  arr_results = links.map do |link|
     printer = Printer.new(link)
-    printer.print_evncrit_evnname(evnname, evncrit)
+    printer.print_envcrit_envname(envname, envcrit)
   end
+
   arr_results.each do |i|
     if i == 'win'
       count_wins += 1
@@ -68,5 +72,5 @@ else
     end
   end
   puts
-  puts "#{evnname} wins #{count_wins} times, loses #{count_loses} times."
+  puts "#{envname} wins #{count_wins} times, loses #{count_loses} times."
 end
