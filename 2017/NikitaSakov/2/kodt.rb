@@ -43,9 +43,9 @@ class Kodt
     summ = Array.new(2, 0)
     page_of_battle = agent.get(link_of_battle.uri)
     summ = Text.count_letters(page_of_battle, names, summ)
-    if names[0].include? ENV['NAME'] && (summ[0] > summ[1])
+    if names[0].include?(ENV['NAME'] && (summ[0] > summ[1]))
       statistics[0] += 1
-    elsif names[1].include? ENV['NAME'] && (summ[0] < summ[1])
+    elsif names[1].include?(ENV['NAME'] && (summ[0] < summ[1]))
       statistics[0] += 1
     else
       statistics[1] += 1
