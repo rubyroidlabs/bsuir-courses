@@ -1,6 +1,5 @@
 require_relative 'parser'
 
-
 # class fo battle operations
 class Battle
   def initialize
@@ -17,7 +16,7 @@ class Battle
     artist1_text = []
     artist2_text = []
     text_of_battle.each_with_index do |t, i|
-    i.even? ? artist1_text << t : artist2_text << t
+      i.even? ? artist1_text << t : artist2_text << t
     end
     artist1_data = { artist1_name: artist1_name, artist1_text: artist1_text }
     artist2_data = { artist2_name: artist2_name, artist2_text: artist2_text }
