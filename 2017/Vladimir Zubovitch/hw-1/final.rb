@@ -1,44 +1,44 @@
+# !/usr/bin/env ruby
+require 'json'
 def base(tree)
-  arr_node = []
+  array_of_node = []
   list_now = []
   tree.each do |node|
     if node.class.to_s != 'Array'
       list_now << node
     else
-      arr_node += node
+      array_of_node += node
     end
   end
   if list_now != []
     @list_arr << list_now
   end
-  unless arr_node.size.zero?
-    base(arr_node)
+  unless array_of_node.size.zero?
+    base(array_of_node)
   end
 end
 
 def draw(tree)
   tree.each do |lvl|
-    sp = 128 / (lvl.size + 1)
-    sp += 1
+    space = 128 / (lvl.size + 1)
+    space += 1
     if tree[0] != lvl
       lvl.size.times do |i|
         if (i % 2).zero?
-          format("%#{sp}s", '/')
+          format("%#{space}s", '/')
         else
-          format("%#{sp}s", '\\')
+          format("%#{space}s", '\\')
         end
       end
     end
     puts
     lvl.size.times do |i|
-      format("%#{sp}s", lvl[i])
+      format("%#{space}s", lvl[i])
     end
     puts
   end
 end
 
-# !/usr/bin/env ruby
-require 'json'
 input = ENV['NAME'].to_s.downcase
 @list_arr = []
 if input.empty?
