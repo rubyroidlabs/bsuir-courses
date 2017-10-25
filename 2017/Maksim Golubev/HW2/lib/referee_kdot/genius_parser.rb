@@ -1,6 +1,7 @@
 require 'mechanize'
 require 'json'
 require 'colorize'
+require 'uri'
 
 class GeniusParser
   TOKEN = 'Bearer sHBj63vrkY60l'.freeze
@@ -20,7 +21,9 @@ class GeniusParser
     find = name || DEFAULT_NAME
     page = 1
     loop do
-      fetch = "https://api.genius.com/search?q=#{find}&per_page=20&page=#{page}"
+      uri = URI.parse('https://api.genius.com/search?')
+      uri.query = "q=#{find}&per_page=20&page=#{page}"
+      fetch = uri.to_s
       response = @agent.get(fetch, [], nil, 'Authorization' => token).body
       response_json = JSON.parse(response)
       break if response_json.dig('response', 'hits').empty?
