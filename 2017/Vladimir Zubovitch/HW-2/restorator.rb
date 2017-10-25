@@ -23,7 +23,6 @@ class Restorator
       rs1 = 0
       rs2 = 0
       if mc_round[2].nil?
-        next
         mc_round.size.times do |i|
           if raper1 == mc_round[i]
             rs1 += mc_round[i + 1].size
