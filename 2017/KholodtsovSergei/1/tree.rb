@@ -95,4 +95,5 @@ class Node < Tree
   def initialize(item)
     @data = item
   end
+
 end
