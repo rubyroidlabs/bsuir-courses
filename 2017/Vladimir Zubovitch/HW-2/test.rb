@@ -1,5 +1,5 @@
-require 'rubygems'
 require 'mechanize'
+require 'rubygems'
 class Obhod
   def initialize
     @page = 1
