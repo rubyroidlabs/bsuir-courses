@@ -1,10 +1,11 @@
 require_relative 'parser'
 require_relative 'battle'
-require 'pry'
+
 
 @stats = []
 parser = Parser.new
 data = parser.get_battle_data
+
 data.each do |t|
   battle = Battle.new
   battle.set_battle(t)
