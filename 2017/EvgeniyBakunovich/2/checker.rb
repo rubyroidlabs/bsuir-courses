@@ -7,10 +7,11 @@ class Checker
     @mc2 = title_str.slice(title_str.index('vs')+2...title_str.size).strip
     @link = link
   end
+
   def parse_lyrics
     agent = Mechanize.new
     page = agent.get(@link)
-    text = page.search(".lyrics").text.strip
+    text = page.search('.lyrics').text.strip
     loop do
       break if text.sub!('[[?]]', '') == nil
     end
@@ -31,6 +32,7 @@ class Checker
     text_arr.push(text.slice(index_arr[index_arr.size - 1]+1, text.size - index_arr[index_arr.size - 1]-1).delete(' '))
     return text_arr
   end
+
   def get_winner
     agent = Mechanize.new
     page = agent.get(@link)
@@ -72,7 +74,7 @@ class Checker
     loop do
       break if index_arr.size / 2 + i == index_arr.size - 1
       i += 1
-      if index_arr[size / 2+i] - index_arr[i] < 5
+      if index_arr[size / 2 + i] - index_arr[i] < 5
         index_arr.delete_at(i)
         index_arr.delete_at(size / 2 + i)
       end

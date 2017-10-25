@@ -1,7 +1,7 @@
 require 'mechanize'
 require_relative 'checker'
 class KotDparser
-  attr_accessor:link
+  attr_accessor :link
 
   def initialize(link)
     @link = link
