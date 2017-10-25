@@ -13,7 +13,7 @@ class Obhod
     s = agent.page
     page = s.links_with(dom_class: 'song_name work_in_progress   song_link')
     page.each do |link|
-      @page_text << link.click.css('p').to_s.gsub(/<[^<^>] { 0, }>/){''}
+      @page_text << link.click.css('p').to_s.gsub(/<[^<^>] { 0, }>/) { '' }
     end
     @page += 1
   end
