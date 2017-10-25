@@ -5,15 +5,12 @@ class Kodt
     page = page.link_with(text: /Show all songs by King of the Dot/).click
     statistics = Array.new(2, 0)
     loop do
+      page.links_with(text: /vs/).each do |link_of_battle|
+        statistics = process_battle(link_of_battle, agent, statistics)
+      end
       if page.link_with(text: /Next/).nil?
-        page.links_with(text: /vs/).each do |link_of_battle|
-          statistics = process_battle(link_of_battle, agent, statistics)
-        end
         break
       else
-        page.links_with(text: /vs/).each do |link_of_battle|
-          statistics = process_battle(link_of_battle, agent, statistics)
-        end
         page = page.link_with(text: /Next/).click
       end
     end
