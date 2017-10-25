@@ -1,7 +1,7 @@
 require 'mechanize'
 class Checker
   attr_accessor :mc1, :mc2, :link
-  
+
   def initialize(title_str, link)
     @mc1 = title_str.slice(0...title_str.index('vs')).strip
     @mc2 = title_str.slice(title_str.index('vs') + 2...title_str.size).strip
@@ -9,7 +9,6 @@ class Checker
   end
 
   def text_arr_builder(id_arr, text)
-
     text_arr = []
     i = 0
     size = id_arr.size
@@ -24,11 +23,9 @@ class Checker
     temp.delete(' ')
     text_arr.push(temp)
     text_arr
-
   end
 
   def parse_lyrics
-
     agent = Mechanize.new
     page = agent.get(@link)
     text = page.search('.lyrics').text.strip
@@ -38,11 +35,10 @@ class Checker
     loop do
       break if text.sub!('[?]', '').nil?
     end
-    index_arr = []
-    index_arr = (0...text.length).find_all do |i|
+    index_arr = (0...text.length).select do |i|
       text[i] == '['
     end
-    index_arr = index_arr + index_arr = (0...text.length).find_all do |i|
+    index_arr += (0...text.length).select do |i|
       text[i] == ']'
     end
     index_arr = checker(index_arr)
@@ -51,10 +47,9 @@ class Checker
   end
 
   def get_winner
-
     agent = Mechanize.new
     page = agent.get(@link)
-    text = page.search(".lyrics").text.strip
+    text = page.search('.lyrics').text.strip
     first_mc = text.slice(10...text.index(']'))
     text_arr = parse_lyrics
     if text_arr.empty?
