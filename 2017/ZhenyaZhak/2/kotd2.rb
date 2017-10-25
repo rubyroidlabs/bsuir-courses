@@ -87,5 +87,6 @@ class Kotd2
     agent = Mechanize.new
     page = agent.get('https://genius.com/artists/King-of-the-dot')
     page = page.link_with(text: /Show all songs by King of the Dot/).click
+    page
   end
 end
