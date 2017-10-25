@@ -2,7 +2,7 @@ require 'mechanize'
 require 'uri'
 
 class BattleParser
-  HEADER1_NAME = 'h1.header_with_cover_art-primary_info-title'
+  HEADER1_NAME = 'h1.header_with_cover_art-primary_info-title'.freeze
 
   attr_reader :battles_links, :left_mc_name, :right_mc_name
 

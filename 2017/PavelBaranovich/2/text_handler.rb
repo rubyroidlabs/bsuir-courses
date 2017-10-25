@@ -1,6 +1,8 @@
 require 'mechanize'
 
 class TextHandler
+  ROUNDS_COUNT = 6
+
   attr_writer :name, :criteria
 
   def initialize(battles_links, left_mc_name, right_mc_name)
@@ -25,11 +27,12 @@ class TextHandler
     rounds_text = page_text.split(/Round [1-3]:? /)
 
     count = [0, 0]
-    6.times do |i|
+    ROUNDS_COUNT.times do |i|
       count[i & 1] += rounds_text[i + 1].to_s.scan(/#{@criteria}/).size
     end
 
-    if rounds_text[1].to_s.index(@right_mc_name[pos].to_s) == 0
+    if !rounds_text[1].to_s.index(@right_mc_name[pos].to_s).nil? &&
+        rounds_text[1].to_s.index(@right_mc_name[pos].to_s).zero?
       count[0], count[1] = count[1], count[0]
     end
 
