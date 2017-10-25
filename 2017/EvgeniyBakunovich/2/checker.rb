@@ -36,8 +36,8 @@ class Checker
     page = agent.get(@link)
     text = page.search(".lyrics").text.strip
     first_mc = text.slice(10...text.index(']'))
-    text_arr = self.parse_lyrics
-    if text_arr[0].size == 0
+    text_arr = parse_lyrics
+    if text_arr.empty?
       puts 'No text'
       return
     end
@@ -45,16 +45,16 @@ class Checker
     i = 0
     if first_mc == @mc1
       loop do
-        break if i == text_arr.size-1
+        break if i == text_arr.size - 1
         hash.store(@mc1, text_arr[i].size)
-        hash.store(@mc2, text_arr[i+1].size)
+        hash.store(@mc2, text_arr[i + 1].size)
         i += 1
       end
     else
       loop do
-        break if i == text_arr.size-1
+        break if i == text_arr.size - 1
         hash.store(@mc2, text_arr[i].size)
-        hash.store(@mc1, text_arr[i+1].size)
+        hash.store(@mc1, text_arr[i + 1].size)
         i += 1
       end
     end
@@ -65,15 +65,16 @@ class Checker
       puts @mc2 + ' wins'
     end
   end
+
   def checker(index_arr)
     i = 0
     size = index_arr.size
     loop do
-      break if index_arr.size/2 + i == index_arr.size - 1
+      break if index_arr.size / 2 + i == index_arr.size - 1
       i += 1
-      if index_arr[size/2+i] - index_arr[i] < 5
+      if index_arr[size / 2+i] - index_arr[i] < 5
         index_arr.delete_at(i)
-        index_arr.delete_at(size/2+i)
+        index_arr.delete_at(size / 2 + i)
       end
     end
     index_arr
