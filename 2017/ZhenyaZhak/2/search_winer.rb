@@ -1,5 +1,8 @@
-class Kotd2
+class Search_winer
   # F_B - First Batler, S_B - Second Batler
+  # START_B..FINISH_B range where the name is located
+  START_B = 0
+  FINISH_B = 30
   INCORRECT_VALUE = 2
   F_B = 0
   S_B = 1
@@ -8,8 +11,8 @@ class Kotd2
 
   def self.puts_batler(count_batler, name_batler, link_uri)
     count = INCORRECT_VALUE
-    if count_batler[F_B].zero? || count_batler[S_B].zero?
-      return nil
+    if count_batler.any?(&:zero?)
+      return INCORRECT_VALUE
     end
     if count_batler[F_B] == count_batler[S_B]
       str = 'Dead heat!!!'
@@ -18,9 +21,9 @@ class Kotd2
       str = "#{name_batler[x]} REAL NIGGA!!!"
       count = NAME_B == name_batler[x].downcase ? F_B : S_B
     end
-    puts "\n#{name_batler[F_B]} vs #{name_batler[S_B]} - #{link_uri}"
-    puts "#{name_batler[F_B]} - #{count_batler[F_B]}"
-    puts "#{name_batler[S_B]} - #{count_batler[S_B]}\n#{str}\n"
+    puts "\n#{name_batler[F_B]} vs #{name_batler[S_B]} - #{link_uri}
+#{name_batler[F_B]} - #{count_batler[F_B]}
+#{name_batler[S_B]} - #{count_batler[S_B]}\n#{str}\n"
     count
   end
 
@@ -31,13 +34,12 @@ class Kotd2
     txt.length.times do |i|
       txt[i] = txt[i].downcase
       count = txt[i].scan(CRITERIA_B).size
-      # 0..30 range where the name is located
-      if txt[i][0..30].include? name_batler[F_B].downcase
+      if txt[i][START_B..FINISH_B].include? name_batler[F_B].downcase
         count_batler[F_B] += count
         flag = F_B
         next
       end
-      if txt[i][0..30].include? name_batler[S_B].downcase
+      if txt[i][START_B..FINISH_B].include? name_batler[S_B].downcase
         count_batler[S_B] += count
         flag = S_B
         next
@@ -59,18 +61,17 @@ class Kotd2
     txt_link = link.text.split('(')[0].strip!
     txt_link.sub('vs.', 'vs')
     name_batler = Array.new
-    name_batler[F_B] = txt_link.split('vs')[F_B].strip
-    name_batler[S_B] = txt_link.split('vs')[S_B].strip
+    (F_B..S_B).each do |i|
+      name_batler[i] = txt_link.split('vs')[i].strip
+    end
     if NAME_B != ' '
-      if NAME_B != name_batler[F_B].downcase
-        if NAME_B != name_batler[S_B].downcase
-          return nil
-        end
+      unless name_batler.map(&:downcase).any? {|i| i == NAME_B}
+        return INCORRECT_VALUE
       end
     end
     txt = page.css('.lyrics p').text
-    count_batler = Kotd2.length_search(txt, name_batler)
-    count = Kotd2.puts_batler(count_batler, name_batler, link.uri)
+    count_batler = Search_winer.length_search(txt, name_batler)
+    count = Search_winer.puts_batler(count_batler, name_batler, link.uri)
     count
   end
 
@@ -81,8 +82,8 @@ class Kotd2
       threads = []
       review_links.map do |link|
         threads << Thread.new do
-          count = Kotd2.count_function(link)
-          if !count.nil? && count != INCORRECT_VALUE
+          count = Search_winer.count_function(link)
+          unless count == INCORRECT_VALUE
             w_l[count] += 1
           end
         end

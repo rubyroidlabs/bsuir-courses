@@ -1,4 +1,4 @@
 require 'mechanize'
-require_relative 'kotd2'
+require_relative 'search_winer'
 
-Kotd2.link_run(Kotd2.start)
+Search_winer.link_run(Search_winer.start)
