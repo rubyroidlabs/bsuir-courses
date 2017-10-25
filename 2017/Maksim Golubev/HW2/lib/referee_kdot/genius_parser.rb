@@ -47,7 +47,8 @@ class GeniusParser
 
       begin
         rival_res = RapParser.new(song_text, criteria).split_opponents
-      rescue
+      rescue StandardError => error
+        puts "#{error} не считаем"
         next
       end
       puts "#{song['title']} - #{song['url']}".blue
