@@ -19,8 +19,8 @@ class Restorator
       end
       raper1 = mc_round[0]
       raper2 = mc_round[2]
-      rs1 = 0 
-      rs2 = 0 
+      rs1 = 0
+      rs2 = 0
       if mc_round[2].nil?
         next
         mc_round.size.times do |i|
@@ -36,4 +36,3 @@ class Restorator
     @text = @a.reload
   end
 end
-
