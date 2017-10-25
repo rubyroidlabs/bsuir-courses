@@ -22,18 +22,14 @@ class TextHandler
     agent = Mechanize.new
 
     page_text = agent.get(@battles_links[pos]).search('div.lyrics').text
-    rounds_text = page_text.split(/Round [1-3]/)
+    rounds_text = page_text.split(/Round [1-3]:? /)
 
     count = [0, 0]
     6.times do |i|
-      if i.odd?
-        count[0] += rounds_text[i + 1].to_s.scan(/#{@criteria}/).size
-      else
-        count[1] += rounds_text[i + 1].to_s.scan(/#{@criteria}/).size
-      end
+      count[i & 1] += rounds_text[i + 1].to_s.scan(/#{@criteria}/).size
     end
 
-    if rounds_text[1].to_s =~ /^#{@right_mc_name[pos]}/
+    if rounds_text[1].to_s.index("#{@right_mc_name[pos]}") == 0 
       count[0], count[1] = count[1], count[0]
     end
 
@@ -62,7 +58,8 @@ class TextHandler
     @criteria = if @criteria.nil?
                   "[^(.,!? ':();\n)]"
                 else
-                  "(\n| |!|.)" + @criteria + "(\n| |!|.)"
+                  com = "(\n| |!|.)"
+                  [com, @criteria, com].join
                 end
 
     if @name.nil?
