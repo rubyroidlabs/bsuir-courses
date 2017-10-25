@@ -19,20 +19,17 @@ class Restorator
       end
       raper1 = mc_round[0]
       raper2 = mc_round[2]
+      next if mc_round[2].nil?
       rs1 = 0
       rs2 = 0
-      if mc_round[2].nil?
-        mc_round.size.times do |i|
-          if raper1 == mc_round[i]
-            rs1 += mc_round[i + 1].size
-          elsif raper2 == mc_round[i]
-            rs2 += mc_round[i + 1].size
-          end
+      mc_round.size.times do |i|
+        if raper1 == mc_round[i]
+          rs1 += mc_round[i + 1].size
+        elsif raper2 == mc_round[i]
+          rs2 += mc_round[i + 1].size
         end
-        otvet << [raper1, raper2, rs1, rs2]
-      else
-        next
       end
+      otvet << [raper1, raper2, rs1, rs2]
     end
     @text = @a.reload
   end
