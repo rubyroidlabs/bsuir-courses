@@ -15,19 +15,11 @@ class Printer
       if @rounds[2] > @rounds[3]
         puts "#{@rappers[1]} WINS"
         puts
-        if envname == @rappers[1]
-          'win'
-        else
-          'lose'
-        end
+        envname == @rappers[1] ? 'win' : 'lose'
       else
         puts "#{@rappers[2]} WINS"
         puts
-        if envname == @rappers[1]
-          'win'
-        else
-          'lose'
-        end
+        envname == @rappers[1] ? 'lose' : 'win'
       end
     elsif envname.nil?
       if @rounds[2] > @rounds[3]
@@ -40,9 +32,8 @@ class Printer
   end
 
   def print_envname(envname)
-    if envname == @rappers[1] || envname == @rappers[1]
-      w_l = print_default(envname)
-      w_l
+    if @rappers.include? envname
+      print_default(envname)
     else
       false
     end
@@ -58,7 +49,7 @@ class Printer
 
     if count_crit1 > count_crit2
       puts "#{@rappers[1]} WINS!"
-    elsif count1 < count2
+    elsif count_crit1 < count_crit2
       puts "#{@rappers[2]} WINS!"
     else
       puts 'Choose other criteria'
@@ -70,31 +61,19 @@ class Printer
     count_crit1 = @rounds[0].scan(envcrit).size
     count_crit2 = @rounds[1].scan(envcrit).size
 
-    if envname == @rappers[1] || envname == @rappers[2]
+    if @rappers.include? envname
       puts @rappers[0]
       puts "#{@rappers[1]} - #{count_crit1}"
       puts "#{@rappers[2]} - #{count_crit2}"
 
-      if envname == @rappers[1]
-        if count_crit1 > count_crit2
-          puts "#{@rappers[1]} WINS"
-          puts
-          'win'
-        else
-          puts "#{@rappers[2]} WINS"
-          puts
-          'lose'
-        end
-      elsif envname == @rappers[2]
-        if count_crit1 > count_crit2
-          puts "#{@rappers[1]} WINS"
-          puts
-          'lose'
-        else
-          puts "#{@rappers[2]} WINS"
-          puts
-          'win'
-        end
+      if count_crit1 > count_crit2
+        puts "#{@rappers[1]} WINS"
+        puts
+        envname == @rappers[1] ? 'win' : 'lose'
+      else
+        puts "#{@rappers[2]} WINS"
+        puts
+        envname == @rappers[2] ? 'win' : 'lose'
       end
     else
       false
