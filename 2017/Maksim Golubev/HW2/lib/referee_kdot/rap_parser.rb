@@ -2,7 +2,6 @@ require 'mechanize'
 require 'json'
 
 class RapParser
-
   FIRST_INDEXES = [1, 5, 9].freeze
   SECOND_INDEXES = [3, 7, 11].freeze
 
@@ -39,10 +38,10 @@ class RapParser
       count_words @first_man
       count_words @other_man
     end
-  end 
+  end
 
   def split_rounds(rounds)
-     rounds.split(':')[1].gsub(/\W+/, ' ').strip
+    rounds.split(':')[1].gsub(/\W+/, ' ').strip
   end
 
   def count_letters(man)
@@ -52,5 +51,4 @@ class RapParser
   def count_words(man)
     man[:criteria_count] = man[:text].scan(@criteria).size.to_i
   end
-
 end
