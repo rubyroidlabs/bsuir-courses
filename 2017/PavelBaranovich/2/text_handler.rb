@@ -29,7 +29,7 @@ class TextHandler
       count[i & 1] += rounds_text[i + 1].to_s.scan(/#{@criteria}/).size
     end
 
-    if rounds_text[1].to_s.index("#{@right_mc_name[pos]}") == 0 
+    if rounds_text[1].to_s.index(@right_mc_name[pos].to_s) == 0
       count[0], count[1] = count[1], count[0]
     end
 

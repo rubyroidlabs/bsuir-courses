@@ -2,6 +2,8 @@ require 'mechanize'
 require 'uri'
 
 class BattleParser
+  HEADER1_NAME = 'h1.header_with_cover_art-primary_info-title'
+
   attr_reader :battles_links, :left_mc_name, :right_mc_name
 
   def initialize
@@ -28,8 +30,7 @@ class BattleParser
     threads = []
     @battles_links.count.times do |i|
       threads << Thread.new(i) do |j|
-        battle_title = agent.get(battles_links[j])
-          .search('h1.header_with_cover_art-primary_info-title').text
+        battle_title = agent.get(battles_links[j]).search(HEADER1_NAME).text
 
         pos = battle_title.index('(')
         battle_title = battle_title[0, pos - 1] unless pos.nil?
