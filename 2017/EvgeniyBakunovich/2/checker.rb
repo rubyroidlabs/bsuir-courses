@@ -4,36 +4,54 @@ class Checker
   
   def initialize(title_str, link)
     @mc1 = title_str.slice(0...title_str.index('vs')).strip
-    @mc2 = title_str.slice(title_str.index('vs')+2...title_str.size).strip
+    @mc2 = title_str.slice(title_str.index('vs') + 2...title_str.size).strip
     @link = link
   end
 
+  def text_arr_builder(id_arr, text)
+
+    text_arr = []
+    i = 0
+    size = id_arr.size
+    loop do
+      break if size / 2 + i == size - 1
+      temp = text.slice(id_arr[size / 2 + i] + 1, id_arr[i + 1])
+      temp.delete(' ')
+      text_arr.push(temp)
+      i += 1
+    end
+    temp = text.slice(id_arr[size - 1] + 1, text.size - id_arr[size - 1] - 1)
+    temp.delete(' ')
+    text_arr.push(temp)
+    text_arr
+
+  end
+
   def parse_lyrics
+
     agent = Mechanize.new
     page = agent.get(@link)
     text = page.search('.lyrics').text.strip
     loop do
-      break if text.sub!('[[?]]', '') == nil
+      break if text.sub!('[[?]]', '').nil?
     end
     loop do
-      break if text.sub!('[?]', '') == nil
+      break if text.sub!('[?]', '').nil?
     end
-    text_arr = []
     index_arr = []
-    index_arr = (0...text.length).find_all { |i| text[i] == '[' }
-    index_arr = index_arr + index_arr = (0...text.length).find_all { |i| text[i] == ']' }
-    index_arr = self.checker(index_arr)
-    i = 0
-    loop do
-      break if index_arr.size/2 + i == index_arr.size - 1
-      text_arr.push(text.slice(index_arr[index_arr.size/2 + i]+1, index_arr[i+1]).delete(' '))
-      i += 1
+    index_arr = (0...text.length).find_all do |i|
+      text[i] == '['
     end
-    text_arr.push(text.slice(index_arr[index_arr.size - 1]+1, text.size - index_arr[index_arr.size - 1]-1).delete(' '))
-    return text_arr
+    index_arr = index_arr + index_arr = (0...text.length).find_all do |i|
+      text[i] == ']'
+    end
+    index_arr = checker(index_arr)
+    text_arr = text_arr_builder(index_arr, text)
+    text_arr
   end
 
   def get_winner
+
     agent = Mechanize.new
     page = agent.get(@link)
     text = page.search(".lyrics").text.strip
