@@ -26,7 +26,7 @@ class Parser
 
   def parse_all_battles(criteria = /\w/)
     @battle_links.each do |key, value|
-      parse_battle(key, value,criteria)
+      parse_battle(key, value, criteria)
     end
   end
 
