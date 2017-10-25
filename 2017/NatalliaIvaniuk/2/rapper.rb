@@ -4,7 +4,7 @@ class Rapper
   def initialize(nick, text)
     @nick = nick
     @text = text
-end
+  end
 
   def count_letters
     count = 0
