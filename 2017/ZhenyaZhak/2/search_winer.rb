@@ -1,4 +1,4 @@
-class Search_winer
+class SearchWiner
   # F_B - First Batler, S_B - Second Batler
   # START_B..FINISH_B range where the name is located
   START_B = 0
@@ -65,13 +65,13 @@ class Search_winer
       name_batler[i] = txt_link.split('vs')[i].strip
     end
     if NAME_B != ' '
-      unless name_batler.map(&:downcase).any? {|i| i == NAME_B}
+      unless name_batler.map(&:downcase).any? { |i| i == NAME_B }
         return INCORRECT_VALUE
       end
     end
     txt = page.css('.lyrics p').text
-    count_batler = Search_winer.length_search(txt, name_batler)
-    count = Search_winer.puts_batler(count_batler, name_batler, link.uri)
+    count_batler = SearchWiner.length_search(txt, name_batler)
+    count = SearchWiner.puts_batler(count_batler, name_batler, link.uri)
     count
   end
 
@@ -82,7 +82,7 @@ class Search_winer
       threads = []
       review_links.map do |link|
         threads << Thread.new do
-          count = Search_winer.count_function(link)
+          count = SearchWiner.count_function(link)
           unless count == INCORRECT_VALUE
             w_l[count] += 1
           end
