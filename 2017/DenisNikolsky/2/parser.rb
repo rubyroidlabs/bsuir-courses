@@ -24,18 +24,18 @@ class Parser
     end
   end
 
-  def parse_all_battles
+  def parse_all_battles(criteria = /\w/)
     @battle_links.each do |key, value|
-      parse_battle(key, value)
+      parse_battle(key, value,criteria)
     end
   end
 
-  def parse_one(artist_name)
+  def parse_one(artist_name, criteria = /\w/)
     win = 0
     lose = 0
     @battle_links.each do |key, value|
       next unless key.include?(artist_name)
-      result = parse_battle(key, value)
+      result = parse_battle(key, value, criteria)
       unless result.nil?
         if result.include?(artist_name)
           win += 1
@@ -48,15 +48,15 @@ class Parser
     puts "#{artist_name} wins #{win} times, loses #{lose} times"
   end
 
-  def parse_battle(key, value)
+  def parse_battle(key, value, criteria)
     page = @agent.get(value)
     texts = page.search('.lyrics')[0].text.strip
     first = texts.scan(/Round 1:.+/)[0]
     members = parse_members(key, first)
     texts = texts.split(/Round.+/)
     texts.shift
-    first_mc_letters = count_letters(texts, 0)
-    second_mc_letters = count_letters(texts, 1)
+    first_mc_letters = count_letters(texts, 0, criteria)
+    second_mc_letters = count_letters(texts, 1, criteria)
     first_mc = { name: members[0], letters: first_mc_letters }
     second_mc = { name: members[1], letters: second_mc_letters }
     puts ''
@@ -84,14 +84,14 @@ class Parser
     key
   end
 
-  def count_letters(texts, speech)
+  def count_letters(texts, speech, criteria)
     letters = 0
     round = texts.size / 2
     round.times do
       if texts[speech].nil?
         letters = 0
       else
-        letters += texts[speech].scan(/\w/).size
+        letters += texts[speech].scan(criteria).size
       end
       speech += 2
     end
