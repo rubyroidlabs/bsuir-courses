@@ -17,26 +17,25 @@ class Kotd2
     count = 0
     count_batler = Array.new(2, 0)
     txt = txt.split("\n\n")
-    flag = 0
+    flag = 2
     txt.length.times do |i|
       txt[i] = txt[i].downcase
       count = txt[i].scan(criteria_b).size
       if txt[i][0..30].include? name_batler[0].downcase
         count_batler[0] += count
-        flag = 1
+        flag = 0
         next
       end
       if txt[i][0..30].include? name_batler[1].downcase
         count_batler[1] += count
-        flag = 2
+        flag = 1
         next
       end
       if txt[i].scan(/\w/).size > 150
-        if flag == 1
-          count_batler[0] += count
-        end
         if flag == 2
-          count_batler[1] += count
+          next
+        else
+          count_batler[flag] += count
         end
       end
     end
