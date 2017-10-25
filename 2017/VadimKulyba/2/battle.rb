@@ -12,8 +12,7 @@ class Battle
     loop do
       links = []
       page.links.each do |link|
-        text = link.text.split(' ')
-        links.push(link) if text.include?('vs') || text.include?('Vs')
+        links.push(link) unless link.text.scan(/ vs /i).empty?
       end
       links.each do |link|
         txt = @agent.get(link.href).search('.song_body-lyrics').text.split("\n")
@@ -54,14 +53,18 @@ class Battle
     criteria == '' ? /\w/ : /#{criteria}/
 
     text.each do |line|
-      if line.include?('[Round') && line.include?(name.first + ']')
+      if check(line, name.first)
         key = name.first
-      elsif line.include?(name.last + ']')
+      elsif check(line, name.last)
         key = name.last
       else
         results[key] += line.scan(criteria).size
       end
     end
     results
+  end
+
+  def check(line, string)
+    line.include?('[Round') && line.include?(string + ']')
   end
 end
