@@ -62,8 +62,10 @@ class Kotd2
     name_batler[F_B] = txt_link.split('vs')[F_B].strip
     name_batler[S_B] = txt_link.split('vs')[S_B].strip
     if NAME_B != ' '
-      if NAME_B != name_batler[F_B].downcase && NAME_B != name_batler[S_B].downcase
-        return nil
+      if NAME_B != name_batler[F_B].downcase
+        if NAME_B != name_batler[S_B].downcase
+          return nil
+        end
       end
     end
     txt = page.css('.lyrics p').text
