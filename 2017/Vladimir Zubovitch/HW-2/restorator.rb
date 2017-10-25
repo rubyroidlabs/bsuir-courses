@@ -1,5 +1,4 @@
 require_relative 'test.rb'
-
 class Restorator
   def initialize
     @a = Obhod.new
@@ -22,9 +21,7 @@ class Restorator
       raper2 = mc_round[2]
       rs1 = 0
       rs2 = 0
-      unless mc_round[2].nil?
-       next 
-      else      
+      if mc_round[2].nil?
         mc_round.size.times do |i|
           if raper1 == mc_round[i]
             rs1 += mc_round[i + 1].size
@@ -33,6 +30,8 @@ class Restorator
           end
         end
         otvet << [raper1, raper2, rs1, rs2]
+      else
+        next
       end
     end
     @text = @a.reload
