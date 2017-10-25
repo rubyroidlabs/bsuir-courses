@@ -1,4 +1,5 @@
 require_relative 'test.rb'
+
 class Restorator
   def initialize
     @a = Obhod.new
