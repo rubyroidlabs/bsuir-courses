@@ -2,6 +2,10 @@ require 'mechanize'
 require 'json'
 
 class RapParser
+
+  FIRST_INDEXES = [1, 5, 9].freeze
+  SECOND_INDEXES = [3, 7, 11].freeze
+
   def initialize(song_text, criteria = nil)
     @song_text = song_text
     @criteria = criteria
@@ -12,16 +16,14 @@ class RapParser
   def split_opponents
     rounds = @song_text.scan(/\[Round.*?\]/)
     raise if rounds.size != 6
-    @first_man[:name] = rounds[0].split(':')[1].gsub(/\W+/, ' ').strip
-    @other_man[:name] = rounds[1].split(':')[1].gsub(/\W+/, ' ').strip
+    @first_man[:name] = split_rounds rounds.first
+    @other_man[:name] = split_rounds rounds.last
     texts = @song_text.split(/(\[Round.*?\])/)
     texts.shift
-    first_indexes = [1, 5, 9]
-    second_indexes = [3, 7, 11]
     texts.each_with_index do |text, index|
-      if first_indexes.include? index
+      if FIRST_INDEXES.include? index
         @first_man[:text] << text
-      elsif second_indexes.include? index
+      elsif SECOND_INDEXES.include? index
         @other_man[:text] << text
       end
     end
@@ -31,11 +33,24 @@ class RapParser
 
   def criteria_result
     if @criteria.nil?
-      @first_man[:criteria_count] = @first_man[:text].gsub(/\W/, '').size.to_i
-      @other_man[:criteria_count] = @other_man[:text].gsub(/\W/, '').size.to_i
+      count_letters @first_man
+      count_letters @other_man
     else
-      @first_man[:criteria_count] = @first_man[:text].scan(@criteria).size.to_i
-      @other_man[:criteria_count] = @other_man[:text].scan(@criteria).size.to_i
+      count_words @first_man
+      count_words @other_man
     end
+  end 
+
+  def split_rounds(rounds)
+     rounds.split(':')[1].gsub(/\W+/, ' ').strip
   end
+
+  def count_letters(man)
+    man[:criteria_count] = man[:text].gsub(/\W/, '').size.to_i
+  end
+
+  def count_words(man)
+    man[:criteria_count] = man[:text].scan(@criteria).size.to_i
+  end
+
 end

@@ -63,7 +63,7 @@ class GeniusParser
     end
 
     opponent_num = unless name.nil?
-                     Regexp.new(name) =~ rival_res[0][:name] ? 0 : 1
+                     Regexp.new(name) =~ rival_res.first[:name] ? 0 : 1
                    end
 
     result_score(rival_res, opponent_num)
