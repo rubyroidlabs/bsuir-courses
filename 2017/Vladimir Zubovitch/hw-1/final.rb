@@ -3,8 +3,8 @@
 require 'json'
 
 def base(tree)
-  nodes = []
   list_now = []
+  nodes = []
   tree.each do |node|
     if node.class.to_s != 'Array'
       list_now << node
