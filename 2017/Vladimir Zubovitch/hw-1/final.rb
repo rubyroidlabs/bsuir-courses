@@ -1,20 +1,22 @@
 # !/usr/bin/env ruby
+
 require 'json'
+
 def base(tree)
-  array_of_node = []
+  nodes= []
   list_now = []
   tree.each do |node|
     if node.class.to_s != 'Array'
       list_now << node
     else
-      array_of_node += node
+      nodes += node
     end
   end
   if list_now != []
     @list_arr << list_now
   end
-  unless array_of_node.size.zero?
-    base(array_of_node)
+  unless nodes.size.zero?
+    base(nodes)
   end
 end
 
