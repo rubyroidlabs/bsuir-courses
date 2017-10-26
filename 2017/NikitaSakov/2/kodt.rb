@@ -56,7 +56,7 @@ class Kodt
   end
 
   def self.write_results(names, summ, link_of_battle)
-    puts "#{names.first} vs #{names.last} - #{link_of_battle.uri.to_s}"
+    puts "#{names.first} vs #{names.last} - #{link_of_battle.uri}"
     if summ.first < 100 && summ.last < 100 && ENV['CRITERIA'].nil?
       puts 'The results will be later'
       return
@@ -64,8 +64,8 @@ class Kodt
       puts 'It is impossible to calculate the length.'
       return
     end
-    puts "#{names.first} - #{summ.first.to_s}"
-    puts "#{names.last} - #{summ.last.to_s}"
+    puts "#{names.first} - #{summ.first}"
+    puts "#{names.last} - #{summ.last}"
     if summ.first > summ.last
       puts "#{names.first} WINS"
     elsif summ.last > summ.first
