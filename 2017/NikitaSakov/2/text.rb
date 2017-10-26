@@ -1,10 +1,10 @@
 class Text
   def self.find_names(title, names, key)
     title = title.split(key)
-    names[0] = title[0]
-    title[1] = title[1].split('(')
-    names[1] = title[1][0]
-    names[1].strip!
+    names[0] = title.first
+    title[1] = title.last.split('(')
+    names[1] = title.last.first
+    names.last.strip!
     names
   end
 
