@@ -14,9 +14,9 @@ class Judge
     right_mc = processed_lyrics[:right_mc]
     results = case @criterion
               when nil
-                char_criterion(left_mc, right_mc)
+                criterion(left_mc, right_mc, /\w/)
               when 'fuck'
-                fuck_criterion(left_mc, right_mc)
+                criterion(left_mc, right_mc, /fuck/)
               else
                 raise CriterionError, 'Criterion does not exists'
               end
@@ -49,18 +49,12 @@ class Judge
     { left_mc: left_mc, right_mc: right_mc }
   end
 
-  def char_criterion(left_mc, right_mc)
-    regex = /\w/
-    { left_mc: results(left_mc, regex), right_mc: results(right_mc, regex) }
-  end
-
-  def fuck_criterion(left_mc, right_mc)
-    regex = /fuck|Fuck/
+  def criterion(left_mc, right_mc, regex)
     { left_mc: results(left_mc, regex), right_mc: results(right_mc, regex) }
   end
 
   def singer_names(song_name)
-    delimiter = song_name.match(/ vs. | Vs | vs /)[0] # the first coincidence
+    delimiter = song_name.match(/ vs.? /i)[0] # the first coincidence
     song_name.split delimiter
   end
 

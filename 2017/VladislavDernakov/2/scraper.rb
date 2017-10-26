@@ -24,12 +24,8 @@ class KODTScraper
       json_response = agent.get api_url(page_number)
       response = JSON.parse(json_response.body)['response']
       response['songs'].each do |song|
-        if name
-          if song['title'].include?(name)
-            yield scrape_song agent.get song['url']
-          end
-        else
-          yield scrape_song agent.get song['url']
+        if !name || song['title'].include?(name)
+          yield scrape_song agent.get(song['url'])
         end
       end
       page_number = response['next_page']
