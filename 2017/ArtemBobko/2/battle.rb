@@ -24,7 +24,7 @@ class Battle
     @number1 = count_s(text, 0)
     @number2 = count_s(text, 1)
   end
-  
+
   def output
     if @text.nil? || @rappers.any?(&:nil?)
       puts 'Error'
