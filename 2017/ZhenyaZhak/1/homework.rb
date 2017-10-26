@@ -1,4 +1,7 @@
 require 'json'
+# D_I default indentation
+MAX_LEVEL = 6
+D_I = 2
 
 def steep(value)
   (0...value).each do
@@ -7,23 +10,24 @@ def steep(value)
 end
 
 def decision(kol, level)
+  # 5000 maximum permissible weight of the tree
   if kol > 5000
     puts 'Дерево нужно срубить'
   else
     puts 'Дерево можно Оставить'
   end
-  if level > 6
-    puts 'Дерево обрезанное'
+  if level > MAX_LEVEL
+    puts 'Дерево обрезано'
   else
     puts 'Дерево целое'
   end
 end
 
 def slesh(kol, space)
-  steep(2**space - 2)
+  steep(D_I**space - D_I)
   (0...kol).each do |i|
-    (i % 2).zero? ? (printf ' /') : (printf '\ ')
-    steep(2**(space + 1) - 2)
+    (i % D_I).zero? ? (printf ' /') : (printf '\ ')
+    steep(D_I**(space + 1) - D_I)
   end
   puts ' '
 end
@@ -31,23 +35,24 @@ end
 def rendering(vec, vrem)
   max_level = vrem
   flag = 0
-  steep(2**vrem - 2)
-  vec.length.times do |i|
-    if vec[i].nil?
+  steep(D_I**vrem - D_I)
+  vec.each do |veci|
+    if veci.nil?
       puts ' '
       vrem -= 1
       if vrem.zero?
         break
       end
-      slesh(2**(max_level - vrem), vrem)
-      steep(2**vrem - 2)
+      slesh(D_I**(max_level - vrem), vrem)
+      steep(D_I**vrem - D_I)
       flag = 0
     else
-      flag == 1 ? steep(2**(vrem + 1) - 2) : flag = 1
-      if vec[i] < 10
+      flag == 1 ? steep(D_I**(vrem + 1) - D_I) : flag = 1
+      # since numbers less than 10 require a space
+      if veci < 10
         print ' '
       end
-      print vec[i]
+      print veci
     end
   end
 end
@@ -59,26 +64,22 @@ class Tree
     array_temp = Array.new
     file_name = '/home/zhenya/bsuir-courses/2017/ZhenyaZhak/1/trees/' + name
     tree_string = File.read(file_name)
-    tree_inf = JSON.parse(tree_string)
-    array << tree_inf
+    array << JSON.parse(tree_string)
     loop do
       if array.empty?
         break
       end
-      array.length.times do |i|
-        if array[i][0].is_a? Integer
-          vec << array[i][0]
-        else
-          array_temp << array[i][0]
-        end
-        if array[i][1].is_a? Integer
-          vec << array[i][1]
-        else
-          array_temp << array[i][1]
+      # 0 and 1 is the left and right child
+      array.each do |ari|
+        (0..1).each do |i|
+          if ari[i].is_a? Integer
+            vec << ari[i]
+          else
+            array_temp << ari[i]
+          end
         end
       end
-      array = Array.new
-      array += array_temp
+      array = array_temp
       array_temp = Array.new
       if vec[vec.length - 1].nil?
         next
@@ -88,10 +89,10 @@ class Tree
     end
     kol = 0
     level = 0
-    vec.length.times do |i|
-      vec[i].nil? ? level += 1 : kol += vec[i]
+    vec.each do |veci|
+      veci.nil? ? level += 1 : kol += veci
     end
-    level > 6 ? rendering(vec, 6) : rendering(vec, level)
+    level > MAX_LEVEL ? rendering(vec, MAX_LEVEL) : rendering(vec, level)
     decision(kol, level)
   end
 end
@@ -100,9 +101,9 @@ if ENV['NAME'].nil?
   list = Dir.entries('/home/zhenya/bsuir-courses/2017/ZhenyaZhak/1/trees/')
   list.delete_if { |value| !value.include?('.tree') }
   list.sort!
-  list.length.times do |i|
-    puts '\n' + list[i].to_s
-    Tree.draw(list[i])
+  list.each do |listi|
+    puts "\n#{listi}"
+    Tree.draw(listi)
     print 'Do it! [y/n]'
     per = gets
     if per.include?('n')
