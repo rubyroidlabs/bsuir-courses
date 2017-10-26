@@ -21,5 +21,4 @@ class OutputBatler
 #{name_batler[S_B]} - #{count_batler[S_B]}\n#{str}\n"
     count
   end
-
 end
