@@ -108,7 +108,6 @@ class Tree
     return 'обрезать' if max_depth > MAX_DEPTH
     'оставить'
   end
-
 end
 
 tree_name = ENV['NAME']
