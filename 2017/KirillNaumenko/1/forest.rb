@@ -21,7 +21,7 @@ def run_forest_run(forest_trees)
       abort 'Thanks for visiting our forest'
     else
       puts 'Please typed correct button!'
-      break
+      # break
     end
   end
   puts 'Thanks for visiting our forest'

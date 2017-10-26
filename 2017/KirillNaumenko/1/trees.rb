@@ -26,7 +26,7 @@ def print_tree(name)
     item.count.zero?
   end
   console_tree = []
-  array_tree.each_with_index do |lvl, index|
+  array_tree.each_with_index do |_lvl, index|
     console_line = ''
     slash_line = ''
     lvl = array_tree.count
