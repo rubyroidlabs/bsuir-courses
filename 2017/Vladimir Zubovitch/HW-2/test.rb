@@ -4,7 +4,7 @@ class Obhod
   def initialize
     @page = 1
   end
- 
+
   def reload
     agent = Mechanize.new
     @page_text = []
