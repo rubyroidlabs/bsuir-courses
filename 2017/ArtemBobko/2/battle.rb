@@ -24,23 +24,7 @@ class Battle
     @number1 = count_s(text, 0)
     @number2 = count_s(text, 1)
   end
-
-  def count_c(text, i)
-    sum = 0
-    until text[i].nil?
-      t
-      i += 2
-    end
-    sum
-  end
-
-  def count_cryteria(cryteria)
-    text = @text.split(/\[Round [123].+\]\n/)
-    text.shift
-    @number1 = count_c(text, 0)
-    @number2 = count_c(text, 1)
-  end
-
+  
   def output
     if @text.nil? || @rappers.any?(&:nil?)
       puts 'Error'
