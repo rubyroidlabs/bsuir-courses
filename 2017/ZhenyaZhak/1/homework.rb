@@ -13,7 +13,7 @@ def decision(kol, level)
     puts 'Дерево можно Оставить'
   end
   if level > 6
-    puts 'Дерево обрезано'
+    puts 'Дерево обрезанное'
   else
     puts 'Дерево целое'
   end
