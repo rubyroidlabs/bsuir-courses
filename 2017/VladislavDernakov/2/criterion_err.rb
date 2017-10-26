@@ -1,2 +1,0 @@
-class CriterionError < RuntimeError
-end
