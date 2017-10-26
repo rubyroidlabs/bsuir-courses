@@ -1,26 +1,30 @@
 require_relative './trees'
 
-MAX_LVL_DEPTH = 5
-MAX_NODE_SUM = 5000
-
 STOP = 'n'.freeze
 KEEP_ON = 'y'.freeze
 
 forest_trees =
   Dir.entries('./trees')
-     .delete_if { |filename| filename == '.' || filename == '..' }.sort
-hop = 1
+     .reject { |filename| ['.', '..'].include?(filename) }.sort
+
 puts forest_trees.first
-printer(forest_trees[0])
+print_tree forest_trees.first
 puts 'Do u want to continue? [y/n]'
-while hop != (forest_trees.count - 1)
-  typed_button = gets.chomp
-  if typed_button == KEEP_ON
-    puts forest_trees[hop]
-    printer(forest_trees[hop += 1])
-    puts 'Do u want to continue? [y/n]'
-  elsif typed_button == STOP
-    abort 'Thanks for visiting our forest'
+
+def run_forest_run(forest_trees)
+  forest_trees.each do |tree|
+    typed_button = gets.chomp
+    if typed_button == KEEP_ON
+      puts print_tree tree
+      puts 'Do u want to continue? [y/n]'
+    elsif typed_button == STOP
+      abort 'Thanks for visiting our forest'
+    else
+      puts 'Please typed correct button!'
+      break
+    end
   end
+  puts 'Thanks for visiting our forest'
 end
-puts 'Thanks for visiting our forest'
+
+run_forest_run(forest_trees)
