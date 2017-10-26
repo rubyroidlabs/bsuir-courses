@@ -1,12 +1,10 @@
 require 'rubygems'
 require 'json'
 
-
-
 class Tree
   attr_accessor :left, :right, :data
-  @@max_sum_node = 5000
-  @@max_depth = 5
+  MAX_SUM_NODE = 5000
+  MAX_DEPTH = 5
   def initialize(data = nil)
     @data = data
   end
@@ -106,25 +104,11 @@ class Tree
   end
 
   def make_decision(arr)
-    return 'срубить' if arr.flatten.sum > @@max_sum_node
-    return 'обрезать' if max_depth > @@max_depth
+    return 'срубить' if arr.flatten.sum > MAX_SUM_NODE
+    return 'обрезать' if max_depth > MAX_DEPTH
     'оставить'
   end
 
-  # def sum_nodes
-  #   list = []
-  #   sum = @data
-  #   list << @left
-  #   list << @right
-  #   loop do
-  #     break if list.empty?
-  #     node = list.shift
-  #     sum += node.data
-  #     list << node.left unless node.left.nil?
-  #     list << node.right unless node.right.nil?
-  #   end
-  #   sum
-  # end
 end
 
 tree_name = ENV['NAME']
@@ -154,4 +138,3 @@ elsif all_trees.include?('trees/' + tree_name + '.tree')
 else
   puts 'Данное дерево не растет в данном лесу.'
 end
-puts "\n"
