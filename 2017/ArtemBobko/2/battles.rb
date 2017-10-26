@@ -44,7 +44,7 @@ class Battles
     wins = 0
     loses = 0
     @songs.map do |battle|
-      unless battle.rappers.any? { |r| r.eql? name}
+      unless battle.rappers.any? { |r| r.eql? name }
         next
       end
       output_battle(battle)
