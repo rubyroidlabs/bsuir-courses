@@ -1,12 +1,13 @@
 require 'rubygems'
 require 'json'
 
+
+
 class Tree
   attr_accessor :left, :right, :data
-
+  @@max_sum_node = 5000
+  @@max_depth = 5
   def initialize(data = nil)
-    @left = nil
-    @right = nil
     @data = data
   end
 
@@ -25,7 +26,7 @@ class Tree
   end
 
   def insert_left(node)
-    if node.class == [].class
+    if node.is_a?(Array)
       @left = Tree.new(node[0])
       @left.insert(node[1])
     else
@@ -34,7 +35,7 @@ class Tree
   end
 
   def insert_right(node)
-    if node.class == [].class
+    if node.is_a?(Array)
       @right = Tree.new(node[0])
       @right.insert(node[1])
     else
@@ -104,26 +105,26 @@ class Tree
     list
   end
 
-  def make_decision
-    return 'срубить' if sum_nodes > 5000
-    return 'обрезать' if max_depth > 5
+  def make_decision(arr)
+    return 'срубить' if arr.flatten.sum > @@max_sum_node
+    return 'обрезать' if max_depth > @@max_depth
     'оставить'
   end
 
-  def sum_nodes
-    list = []
-    sum = @data
-    list << @left
-    list << @right
-    loop do
-      break if list.empty?
-      node = list.shift
-      sum += node.data
-      list << node.left unless node.left.nil?
-      list << node.right unless node.right.nil?
-    end
-    sum
-  end
+  # def sum_nodes
+  #   list = []
+  #   sum = @data
+  #   list << @left
+  #   list << @right
+  #   loop do
+  #     break if list.empty?
+  #     node = list.shift
+  #     sum += node.data
+  #     list << node.left unless node.left.nil?
+  #     list << node.right unless node.right.nil?
+  #   end
+  #   sum
+  # end
 end
 
 tree_name = ENV['NAME']
@@ -136,7 +137,7 @@ if tree_name.nil?
     tree = Tree.new
     tree.insert(arr)
     tree.print_tree
-    puts tree.make_decision
+    puts tree.make_decision(arr)
     puts 'Желаете продолжить? [y/n]'
     answer = gets.chomp.downcase
     if answer == 'n'
