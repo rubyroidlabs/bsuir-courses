@@ -84,11 +84,7 @@ class Battle
     text.delete_if { |string| string == '' || string == ' ' }
     text.each do |string|
       if string =~ /\[Round \d: .+\]/
-        if get_name(string) == @first_battler
-          first_battler_text = true
-        else
-          first_battler_text = false
-        end
+        first_battler_text = get_name(string) == @first_battler
       elsif first_battler_text
         @first_battler_rounds << string
       else
