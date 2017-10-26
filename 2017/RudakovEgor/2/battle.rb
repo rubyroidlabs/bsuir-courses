@@ -8,10 +8,10 @@ class Battle
   end
 
   def set_artists(battle_data)
-    name_of_artists = battle_data[:name].split(/[vV][sS].?/)
+    name_of_artists = battle_data[:name].split(/(?i)vs.?/)
     artist1_name = name_of_artists[0].strip
     artist2_name = name_of_artists[1].strip
-    text_of_battle = battle_data[:text].split(/\[[rR]ound [123].+\]/)
+    text_of_battle = battle_data[:text].split(/\[(?i)Round [123].+\]/)
     text_of_battle.shift
     artist1_text = []
     artist2_text = []
@@ -53,10 +53,10 @@ class Battle
   end
 
   def set_battle(battle_data)
-    text_of_battle = battle_data[:text].split(/\[[rR]ound [123].+\]/)
+    text_of_battle = battle_data[:text].split(/\[(?i)Round [123].+\]/)
     text_of_battle.shift
     count_of_rounds = text_of_battle.count
-    if battle_data[:name] =~ /[vV][sS].?/ && count_of_rounds.even? && count_of_rounds != 0
+    if battle_data[:name] =~ /(?i)vs.?/ && count_of_rounds.even? && count_of_rounds != 0
       @artist1, @artist2 = set_artists(battle_data)
     elsif count_of_rounds < 6
       puts "#{battle_data[:name]} - #{battle_data[:url]}"
