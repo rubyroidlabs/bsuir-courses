@@ -36,7 +36,7 @@ class Battles
 
   def put_all_battles
     @songs.map do |battle|
-      process_battle(battle)
+      output_battle(battle)
     end
   end
 
