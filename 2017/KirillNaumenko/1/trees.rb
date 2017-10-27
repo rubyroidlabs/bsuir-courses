@@ -6,24 +6,28 @@ LAYER_UP = 1
 def recursion_for_tree(tree, depth_lvl, last_tree_element)
   if tree.first.is_a? Array
     recursion_for_tree(tree.first, depth_lvl + 1, last_tree_element)
-  else
+  elsif last_tree_element[depth_lvl].is_a? Array
     last_tree_element[depth_lvl].push(tree.first)
+  else
+    last_tree_element[depth_lvl] = [tree.first]
   end
 
   if tree[1].is_a? Array
     recursion_for_tree(tree[1], depth_lvl + 1, last_tree_element)
-  else
+  elsif last_tree_element[depth_lvl].is_a? Array
     last_tree_element[depth_lvl].push(tree[1])
+  else
+    last_tree_element[depth_lvl] = [tree[1]]
   end
 end
 
 def print_tree(name)
   get_tree = File.read("./trees/#{name}")
   parse_tree = JSON.parse(get_tree)
-  array_tree = Array.new(100) { [] }
+  array_tree = []
   recursion_for_tree(parse_tree, 0, array_tree)
   array_tree.delete_if do |item|
-    item.count.zero?
+    !item || item.count.zero?
   end
   console_tree = []
   array_tree.each_with_index do |_lvl, index|
