@@ -28,26 +28,26 @@ class Battles
     threads.each(&:join)
   end
 
-  def output_battle(battle)
-    battle.count_symbols
+  def output_battle(battle, cryteria)
+    battle.count(cryteria)
     puts "#{battle.song['title']} - #{battle.song['url']}"
     battle.output
   end
 
-  def put_all_battles
+  def put_all_battles(cryteria)
     @songs.map do |battle|
-      process_battle(battle)
+      output_battle(battle)
     end
   end
 
-  def put_name_battles(name)
+  def put_name_battles(name, cryteria)
     wins = 0
     loses = 0
     @songs.map do |battle|
       unless battle.rappers.any? { |r| r.eql? name }
         next
       end
-      output_battle(battle)
+      output_battle(battle, cryteria)
       if battle.win?(name)
         wins += 1
       else

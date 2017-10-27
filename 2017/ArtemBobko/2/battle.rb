@@ -8,22 +8,23 @@ class Battle
     @text = song_page.search('.lyrics p').text
   end
 
-  def count_s(text, i)
+  def count_symbols(text, i, cryteria)
     sum = 0
     until text[i].nil?
-      sum += text[i].length
+      sum += (cryteria.nil? ? text[i].length : text[i].scan(/(\W|^)#{cryteria}(\W|$)/i).size)
       i += 2
     end
     sum
   end
 
-  def count_symbols
+  def count(cryteria)
     text = @text.split(/\[Round [123].+\]\n/)
     text.shift
-    text = text.map { |i| i.gsub(/\s+/, '') }
-    @number1 = count_s(text, 0)
-    @number2 = count_s(text, 1)
+    @number1 = count_symbols(text, 0, cryteria)
+    @number2 = count_symbols(text, 1, cryteria)
   end
+
+
 
   def output
     if @text.nil? || @rappers.any?(&:nil?)
