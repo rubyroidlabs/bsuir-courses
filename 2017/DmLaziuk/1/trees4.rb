@@ -1,6 +1,6 @@
 require 'zip'
 require 'json'
-require_relative 'treehash'
+require_relative 'tree_hash'
 
 CUT_SUM = 5000
 TRIM_DEPTH = 5
