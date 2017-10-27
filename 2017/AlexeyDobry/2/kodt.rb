@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'mechanize'
+require 'open-uri'
 require 'pry'
 require 'date'
 require 'json'
@@ -29,6 +30,8 @@ class KODT
           @battle_number +=1
           @author_full_link = @author_link + link.gsub!(' ','-') +'-lyrics'
           @battle_page = @a.get(@author_full_link).content
+          temp = @battle_page.text
+          binding.pry
         end
       end
     end
