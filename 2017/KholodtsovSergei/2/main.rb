@@ -5,7 +5,7 @@ criteria = ENV['CRITERIA']
 
 if name.nil?
   name = 'lyrics'
-  Fight.new.start_figths(name, criteria)
+  Fight.new.start_fights(name, criteria)
 else
-  Fight.new.start_figth(name, criteria)
+  Fight.new.start_fight(name, criteria)
 end

@@ -1,4 +1,4 @@
-require_relative('user')
+require_relative('battler')
 require 'mechanize'
 require 'date'
 require 'json'
@@ -6,10 +6,10 @@ require 'json'
 class Fight
   attr_accessor :first_user, :second_user, :winner, :battle
 
-  def start_figth(name, criteria)
+  def start_fight(name, criteria)
     i = name.downcase.sub(' ', '-')
     page_list = found_page_list(i)
-    user = User.new(name, 'nil')
+    user = Battler.new(name, 'nil')
     page_list.each do |item|
       @battle = item.text.split(' ').join(' ').delete('["').split(' (').shift
       @battle = @battle.sub(' vs ', '-1')
@@ -28,7 +28,7 @@ class Fight
     puts i.to_s + ' times.'
   end
 
-  def start_figths(name, criteria)
+  def start_fights(name, criteria)
     page_list = found_page_list(name)
     page_list.each do |item|
       @battle = item.text.split(' ').join(' ').delete('["').split(' (').shift
@@ -60,9 +60,9 @@ class Fight
       end
     end
     puts @battle
-    user1 = User.new(first_name, text1)
+    user1 = Battler.new(first_name, text1)
     user1.found_criteria(criteria)
-    user2 = User.new(second_name, text2)
+    user2 = Battler.new(second_name, text2)
     user2.found_criteria(criteria)
     if user1.points >= user2.points
       user1.wins += 1
@@ -108,7 +108,7 @@ class Fight
     puts @battle
     user1.text = text1
     user1.found_criteria(criteria)
-    user2 = User.new(second_name, text2)
+    user2 = Battler.new(second_name, text2)
     user2.found_criteria(criteria)
     if user1.points >= user2.points
       user1.wins += 1
