@@ -137,3 +137,4 @@ elsif all_trees.include?('trees/' + tree_name + '.tree')
 else
   puts 'Данное дерево не растет в данном лесу.'
 end
+
