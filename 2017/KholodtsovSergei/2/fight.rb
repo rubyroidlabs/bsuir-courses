@@ -85,5 +85,4 @@ class Fight
     puts winner.name + ' WINS!'
     puts '=====' * 20
   end
-
 end
