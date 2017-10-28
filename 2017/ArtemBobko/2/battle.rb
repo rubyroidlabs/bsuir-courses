@@ -8,10 +8,14 @@ class Battle
     @text = song_page.search('.lyrics p').text
   end
 
+  def count_words(text, word)
+     text.scan(/(\W|^)#{word}(\W|$)/i).size
+  end
+
   def count_symbols(text, i, cryteria)
     sum = 0
     until text[i].nil?
-      sum += if cryteria.nil? then text[i].length else text[i].scan(/(\W|^)#{cryteria}(\W|$)/i).size end
+      sum += (cryteria.nil? ? text[i].length : count_words(text[i], cryteria))
       i += 2
     end
     sum
