@@ -4,82 +4,31 @@ require 'date'
 require 'json'
 
 class Fight
-  attr_accessor :first_user, :second_user, :winner, :battle
+  attr_accessor :left_battler, :right_battler, :battle, :vip_battler
 
-  def start_fight(name, criteria)
-    i = name.downcase.sub(' ', '-')
-    page_list = found_page_list(i)
-    user = Battler.new(name, 'nil')
-    page_list.each do |item|
-      @battle = item.text.split(' ').join(' ').delete('["').split(' (').shift
-      @battle = @battle.sub(' vs ', '-1')
-      @battle = @battle.sub(' Vs ', '-1')
-      @battle = @battle.sub(' vs. ', '-1')
-      name2 = @battle.split('-1').last.to_s
-      if name2.include?(name)
-        name2 = @battle.split('-1').shift
-      end
-      @battle = @battle.sub('-1', ' vs ') + ' - ' + item.href
-      text = item.click.search('.lyrics p').text.to_s
-      text_parse(text, name, name2, criteria, user)
-    end
-    print user.name + ' wins ' + user.wins.to_s + ' times, loses '
-    i = page_list.length - user.wins
-    puts i.to_s + ' times.'
-  end
-
-  def start_fights(name, criteria)
-    page_list = found_page_list(name)
-    page_list.each do |item|
-      @battle = item.text.split(' ').join(' ').delete('["').split(' (').shift
-      @battle = @battle.sub(' vs ', '-1')
-      @battle = @battle.sub(' Vs ', '-1')
-      @battle = @battle.sub(' vs. ', '-1')
-      name1 = @battle.split('-1').shift
-      name2 = @battle.split('-1').last.to_s
-      @battle = @battle.sub('-1', ' vs ') + ' - ' + item.href
-      text = item.click.search('.lyrics p').text.to_s
-      text_parse_n(text, name1, name2, criteria)
+  def start(name, criteria)
+    name_for_parse = found_marks(name)
+    page_list = found_page_list(name_for_parse)
+    found_battlers(page_list, criteria)
+    if @vip_battler
+      print @vip_battler.name + ' wins ' + @vip_battler.wins.to_s
+      loses = page_list.length - @vip_battler.wins
+      puts ' times, loses ' + loses.to_s + ' times.'
     end
   end
 
-  def text_parse_n(text, first_name, second_name, criteria)
-    text1 = ''
-    text2 = ''
-    authors_of_rounds = text.to_s.scan(/\[[^?\]]+\]/)
-    text.to_s.split(/\[[^?\]]+\]/).each do |item|
-      if item == ''
-        next
-      else
-        part = authors_of_rounds.shift.to_s
-        if part.include?(first_name)
-          text1 += item
-        elsif part.include?(second_name)
-          text2 += item
-        end
-      end
+  def found_marks(name)
+    if name
+      @vip_battler = Battler.new(name, '')
+      name.downcase.sub(' ', '-')
+    else
+      'lyrics'
     end
-    puts @battle
-    user1 = Battler.new(first_name, text1)
-    user1.found_criteria(criteria)
-    user2 = Battler.new(second_name, text2)
-    user2.found_criteria(criteria)
-    if user1.points >= user2.points
-      user1.wins += 1
-      puts user1.name + ' WINS!'
-    elsif user2.points > user1.points
-      user2.wins += 1
-      puts user2.name + ' WINS!'
-    end
-    puts '=====' * 20
   end
 
   def found_page_list(name)
     agent = Mechanize.new
     page = agent.get 'https://genius.com/artists/songs?for_artist_page=117146'
-    if name.nil?
-      name = 'lyrics'
-    end
     review_page = page.links_with(href: /#{name}/)
     hidden_page = page.links_with(href: /pagination=true/)
     hidden_page.delete(hidden_page.last)
@@ -89,34 +38,52 @@ class Fight
     review_page
   end
 
-  def text_parse(text, first_name, second_name, criteria, user1)
-    text1 = ''
-    text2 = ''
-    authors_of_rounds = text.to_s.scan(/\[[^?\]]+\]/)
-    text.to_s.split(/\[[^?\]]+\]/).each do |item|
-      if item == ''
-        next
-      else
-        part = authors_of_rounds.shift.to_s
-        if part.include?(first_name)
-          text1 += item
-        else
-          text2 += item
-        end
+  def found_battlers(page_list, criteria)
+    page_list.each do |item|
+      found_battle(item)
+      found_text(item)
+      @left_battler.found_points(criteria)
+      @right_battler.found_points(criteria)
+      found_winner
+    end
+  end
+
+  def found_battle(item)
+    @battle = item.text.split(' ').join(' ').delete('["').split(' (').shift
+    @battle = @battle.split(/vs.|vs|Vs+/)
+    @left_battler = Battler.new(@battle.shift.reverse.lstrip.reverse, '')
+    @right_battler = Battler.new(@battle.shift.lstrip, '')
+    puts @left_battler.name + ' vs ' + @right_battler.name
+  end
+
+  def found_text(battle)
+    text = battle.click.search('.lyrics p').text.to_s
+    authors = text.to_s.scan(/\[[^?\]]+\]/)
+    text.to_s.split(/\[[^?\]]+\]/).reject(&:empty?).each do |item|
+      part = authors.shift.to_s
+      if part.include?(@left_battler.name)
+        @left_battler.text += item
+      elsif part.include?(@right_battler.name)
+        @right_battler.text += item
       end
     end
-    puts @battle
-    user1.text = text1
-    user1.found_criteria(criteria)
-    user2 = Battler.new(second_name, text2)
-    user2.found_criteria(criteria)
-    if user1.points >= user2.points
-      user1.wins += 1
-      puts user1.name + ' WINS!'
-    elsif user2.points > user1.points
-      user2.wins += 1
-      puts user2.name + ' WINS!'
+  end
+
+  def found_winner
+    if left_battler.points >= right_battler.points
+      puts_winner(left_battler)
+    else
+      puts_winner(right_battler)
     end
+  end
+
+  def puts_winner(winner)
+    winner.wins += 1
+    if @vip_battler
+      @vip_battler.wins += 1 if winner.name == @vip_battler.name
+    end
+    puts winner.name + ' WINS!'
     puts '=====' * 20
   end
+
 end

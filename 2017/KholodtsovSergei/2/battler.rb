@@ -7,7 +7,7 @@ class Battler
     @wins = 0
   end
 
-  def found_criteria(criteria)
+  def found_points(criteria)
     @text = @text.delete('\n')
     @points = if criteria
                 @text.downcase.scan(criteria).size
