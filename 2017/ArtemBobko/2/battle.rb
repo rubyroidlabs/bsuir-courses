@@ -11,7 +11,11 @@ class Battle
   def count_symbols(text, i, cryteria)
     sum = 0
     until text[i].nil?
-      sum += (cryteria.nil? ? text[i].length : text[i].scan(/(\W|^)#{cryteria}(\W|$)/i).size)
+      if cryteria.nil?
+        sum += text[i].length
+      else
+        sum += text[i].scan(/(\W|^)#{cryteria}(\W|$)/i).size
+      end
       i += 2
     end
     sum
@@ -20,11 +24,10 @@ class Battle
   def count(cryteria)
     text = @text.split(/\[Round [123].+\]\n/)
     text.shift
+    text = text.map { |i| i.gsub(/\s+/, '') } if cryteria.nil?
     @number1 = count_symbols(text, 0, cryteria)
     @number2 = count_symbols(text, 1, cryteria)
   end
-
-
 
   def output
     if @text.nil? || @rappers.any?(&:nil?)
