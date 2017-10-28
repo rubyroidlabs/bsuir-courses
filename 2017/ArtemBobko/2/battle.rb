@@ -9,7 +9,7 @@ class Battle
   end
 
   def count_words(text, word)
-     text.scan(/(\W|^)#{word}(\W|$)/i).size
+    text.scan(/(\W|^)#{word}(\W|$)/i).size
   end
 
   def count_symbols(text, i, cryteria)
