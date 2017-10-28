@@ -3,18 +3,22 @@ require 'mechanize'
 require 'pry'
 
 class Parser
+  LINK_MAIN = 'https://genius.com/artists/King-of-the-dot'
+  LINK_ALL_SONGS = 'Show all songs by King of the Dot'
+  LINK_BATTLE = 'https:\/\/genius\.com\/King-of-the-dot'
+  LINK_SONGS = '\/artists\/songs\?for_artist_page=117146&'
+  LINK_PAGES = 'id=King-of-the-dot&page=\d+&pagination=true'  
+  CLASS_CSS = '.header_with_cover_art-primary_info-title'
+
   def get_links
     agent = Mechanize.new
-    page = agent.get('https://genius.com/artists/King-of-the-dot')
-    f_page = page.link_with(text: /Show all songs by King of the Dot/).click
-    links = f_page.links_with(href: %r{https:\/\/genius\.com\/King-of-the-dot})
-    link_songs = "\/artists\/songs\?for_artist_page=117146&"
-    link_battle = "id=King-of-the-dot&page=\d+&pagination=true"
-    pages = f_page.links_with(href: /#{link_songs}#{link_battle}/)
+    page = agent.get(LINK_MAIN)
+    f_page = page.link_with(text: /#{LINK_ALL_SONGS}/).click
+    links = f_page.links_with(href: /#{LINK_BATTLE}/)
+    pages = f_page.links_with(href: /#{LINK_SONGS}#{LINK_PAGES}/)
     pages.pop
-    link_song = "https:\/\/genius\.com\/King-of-the-dot"
     pages.each do |n|
-      n.click.links_with(href: /#{link_song}/).each { |p| links << p }
+      n.click.links_with(href: /#{LINK_BATTLE}/).each { |p| links << p }
     end
     links
   end
@@ -24,8 +28,7 @@ class Parser
     data = []
     links.each do |l|
       page_of_battle = l.click
-      class_css = '.header_with_cover_art-primary_info-title'
-      name_of_battle = page_of_battle.search(class_css).text
+      name_of_battle = page_of_battle.search(CLASS_CSS).text
       href = l.href
       text_of_battle = page_of_battle.search('.lyrics').text
       battle_data = { name: name_of_battle, href: href, text: text_of_battle }

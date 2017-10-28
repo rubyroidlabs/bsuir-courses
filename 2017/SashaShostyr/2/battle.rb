@@ -41,9 +41,9 @@ class Battle
   def print_result(data, stats)
     rapper1_count = @rapper1.get_count
     rapper2_count = @rapper2.get_count
-    puts data[:name] + ' - ' + data[:href]
-    puts @rapper1.nickname + ' - ' + rapper1_count.to_s
-    puts @rapper2.nickname + ' - ' + rapper2_count.to_s
+    puts "#{data[:name]} - #{data[:href]}"
+    puts "#{@rapper1.nickname} - #{rapper1_count.to_s}"
+    puts "#{@rapper2.nickname} - #{rapper2_count.to_s}"
     if rapper1_count > rapper2_count
       puts @rapper1.nickname + ' ' + "WINS!!!\n" + '.' * 60
       winner = @rapper1.nickname
