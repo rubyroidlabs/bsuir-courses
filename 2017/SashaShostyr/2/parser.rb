@@ -3,12 +3,12 @@ require 'mechanize'
 require 'pry'
 
 class Parser
-  LINK_MAIN = 'https://genius.com/artists/King-of-the-dot'
-  LINK_ALL_SONGS = 'Show all songs by King of the Dot'
-  LINK_BATTLE = 'https:\/\/genius\.com\/King-of-the-dot'
-  LINK_SONGS = '\/artists\/songs\?for_artist_page=117146&'
-  LINK_PAGES = 'id=King-of-the-dot&page=\d+&pagination=true'  
-  CLASS_CSS = '.header_with_cover_art-primary_info-title'
+  LINK_MAIN = 'https://genius.com/artists/King-of-the-dot'.freeze
+  LINK_ALL_SONGS = 'Show all songs by King of the Dot'.freeze
+  LINK_BATTLE = 'https:\/\/genius\.com\/King-of-the-dot'.freeze
+  LINK_SONGS = '\/artists\/songs\?for_artist_page=117146&'.freeze
+  LINK_PAGES = 'id=King-of-the-dot&page=\d+&pagination=true'.freeze
+  CLASS_CSS = '.header_with_cover_art-primary_info-title'.freeze
 
   def get_links
     agent = Mechanize.new
