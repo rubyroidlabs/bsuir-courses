@@ -2,26 +2,33 @@ require_relative 'rapper'
 
 class Restorator
   attr_accessor :text, :title, :first_mc, :second_mc, :rapper, :skip
+  FIRST_ROUND = 1
+  LAST_ROUND = 3
 
-  def initialize(text, title, rapper = nil)
+  def initialize(text, title, criteria, rapper = nil)
     @text = text.downcase
     @title = title.downcase
     @rapper = rapper
+    @criteria = criteria
     @skip = false
-    names
   end
 
   def names
-    vs_index = @title.index(' vs')
-    @first_mc = Rapper.new(@title[0..vs_index - 1])
-    @title.slice!(0..vs_index + 3)
-    if @title[0].eql? ' '
-      @title.slice!(0)
+    rappers = if @title.index(' vs.').nil?
+                @title.split(' vs ')
+              else
+                @title.split(' vs. ')
+              end
+    unless rappers.last.index(' (').nil?
+      rappers.last.slice!(rappers.last.index(' (')...rappers.last.size)
     end
-    unless @title.index(' (').nil?
-      @title.slice!(@title.index(' (')..@title.size - 1)
-    end
-    @second_mc = Rapper.new(@title)
+    rappers
+  end
+
+  def create_rappers
+    rappers = names
+    @first_mc = Rapper.new(rappers.first)
+    @second_mc = Rapper.new(rappers.last)
     unless @rapper.nil?
       if @first_mc.name.eql? @rapper.name
         @first_mc = @rapper
@@ -29,39 +36,34 @@ class Restorator
         @second_mc = @rapper
       end
     end
-    lyrics
+    self
   end
 
   def lyrics
-    criteria = if ENV['CRITERIA'].nil?
-                 /\w/
-               else
-                 ENV['CRITERIA']
-               end
-    1.upto(3) do |item|
+    FIRST_ROUND.upto(LAST_ROUND) do |item|
       begin
         @text.slice!("[round #{item}: #{@first_mc.name}]")
         index = @text.index("[round #{item}: #{@second_mc.name}]")
-        @first_mc.count += @text.slice!(0..index - 1).scan(criteria).count
+        @first_mc.count += @text.slice!(0..index - 1).scan(@criteria).count
         @text.slice!("[round #{item}: #{@second_mc.name}]")
         index2 = @text.index("[round #{item + 1}: #{first_mc.name}]")
         if index2.nil?
           index2 = @text.size
         end
-        @second_mc.count += @text.slice!(0..index2 - 1).scan(criteria).count
+        @second_mc.count += @text.slice!(0..index2 - 1).scan(@criteria).count
       rescue NoMethodError
         @skip = true
       end
     end
-    result
+    self
   end
 
   def result
     if @skip
       puts 'Can\'t process this battle. Invalid text format.'
     else
-      puts "#{first_mc.name.capitalize} - #{first_mc.count}"
-      puts "#{second_mc.name.capitalize} - #{second_mc.count}"
+      info(@first_mc)
+      info(@second_mc)
       if @first_mc.count > @second_mc.count
         @first_mc.won += 1
         @second_mc.lost += 1
@@ -74,6 +76,11 @@ class Restorator
     end
     @first_mc.count = 0
     @second_mc.count = 0
+    self
+  end
+
+  def info(mc)
+    puts "#{mc.name.capitalize} - #{mc.count}"
   end
 
   def statistics

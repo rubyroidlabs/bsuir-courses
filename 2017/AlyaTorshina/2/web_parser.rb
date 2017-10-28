@@ -3,23 +3,31 @@ require_relative 'rapper'
 require_relative 'restorator'
 
 class WebParser
-  attr_accessor :agent, :links, :battle
+  attr_accessor :agent, :links, :battle, :name, :criteria, :initial_link
+  PAGINATION = 12
 
-  def initialize
+  def initialize(initial_link, name, criteria)
     @agent = Mechanize.new
     @links = []
+    @initial_link = initial_link
+    @name = name
+    @criteria = if criteria.nil?
+                  /\w/
+                else
+                  criteria
+                end
   end
 
   def start
-    page = @agent.get('https://genius.com/artists/King-of-the-dot')
+    page = @agent.get(@initial_link)
     page = page.link_with(class: 'full_width_button').click
-    11.times do |i|
+    PAGINATION.times do |i|
       page.links.each do |link|
         if link.text.include? 'vs'
           @links.push(link)
         end
       end
-      if i < 11
+      if i < PAGINATION - 1
         page = page.link_with(class: 'next_page').click
       end
     end
@@ -27,12 +35,12 @@ class WebParser
   end
 
   def each_battle
-    if ENV['NAME'].nil?
+    if @name.nil?
       @links.each do |link|
         extract(link)
       end
     else
-      my_mc = Rapper.new(ENV['NAME'].downcase)
+      my_mc = Rapper.new(@name.downcase)
       @links.each do |link|
         if link.text.downcase.include? my_mc.name
           @battle = extract(link, my_mc)
@@ -48,10 +56,10 @@ class WebParser
     title = page.at('h1').text
     puts "\n#{title} - #{page.uri}"
     @battle = if my_mc.nil?
-                Restorator.new(text, title)
+                Restorator.new(text, title, @criteria)
               else
-                Restorator.new(text, title, my_mc)
+                Restorator.new(text, title, @criteria, my_mc)
               end
-    @battle
+    @battle.create_rappers.lyrics.result
   end
 end
