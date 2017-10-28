@@ -11,11 +11,7 @@ class Battle
   def count_symbols(text, i, cryteria)
     sum = 0
     until text[i].nil?
-      sum += if cryteria.nil?
-        text[i].length
-      else
-        text[i].scan(/(\W|^)#{cryteria}(\W|$)/i).size
-      end
+      sum += if cryteria.nil? then text[i].length else text[i].scan(/(\W|^)#{cryteria}(\W|$)/i).size end
       i += 2
     end
     sum
