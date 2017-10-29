@@ -76,6 +76,7 @@ class Tree
       add_in_list(list, node_left)
       add_in_list(list, node_right)
       if printed_elem == elements
+        puts
         return if level == depth
         print_branch(elements, spaces)
         level += 1
@@ -109,7 +110,7 @@ end
 
 tree_name = ENV['NAME']
 all_trees = Dir['trees/*.tree']
-all_trees.sort
+all_trees.sort!
 if tree_name.nil?
   all_trees.each do |name|
     puts name
