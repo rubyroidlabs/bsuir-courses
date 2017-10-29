@@ -1,5 +1,5 @@
 require 'json'
-# D_I - default indentation
+# D_I default indentation
 MAX_LEVEL = 6
 D_I = 2
 
