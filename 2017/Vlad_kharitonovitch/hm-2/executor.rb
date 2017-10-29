@@ -1,6 +1,7 @@
 require_relative 'new_job_with_rap.rb'
 @count_pages = 0
-12.times do
+PAGES = 12 # кол-во страниц
+PAGES.times do
   @count_pages += 1
   @count = 0
   size_of_the_array = Parse.new(@count_pages, @count)

@@ -1,4 +1,5 @@
 require_relative 'new_parser.rb'
+SIZE_OF_TEXT = 6 # кол-во куплетов должно быть 6 по условию задачи
 # class for job with rap
 class RapProcessing
   def initialize(count_pages, count)
@@ -10,7 +11,7 @@ class RapProcessing
   end
 
   def winner
-    if @text.size >= 6
+    if @text.size >= SIZE_OF_TEXT
       count_of_first_raper = @text[1].size + @text[3].size + @text[5].size
       count_of_second_raper = @text[2].size + @text[4].size + @text[6].size
       puts "Название батла: #{@name_of_battle}"
