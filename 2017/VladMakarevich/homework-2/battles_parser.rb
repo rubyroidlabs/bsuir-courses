@@ -9,7 +9,8 @@ class BattlesParser
   end
 
   def parse(links_to_battles, search_criteria, required_battler)
-    return unless links_to_battles.to_s.downcase.include? required_battler.name.downcase
+    return unless
+        links_to_battles.to_s.downcase.include? required_battler.name.downcase
     links_to_battles.each do |link|
       battle = link.click
       next unless link.to_s.downcase.include? required_battler.name.downcase
@@ -30,7 +31,7 @@ class BattlesParser
 
   def text_division(battle)
     battle_rounds = battle.search(".#{ROUND_IDENTIFIER}")
-    battle_rounds = battle_rounds.text.split /Round [0-9]: /
+    battle_rounds = battle_rounds.text.split(/Round [0-9]: /)
     battle_rounds.delete_at 0
     battle_rounds
   end
@@ -43,24 +44,22 @@ class BattlesParser
     @first_battler.name = battlers_names[0]
     @second_battler.name = battlers_names[1]
     unless required_battler.name.empty?
-      search_required_battler(required_battler, battlers_names[0], battlers_names[1])
+      search_required_battler(required_battler)
     end
     true
   end
 
   # The method assigns the link of the required battler,
   # to the battler whose name coincides with the search
-  def search_required_battler(required_battler, first_battler, second_battler)
+  def search_required_battler(required_battler)
     req_name = required_battler.name
     first_name = @first_battler.name
     if req_name =~ /(#{first_name})/i || first_name =~ /(#{req_name})/i
       required_battler.name = @first_battler.name
       @first_battler = required_battler
-      @second_battler.name = second_battler
     else
       required_battler.name = @second_battler.name
       @second_battler = required_battler
-      @first_battler.name = first_battler
     end
   end
 
@@ -71,7 +70,7 @@ class BattlesParser
     battlers_names[0].slice!(0, battlers_names[0].reverse!.index(/\w/))
     battlers_names[0].reverse!
     battlers_names[1].slice!(0, battlers_names[1].index(/\w/))
-    battlers_names[1].slice! /([\(\[]Title Match[\)\]])/i
+    battlers_names[1].slice!(/([\(\[]Title Match[\)\]])/i)
     battlers_names[1].slice!(0, battlers_names[1].reverse!.index(/[\w\]\)]/))
     battlers_names[1].reverse!
     battlers_names
@@ -97,7 +96,7 @@ class BattlesParser
       name.slice!(0, name.index(/\w/))
       name.delete!('[]')
       if search_criteria
-        round = round.downcase.scan /(#{search_criteria})/i
+        round = round.downcase.scan(/(#{search_criteria})/i)
       else
         round.gsub!(/\W/, '')
       end
@@ -105,7 +104,8 @@ class BattlesParser
     end
   end
 
-  # The method determines whether the name of the current participant is part of its full name.
+  # The method determines whether the name
+  # of the current participant is part of its full name.
   # Thanks to this method, you can parse feats
   def adding_points(first_name, second_name, name, round)
     if first_name =~ /(#{name})/i || name =~ /(#{first_name})/i
