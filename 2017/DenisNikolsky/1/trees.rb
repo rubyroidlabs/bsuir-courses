@@ -55,8 +55,10 @@ class Tree
   def print_tree
     depth = max_depth
     spaces = 40 * depth
-    puts format("%#{spaces}i", @data)
-    puts format("%#{spaces}s", '/  \\')
+    print_format(spaces, @data.to_s)
+    puts
+    print_format(spaces, '/  \\')
+    puts
     list = [@left, @right]
     print_node(list, depth)
   end
@@ -70,8 +72,8 @@ class Tree
       node_left = list.shift
       node_right = list.shift
       spaces = 40 * depth / elements
-      print format("%#{spaces}i", node_left.data)
-      print format("%#{spaces * 2}i", node_right.data)
+      print_format(spaces, node_left.data.to_s)
+      print_format(spaces * 2, node_right.data.to_s)
       printed_elem += 2
       add_in_list(list, node_left)
       add_in_list(list, node_right)
@@ -89,10 +91,14 @@ class Tree
 
   def print_branch(elements, spaces)
     elements.times do
-      print format("%#{spaces - 1}s ", '/  \\')
+      print_format(spaces - 1, '/  \\')
       print ' ' * (spaces + 1)
     end
     puts
+  end
+
+  def print_format(spaces, data)
+    print format("%#{spaces}s", data)
   end
 
   def add_in_list(list, node)
