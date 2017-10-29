@@ -57,9 +57,7 @@ class Tree
     spaces = 40 * depth
     puts format("%#{spaces}i", @data)
     puts format("%#{spaces}s", '/  \\')
-    list = []
-    list << @left
-    list << @right
+    list = [@left, @right]
     print_node(list, depth)
   end
 
@@ -78,7 +76,6 @@ class Tree
       add_in_list(list, node_left)
       add_in_list(list, node_right)
       if printed_elem == elements
-        puts ''
         return if level == depth
         print_branch(elements, spaces)
         level += 1
@@ -94,7 +91,7 @@ class Tree
       print format("%#{spaces - 1}s ", '/  \\')
       print ' ' * (spaces + 1)
     end
-    puts ''
+    puts
   end
 
   def add_in_list(list, node)
@@ -112,7 +109,7 @@ end
 
 tree_name = ENV['NAME']
 all_trees = Dir['trees/*.tree']
-all_trees.sort!
+all_trees.sort
 if tree_name.nil?
   all_trees.each do |name|
     puts name
@@ -128,7 +125,7 @@ if tree_name.nil?
       break
     end
   end
-elsif all_trees.include?('trees/' + tree_name + '.tree')
+elsif all_trees.include?('trees/'.concat(tree_name).concat('.tree'))
   string = File.open("trees/#{tree_name}.tree", &:read)
   arr = JSON.parse(string)
   tree = Tree.new
