@@ -18,11 +18,11 @@ class Tree
     @str2 = Array.new(@depth, '')
     create_output(@root)
     i = 0
-    @depth.times do 
+    @depth.times do
       puts @str[i]
       puts @str2[i]
       i += 1
-    end  
+    end
     puts conclusion
   end
 
@@ -46,17 +46,17 @@ class Tree
       attributes(node.right)
     end
   end
-  
+
   def left_links(node, left)
     node.left = Node.new(left)
     node.left.root = node
   end
-  
+
   def right_links(node, right)
     node.right = Node.new(right)
     node.right.root = node
   end
-  
+
   def attributes(node)
     check_level(node, node)
     @elements.push([node.level, node.value])
@@ -87,18 +87,18 @@ class Tree
   end
 
   def create_output(node)
-    if node.root != nil
-      if node.root.left.equal? node
-        @str2[node.level - 2] += '|'
-      else
-        @str2[node.level - 2] += "\\ " + '  '
-      end
+    if !node.root.nil?
+      @str2[node.level - 2] += if node.root.left.equal? node
+                                 '|'
+                               else
+                                 '\\  '
+                               end
     end
     @str[node.level - 1] += node.value.to_s + ' '
-    if node.left != nil
+    if !node.left.nil?
       create_output(node.left)
     end
-    if node.right != nil  
+    if !node.right.nil?
       create_output(node.right)
     end
   end
@@ -110,17 +110,16 @@ class Node
   def initialize(value)
     @value = value
     @level = 2
-    # Дополнительные узлы, отличные от корня дерева, имеют уровень >= 2
+    # Additional nodes other than the tree root have a level >= 2
   end
 end
 
 class Console
-  
   def initialize(name)
     @files = []
     @name = name
   end
-  
+
   def tree_output(filename)
     puts 'Дерево: ' + filename
     content = File.read('trees/' + filename)
@@ -128,7 +127,7 @@ class Console
     our_tree = Tree.new(input.shift)
     our_tree.create(input)
   end
-  
+
   def input_output
     Dir['trees/*.tree'].sort.each do |filename|
       filename.slice!(0..5)
