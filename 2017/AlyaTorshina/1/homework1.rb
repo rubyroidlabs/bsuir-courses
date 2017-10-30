@@ -87,7 +87,7 @@ class Tree
   end
 
   def create_output(node)
-    if !node.root.nil?
+    unless node.root.nil?
       @str2[node.level - 2] += if node.root.left.equal? node
                                  '|'
                                else
@@ -95,10 +95,10 @@ class Tree
                                end
     end
     @str[node.level - 1] += node.value.to_s + ' '
-    if !node.left.nil?
+    unless node.left.nil?
       create_output(node.left)
     end
-    if !node.right.nil?
+    unless node.right.nil?
       create_output(node.right)
     end
   end
