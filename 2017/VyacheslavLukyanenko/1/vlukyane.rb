@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'zip'
 require 'json'
+
 def number? string
   true if Float(string) rescue false
 end
@@ -111,23 +112,22 @@ end
 def level_3
   Zip::File.open('trees.zip') do |zip_file|
     zip_file.each do |entry|
-      if !entry.directory?
-        puts entry.name
-        content = entry.get_input_stream.read
-        @a = [[]]
-        @vertex_sum = 0
-        @maximal_depth = 0
-        parsed_json_tree = JSON.parse(content)
-        build_tree_divide_and_conquer(parsed_json_tree, 1)
-        print_tree
-        make_choise
-        puts "\nХотите продолжить? [y/n]: "
-        user_ans = gets.to_s
-        user_ans[0] = user_ans[0].downcase
-        if user_ans[0] == 'n'
-          p 'Спасибо, что были в нашем лесу!'
-          break
-        end
+      next if entry.directory?
+      puts entry.name
+      content = entry.get_input_stream.read
+      @a = [[]]
+      @vertex_sum = 0
+      @maximal_depth = 0
+      parsed_json_tree = JSON.parse(content)
+      build_tree_divide_and_conquer(parsed_json_tree, 1)
+      print_tree
+      make_choise
+      puts "\nХотите продолжить? [y/n]: "
+      user_ans = gets.to_s
+      user_ans[0] = user_ans[0].downcase
+      if user_ans[0] == 'n'
+        p 'Спасибо, что были в нашем лесу!'
+        break
       end
     end
   end
@@ -147,7 +147,7 @@ else
       @maximal_depth = 0
       parsed_json_tree = JSON.parse(content)
       build_tree_divide_and_conquer(parsed_json_tree, 1)
-      print_tree()
+      print_tree
     else
       puts 'Данное дерево тут не растёт!'
     end
