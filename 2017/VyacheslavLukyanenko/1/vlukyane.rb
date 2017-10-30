@@ -1,13 +1,11 @@
 require 'rubygems'
 require 'zip'
 require 'json'
-
 def number? string
   true if Float(string) rescue false
 end
 
 def build_tree_divide_and_conquer(tree_array, level_of_depth)
-
   l = tree_array[0]
   r = tree_array[1]
   if level_of_depth > @maximal_depth
@@ -19,7 +17,6 @@ def build_tree_divide_and_conquer(tree_array, level_of_depth)
     @vertex_sum += l
     level_of_depth += 1
   end
-
   if r.is_a?(Integer)
     if l.is_a?(Integer)
        level_of_depth -= 1
@@ -28,15 +25,12 @@ def build_tree_divide_and_conquer(tree_array, level_of_depth)
     @a[level_of_depth].push([r])
     @vertex_sum += r
   end
-
   if l.is_a?(Array)
     build_tree_divide_and_conquer(l, level_of_depth)
   end
-
   if r.is_a?(Array)
     build_tree_divide_and_conquer(r, level_of_depth)
   end
-
 end
 
 def print_tree
@@ -103,7 +97,6 @@ def print_string(i, n)
   str
 end
 
-
 def make_choise
   puts
   if @vertex_sum > 5000
@@ -114,7 +107,6 @@ def make_choise
     puts 'Оставить его как есть'
   end
 end
-
 
 def level_3
   Zip::File.open('trees.zip') do |zip_file|
@@ -140,10 +132,7 @@ def level_3
     end
   end
 end
-
-
 # =>                                           BEGINNING
-
 ::Zip.sort_entries = true
 puts 'Добро пожаловать в наш лес!'
 name = ENV['NAME']
