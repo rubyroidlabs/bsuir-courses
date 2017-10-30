@@ -2,35 +2,35 @@ require 'rubygems'
 require 'zip'
 require 'json'
 
-def number? string
+def number?(string)
   true if Float(string) rescue false
 end
 
 def build_tree_divide_and_conquer(tree_array, level_of_depth)
-  l = tree_array[0]
-  r = tree_array[1]
+  left_branch = tree_array[0]
+  right_branch = tree_array[1]
   if level_of_depth > @maximal_depth
     @maximal_depth = level_of_depth
   end
-  if l.is_a?(Integer)
+  if left_branch.is_a?(Integer)
     @a.push([])
-    @a[level_of_depth].push([l])
-    @vertex_sum += l
+    @a[level_of_depth].push([left_branch])
+    @vertex_sum += left_branch
     level_of_depth += 1
   end
-  if r.is_a?(Integer)
-    if l.is_a?(Integer)
+  if right_branch.is_a?(Integer)
+    if left_branch.is_a?(Integer)
       level_of_depth -= 1
     end
     @a.push([])
-    @a[level_of_depth].push([r])
-    @vertex_sum += r
+    @a[level_of_depth].push([right_branch])
+    @vertex_sum += right_branch
   end
-  if l.is_a?(Array)
-    build_tree_divide_and_conquer(l, level_of_depth)
+  if left_branch.is_a?(Array)
+    build_tree_divide_and_conquer(left_branch, level_of_depth)
   end
-  if r.is_a?(Array)
-    build_tree_divide_and_conquer(r, level_of_depth)
+  if right_branch.is_a?(Array)
+    build_tree_divide_and_conquer(right_branch, level_of_depth)
   end
 end
 
