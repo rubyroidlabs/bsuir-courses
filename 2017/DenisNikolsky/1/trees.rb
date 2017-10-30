@@ -5,7 +5,6 @@ class Tree
   attr_accessor :left, :right, :data
   MAX_SUM_NODE = 5000
   MAX_DEPTH = 5
-  def initialize(data = nil)
 
   def initialize(data = nil)
     @data = data
