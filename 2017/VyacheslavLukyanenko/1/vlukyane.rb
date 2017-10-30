@@ -2,8 +2,10 @@ require 'rubygems'
 require 'zip'
 require 'json'
 
-def number?(string)
-  true if Float(string) else false
+class String
+  def is_i?
+    /\A[-+]?\d+\z/ === self
+  end
 end
 
 def build_tree_divide_and_conquer(tree_array, level_of_depth)
@@ -53,7 +55,7 @@ def print_slashes(str)
   flag = false
   k = 0
   str.split('').each do |j|
-    if number?(j) && !flag
+    if j.is_i? && !flag
       if k.zero?
         print '/'
         k = 1
@@ -62,7 +64,7 @@ def print_slashes(str)
         k = 0
       end
       flag = true
-    elsif number?(j) && flag
+    elsif j.is_i? && flag
       print ' '
     elsif j == ' '
       print ' '
