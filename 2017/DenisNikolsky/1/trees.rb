@@ -60,7 +60,7 @@ class Tree
     puts
     print_format(spaces, '/  \\')
     puts
-    list = [@left, @right]    
+    list = [@left, @right]
     print_node(list, depth)
   end
 
