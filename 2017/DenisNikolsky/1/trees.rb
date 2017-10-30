@@ -142,4 +142,3 @@ elsif all_trees.include?('trees/'.concat(tree_name).concat('.tree'))
 else
   puts 'Данное дерево не растет в данном лесу.'
 end
-
