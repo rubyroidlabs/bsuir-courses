@@ -20,7 +20,7 @@ def build_tree_divide_and_conquer(tree_array, level_of_depth)
   end
   if r.is_a?(Integer)
     if l.is_a?(Integer)
-       level_of_depth -= 1
+      level_of_depth -= 1
     end
     @a.push([])
     @a[level_of_depth].push([r])
