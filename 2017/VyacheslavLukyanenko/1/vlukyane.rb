@@ -3,7 +3,7 @@ require 'zip'
 require 'json'
 
 def number?(string)
-  true if Float(string) rescue false
+  true if Float(string) else false
 end
 
 def build_tree_divide_and_conquer(tree_array, level_of_depth)
