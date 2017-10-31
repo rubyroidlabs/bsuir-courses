@@ -20,12 +20,12 @@ class BattleParse
       name_pos = round.index(']')
       raper = round[0..name_pos - 1]
       round.slice!(raper + ']')
-      @first_battler_name = if @first_battler_name.to_s.empty?
-                              raper
-                            elsif @first_battler_name != raper &&
-                                  @second_battler_name.to_s.empty?
-                              @second_battler_name = raper
-                            end
+      if @first_battler_name.to_s.empty?
+        @first_battler_name = raper
+      elsif @first_battler_name != raper &&
+            @second_battler_name.to_s.empty?
+        @second_battler_name = raper
+      end
       if raper == @first_battler_name
         @first_count_words += if @criteria.to_s.empty?
                                 round.split.count
@@ -43,11 +43,17 @@ class BattleParse
     if @first_battler_name.to_s.empty? || @second_battler_name.to_s.empty?
       false
     elsif who_win?(@first_count_words, @second_count_words)
-      what_to_do?(@first_battler_name, @second_battler_name,
-                  @first_count_words, @second_count_words, song_properties[:uri])
+      what_to_do?(@first_battler_name,
+                  @second_battler_name,
+                  @first_count_words,
+                  @second_count_words,
+                  song_properties[:uri])
     else
-      what_to_do?(@second_battler_name, @first_battler_name,
-                  @second_count_words, @first_count_words, song_properties[:uri])
+      what_to_do?(@second_battler_name,
+                  @first_battler_name,
+                  @second_count_words,
+                  @first_count_words,
+                  song_properties[:uri])
     end
   end
 
@@ -77,6 +83,7 @@ class BattleParse
   end
 
   def show_wins_count
-    puts "#{@raper_name[:name]} wins #{@raper_name[:wins]} times, loses #{@raper_name[:loses]} times"
+    print "#{@raper_name[:name]} wins #{@raper_name[:wins]} times, loses "
+    puts "#{@raper_name[:loses]} times"
   end
 end
