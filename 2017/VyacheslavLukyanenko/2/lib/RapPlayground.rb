@@ -2,7 +2,6 @@ require 'mechanize'
 require 'json'
 require_relative 'BattleParse'
 
-
 class RapPlayground
   def initialize(name, criteria)
     @name = name
@@ -16,14 +15,14 @@ class RapPlayground
     loop do
       req = 'https://genius.com/api/artists/117146/'
       if @name.nil?
-        req = req + "songs?page=#{last_page}&sort=title"
+        req += "songs?page=#{last_page}&sort=title"
       else
-        req = req + "songs/search?page=#{last_page}&q=#{@name}&sort=title"
+        req += "songs/search?page=#{last_page}&q=#{@name}&sort=title"
       end
       last_page = make_new_battle(agent.get(req).content, agent, new_battler)
       break unless last_page
     end
-    if not @name.nil?
+    if !@name.nil?
       new_battler.show_wins_count
     end
   end

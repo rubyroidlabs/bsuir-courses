@@ -4,7 +4,6 @@ require 'json'
 
 class BattleParse
   def initialize(name, criteria)
-    puts "new RAPER YOPTA"
     @raper_name = { name: name, wins: 0, loses: 0 }
     @criteria = criteria
   end
@@ -21,8 +20,8 @@ class BattleParse
       name_pos = round.index(']')
       raper = round[0..name_pos - 1]
       round.slice!(raper + ']')
-      if @first_battler_name.to_s.empty?
-        @first_battler_name = raper
+      @first_battler_name =  if @first_battler_name.to_s.empty?
+        raper
       elsif @first_battler_name != raper &&
             @second_battler_name.to_s.empty?
         @second_battler_name = raper
@@ -46,19 +45,15 @@ class BattleParse
       false
     elsif who_win?(@first_count_words, @second_count_words)
       what_to_do?(@first_battler_name, @second_battler_name,
-        @first_count_words, @second_count_words, song_properties[:uri])
+                  @first_count_words, @second_count_words, song_properties[:uri])
     else
       what_to_do?(@second_battler_name, @first_battler_name,
-        @second_count_words, @first_count_words, song_properties[:uri])
+                  @second_count_words, @first_count_words, song_properties[:uri])
     end
   end
 
   def who_win?(x, y)
-    if x > y
-      true
-    else
-      false
-    end
+    x > y
   end
 
   def what_to_do?(namef, names, x, y, link)
@@ -66,12 +61,12 @@ class BattleParse
       @raper_name[:wins] += 1
     end
     if (@raper_name[:name].to_s.empty? && @criteria.to_s.empty?) ||
-        @raper_name[:name] == namef
-        puts "#{namef} vs #{names} - #{link}"
-        puts "#{namef} - #{x}"
-        puts "#{names} - #{y}"
-        puts "#{namef} WINS!"
-        puts
+      @raper_name[:name] == namef
+      puts "#{namef} vs #{names} - #{link}"
+      puts "#{namef} - #{x}"
+      puts "#{names} - #{y}"
+      puts "#{namef} WINS!"
+      puts
     elsif @raper_name[:name] == names
       @raper_name[:loses] += 1
       puts "#{namef} vs #{names} - #{link}"
@@ -83,6 +78,6 @@ class BattleParse
   end
 
   def show_wins_count
-      puts "#{@raper_name[:name]} wins #{@raper_name[:wins]} times, loses #{@raper_name[:loses]} times"
+    puts "#{@raper_name[:name]} wins #{@raper_name[:wins]} times, loses #{@raper_name[:loses]} times"
   end
 end
