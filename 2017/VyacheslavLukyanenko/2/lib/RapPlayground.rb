@@ -14,15 +14,15 @@ class RapPlayground
     last_page = 1
     loop do
       req = 'https://genius.com/api/artists/117146/'
-      if @name.nil?
-        req += "songs?page=#{last_page}&sort=title"
-      else
-        req += "songs/search?page=#{last_page}&q=#{@name}&sort=title"
-      end
+      req += if @name.nil?
+               "songs?page=#{last_page}&sort=title"
+             else
+               "songs/search?page=#{last_page}&q=#{@name}&sort=title"
+             end
       last_page = make_new_battle(agent.get(req).content, agent, new_battler)
       break unless last_page
     end
-    if !@name.nil?
+    unless @name.nil?
       new_battler.show_wins_count
     end
   end

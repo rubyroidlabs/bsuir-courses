@@ -20,25 +20,24 @@ class BattleParse
       name_pos = round.index(']')
       raper = round[0..name_pos - 1]
       round.slice!(raper + ']')
-      @first_battler_name =  if @first_battler_name.to_s.empty?
-        raper
-      elsif @first_battler_name != raper &&
-            @second_battler_name.to_s.empty?
-        @second_battler_name = raper
-      end
-
+      @first_battler_name = if @first_battler_name.to_s.empty?
+                              raper
+                            elsif @first_battler_name != raper &&
+                                  @second_battler_name.to_s.empty?
+                              @second_battler_name = raper
+                            end
       if raper == @first_battler_name
-        if @criteria.to_s.empty?
-          @first_count_words += round.split.count
-        else
-          @first_count_words += round.scan(/#{@criteria}/).size
-        end
+        @first_count_words += if @criteria.to_s.empty?
+                                round.split.count
+                              else
+                                round.scan(/#{@criteria}/).size
+                              end
       elsif raper == @second_battler_name
-        if @criteria.to_s.empty?
-          @second_count_words += round.split.count
-        else
-          @second_count_words += round.scan(/#{@criteria}/).size
-        end
+        @second_count_words += if @criteria.to_s.empty?
+                                 round.split.count
+                               else
+                                 round.scan(/#{@criteria}/).size
+                               end
       end
     end
     if @first_battler_name.to_s.empty? || @second_battler_name.to_s.empty?
@@ -61,7 +60,7 @@ class BattleParse
       @raper_name[:wins] += 1
     end
     if (@raper_name[:name].to_s.empty? && @criteria.to_s.empty?) ||
-      @raper_name[:name] == namef
+        @raper_name[:name] == namef
       puts "#{namef} vs #{names} - #{link}"
       puts "#{namef} - #{x}"
       puts "#{names} - #{y}"
