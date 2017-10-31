@@ -60,7 +60,7 @@ class BattleParse
       @raper_name[:wins] += 1
     end
     if (@raper_name[:name].to_s.empty? && @criteria.to_s.empty?) ||
-        @raper_name[:name] == namef
+       @raper_name[:name] == namef
       puts "#{namef} vs #{names} - #{link}"
       puts "#{namef} - #{x}"
       puts "#{names} - #{y}"
