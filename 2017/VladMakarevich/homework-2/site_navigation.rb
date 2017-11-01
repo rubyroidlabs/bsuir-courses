@@ -33,5 +33,6 @@ class SiteNavigation
     puts "Name: #{required_battler.name}"
     puts "Wins: #{required_battler.count_of_wins}\n"
     puts "Defeats: #{required_battler.count_of_defeat}"
+    true
   end
 end
