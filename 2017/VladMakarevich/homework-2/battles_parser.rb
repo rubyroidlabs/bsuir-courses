@@ -96,7 +96,7 @@ class BattlesParser
       name.slice!(0, name.index(/\w/))
       name.delete!('[]')
       if search_criteria
-        round = round.downcase.scan(/(#{search_criteria})/i)
+        round = round.downcase.scan(/#{search_criteria}/i)
       else
         round.gsub!(/\W/, '')
       end
