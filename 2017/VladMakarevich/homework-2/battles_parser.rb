@@ -54,7 +54,7 @@ class BattlesParser
   def search_required_battler(required_battler)
     req_name = required_battler.name
     first_name = @first_battler.name
-    if req_name =~ /(#{first_name})/i || first_name =~ /(#{req_name})/i
+    if req_name =~ (/(#{first_name})/i) || first_name =~ (/(#{req_name})/i)
       required_battler.name = @first_battler.name
       @first_battler = required_battler
     else
@@ -108,9 +108,9 @@ class BattlesParser
   # of the current participant is part of its full name.
   # Thanks to this method, you can parse feats
   def adding_points(first_name, second_name, name, round)
-    if first_name =~ /(#{name})/i || name =~ /(#{first_name})/i
+    if first_name =~ (/(#{name})/i) || name =~ (/(#{first_name})/i)
       @first_battler.points += round.size
-    elsif second_name =~ /(#{name})/i || name =~ /(#{second_name})/i
+    elsif second_name =~ (/(#{name})/i) || name =~ (/(#{second_name})/i)
       @second_battler.points += round.size
     end
   end
