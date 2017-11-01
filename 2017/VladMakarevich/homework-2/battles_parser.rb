@@ -137,6 +137,5 @@ class BattlesParser
       p "Winner: #{@second_battler.name}"
     end
     p '====================================='
-    true
   end
 end
