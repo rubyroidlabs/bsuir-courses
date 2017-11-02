@@ -14,7 +14,7 @@ class Battles
 
   def get_battles(page = 1)
     request = URI(@API_URL)
-    request.query = URI.encode_www_form({page: page})
+    request.query = URI.encode_www_form({ page: page })
     songs = JSON.parse(@agent.get(request).content)
     next_page = songs['response']['next_page']
     songs = songs['response']['songs'].uniq
