@@ -6,7 +6,7 @@ require 'json'
 
 class Fight
   attr_accessor :left_battler, :right_battler, :battle, :vip_battler
-  Home_link = 'https://genius.com/artists/songs?for_artist_page=117146'
+  HOME_LINK = 'https://genius.com/artists/songs?for_artist_page=117146'
 
   def start(name, criteria)
     name_for_parse = found_marks(name)
@@ -30,7 +30,7 @@ class Fight
 
   def found_page_list(name)
     agent = Mechanize.new
-    page = agent.get Home_link
+    page = agent.get HOME_LINK
     review_page = page.links_with(href: /#{name}/)
     hidden_page = page.links_with(href: /pagination=true/)
     hidden_page.delete(hidden_page.last)
