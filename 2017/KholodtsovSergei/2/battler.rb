@@ -14,6 +14,6 @@ class Battler
               else
                 @text.downcase.scan(/[a-zA-Z]/).size
               end
-    puts @name + '-' + @points.to_s
+    puts "#{@name} - #{@points}"
   end
 end

@@ -1,19 +1,21 @@
 require_relative('battler')
 require 'mechanize'
+require 'terminal-size'
 require 'date'
 require 'json'
 
 class Fight
   attr_accessor :left_battler, :right_battler, :battle, :vip_battler
+  Home_link = 'https://genius.com/artists/songs?for_artist_page=117146'
 
   def start(name, criteria)
     name_for_parse = found_marks(name)
     page_list = found_page_list(name_for_parse)
     found_battlers(page_list, criteria)
     if @vip_battler
-      print @vip_battler.name + ' wins ' + @vip_battler.wins.to_s
+      print "#{@vip_battler.name} wins #{@vip_battler.wins} "
       loses = page_list.length - @vip_battler.wins
-      puts ' times, loses ' + loses.to_s + ' times.'
+      puts "times, loses #{loses} times."
     end
   end
 
@@ -28,7 +30,7 @@ class Fight
 
   def found_page_list(name)
     agent = Mechanize.new
-    page = agent.get 'https://genius.com/artists/songs?for_artist_page=117146'
+    page = agent.get Home_link
     review_page = page.links_with(href: /#{name}/)
     hidden_page = page.links_with(href: /pagination=true/)
     hidden_page.delete(hidden_page.last)
@@ -50,10 +52,10 @@ class Fight
 
   def found_battle(item)
     @battle = item.text.split(' ').join(' ').delete('["').split(' (').shift
-    @battle = @battle.split(/vs.|vs|Vs+/)
+    @battle = @battle.split(/vs.?/i)
     @left_battler = Battler.new(@battle.shift.reverse.lstrip.reverse, '')
     @right_battler = Battler.new(@battle.shift.lstrip, '')
-    puts @left_battler.name + ' vs ' + @right_battler.name
+    puts "#{@left_battler.name} vs #{@right_battler.name}"
   end
 
   def found_text(battle)
@@ -82,7 +84,9 @@ class Fight
     if @vip_battler
       @vip_battler.wins += 1 if winner.name == @vip_battler.name
     end
-    puts winner.name + ' WINS!'
-    puts '=====' * 20
+    puts "#{winner.name} WINS!"
+    terminal_size = Terminal.size
+    delimiter = '=' * terminal_size[:width]
+    puts delimiter
   end
 end
