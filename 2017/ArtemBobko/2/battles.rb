@@ -8,30 +8,35 @@ class Battles
   def initialize
     @agent = Mechanize.new
     @songs = []
+    @threads = []
+    @API_URL = 'https://genius.com/api/artists/117146/songs'
+  end
+
+  def get_battles(page = 1)
+    request = URI(@API_URL)
+    request.query = URI.encode_www_form({page: page})
+    songs = JSON.parse(@agent.get(request).content)
+    next_page = songs['response']['next_page']
+    songs = songs['response']['songs'].uniq
+    @threads << Thread.new do
+      songs.map do |song|
+        battle = Battle.new(@agent.get(song['url']), song)
+        @songs << battle
+      end
+    end
+    get_battles(next_page) unless next_page.nil?
   end
 
   def get_all_battles
-    threads = []
-    request = URI 'https://genius.com/api/artists/117146/songs?page=1'
-    puts 'Подождите пока батлы загрузятся.'
-    until request.query.eql? 'page='
-      songs = JSON.parse(@agent.get(request).content)
-      request.query = "page=#{songs['response']['next_page']}"
-      songs = songs['response']['songs'].uniq
-      threads << Thread.new do
-        songs.map do |song|
-          battle = Battle.new(@agent.get(song['url']), song)
-          @songs << battle
-        end
-      end
-    end
-    threads.each(&:join)
+    get_battles
+    @threads.each(&:join)
   end
 
   def output_battle(battle, cryteria)
     battle.count(cryteria)
     puts "#{battle.song['title']} - #{battle.song['url']}"
     battle.output
+    puts
   end
 
   def put_all_battles(cryteria)

@@ -1,3 +1,4 @@
+
 class Battle
   attr_accessor :rappers, :text, :song
 
@@ -12,7 +13,7 @@ class Battle
     text.scan(/(\W|^)#{word}(\W|$)/i).size
   end
 
-  def count_symbols(text, i, cryteria)
+  def count_elements(text, i, cryteria)
     sum = 0
     until text[i].nil?
       sum += (cryteria.nil? ? text[i].length : count_words(text[i], cryteria))
@@ -25,8 +26,8 @@ class Battle
     text = @text.split(/\[Round [123].+\]\n/)
     text.shift
     text = text.map { |i| i.gsub(/\s+/, '') } if cryteria.nil?
-    @number1 = count_symbols(text, 0, cryteria)
-    @number2 = count_symbols(text, 1, cryteria)
+    @number1 = count_elements(text, 0, cryteria)
+    @number2 = count_elements(text, 1, cryteria)
   end
 
   def output
@@ -34,8 +35,7 @@ class Battle
       puts 'Error'
       return
     end
-    print "#{@rappers.first} - #{@number1}\n"
-    print "#{@rappers.last} - #{@number2}\n"
+    puts "#{@rappers.first} - #{@number1}\n#{@rappers.last} - #{@number2}"
     if @number1 > @number2
       puts "#{@rappers.first} WINS!"
     elsif @number1 < @number2
@@ -43,7 +43,6 @@ class Battle
     elsif @number1 == @number2
       puts 'DRAW!'
     end
-    puts
   end
 
   def win?(name)
