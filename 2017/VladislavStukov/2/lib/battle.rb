@@ -30,12 +30,11 @@ class Battle
       break unless block_title
       raper_found = false
       opponents.each do |opponent|
-        if block_title.downcase.include?(opponent[:name].downcase)
-          opponent[:text] << raper_text || ''
-          good_text = good_text.sub("[#{block_title}]#{raper_text}", '')
-          raper_found = true
-          break
-        end
+        next if !block_title.downcase.include?(opponent[:name].downcase)
+        opponent[:text] << raper_text || ''
+        good_text = good_text.sub("[#{block_title}]#{raper_text}", '')
+        raper_found = true
+        break
       end
       unless raper_found
         good_text = good_text.sub("[#{block_title}]#{raper_text}", '')

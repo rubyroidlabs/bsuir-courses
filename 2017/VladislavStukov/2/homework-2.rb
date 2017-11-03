@@ -1,4 +1,4 @@
-Dir["./lib/*.rb"].each { |file| require file }
+Dir['./lib/*.rb'].each { |file| require file }
 
 name = ENV['NAME']
 criteria = ENV['CRITERIA']

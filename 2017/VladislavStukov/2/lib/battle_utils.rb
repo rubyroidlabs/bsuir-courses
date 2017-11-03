@@ -5,7 +5,7 @@ class BattleUtils
   def self.get_battle_by(name = nil)
     agent = Mechanize.new
     next_page = 1
-    begin
+    loop do
       request = 'https://genius.com/api/artists/117146/'
       request += if name
                    "songs/search?page=#{next_page}&q=#{name}&sort=title"
@@ -24,6 +24,7 @@ class BattleUtils
         yield(battle)
       end
       next_page = respond['response']['next_page']
-    end while next_page
+      break unless next_page
+    end
   end
 end
