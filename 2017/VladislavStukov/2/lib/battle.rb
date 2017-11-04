@@ -22,37 +22,37 @@ class Battle
   def run
     opponent_names = parse_title(@title)
     # create opponent hash
-    opponents = opponent_names.map { |opponent_name| { name: opponent_name } }
-    opponents.each { |opponent| opponent[:text] = '' }
+    opponents = opponent_names.map { |name| { name: name, text: '' } }
     good_text = remove_trash(@text)
-    loop do # check for [raper name] block
+
+    loop do
+      # check for [raper name] block
       /\[(?<block_title>[^\[\]]+)\](?<raper_text>[^\[\]]+)(\[|$)/ =~ good_text
-      break unless block_title
-      raper_found = false
-      opponents.each do |opponent|
-        next unless block_title.downcase.include?(opponent[:name].downcase)
-        opponent[:text] << raper_text || ''
-        good_text = good_text.sub("[#{block_title}]#{raper_text}", '')
-        raper_found = true
-        break
-      end
-      unless raper_found
-        good_text = good_text.sub("[#{block_title}]#{raper_text}", '')
-      end
-    end
-    loop do # check for Round 1: raper name block
-      /Round \d: (?<raper_name>[^\n]+)\n/ =~ good_text
-      break unless raper_name
-      good_text = good_text.sub(/Round \d: #{raper_name}\n/, '')
-      raper_text = good_text.split(/Round/).first
-      opponents.each do |opponent|
-        if raper_name.casecmp(opponent[:name]).zero?
-          opponent[:text] << raper_text
+      if block_title
+        opponents.each do |opponent|
+          next unless block_title.downcase.include?(opponent[:name].downcase)
+          opponent[:text] << raper_text || ''
           break
         end
+        good_text = good_text.sub("[#{block_title}]#{raper_text}", '')
       end
-      good_text = good_text.sub(raper_text, '')
+
+      # check for Round 1: raper name block
+      /[^\[]Round \d: (?<raper_name>[^\n]+)\n/ =~ good_text
+      break unless raper_name || block_title
+      if raper_name
+        good_text = good_text.sub(/Round \d: #{raper_name}\n/, '')
+        raper_text = good_text.split(/Round/).first
+        opponents.each do |opponent|
+          if raper_name.casecmp(opponent[:name]).zero?
+            opponent[:text] << raper_text
+            break
+          end
+        end
+        good_text = good_text.sub(raper_text, '')
+      end
     end
+
     # end of check for raper texts
     @result = "#{@title} - #{@url}\n"
     @criteria = /\w/ if @criteria.nil?
