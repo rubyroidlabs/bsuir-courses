@@ -9,11 +9,11 @@ class Battles
     @agent = Mechanize.new
     @songs = []
     @threads = []
-    @api_url = 'https://genius.com/api/artists/117146/songs'
+    @URL= 'https://genius.com/api/artists/117146/songs'
   end
 
   def get_battles(page = 1)
-    request = URI(@API_URL)
+    request = URI(@URL)
     request.query = URI.encode_www_form({ page: page })
     songs = JSON.parse(@agent.get(request).content)
     next_page = songs['response']['next_page']

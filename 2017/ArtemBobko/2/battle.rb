@@ -1,6 +1,6 @@
 
 class Battle
-  attr_accessor :rappers, :text, :song
+  attr_accessor :song, :rappers, :text
 
   def initialize(song_page, song)
     @song = song
@@ -46,12 +46,10 @@ class Battle
   end
 
   def win?(name)
-    if (@number1 > @number2) && (rappers.first == name)
-      true
-    elsif (@number1 < @number2) && (rappers.last == name)
-      true
-    else
-      false
+    if rappers.first == name
+      @number1 > @number2
+    elsif rappers.last == name
+      @number2 > @number1
     end
   end
 end
