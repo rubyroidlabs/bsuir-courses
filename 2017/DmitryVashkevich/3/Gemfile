@@ -1,0 +1,8 @@
+source 'https://rubygems.org'
+
+gem 'pry'
+gem 'mechanize'
+gem 'yandex-translator'
+gem 'activesupport'
+gem 'redis'
+gem 'telegram-bot-ruby'
