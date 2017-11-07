@@ -34,7 +34,7 @@ class CelebrityController
 
   def search_by_exact_name(name)
     return nil if @celebrities.empty?
-    @celebrities.find { |celebrity| celebrity['name'] == name }
+    @celebrities.detect { |celebrity| celebrity['name'] == name }
   end
 
   private
