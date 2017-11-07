@@ -24,11 +24,11 @@ class Bot
 
   private
 
-  def create_answer(bot,message)
+  def create_answer(bot, message)
     coming_outs.each do |name, text|
-      options = {bot: bot, message: message, name: name, text: text}
+      options = { bot: bot, message: message, name: name, text: text }
       next if MessageResponder.new(options).get_answer.nil?
-      return
+      return nil
     end
     text = "#{message.text} не совершал каминг-аута"
     bot.api.send_message(chat_id: message.chat.id, text: text)
