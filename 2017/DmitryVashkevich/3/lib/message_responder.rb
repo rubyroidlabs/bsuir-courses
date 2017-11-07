@@ -39,11 +39,11 @@ class MessageResponder
   def respond_celebrity(name)
     case message.text
       when name # check for an exact match
-        return check_info
-      when ->(mes) {simple_fuzzy_match(mes, name)} # check for similarity
-        return correction
+        check_info
+      when ->(mes) { simple_fuzzy_match(mes, name) } # check for similarity
+        correction
       else
-        return
+        nil
     end
   end
 
@@ -64,16 +64,16 @@ class MessageResponder
 
   def respond_confirmation(confirmation)
     case confirmation.text
-      when '1', 'Да'
+      when  '1', 'Да'
         return check_info
-      when '2', 'Нет'
+      when  '2', 'Нет'
         return
-      when '3', 'Назад'
+      when  '3', 'Назад'
         return "#{message.text} не совершал(а) каминг-аут!"
       else
-        send_message'Ошибка! Введите "Да", "Нет", "Назад" или номер выбра'\
-                         'нного варианта!'
-        return 'error'
+        send_message 'Ошибка! Введите "Да", "Нет", "Назад" или номер выбр'\
+                          'анного варианта!'
+        'error'
     end
   end
 end
