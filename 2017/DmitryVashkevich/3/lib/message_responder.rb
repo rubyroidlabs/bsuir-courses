@@ -22,26 +22,26 @@ class MessageResponder
 
   def respond_message
     case message.text
-      when  '/start'
-        return "#{message.from.first_name} вас приветствует ComingOutBot! Я мо"\
-               "гу определять известных людей, которые совершили каминг-аут.\n"\
-               "Введите имя и фамилию любой знаменитости:"
-      when  '/stop'
-        return "#{message.from.first_name}, я буду тебя ждать! Возвращайся, ес"\
-               "ли захочешь проверить ещё какого-нибудь известного человека."
-      when  ->(mes) { mes.strip.index(' ') } # if the name and surname
-        respond_celebrity(name)
-      else # if only surname
-        respond_celebrity(name.split(' ').last)
+    when '/start'
+      "#{message.from.first_name} вас приветствует ComingOutBot! Я могу опреде"\
+      'лять известных людей, которые совершили каминг-аут.\n'\
+      'Введите имя и фамилию любой знаменитости:'
+    when '/stop'
+      "#{message.from.first_name}, я буду тебя ждать! Возвращайся, если захоче"\
+      'шь проверить ещё какого-нибудь известного человека.'
+    when ->(mes) { mes.strip.index(' ') } # if the name and surname
+      respond_celebrity(name)
+    else # if only surname
+      respond_celebrity(name.split(' ').last)
     end
   end
 
   def respond_celebrity(name)
     case message.text
-      when  name # check for an exact match
-        check_info
-      when  ->(mes) { simple_fuzzy_match(mes, name) } # check for similarity
-        correction
+    when  name # check for an exact match
+      check_info
+    when  ->(mes) { simple_fuzzy_match(mes, name) } # check for similarity
+      correction
     end
   end
 
@@ -62,16 +62,16 @@ class MessageResponder
 
   def respond_confirmation(confirmation)
     case confirmation.text
-      when  '1', 'Да'
-        return check_info
-      when  '2', 'Нет'
-        return
-      when  '3', 'Назад'
-        return "#{message.text} не совершал(а) каминг-аут!"
-      else
-        send_message 'Ошибка! Введите "Да", "Нет", "Назад" или номер выбр'\
-                          'анного варианта!'
-        'error'
+    when  '1', 'Да'
+      check_info
+    when  '2', 'Нет'
+      nil
+    when  '3', 'Назад'
+      "#{message.text} не совершал(а) каминг-аут!"
+    else
+      send_message 'Ошибка! Введите "Да", "Нет", "Назад" или номер выбр'\
+                        'анного варианта!'
+      'error'
     end
   end
 end
