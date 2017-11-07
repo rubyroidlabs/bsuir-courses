@@ -22,28 +22,26 @@ class MessageResponder
 
   def respond_message
     case message.text
-      when '/start'
+      when  '/start'
         return "#{message.from.first_name} вас приветствует ComingOutBot! Я мо"\
                "гу определять известных людей, которые совершили каминг-аут.\n"\
                "Введите имя и фамилию любой знаменитости:"
-      when '/stop'
+      when  '/stop'
         return "#{message.from.first_name}, я буду тебя ждать! Возвращайся, ес"\
                "ли захочешь проверить ещё какого-нибудь известного человека."
-      when ->(mes) {mes.strip.index(' ')}# if the name and surname
-        return respond_celebrity(name)
+      when  ->(mes) { mes.strip.index(' ') } # if the name and surname
+        respond_celebrity(name)
       else # if only surname
-        return respond_celebrity(name.split(' ').last)
+        respond_celebrity(name.split(' ').last)
     end
   end
 
   def respond_celebrity(name)
     case message.text
-      when name # check for an exact match
+      when  name # check for an exact match
         check_info
-      when ->(mes) { simple_fuzzy_match(mes, name) } # check for similarity
+      when  ->(mes) { simple_fuzzy_match(mes, name) } # check for similarity
         correction
-      else
-        nil
     end
   end
 

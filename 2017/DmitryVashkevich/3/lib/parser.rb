@@ -57,14 +57,11 @@ class Parser
   def parser_two_get_info(li)
     li.children.each do |a|
       a.children.each do |x|
-        if a.name == 'a' && x.name == 'text' && x.text.index(/ [А-Я]/)
-          name = Translate.new.translate(x.text)
-          text = li.text.split(/\[..\]|\[...\]/).join
-          add_to_coming_outs(name, text)
-          return nil
-        else
-          next
-        end
+        next unless a.name == 'a' && x.name == 'text' && x.text.index(/ [А-Я]/)
+        name = Translate.new.translate(x.text)
+        text = li.text.split(/\[..\]|\[...\]/).join
+        add_to_coming_outs(name, text)
+        return nil
       end
     end
   end
