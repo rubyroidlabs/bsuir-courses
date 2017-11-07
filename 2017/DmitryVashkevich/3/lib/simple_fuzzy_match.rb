@@ -7,11 +7,11 @@ end
 def normalize_str(s)
   s.
     mb_chars. # convert to multibyte string (ActiveSupport::Multibyte::Chars) - required in Ruby version below 2.4
-    downcase. # lower case for all characters
-    strip. # remove whitespace from start and end
-    split(/\s+/). # RegEx split by spaces into array of words
-    sort. # sort array of words alphabetically
-    join(' ') # join back to string by concatenating with space for further comparison by Levenshtein distance
+  downcase. # lower case for all characters
+  strip. # remove whitespace from start and end
+  split(/\s+/). # RegEx split by spaces into array of words
+  sort. # sort array of words alphabetically
+  join(' ') # join back to string by concatenating with space for further comparison by Levenshtein distance
 end
 
 ### Helper function
@@ -19,21 +19,21 @@ end
 def levenshtein_distance(s, t)
   m = s.length
   n = t.length
-  return m if n == 0
-  return n if m == 0
-  d = Array.new(m+1) {Array.new(n+1)}
+  return m if n.zero?
+  return n if m.zero?
+  d = Array.new(m + 1) { Array.new(n+1) }
 
-  (0..m).each {|i| d[i][0] = i}
-  (0..n).each {|j| d[0][j] = j}
+  (0..m).each { |i| d[i][0] = i }
+  (0..n).each { |j| d[0][j] = j }
   (1..n).each do |j|
     (1..m).each do |i|
-      d[i][j] = if s[i-1] == t[j-1]  # adjust index into string
-                  d[i-1][j-1]       # no operation required
+      d[i][j] = if s[i - 1] == t[j - 1] # adjust index into string
+                  d[i - 1][j - 1] # no operation required
                 else
-                  [ d[i-1][j]+1,    # deletion
-                    d[i][j-1]+1,    # insertion
-                    d[i-1][j-1]+1,  # substitution
-                  ].min
+                  [ d[i - 1][j] + 1,    # deletion
+                    d[i][j - 1] + 1,    # insertion
+                    d[i - 1][j - 1] + 1 ]  # substitution
+                  .min
                 end
     end
   end

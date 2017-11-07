@@ -33,6 +33,4 @@ class Bot
     text = "#{message.text} не совершал каминг-аута"
     bot.api.send_message(chat_id: message.chat.id, text: text)
   end
-
-
 end

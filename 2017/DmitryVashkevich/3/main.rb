@@ -4,6 +4,3 @@ TOKEN = ENV['TELEGRAM_TOKEN']
 
 bot = Bot.new(TOKEN)
 bot.start
-
-
-

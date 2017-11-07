@@ -123,9 +123,4 @@ class Parser
     end
     list_text
   end
-
 end
-
-
-
-

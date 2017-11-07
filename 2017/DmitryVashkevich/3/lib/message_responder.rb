@@ -76,5 +76,4 @@ class MessageResponder
         return 'error'
     end
   end
-
 end

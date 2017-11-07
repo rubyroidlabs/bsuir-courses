@@ -24,6 +24,3 @@ class DataBase
     end
   end
 end
-
-
-
