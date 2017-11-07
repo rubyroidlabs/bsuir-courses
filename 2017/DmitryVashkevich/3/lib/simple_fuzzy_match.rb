@@ -5,12 +5,13 @@ def simple_fuzzy_match(s1, s2)
 end
 
 def normalize_str(s)
-  s.mb_chars # convert to multibyte string (ActiveSupport::Multibyte::Chars)
-    .downcase # lower case for all characters
-    .strip # remove whitespace from start and end
-    .split(/\s+/) # RegEx split by spaces into array of words
-    .sort # sort array of words alphabetically
-    .join(' ') # join back to string by concatenating with space for
+  s.mb_chars.downcase.strip.split(/\s+/).sort.join(' ')
+  # mb_chars - convert to multibyte string (ActiveSupport::Multibyte::Chars)
+  # downcase - lower case for all characters
+  # strip - remove whitespace from start and end
+  # RegEx split by spaces into array of words
+  # sort array of words alphabetically
+  # join back to string by concatenating with space for
   # further comparison by Levenshtein distance
 end
 
