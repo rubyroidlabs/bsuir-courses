@@ -29,18 +29,18 @@ class MessageResponder
       when '/stop'
         return "#{message.from.first_name}, я буду тебя ждать! Возвращайся, ес"\
                "ли захочешь проверить ещё какого-нибудь известного человека."
-      when ->(mes) {mes.strip.index(' ')}# если введено имя и фамилия
+      when ->(mes) {mes.strip.index(' ')}# if the name and surname
         return respond_celebrity(name)
-      else # если введена только фамилия
+      else # if only surname
         return respond_celebrity(name.split(' ').last)
     end
   end
 
   def respond_celebrity(name)
     case message.text
-      when name # проверка на точное совпадение
+      when name # check for an exact match
         return check_info
-      when ->(mes) {simple_fuzzy_match(mes, name)} # проверка на схожесть
+      when ->(mes) {simple_fuzzy_match(mes, name)} # check for similarity
         return correction
       else
         return
@@ -56,7 +56,7 @@ class MessageResponder
 
   def correction
     send_message "Возможно вы имели в виду #{name}\n1.Да\n2.Нет\n3.Назад"
-    bot.listen do |confirmation| # подтверждение
+    bot.listen do |confirmation|
       answer = respond_confirmation(confirmation)
       return answer unless answer == 'error'
     end

@@ -4,7 +4,6 @@ require_relative 'simple_fuzzy_match'
 require_relative 'translate'
 
 class Parser
-
   def initialize
     @coming_outs = {}
   end
@@ -30,9 +29,9 @@ class Parser
 
   private
 
-  # Исключаем повторение записи одной и той же знаменитости,
-  # перезыписываем данные в случае совпадения
-  def add_to_coming_outs (name, text)
+  # Exclude repetition of a record
+  # Overwrite data in case of a match
+  def add_to_coming_outs(name, text)
     @coming_outs[name] = text
     @coming_outs.each_key do |key|
       next if key == name
@@ -63,6 +62,8 @@ class Parser
           text = li.text.split(/\[..\]|\[...\]/).join
           add_to_coming_outs(name, text)
           return nil
+        else
+          next
         end
       end
     end

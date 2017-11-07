@@ -7,11 +7,11 @@ end
 def normalize_str(s)
   s.mb_chars. # convert to multibyte string (ActiveSupport::Multibyte::Chars)
     downcase. # lower case for all characters
-      strip. # remove whitespace from start and end
-        split(/\s+/). # RegEx split by spaces into array of words
-          sort. # sort array of words alphabetically
-            join(' ') # join back to string by concatenating with space for
-                    # further comparison by Levenshtein distance
+    strip. # remove whitespace from start and end
+    split(/\s+/). # RegEx split by spaces into array of words
+    sort. # sort array of words alphabetically
+    join(' ') # join back to string by concatenating with space for
+  # further comparison by Levenshtein distance
 end
 
 ### Helper function
@@ -30,8 +30,8 @@ def levenshtein_distance(s, t)
       d[i][j] = if s[i - 1] == t[j - 1] # adjust index into string
                   d[i - 1][j - 1] # no operation required
                 else
-                  [d[i - 1][j] + 1,     # deletion
-                   d[i][j - 1] + 1,    # insertion
+                  [d[i - 1][j] + 1, # deletion
+                   d[i][j - 1] + 1, # insertion
                    d[i - 1][j - 1] + 1].min  # substitution
                 end
     end
