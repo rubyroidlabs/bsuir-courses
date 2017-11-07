@@ -62,7 +62,7 @@ class Parser
           name = Translate.new.translate(x.text)
           text = li.text.split(/\[..\]|\[...\]/).join
           add_to_coming_outs(name, text)
-          return
+          return nil
         end
       end
     end
@@ -71,7 +71,7 @@ class Parser
   def parser_tree(page)
     hash_coming_outs = parser_tree_get_info(page)
     hash_coming_outs.each do |name, text|
-      add_to_coming_outs(name,text)
+      add_to_coming_outs(name, text)
     end
   end
 
@@ -82,9 +82,9 @@ class Parser
       if element.name == 'h3'
         name = Translate.new.translate(element.text)
         hash_coming_outs[name] = ''
-      elsif element.name == 'p'|| element.name == 'blockquote'
+      elsif element.name == 'p' || element.name == 'blockquote'
         if element.child.name == 'text' && name
-        hash_coming_outs[name] << ' ' << element.text
+          hash_coming_outs[name] << ' ' << element.text
         end
       end
     end
@@ -95,7 +95,7 @@ class Parser
     list_name = parser_four_get_name(page)
     list_text = parser_four_get_text(page)
     list_name.each_index do |i|
-      add_to_coming_outs(Translate.new.translate(list_name[i]),list_text[i])
+      add_to_coming_outs(Translate.new.translate(list_name[i]), list_text[i])
     end
   end
 
