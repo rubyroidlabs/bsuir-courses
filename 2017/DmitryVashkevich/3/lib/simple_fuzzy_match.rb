@@ -5,12 +5,12 @@ def simple_fuzzy_match(s1, s2)
 end
 
 def normalize_str(s)
-  s.mb_chars. # convert to multibyte string (ActiveSupport::Multibyte::Chars)
-    downcase. # lower case for all characters
-    strip. # remove whitespace from start and end
-    split(/\s+/). # RegEx split by spaces into array of words
-    sort. # sort array of words alphabetically
-    join(' ') # join back to string by concatenating with space for
+  s.mb_chars # convert to multibyte string (ActiveSupport::Multibyte::Chars)
+    .downcase # lower case for all characters
+    .strip # remove whitespace from start and end
+    .split(/\s+/) # RegEx split by spaces into array of words
+    .sort # sort array of words alphabetically
+    .join(' ') # join back to string by concatenating with space for
   # further comparison by Levenshtein distance
 end
 
@@ -21,7 +21,7 @@ def levenshtein_distance(s, t)
   n = t.length
   return m if n.zero?
   return n if m.zero?
-  d = Array.new(m + 1) { Array.new(n+1) }
+  d = Array.new(m + 1) { Array.new(n + 1) }
 
   (0..m).each { |i| d[i][0] = i }
   (0..n).each { |j| d[0][j] = j }
@@ -32,7 +32,7 @@ def levenshtein_distance(s, t)
                 else
                   [d[i - 1][j] + 1, # deletion
                    d[i][j - 1] + 1, # insertion
-                   d[i - 1][j - 1] + 1].min  # substitution
+                   d[i - 1][j - 1] + 1].min # substitution
                 end
     end
   end
