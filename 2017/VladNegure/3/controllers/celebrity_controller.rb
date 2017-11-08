@@ -8,7 +8,7 @@ class CelebrityController
   attr_reader :celebrities
 
   def initialize
-    @celebrities = []
+    @celebrities = read_from_file
     update
   end
 
@@ -40,6 +40,7 @@ class CelebrityController
   private
 
   def read_from_file
+    return [] if File.zero? DB_PATH
     JSON.parse(File.open(DB_PATH, 'r', &:read))
   end
 
