@@ -1,8 +1,8 @@
 require 'mechanize'
 
 class Parse
-  IMDB_LINK = 'http://www.imdb.com/list/ls072706884/'
-  FILE = 'status_list'
+  IMDB_LINK = 'http://www.imdb.com/list/ls072706884/'.freeze
+  FILE = 'status_list'.freeze
 
   def self.imdb
     agent = Mechanize.new

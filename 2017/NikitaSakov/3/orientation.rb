@@ -1,5 +1,5 @@
 class Orientation
-  FILE = 'status_list'
+  FILE = 'status_list'.freeze
   def self.by_full_name(person)
     file = File.open(FILE)
     file.each do |line|
