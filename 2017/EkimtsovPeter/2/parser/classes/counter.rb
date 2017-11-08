@@ -21,7 +21,7 @@ class Counter
       text_second.delete!(' ', '')
       @second_count += text_second.length
     end
-    Console.new(@names, @link, @first_count, @second_count, winner).display_results
+    Console.new(@names, @link, @first_count, @second_count, winner).display_res
   end
 
   def condition_counter
@@ -32,7 +32,7 @@ class Counter
     @text.even_values.each do |text_second|
       text_second.split(' ').each { |word| @second_count += 1 if word == @word }
     end
-    Console.new(@names, @link, @first_count, @second_count, winner).display_results
+    Console.new(@names, @link, @first_count, @second_count, winner).display_res
   end
 
   def wins_loses_counter
