@@ -1,10 +1,10 @@
 require 'mechanize'
-require_relative 'classes/linker'
+require_relative 'classes/grabber'
 require_relative 'classes/array'
-require_relative 'classes/hash_output'
+require_relative 'classes/names_texts_splitter'
+require_relative 'classes/console'
+require_relative 'classes/counter'
 
-hsh_links = Linker.new
-hsh_links.page_get
-output_hsh = HashOutput.new(hsh_links.arr_links)
-output_hsh.hash_complete
-output_hsh.wins_loses_output
+links = Grabber.new
+names_and_texts = NamesTextsSplitter.new(links.grab)
+names_and_texts.complete_names_links
