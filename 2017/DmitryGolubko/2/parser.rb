@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'net/http'
 require 'json'
+require 'uri'
 require_relative 'battle'
 
 class Parser
@@ -10,8 +11,10 @@ class Parser
   def self.get_battles(link)
     page_number = 1
     @battles = Array.new
+    @request = URI(link)
     while page_number
-      page = @agent.get("#{link}?page=#{page_number}")
+      @request.query = URI.encode_www_form({page: page_number})
+      page = @agent.get(@request)
       json_data = JSON.parse(page.body)
       json_response = json_data['response']['songs']
       json_response.each do |battle|
@@ -54,6 +57,6 @@ class Parser
         loses += 1
       end
     end
-    puts battler + ' wins ' + wins.to_s + 'times,loses ' + loses.to_s + 'times'
+    puts "#{battler} wins #{wins.to_s} times, loses #{loses.to_s} times"
   end
 end

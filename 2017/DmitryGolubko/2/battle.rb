@@ -1,7 +1,7 @@
 class Battle
   attr_accessor :first_battler, :second_battler,
-                :first_battler_rounds, :second_battler_rounds
-  attr_accessor :name, :link, :text, :winner
+                :first_battler_rounds, :second_battler_rounds,
+                :name, :link, :text, :winner
 
   private
 
@@ -26,20 +26,20 @@ class Battle
   end
 
   def choose_winner(word)
-    puts @name + ' - ' + link
+    puts "#{@name} - #{link}"
     unless word.nil?
       first_battler_words = calculate_words(@first_battler_rounds, word)
       second_battler_words = calculate_words(@second_battler_rounds, word)
-      puts @first_battler + ' - ' + first_battler_words.to_s
-      puts @second_battler + ' - ' + second_battler_words.to_s
+      puts "#{@first_battler} - #{first_battler_words.to_s}"
+      puts "#{@second_battler} - #{second_battler_words.to_s}"
       if first_battler_words > second_battler_words
         @winner = @first_battler
-        puts @winner + ' WINS!'
+        puts "#{@winner} WINS!"
         puts "\n\n"
         return
       elsif first_battler_words < second_battler_words
         @winner = @second_battler
-        puts @winner + ' WINS!'
+        puts "#{@winner} WINS!"
         puts "\n\n"
         return
       else
@@ -48,14 +48,14 @@ class Battle
     end
     first_battler_letters = calculate_letters(@first_battler_rounds)
     second_battler_letters = calculate_letters(@second_battler_rounds)
-    puts @first_battler + ' - ' + first_battler_letters.to_s
-    puts @second_battler + ' - ' + second_battler_letters.to_s
+    puts "#{@first_battler} - #{first_battler_letters.to_s}"
+    puts "#{@second_battler} - #{second_battler_letters.to_s}"
     if first_battler_letters > second_battler_letters
       @winner = @first_battler
-      puts @winner + ' WINS!'
+      puts "#{@winner} WINS!"
     elsif first_battler_letters < second_battler_letters
       @winner = @second_battler
-      puts @winner + ' WINS!'
+      puts "#{@winner} WINS!"
     else
       puts 'DRAW!'
     end
@@ -70,6 +70,7 @@ class Battle
     @first_battler_rounds = Array.new
     @second_battler_rounds = Array.new
     get_members
+    # @reppers = [Hash.new {|get_members[0], words| get_members[0][words]=""}, Hash.new {|get_members[1], words| get_members[0][words]=""}]
   end
 
   def get_members
@@ -81,7 +82,7 @@ class Battle
     text.each do |string|
       string.delete!("\n")
     end
-    text.delete_if { |string| string == '' || string == ' ' }
+    text.delete_if { |string| string.strip.empty?}
     text.each do |string|
       if string =~ /\[Round \d: .+\]/
         first_battler_text = get_name(string) == @first_battler
@@ -95,6 +96,6 @@ class Battle
   end
 
   def battler?(battler)
-    first_battler == battler || second_battler == battler
+    [first_battler, second_battler].any? {|mc| mc == battler }
   end
 end
