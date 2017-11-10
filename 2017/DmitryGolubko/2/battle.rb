@@ -63,8 +63,7 @@ class Battle
   end
 
   public
-
-
+  
   def initialize(name, link)
     @name = name
     @link = link
@@ -96,6 +95,6 @@ class Battle
   end
 
   def battler?(battler)
-    [first_battler, second_battler].any? {|mc| mc == battler }
+    [first_battler, second_battler].any? { |mc| mc == battler }
   end
 end

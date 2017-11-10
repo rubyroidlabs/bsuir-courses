@@ -14,7 +14,6 @@ unless battler.nil?
   battles = Parser.get_battles_by_name(battler)
 end
 Parser.get_content(battles, word_to_count)
-
 unless battler.nil?
   Parser.count_wins(battles, battler)
 end
