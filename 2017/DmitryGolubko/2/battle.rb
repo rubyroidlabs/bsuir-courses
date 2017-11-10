@@ -63,7 +63,7 @@ class Battle
   end
 
   public
-  
+
   def initialize(name, link)
     @name = name
     @link = link
