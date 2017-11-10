@@ -31,7 +31,7 @@ class Base
           bot.api.send_message(chat_id: message.chat.id, text: 'Да')
         else
           s = 'Не найдено данных'
-          bot.api.send_message(chat_id: message.chat.id, text:s)
+          bot.api.send_message(chat_id: message.chat.id, text:s )
         end
       end
     end
