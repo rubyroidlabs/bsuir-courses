@@ -7,9 +7,7 @@ require_relative 'battle'
 require_relative 'parser'
 
 battler = ENV['NAME']
-battler = 'DNA'
 word_to_count = ENV['CRITERIA']
-word_to_count = nil
 
 battles = Parser.get_battles('https://genius.com/api/artists/117146/songs')
 unless battler.nil?

@@ -13,7 +13,7 @@ class Parser
     @battles = Array.new
     @request = URI(link)
     while page_number
-      @request.query = URI.encode_www_form({page: page_number})
+      @request.query = URI.encode_www_form(page: page_number)
       page = @agent.get(@request)
       json_data = JSON.parse(page.body)
       json_response = json_data['response']['songs']
@@ -57,6 +57,6 @@ class Parser
         loses += 1
       end
     end
-    puts "#{battler} wins #{wins.to_s} times, loses #{loses.to_s} times"
+    puts "#{battler} wins #{wins} times, loses #{loses} times"
   end
 end
