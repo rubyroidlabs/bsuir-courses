@@ -9,7 +9,7 @@ class Battles
     @agent = Mechanize.new
     @songs = []
     @threads = []
-    @URL= 'https://genius.com/api/artists/117146/songs'
+    @URL = 'https://genius.com/api/artists/117146/songs'
   end
 
   def get_battles(page = 1)
