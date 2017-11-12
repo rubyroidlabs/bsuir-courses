@@ -16,9 +16,11 @@ class Answer
     else
       result = []
       @data.each { |actor| result << actor if actor.include? @message.text }
-      text = if result.empty? 'Не найдено данных'
-             else 'Да'
-             end
+      if result.empty?
+        text = 'Не найдено данных'
+      else
+        text = 'Да'
+      end
     end
     @bot.api.send_message(chat_id: @message.chat.id, text: text.to_s)
   end
