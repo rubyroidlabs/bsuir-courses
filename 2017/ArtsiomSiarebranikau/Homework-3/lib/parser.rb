@@ -1,10 +1,10 @@
 require 'mechanize'
 
 class Parser
-  IMDB_LINK = 'http://www.imdb.com/list/ls072706884/'.freeze
+  IMDB_LIST = 'http://www.imdb.com/list/ls072706884/'.freeze
 
   def initialize
-    @page = Mechanize.new.get(IMDB_LINK)
+    @page = Mechanize.new.get(IMDB_LIST)
   end
 
   def get_data
