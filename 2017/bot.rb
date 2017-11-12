@@ -1,7 +1,7 @@
+# bot class
 require 'telegram_bot'
 require_relative 'translit'
 require_relative 'parser'
-# bot class
 class Bot
   attr_accessor :bot
   attr_accessor :command
