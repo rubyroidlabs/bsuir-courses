@@ -1,12 +1,31 @@
-class ReplyMarkupFormatter
-  attr_reader :array
+require './lib/reply_markup_formatter'
 
-  def initialize(array)
-    @array = array
+class MessageSender
+  attr_reader :bot
+  attr_reader :text
+  attr_reader :chat
+  attr_reader :answers
+
+  def initialize(options)
+    @bot = options[:bot]
+    @text = options[:text]
+    @chat = options[:chat]
+    @answers = options[:answers]
   end
 
-  def get_markup
-    Telegram::Bot::Types::ReplyKeyboardMarkup
-      .new(keyboard: [array], one_time_keyboard: true)
+  def send
+    if reply_markup
+      bot.api.send_message(chat_id: chat.id, text: text, reply_markup: markup)
+    else
+      bot.api.send_message(chat_id: chat.id, text: text)
+    end
+  end
+
+  private
+
+  def markup
+    if answers
+      ReplyMarkupFormatter.new(answers).get_markup
+    end
   end
 end

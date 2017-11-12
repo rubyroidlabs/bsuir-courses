@@ -29,11 +29,11 @@ class MessageResponder
     answer_with_message "До свидания, #{message.from.first_name}"
   end
 
-  def gay_or_not(name)
+  def gay_or_not
     if @data.include?(@message.text)
-      bot.api.sendMessage(chat_id: message.chat.id, text: "Каминг-аут совершен!")
+      bot.api.sendMessage(chat_id: message.chat.id, text: "Каминг-аут совершен")
     else
-      bot.api.sendMessage(chat_id: message.chat.id, text: "Даннных о нетрадиционной сексуальной ориентации не найдено")
+      bot.api.sendMessage(chat_id: message.chat.id, text: "Нет данных")
     end
   end
 
