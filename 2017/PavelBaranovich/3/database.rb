@@ -14,7 +14,7 @@ class Database
   end
 
   def upload_to_file
-    File.open('database.txt', 'w') do |file| 
+    File.open('database.txt', 'w') do |file|
       file.puts @info
     end
   end

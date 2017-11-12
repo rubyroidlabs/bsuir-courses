@@ -27,10 +27,10 @@ class MessageResponder
   private
 
   def search_in_database(text)
-    unless @database.nil?
-      return @database.include?(text)
+    if @database.nil?
+      false
     else
-      return false
+      @database.include?(text)
     end
   end
 

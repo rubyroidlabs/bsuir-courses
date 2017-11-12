@@ -10,7 +10,7 @@ database.load_from_file('database.txt')
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    options = {bot: bot, message: message}
+    options = { bot: bot, message: message }
 
     MessageResponder.new(options, database.info).respond
   end
