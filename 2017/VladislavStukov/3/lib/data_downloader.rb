@@ -25,4 +25,3 @@ class DataDownloader
     result
   end
 end
-

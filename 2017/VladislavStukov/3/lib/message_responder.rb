@@ -12,21 +12,19 @@ class MessageResponder
   end
 
   def respond
-    on /^\/start/ do
+    on(%r{^\/start}) do
       answer_with_message('Дароу')
     end
 
-    on /^\/stop/ do
+    on(%r{^\/stop}) do
       answer_with_message('Прощай')
     end
 
-    on /^\/list/ do
+    on(%r{^\/list}) do
       answer_with_message(@redis.all_names.join("\n"))
-
-
     end
 
-    on /^\w+(\s\w+){,2}$/ do |name|
+    on(/^\w+(\s\w+){,2}$/) do |name|
       result = SearchEngine.new(@redis).search(name.to_s)
       if result.is_a? String
         text = "#{result}\n"
@@ -36,7 +34,7 @@ class MessageResponder
         answer_with_message(text)
       elsif result.any?
         text = "Вы имели ввиду кого-то из них?\n"
-        result.each { |name| text << "#{name}\n" }
+        result.each { |lname| text << "#{lname}\n" }
         answer_with_message(text)
       else
         answer_with_message('Я его не знаю :(')

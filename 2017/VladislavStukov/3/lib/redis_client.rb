@@ -4,7 +4,7 @@ require_relative 'data_downloader.rb'
 
 class RedisClient < Redis
 
-  DUMP_FILE = './data/persons.rdb'
+  DUMP_FILE = './data/persons.rdb'.freeze
 
   def refresh_data
     if File.file?(DUMP_FILE)
@@ -57,11 +57,9 @@ class RedisClient < Redis
     sadd('nameset', persons.keys)
   end
 
-  def dump_persons(file)
+  def dump_persons(filename)
     dir = DUMP_FILE.sub(%r{\/[^\/]+$}, '')
-    FileUtils::mkdir_p dir unless File.exists?(dir)
-    File.open(file, 'w') { |file| file.write(dump('persons')) }
+    FileUtils.mkdir_p dir unless File.exists?(dir)
+    File.open(filename, 'w') { |file| file.write(dump('persons')) }
   end
 end
-
-# binding.pry
