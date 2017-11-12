@@ -2,8 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require_relative 'celebrity'
 
-class Parse_newnownext
-
+class Parsenewnownext
   attr_reader :doc, :html
 
   def initialize(link)
