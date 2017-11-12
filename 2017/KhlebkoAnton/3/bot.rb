@@ -6,25 +6,28 @@ require 'fuzzy_match'
 require_relative 'get_came_out.rb'
 require_relative 'user.rb'
 
-ANSWER = "I don't know he's/she's(Or whatever u've entered) sexuality, buddy".freeze
 class Bot
   def initialize(token)
     @token = token
-    parser = Parse_lgbt.new.go_and_find
+    Parse_lgbt.new.go_and_find
     my_hash = File.read('selebrities_hash.txt').to_s
-    @base_hash = eval(my_hash)
+    @base_hash = JSON.parse(my_hash)
   end
 
   def work
     Telegram::Bot::Client.run(@token) do |bot|
       puts 'Bot started!'
       bot.listen do |message|
-        user = User.new(message.from.first_name, message.from.last_name, message.chat.id)
+        user = User.new(message.from.first_name,
+                        message.from.last_name,
+                        message.chat.id)
         case message.text
         when '/start'
-          bot.api.send_message(chat_id: user.getid, text: "Hey, #{user.getname}!")
+          bot.api.send_message(chat_id: user.getid, text:
+            "Hey, #{user.getname}!")
         when '/stop'
-          bot.api.send_message(chat_id: user.getid, text: "Bye, #{user.getsurname} :C")
+          bot.api.send_message(chat_id: user.getid, text:
+            "Bye, #{user.getsurname} :C")
         when message.text
           handle_request(bot, user, message.text.downcase)
         end
@@ -45,10 +48,12 @@ class Bot
     names = @base_hash.keys
     finded = FuzzyMatch.new(names).find(translited.downcase)
     if finded.nil?
-      bot.api.send_message(chat_id: user.getid, text: "Did you mean '#{translited}'?")
+      bot.api.send_message(chat_id: user.getid, text:
+        "Did you mean '#{translited}'?")
       conclusion(bot, user, translited)
     else
-      bot.api.send_message(chat_id: user.getid, text: "Did you mean '#{finded}'?")
+      bot.api.send_message(chat_id: user.getid, text:
+        "Did you mean '#{finded}'?")
       conclusion(bot, user, finded)
     end
   end
@@ -59,7 +64,8 @@ class Bot
     if finded == text
       find_in_base(bot, user, finded)
     else
-      bot.api.send_message(chat_id: user.getid, text: "Did you mean '#{finded}'?")
+      bot.api.send_message(chat_id: user.getid, text:
+        "Did you mean '#{finded}'?")
       conclusion(bot, user, finded)
     end
   end
@@ -70,10 +76,11 @@ class Bot
       when 'да', 'da', 'yes', 'Да', 'Da', 'Yes'
         bot.api.send_message(chat_id: user.getid, text: "Okay, let's watch")
         find_in_base(bot, user, text)
-        return
+        return true
       else
-        bot.api.send_message(chat_id: user.getid, text: "Then, you'd better check the name you've entered")
-        return
+        bot.api.send_message(chat_id: user.getid, text:
+          "Then, you'd better check the name you've entered")
+        return false
       end
     end
   end
