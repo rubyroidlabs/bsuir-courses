@@ -20,7 +20,7 @@ class TelegramBot
         chat_id: message.chat.id,
         text: 'No data. Please, try one more time.'
       )
-    end  
+    end
   end
 
   def start
