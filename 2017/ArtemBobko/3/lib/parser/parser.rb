@@ -3,7 +3,9 @@ require 'uri'
 
 module Parser
   LIST_URL = 'http://www.imdb.com/list/ls059403065'
+  LIST_URL.freeze
   FILE_NAME = 'database.txt'
+  FILE_NAME.freeze
 
   def self.clear_database
     File.open(FILE_NAME, 'w') { |file| file.truncate(0) }
