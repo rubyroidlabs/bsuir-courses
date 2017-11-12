@@ -3,7 +3,6 @@ require 'nokogiri'
 require_relative 'celebrity'
 
 class Parseimdb
-
   attr_accessor :html, :doc
   IMDB = 'http://www.imdb.com/list/ls072706884'.freeze
 
