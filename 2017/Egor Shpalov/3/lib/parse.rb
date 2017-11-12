@@ -1,15 +1,15 @@
 class Parse
-  def get_page_doc
-    main_page = Curl::Easy.perform(MAIN_URL)
+  def get_page_doc(main_url)
+    main_page = Curl::Easy.perform(main_url)
     @page_doc = Nokogiri::HTML(main_page.body)
+    puts "Source: #{main_url}"
   end
 
-  def get_list
-    names = @page_doc.xpath(NAME_XPATH).map(&:text)
-    descs = @page_doc.xpath(DESC_XPATH).map do |item|
-      item.text.split(' - ').first
+  def get_list(name_xpath, desc_xpath)
+    names = @page_doc.xpath(name_xpath).map(&:text)
+    descs = @page_doc.xpath(desc_xpath).map do |item|
+      item.text.split(' - ').first.strip
     end
-    puts 'Data was successfully downloaded...'
     Hash[names.zip(descs)].to_a
   end
 end

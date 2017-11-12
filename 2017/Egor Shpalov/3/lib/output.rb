@@ -5,9 +5,9 @@ class Output
 
   def save_data(list)
     CSV.open(@filename, 'wb') do |csv|
-      csv << %w[NAME DESCRIPTION]
-      list.each { |item| csv << item }
+      list.each do |item|
+        csv << item unless item.last.nil?
+      end
     end
-    puts 'Data was successfully saved...'
   end
 end

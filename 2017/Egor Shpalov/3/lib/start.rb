@@ -10,6 +10,6 @@ class Start
   end
 
   def self.preprocess(file)
-    CSV.read(file, headers: false)[1..-1]
+    CSV.read(file, headers: false)
   end
 end

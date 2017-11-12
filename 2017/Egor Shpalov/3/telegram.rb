@@ -13,9 +13,9 @@ class Bot
   def initialize
     @token = TOKEN
   end
-  
+
   def start
-    list = Start.preprocess('data/imdb')
+    list = Start.preprocess('data/source')
     Telegram::Bot::Client.run(@token) { |bot| @bot = bot }
     server = WEBrick::HTTPServer.new(Port: 3000)
     server.mount('/', MyServlet, @bot, list)
