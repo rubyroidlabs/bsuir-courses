@@ -1,0 +1,5 @@
+<header><a href="/new_phrase"><img src="pictures/create_new_phrase.png"></a></header>
+
+<% Phrase.all.each do |phrase| %>
+ 	<a style="color:<%=phrase.color(session[:user_id])%>" href="/phrase/<%=phrase.id%>"><%= phrase.full_phrase%></a><br>
+<% end %>

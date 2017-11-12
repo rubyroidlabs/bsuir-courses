@@ -1,0 +1,39 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+ruby "2.3.1"
+
+gem "sinatra"
+gem "slim"
+gem "thin"
+gem "faye-websocket", require: "faye/websocket"
+gem "em-websocket"
+gem "activerecord"
+gem "sinatra-activerecord"
+gem "pg"
+gem "rake"
+gem "coffee-script"
+gem "sass"
+gem "therubyracer"
+gem "sprockets"
+gem "uglifier"
+gem "bcrypt"
+gem "faker"
+# gem 'kaminari', '0.17'
+gem "require_all"
+
+group :development, :test do
+  gem "guard-coffeescript"
+  gem "guard-rack"
+  gem "guard-rubycritic", "2.9.3"
+  gem "guard-rubocop",    "1.2.0", require: false
+  gem "guard-bundler",    "2.1.0", require: false
+  gem "guard-rspec",      "4.7.3", require: false
+
+  gem "rspec",            "3.5.0"
+  gem "vcr",              "3.0.3"
+  gem "webmock",          "2.1.0"
+  gem "rubycritic", require: false
+  gem "libnotify"
+  gem "pry"
+  gem "pry-byebug"
+end

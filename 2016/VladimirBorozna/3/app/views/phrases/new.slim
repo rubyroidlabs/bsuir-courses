@@ -1,0 +1,13 @@
+form.form-horizontal method="post" action="/phrases/create"
+  .modal-header
+    button.close data-dismiss="modal" type="button" &times;
+    h4.modal-title New phrase
+  .modal-body
+    input name="words_attributes[0][user_id]" type="hidden" value="#{current_user.id}"
+    .row
+      .col-sm-12
+        input.form-control name="words_attributes[0][content]" placeholder="First word"
+  .modal-footer
+    .row
+      .col-sm-offset-3.col-sm-9
+        button.btn.btn-default type="submit" Submit

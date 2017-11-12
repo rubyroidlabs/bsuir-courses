@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+gem "telegram-bot-ruby"
+gem "json"
+gem "redis"
+gem "redis-namespace"
+gem "webrick"
+gem "time_difference"
+gem "redis-server", "~> 0.0.5"
+gem "rubocop", "~> 0.45.0", require: false
+gem "date_format"

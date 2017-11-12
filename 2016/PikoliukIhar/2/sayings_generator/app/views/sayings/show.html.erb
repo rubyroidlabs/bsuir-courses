@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Text:</strong>
+  <% @saying.words.each do |word| %>
+    <%= word.user_word + " " %>
+    <% end %>
+</p>
+<br>
+<center>
+<table>
+  <thead>
+    <tr>
+      <th><center>User word</center></th>
+      <th><center>User name</center></th>
+      <th><center>Created at</center></th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @saying.words.each do |word| %>
+      <tr>
+        <td><b><%= word.user_word %></b></td>
+        <td><%= word.user_name %></td>
+        <td><%= word.created_at %></td>
+        <td><%= link_to 'Edit', edit_saying_word_path(@saying, word) %></td>
+        <td><%= link_to 'Destroy', polymorphic_url([@saying, word]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</center>
+
+<%= link_to 'Back', sayings_path %>

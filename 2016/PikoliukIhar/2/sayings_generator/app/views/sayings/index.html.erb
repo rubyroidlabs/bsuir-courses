@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sayings</h1>
+<% @sayings.each do |saying| %>
+  <center>
+    <table>
+      <center>
+      <thead>
+        <tr>
+          <th><center>Text</center></th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>
+              <b>
+                <% saying.words.each do |word| %>
+                  <%= word.user_word + " " %>
+                <% end %>
+              </b>
+            </td>
+            <%- if user_signed_in? %>
+              <%- if saying.words.any? %>
+                <%- if current_user.username != saying.words.last.user_name %>
+                  <td><%= link_to 'New Word', new_saying_word_path(saying) %></td>
+                <% end %>
+              <% end %>
+            <% end %>
+            <td><%= link_to 'Show', saying %></td>
+            <td><%= link_to 'Destroy', saying, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      </tbody>
+      <br>
+    </table>
+  </center>
+  <br>
+  <center>
+    <table>
+      <thead>
+        <tr>
+          <th><center>User word</center></th>
+          <th><center>User name</center></th>
+          <th><center>Created at</center></th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% saying.words.each do |word| %>
+          <tr>
+            <td><b><%= word.user_word %></b></td>
+            <td><%= word.user_name %></td>
+            <td><%= word.created_at %></td>
+            <%= form_for([saying, word]) do |f| %>
+              <td><%= f.text_field :user_word, :required => true, :pattern => '[^ \f\n\r\t\v.]+'%></td>
+              <%- if user_signed_in? %>
+                <td><%= f.text_field :user_name, :value => current_user.username, :readonly => true %></td>
+              <% end %>
+              <td><%= f.submit %></td>
+            <% end %>
+            <td><%= link_to 'Destroy', polymorphic_url([saying, word]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </center>
+  <br>
+<% end %>
+<br>

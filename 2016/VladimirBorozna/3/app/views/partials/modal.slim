@@ -1,0 +1,6 @@
+- modal_size = "modal-sm"
+#modal.modal.fade role="dialog" tabindex="-1"
+  .modal-dialog[class = modal_size]
+    .modal-content
+      == yield
+      #errors

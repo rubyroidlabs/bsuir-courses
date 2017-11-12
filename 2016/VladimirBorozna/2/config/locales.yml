@@ -1,0 +1,134 @@
+ru:
+  commands:
+    start:
+      triggers: ["/start"] 
+      description: "выводит приветствие и описание всех доступных команд"
+      responses:
+        greeting: >
+          Привет.
+          Я тебе смогу помочь сдать все лабораторные работы вовремя. Но это не точно.
+          Вот список того, того я умею:
+
+    semester:
+      triggers: ["/semester"]
+      description: "запоминает даты начала и конца семестра"
+      responses:
+        semester_start_question:  "Когда начинаем учиться?"
+        semester_finish_question: "Когда надо сдать все лабы?"
+        confirmation:
+          begining: "Понял, на все про все у нас"
+
+    subject:
+      triggers: ["/subject"]
+      description: "добавляет предмет и количество лабораторных работ по нему"
+      responses:
+        subject_name_question: "Какой предмет учим?"
+        number_works_question: "Сколько лабораторных работ надо сдать?"
+        confirmation:          "Предмет добавлен."
+
+    status:
+      triggers: ["/status"]
+      description: "выводит твой список лабораторных работ, которые тебе предстоит сдать"
+      responses: 
+        semester_time_left_begining: "До конца семестра "
+        required_work_header:        "К этому времени у тебя должно было быть сдано:"
+        subject_status: >-
+           %{subject_name} %{required_numbers}
+           (сдано %{performed_number} из %{total_number})
+        conclusion: "Всего было сдано %{accepted_number} лаб из %{total_number}."
+
+    submit:
+      triggers: ["/submit", "я сдал", "я сдала"]
+      description: "сохраняет номера лабораторных, которые были сданы"
+      responses:
+        subject_name_question: "Что сдал?"
+    reset:
+      triggers: ["/reset"]
+      description: "сбрасывает данные"
+      responses:
+        confirmation: "ОК. Данные стерты."
+    undefined:
+      triggers: [ ]
+      responses:
+        dont_understand: "Я тебя не понимаю."
+
+    cancel:
+      triggers: ["/cancel"]
+      description:    "отменяет текущую команду"
+      responses:
+        confirmation: "Операция отменена."
+
+    remind:
+      triggers: ["/remind"]
+      description: "отправляет напоминание в заданное время"
+      responses:
+        remind_question: "Как часто нужно присылать напоминание?"
+        period_names:
+          - "каждый день"
+          - "каждые два дня"
+          - "каждые три дня"
+          - "каждую пятницу"
+
+
+  response_particles:
+    required_work_title: "К этому времени у тебя должно было быть сдано:"
+    subject_status: >-
+      %{subject_name} %{required_numbers}
+      (сдано %{performed_number} из %{total_number})
+    time_left:
+      months: "%{number} %{month_form}"
+      days:   "%{number} %{day_form}"
+    notification_title: "Напоминание:"
+
+
+  callbacks:
+    subject_name:
+      responses:
+        work_number_question: "Какой номер лабораторной работы?"
+    work_number:
+      responses:
+        confirmation: "ОК"
+    cancel:
+      responses:
+        confirmation: "Операция отменена."
+    notification_setting:
+      responses:
+        confirmation: "Напоминание установлено."
+
+
+  errors:
+    subject_name_invalid:     "Название предмета не соответствует формату."
+    subject_name_not_found:   "Предмет не был найден."
+    subjects_not_found:       "Предметы не были добавлены. /subject"
+    subject_name_not_uniq:    "Предмет уже был добавлен."
+    subject_not_found:        "Предмет не найден."
+
+    all_works_was_submited:   "Все работы были сданы."
+
+    callback_invalid_message: "Получено невалидное сообщение."
+
+    semester_dates_not_found: "Я не знаю даты начала и конца семестра. /semester"
+    date_format_invalid:      "Введеная дата не соответствует формату. /semester"
+    date_year_invalid:        "Введен не приемлимый год."
+    semester_dates_invalid:   "Временной промежуток задан неверно. /semester"
+    work_number_not_found:    "Номер лабораторной работы не был найден. /subject"
+    number_invalid:           "Введеное число не валидно."
+    works_number_invalid:     "Введенное количество не соответствует формату."
+
+
+  buttons:
+    cancel: '[Отменить]'
+
+
+  month:
+    zero: "месяцев"
+    one:  "месяц"
+    few:  "месяца"
+    many: "месяцев"
+
+
+  day:
+    zero:  "дней"
+    one:   "день"
+    few:   "дня"
+    many:  "дней"
