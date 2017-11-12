@@ -10,7 +10,7 @@ Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     case message.text
       when '/start'
-        bot.api.sendMessage(chat_id: message.chat.id, 
+        bot.api.sendMessage(chat_id: message.chat.id,
                             text: "Hello, #{message.from.first_name}")
       when '/stop'
         bot.api.sendMessage(chat_id: message.chat.id, text: 'While my hero')
@@ -21,9 +21,9 @@ Telegram::Bot::Client.run(token) do |bot|
             parser.search_in_lesbian_actors
           bot.api.sendMessage(chat_id: message.chat.id, text: parser.print)
         else
-          bot.api.sendMessage(chat_id: message.chat.id, 
+          bot.api.sendMessage(chat_id: message.chat.id,
                               text: 'This person is not in this list')
-      end
+        end
     end
   end
 end
