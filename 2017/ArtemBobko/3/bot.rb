@@ -10,7 +10,7 @@ token = '314934922:AAHXOb8EjuDDuu-Xr8ijDoEaC9q7mwZPoC0'
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    options = {bot: bot, message: message}
+    options = { bot: bot, message: message }
 
     MessageResponder.new(options).respond
   end

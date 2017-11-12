@@ -11,7 +11,7 @@ class MessageResponder
   end
 
   def respond
-    on /(.+)/ do |name|
+    on(/(.+)/) do |name|
       get_answer(name) # if name.scan(/\//) != ['/']
     end
   end
@@ -34,7 +34,7 @@ class MessageResponder
   end
 
   def get_answer(name)
-    if CheckCelebrity.is_lgbt?(name)
+    if CheckCelebrity.lgbt?(name)
       answer_with_message 'Да'
     else
       answer_with_message 'Не найдено данных'

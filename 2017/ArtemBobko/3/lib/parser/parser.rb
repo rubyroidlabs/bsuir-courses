@@ -2,11 +2,11 @@ require 'mechanize'
 require 'uri'
 
 module Parser
-  LIST_URL = 'http://www.imdb.com/list/ls059403065'
-  FILE_NAME = 'database.txt'
+  LIST_URL = 'http://www.imdb.com/list/ls059403065'.freeze
+  FILE_NAME = 'database.txt'.freeze
 
   def self.clear_database
-    File.open(FILE_NAME, 'w') {|file| file.truncate(0) }
+    File.open(FILE_NAME, 'w') { |file| file.truncate(0) }
   end
 
   def self.get_celebrities_to_file(next_page = '')
@@ -21,7 +21,7 @@ module Parser
       end
     end
     next_page = page.search('#main .see-more .pagination>a').first.values.first
-    flag =  page.search('#main .see-more .pagination>a').text
-    get_celebrities_to_file(next_page) if flag.scan(/next/i).first
+    is_next = page.search('#main .see-more .pagination>a').text
+    get_celebrities_to_file(next_page) if is_next.scan(/next/i).first
   end
 end

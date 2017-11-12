@@ -14,8 +14,8 @@ class MessageSender
   end
 
   def send
-    if reply_markup
-      bot.api.send_message(chat_id: chat.id, text: text, reply_markup: reply_markup)
+    if reply
+      bot.api.send_message(chat_id: chat.id, text: text, reply_markup: reply)
     else
       bot.api.send_message(chat_id: chat.id, text: text)
     end
@@ -23,7 +23,7 @@ class MessageSender
 
   private
 
-  def reply_markup
+  def reply
     if answers
       ReplyMarkupFormatter.new(answers).get_markup
     end
