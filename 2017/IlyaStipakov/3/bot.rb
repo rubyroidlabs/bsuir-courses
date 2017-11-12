@@ -16,7 +16,7 @@ Telegram::Bot::Client.run(token) do |bot|
       bot.api.sendMessage(chat_id: message.chat.id, text: 'While my hero')
     else
       parser = Parser.new Translit.convert(message.text.to_s, :english)
-      if  parser.search_in_gay_actors ||
+      if parser.search_in_gay_actors ||
           parser.search_in_bisexual_actors ||
           parser.search_in_lesbian_actors
         bot.api.sendMessage(chat_id: message.chat.id, text: parser.print)
