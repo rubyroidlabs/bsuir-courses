@@ -9,8 +9,8 @@ require_relative 'user.rb'
 class Bot
   def initialize(token)
     @token = token
-    Parse_lgbt.new.go_and_find
-    my_hash = File.read('selebrities_hash.txt').to_s
+    ParseLgbt.new.go_and_find
+    my_hash = File.read('selebrities_hash.txt')
     @base_hash = JSON.parse(my_hash)
   end
 
