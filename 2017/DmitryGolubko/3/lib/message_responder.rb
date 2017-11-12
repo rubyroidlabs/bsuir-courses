@@ -19,7 +19,7 @@ class MessageResponder
       answer_with_farewell_message
     else
       answer = @from_file[message.text.split.map(&:capitalize).join(' ')].to_s
-      if answer == ""
+      if answer == ''
         answer = 'No data or wrong actor name'
       end
       answer_with_message(answer)

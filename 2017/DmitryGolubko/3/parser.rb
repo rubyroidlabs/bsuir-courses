@@ -14,13 +14,12 @@ class Parser
     page = page.children
     page.remove.first
     page.each do |element|
-      unless element.text?
-        actor = element.search('b').text
-        sex = element.search('.description').text.match(/[GLB]\w+/).to_s
-        actors[actor] = sex
-      end
+      next if element.text?
+      actor = element.search('b').text
+      sex = element.search('.description').text.match(/[GLB]\w+/).to_s
+      actors[actor] = sex
     end
-    actors["Kevin Spacey"] = "Gay"
+    actors['Kevin Spacey'] = 'Gay'
     File.write('actors.yml', actors.to_yaml)
   end
 end
