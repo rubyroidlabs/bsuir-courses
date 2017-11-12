@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'mechanize'
 class Names
-  def load_names 
+  def load_names
     agent = Mechanize.new
     source = 'http://www.imdb.com/list/ls072706884/' 
     agent.get(source)
@@ -10,7 +10,5 @@ class Names
     famous = famous.gsub(/_+$/) { '' }
     famous = famous.gsub(/_+/) { '|' }
     famous = famous.split('|')
-    return famous
   end
 end
-a=Names.new
