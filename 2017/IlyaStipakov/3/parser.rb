@@ -1,6 +1,5 @@
 require 'mechanize'
 class Parser
-
   def initialize(name, orientation = 'heterosexual')
     @name = name
     @orientation = orientation
@@ -53,7 +52,7 @@ class Parser
   end
 
   def print
-    return "Hmm. According to my information, #{@name} is #{@orientation}.\n
+    "Hmm. According to my information, #{@name} is #{@orientation}.\n
     Here is a link to the Wiki: #{@url}"
   end
 end
