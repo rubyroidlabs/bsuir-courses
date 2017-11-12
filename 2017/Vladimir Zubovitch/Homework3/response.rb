@@ -10,6 +10,5 @@ class Names
     faamous = faamous.gsub(/_+$/) { '' }
     faamous = faamous.gsub(/_+/) { '|' }
     faamous = faamous.split('|')
-    faamous
   end
 end
