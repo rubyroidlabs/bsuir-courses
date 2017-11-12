@@ -1,6 +1,0 @@
-<p><%=@phrase.full_phrase%></p>
-
-<form action="/phrase/<%=@phrase.id%>" method="post">
-	<input id="input-word" name="word" type="text"/>
-	<button type="submit" <%="disabled" unless @phrase.can_add?(session[:user_id])%> class="button button-block"/>Add word!</button>
-</form>

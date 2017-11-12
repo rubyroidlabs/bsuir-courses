@@ -1,5 +1,0 @@
-.*
-!/.gitignore
-/public/stylesheets/*.css
-*.css.map
-/public/vendor

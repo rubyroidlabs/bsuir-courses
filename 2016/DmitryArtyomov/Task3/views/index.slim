@@ -1,9 +1,0 @@
-== slim :header
-.container
-  
-  .list-group.phrase-list
-    - db.all_phrases.each.with_index do |phrase, id|
-      - writable = can_write?(id) ? 'can-write' : 'cannot-write'
-      - writable = '' unless session[:username]
-      a.list-group-item href="/edit/#{id}" class="#{writable}"
-        = phrase

@@ -1,6 +1,0 @@
-<div class="list-group">
-	<% @hash.each do |key, value| %>
-		<a href="/edit?id=<%=key%>"  id="<%=key%>" class="list-group-item  "> <%=value["text"]%> 
-		<span class="pull-right label  <%if session[:username] == value["id_user_last"]%> label-danger <%else%> label-success<%end%>"><%=value["id_user_last"]%></span></a><br>
-	<% end %>
-</div>
