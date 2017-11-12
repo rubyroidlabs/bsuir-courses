@@ -1,7 +1,7 @@
 require 'mechanize'
 require 'json'
 
-# Parser
+# Parser class
 class Parser
   def initialize
     @coming_out = {}
