@@ -13,13 +13,14 @@ class MessageSender
     @answers = options[:answers]
   end
 
-def send
-  if reply_markup
-    bot.api.send_message(chat_id: chat.id, text: text, reply_markup: reply_markup)
-  else
-    bot.api.send_message(chat_id: chat.id, text: text)
+  def send
+    if reply_markup
+      bot.api.send_message(chat_id: chat.id, text: text)
+      bot.api.send_message(reply_markup: reply_markup)
+    else
+      bot.api.send_message(chat_id: chat.id, text: text)
+    end
   end
-end
 
   private
 
