@@ -1,4 +1,4 @@
-require './lib/reply_markup_formatter'
+require './lib/bot/reply_markup_formatter'
 
 class MessageSender
   attr_reader :bot

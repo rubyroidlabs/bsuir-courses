@@ -1,4 +1,5 @@
-require './lib/message_sender'
+require './lib/bot/message_sender'
+require './lib/parser/check_celebtity'
 
 class MessageResponder
   attr_reader :message
@@ -10,12 +11,8 @@ class MessageResponder
   end
 
   def respond
-    on /^\/start/ do
-      answer_with_greeting_message
-    end
-
-    on /^\/stop/ do
-      answer_with_farewell_message
+    on /(.+)/ do |name|
+      get_answer(name) # if name.scan(/\//) != ['/']
     end
   end
 
@@ -36,12 +33,12 @@ class MessageResponder
     end
   end
 
-  def answer_with_greeting_message
-    answer_with_message 'Привет!'
-  end
-
-  def answer_with_farewell_message
-    answer_with_message 'Пока!'
+  def get_answer(name)
+    if CheckCelebrity.is_lgbt?(name)
+      answer_with_message 'Да'
+    else
+      answer_with_message 'Не найдено данных'
+    end
   end
 
   def answer_with_message(text)
