@@ -9,7 +9,7 @@ redis.refresh_data
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    options = {bot: bot, message: message, redis: redis}
+    options = { bot: bot, message: message, redis: redis }
 
     MessageResponder.new(options).respond
   end

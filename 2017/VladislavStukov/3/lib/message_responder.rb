@@ -1,7 +1,6 @@
 require_relative 'search_engine'
 require 'translit'
 
-
 class MessageResponder
 
   def initialize(options)
@@ -41,7 +40,6 @@ class MessageResponder
       end
     end
 
-
   end
 
   private
@@ -58,6 +56,7 @@ class MessageResponder
         yield $~
       end
     end
+
   end
 
   def answer_with_message(text)

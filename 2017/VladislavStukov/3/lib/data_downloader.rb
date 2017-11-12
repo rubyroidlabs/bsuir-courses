@@ -1,7 +1,7 @@
 require 'mechanize'
 
 class DataDownloader
-  IMDB_URL = 'http://www.imdb.com/list/ls072706884/'
+  IMDB_URL = 'http://www.imdb.com/list/ls072706884/'.freeze
 
   def download
     # start all parse methods
