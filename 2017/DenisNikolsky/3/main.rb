@@ -16,7 +16,6 @@ wiki_parser = WikiParser.new
 link = 'https://en.wikipedia.org/wiki/List_of_gay,_lesbian_or_bisexual_people'
 celeb = wiki_parser.parse_wiki(link, celeb)
 
-
 nnn_parser = NNNParser.new
 link = 'http://www.newnownext.com/gay-celebrities-coming-out-2017/10/2017/'
 celeb = nnn_parser.parse_site(link, celeb)

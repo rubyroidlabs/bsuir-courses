@@ -21,5 +21,3 @@ class DailyNewsParser < Parser
     celeb
   end
 end
-
-

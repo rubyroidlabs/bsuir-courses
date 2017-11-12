@@ -19,5 +19,3 @@ class ImdbParser < Parser
     celeb
   end
 end
-
-
