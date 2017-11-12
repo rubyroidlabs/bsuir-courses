@@ -2,9 +2,9 @@ require 'telegram/bot'
 require 'translit'
 require 'fuzzy_match'
 require_relative 'celebrity'
-TOKEN = '456850888:AAEaIee4C1OEb0zG6N7fSK2D1U6igx_r9yo'
+TOKEN = '456850888:AAEaIee4C1OEb0zG6N7fSK2D1U6igx_r9yo'.freeze
 
-class My_botinok
+class Mybotinok
   attr_accessor :message, :bot, :answer, :list_celebrity, :name_list
 
   def initialize(list_celebrity)
@@ -17,28 +17,28 @@ class My_botinok
     Telegram::Bot::Client.run(TOKEN) do |bot|
       @bot = bot
       @bot.listen do |message|
-         @message = message
-         message_handler
+        @message = message
+        message_handler
       end
     end
   end
 
   def message_handler
     case @message.text
-      when '/start'
-        bot.api.sendMessage(chat_id: @message.chat.id,
-        text: "Hello, #{ @message.from.first_name }")
-      when 'y'
-        out_information(@name)
-        @name_list = get_names
-        bot.api.sendMessage(chat_id: @message.chat.id, text: @answer)
-      when 'n'
-        @name_list.delete(@name)
-        match_search
-        bot.api.sendMessage(chat_id: @message.chat.id, text: @answer)
-      else
-        match_search
-        bot.api.sendMessage(chat_id: @message.chat.id, text: @answer)
+    when '/start'
+      bot.api.sendMessage(chat_id: @message.chat.id,
+                          text: "Hello, #{ @message.from.first_name }")
+    when 'y'
+      out_information(@name)
+      @name_list = get_names
+      bot.api.sendMessage(chat_id: @message.chat.id, text: @answer)
+    when 'n'
+      @name_list.delete(@name)
+      match_search
+      bot.api.sendMessage(chat_id: @message.chat.id, text: @answer)
+    else
+      match_search
+      bot.api.sendMessage(chat_id: @message.chat.id, text: @answer)
     end
   end
 
