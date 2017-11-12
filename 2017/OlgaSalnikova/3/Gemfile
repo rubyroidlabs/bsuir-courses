@@ -1,0 +1,5 @@
+Source 'https://rubygems.org'
+
+gem 'mechanize'
+gem 'telegram-bot-ruby'
+gem 'translit'
