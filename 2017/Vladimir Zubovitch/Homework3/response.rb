@@ -10,5 +10,6 @@ class Names
     famous = famous.gsub(/_+$/) { '' }
     famous = famous.gsub(/_+/) { '|' }
     famous = famous.split('|')
+    famous
   end
 end
