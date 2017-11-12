@@ -1,7 +1,5 @@
 require 'mechanize'
-
 class Parser
-
 
   def initialize(name, orientation = 'heterosexual')
     @name = name
@@ -13,7 +11,7 @@ class Parser
   def search_in_imdb
     agent = Mechanize.new
     page = agent.get('http://www.imdb.com/list/ls072706884/')
-    if link = page.link_with(text: @name)
+    if page.link_with(text: @name)
       return true
     end
   end
@@ -55,7 +53,7 @@ class Parser
   end
 
   def print
-    return "Hmm. According to my information, #{@name} is #{@orientation}.\nHere is a link to the Wiki: #{@url}"
+    return "Hmm. According to my information, #{@name} is #{@orientation}.\n
+    Here is a link to the Wiki: #{@url}"
   end
-
 end
