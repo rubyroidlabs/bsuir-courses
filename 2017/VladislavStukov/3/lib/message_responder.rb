@@ -54,10 +54,9 @@ class MessageResponder
     regex =~ message_text
 
     if $~
-      case block.arity
-      when 0
+      if block.arity.zero?
         yield
-      when 1
+      else
         yield $~
       end
     end

@@ -9,10 +9,10 @@ class SearchEngine
   end
 
   def search(name)
-    full_match = @redis.name_by_pattern("#{case_insence(name)}")
+    full_match = @redis.name_by_pattern(case_insence(name).to_s)
     return full_match.first if full_match.size == 1
     length = name.length - 1
-    begin
+    loop do
       start = 0
       result = []
       while start + length < name.length
@@ -22,7 +22,8 @@ class SearchEngine
       end
       result = result.flatten
       length -= 1
-    end while length >= MIN_MATCH && result.empty?
+      break unless length >= MIN_MATCH && result.empty?
+    end
     result.uniq.take 5
   end
 
@@ -30,11 +31,10 @@ class SearchEngine
   def case_insence(pattern)
     pattern.scan(/./).map do |letter|
       if /\w/ =~ letter
-        "[#{letter.upcase+letter.downcase}]"
+        "[#{letter.upcase + letter.downcase}]"
       else
         letter
       end
     end.join
   end
 end
-

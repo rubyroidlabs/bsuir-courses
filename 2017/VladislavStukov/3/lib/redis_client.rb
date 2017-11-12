@@ -1,6 +1,5 @@
 require 'redis'
 require 'fileutils'
-require 'pry'
 require_relative 'data_downloader.rb'
 
 class RedisClient < Redis
@@ -9,7 +8,7 @@ class RedisClient < Redis
 
   def refresh_data
     if File.file?(DUMP_FILE)
-      load_from_file(DUMP_FILE)
+      load_from_file
     else
       persons = DataDownloader.new.download
       load_persons(persons)
@@ -20,16 +19,17 @@ class RedisClient < Redis
   def name_by_pattern(pattern)
     next_i = '0'
     result = []
-    begin
-      respond = sscan('nameset',next_i, match: pattern)
+    loop do
+      respond = sscan('nameset', next_i, match: pattern)
       next_i = respond.first
       result << respond.last
-    end while !next_i.to_i.zero?
+      break if next_i.to_i.zero?
+    end
     result.flatten
   end
 
   def comment_by_name(name)
-    return hget('persons',"#{name}")
+    hget('persons', name.to_s)
   end
 
   def all_names
@@ -39,8 +39,8 @@ class RedisClient < Redis
 
   private
 
-  def load_from_file(file)
-    data = File.open(DUMP_FILE) { |file| file.read }
+  def load_from_file
+    data = File.open(DUMP_FILE).read
     del 'persons'
     restore('persons', '0', data)
     names = hkeys 'persons'
@@ -58,7 +58,7 @@ class RedisClient < Redis
   end
 
   def dump_persons(file)
-    dir = DUMP_FILE.sub(/\/[^\/]+$/, '')
+    dir = DUMP_FILE.sub(%r{\/[^\/]+$}, '')
     FileUtils::mkdir_p dir unless File.exists?(dir)
     File.open(file, 'w') { |file| file.write(dump('persons')) }
   end

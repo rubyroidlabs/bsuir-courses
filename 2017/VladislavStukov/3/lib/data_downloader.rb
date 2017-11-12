@@ -6,7 +6,7 @@ class DataDownloader
   def download
     # start all parse methods
     result = {}
-    result.merge!(parse_site_imdb) do |key, old_val, new_val|
+    result.merge!(parse_site_imdb) do |_key, old_val, new_val|
       old_val.empty? ? new_val : old_val
     end
     result

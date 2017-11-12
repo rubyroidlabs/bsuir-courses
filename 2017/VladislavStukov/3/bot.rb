@@ -1,7 +1,6 @@
 require 'telegram/bot'
 require_relative './lib/message_responder.rb'
 require_relative './lib/redis_client.rb'
-require 'pry'
 
 token = ENV['TELEGRAM_TOKEN']
 
