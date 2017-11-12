@@ -3,6 +3,6 @@ class Celebrity
 
   def initialize(name, orientation, info)
     @celebrity = { 'name' => name, 'orientation' => orientation, 
-                   'info' => info }
+                  'info' => info }
   end
 end
