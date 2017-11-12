@@ -2,8 +2,8 @@ require 'mechanize'
 require 'uri'
 
 module Parser
-  LIST_URL = 'http://www.imdb.com/list/ls059403065'.freeze
-  FILE_NAME = 'database.txt'.freeze
+  LIST_URL = 'http://www.imdb.com/list/ls059403065'
+  FILE_NAME = 'database.txt'
 
   def self.clear_database
     File.open(FILE_NAME, 'w') { |file| file.truncate(0) }
