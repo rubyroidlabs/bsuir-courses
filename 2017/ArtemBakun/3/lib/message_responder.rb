@@ -12,14 +12,14 @@ class MessageResponder
 
   def respond
     answer = if message.text == '/start'
-              'Вас приветствует Coming out bot. Введите имя актёра!'
-            elsif message.text == '/stop'
-              'Всего хорошего!'
-            elsif check(message.text + "\n")
-              'Да'
-            else
-              'Данных не найдено'
-            end
+               'Вас приветствует Coming out bot. Введите имя актёра!'
+             elsif message.text == '/stop'
+               'Всего хорошего!'
+             elsif check(message.text + "\n")
+               'Да'
+             else
+               'Данных не найдено'
+             end
     answer_with_message(answer)
   end
 

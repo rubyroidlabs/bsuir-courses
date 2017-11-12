@@ -1,10 +1,10 @@
 require 'mechanize'
 
 class Parser
-  attr_accessor :data
+  attr_accessor :info
 
   def initialize
-    @data = []
+    @info = []
   end
 
   def parser
@@ -16,14 +16,14 @@ class Parser
       next unless l =~ /name/
       next if l =~ /ref_=rlm/
       next if l =~ /search/
-      @data.push(link.text) if met.odd?
+      @info.push(link.text) if met.odd?
       met += 1
     end
   end
 
   def write_to_file
-    file = File.open('data.txt','w')
-    @data.each do |text|
+    file = File.open('data.txt', 'w')
+    @info.each do |text|
       file.puts(text)
     end
   end
@@ -31,7 +31,7 @@ class Parser
   def reading_from_file
     File.open('data.txt', 'r') do |file|
       file.each do |text|
-        @data.push(text)
+        @info.push(text)
       end
     end
   end
