@@ -3,6 +3,7 @@ class Parser
   def initialize
     @coming = Array.new
   end
+
 def get_out
   agent = Mechanize.new
   url = 'http://www.imdb.com/list/ls072706884/?start=1&view=detail&sort=lis'\
@@ -11,15 +12,15 @@ def get_out
   @coming
 end
 
-def pars(page)
+def pars (page)
   page.css('.info b a').each do |x|
     @coming << x.text
   end
 end
 
-def search(a)
+def search (a)
   get_out
-  if @coming.include?(a)==true
+  if @coming.include?(a) == true
     'Да'
   else
     'Нет информации'
