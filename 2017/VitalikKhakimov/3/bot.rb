@@ -7,6 +7,22 @@ class TelegramBot
     @actors = {}
   end
 
+  def search_celebrity(bot, message)
+    first = Translate.new.translate(message.text.upcase).to_s
+    second = message.text.upcase.to_s
+    if @actors.key?(first) || @actors.key?(second)
+      bot.api.send_message(
+        chat_id: message.chat.id,
+        text: "#{first}:\n-#{@actors[first]}"
+      )
+    elsif !@actors.key?(message.text.upcase.to_s)
+      bot.api.send_message(
+        chat_id: message.chat.id,
+        text: 'No data. Please, try one more time.'
+      )
+    end  
+  end
+
   def start
     @actors = JSON.parse(File.read('list.json'))
 
@@ -25,19 +41,7 @@ class TelegramBot
             text: 'See you again...'
           )
         when message.text
-          first = Translate.new.translate(message.text.upcase).to_s
-          second = message.text.upcase.to_s
-          if @actors.key?(first) || @actors.key?(second)
-            bot.api.send_message(
-              chat_id: message.chat.id,
-              text: "#{first}:\n-#{@actors[first]}"
-            )
-          elsif !@actors.key?(message.text.upcase.to_s)
-            bot.api.send_message(
-              chat_id: message.chat.id,
-              text: 'No data. Please, try one more time.'
-            )
-          end
+          search_celebrity(bot, message)
         end
       end
     end
