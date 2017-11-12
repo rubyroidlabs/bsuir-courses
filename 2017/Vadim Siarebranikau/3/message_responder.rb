@@ -7,7 +7,7 @@ class MessageResponder
   def initialize(options)
     @bot = options[:bot]
     @message = options[:message]
-    @answer=nil
+    @answer = nil
   end
 
   def respond
@@ -22,21 +22,6 @@ class MessageResponder
 
   private
 
-  def on(regex, &block)
-    regex =~ message.text
-
-    if $~
-      case block.arity
-      when 0
-        yield
-      when 1
-        yield $1
-      when 2
-        yield $1, $2
-      end
-    end
-  end
-
   def answer_with_greeting_message
     answer_with_message "Привет,#{@message.from.first_name}"
   end
@@ -49,6 +34,7 @@ class MessageResponder
     @answer = Parser.new.search(@message.text)
     answer_with_message @answer
   end
+
   def answer_with_message(text)
     MessageSender.new(bot: bot, chat: message.chat, text: text).send
   end
