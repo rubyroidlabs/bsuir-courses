@@ -11,7 +11,7 @@ class SearchCelebrity
 
   def ob_msg_responder
     responder_info = { bot: @bot, message: @message }
-    message_responder = MessageResponder.new(responder_info)
+    MessageResponder.new(responder_info)
   end
 
   def search_star(star, text)

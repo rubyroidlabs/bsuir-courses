@@ -12,6 +12,7 @@ star = ReadCelebrity.new(BASA)
 star.write_to_base
 found_stars = {}
 element = ''
+a = ''
 Telegram::Bot::Client.run(TOKEN) do |bot|
   bot.listen do |message|
     search = SearchCelebrity.new(bot, message)
@@ -27,32 +28,40 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       end
       found_stars = {}
     when 'no'
-      found_stars.delete(element)
-      if !found_stars.empty?
-        found_stars.each_key do |key|
-          element = key
-        end
-        msg_responder.answer_with_message("Возможно #{element}?")
-      else
-        msg_responder.answer_with_message('Неудача, где-то ошибся. Пробуй еще!')
-        found_stars = {}
-      end
+      answer_no
     when /[а-яА-ЯA-Za-z]+/
       a = message.text
       search.search_star(star.celebrity, a)
-      if search.flag_data
-        star.celebrity.each do |key, value|
-          if key.to_s =~ /#{a}/
-            found_stars[key] = value
-            element = key
-          end
-        end
-        unless found_stars.empty?
-          msg_responder.answer_with_message("Возможно #{element}?")
-        end
-      else
-        msg_responder.question
+      exist_found_star
+    end
+  end
+end
+
+def exist_found_star
+  if search.flag_data
+    star.celebrity.each do |key, value|
+      if key.to_s =~ /#{a}/
+        found_stars[key] = value
+        element = key
       end
     end
+    unless found_stars.empty?
+      msg_responder.answer_with_message("Возможно #{element}?")
+    end
+  else
+    msg_responder.question
+  end
+end
+
+def answer_no
+  found_stars.delete(element)
+  if !found_stars.empty?
+    found_stars.each_key do |key|
+      element = key
+    end
+    msg_responder.answer_with_message("Возможно #{element}?")
+  else
+    msg_responder.answer_with_message('Неудача, где-то ошибся. Пробуй еще!')
+    found_stars = {}
   end
 end

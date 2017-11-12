@@ -38,7 +38,7 @@ class Parser
   end
 
   def create_hash
-    for i in 0..@arr_name.size - 1
+    @arr_name.each_index do |i|
       unless @celebrity.key?(@arr_name[i])
         @celebrity[@arr_name[i]] = @arr_desc[i]
       end
