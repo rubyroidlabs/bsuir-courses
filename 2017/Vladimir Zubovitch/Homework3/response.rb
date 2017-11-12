@@ -5,11 +5,11 @@ class Names
     agent = Mechanize.new
     source = 'http://www.imdb.com/list/ls072706884/' 
     agent.get(source)
-    faamous = agent.page.css('b').to_s.gsub(/<[^<^>]+>/) { '_' }
-    faamous = faamous.gsub(/^_+/) { '' }
-    faamous = faamous.gsub(/_+$/) { '' }
-    faamous = faamous.gsub(/_+/) { '|' }
-    faamous = faamous.split('|')
-    return faamous
+    famous = agent.page.css('b').to_s.gsub(/<[^<^>]+>/) { '_' }
+    famous = famous.gsub(/^_+/) { '' }
+    famous = famous.gsub(/_+$/) { '' }
+    famous = famous.gsub(/_+/) { '|' }
+    array_of_famous = famous.split('|')
+    return array_of_famous
   end
 end
