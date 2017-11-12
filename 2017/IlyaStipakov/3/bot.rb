@@ -20,7 +20,7 @@ Telegram::Bot::Client.run(token) do |bot|
           parser.search_in_bisexual_actors ||
           parser.search_in_lesbian_actors
         bot.api.sendMessage(chat_id: message.chat.id, text: parser.print)
-      else
+        else
         bot.api.sendMessage(chat_id: message.chat.id, 
                             text: 'This person is not in this list')
       end
