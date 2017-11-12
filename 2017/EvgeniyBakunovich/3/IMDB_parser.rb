@@ -1,8 +1,8 @@
 require 'mechanize'
 require 'json'
 
-class IMDB_parser
-  attr_accessor:link, :info
+class IMDbParser
+  attr_accessor :link, :info
 
   def initialize(link)
     @link = link
@@ -12,18 +12,18 @@ class IMDB_parser
   def parse_page
     agent = Mechanize.new
     page = agent.get(@link)
-      names = page.search('div.info').css('b').css('a')
-      descriptions = page.search('div.description')
-      descriptions.shift
-      i = 0
-      loop do
-        temp = descriptions[i].text.to_s
-        temp.slice!(0..1)
-        temp.slice!(temp.size - 14..temp.size)
-        @info.store(names[i].text.to_s, temp)
-        i += 1
-        break if i == names.size
-      end
+    names = page.search('div.info').css('b').css('a')
+    descriptions = page.search('div.description')
+    descriptions.shift
+    i = 0
+    loop do
+      temp = descriptions[i].text.to_s
+      temp.slice!(0..1)
+      temp.slice!(temp.size - 14..temp.size)
+      @info.store(names[i].text.to_s, temp)
+      i += 1
+      break if i == names.size
+    end
   end
 
   def copy

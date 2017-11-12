@@ -1,7 +1,7 @@
 require 'mechanize'
 require 'json'
 
-class GayStarNews_parser
+class GayStarNewsParser
   attr_accessor:link, :info
 
   def initialize(link)
@@ -24,8 +24,8 @@ class GayStarNews_parser
       temp_name.strip!
       loop do
       break if descriptions[j].text.to_s.index(/[0-9]/) == 0 || j == 105
-        temp += descriptions[j].text.to_s
-        j += 1
+      temp += descriptions[j].text.to_s
+      j += 1
       end
       @info.store(temp_name, temp)
       i += 1

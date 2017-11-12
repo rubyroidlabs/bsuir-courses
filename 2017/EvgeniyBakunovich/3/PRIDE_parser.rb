@@ -1,7 +1,7 @@
 require 'mechanize'
 require 'json'
-class PRIDE_parser
-  attr_accessor:link, :info
+class PrideParser
+  attr_accessor :link, :info
 
   def initialize(link)
     @link = link
@@ -26,7 +26,7 @@ class PRIDE_parser
       temp_name.slice!(temp_name.size - 1)
       temp = descriptions[i].text.to_s
       temp.slice!(0)
-      temp.gsub!(/[\n]/, '').gsub!(/\"/, '')
+      temp.delete!(/[\n]/).delete!(/\"/)
       @info.store(temp_name, temp)
       i += 1
       break if i == names.size

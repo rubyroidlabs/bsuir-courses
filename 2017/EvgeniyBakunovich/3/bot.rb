@@ -2,7 +2,7 @@ require 'telegram/bot'
 require 'json'
 
 def get_answer(name)
-  celebrities = JSON.parse(File.open('PRIDE.txt', &:read))
+  celebrities = JSON.parse(File.open('Data.txt', &:read))
   celebrities[name]
 end
 
@@ -11,7 +11,8 @@ Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     answer = get_answer(message.text)
     if message.text == '/start'
-      bot.api.sendMessage(chat_id: message.chat.id, text: 'Hello! I am ready to work!')
+      answer =  'Hello! I am ready to work!'
+      bot.api.sendMessage(chat_id: message.chat.id, text: answer)
     elsif answer.nil?
       answer = 'No info'
       bot.api.sendMessage(chat_id: message.chat.id, text: answer)
@@ -20,4 +21,3 @@ Telegram::Bot::Client.run(token) do |bot|
     end
   end
 end
-
