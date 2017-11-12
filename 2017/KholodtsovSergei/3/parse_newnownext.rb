@@ -17,7 +17,6 @@ class Parsenewnownext
         item.celebrity['info'] += all_description[i]
         people.delete(people[i])
         all_description.delete(all_description[i])
-        next
       end
     end
     people.each do |human|
