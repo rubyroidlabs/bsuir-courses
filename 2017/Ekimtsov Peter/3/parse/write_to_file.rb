@@ -12,7 +12,7 @@ class Write
   end
 
   def write(pair)
-    file = File.open("../data/database.txt", "a+")
+    file = File.open('../data/database.txt', 'a+')
     file.puts(pair)
     file.close
   end
