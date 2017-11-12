@@ -9,7 +9,7 @@ class Bot
   def start
     Telegram::Bot::Client.run(@token) do |bot|
       bot.listen do |message|
-      gi  answer = send_answer(message.text)
+        answer = send_answer(message.text)
         if answer.nil?
           text = 'information about this person is classified'
           bot.api.sendMessage(chat_id: message.chat.id, text: text)
