@@ -6,5 +6,4 @@ class Celebrity
     @celebrity = { 'name' => name, 'orientation' => orientation,
                    'info' => info }
   end
-
 end
