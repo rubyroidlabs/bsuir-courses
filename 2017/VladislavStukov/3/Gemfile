@@ -1,0 +1,5 @@
+source 'https://rubygems.org' do
+  gem 'mechanize'
+  gem 'redis'
+  gem 'translit'
+end
