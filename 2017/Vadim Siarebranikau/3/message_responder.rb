@@ -11,9 +11,9 @@ class MessageResponder
   end
 
   def respond
-    if @message.text=='/start'
+    if @message.text == '/start'
       answer_with_greeting_message
-    elsif @message.text=='/stop'
+    elsif @message.text == '/stop'
       answer_with_farewell_message
     else
       answer
@@ -44,8 +44,9 @@ class MessageResponder
   def answer_with_farewell_message
     answer_with_message "Пока,#{@message.from.first_name}"
   end
- def answer
-    @answer=Parser.new.search(@message.text)
+
+  def answer
+    @answer = Parser.new.search(@message.text)
     answer_with_message @answer
   end
   def answer_with_message(text)
