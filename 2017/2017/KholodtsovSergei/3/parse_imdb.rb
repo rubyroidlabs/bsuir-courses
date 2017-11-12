@@ -2,10 +2,9 @@ require 'open-uri'
 require 'nokogiri'
 require_relative 'celebrity'
 
-class Parse_imdb
-
+class Parseimdb
   attr_accessor :html, :doc
-  IMDB = 'http://www.imdb.com/list/ls072706884'
+  IMDB = 'http://www.imdb.com/list/ls072706884'.freeze
 
   def initialize
     @html = open(IMDB)
