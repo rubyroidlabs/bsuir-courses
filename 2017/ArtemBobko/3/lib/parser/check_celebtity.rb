@@ -1,5 +1,5 @@
 module CheckCelebrity
-  FILE_NAME = 'database.txt'.freeze
+  FILE_NAME = 'database.txt'
 
   def self.lgbt?(name)
     File.open(FILE_NAME, 'r') do |file|
