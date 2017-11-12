@@ -9,12 +9,12 @@ token = '489305805:AAELYgWpTBkzfJcA0WUzYnCWCrPeg9tLKyk'
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     case message.text
-    when '/start'
+      when '/start'
       bot.api.sendMessage(chat_id: message.chat.id, 
                           text: "Hello, #{message.from.first_name}")
-    when '/stop'
+      when '/stop'
       bot.api.sendMessage(chat_id: message.chat.id, text: 'While my hero')
-    else
+      else
       parser = Parser.new Translit.convert(message.text.to_s, :english)
       if  parser.search_in_gay_actors ||
           parser.search_in_bisexual_actors ||
