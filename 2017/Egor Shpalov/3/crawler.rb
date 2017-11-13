@@ -43,5 +43,7 @@ crawler1 = Crawler.new('mic')
 crawler1.info = [MIC_URL, MIC_NAME, MIC_DESC]
 crawler1.start
 
-%x(cd data
-cat imdb nnn2016 nnn2017 mic imdb_no_desc > source)
+`
+cd data
+cat imdb nnn2016 nnn2017 mic imdb_no_desc > source
+`

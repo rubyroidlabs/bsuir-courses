@@ -5,7 +5,7 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     @list = list
   end
 
-  def do_POST(request, response)
+  def do_post(request, response)
     temp = JSON.parse(request.body.gsub('\n', ' '))
     body = Telegram::Bot::Types::Update.new(temp)
     if body.callback_query.nil?
@@ -16,6 +16,8 @@ class MyServlet < WEBrick::HTTPServlet::AbstractServlet
     response.status = 200
     response.body = 'Success.'
   end
+
+  alias do_POST do_post
 
   def handler(message, from_text_message)
     text = from_text_message ? message.text : message.data
