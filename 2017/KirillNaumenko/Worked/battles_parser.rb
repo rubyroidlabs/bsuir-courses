@@ -23,7 +23,6 @@ class BattlesParser
                              .to_html.split(/\[.*\]/).drop(1)
       FLANKS.each { |flank| create_battle_mc(title, result_text, flank) }
       battles << BattleInfo.new(left_mc, right_mc, title, link)
-      binding.pry
     end
     battles
   end
