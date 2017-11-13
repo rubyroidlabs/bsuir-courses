@@ -26,7 +26,7 @@ class WebParser
     page.css('.list_item').each do |x|
       @name << x.css('.info b a').text
       @status << x.css('.description > text()').text.gsub(IMDB_CUT_WORD, '')
-      @details <<  x.css('.item_description').text
+      @details << x.css('.item_description').text
     end
     @details.map! { |el| el == '' ? IMDB_NO_DETAILS : el }
     @name.zip(@status.zip(@details)).to_h
@@ -36,7 +36,8 @@ class WebParser
     page = @agent.get @uri_ranker
     page.css('.listItem__title').each { |x| @name << x.css('> text()').text }
     page.css('.listItem__blather').each do |x|
-      @details << (x.text + ' ' + x.css('a').first.attr('href').gsub('//m.', 'https://www.'))
+      link = x.css('a').first.attr('href').gsub('//m.', 'https://www.')
+      @details << (x.text + link)
       @status << 'Gay'
     end
     @name.zip(@status.zip(@details)).to_h

@@ -6,11 +6,13 @@ require 'redis'
 require 'russian'
 require 'telegram/bot'
 
-class Bot_engine
+class Bot
   TOKEN = '476714692:AAH_pCfRlJ_JPwq6O2HtOVpU1uHM1d4igfM'.freeze
+  HI_ONE = 'I know all about coming-out. My darling '.freeze
+  HI_TWO = ". Let's talk about it. Tell me sweety name💋".freeze
 
   def initialize
-    @incorrect_name = ''
+    @rus_mane = ''
     @redis = Redis.new
   end
 
@@ -21,12 +23,12 @@ class Bot_engine
         when '/start'
           bot.api.send_message(
             chat_id: message.chat.id,
-            text: "I know all about coming-out. My darling #{message.from.first_name.capitalize}. Let's talk about it. Tell me sweety name💋"
+            text: "#{HI_ONE}#{message.from.first_name.capitalize}#{HI_TWO}"
           )
         when 'y'
-          text = if @redis.get(@incorrect_name)
-                   gay_info = JSON.parse @redis.get(@incorrect_name)
-                   "#{@incorrect_name} \n #{gay_info.join("\n")}"
+          text = if @redis.get(@rus_mane)
+                   gay_info = JSON.parse @redis.get(@rus_mane)
+                   "#{@rus_mane} \n #{gay_info.join("\n")}"
 
                  end
           bot.api.send_message(
@@ -38,14 +40,11 @@ class Bot_engine
           text = if @redis.get(message.text)
                    gay_info = JSON.parse @redis.get(message.text)
                    "#{message.text} \n #{gay_info.join("\n")}"
+                 elsif check_name(message)
+                   @rus_mane = check_name(message)
+                   "Did you mean #{check_name(message)}"
                  else
-                   if @redis.get(Russian.translit(message.text.split.last))
-                     @incorrect_name = @redis.get(Russian.translit(message.text.split.last))
-                     "Did you mean #{@redis.get(Russian.translit(message.text.split.last))}"
-
-                   else
-                     '110010100:Not found'
-                   end
+                   '110010100:Not found'
                  end
           bot.api.send_message(
             chat_id: message.chat.id,
@@ -54,5 +53,9 @@ class Bot_engine
         end
       end
     end
-end
+  end
+
+  def check_name(msg)
+    @redis.get(Russian.translit(msg.text.split.last))
+  end
 end
