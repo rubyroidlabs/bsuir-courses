@@ -19,25 +19,16 @@ class Bot
   def bot_start
     Telegram::Bot::Client.run(TOKEN) do |bot|
       bot.listen do |message|
-        case message.text
-        when '/start'
-          bot.api.send_message(
-            chat_id: message.chat.id,
-            text: "#{HI_ONE}#{message.from.first_name.capitalize}#{HI_TWO}"
-          )
-        when 'y'
-          text = if @redis.get(@rus_mane)
+        text = case message.text
+               when '/start'
+                 "#{HI_ONE}#{message.from.first_name.capitalize}#{HI_TWO}"
+               when 'y'
+                 if @redis.get(@rus_mane)
                    gay_info = JSON.parse @redis.get(@rus_mane)
                    "#{@rus_mane} \n #{gay_info.join("\n")}"
-
                  end
-          bot.api.send_message(
-            chat_id: message.chat.id,
-            text: text
-          )
-
-        else
-          text = if @redis.get(message.text)
+               else
+                 if @redis.get(message.text)
                    gay_info = JSON.parse @redis.get(message.text)
                    "#{message.text} \n #{gay_info.join("\n")}"
                  elsif check_name(message)
@@ -46,11 +37,8 @@ class Bot
                  else
                    '110010100:Not found'
                  end
-          bot.api.send_message(
-            chat_id: message.chat.id,
-            text: text
-          )
-        end
+               end
+        bot.api.send_message(chat_id: message.chat.id, text: text)
       end
     end
   end
