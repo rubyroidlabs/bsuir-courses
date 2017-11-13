@@ -1,8 +1,8 @@
 
-require_relative 'battles_parser.rb'
-require_relative 'battle_info.rb'
-require_relative 'battle_mc.rb'
-require_relative 'pretty_printer.rb'
+require_relative 'battles_parser'
+require_relative 'battle_info'
+require_relative 'battle_mc'
+require_relative 'pretty_printer'
 
 song_urls = []
 

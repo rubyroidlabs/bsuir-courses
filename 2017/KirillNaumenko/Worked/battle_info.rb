@@ -11,10 +11,10 @@ class BattleInfo
   end
 
   def winner
-    if left_mc.letters_count < right_mc.letters_count
-      winner = right_mc
-    elsif right_mc.letters_count < left_mc.letters_count
-      winner = left_mc
+    if left_mc.mc_text_letters_count < right_mc.mc_text_letters_count
+      right_mc
+    elsif right_mc.mc_text_letters_count < left_mc.mc_text_letters_count
+      left_mc
     end
     winner
   end

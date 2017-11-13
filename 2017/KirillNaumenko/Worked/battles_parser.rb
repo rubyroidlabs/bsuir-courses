@@ -21,24 +21,19 @@ class BattlesParser
       title = page_save.search('//div//h1//text()').to_html
       result_text = page_save.search("//div[@class='lyrics']//p//text()")
                              .to_html.split(/\[.*\]/).drop(1)
-      FLANKS.each { |flank| create_battle_mc(flank, result_text, title) }
+      FLANKS.each { |flank| create_battle_mc(title, result_text, flank) }
       battles << BattleInfo.new(left_mc, right_mc, title, link)
+      binding.pry
     end
     battles
   end
 
-  def create_battle_mc(flank, result_text, title)
+  def create_battle_mc(title, result_text, flank)
     case flank
     when 'left'
-      @left_mc = BattleMc.new
-      left_mc.flank = flank
-      left_mc.name = title.split(/\svs\.?\s/i).first
-      left_mc.text = result_text.select.with_index { |_val, index| index.even? }
+      @left_mc = BattleMc.new.left_mc(title, result_text, flank)
     when 'right'
-      @right_mc = BattleMc.new
-      right_mc.flank = flank
-      right_mc.name = title.split(/\svs\.?\s/i).last
-      right_mc.text = result_text.select.with_index { |_val, index| index.odd? }
+      @right_mc = BattleMc.new.right_mc(title, result_text, flank)
     end
   end
 end

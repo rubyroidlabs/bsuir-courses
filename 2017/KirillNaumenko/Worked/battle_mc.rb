@@ -1,13 +1,19 @@
 class BattleMc
   attr_accessor :name, :text, :flank
 
-  def initialize(name = nil, text = nil, flank = nil)
-    @name = name
-    @text = text
+  def left_mc(title, result_text, flank)
+    @name = title.split(/\svs\.?\s/i).first
+    @text = result_text.select.with_index { |_val, index| index.even? }
     @flank = flank
   end
 
-  def letters_count
+  def right_mc(title, result_text, flank)
+    @name = title.split(/\svs\.?\s/i).last
+    @text = result_text.select.with_index { |_val, index| index.odd? }
+    @flank = flank
+  end
+
+  def mc_text_letters_count
     text.inject(0) do |c, w|
       c += w.length
       c
