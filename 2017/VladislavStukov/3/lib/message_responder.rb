@@ -2,7 +2,6 @@ require_relative 'search_engine'
 require 'translit'
 
 class MessageResponder
-
   def initialize(options)
     @bot = options[:bot]
     @message = options[:message]
@@ -39,7 +38,6 @@ class MessageResponder
         answer_with_message('Я его не знаю :(')
       end
     end
-
   end
 
   private
@@ -56,7 +54,6 @@ class MessageResponder
         yield $~
       end
     end
-
   end
 
   def answer_with_message(text)
