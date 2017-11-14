@@ -9,9 +9,9 @@ Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     names = reading
     if names.include?(message.text)
-      bot.api.sendMessage(chat_id: message.chat.id, text: 'Yes')
+      bot.api.sendMessage(chat_id: message.chat.id, text: 'Совершил(а) каминг-аут')
     else
-      bot.api.sendMessage(chat_id: message.chat.id, text: 'No')
+      bot.api.sendMessage(chat_id: message.chat.id, text: 'Информации не найдено')
     end
   end
 end
