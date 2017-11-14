@@ -4,9 +4,7 @@ require 'json'
 files = Dir['/home/dshaido/trees/*.tree']
 files_list = Array[]
 files.each do |file_name|
-  unless File.directory? file_name
-    files_list.push(file_name)
-  end
+  files_list.push(file_name) unless File.directory?(file_name)
 end
 
 files_list = files_list.sort
