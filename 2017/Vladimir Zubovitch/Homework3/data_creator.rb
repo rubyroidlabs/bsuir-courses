@@ -10,7 +10,6 @@ module Base
   end
 
   def reading
-    data_info = []
     data_file = File.read('data.json')
     data_info = JSON.parse(data_file)
     data_info
