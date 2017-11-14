@@ -9,7 +9,7 @@ Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     names = reading
     if names.include?(message.text)
-      bot.api.sendMessage(chat_id: message.chat.id, text: 'Did coming out'
+      bot.api.sendMessage(chat_id: message.chat.id, text: 'Did coming out')
     else
       bot.api.sendMessage(chat_id: message.chat.id, text: 'Info not found')
     end
