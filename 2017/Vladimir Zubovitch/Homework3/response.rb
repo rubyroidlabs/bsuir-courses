@@ -9,7 +9,7 @@ class Names
     famous = famous.gsub(/^_+/) { '' }
     famous = famous.gsub(/_+$/) { '' }
     famous = famous.gsub(/_+/) { '|' }
-    famous = famous.split('|')
-    famous
+    array_of_famous = famous.split('|')
+    array_of_famous
   end
 end
