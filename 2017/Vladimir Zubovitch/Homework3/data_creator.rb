@@ -1,4 +1,4 @@
-require_relative 'response.rb'
+require_relative 'parse.rb'
 require 'json'
 
 module Base
