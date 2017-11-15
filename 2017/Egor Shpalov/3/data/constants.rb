@@ -19,3 +19,5 @@ MIC_DESC = "#{mic_desc_part_div}#{mic_desc_part_h3}".freeze
 TOKEN = '490305270:AAFPPPp0N91yFfPfJZIQJKwzocN8zI4_mxA'.freeze
 # https://api.telegram.org/bot490305270:AAFPPPp0N91yFfPfJZIQJKwzocN8zI4_mxA/
 # setWebhook?url=https://4715ae80.ngrok.io/webhooks/telegram_molodechnoisthesaintplace
+
+LEVENSTEIN_SEARCH_DISTANCE = 5

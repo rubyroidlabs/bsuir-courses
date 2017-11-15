@@ -8,6 +8,7 @@ require_relative './data/constants.rb'
 require_relative './lib/start.rb'
 require_relative './lib/result.rb'
 require_relative './lib/my_servlet.rb'
+require_relative './lib/search.rb'
 
 class Bot
   def initialize
