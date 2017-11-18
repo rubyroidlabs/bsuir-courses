@@ -53,11 +53,9 @@ class MessageResponder
 
   def get_answer
     if @data.include?(@message.text)
-      bot.api.sendMessage(chat_id: message.chat.id, 
-        text: 'Каминг-аут совершен!!!!')
+      bot.api.sendMessage(chat_id: message.chat.id, text: 'Каминг-аут совершен!')
     else
-      bot.api.sendMessage(chat_id: message.chat.id, 
-        text: 'Не найденно данных...')
+      bot.api.sendMessage(chat_id: message.chat.id, text: 'Не найденно данных.')
     end
   end
 end
