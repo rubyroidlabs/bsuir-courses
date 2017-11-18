@@ -12,7 +12,7 @@ class Parser
     PARSE_PAGE.css('.info b').map do |a|
       post_name = a.text
       actors.push(post_name)
-    end    
+    end
     actors
   end
 

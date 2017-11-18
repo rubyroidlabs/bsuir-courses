@@ -55,7 +55,7 @@ class MessageResponder
     if @data.include?(@message.text)
       bot.api.sendMessage(chat_id: message.chat.id, text: 'Каминг-аут совершен!')
     else
-      bot.api.sendMessage(chat_id: message.chat.id, text: 'Не найденно данных.')
+      bot.api.sendMessage(chat_id: message.chat.id, text: 'Нет данных.')
     end
   end
 end
