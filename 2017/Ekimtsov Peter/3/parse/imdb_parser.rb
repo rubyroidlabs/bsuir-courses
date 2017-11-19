@@ -2,22 +2,27 @@ require 'mechanize'
 
 # IMDB list parser
 class IMDBParser
-  URL = 'http://www.imdb.com/list/ls072706884/'.freeze
+  URL_1 = 'http://www.imdb.com/list/ls072706884/'.freeze
+  URL_2 = 'http://www.imdb.com/list/ls059456655/'.freeze
+
+  attr_reader :names
 
   def initialize
     @agent = Mechanize.new { |agent| agent.user_agent_alias = 'Mac Safari' }
-    @page = @agent.get(URL)
-    @orientations = []
+    @page1 = @agent.get(URL_1)
+    @page2 = @agent.get(URL_2)
     @names = []
+    names_info
   end
 
-  def names_orientation
-    @page.css('.list.detail').css('b').css('a').each do |name|
+  private
+
+  def names_info
+    @page1.css('.list.detail').css('b').css('a').each do |name|
       @names.push(name.text)
     end
-    @page.css('.list.detail').css('.description').each do |orientation|
-      @orientations.push(orientation.text.slice(/Gay|Lesbian|Bisexual/))
+    @page2.css('.list.detail').css('b').css('a').each do |name|
+      @names.push(name.text)
     end
-    Hash[@names.zip(@orientations)]
   end
 end
