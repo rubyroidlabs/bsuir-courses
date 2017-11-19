@@ -32,4 +32,3 @@ class Parseimdb
     orientation
   end
 end
-
