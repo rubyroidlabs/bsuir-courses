@@ -75,4 +75,3 @@ class Mybotinok
     @name_list
   end
 end
-
