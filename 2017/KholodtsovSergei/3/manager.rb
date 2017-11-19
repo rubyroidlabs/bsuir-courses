@@ -2,10 +2,13 @@ require_relative 'my_botinok'
 require_relative 'parse_newnownext'
 require_relative 'parse_imdb'
 
-LINK_1 = 'http://www.newnownext.com/gay-celebrities-coming-out-2016/10/2016/'.freeze
-LINK_2 = 'http://www.newnownext.com/gay-celebrities-coming-out-2017/10/2017/'.freeze
+LINK_1 = 'http://www.newnownext.com/gay-celebrities'\
+'-coming-out-2016/10/2016/'.freeze
+LINK_2 = 'http://www.newnownext.com/gay-celebrities'\
+'-coming-out-2017/10/2017/'.freeze
 LINK_3 = 'https://www.buzzfeed.com/louispeitzman/celebrities'\
-       '-you-might-not-know-are-bisexual?utm_term=.xvm3R4vGqa#.lwr5R3owlg'.freeze
+       '-you-might-not-know-are-bisexual?utm_term=.xvm3R4vGqa#'\
+'.lwr5R3owlg'.freeze
 DESCRIPTION_1 = '.description-container'.freeze
 DESCRIPTION_2 = '.subbuzz__description'.freeze
 PEOPLE_1 = '.heading'.freeze
