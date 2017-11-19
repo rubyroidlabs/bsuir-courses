@@ -12,12 +12,11 @@ class Parsenewnownext
 
   def found_celebrity(people, all_description, celebrity)
     celebrity.each do |item|
-      if people.include?(item.celebrity['name'])
-        i = people.index(item.celebrity['name'])
-        item.celebrity['info'] += all_description[i]
-        people.delete(people[i])
-        all_description.delete(all_description[i])
-      end
+      next unless people.include?(item.celebrity['name'])
+      i = people.index(item.celebrity['name'])
+      item.celebrity['info'] += all_description[i]
+      people.delete(people[i])
+      all_description.delete(all_description[i])
     end
     people.each do |human|
       celebrity << Celebrity.new(human, '', all_description.shift)
