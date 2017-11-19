@@ -61,3 +61,4 @@ class Manager
 end
 
 Manager.new.start
+

@@ -26,8 +26,8 @@ class Mybotinok
   def message_handler
     case @message.text
     when '/start'
-      bot.api.sendMessage(chat_id: @message.chat.id, 
-                          text: "Hello, #{ @message.from.first_name }")
+      bot.api.sendMessage(chat_id: @message.chat.id, text: "Hello, "\
+      "#{ @message.from.first_name }")
     when 'y'
       out_information(@name)
       @name_list = get_names
@@ -75,3 +75,4 @@ class Mybotinok
     @name_list
   end
 end
+

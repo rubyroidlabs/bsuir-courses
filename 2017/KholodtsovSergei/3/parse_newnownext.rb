@@ -24,3 +24,4 @@ class Parsenewnownext
     celebrity
   end
 end
+

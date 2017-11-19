@@ -6,3 +6,4 @@ class Celebrity
                    'info' => info }
   end
 end
+
