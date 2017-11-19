@@ -26,7 +26,7 @@ class Mybotinok
   def message_handler
     case @message.text
     when '/start'
-      bot.api.sendMessage(chat_id: @message.chat.id,
+      bot.api.sendMessage(chat_id: @message.chat.id, 
                           text: "Hello, #{ @message.from.first_name }")
     when 'y'
       out_information(@name)
