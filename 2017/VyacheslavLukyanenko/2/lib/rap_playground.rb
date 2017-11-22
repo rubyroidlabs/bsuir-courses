@@ -2,7 +2,7 @@ require 'mechanize'
 require 'json'
 require_relative 'battle_parse'
 
-REQ_CONST = 'https://genius.com/api/artists/117146/'
+REQ_CONST = 'https://genius.com/api/artists/117146/'.freeze
 
 class RapPlayground
   def initialize(name, criteria)

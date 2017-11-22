@@ -8,8 +8,6 @@ class BattleParse
     @criteria = criteria
   end
 
-private
-
   def parse_n_choose(song_properties)
     text = song_properties[:text]
     @first_count_words = 0
