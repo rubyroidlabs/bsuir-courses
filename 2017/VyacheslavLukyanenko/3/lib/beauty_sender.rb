@@ -27,17 +27,17 @@ class BeautySend
   def speak_about_first_info
     bot.api.send_message(
       chat_id: message.chat.id,
-      text:"Первый источник это #{IMDB_ACTORS}")
+      text: "Первый источник это #{IMDB_ACTORS}")
 
     if @first_info.nil?
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:'К сожалению, информации об этом человеке тут нет.'
+        text: 'К сожалению, информации об этом человеке тут нет.'
       )
     else
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:"Информация такая: #{@first_info[:actor]} #{@first_info[:info]}"
+        text: "Информация такая: #{@first_info[:actor]} #{@first_info[:info]}"
       )
     end
   end
@@ -45,12 +45,12 @@ class BeautySend
   def speak_about_second_info
     bot.api.send_message(
       chat_id: message.chat.id,
-      text:"Второй источник это #{NEWNOW_ACTORS}")
+      text: "Второй источник это #{NEWNOW_ACTORS}")
 
     if @second_info.nil?
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:'К сожалению, информации об этом человеке тут нет.'
+        text: 'К сожалению, информации об этом человеке тут нет.'
       )
     else
       bot.api.send_message(
@@ -63,17 +63,17 @@ class BeautySend
   def speak_about_third_info
     bot.api.send_message(
       chat_id: message.chat.id,
-      text:"Третий источник это #{CLEVER_ACTORS}")
+      text: "Третий источник это #{CLEVER_ACTORS}")
 
     if @third_info.nil?
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:'К сожалению, информации об этом человеке тут нет.'
+        text: 'К сожалению, информации об этом человеке тут нет.'
       )
     else
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:"Информация такая: #{@third_info[:actor]} #{@third_info[:info]}"
+        text: "Информация такая: #{@third_info[:actor]} #{@third_info[:info]}"
       )
     end
   end
