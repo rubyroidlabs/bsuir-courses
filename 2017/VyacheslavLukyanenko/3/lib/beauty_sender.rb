@@ -5,7 +5,7 @@ class BeautySend
   h = 'http://www.theclever.com/15-celebs-you-didnt-know-were-gay-or'
   CLEVER_ACTORS = h + '-bisexual/'.freeze
 
-  IMDB_ACTORS  = 'http://www.imdb.com/list/ls072706884/'.freeze
+  IMDB_ACTORS = 'http://www.imdb.com/list/ls072706884/'.freeze
 
   h = 'http://www.newnownext.com/gay-celebrities-comi'
   NEWNOW_ACTORS = h + 'ng-out-2017/10/2017/'.freeze
@@ -27,7 +27,8 @@ class BeautySend
   def speak_about_first_info
     bot.api.send_message(
       chat_id: message.chat.id,
-      text: "Первый источник это #{IMDB_ACTORS}")
+      text: "Первый источник это #{IMDB_ACTORS}"
+    )
 
     if @first_info.nil?
       bot.api.send_message(
@@ -55,7 +56,7 @@ class BeautySend
     else
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:"Информация такая: #{@second_info[:actor]} #{@second_info[:info]}"
+        text: "Информация такая: #{@second_info[:actor]} #{@second_info[:info]}"
       )
     end
   end
