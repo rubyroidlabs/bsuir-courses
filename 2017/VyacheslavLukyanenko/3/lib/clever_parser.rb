@@ -18,26 +18,22 @@ class CleverParser
     i = 0
     while i < @actors.count
       if message.text == @actors[i]
-        return {actor: @actors[i],
-                info: @actors_info[i]}
+        { actor: @actors[i],
+                info: @actors_info[i] }
         break
       end
-      i = i + 1
+      i += 1
     end
   end
 
   def make_data_from_clever
-    flag = false
-
     page = Mechanize.new.get(CLEVER_ACTORS)
     page.css('.article-content h2 strong').each do |x|
       @actors << x.text
     end
-
     page.css('.article-content > p').each do |x|
       @actors_info << x.text
     end
-
     @actors_info.shift
     @actors_info.shift
     @actors_info.shift

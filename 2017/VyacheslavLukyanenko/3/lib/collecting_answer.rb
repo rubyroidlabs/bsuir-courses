@@ -8,9 +8,6 @@ class MakeAnswer
   end
 
   def send(text)
-    bot.api.send_message(
-      chat_id: chat.id,
-      text: text
-      )
+    bot.api.send_message(chat_id: chat.id, text: text)
   end
 end
