@@ -46,7 +46,8 @@ class BeautySend
   def speak_about_second_info
     bot.api.send_message(
       chat_id: message.chat.id,
-      text: "Второй источник это #{NEWNOW_ACTORS}")
+      text: "Второй источник это #{NEWNOW_ACTORS}"
+    )
 
     if @second_info.nil?
       bot.api.send_message(
@@ -64,7 +65,8 @@ class BeautySend
   def speak_about_third_info
     bot.api.send_message(
       chat_id: message.chat.id,
-      text: "Третий источник это #{CLEVER_ACTORS}")
+      text: "Третий источник это #{CLEVER_ACTORS}"
+    )
 
     if @third_info.nil?
       bot.api.send_message(
