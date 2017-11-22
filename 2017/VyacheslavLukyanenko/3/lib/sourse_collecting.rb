@@ -10,7 +10,7 @@ class SourceCollecting
     @bot = bot
     @message = message
     @first_parse_agent = ParsePages.new(message, bot)
-    @second_parse_agent = CleverParser.new(message,bot)
+    @second_parse_agent = CleverParser.new(message, bot)
   end
 
   def imdb_parse
