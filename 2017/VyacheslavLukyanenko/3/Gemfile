@@ -1,0 +1,11 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem 'telegram-bot-ruby'
+gem 'mechanize'
+gem 'google-cloud-translate'
+gem 'translit'
+gem 'languager'
+gem 'json'
+
+# gem "rails"
