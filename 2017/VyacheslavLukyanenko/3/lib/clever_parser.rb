@@ -18,8 +18,7 @@ class CleverParser
     i = 0
     while i < @actors.count
       if message.text == @actors[i]
-        feedback = { actor: @actors[i],
-                     info: @actors_info[i] }
+        { actor: @actors[i], info: @actors_info[i] }
         break
       end
       i += 1

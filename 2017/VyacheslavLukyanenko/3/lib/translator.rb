@@ -80,7 +80,7 @@ class CorrectInput
     apikey = 'myapikey'
     source = sour
     target = targ
-    page = agent.get "https://www.googleapis.com/language/translate/v2?key="\
+    page = agent.get 'https://www.googleapis.com/language/translate/v2?key='\
                       "#{apikey}&source=#{source}&target=#{target}&q=#{txt}"
     js = JSON.parse(page.body)
     js['data']['translations'][0]['translatedText']

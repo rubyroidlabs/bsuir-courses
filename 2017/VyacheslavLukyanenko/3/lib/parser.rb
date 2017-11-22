@@ -20,8 +20,7 @@ class ParsePages
     i = 0
     while i < @actors_imdb.count
       if message.text == @actors_imdb[i]
-        feedback = { actor: @actors_imdb[i],
-                     info: @actors_info_imdb[i] }
+        { actor: @actors_imdb[i], info: @actors_info_imdb[i] }
         break
       end
       i += 1
@@ -32,8 +31,7 @@ class ParsePages
     i = 0
     while i < @actors_newnow.count
       if message.text == @actors_newnow[i]
-        feedback = { actor: @actors_newnow[i],
-                     info: @actors_info_newnow[i] }
+        { actor: @actors_newnow[i], info: @actors_info_newnow[i] }
         break
       end
       i += 1
