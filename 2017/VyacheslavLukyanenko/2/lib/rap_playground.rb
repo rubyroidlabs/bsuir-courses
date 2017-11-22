@@ -1,6 +1,8 @@
 require 'mechanize'
 require 'json'
-require_relative 'BattleParse'
+require_relative 'battle_parse'
+
+REQ_CONST = 'https://genius.com/api/artists/117146/'
 
 class RapPlayground
   def initialize(name, criteria)
@@ -13,7 +15,7 @@ class RapPlayground
     agent = Mechanize.new
     last_page = 1
     loop do
-      req = 'https://genius.com/api/artists/117146/'
+      req = REQ_CONST
       req += if @name.nil?
                "songs?page=#{last_page}&sort=title"
              else

@@ -8,6 +8,8 @@ class BattleParse
     @criteria = criteria
   end
 
+private
+
   def parse_n_choose(song_properties)
     text = song_properties[:text]
     @first_count_words = 0
@@ -20,25 +22,8 @@ class BattleParse
       name_pos = round.index(']')
       raper = round[0..name_pos - 1]
       round.slice!(raper + ']')
-      if @first_battler_name.to_s.empty?
-        @first_battler_name = raper
-      elsif @first_battler_name != raper &&
-            @second_battler_name.to_s.empty?
-        @second_battler_name = raper
-      end
-      if raper == @first_battler_name
-        @first_count_words += if @criteria.to_s.empty?
-                                round.split.count
-                              else
-                                round.scan(/#{@criteria}/).size
-                              end
-      elsif raper == @second_battler_name
-        @second_count_words += if @criteria.to_s.empty?
-                                 round.split.count
-                               else
-                                 round.scan(/#{@criteria}/).size
-                               end
-      end
+      what_raper(raper)
+      count_words_of_current_raper(raper)
     end
     if @first_battler_name.to_s.empty? || @second_battler_name.to_s.empty?
       false
@@ -54,6 +39,31 @@ class BattleParse
                   @second_count_words,
                   @first_count_words,
                   song_properties[:uri])
+    end
+  end
+
+  def what_raper(raper)
+    if @first_battler_name.to_s.empty?
+      @first_battler_name = raper
+    elsif @first_battler_name != raper &&
+          @second_battler_name.to_s.empty?
+      @second_battler_name = raper
+    end
+  end
+
+  def count_words_of_current_raper(raper)
+    if raper == @first_battler_name
+      @first_count_words += if @criteria.to_s.empty?
+                              round.split.count
+                            else
+                              round.scan(/#{@criteria}/).size
+                            end
+    elsif raper == @second_battler_name
+      @second_count_words += if @criteria.to_s.empty?
+                               round.split.count
+                             else
+                               round.scan(/#{@criteria}/).size
+                             end
     end
   end
 
