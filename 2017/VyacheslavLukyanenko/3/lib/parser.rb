@@ -3,8 +3,8 @@ require 'mechanize'
 class ParsePages
   attr_reader :message
   attr_reader :bot
-  IMDB_ACTORS = 'http://www.imdb.com/list/ls072706884/'.freeze
-  h = 'http://www.newnownext.com/gay-celebrities-comi'
+  IMDB_ACTORS= 'http://www.imdb.com/list/ls072706884/'.freeze
+  h= 'http://www.newnownext.com/gay-celebrities-comi'
   NEWNOW_ACTORS = h + 'ng-out-2017/10/2017/'.freeze
 
   def initialize(message, bot)
@@ -20,8 +20,9 @@ class ParsePages
     i = 0
     while i < @actors_imdb.count
       if message.text == @actors_imdb[i]
-        { actor: @actors_imdb[i],
-          info: @actors_info_imdb[i] }
+        feedback= { actor: @actors_imdb[i],
+                    info: @actors_info_imdb[i] }
+        feedback
         break
       end
       i += 1
@@ -32,8 +33,9 @@ class ParsePages
     i = 0
     while i < @actors_newnow.count
       if message.text == @actors_newnow[i]
-        { actor: @actors_newnow[i],
-          info: @actors_info_newnow[i] }
+        feedback = { actor: @actors_newnow[i],
+                     info: @actors_info_newnow[i] }
+        feedback
         break
       end
       i += 1

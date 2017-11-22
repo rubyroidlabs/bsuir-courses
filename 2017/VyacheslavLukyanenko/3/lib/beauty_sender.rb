@@ -32,11 +32,13 @@ class BeautySend
     if @first_info.nil?
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:'К сожалению, информации об этом человеке тут нет.')
+        text:'К сожалению, информации об этом человеке тут нет.'
+      )
     else
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:"Информация такая: #{@first_info[:actor]} #{@first_info[:info]}")
+        text:"Информация такая: #{@first_info[:actor]} #{@first_info[:info]}"
+      )
     end
   end
 
@@ -48,11 +50,13 @@ class BeautySend
     if @second_info.nil?
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:'К сожалению, информации об этом человеке тут нет.')
+        text:'К сожалению, информации об этом человеке тут нет.'
+      )
     else
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:"Информация такая: #{@second_info[:actor]} #{@second_info[:info]}")
+        text:"Информация такая: #{@second_info[:actor]} #{@second_info[:info]}"
+      )
     end
   end
 
@@ -64,11 +68,13 @@ class BeautySend
     if @third_info.nil?
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:'К сожалению, информации об этом человеке тут нет.')
+        text:'К сожалению, информации об этом человеке тут нет.'
+      )
     else
       bot.api.send_message(
         chat_id: message.chat.id,
-        text:"Информация такая: #{@third_info[:actor]} #{@third_info[:info]}")
+        text:"Информация такая: #{@third_info[:actor]} #{@third_info[:info]}"
+      )
     end
   end
 end

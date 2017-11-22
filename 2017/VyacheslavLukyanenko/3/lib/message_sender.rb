@@ -28,18 +28,24 @@ class MessageResponder
   private
 
   def answer_with_no_problem_message
-    bot.api.send_message(chat_id: message.chat.id,
-                         text:"No problem, #{message.from.first_name}")
+    bot.api.send_message(
+      chat_id: message.chat.id,
+      text:"No problem, #{message.from.first_name}"
+    )
   end
 
   def answer_with_greeting_message
-    bot.api.send_message(chat_id: message.chat.id,
-                         text:"Greetings, #{message.from.first_name}")
+    bot.api.send_message(
+      chat_id: message.chat.id,
+      text:"Greetings, #{message.from.first_name}"
+    )
   end
 
   def answer_with_farewell_message
-    bot.api.send_message(chat_id: message.chat.id,
-                         text:"Chao, #{message.from.first_name}")
+    bot.api.send_message(
+      chat_id: message.chat.id,
+      text:"Chao, #{message.from.first_name}"
+    )
   end
 
   def answer_with_message(text)
