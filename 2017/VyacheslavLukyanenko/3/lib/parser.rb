@@ -22,7 +22,6 @@ class ParsePages
       if message.text == @actors_imdb[i]
         feedback = { actor: @actors_imdb[i],
                      info: @actors_info_imdb[i] }
-        feedback
         break
       end
       i += 1
@@ -35,7 +34,6 @@ class ParsePages
       if message.text == @actors_newnow[i]
         feedback = { actor: @actors_newnow[i],
                      info: @actors_info_newnow[i] }
-        feedback
         break
       end
       i += 1

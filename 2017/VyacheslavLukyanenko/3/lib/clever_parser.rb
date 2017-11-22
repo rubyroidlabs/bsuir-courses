@@ -20,7 +20,6 @@ class CleverParser
       if message.text == @actors[i]
         feedback = { actor: @actors[i],
                      info: @actors_info[i] }
-        feedback
         break
       end
       i += 1
