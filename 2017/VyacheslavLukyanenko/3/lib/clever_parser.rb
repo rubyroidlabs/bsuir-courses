@@ -16,9 +16,12 @@ class CleverParser
 
   def get_data_from_clever(message)
     i = 0
+    feedback = { actor: '', info: '' }
     while i < @actors.count
       if message.text == @actors[i]
-        { actor: @actors[i], info: @actors_info[i] }
+        feedback[:actor] = @actors[i]
+        feedback[:info] = @actors_info[i]
+        feedback
         break
       end
       i += 1
