@@ -14,8 +14,8 @@ class DataDownloader
     # start all parse methods
     result = {}
     result = merge_result(result, parse_site_imdb)
-    result = merge_result(result, parse_site_NewNowNext)
-    result = merge_result(result, parse_site_pride)
+    result = merge_result(result, parse_site_newnownext)
+    merge_result(result, parse_site_pride)
   end
 
   private
@@ -25,7 +25,6 @@ class DataDownloader
       old.empty? ? new : old
     end
   end
-
 
   def parse_site_imdb
     page = @agent.get(IMDB_URL).search('div.list.detail')
@@ -39,9 +38,10 @@ class DataDownloader
     result
   end
 
-  def parse_site_NewNowNext
+  def parse_site_newnownext
     page = @agent.get(NEWNOWNEXT_URL)
-    person_blocks = page.search('//*[@id="post-470013"]/div/section/ol/li').to_ary
+    selector = '//*[@id="post-470013"]/div/section/ol/li'
+    person_blocks = page.search(selector).to_ary
     result = {}
     person_blocks[0..-2].each do |block|
       name = block.search('div > h3').text
@@ -62,4 +62,3 @@ class DataDownloader
     result
   end
 end
-

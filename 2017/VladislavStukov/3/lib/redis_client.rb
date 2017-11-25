@@ -67,8 +67,7 @@ class RedisClient < Redis
 
   def dump_persons(filename)
     dir = DUMP_FILE.sub(%r{\/[^\/]+$}, '')
-    FileUtils.mkdir_p dir unless File.exists?(dir)
+    FileUtils.mkdir_p dir unless File.exist?(dir)
     File.open(filename, 'w') { |file| file.write(dump('persons')) }
   end
 end
-
