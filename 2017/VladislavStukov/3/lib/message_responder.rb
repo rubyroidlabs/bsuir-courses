@@ -47,12 +47,11 @@ class MessageResponder
     Translit.convert!(message_text, :english)
     regex =~ message_text
 
-    if $~
-      if block.arity.zero?
-        yield
-      else
-        yield $~
-      end
+    return unless $~
+    if block.arity.zero?
+      yield
+    else
+      yield $~
     end
   end
 

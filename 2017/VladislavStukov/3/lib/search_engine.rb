@@ -12,11 +12,12 @@ class SearchEngine
     full_match = @redis.name_by_pattern(case_insence(name).to_s)
     return full_match.first if full_match.size == 1
     length = name.length - 1
+    result = []
     loop do
       start = 0
-      result = []
+      result.clear
       while start + length < name.length
-        pattern = name[start..start+length]
+        pattern = name[start..start + length]
         result << @redis.name_by_pattern("*#{case_insence(pattern)}*")
         start += 1
       end
@@ -26,7 +27,6 @@ class SearchEngine
     end
     result.uniq.take 5
   end
-
 
   def case_insence(pattern)
     pattern.scan(/./).map do |letter|

@@ -3,8 +3,7 @@ require 'fileutils'
 require_relative 'data_downloader.rb'
 
 class RedisClient < Redis
-
-  DUMP_FILE = './data/persons.rdb'.freeze
+  DUMP_FILE = '../data/persons.rdb'.freeze
 
   def refresh_data
     if File.file?(DUMP_FILE)
@@ -36,6 +35,15 @@ class RedisClient < Redis
     smembers 'nameset'
   end
 
+  def scan_names
+    next_i = '0'
+    loop do
+      respond = sscan('nameset', next_i)
+      next_i = respond.first
+      respond.last.each { |name| yield(name) }
+      break if next_i.to_i.zero?
+    end
+  end
 
   private
 
@@ -63,3 +71,4 @@ class RedisClient < Redis
     File.open(filename, 'w') { |file| file.write(dump('persons')) }
   end
 end
+
