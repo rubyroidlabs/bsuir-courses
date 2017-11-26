@@ -1,0 +1,6 @@
+<%= bootstrap_form_for([@poster, @comment]) do |f| %>
+    <%= f.text_area :comment, rows: 7 %>
+    <%= f.text_field :contact %>
+    <%= f.submit t('buttons.save'), class: 'btn btn-success'%>
+    <%= link_to t('buttons.back_to_index'), posters_path, class: 'btn btn-default' %>
+<% end %>

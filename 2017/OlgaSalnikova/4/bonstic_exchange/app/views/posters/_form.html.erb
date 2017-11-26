@@ -1,0 +1,8 @@
+<%= bootstrap_form_for(@poster) do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_area :text, rows: 7 %>
+    <%= f.text_field :contact %>
+    <%= f.submit t('buttons.save'), class: 'btn btn-success'%>
+    <%= link_to t('buttons.cancel'), posters_path, class: 'btn btn-default' %>
+<% end %>
+
