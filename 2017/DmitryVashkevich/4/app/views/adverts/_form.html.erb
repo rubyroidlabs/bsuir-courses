@@ -1,0 +1,24 @@
+
+<% if advert.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(advert.errors.count, "error") %> prohibited this advert from being saved:</h2>
+
+      <ul>
+        <% advert.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<%= bootstrap_form_for @advert do |f| %>
+    <%= f.text_field :tittle, label: 'Заголовок' %>
+    <%= f.text_area :description, label: 'Описание'%>
+    <%= f.select :currency, options_for_select([['Биткоины', 'bitcoins'], ['Бонстики', 'bonsticks']]), label: 'Продаю'%>
+    <%= f.number_field :count, min:1,  step: 1, label: 'Количество' %>
+    <%= f.fields_for :person do |person_form| %>
+        <%= person_form.text_field :name , label: 'Имя'%>
+        <%= person_form.telephone_field :phone, label: 'Телефон' %>
+    <% end %>
+    <%= f.submit 'Разместить объявление', class: 'col-md-offset-4 col-lg-4 btn btn-default' %>
+<% end %>
+
