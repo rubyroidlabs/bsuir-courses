@@ -1,0 +1,32 @@
+<%= form_with model: @article,class: "form-horizontal", local: true do |form| %>
+ 
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@article.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= form.label :Заголовок,class:"col-form-label col-form-label-lg" ,for:"inputSmall" %><br>
+    <%= form.text_field :title, class:"form-control form-control-sm", type:"text", id:"inputSmall" %>
+  </div>
+   
+  <p class="form-group">
+    <%= form.label :Текст, class:"col-form-label col-form-label-lg" ,for:"inputLarge" %><br>
+    <%= form.text_area :text, class:"form-control form-control-lg" ,id:"inputLarge"%>
+  </p>
+  <p class="form-group">
+    <%= form.label :Контактные_данные,class:"col-form-label", for:"inputDefault" %><br>
+    <%= form.text_area :contact, type:"text", class:"form-control", id:"inputDefault" %>
+  </p>
+  <button type="submit" class="btn btn-primary">Применить</button>
+ 
+<% end %>

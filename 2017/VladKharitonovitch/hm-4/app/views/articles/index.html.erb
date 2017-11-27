@@ -1,0 +1,23 @@
+<h1>Обмен биткоинов на бонстики</h1>
+<table class="table table-striped table-hover table-bordered">
+  <tr>
+    <th>Название</th>
+    <th>Описание</th>
+    <th>Контактные данные</th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= article.contact %></td>
+      <td><%= link_to 'Показать ', article_path(article),type:"button", class:"btn btn-outline-secondary" %></td>
+      <td><%= link_to 'Изменить ', edit_article_path(article),type:"button", class:"btn btn-secondary" %></td>
+      <td><%= link_to 'Удалить ', article_path(article),
+          method: :delete,
+          data: { confirm: 'вы уверенны?' },type:"button", class:"btn btn-secondary" %></td>
+              
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @article, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>

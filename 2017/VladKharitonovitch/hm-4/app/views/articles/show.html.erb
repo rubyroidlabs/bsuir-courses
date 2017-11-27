@@ -1,0 +1,14 @@
+<p>
+  <strong>Заголовок:</strong>
+  <%= @article.title %>
+</p>
+ 
+<p>
+  <strong>Текст:</strong>
+  <%= @article.text %>
+</p>
+<p>
+  <strong>Контактные данные:</strong>
+  <%= @article.contact %>
+</p>
+<%= link_to 'Изменить', edit_article_path,type:"button" ,class:"btn btn-primary btn-lg" %>
