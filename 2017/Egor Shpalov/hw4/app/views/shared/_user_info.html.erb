@@ -1,0 +1,6 @@
+<h3>
+  <%= current_user.name %>
+</h3>
+<span>
+  <%= pluralize(current_user.adverts.count, "adverticement") %>
+</span>

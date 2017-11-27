@@ -1,0 +1,12 @@
+<% provide(:title, "##{@advert.id}") %>
+<div class="row">
+  <div class="span12">
+    <h3><%= @advert.title %></h3>
+    <div id="splitter"></div>
+    <br>
+    <p><%= @advert.content %></p>
+    <div id="splitter"></div>
+    <br>
+    <h4><%= link_to "#{@user.name}  |  #{@user.email}", user_path(id: @user.id) %></h4>
+  </div>
+</div>

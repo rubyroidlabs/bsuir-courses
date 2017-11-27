@@ -1,0 +1,8 @@
+<%= form_for(@advert) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+  	<%= f.text_field :title,   placeholder: "Title..." %>
+    <%= f.text_area  :content, placeholder: "Content..." %>
+  </div>
+  <%= f.submit "Create new adverticement", class: "btn bitbutton" %>
+<% end %>

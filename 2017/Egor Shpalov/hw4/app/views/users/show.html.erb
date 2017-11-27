@@ -1,0 +1,16 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1><%= @user.name %></h1>
+      <h1><%= @user.email %></h1>
+    </section>
+  </aside>
+  <div class="span8">
+    <% if @user.adverts.any? %>
+      <h3>Adverticements of this user (<%= @user.adverts.count %>)</h3>
+	      <ol class="adverts"><%= render 'adverts/adverts' %></ol>
+	      <h2><%= will_paginate @adverts %></h2>
+    <% end %>
+  </div>
+</div>

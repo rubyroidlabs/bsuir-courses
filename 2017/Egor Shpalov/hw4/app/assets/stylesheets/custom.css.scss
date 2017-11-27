@@ -1,0 +1,272 @@
+// @import "bootstrap-sprockets";
+@import "bootstrap";
+// @import 'bootstrap/theme';
+
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+}
+
+.herounit {
+  padding: 20px;/* CHANGE PADDING HERE*/
+  margin-bottom: 30px; 
+  font-size: 13px;
+  font-weight: 200;
+  line-height: 30px;
+  color: black;
+  background-color: gold; /* CHANGE BACKGROUND HERE*/
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 10px;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: black;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* link */
+.link-style {
+  color: black;
+  text-decoration: underline;
+  &:hover {
+    color: gold;
+    text-decoration: blink;
+  }
+}
+
+/* button */
+.bitbutton {
+  color: black;
+  &:hover {
+    color: gold;
+    text-decoration: blink;
+  }
+}
+
+/* header */
+
+#menu {
+  color: white;
+  &:hover {
+    color: gold;
+    text-decoration: blink;
+  }
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: gold;
+    text-decoration: blink;
+  }
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $grayMediumLight;
+  color: grey;
+  a {
+    color: white;
+    &:hover {
+      color: white;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 15px;
+  @include box_sizing;
+}
+
+/* sidebar */
+
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid white;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.2em;
+      text-align: left;
+      padding-left: 0px;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 90%;
+  margin-bottom: 15px;
+  box-shadow: inset 0 0 5px 5px #888;
+  background: #fff;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
+/* adverts */
+
+#splitter
+{
+  width: 620px;
+  background-color:$grayLighter;
+  float:left;
+  height:0.15%;
+  position:absolute;
+}
+
+.adverts {
+  list-style: none;
+  margin: 0px 0 0 0;
+  border-top: 2px solid #e8e8e8;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.title {
+  color: black;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.content {
+  display: block;
+  color: black;
+}
+.timestamp {
+  color: black;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
