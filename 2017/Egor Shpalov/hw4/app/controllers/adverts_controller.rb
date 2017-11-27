@@ -1,10 +1,12 @@
 class AdvertsController < ApplicationController
-  before_action :signed_in_user, only: [:show, :create, :destroy]
+  before_action :signed_in_user, only: %i[show create destroy]
   before_action :correct_user,   only: :destroy
 
   def show
     @advert = Advert.find(params[:id])
     @user = User.find(@advert.user_id)
+    @comments = @advert.comments.paginate(page: params[:page])
+    @comment = @advert.comments.build if signed_in?
     render 'adverts/show'
   end
 

@@ -1,15 +1,15 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  # Disable Rails's static asset server (Apache or nginx will already do this)  
+  # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
-  # Compress JavaScripts and CSS  
+  # Compress JavaScripts and CSS
   config.assets.compress = true
 
-  # Don't fallback to assets pipeline if a precompiled asset is missed  
+  # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = true
 
-  # Generate digests for assets URLs  
+  # Generate digests for assets URLs
   config.assets.digest = true
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
