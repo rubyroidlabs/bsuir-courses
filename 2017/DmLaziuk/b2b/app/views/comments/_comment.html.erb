@@ -1,0 +1,12 @@
+<tr>
+  <td class="text-right"><span class="badge badge-light"><%= comment.commenter %></span></td>
+  <td class="text-left"><%= comment.body %></td>
+  <td>
+    <%= link_to( [comment.article, comment],
+                 style: 'font-size:1.5rem',
+                 method: :delete,
+                 data: { confirm: 'Are you sure?' }) do %>
+        <span class="badge badge-danger badge-pill">&times;</span>
+    <% end %>
+  </td>
+</tr>

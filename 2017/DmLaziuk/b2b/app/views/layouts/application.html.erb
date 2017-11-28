@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body class="cover-2">
+    <section class="cover-2 text-left">
+      <%= render 'layouts/navigation/navbar' %>
+      <div class="cover-container">
+        <div class="cover-inner container">
+          <div class="row">
+            <div class="col">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

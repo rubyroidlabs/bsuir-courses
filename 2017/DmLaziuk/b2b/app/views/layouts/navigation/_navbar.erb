@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <div class="container">
+    <%= link_to( image_tag("b2b.png"), root_path, class: "navbar-brand") %>
+    <%= link_to 'Bonstick2Bitcoin', root_path, class: "navbar-brand" %>
+    <div class="collapse navbar-collapse pull-xs-right justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav mt-2 mt-md-0">
+        <li class="nav-item pr-5">
+            <%=link_to "1BTC = #{ArticlesController.btc_byr}BYR", update_index_path, class: "btn btn-warning pill-btn" %>
+        </li>
+        <li class="nav-item pl-5">
+          <%= link_to 'Home', root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'About', about_index_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'New notice', new_article_path, class: "btn btn-success pill-btn" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

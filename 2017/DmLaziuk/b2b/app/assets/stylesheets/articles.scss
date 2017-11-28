@@ -1,0 +1,42 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// for table with caption on top, without borders
+caption {
+  caption-side: top;
+  color: inherit;
+  text-align: center;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+tr {
+  border: hidden;
+}
+
+// for header navigation
+.nav-link {
+  color: #fff; }
+.nav-link:hover {
+  color: #59a0d7; }
+.list-group .nav-link {
+  color: #2b2d34; }
+.list-group .nav-link:hover {
+  color: #59a0d7; }
+
+// for footer navigation
+.page-item a {
+  color: #fff;
+  background: #28a745;
+  border-color: #28a745;
+}
+.page-item.active a.page-link {
+  color: #ffc107;
+  background: #28a745;
+  border-color: #28a745;
+}
+.page-item.disabled a.page-link {
+  color: #fff;
+  background: #28a745;
+  border-color: #28a745;
+}
