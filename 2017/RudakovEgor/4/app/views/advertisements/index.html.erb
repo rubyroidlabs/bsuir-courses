@@ -1,0 +1,13 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <h1 class="text-center">Advertisements</h1>
+  <ul class="nav nav-tabs">
+    <li role="presentation"><%= link_to 'All', advertisements_path %></li>
+    <li role="presentation"><%= link_to 'Buy', buy_path %></li>
+    <li role="presentation"><%= link_to 'Sell', sell_path %></li>
+  </ul>
+  <% @advertisements.each do |advertisement| %>
+    <p><%= link_to "[#{advertisement.deal}] #{advertisement.title}", advertisement, class: 'list-group-item' %></p>
+  <% end %>
+  <%= will_paginate %>
+</div>
