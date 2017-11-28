@@ -1,0 +1,25 @@
+<htmp>
+	<body>
+		<div class="content">
+			<div class="header">
+				<h1>Обмен бонстиков на биткоины</h1>
+				<div class="button">
+					<%= link_to 'Разместить объявление', new_publication_path %>
+				</div>
+			</div>
+			<div class="publications">
+				<h2>Объявления</h2>
+				<table>
+				  <tbody>
+				    <% @publications.each do |publication| %>
+				      <tr>
+				        <td><%= link_to publication.caption, publication %></td>
+				      </tr> 
+				    <% end %>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</htmp>
+

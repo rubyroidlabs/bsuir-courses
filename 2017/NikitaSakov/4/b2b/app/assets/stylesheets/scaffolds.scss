@@ -1,0 +1,49 @@
+html {
+  height: 100%;
+  background-color: #F5F5DC;
+}
+.content {
+  background-color: #F5F5DC;
+  font-family: verdana, arial, helvetica, sans-serif;
+  padding: 3%;
+  width: 100%;
+  position: relative;
+
+  h1, h2 {
+    font-family: Comic Sans;
+    font-style: italic;
+  }
+
+  .header {
+    height: 80px;
+    border: 1px solid #A0522D;
+    width: 100%;
+    padding-left: 5%;
+    position: relative;
+    border-radius: 20px;
+    color: #A0522D;
+
+    .button {
+      position: absolute;
+      height: 30%;
+      width: 15%;
+      text-align: center;
+      top: 35%;
+      right: 5%;
+      border: 1px solid #A0522D;
+      background-color: #A0522D;
+      border-radius: 20px;
+      a {
+        color: #F5F5DC;
+      }
+    }
+  }
+  .publications {
+    padding-left: 5%;
+    color: #A0522D;
+    a {
+      color: #A0522D;
+    }
+  }
+}
+

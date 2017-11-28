@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<div class="content">
+	<div class="publications">
+		<p>
+		  <strong>Заголовок:</strong>
+		  <%= @publication.caption %>
+		</p>
+
+		<p>
+		  <strong>Текст:</strong>
+		  <%= @publication.text %>
+		</p>
+
+		<p>
+		  <strong>Контакты:</strong>
+		  <%= @publication.contacts %>
+		</p>
+
+		<%= link_to 'Изменить', edit_publication_path(@publication) %> |
+		<%= link_to 'Главная страница', publications_path %> |
+		<td><%= link_to 'Удалить', @publication, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+	</div>
+</div>
