@@ -1,0 +1,12 @@
+<article class="post">
+	<section class="post-head page-item">
+		<h2><%= link_to post.title, post_path(post) %></h2>
+		<small>
+			<time> <%= post.created_at.to_date.strftime("%d %B, %Y")%></time>
+		</small>
+	</section>
+	<section class="post-preview">
+	    <p><%= post.preview %></p>
+	</section>
+</article>
+    
