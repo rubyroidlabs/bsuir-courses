@@ -28,7 +28,7 @@ class PostersController < ApplicationController
 
     respond_to do |format|
       if @poster.save
-        format.html { redirect_to action: :index, notice: 'Poster was successfully created.' }
+        format.html { redirect_to action: :index, notice: t('notices.poster.success_create') }
         format.json { render :show, status: :created, location: @poster }
       else
         format.html { render :new }
@@ -38,13 +38,12 @@ class PostersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_poster
-      @poster = Poster.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def poster_params
-      params.require(:poster).permit(:title, :text, :contact)
-    end
+  def set_poster
+    @poster = Poster.find(params[:id])
+  end
+
+  def poster_params
+    params.require(:poster).permit(:title, :text, :contact)
+  end
 end

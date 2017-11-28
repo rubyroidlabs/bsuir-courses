@@ -1,6 +1,6 @@
 # controller for comment
 class CommentsController < ApplicationController
-  before_action :set_poster, only: [:index, :create]
+  before_action :set_poster, only: %w[:index :create]
 
   def index
     redirect_to poster_path(@poster)

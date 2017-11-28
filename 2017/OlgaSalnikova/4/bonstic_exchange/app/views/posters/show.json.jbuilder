@@ -1,1 +1,1 @@
-json.partial! "posters/poster", poster: @poster
+json.partial! 'posters/poster', poster: @poster

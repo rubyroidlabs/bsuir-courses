@@ -1,4 +1,7 @@
 ru:
+  notices:
+    poster:
+      success_create: бъявление успешно добавлено
   page_headers:
     create_poster: Создать объявление
     show_poster: Объявления
