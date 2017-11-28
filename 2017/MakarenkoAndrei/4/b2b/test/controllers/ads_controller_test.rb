@@ -5,40 +5,46 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
     @ad = ads(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get ads_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_ad_url
     assert_response :success
   end
 
-  test "should create ad" do
+  test 'should create ad' do
     assert_difference('Ad.count') do
-      post ads_url, params: { ad: { contact_details: @ad.contact_details, content: @ad.content, title: @ad.title } }
+      a = { contact_details: @ad.contact_details }
+      b = { content: @ad.content }
+      c = { title: @ad.title }
+      post ads_url, params: { ad: { a, b, c } }
     end
 
     assert_redirected_to ad_url(Ad.last)
   end
 
-  test "should show ad" do
+  test 'should show ad' do
     get ad_url(@ad)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_ad_url(@ad)
     assert_response :success
   end
 
-  test "should update ad" do
-    patch ad_url(@ad), params: { ad: { contact_details: @ad.contact_details, content: @ad.content, title: @ad.title } }
+  test 'should update ad' do
+    a = { contact_details: @ad.contact_details }
+    b = { content: @ad.content }
+    c = { title: @ad.title }
+    patch ad_url(@ad), params: { ad: { a, b, c } }
     assert_redirected_to ad_url(@ad)
   end
 
-  test "should destroy ad" do
+  test 'should destroy ad' do
     assert_difference('Ad.count', -1) do
       delete ad_url(@ad)
     end
