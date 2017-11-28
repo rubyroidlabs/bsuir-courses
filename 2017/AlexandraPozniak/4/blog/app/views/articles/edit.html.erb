@@ -1,0 +1,41 @@
+<div class="center jumbotron">
+<h1>Edit article</h1>
+
+<%= form_with(model: @article) do |form| %>
+
+    <% if @article.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@article.errors.count, "error") %>
+          </h2>
+          <ul>
+            <% @article.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+
+    <p>
+      <%= form.label :information %><br>
+      <%= form.text_area :info %>
+    </p>
+
+    <p>
+      <%= form.label :contact %><br>
+      <%= form.text_area :contact %>
+    </p>
+
+    <p>
+      <%= form.submit %>
+    </p>
+
+<% end %>
+
+<%= link_to 'Back', articles_path , class: 'btn btn-primary' %>
+</div>

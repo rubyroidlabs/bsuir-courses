@@ -1,0 +1,21 @@
+<div class="center jumbotron">
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Information</th>
+    <th>Contact</th>
+    <th>Show</th>
+  </tr>
+
+  <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.name %></td>
+        <td><%= article.info %></td>
+        <td><%= article.contact %></td>
+        <td><%= link_to 'Show', article_path(article), class: 'btn btn-primary' %></td>
+      </tr>
+  <% end %>
+</table>
+  <%= paginate(@articles)%>
+</div>

@@ -1,0 +1,19 @@
+<div class="center jumbotron">
+
+<p>
+          <strong>Name:</strong>
+          <%= @article.name %>
+</p>
+
+
+<p>          <strong>Information:</strong>
+          <%= @article.info %>
+</p>
+
+<p>          <strong>Contact:</strong>
+          <%= @article.contact %>
+</p>
+
+        <%= link_to 'Back', articles_path, class: 'btn btn-primary' %>
+        <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-primary' %>
+</div>
