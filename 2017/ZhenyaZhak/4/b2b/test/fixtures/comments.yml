@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ctext: MyText
+  cdata: MyString
+  article: one
+
+two:
+  ctext: MyText
+  cdata: MyString
+  article: two
