@@ -2,7 +2,11 @@
 	<% @adverts.each do |item| %>
     <% unless item.nil? %>
 			<div class="debug-dump">
-				<span class="title"><%= link_to "#{item.title}", advert_path(id: item.id), class: "link-style" %></span>
+				<% if item.trade == 'sell' %>
+					<span class="title adverts-sell"><%= link_to "#{item.title}", advert_path(id: item.id), class: "link-style" %></span>
+				<% else %>
+					<span class="title adverts-buy"><%= link_to "#{item.title}", advert_path(id: item.id), class: "link-style" %></span>
+				<% end %>
 			  <span class="content"><%= item.content %></span>
 			  <span>Posted <%= time_ago_in_words(item.created_at) %> ago.</span>
 			  <% if @users.nil? %>

@@ -12,12 +12,9 @@ class AdvertsController < ApplicationController
 
   def create
     @advert = current_user.adverts.build(advert_params)
-    if @advert.save
-      flash[:success] = 'Adverticement posted!'
-      redirect_to root_url
-    else
-      render 'static_pages/home'
-    end
+    @advert.trade = params[:trade]
+    flash[:success] = 'Adverticement posted!' if @advert.save
+    redirect_to root_url
   end
 
   def destroy

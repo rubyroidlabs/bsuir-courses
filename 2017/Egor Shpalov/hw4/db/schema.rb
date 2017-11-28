@@ -13,19 +13,20 @@
 # It's strongly recommended that you check this file into your version
 # control system.
 
-def table_adverts
+def create_table_adverts
   create_table 'adverts', force: :cascade do |t|
     t.string 'title', null: false
     t.string 'content', null: false
     t.integer 'user_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'trade'
     t.index %w[user_id created_at],
             name: 'index_adverts_on_user_id_and_created_at'
   end
 end
 
-def table_comments
+def create_table_users
   create_table 'comments', force: :cascade do |t|
     t.string 'content', null: false
     t.integer 'user_id'
@@ -38,7 +39,7 @@ def table_comments
   end
 end
 
-def table_users
+def create_table_comments
   create_table 'users', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'email', null: false
@@ -51,11 +52,11 @@ def table_users
   end
 end
 
-ActiveRecord::Schema.define(version: 20_171_127_130_453) do
+ActiveRecord::Schema.define(version: 20_171_128_024_029) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
-  table_adverts
-  table_comments
-  table_users
+  create_table_adverts
+  create_table_users
+  create_table_comments
 end

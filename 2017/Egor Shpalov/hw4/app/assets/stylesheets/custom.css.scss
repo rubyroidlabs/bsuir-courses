@@ -43,6 +43,19 @@ textarea {
   }
 }
 
+.unit {
+  background-color: $goldDark; /* CHANGE BACKGROUND HERE*/
+  border-radius: 10px;
+  color: $black;
+  font-size: 13px;
+  font-weight: 200;
+  line-height: 30px;
+  margin-bottom: 30px; 
+  padding: 20px;/* CHANGE PADDING HERE*/
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+}
+
 .herounit {
   background-color: $goldDark; /* CHANGE BACKGROUND HERE*/
   border-radius: 10px;
@@ -157,6 +170,14 @@ footer {
 
 /* miscellaneous */
 
+.dump {
+  clear: both;
+  float: right;
+  margin-top: 15px;
+  width: 100%;
+  @include box_sizing;
+}
+
 .debug-dump {
   clear: both;
   float: left;
@@ -261,6 +282,12 @@ input {
     border-top: 1px solid $lightGrey;
     padding: 10px 0;
   }
+}
+.adverts-buy {
+  background-color:$goldDark;
+}
+.adverts-sell {
+  background-color:$red;
 }
 .title {
   color: $black;
