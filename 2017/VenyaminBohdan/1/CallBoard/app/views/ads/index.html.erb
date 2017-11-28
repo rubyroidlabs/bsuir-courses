@@ -1,0 +1,8 @@
+<% @ads.each do |ad| %>
+  <h2><%= ad.title %></h2>
+  <%= link_to "View Ad", ad_path(ad), class: "btn btn-default" %>
+<% end %>
+
+<div class = 'page'>
+  <%= will_paginate @ads, renderer: BootstrapPagination::Rails %>
+</div>

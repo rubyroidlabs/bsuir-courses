@@ -1,0 +1,18 @@
+<h2><%= @ad.title %></h2>
+<span style="font-size:0.8em">Posted by <%= @ad.user.email %> <%= time_ago_in_words(@ad.created_at) %></span></p>
+<p><%= @ad.description %></p>
+<p><%= @ad.contact %></p>
+
+<h4><strong>Comments:</strong></h4>
+<%= render @ad.comments %>
+
+<h4><strong>Reply to Ad:</strong></h4>
+<%= render 'comments/form' %>
+
+<%= link_to "Back", root_path %>
+<% if user_signed_in? %>
+  <% if @ad.user_id == current_user.id %>
+    <%= link_to "Edit", edit_ad_path(@ad) %>
+    <%= link_to "Delete", ad_path(@ad), method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
+<% end %>
