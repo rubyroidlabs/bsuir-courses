@@ -1,0 +1,24 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.table th {
+    text-align: center;
+    background-color: #FAEBD7;
+    height: 50px;
+    vertical-align: center;
+    font-family: "Courier New", Monospace;
+    font-size: 45px;
+}
+
+.table td {
+    text-align: center;
+    font-family: "Courier New", Monospace;
+}
+
+.table {
+    border: 10px;
+    width: 80%;
+    margin: 0px auto;
+    float: none;
+    background-color: #ADD8E6;
+}
