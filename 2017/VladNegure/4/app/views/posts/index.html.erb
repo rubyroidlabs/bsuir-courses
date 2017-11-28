@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<% @posts.each do |post| %>
+  <div class="container">
+    <%= render 'container_header', post: post %>
+    <div class="container-sidebar">
+      <%= link_to 'Show', post %><br>
+      <%= render 'post_management', post: post %>
+    </div>
+    <%= render 'container_body', post: post %>
+  </div>
+<% end %>
+<%= will_paginate @posts %>

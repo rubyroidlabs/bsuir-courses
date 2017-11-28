@@ -1,0 +1,59 @@
+<%= form_with(model: post, local: true, html: {id: 'form_id'}) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container">
+    <div class="container-header">
+      Make your post
+    </div>
+    <div class="container-sidebar">
+      <!-- <%= form.submit %> -->
+      <%= link_to 'Submit', "", :onclick => "$('#form_id').submit()" %>
+      <%= link_to 'Back', posts_path %>
+    </div>
+    <div class="container-body">
+      <ul class="form-body">
+        <li class="text-field">
+          <%= form.label :title %><br>
+          <%= form.text_field :title, id: :post_title %>
+        </li>
+        <li class="radio-button">
+          <%= form.radio_button :operation, 'buy', checked: true %>
+          <%= form.label :operation, 'I want to buy BTC', value: 'buy' %>
+          <br>
+          <%= form.radio_button :operation, 'sell'%>
+          <%= form.label :operation, 'I want to sell BTC', value: 'sell' %>
+          <br>
+          <%= form.radio_button :operation, 'both'%>
+          <%= form.label :operation, 'I want to buy and sell', value: 'both' %>
+        </li>
+        <li class="number-field">
+          <%= form.label :bitcoins %><br>
+          <%= form.number_field :bitcoins, id: :post_bitcoins %>
+        </li>
+        <li class="number-field">
+          <%= form.label :bonsticks %><br>
+          <%= form.number_field :bonsticks, id: :post_bonsticks %>
+        </li>
+        <li class="text-area">
+          <%= form.label :description %><br>
+          <%= form.text_area :description, id: :post_description, rows: 4 %>
+        </li>
+        <li class="text-area">
+          <%= form.label :contacts %><br>
+          <%= form.text_area :contacts, id: :post_contacts, rows: 4 %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,22 @@
+<%= form_with(model: comment, local: true, html: {id: 'form_id'}) do |form| %>
+
+  <div class="container">
+    <div class="container-header">
+      Leave your Comment
+    </div>
+    <div class="container-sidebar">
+      <%= form.hidden_field :post_id, value: post_id %>
+      <%= link_to 'Send', '', onclick: "$('#form_id').submit()" %>
+    </div>
+    <div class="container-body">
+      <p id="alert"><%= alert %></p>
+      <ul class="form-body">
+        <li class="text-area">
+          <%= form.label :text %><br>
+          <%= form.text_area :text, id: :comment_text, rows: 4, maxlength: 60 %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<% end %>
