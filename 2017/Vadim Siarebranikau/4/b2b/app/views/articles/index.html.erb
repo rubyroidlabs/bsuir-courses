@@ -1,0 +1,23 @@
+<div class="col-xs-12 col-md-5 imgsl_wrap">
+  <h1>Объявления</h1>
+ <a href="articles/new"  type="button" class="btn btn-success">Новое объявление</a>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Заголовок</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= link_to article.title , article %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @articles %>
+<br>
