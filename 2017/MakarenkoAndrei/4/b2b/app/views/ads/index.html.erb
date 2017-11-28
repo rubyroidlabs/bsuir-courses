@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+<div class="text-center">
+<h1>Bonbons to bitcoins </h1>
+</div>
+<h2>Ads</h2>
+
+<a href="ads/new" role="button" class="btn btn-primary">Create new ad</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Headers</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ads.each do |ad| %>
+      <tr>	
+        <td><%= link_to ad.title, ad %></td>
+        <td/>
+        <td/> 
+        <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
