@@ -1,14 +1,15 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  repo_name = "#{repo_name} / #{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-gem 'bootstrap_form'
+
 gem 'bootstrap-kaminari-views'
+gem 'bootstrap_form'
+gem 'jquery-rails'
 gem 'kaminari'
 gem 'mechanize'
-gem 'jquery-rails'
 gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
@@ -47,9 +48,9 @@ end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'web-console', '>= 3.3.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,7 +1,7 @@
 # ConverterService
 class ConverterService
   def get_price(count, type)
-    coefficient = get_coefficient
+    coefficient = receive_coefficient
     price = count * coefficient if type == 'bitcoins'
     price = count / coefficient if type == 'bonsticks'
     price.round(2)
@@ -9,7 +9,7 @@ class ConverterService
 
   private
 
-  def get_coefficient
+  def receive_coefficient
     Course.new(coefficient: parser_coefficient).save unless Course.exists?
     course = Course.first
     if course.updated_at.to_date == Time.now.utc.to_date

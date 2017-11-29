@@ -27,52 +27,20 @@ class AdvertsController < ApplicationController
   def create
     @advert = Advert.new(advert_params)
     @advert.create_user(user_params)
-    respond_to do |format|
-      if @advert.save
-        format.html do
-          redirect_to @advert,
-                      notice: 'Advert was successfully created.'
-        end
-        format.json { render :show, status: :created, location: @advert }
-      else
-        format.html { render :new }
-        format.json do
-          render json: @advert.errors,
-                 status: :unprocessable_entity
-        end
-      end
+    if @advert.save
+      redirect_to @advert, notice: 'Advert was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /adverts/1
   # PATCH/PUT /adverts/1.json
   def update
-    respond_to do |format|
-      if @advert.update(advert_params)
-        format.html do
-          redirect_to @advert,
-                      notice: 'Advert was successfully updated.'
-        end
-        format.json { render :show, status: :ok, location: @advert }
-      else
-        format.html { render :edit }
-        format.json do
-          render json: @advert.errors,
-                 status: :unprocessable_entity
-        end
-      end
-    end
-  end
-
-  # DELETE /adverts/1
-  # DELETE /adverts/1.json
-  def destroy
-    @advert.destroy
-    respond_to do |format|
-      format.html do
-        redirect_to adverts_url, notice: 'Advert was successfully destroyed.'
-      end
-      format.json { head :no_content }
+    if @advert.update(advert_params)
+      redirect_to @advert, notice: 'Advert was successfully updated.'
+    else
+      render :edit
     end
   end
 
