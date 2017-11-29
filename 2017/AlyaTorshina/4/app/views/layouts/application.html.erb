@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>B2B</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/narrow-jumbotron/../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/4.0/examples/narrow-jumbotron/narrow-jumbotron.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div>
+  <header class="header clearfix">
+    <nav>
+      <ul class="nav nav-pills float-right">
+        <li class="nav-item">
+          <%= link_to 'Главная', posts_path, {:style=>'color:#2F4F4F;', :class => "css_class"} %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Добавить объявление', new_post_path, {:style=>'color:#2F4F4F;', :class => "css_class"} %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Обменный курс', new_post_path, {:style=>'color:#2F4F4F;', :class => "css_class"} %>
+        </li>
+      </ul>
+    </nav>
+    <h3 class="text-muted">Bonsticks to Bitcoins</h3>
+  </header>
+
+    </div>
+    <%= yield %>
+
+  </body>
+</html>

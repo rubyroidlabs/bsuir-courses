@@ -1,0 +1,54 @@
+<div class="container">
+<%= form_with scope: :post, url: posts_path, local: true do |form| %>
+
+<% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h3>
+      Количество ошибок:
+      <%= @post.errors.count %>
+    </h3>
+  </div>
+<% end %>
+
+  <p>
+    <strong>Заголовок</strong><br>
+    <%= form.text_field :title, size: 50 %>
+  </p>
+
+  <p>
+    <strong>Текст</strong><br>
+    <%= form.text_area :text, size: "47x8" %>
+  </p>
+
+  <p>
+    <strong>Контактная информация</strong><br>
+    <%= form.text_field :contact_information, size: 50 %>
+  </p>
+
+  <table>
+    <tr>
+      <td>
+    <%= form.radio_button(:kind, "Продаю") %>
+    <%= label(:kind_sell, "Продаю") %>
+      </td>
+      <td>
+    <%= form.radio_button(:kind, "Покупаю") %>
+    <%= label(:kind_buy, "Покупаю") %>
+      </td>
+  </tr>
+  </table>
+
+  <p>
+    <%= form.radio_button(:item, "Бонстики") %>
+    <%= label(:item_bonstick, "Бонстики") %>
+    <%= form.radio_button(:item, "Биткойны") %>
+    <%= label(:item_bitcoin, "Биткойны") %>
+  </p>
+
+
+  <p>
+    <%= form.submit 'Добавить'%>
+  </p>
+<% end %>
+
+</div>

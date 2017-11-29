@@ -1,0 +1,41 @@
+<p>
+  <h2><%= @post.title %></h2>
+</p>
+
+<p>
+  <%= @post.text %>
+</p>
+
+<p>
+  <strong>контактная информация:</strong>
+  <%= @post.contact_information %>
+</p>
+
+<h3>Комментарии:</h3>
+<% @post.comments.each do |comment| %>
+  <p>
+    <strong>пользователь:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+<h3>Оставить комментарий:</h3>
+<%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+  <p>
+    <strong>Пользователь:</strong><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <strong>Комментарий:</strong><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit 'Отправить'%>
+  </p>
+<% end %>
+
+<%= link_to 'На главную', posts_path %>
