@@ -1,5 +1,5 @@
 <div class="container">
-  <p id="notice"><%= notice %></p>
+  <p class="notice"><%= notice %></p>
   <div class="panel panel-default">
     <div class="panel-heading">
       <p class="panel-title"><%= @advertisement.title %></p>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <%= button_to 'Edit advertisement', edit_advertisement_path(@advertisement), class: 'btn btn-warning btn-sm', method: :get %>
-  <div class="text-right" id="delete-link">
+  <div class="text-right delete-link">
   <%= button_to 'Delete advertisement', @advertisement, method: :delete, class: 'btn btn-danger btn-sm' %>
   </div>
   </br>

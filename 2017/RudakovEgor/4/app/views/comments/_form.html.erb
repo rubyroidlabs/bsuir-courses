@@ -1,7 +1,7 @@
 <div id="comments" style="display: none;">
   <%= bootstrap_form_for ([@advertisement, @advertisement.comments.build]) do |f| %>
     <p>
-      <%= f.text_area :body%>
+      <%= f.text_area :body, label: 'Comment'%>
     </p>
     <p><%= f.submit "Create comment", class: "btn btn-success btn-md" %></p>
   <% end %>
