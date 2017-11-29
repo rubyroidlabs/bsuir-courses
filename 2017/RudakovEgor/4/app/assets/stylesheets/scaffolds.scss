@@ -3,13 +3,13 @@ $light-gray: #f0f0f0;
 $dark-gray: #666;
 $red: #c00;
 $white: #fff;
-$body_text: #333;
-$pre_color: #eee;
+$body-text: #333;
+$pre-color: #eee;
 $notice: #008000;
 
 body {
   background-color: $white;
-  color: $body_text;
+  color: $body-text;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -26,7 +26,7 @@ td {
 }
 
 pre {
-  background-color: $pre_color;
+  background-color: $pre-color;
   font-size: 11px;
   padding: 10px;
 }
@@ -63,7 +63,7 @@ div {
   color: $notice;
 }
 
-.error_explanation {
+.error-explanation {
   background-color: $light-gray;
   border: 2px solid $red;
   margin-bottom: 20px;
