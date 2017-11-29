@@ -1,5 +1,7 @@
-*= require_tree .
-*= require_self
+/*
+ *= require_tree .
+ *= require_self
+ */
 @import "bootstrap";
 @import "bootstrap-sprockets";
 @import "rails_bootstrap_forms";

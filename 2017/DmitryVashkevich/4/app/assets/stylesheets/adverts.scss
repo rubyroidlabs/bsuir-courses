@@ -7,5 +7,6 @@
 }
 
 .plagination {
-  color: #ffffff;
+  --plagination-color: #ffffff;
+  color: var(--plagination-color);
 }
