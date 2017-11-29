@@ -1,39 +1,46 @@
 $primary-color: #000;
 $light-gray: #f0f0f0;
+$dark-gray: #666;
 $red: #c00;
 $white: #fff;
+$body_text: #333;
+$pre_color: #eee;
+$notice: #008000;
 
 body {
   background-color: $white;
-  color: #333;
-  margin: 33px;
+  color: $body_text;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  margin: 33px;
 }
 
-p, ol, ul, td {
+p,
+ol,
+ul,
+td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
 pre {
-  background-color: #eee;
-  padding: 10px;
+  background-color: $pre_color;
   font-size: 11px;
+  padding: 10px;
 }
 
 a {
   color: $primary-color;
 
   &:visited {
-    color: #666;
+    color: $dark-gray;
   }
 
   &:hover {
-    color: $white;
     background-color: $primary-color;
+    color: $white;
   }
 }
 
@@ -53,12 +60,12 @@ div {
 }
 
 .notice {
-  color: #008000;
+  color: $notice;
 }
 
 .error_explanation {
   background-color: $light-gray;
-  border: 2px solid #ff0000;
+  border: 2px solid $red;
   margin-bottom: 20px;
   padding: 7px 7px 0;
   width: 450px;

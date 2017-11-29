@@ -3,6 +3,10 @@
 @import "bootstrap-sprockets";
 @import "rails_bootstrap_forms";
 
+$header_color: #4a76a8;
+$active_link: #426996;
+$white: #ffffff;
+$body_color: #f2f2f2;
 .panel {
   margin-bottom: 5px;
 }
@@ -12,23 +16,23 @@
 }
 
 .delete-comment {
-  margin-top: -20px;
   float: right;
+  margin-top: -20px;
 }
 
 .navbar {
-  background-color: #4A76A8;
+  background-color: $header_color;
   border-radius: 0;
 }
 
-nav ul .active {
-  background-color: #426996;
+ul .active {
+  background-color: $active_link;
 }
 
 nav a {
-  color: white;
+  color: $white;
 }
 
 body {
-  background-color: #f2f2f2;
+  background-color: $body_color;
 }
