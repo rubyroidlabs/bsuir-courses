@@ -1,0 +1,7 @@
+<h2>Добавить комментарий:</h2>
+<%= simple_form_for([@poster, @poster.comments.build]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :content %>
+  <%= f.button :submit, class: 'btn btn-success', value: 'Добавить отзыв' %>
+<% end %>
+

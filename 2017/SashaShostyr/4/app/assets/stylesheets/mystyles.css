@@ -1,0 +1,45 @@
+.btn.btn-primary.btn-mine {
+  background-color: #40c781;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  padding: .6em 1em calc(.8em + 3px);
+  border-radius: 3px;
+  background: rgb(64,199,129);
+  box-shadow: 0 -3px rgb(53,167,110) inset;
+  transition: 0.2s;
+  border: none;
+  margin-bottom: -30px;
+  position: absolute;
+  top: 3px;
+  left: 1037px;
+}
+
+.btn.btn-primary.btn-mine:hover { background: rgb(53, 167, 110);  }
+
+.btn.btn-primary.btn-mine:active {
+    background: rgb(33,147,90);
+      box-shadow: 0 3px rgb(33,147,90) inset;
+
+}
+
+.poster {
+  height: 160px;
+}
+
+.btn-info-poster {
+  color: #35103a;
+  background-color: #f1f981;
+  border-color: #f1f981;
+  position: absolute;
+  bottom: 0px;
+}
+
+.pagination {
+  /*position: absolute;*/
+  /*bottom: 0;*/
+}
+
+.distance {
+  margin-bottom: 5px;
+}
