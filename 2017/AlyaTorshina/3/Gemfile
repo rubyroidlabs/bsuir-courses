@@ -1,4 +1,0 @@
-source 'http://rubygems.org'
-
-gem 'mechanize'
-gem 'telegram-bot-ruby'
