@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bonsticks to Bitcoins</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel='stylesheet' href='/css/bootstrap.css' type='text/css' media='all'>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div>
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Главная", posts_path %></li>
+            <li><%= link_to "Разместить объявление", new_post_path%></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

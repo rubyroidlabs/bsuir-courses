@@ -1,0 +1,35 @@
+<div class="panel panel-success">
+  <div class="panel-heading"><h4><%= @post.title %></h4></div>
+  <div class="panel-body"><%= @post.text %></div>
+  <div class="panel-footer"><strong>Контактная информация</strong>: <%= @post.contact_information %></div>
+</div>
+
+<table class="table">
+  <th>
+    Комментарии:
+  </th>
+  <% @post.comments.each do |comment| %>
+  <tr>
+    <td>
+      <strong><%= comment.commenter%> :</strong>
+      <%=comment.body %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div class="container">
+<%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+  <p>
+    <strong>Пользователь:</strong><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <strong>Комментарий:</strong><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit 'Отправить', :class => 'btn btn-primary'%>
+  </p>
+<% end %>
+</div>
