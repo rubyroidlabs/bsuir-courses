@@ -14,18 +14,35 @@
     </div>
   <% end %>
 
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
+  <div class="form-group">
+    <%= form.label 'Заголовок' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
 
-  <p>
-    <%= form.label :text %><br>
-    <%= form.text_area :text %>
-  </p>
+  <div class="form-group">
+    <%= form.label 'Контактные данные' %>
+    <%= form.text_field :contact_data, class: 'form-control' %>
+  </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
 
+  <div class="form-group">
+    <%= form.label 'Продаю' %>
+    <%= form.select :sold_bonsticks, [['Бонстиков', true], ['Биткойны', false]], {}, {class: 'form-control'} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Текст' %>
+    <%= form.text_area :text, class: 'form-control' %>
+  </div>
+
+  <% button_name = if action_name == 'new'
+                     'Добавить'
+                   elsif action_name == 'edit'
+                     'Изменить'
+                   else
+                     'Отправить'
+                   end %>
+
+  <%= form.submit button_name, class: 'btn btn-primary' %>
+  <%= link_to 'Back', url_for(:back), class: 'btn btn-secondary' %>
 <% end %>
