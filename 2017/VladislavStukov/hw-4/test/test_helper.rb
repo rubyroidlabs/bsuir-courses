@@ -3,8 +3,8 @@ require 'rails/test_help'
 
 module ActiveSupport
   class TestCase
-  fixtures :all
+    fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+    # Add more helper methods to be used by all tests here...
   end
 end
