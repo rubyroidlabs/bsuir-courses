@@ -1,0 +1,382 @@
+@font-face {
+    font-family: "AaarghRegular";
+    src: url("fonts/AaarghRegular/AaarghRegular.eot");
+    src: url("fonts/AaarghRegular/AaarghRegular.eot?#iefix")format("embedded-opentype"),
+    url("fonts/AaarghRegular/AaarghRegular.woff") format("woff"),
+    url("fonts/AaarghRegular/AaarghRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "AaarghBold";
+    src: url("fonts/AaarghBold/AaarghBold.eot");
+    src: url("fonts/AaarghBold/AaarghBold.eot?#iefix")format("embedded-opentype"),
+    url("fonts/AaarghBold/AaarghBold.woff") format("woff"),
+    url("fonts/AaarghBold/AaarghBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+html { font-size: 1.3rem; }
+h1 {
+    font-size: 32px;
+    font-size: 2rem;
+    line-height: 3rem;
+    letter-spacing: 0.001rem;
+    text-align: center;
+}
+h2 {
+    font-size: 24px;
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.1;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body{
+    font: 100%/1.3em AaarghRegular;
+    color: #0a0a0a;
+    height: 100% !important;
+    background-color: #F5F5F5;
+    -webkit-text-size-adjust: none;
+}
+
+textarea{
+    font-family: AaarghRegular;
+}
+
+.container{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container .cols{
+    float: left;
+    margin: 0 0 1em;
+    padding: 0 1em;
+    text-align: justify;
+}
+
+
+.container:before,
+.container:after,
+.row:before,
+.row:after,
+.clear:before,
+.clear:after{
+    content: " ";
+    display: table;
+}
+
+.row:after,
+.clear:after{
+    clear: both;
+}
+
+header{
+    padding: 0 0 80px;
+}
+
+.header{
+    position: fixed;
+    width: 100%;
+    padding: 10px 0;
+    height: 70px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.header a{
+    padding: 10px;
+    float: right;
+    font-size: 50px;
+    height: 50px;
+    width: 50px;
+    text-decoration: none;
+    text-align: center;
+    color: #0a0a0a;
+}
+
+.info_box{
+    padding:10px;
+}
+.to_link{
+    text-align: center;
+    padding:15px;
+}
+
+.link{
+    font-family: AaarghBold;
+    text-align: center;
+    color: #0a0a0a;
+    text-decoration: none;
+    width: 100%;
+}
+
+.info{
+    font-size: 0.6rem;
+}
+
+.logo{
+    width: 50px;
+    padding: 17px 10px 10px;
+}
+
+.pagination{
+    text-align: center;
+}
+
+.page a{
+    text-align: center;
+    color: #0a0a0a;
+    text-decoration: none;
+}
+
+.current{
+    font-size: 2rem;
+}
+
+.next,
+.last,
+.prev,
+.first{
+    display: none;
+}
+
+.form{
+    text-align: center;
+}
+
+.form p{
+    margin: 10px;
+}
+
+.form input{
+    width: 100%;
+    height: 25px;
+    margin: 10px 0;
+    border: 1px solid #000000;
+}
+
+.form textarea{
+    width: 100%;
+    resize: none;
+    min-height: 80px;
+    border: 1px solid #000000;
+}
+
+.button input{
+    background: none;
+    border-radius: 10px;
+}
+
+footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.comments{
+    text-align: center;
+}
+
+.comments textarea{
+    width: 100%;
+    resize: none;
+    min-height: 80px;
+    border: 1px solid #000000;
+}
+
+.comments input {
+    width: 100%;
+    height: 25px;
+    margin: 10px 0;
+    border: 1px solid #000000;
+}
+
+.comment_box{
+    padding:10px;
+    border-bottom: 1px solid #000000;
+}
+
+.comment_box:last-child{
+    border-bottom: none;
+}
+
+@-webkit-keyframes scroll {
+    0% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    100% {
+        -webkit-transform: translate(-100%, 0);
+        transform: translate(-100%, 0)
+    }
+}
+
+@-moz-keyframes scroll {
+    0% {
+        -moz-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    100% {
+        -moz-transform: translate(-100%, 0);
+        transform: translate(-100%, 0)
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100%, 0)
+    }
+}
+
+.marquee {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    -webkit-animation: scroll 30s infinite linear;
+    -moz-animation: scroll 30s infinite linear;
+    animation: scroll 30s infinite linear;
+    font-size: 20px;
+    font-family: Arial;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+@media screen and (max-width: 736px) {
+
+    .container .cols.col-1,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-10,
+    .col-11,
+    .col-12 {
+        width: 100%;
+    }
+
+    .col-menu{
+        width: 50%!important;
+        margin: 0!important;
+    }
+
+    .none{
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 737px) and (max-width: 1025px) {
+
+    .container .cols.col-1,
+    .col-2,
+    .col-3
+    .col-4 {
+        width: 33.333333%;
+    }
+
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8 {
+        width: 66.66666667%;
+    }
+
+    .col-9,
+    .col-10,
+    .col-11,
+    .col-12 {
+        width: 100%;
+    }
+
+    .none{
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+    .container .cols.col-1 {
+        width: 8.3333333333333332%;
+    }
+
+    .col-2 {
+        width: 16.66666667%;
+    }
+
+    .col-3 {
+        width: 25%;
+    }
+
+    .col-4 {
+        width: 33.333333333%;
+    }
+
+    .col-5 {
+        width: 41.666666667%;
+    }
+
+    .col-6 {
+        width: 50%;
+    }
+
+    .col-7 {
+        width: 58.333333332%;
+    }
+
+    .col-8 {
+        width: 66.66666666%;
+    }
+
+    .col-9 {
+        width: 75%;
+    }
+
+    .col-10 {
+        width: 83.33333333%;
+    }
+
+    .col-11 {
+        width: 91.666666667%;
+    }
+
+    .col-12 {
+        width: 100%;
+    }
+
+
+
+}
+@media screen and (max-width: 599px) {}
+@media screen and (min-width: 600px) and (max-width: 1250px) {  }
+@media screen and (min-width: 1215px) {}

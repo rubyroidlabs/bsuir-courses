@@ -1,0 +1,24 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="header">
+        <div class="cols col-2 col-menu">
+          <div class="logo">
+            <b>B</b>2<b>B</b>
+          </div>
+        </div>
+        <div class="cols col-8 col-menu">
+          <% @data = JSON.parse(File.read('lib/tasks/data.json')) %>
+          <div class="marquee none">
+              <span>
+                <%="1 BTC = #{@data['btc']} BNS; 1 BNS = #{@data['bns']} BTC"%>
+              </span>
+          </div>
+        </div>
+        <div class="cols col-2 col-menu">
+          <%= link_to '+',  new_article_path%>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

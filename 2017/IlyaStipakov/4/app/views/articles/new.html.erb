@@ -1,0 +1,55 @@
+<HTML>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" cintent="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <!--[if lt IE 9]>
+  <script src="http://css3-mediaqueries-js.googlecode.com/files/css3-mediaqueries.js"></script>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag "style" %>
+</head>
+<body>
+<%= render 'layouts/header' %>
+<div class="container">
+  <div class="row">
+    <div class="cols col-12">
+      <h1>New article</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cols col-1"></div>
+    <div class="cols col-10">
+      <%= form_with scope: :article, url: articles_path, :class => 'form', local: true do |form| %>
+          <p>
+            <%= form.label :title %><br>
+            <%= form.text_field :title %>
+          </p>
+
+          <p>
+            <%= form.label :text %><br>
+            <%= form.text_area :text %>
+          </p>
+
+          <p>
+            <%= form.label :name %><br>
+            <%= form.text_field :name %>
+          </p>
+
+          <p>
+            <%= form.label :number %><br>
+            <%= form.text_field :number %>
+          </p>
+
+          <p class="button">
+            <%= form.submit %>
+          </p>
+      <% end %>
+    </div>
+    <div class="cols col-1"></div>
+  </div>
+</div>
+<%= render 'layouts/footer' %>
+</body>
+</HTML>

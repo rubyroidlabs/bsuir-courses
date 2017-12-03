@@ -1,0 +1,75 @@
+
+<HTML>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" cintent="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <!--[if lt IE 9]>
+  <script src="http://css3-mediaqueries-js.googlecode.com/files/css3-mediaqueries.js"></script>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag "style" %>
+</head>
+<body>
+<%= render 'layouts/header' %>
+<div class="container">
+  <div class="row">
+    <div class="cols col-12">
+      <h1><%= @article.title %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cols col-1"></div>
+    <div class="cols col-10">
+      <p>
+        <%= @article.text %>
+      </p>
+      <p class="info">
+        <%= @article.name %>
+        <%= @article.number %>
+      </p>
+    </div>
+    <div class="cols col-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-12 to_link">
+      <%= link_to '< Back', articles_path, :class => 'link link_to'%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cols col-12">
+      <h2 class="comments">Comments</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cols col-1"></div>
+    <div class="cols col-10">
+      <% @article.comments.each do |comment| %>
+          <div class="comment_box">
+            <%= comment.body %>
+          </div>
+      <% end %>
+    </div>
+    <div class="cols col-1"></div>
+  </div>
+  <div class="row">
+    <div class="cols col-1"></div>
+    <div class="cols col-10">
+      <%= form_with(model: [ @article, @article.comments.build ], :class => 'comments', local: true) do |form| %>
+          <p>
+            <%= form.text_area :body %>
+          </p>
+          <p class="button">
+            <%= form.submit %>
+          </p>
+      <% end %>
+    </div>
+    <div class="cols col-1"></div>
+  </div>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/footer' %>
+</body>
+</HTML>
