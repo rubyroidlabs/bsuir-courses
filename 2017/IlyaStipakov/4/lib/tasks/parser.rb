@@ -1,6 +1,5 @@
 require 'mechanize'
 require 'json'
-#require 'Bit'
 
 class Parser
   def parser
