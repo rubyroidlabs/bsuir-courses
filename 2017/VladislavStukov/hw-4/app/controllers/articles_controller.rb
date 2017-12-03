@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.order(:id).reverse_order.page(params[:page])
   end
 
   def show

@@ -1,40 +1,56 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<div class='container'>
 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
+  <div class='row mb-4 mt-4'>
+    <div class='col-8'>
+      <h2>
+        <%= @article.title %>
+      </h2>
+    </div>
+    <div class='col-1, offset-1'>
+      <%= link_to 'Редактировать', edit_article_path(@article), class: 'btn btn-success' %>
+    </div>
+    <div class='col-1'>
+      <%= link_to 'Назад', articles_path, class: 'btn btn-secondary'%>
+    </div>
+  </div>
 
-<h2>Comments</h2>
-<% @article.comments.each do |comment| %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
+  <h4 class='mb-4'>
+    <%= @article.text %>
+  </h4>
 
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
-<% end %>
+  <h5 class='mt-4'>Контактные данные:</h4><%= @article.contact_data %>
 
-<h2>Add a comment:</h2>
-<%= form_with(model: [ @article, @article.comments.build ]) do |form| %>
-  <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+  <h4 class='mt-5'>Добавить комментарий</h4>
+  <%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
+    <div class='form-group'>
+      <%= form.label 'Имя' %><br>
+      <%= form.text_field :commenter, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= form.label 'Текст' %><br>
+      <%= form.text_area :body, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.label 'Контактные данные' %>
+      <%= form.text_field :contact_data, class: 'form-control' %>
+    </div>
+    <%= form.submit 'Сохранить комментарий', class: 'btn btn-primary' %>
+  <% end %>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+  <% if @article.comments.any? %>
+    <div class='mt-4'>
+      <% @article.comments.each do |comment| %>
+        <div class="media mt-4">
+          <div class="media-body">
+            <h4 class="mt-0"><%= comment.commenter %></h4>
+            <%= comment.body %>
+            <h5><%='Контактные данные:' if comment.contact_data.present? %></h5>
+            <%= comment.contact_data %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
+</div>

@@ -23,11 +23,11 @@
               <%= image_tag 'bitcoin.png', class: 'img-fluid', size: '40x40' %>
             </td>
           <% end %>
-          <td>
+          <td align='right'>
             <div class='btn-group' role='group'>
-          <%= link_to 'Show', article_path(article), class: 'btn btn-outline-success' %>
-          <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-outline-primary' %>
-          <%= link_to 'Delete', article_path(article),
+          <%= link_to 'Показать', article_path(article), class: 'btn btn-outline-success' %>
+          <%= link_to 'Редактировать', edit_article_path(article), class: 'btn btn-outline-primary' %>
+          <%= link_to 'Удалить', article_path(article),
             method: :delete,
             data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
             </div>
@@ -36,4 +36,7 @@
       <% end %>
     </tbody>
   </table>
+  <div class='row justify-content-center'>
+    <%= paginate @articles, theme: 'twitter-bootstrap-4' %>
+  </div>
 </div>
