@@ -22,3 +22,6 @@
 
 .byebug_history
 
+/config/environments/*
+/config/initializers/*
+/config/locales/*
