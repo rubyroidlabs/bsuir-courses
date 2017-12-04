@@ -7,6 +7,9 @@ $container-body-font-color: #8d5d3f
 $container-sidebar-bg-color: #875681
 $container-sidebar-font-color: #cdbfe3
 
+$error_bg_color: rgba(255, 129, 123, 0.5)
+$error_text_color: #ff0000
+
 .container
   min-width: 50rem
   max-width: 50rem
@@ -45,3 +48,9 @@ $container-sidebar-font-color: #cdbfe3
 
   .container-body.fixed-size
     height: 10rem
+
+  .container-body.error
+    margin: auto
+    color: $error_text_color
+    background-color: $error_bg_color
+    
