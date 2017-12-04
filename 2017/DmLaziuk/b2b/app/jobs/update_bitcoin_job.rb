@@ -5,7 +5,7 @@ require 'json'
 class UpdateBitcoinJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
+  def perform(*_args)
     puts 'START UpdateBitcoinJob'
     response = RestClient.get('https://free.currencyconverterapi.com/api/v5/convert?q=BTC_BYR&compact=y')
     pars = JSON.parse(response)

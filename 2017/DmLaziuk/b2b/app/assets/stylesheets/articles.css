@@ -10,6 +10,7 @@ caption {
   font-size: 1.5rem;
   text-transform: uppercase;
 }
+
 tr {
   border: hidden;
 }
@@ -30,13 +31,16 @@ tr {
   background: #28a745;
   border-color: #28a745;
 }
+
 .page-item.active a.page-link {
   color: #ffc107;
   background: #28a745;
   border-color: #28a745;
 }
+
 .page-item.disabled a.page-link {
   color: #fff;
   background: #28a745;
   border-color: #28a745;
 }
+
