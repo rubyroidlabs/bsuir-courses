@@ -25,3 +25,5 @@
 /config/environments/*
 /config/initializers/*
 /config/locales/*
+/app/assets/javascripts/*
+/db/seeds.rb

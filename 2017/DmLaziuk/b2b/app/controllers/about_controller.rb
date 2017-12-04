@@ -1,3 +1,3 @@
 class AboutController < ApplicationController
-  def index end;
+  def index; end
 end
