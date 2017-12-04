@@ -27,6 +27,10 @@
         </button>
         <%= link_to 'B2b - меняй бонстики на биткоины', posters_path, class: 'navbar-brand' %>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <div class="col-md-3 bg-info rates">
+            <p class="text-success text-center">1 BITCOIN = <%= @data['bitcoin'] %> BONSTICKS</p>
+            <p class="text-success text-center">1 BONSTICK = <%= @data['bonstick'] %> BITCOIN</p>
+          </div>
           <ul class="nav navbar-nav">
           </ul>
           <%= link_to 'Добавить объявление', new_poster_path, class: 'btn btn-primary btn-mine' %>

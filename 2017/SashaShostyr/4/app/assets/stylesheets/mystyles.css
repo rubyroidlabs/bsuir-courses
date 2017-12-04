@@ -3,7 +3,7 @@
   font-weight: 700;
   color: white;
   text-decoration: none;
-  padding: .6em 1em calc(.8em + 3px);
+  padding: .6em 1em calc(.8em  3px);
   border-radius: 3px;
   background: rgb(64,199,129);
   box-shadow: 0 -3px rgb(53,167,110) inset;
@@ -43,3 +43,16 @@
 .distance {
   margin-bottom: 5px;
 }
+
+.rates {
+  border-radius: 10px;
+  position: absolute;
+  top: 5px;
+  right: 300px;
+  
+}
+
+.rates p {
+  margin: 0;
+}
+
