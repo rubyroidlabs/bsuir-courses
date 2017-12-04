@@ -11,6 +11,11 @@
 !/log/.keep
 !/tmp/.keep
 
+/bin/*
+/lib/*
+/app/helpers/*
+/app/mailers/*
+/test/*
 /vendor/*
 /node_modules
 /yarn-error.log
