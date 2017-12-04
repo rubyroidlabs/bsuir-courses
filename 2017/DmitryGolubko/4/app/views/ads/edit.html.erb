@@ -1,0 +1,28 @@
+<div id="main-container" class="container">
+<div class="row">
+	<div class="col-xs-11">
+		<h3>Edit Ad</h3>
+	</div>
+</div>
+</div>
+
+<%= render 'form' %>
+
+
+<div id="main-container" class="container">
+	<div class="row">
+		<div class="col-xs-11">
+			<h4><%= link_to 'Back', ads_path %></h4>
+		</div>
+	</div>
+</div>
+
+<div id="main-container" class="container">
+	<div class="row">
+		<div class="col-xs-11">
+			<h4><%= link_to 'Destroy', ad_path(@ad),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %><br></h4>
+		</div>
+	</div>
+</div>

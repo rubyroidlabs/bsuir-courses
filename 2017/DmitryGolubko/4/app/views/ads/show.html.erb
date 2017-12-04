@@ -1,0 +1,48 @@
+<div id="main-container" class="container">
+  <div class="row">
+    <div class="col-xs-1">
+      <h4><strong>Title:</strong></h4>
+    </div>
+    <div class="col-xs-11">
+      <h4><%= @ad.title %></h4>
+    </div>
+  </div>
+</div>
+
+<div id="main-container" class="container">
+  <div class="row">
+    <div class="col-xs-1">
+      <h4><strong>Text:</strong></h4>
+    </div>
+    <div class="col-xs-11">
+      <h4><%= @ad.text %></h4>
+    </div>
+  </div>
+</div>
+
+<div id="main-container" class="container">
+  <div class="row">
+    <div class="col-xs-1">
+      <h4><strong>Contact:</strong></h4>
+    </div>
+    <div class="col-xs-11">
+      <h4><%= @ad.contact %></h4>
+    </div>
+  </div>
+</div>
+
+<div id="main-container" class="container">
+	<div class="row">
+		<div class="col-xs-11">
+			<h4><%= link_to 'Edit', edit_ad_path(@ad) %></h4>
+		</div>
+	</div>
+</div>
+
+<div id="main-container" class="container">
+	<div class="row">
+		<div class="col-xs-11">
+			<h4><%= link_to 'Back', ads_path %></h4>
+		</div>
+	</div>
+</div>

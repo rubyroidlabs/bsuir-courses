@@ -1,0 +1,12 @@
+
+
+  <% @ads.each do |ad| %>
+		<div class="col-lg-6">
+			<h4><%= link_to ad.title, ad_path(ad) %></h4>
+			<p><%=ad.text.first(60)+"..." %></p>
+		</div>
+  <% end %>
+
+<div class="text-center">
+	<%= will_paginate @ads ,renderer: BootstrapPagination::Rails %>
+</div>
