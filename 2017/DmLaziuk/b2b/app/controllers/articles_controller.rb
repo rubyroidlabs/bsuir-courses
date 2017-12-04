@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
   end
 
   def self.update_btc_byr
-    @@btc_byr = YAML.load(File.open("#{Rails.root}/config/btc_byr.yml"))
+    @@btc_byr = YAML.safe_load(File.open("#{Rails.root}/config/btc_byr.yml"))
   end
 
   private
