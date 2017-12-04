@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  cattr_reader :btc_byr
+  attr_reader :btc_byr
   def initialize
     ArticlesController.update_btc_byr
     super
@@ -45,8 +45,8 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 
-  def self.update_btc_byr
-    @@btc_byr = YAML.safe_load(File.open("#{Rails.root}/config/btc_byr.yml"))
+  def update_btc_byr
+    @btc_byr = YAML.safe_load(File.open("#{Rails.root}/config/btc_byr.yml"))
   end
 
   private
