@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 20171130110545) do
+ActiveRecord::Schema.define(version: 20_171_130_110_545) do
   enable_extension 'plpgsql'
 
   create_table 'articles', force: :cascade do |t|
