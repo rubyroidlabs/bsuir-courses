@@ -13,6 +13,6 @@ module PostIds
   end
 
   def remove_post_id
-    session[:post_ids].delete(@post.id) if session[:post_ids].nil?
+    session[:post_ids].delete(@post.id) unless session[:post_ids].nil?
   end
 end
