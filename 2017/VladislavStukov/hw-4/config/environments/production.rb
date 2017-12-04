@@ -1,5 +1,4 @@
 Rails.application.configure do
-
   config.cache_classes = true
 
   config.eager_load = true
@@ -15,7 +14,6 @@ Rails.application.configure do
 
   config.assets.compile = false
 
-   when problems arise.
   config.log_level = :debug
 
   config.log_tags = [:request_id]
