@@ -10,23 +10,14 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :Заголовок %>
-    <%= form.text_field :caption, id: :publication_caption %>
-  </div>
-
-  <div class="field">
-    <%= form.label :Текст %>
-    <%= form.text_area :text, id: :publication_text %>
-  </div>
-
-  <div class="field">
-    <%= form.label :Контакты %>
-    <%= form.text_field :contacts, id: :publication_contacts %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit value='Сохранить'%>
+  <div class="form">
+    <table>
+      <tr><td><%= form.label :Заголовок %></td></tr>
+      <tr><td><%= form.text_field :caption, id: :publication_caption %></td></tr>
+      <tr><td><%= form.label :Текст %></td></tr>
+      <tr><td><%= form.text_area :text, id: :publication_text %></td></tr>    
+      <tr><td><%= form.label :Контакты %></td></tr>
+      <tr><td><%= form.text_field :contacts, id: :publication_contacts %><br><%= form.submit value='Сохранить'%></td></tr>
+  </table>
   </div>
 <% end %>

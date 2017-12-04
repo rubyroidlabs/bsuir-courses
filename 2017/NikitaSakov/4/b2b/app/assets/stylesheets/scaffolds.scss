@@ -1,49 +1,96 @@
 html {
-  height: 100%;
-  background-color: #F5F5DC;
+  background: #fff7dc;
 }
-.content {
-  background-color: #F5F5DC;
-  font-family: verdana, arial, helvetica, sans-serif;
-  padding: 3%;
+header {
+    background: #172a40;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+header table {
+  height: 100px;
   width: 100%;
-  position: relative;
-
-  h1, h2 {
-    font-family: Comic Sans;
-    font-style: italic;
+}
+header table .logo {
+  width: 50%;
+  padding-left: 10%;
+  padding-bottom: 1%;
+  h1 {
+    font-family: Comic Sans MS, Comic Sans, cursive;
   }
-
-  .header {
-    height: 80px;
-    border: 1px solid #A0522D;
+}
+header table .rate {
+  padding-left: 10%;
+  width: 30%;
+}
+.button {
+  a {
+    color: #fff;
+  }
+  a:hover {
+    color: #fff;
+   } 
+}
+.publications, .navigation, .publication{
+  background: #fff7dc;
+}
+.publications table {
+  height: 100%;
+  width: 100%;
+  overflow:hidden;
+  td {
+    padding-left: 10%;
+  }
+  a {
+    font-size: 20px;
+    color: #172a40;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+  }
+  h2 {
+    color: #172a40;
+    font-size: 40px;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+  }
+}
+.navigation table {
+  height: 100%;
+  width: 100%;
+  overflow:hidden;
+  td {
+    text-align: center;
+  }
+}
+.publication table {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+.actions table {
+  background: #fff7dc;
+  width: 100%;
+  td {
+    width: 30%;
+    text-align: center;
+  }
+}
+.comments {
+  background: #fff7dc;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  color: #172a40;
+  table {
     width: 100%;
-    padding-left: 5%;
-    position: relative;
-    border-radius: 20px;
-    color: #A0522D;
-
-    .button {
-      position: absolute;
-      height: 30%;
-      width: 15%;
+    td {
       text-align: center;
-      top: 35%;
-      right: 5%;
-      border: 1px solid #A0522D;
-      background-color: #A0522D;
-      border-radius: 20px;
-      a {
-        color: #F5F5DC;
-      }
-    }
-  }
-  .publications {
-    padding-left: 5%;
-    color: #A0522D;
-    a {
-      color: #A0522D;
     }
   }
 }
-
+.form {
+  background: #fff7dc;
+  table {
+    height: 100%;
+    width: 100%;
+    overflow:hidden;
+    td {
+      text-align: center;
+    }
+  }
+}
