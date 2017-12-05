@@ -1,5 +1,5 @@
 namespace :currency do
-  desc "get_currency_rate"
+  desc 'get_currency_rate'
   task get_currency_rate: :environment do
     require_relative 'parser'
     class Currency
