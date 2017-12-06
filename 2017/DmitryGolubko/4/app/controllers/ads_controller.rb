@@ -41,7 +41,7 @@ class AdsController < ApplicationController
   end
 
   private
-  
+
   def ad_params
     params.require(:ad).permit(:title, :text, :contact)
   end
