@@ -1,7 +1,6 @@
 class AdsController < ApplicationController
-
   def index
-    @ads = Ad.paginate(:page => params[:page], :per_page => 18)
+    @ads = Ad.paginate(page: params[:page], per_page: 18)
   end
 
   def show
