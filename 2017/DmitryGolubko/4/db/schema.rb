@@ -15,7 +15,7 @@
 
 ActiveRecord::Schema.define(version: 20_171_127_203_438) do
   create_table 'ads', force: :cascade,
-                    options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+                      options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string 'title'
     t.text 'text'
     t.string 'contact'
