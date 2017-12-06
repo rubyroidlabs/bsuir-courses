@@ -19,9 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :output, "log/cron_log.log"
+set :output, 'log/cron_log.log'
 env :PATH, ENV['PATH']
 
 every 1.minute do
-	rake 'currency:get_currency_rate'
+  rake 'currency:get_currency_rate'
 end
