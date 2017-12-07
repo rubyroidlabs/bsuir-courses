@@ -1,0 +1,824 @@
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:24:27 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/4fe9c2acb9c0468a/variables" for 127.0.0.1 at 2017-11-28 22:24:27 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:31:05 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/0f911dbd4009d68d/variables" for 127.0.0.1 at 2017-11-28 22:31:05 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:32:03 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/a95d354875d07ba0/variables" for 127.0.0.1 at 2017-11-28 22:32:03 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:33:32 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/49c0475965cc55ac/variables" for 127.0.0.1 at 2017-11-28 22:33:32 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:36:06 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/d1a23d89d74d9018/variables" for 127.0.0.1 at 2017-11-28 22:36:06 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:37:26 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/e8c884a527431f86/variables" for 127.0.0.1 at 2017-11-28 22:37:26 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:41:56 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/9d011a7d5b0d1746/variables" for 127.0.0.1 at 2017-11-28 22:41:56 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:50:56 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/923579fcb4333602/variables" for 127.0.0.1 at 2017-11-28 22:50:56 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:52:15 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/633c91b1256f82b5/variables" for 127.0.0.1 at 2017-11-28 22:52:15 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 22:54:45 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/374202062474edb9/variables" for 127.0.0.1 at 2017-11-28 22:54:45 +0300
+Started GET "/" for 127.0.0.1 at 2017-11-28 23:04:27 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/ad3d78c62be42a7f/variables" for 127.0.0.1 at 2017-11-28 23:04:27 +0300
+Started GET "/" for 127.0.0.1 at 2017-12-05 17:35:44 +0300
+
+PG::ConnectionBad - fe_sendauth: no password supplied
+:
+
+Started POST "/__better_errors/b8a4398c93eaf559/variables" for 127.0.0.1 at 2017-12-05 17:35:44 +0300
+  [1m[35m (0.3ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (51.7ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (59.7ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK(1197081882697365630, 0)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateSellPosts (20171126104301)
+  [1m[35m (52.2ms)[0m  [1m[35mCREATE TABLE `sell_posts` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `body` text, `phone` varchar(255), `name` varchar(255), `sell_currency` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171126104301')[0m
+  [1m[35m (10.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBonsticCosts (20171126124544)
+  [1m[35m (41.4ms)[0m  [1m[35mCREATE TABLE `bonstic_costs` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `cost` float, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171126124544')[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateB2Bs (20171128200400)
+  [1m[35m (39.0ms)[0m  [1m[35mCREATE TABLE `b2_bs` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `body` text, `phone` varchar(255), `name` varchar(255), `sell_currency` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171128200400')[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2017-12-05 15:05:47', '2017-12-05 15:05:47')[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT RELEASE_LOCK(1197081882697365630)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/" for 127.0.0.1 at 2017-12-05 18:06:16 +0300
+  [1m[35m (0.3ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/index.html.erb within layouts/application (5.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 3844ms (Views: 3820.9ms | ActiveRecord: 3.1ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Dwarf Terrace-9', 'Great, now I have to take over an entire planet because of your stupid boobs.', '(651) 353-8564', 'Gazorpazorpfield', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (16.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Arbolez Mentorosos', 'Get off the high road Summer. We all got pink eye because you wouldn\'t stop texting on the toilet.', '1-852-697-9807', 'Squanchy', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (19.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Dwarf Terrace-9', 'I like what you got.', '461-409-1113', 'Scary Terry', 1, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Screaming Sun Earth', 'Let me out, what you see is not the same person as me. My life\'s a lie. I\'m not who you\'re looking. Let me out. Set me free. I\'m really old. This isn\'t me. My real body is slowly dieing in a vat. Is anybody listening? Can anyone understand? Stop looking at me like that and actually help me. Help me. Help me I\'m gunna die.', '(217) 611-1690', 'Mr. Meeseeks', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Bird World', 'I want that Mulan McNugget sauce, Morty!', '(564) 719-3067', 'Shrimply Pibbles', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (10.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Alphabetrium', 'This sounds like something The One True Morty might say.', '845-558-9481', 'Gazorpazorpfield', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Purge Planet', 'Listen, I\'m not the nicest guy in the universe, because I\'m the smartest, and being nice is something stupid people do to hedge their bets.', '1-899-236-3845', 'Gazorpazorpfield', 1, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('On a Cob Planet', 'Sometimes science is a lot more art, than science. A lot of people don\'t get that.', '(775) 469-1327', 'Squanchy', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Snorlab', 'It\'s a figure of speech, Morty! They\'re bureaucrats! I don\'t respect them. Just keep shooting, Morty! You have no idea what prison is like here!', '960.806.0993', 'Scary Terry', 1, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Cronenberg World', 'That\'s the difference between you and me, Morty. I never go back to the carpet store.', '574.811.6420', 'Morty Smith', 1, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Snorlab', 'Having a family doesn\'t mean that you stop being an individual.', '907.093.4064', 'Scary Terry', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Earth', 'Oh yeah, If you think my Rick is Dead, then he is alive. If you think you\'re safe, then he\'s coming for you.', '530-545-5045', 'Loggins', 1, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Screaming Sun Earth', 'There is no god, Summer; gotta rip that band-aid off now you\'ll thank me later.', '1-304-501-0736', 'Krombopulos Michael', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Hideout Planet', 'Get off the high road Summer. We all got pink eye because you wouldn\'t stop texting on the toilet.', '(980) 199-0088', 'Evil Morty', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Dwarf Terrace-9', 'The first rule of space travel kids is always check out distress beacons. Nine out of ten times it\'s a ship full of dead aliens and a bunch of free shit! One out of ten times it\'s a deadly trap, but... I\'m ready to roll those dice!', '969.313.8629', 'Gazorpazorpfield', 0, '2017-12-05 15:06:34', '2017-12-05 15:06:34')[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2017-12-05 18:06:36 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/index.html.erb within layouts/application (386.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.8ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 445ms (Views: 440.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-05 18:06:40 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/index.html.erb within layouts/application (8.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.4ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 68ms (Views: 63.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sell_posts/1" for 127.0.0.1 at 2017-12-05 18:06:42 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 1 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.3ms)
+  Rendered sell_posts/show.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 69ms (Views: 60.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-05 18:06:56 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.5ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.5ms)
+  Rendered sell_posts/index.html.erb within layouts/application (11.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.4ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 102ms (Views: 97.8ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/sell_posts/new" for 127.0.0.1 at 2017-12-05 18:06:57 +0300
+Processing by SellPostsController#new as HTML
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/new.html.erb within layouts/application
+  Rendered sell_posts/_form.html.erb (55.4ms)
+  Rendered sell_posts/new.html.erb within layouts/application (57.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 114ms (Views: 109.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-05 18:07:00 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/index.html.erb within layouts/application (8.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 84ms (Views: 79.7ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/sell_posts/2" for 127.0.0.1 at 2017-12-05 18:07:02 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBonsticCost Load (0.5ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.5ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 2 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.3ms)
+  Rendered sell_posts/show.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 64ms (Views: 58.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-05 18:07:05 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.3ms)
+  Rendered sell_posts/index.html.erb within layouts/application (10.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 88ms (Views: 84.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/sell_posts/new" for 127.0.0.1 at 2017-12-05 18:07:28 +0300
+Processing by SellPostsController#new as HTML
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/new.html.erb within layouts/application
+  Rendered sell_posts/_form.html.erb (30.1ms)
+  Rendered sell_posts/new.html.erb within layouts/application (32.1ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 110ms (Views: 106.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/sell_posts" for 127.0.0.1 at 2017-12-05 18:07:46 +0300
+Processing by SellPostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"b9qcwz87DugmAgQB5gH/vx+htrbRj/sWuY7s3tJPJUY0mwzlUgXEDJaY7fidFrsI1gPwJJEatj12J4nGSWBASQ==", "sell_post"=>{"sell_currency"=>"bitcoin", "title"=>"234", "body"=>"dsfsf", "name"=>"testt", "phone"=>"test"}, "commit"=>"Create Sell post"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('234', 'dsfsf', 'test', 'testt', 0, '2017-12-05 15:07:46', '2017-12-05 15:07:46')[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/sell_posts/16
+Completed 302 Found in 15ms (ActiveRecord: 6.4ms)
+
+
+Started GET "/sell_posts/16" for 127.0.0.1 at 2017-12-05 18:07:46 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 16 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (1.3ms)
+  Rendered sell_posts/show.html.erb within layouts/application (5.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 84ms (Views: 81.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sell_posts/16" for 127.0.0.1 at 2017-12-05 18:11:44 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 16 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.3ms)
+  Rendered sell_posts/show.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 53ms (Views: 49.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sell_posts/16" for 127.0.0.1 at 2017-12-05 18:12:21 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 16 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/show.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 55ms (Views: 52.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sell_posts/16" for 127.0.0.1 at 2017-12-05 18:12:53 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mBonsticCost Load (0.2ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `bonstic_costs` (`cost`, `created_at`, `updated_at`) VALUES (2386.5088901, '2017-12-05 15:12:54', '2017-12-05 15:12:54')[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 16 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.6ms)
+  Rendered sell_posts/show.html.erb within layouts/application (17.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 253ms (Views: 68.3ms | ActiveRecord: 13.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-05 18:12:56 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `bonstic_costs` (`cost`, `created_at`, `updated_at`) VALUES (2386.5088901, '2017-12-05 15:12:56', '2017-12-05 15:12:56')[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/index.html.erb within layouts/application (6.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 237ms (Views: 54.0ms | ActiveRecord: 10.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-07 17:26:27 +0300
+  [1m[35m (0.8ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.5ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/index.html.erb within layouts/application (514.1ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 854ms (Views: 824.3ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-07 17:26:42 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.5ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.5ms)
+  Rendered sell_posts/index.html.erb within layouts/application (11.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (2.2ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 110ms (Views: 105.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/sell_posts/new" for 127.0.0.1 at 2017-12-07 17:26:43 +0300
+Processing by SellPostsController#new as HTML
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/new.html.erb within layouts/application
+  Rendered sell_posts/_form.html.erb (77.8ms)
+  Rendered sell_posts/new.html.erb within layouts/application (79.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 146ms (Views: 142.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-07 17:26:44 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.5ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (1.1ms)
+  Rendered sell_posts/index.html.erb within layouts/application (12.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 113ms (Views: 108.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/sell_posts/1" for 127.0.0.1 at 2017-12-07 17:26:46 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 1 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.3ms)
+  Rendered sell_posts/show.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 117ms (Views: 85.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sell_posts/2" for 127.0.0.1 at 2017-12-07 17:27:32 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 2 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.6ms)
+  Rendered sell_posts/show.html.erb within layouts/application (2.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 98ms (Views: 94.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sell_posts/2" for 127.0.0.1 at 2017-12-07 17:27:53 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBonsticCost Load (1.5ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.5ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 2 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.6ms)
+  Rendered sell_posts/show.html.erb within layouts/application (3.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (3.1ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 109ms (Views: 103.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/sell_posts/3" for 127.0.0.1 at 2017-12-07 17:28:07 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 3 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.7ms)
+  Rendered sell_posts/show.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.3ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 67ms (Views: 62.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/sell_posts/3" for 127.0.0.1 at 2017-12-07 17:28:42 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 3 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/show.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 63ms (Views: 58.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-07 17:28:46 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/index.html.erb within layouts/application (7.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.2ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 62ms (Views: 58.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/sell_posts/new" for 127.0.0.1 at 2017-12-07 17:28:51 +0300
+Processing by SellPostsController#new as HTML
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/new.html.erb within layouts/application
+  Rendered sell_posts/_form.html.erb (25.6ms)
+  Rendered sell_posts/new.html.erb within layouts/application (26.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.4ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 89ms (Views: 85.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-07 17:28:54 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.5ms)
+  Rendered sell_posts/index.html.erb within layouts/application (7.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 78ms (Views: 74.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sell_posts/new" for 127.0.0.1 at 2017-12-07 17:29:30 +0300
+Processing by SellPostsController#new as HTML
+  [1m[36mBonsticCost Load (0.9ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/new.html.erb within layouts/application
+  Rendered sell_posts/_form.html.erb (22.7ms)
+  Rendered sell_posts/new.html.erb within layouts/application (24.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 89ms (Views: 83.9ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/sell_posts" for 127.0.0.1 at 2017-12-07 17:30:30 +0300
+Processing by SellPostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Vw2rVskwRm0FW1UATdG5RumEbkBndRBoianXtIZitR/Ri78ePQzu0zN2FpsG64wR7bWNuOwuu3ln/FLDZrMjmg==", "sell_post"=>{"sell_currency"=>"bitcoin", "title"=>"Продаю биткоины", "body"=>"Продам биткоины. Могу обменять на бонстики по курсу, указанному на сайте", "name"=>"Макс", "phone"=>"25-909 ...."}, "commit"=>"Create Sell post"}
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Продаю биткоины', 'Продам биткоины. Могу обменять на бонстики по курсу, указанному на сайте', '25-909 ....', 'Макс', 0, '2017-12-07 14:30:30', '2017-12-07 14:30:30')[0m
+  [1m[35m (10.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://0.0.0.0:3000/sell_posts/17
+Completed 302 Found in 18ms (ActiveRecord: 11.6ms)
+
+
+Started GET "/sell_posts/17" for 127.0.0.1 at 2017-12-07 17:30:30 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mBonsticCost Load (0.9ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.6ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 17 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (1.5ms)
+  Rendered sell_posts/show.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.4ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 83ms (Views: 76.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-07 17:30:44 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.5ms)
+  Rendered sell_posts/index.html.erb within layouts/application (7.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 65ms (Views: 61.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-07 17:30:47 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.3ms)
+  Rendered sell_posts/index.html.erb within layouts/application (5.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 59ms (Views: 56.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sell_posts?page=4" for 127.0.0.1 at 2017-12-07 17:30:52 +0300
+Processing by SellPostsController#index as HTML
+  Parameters: {"page"=>"4"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.9ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 15[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/index.html.erb within layouts/application (6.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 74ms (Views: 69.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/sell_posts?page=3" for 127.0.0.1 at 2017-12-07 17:31:06 +0300
+Processing by SellPostsController#index as HTML
+  Parameters: {"page"=>"3"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.5ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 10[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.5ms)
+  Rendered sell_posts/index.html.erb within layouts/application (9.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 77ms (Views: 72.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/sell_posts?page=2" for 127.0.0.1 at 2017-12-07 17:31:09 +0300
+Processing by SellPostsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.5ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 5[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.5ms)
+  Rendered sell_posts/index.html.erb within layouts/application (7.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.2ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 61ms (Views: 57.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/sell_posts?page=1" for 127.0.0.1 at 2017-12-07 17:31:11 +0300
+Processing by SellPostsController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.5ms)
+  Rendered sell_posts/index.html.erb within layouts/application (8.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 62ms (Views: 58.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sell_posts?page=2" for 127.0.0.1 at 2017-12-07 17:31:15 +0300
+Processing by SellPostsController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.3ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 5[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.6ms)
+  Rendered sell_posts/index.html.erb within layouts/application (8.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 76ms (Views: 72.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sell_posts?page=4" for 127.0.0.1 at 2017-12-07 17:31:17 +0300
+Processing by SellPostsController#index as HTML
+  Parameters: {"page"=>"4"}
+  [1m[36mBonsticCost Load (0.9ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (1.0ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 15[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.7ms)
+  Rendered sell_posts/index.html.erb within layouts/application (9.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 90ms (Views: 84.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/sell_posts/17" for 127.0.0.1 at 2017-12-07 17:31:19 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mBonsticCost Load (0.6ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 17 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.3ms)
+  Rendered sell_posts/show.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 60ms (Views: 55.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sell_posts/new" for 127.0.0.1 at 2017-12-07 17:31:45 +0300
+Processing by SellPostsController#new as HTML
+  [1m[36mBonsticCost Load (0.5ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/new.html.erb within layouts/application
+  Rendered sell_posts/_form.html.erb (27.0ms)
+  Rendered sell_posts/new.html.erb within layouts/application (28.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 96ms (Views: 92.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/sell_posts" for 127.0.0.1 at 2017-12-07 17:32:20 +0300
+Processing by SellPostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"664FTRpxi/zFMf5N6X5t0kT3MTKYNywEubbpbYGYqUJtKBEF7k0jQvMcvdaiRFiFQMbSyhNshxVX42waYUk/xw==", "sell_post"=>{"sell_currency"=>"bitcoin", "title"=>"Еще раз продаю биткоины", "body"=>"Продажа только за бонстики", "name"=>"Макс", "phone"=>"25-909 ...."}, "commit"=>"Create Sell post"}
+  [1m[36mBonsticCost Load (0.3ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO `sell_posts` (`title`, `body`, `phone`, `name`, `sell_currency`, `created_at`, `updated_at`) VALUES ('Еще раз продаю биткоины', 'Продажа только за бонстики', '25-909 ....', 'Макс', 0, '2017-12-07 14:32:20', '2017-12-07 14:32:20')[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://0.0.0.0:3000/sell_posts/18
+Completed 302 Found in 16ms (ActiveRecord: 5.8ms)
+
+
+Started GET "/sell_posts/18" for 127.0.0.1 at 2017-12-07 17:32:20 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"18"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (1.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 18 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.7ms)
+  Rendered sell_posts/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 75ms (Views: 67.7ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-07 17:32:31 +0300
+Processing by SellPostsController#index as HTML
+  [1m[36mBonsticCost Load (0.5ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (0.4ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sell_posts`[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.6ms)
+  Rendered sell_posts/index.html.erb within layouts/application (11.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.4ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 83ms (Views: 78.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/sell_posts?page=4" for 127.0.0.1 at 2017-12-07 17:32:33 +0300
+Processing by SellPostsController#index as HTML
+  Parameters: {"page"=>"4"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  Rendering sell_posts/index.html.erb within layouts/application
+  [1m[36mSellPost Load (1.1ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` LIMIT 5 OFFSET 15[0m
+  Rendered layouts/_currencies_cost_bar.html.erb (0.4ms)
+  Rendered sell_posts/index.html.erb within layouts/application (9.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.2ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 71ms (Views: 65.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/sell_posts/18" for 127.0.0.1 at 2017-12-07 17:32:41 +0300
+Processing by SellPostsController#show as HTML
+  Parameters: {"id"=>"18"}
+  [1m[36mBonsticCost Load (0.4ms)[0m  [1m[34mSELECT  `bonstic_costs`.* FROM `bonstic_costs` ORDER BY `bonstic_costs`.`id` DESC LIMIT 1[0m
+  [1m[36mSellPost Load (0.5ms)[0m  [1m[34mSELECT  `sell_posts`.* FROM `sell_posts` WHERE `sell_posts`.`id` = 18 LIMIT 1[0m
+  Rendering sell_posts/show.html.erb within layouts/application
+  Rendered layouts/_currencies_cost_bar.html.erb (0.6ms)
+  Rendered sell_posts/show.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 109ms (Views: 104.2ms | ActiveRecord: 0.9ms)
+
+
