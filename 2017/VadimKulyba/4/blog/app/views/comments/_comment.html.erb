@@ -1,0 +1,22 @@
+<% unless comment.commenter.nil? %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Body:</strong>
+    <%= comment.body %>
+  </p>
+
+  <p>
+    <strong>Info:</strong>
+    <%= comment.info %>
+  </p>
+
+  <p>
+    <%= link_to 'Destroy Comment', [comment.article, comment], class: 'btn btn-danger',
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+  </p>
+<% end %>

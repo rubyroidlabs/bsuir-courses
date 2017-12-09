@@ -1,0 +1,36 @@
+<div class="row">
+
+  <div class="col-md-5">
+    <h1>
+      <strong>Title:</strong>
+      <%= @article.title %>
+    </h1>
+    <div class="form-group">
+      <h4>
+        <strong>Text:</strong>
+        <%= @article.text %>
+      </h4>
+    </div>
+    <div class="form-group">
+      <h4>
+        <strong>Info:</strong>
+        <%= @article.info %>
+      </h4>
+    </div>
+    <%= link_to 'Edit', edit_article_path(@article), class: 'badge' %>
+    <%= link_to 'Back', articles_path, class: 'badge' %>
+
+    <h2>Add a comment:</h2>
+    <%= render 'comments/form' %>
+  </div>
+
+  <div class="col-md-1">
+  </div>
+
+  <div class="col-md-3">
+    <h1>Comments</h1>
+      <%= render @article.comments %>
+  </div>
+
+</div>
+

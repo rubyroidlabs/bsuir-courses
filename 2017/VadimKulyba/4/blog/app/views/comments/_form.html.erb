@@ -1,0 +1,17 @@
+<%= form_with(model: [@article, @article.comments.build], local: true) do |form|%>
+  <p>
+    <%= form.text_field( :commenter, placeholder: 'Commenter', class: 'form-control-custom') %>
+  </p>
+
+  <p>
+    <%= form.text_field( :body, placeholder: 'Body', class: 'form-control-custom') %>
+  </p>
+
+  <p>
+    <%= form.text_field( :info, placeholder: 'Info', class: 'form-control-custom') %>
+  </p>
+
+  <p>
+    <%= form.submit(class: 'btn btn-success') %>
+  </p>
+<% end %>
