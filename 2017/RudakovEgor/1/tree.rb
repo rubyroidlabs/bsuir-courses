@@ -31,15 +31,15 @@ class Tree
   end
 
   def height
-    if self.left.nil?
+    if left.nil?
       1
     else
-      [self.left.height, self.right.height].max + 1
+      [left.height, right.height].max + 1
     end
   end
 
   def print_tree
-    levels = self.get_levels
+    levels = get_levels
     height = levels.size
     levels.each_with_index do |level, i|
       left_space = 2**(height - i) - 2
