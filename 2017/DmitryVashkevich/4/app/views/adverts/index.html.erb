@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container center-block ">
+  <h1 class="h1 text-center">
+    <% if @currency == 'bonsticks' %>
+    Продажа бонстиков
+    <% elsif @currency == 'bitcoins' %>
+    Продажа биткоинов
+    <% else %>
+    Добро пожаловать! Надеемся у вас много биткоинов или бонстиков!
+    <% end %>
+  </h1>
+  <div class="row">
+    <div class="col-lg-6 col-md-offset-3">
+      <ul class="list-group">
+        <% @adverts.each do |advert| %>
+           <%= link_to advert.tittle, advert_path(advert) , class: 'list-group-item' %>
+        <% end %>
+      </ul>
+      <div class="pagination-lg text-center plagination">
+        <%= paginate @adverts, them: 'twitter-bootstrap'%>
+      </div>
+    </div>
+  </div>
+</div>
+
+

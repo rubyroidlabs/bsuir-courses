@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container center-block ">
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3 ">
+      <h3 class="h3 text-center label-warning"><%= @advert.tittle %></h3>
+        <%= @advert.description %>
+      <div class="row">
+        <div class="col-lg-8  alert-info ">
+          <%= @advert.user.name %>
+          <%= @advert.user.phone %>
+        </div>
+        <div class="col-lg-4 alert-danger text-center">
+          Цена:
+          <%= @price  %>
+          <%= 'бонстиков' if @advert.currency == 'bitcoins' %>
+          <%= 'биткоинов' if @advert.currency == 'bonsticks' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-lg-offset-3 forms">
+      <%= render 'form_response', advert: @advert %>
+    </div>
+    <% if @advert.responses.exists? %>
+    <div class="col-lg-6 col-lg-offset-3 ">
+    <ul class="list-group">
+      <% @advert.responses.each do |response| %>
+          <% unless response.user.nil? %>
+          <li class="list-group-item">
+            <h4 class="h4"><%= response.text %></h4>
+            <%= response.user.name %>
+            <%= response.user.phone %>
+          </li>
+          <% end %>
+      <% end %>
+    </ul>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+

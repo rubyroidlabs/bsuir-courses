@@ -1,0 +1,8 @@
+<%= bootstrap_form_for [ @advert, @advert.responses.build ], local: true do |f| %>
+    <%= f.text_area :text, label: 'Отклик'%>
+    <%= f.fields_for :person do |person_form| %>
+        <%= person_form.text_field :name , label: 'Имя'%>
+        <%= person_form.telephone_field :phone, label: 'Телефон' %>
+    <% end %>
+    <%= f.submit 'Оставить отклик', class: 'col-md-offset-4 col-lg-4 btn btn-default' %>
+<% end %>
