@@ -1,0 +1,33 @@
+<% if @post.errors.any? %>
+  <div class="alert alert-danger">
+    <h5> <%= t('common.errors') %> </h5>
+    <ul>
+<% @post.errors.full_messages.each do |message| %>
+  <li> <%= message %> </li>
+<% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @post do |f| %>
+  <div class="form-group">
+    <%= f.label 'Тип объявления' %>
+<%= f.select :exchange, [['Продажа', 1], ['Покупка', 2]] %>
+   </div>
+  <div class="form-group">
+    <%= f.label 'Заголовок' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+    <div class="form-group">
+    <%= f.label 'Текст' %>
+    <%= f.text_area :body, class: 'form-control' %>
+  </div>
+    <div class="form-group">
+    <%= f.label 'Контактные данные' %>
+    <%= f.text_area :cotacts, class: 'form-control' %>
+  </div>
+      <div class="form-group">
+    <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+    <%= link_to 'Назад', :back,class: 'btn btn-outline-secondary' %>
+  </div>
+<% end %>

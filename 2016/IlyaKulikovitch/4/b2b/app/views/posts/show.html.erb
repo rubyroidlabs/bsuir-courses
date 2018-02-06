@@ -1,0 +1,50 @@
+<article class="post">
+ <section class="post-head">
+     <small>
+    <time><%= @post.created_at.to_date.strftime("%d %B %Y") %> </time>
+      |
+      <%= link_to 'Изменить', edit_post_path(@post) %>
+      |
+      <%= link_to 'Удалить', post_path(@post), method: :delete, data: {confirm: 'Уверены?'} %>
+   </small>
+ 	 <h1><%=  @post.title %></h1>
+ </section>
+   <section class="post-body">
+  	<%= @post.body %>
+ </section>
+  <section class="post-cotacts">
+  <strong>Контактные данные: </strong>	<%= @post.cotacts %>
+ </section>
+ <section class="post-comment">
+ <h4>Коментарии:</h4>
+<% @post.comments.each do |comment| %>
+  <p>
+  <strong><%= comment.commenter %>:</strong></br>
+    <%= comment.msg %></br>
+  <small>   <%= link_to 'Удалить', [comment.post, comment], method: :delete, data: {confirm: 'Уверены'}              %> </small>
+  </p>
+
+<% end %>
+</section>
+
+ <section class="post-add-comment form-group">
+<div class="col-md-4">
+<h6>Добавить комментарий:</h6>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+ <div class="form-group">
+    <%= f.label 'Заголовок' %><br />
+    <%= f.text_field :commenter, class: 'form-control'%>
+  </div>
+ <div class="form-group">
+    <%= f.label 'Текст' %><br />
+    <%= f.text_area :msg, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+
+    <%= f.submit 'Добавить', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+ </section>
+</div><div class="col-md-8"> </div>
+</article>	
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>B2b</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+<nav class="navbar navbar-inverse bg-inverse my_nav" >
+  <ul class="nav navbar-nav navbar-inverse">
+    <li class="nav-item active">
+      <a class="" href="<%= posts_path %>"> Объявления</a> |
+       <a class="" href="/posts_one"> Продажа</a> |
+       <a class="" href="/posts_second"> Покупка</a>
+    </li>
+
+  </ul>
+
+ <h3> 1 биткоин = <%=  (File.read('app/assets/bitcoin.data').to_i/1.50).to_i %> бонстика </h3>
+  <%= link_to 'Новое объявление', new_post_path, class:'btn btn-outline-primary pull-xs=right' %>
+</nav>  
+</div>
+
+<div class="container main">
+<div class="row">
+ <div class="col-md-12">
+   <% flash.each do |name, message| %>
+     <div class="alert alert-<%= name %>">
+      <%= message %>
+     </div>
+   <% end %>
+ </div>
+</div>
+    <%= yield %>
+  </div>
+  </body>
+</html>
