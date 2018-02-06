@@ -1,0 +1,46 @@
+<div class="container">
+  <%= render 'container_header', post: @post %>
+  <div class="container-sidebar">
+    <%= render 'post_management', post: @post %>
+    <%= link_to 'Back', posts_path %>
+  </div>
+  <%= render 'container_body', post: @post %>
+  <div class="container-body">
+    <dl>
+      <dt>Description</dt>
+      <dd><%= @post.description %></dd>
+    </dl>
+  </div>
+  <div class="container-body">
+    <dl>
+      <dt>Contacts</dt>
+      <dd><%= @post.contacts %></dd>
+    </dl>
+  </div>
+</div>
+
+<div class="container">
+  <div class="container-header comment">
+    Comments
+  </div>
+  <% @comments.each do |comment| %>
+    <div class="container-body">
+      <%= comment.text %>
+    </div>
+    <% end %>
+</div>
+<%= will_paginate @comments %>
+
+<% unless alert.nil? %>
+  <div class="container">
+    <div class="container-body error">
+      <ul>
+      <% alert.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= render 'comments/form', comment: @comment, post_id: @post.id %>

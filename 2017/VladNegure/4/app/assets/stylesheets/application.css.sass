@@ -1,0 +1,46 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets"
+@import "bootstrap"
+
+$header-bg-color: #49274a
+$text-color: #cdbfe3
+$body-bg-color: #e8c7b0//#f8eee7
+
+html
+  background-size: cover
+  width: 100%
+  height: 100%
+  background-color: $body-bg-color
+  font-family: sans-serif
+
+  body
+    background-color: inherit
+    font-size: 20px
+    font-family: inherit
+    font-weight: 400
+
+  a
+    color: inherit
+    text-decoration: none
+
+  a:hover
+    color: white
+    text-decoration: none
+
+.navbar-inverse
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1)
+  color: $text-color
+  background-color: $header-bg-color
+  border-color: $header-bg-color
+
+  .navbar-brand
+    color: inherit
+
+  .navbar-nav li a
+    color: inherit
+
+  .exchange-rate
+    padding: 10px 15px

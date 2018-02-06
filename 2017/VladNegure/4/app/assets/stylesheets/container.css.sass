@@ -1,0 +1,56 @@
+$body-bg-color: #e8c7b0//#f8eee7
+$container-header-bg-color: #b98564
+
+$container-body-bg-color: #f4decb
+$container-body-font-color: #8d5d3f
+
+$container-sidebar-bg-color: #875681
+$container-sidebar-font-color: #cdbfe3
+
+$error_bg_color: rgba(255, 129, 123, 0.5)
+$error_text_color: #ff0000
+
+.container
+  min-width: 50rem
+  max-width: 50rem
+  margin-bottom: 3rem
+  background-color: $body-bg-color
+
+  .container-header
+    box-shadow: 0.5rem 0rem 1rem rgba(0, 0, 0, 0.1)
+    height: 4rem
+    margin-bottom: .5rem
+    border-radius: .25rem
+    padding: 0.6rem 0.6rem
+    text-align: center
+    color: $container-body-bg-color
+    background-color: $container-header-bg-color
+
+  .container-sidebar
+    box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.1)
+    float: right
+    width: 9rem
+    height: 10rem
+    border-radius: .25rem
+    padding: 0.6rem 0.6rem
+    color: $container-sidebar-font-color
+    background-color: $container-sidebar-bg-color
+
+  .container-body
+    box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.1)
+    padding: 0.6rem 0.6rem
+    height: auto
+    margin-right: 9.5rem
+    margin-bottom: 1rem
+    border-radius: .25rem
+    color: $container-body-font-color
+    background-color: $container-body-bg-color
+
+  .container-body.fixed-size
+    height: 10rem
+
+  .container-body.error
+    margin: auto
+    color: $error_text_color
+    background-color: $error_bg_color
+    
