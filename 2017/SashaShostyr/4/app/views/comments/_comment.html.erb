@@ -1,0 +1,8 @@
+<div class='col-md-12'>
+  <strong>Комментарий:</strong>
+  <%= comment.content %>
+  <%= link_to 'Удалить', [comment.poster, comment], class: 'btn btn-danger pull-right distance',
+               :confirm => 'Вы уверены?',
+               :method => :delete %>
+</div>
+

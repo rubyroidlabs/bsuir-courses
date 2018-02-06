@@ -1,0 +1,32 @@
+<p>
+  <h2>
+    <strong>Заголовок:</strong>
+    <%= @poster.title %>
+  </h2>
+</p>
+<p>
+  <h2>
+    <strong>Описание:</strong>
+    <%= @poster.description %>
+  </h2>
+</p>
+<p>
+  <h2>
+    <strong>Контакты:</strong>
+    <%= @poster.contacts %>
+  </h2>
+</p>
+
+<% if @poster.comments.count == 0 %>
+  <h5>No comments</h5>
+<% elsif @poster.comments.count > 1 %>
+  <h5><%= @poster.comments.count %> Comments</h5>
+<% else %>
+  <h5><%= @poster.comments.count %> Comment</h5>
+<% end %>
+<%= render @poster.comments %>
+
+<%= render 'comments/form' %><br>
+<%= link_to 'Редактировать объявление', edit_poster_path(@poster), class: 'btn btn-info' %> |
+<%= link_to 'Вернуться к объявлениям', posters_path, class: 'btn btn-info' %> |
+<%= link_to 'Удалить объявление', poster_path(@poster), method: :delete, class: 'btn btn-danger', data: {confirm: 'Вы уверены?'} %>

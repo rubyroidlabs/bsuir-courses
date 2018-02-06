@@ -1,0 +1,9 @@
+<% @posters.each do |poster| %>
+  <div class="col-md-4 poster">
+    <h2><%= poster.title %></h2>
+    <p><%= poster.description[0,40] %>...</p>
+    <p><%= link_to 'Подробнее', poster_path(poster), class: 'btn btn-info-poster' %></p>
+  </div>  
+<% end %>
+
+<%= will_paginate @posters, :previous_label => t('Назад'), :next_label => t('Вперёд'), renderer: BootstrapPagination::Rails %>

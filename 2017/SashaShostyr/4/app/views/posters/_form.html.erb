@@ -1,0 +1,7 @@
+<%= simple_form_for(@poster) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :title, label: 'Заголовок' %>
+  <%= f.input :description, label: 'Описание' %>
+  <%= f.input :contacts, label: 'Контакты', placeholder: '+375295463456' %>
+  <%= f.button :submit, 'Cохранить', class: 'btn btn-success' %>
+<% end %> 
