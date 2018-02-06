@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <link rel="stylesheet" href="../../assets/stylesheets/superhero.css">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <section class="cover-2 text-left">
+      <%= render 'layouts/navbar' %>
+            <div class="cover-container">
+              <div class="cover-inner container">
+                <div class="row">
+                  <div class="col">
+                    <%= yield %>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </section>
+  </body>
+</html>

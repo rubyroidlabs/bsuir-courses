@@ -1,0 +1,26 @@
+<table class="table table-hover">
+    <caption class="text-center">Billboard</caption>
+    <tr>
+      <th>Title</th>
+      <th>Text</th>
+      <th>Info</th>
+      <th></th>
+    </tr>
+    <% @articles.each do |article|%>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.text %></td>
+        <td><%= article.info %></td>
+        <td>
+          <%= link_to 'Show', article_path(article), class: 'btn btn-success'%>
+          <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-danger' %>
+          <%= link_to 'Destroy', article_path(article), class: 'btn btn-danger',
+                      method: :delete,
+                      data: {confirm: 'Are you sure?'}
+          %>
+        </td>
+      </tr>
+    <% end %>
+</table>
+
+<%= render 'articles/navbar' %>
