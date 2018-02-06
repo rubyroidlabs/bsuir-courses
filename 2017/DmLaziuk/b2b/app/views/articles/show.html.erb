@@ -1,0 +1,25 @@
+<h3 class="p-5 text-center">NOTICE</h3>
+
+<ul class="list-group">
+  <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    <span class="badge badge-dark"><%= @article.title %></span>
+    <%= link_to @article.text, edit_article_path(@article), class: 'nav-link' %>
+    <%= link_to( article_path(@article),
+                 style: 'font-size:1.5rem',
+                 method: :delete,
+                 data: { confirm: 'Are you sure?' }) do %>
+      <span class="badge badge-danger badge-pill">&times;</span>
+    <% end %>
+  </li>
+</ul>
+
+<table class="table mt-5">
+  <caption>Comments</caption>
+  <%= render @article.comments %>
+</table>
+
+<%= render 'comments/form' %>
+
+<p class="text-center">
+<%= link_to 'OK', articles_path, class: 'btn btn-success btn-lg m-5 pill-btn' %>
+</p>

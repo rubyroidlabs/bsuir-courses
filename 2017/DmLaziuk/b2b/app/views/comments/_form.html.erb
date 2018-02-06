@@ -1,0 +1,13 @@
+<%= form_for [ @article, @article.comments.build ], class: 'subscribe' do |form| %>
+  <div class="form-group row p-1">
+    <div class="col-sm-4 p-1">
+      <%= form.text_field( :commenter, placeholder: 'Name', class: 'form-control-custom') %>
+    </div>
+    <div class="col-sm-6 p-1">
+      <%= form.text_field(:body, placeholder: 'Comment', class: 'form-control-custom') %>
+    </div>
+    <div class="col-sm-2 p-1 align-self-center">
+      <%= form.submit( 'Comment', class: 'btn btn-outline-success btn-lg mb-2 mr-2 ml-2 pill-btn') %>
+    </div>
+  </div>
+<% end %>

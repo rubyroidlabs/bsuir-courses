@@ -1,0 +1,26 @@
+<%= form_with model: @article, local: true, class: 'subscribe' do |form| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h3>
+        <%= pluralize(@article.errors.count, 'error') %>
+        prohibited this article from being saved:
+      </h3>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group row p-1">
+    <div class="col-sm-4 p-1">
+      <%= form.text_field( :title, placeholder: 'Name', class: 'form-control-custom') %>
+    </div>
+    <div class="col-sm-8 p-1">
+      <%= form.text_field( :text, placeholder: 'Notice', class: 'form-control-custom') %>
+    </div>
+  </div>
+    <p class="p-5 text-center">
+      <%= form.submit( 'Add', class: 'btn btn-outline-success btn-lg mb-2 mr-2 ml-2 pill-btn') %>
+    </p>
+<% end %>

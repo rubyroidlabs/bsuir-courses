@@ -1,0 +1,23 @@
+<table class="table table-">
+  <caption>Billboard</caption>
+  <% @articles.each do |article| %>
+    <tr class="align-self-start">
+      <% if article.text.downcase.include?('куплю') || article.text.downcase.include?('buy') %>
+        <td class="align-self-start text-right"><span class="badge badge-warning"><%= article.title %></span></td>
+      <% else %>
+          <td class="align-self-start text-right"><span class="badge badge-success"><%= article.title %></span></td>
+      <% end %>
+      <td class="align-self-start text-left"><%= link_to article.text, article_path(article), class: 'nav-link' %></td>
+    </tr>
+  <% end %>
+</table>
+<p class="text-center">
+  <%= link_to "New notice", new_article_path, class: "btn btn-success btn-lg m-4 pill-btn" %>
+</p>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <div class="container">
+    <div class="collapse navbar-collapse pull-xs-right justify-content-center">
+      <%= paginate @articles, window: 1, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm" %>
+    </div>
+  </div>
+</nav>
