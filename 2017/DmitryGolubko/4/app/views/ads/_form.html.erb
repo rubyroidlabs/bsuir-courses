@@ -1,0 +1,40 @@
+<%= form_for(@ad, html: {class: 'form-horizontal'}) do |f| %>
+  <% if @ad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ad.errors.count, "error") %> prohibited this todo from being saved:</h2>
+
+      <ul>
+      <% @ad.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label :title, class: 'col-sm-2 control-label'%>
+    <div class="col-sm-5">
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :text, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-5">
+      <%= f.text_area :text, class: 'form-control' %>
+    </div>
+  </div>
+
+	<div class="field form-group">
+    <%= f.label :contact, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-5">
+      <%= f.text_field :contact, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

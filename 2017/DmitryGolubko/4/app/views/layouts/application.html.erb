@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bitcoin2Bonsticks</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class= "row">
+        <div class = "col-md-10 col-md-offset-1">
+          <div class="header">
+            <ul class="nav nav-pills pull-right">
+              <li><a href="http://localhost:3000">Home</a></li>
+              <li><%= link_to 'New', new_ad_path %></li>
+            </ul>
+            <h3 class="text-muted">Bitcoin2Bonstics Converter</h3>
+          </div>
+          <div class="jumbotron">
+            <h1>1 BTC = <%= Settings.currency %> Bonstics</h1>
+            <p class="lead">Стоимость бонстика рассчитана по курсу 15 бел. руб за 1 бонстик</p>
+          </div>
+
+          <div class="row marketing">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
