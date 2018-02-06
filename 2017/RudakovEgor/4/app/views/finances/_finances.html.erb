@@ -1,0 +1,5 @@
+<% @data = JSON.parse(File.read('lib/tasks/data.json')) %>
+<ul class="nav navbar-nav navbar-right">
+  <li><%= link_to "1 BTC = #{@data['bitcoin']} BNK", '#', class: 'btn disabled' %></li>
+  <li><%= link_to "1 BNK = #{@data['bonstick']} BTC", '#', class: 'btn disabled' %></li>
+</ul>

@@ -1,0 +1,36 @@
+<div class="container">
+  <%= bootstrap_form_for(advertisement) do |form| %>
+    <% if advertisement.errors.any? %>
+      <div class="error-explanation">
+        <h2><%= pluralize(advertisement.errors.count, "error") %> prohibited this advertisement from being saved:</h2>
+
+        <ul>
+        <% advertisement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.select(:deal, ['Buy', 'Sell']) %>
+    </div>
+
+    <div class="field">
+      <%= form.text_field :title, id: :advertisement_title %>
+    </div>
+
+    <div class="field">
+      <%= form.text_area :description, id: :advertisement_description %>
+    </div>
+
+    <div class="field">
+      <%= form.text_area :contacts, id: :advertisement_contacts %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Create advertisement", class: 'btn btn-success' %>
+    </div>
+  <% end %>
+  <p><%= button_to 'Back', :back, class: 'btn btn-info btn-md', method: :get %></p>
+</div>

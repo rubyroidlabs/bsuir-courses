@@ -1,0 +1,14 @@
+<nav class="navbar" role="navigation">
+  <div class="container">
+      <div class="navbar-header">
+      <%= link_to 'Bonstick2Bitcoin', advertisements_path, class: 'navbar-brand'  %>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li class="active"><%= link_to 'Home', advertisements_path %></li>
+        <li><%= link_to 'New Advertisement', new_advertisement_path %></li>
+      </ul>
+
+      <%= render 'finances/finances' %>
+  </div>
+</nav>

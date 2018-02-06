@@ -1,0 +1,30 @@
+<div class="container">
+  <p class="notice"><%= notice %></p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <p class="panel-title"><%= @advertisement.title %></p>
+    </div>
+    <div class="panel-body">
+      <%= @advertisement.description %>
+    </div>
+    <div class="panel-footer">
+      <%= @advertisement.contacts %>
+    </div>
+  </div>
+  <%= button_to 'Edit advertisement', edit_advertisement_path(@advertisement), class: 'btn btn-warning btn-sm', method: :get %>
+  <div class="text-right delete-link">
+  <%= button_to 'Delete advertisement', @advertisement, method: :delete, class: 'btn btn-danger btn-sm' %>
+  </div>
+  </br>
+
+  <% if @advertisement.comments.count > 1 %>
+    <h5><%= @advertisement.comments.count %> Comments</h5>
+  <% else %>
+    <h5><%= @advertisement.comments.count %> Comment</h5>
+  <% end %>
+
+  <%= render @advertisement.comments %>
+  <button type="button" class="btn btn-primary btn-md" onclick="addComment()">Add comment</button>
+
+  <%= render 'comments/form' %>
+</div>

@@ -1,0 +1,39 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+@import "bootstrap-sprockets";
+@import "rails_bootstrap_forms";
+
+$header-color: #4a76a8;
+$active-link: #426996;
+$white: #ffffff;
+$body-color: #f2f2f2;
+
+.panel {
+  margin-bottom: 5px;
+}
+
+.delete-link {
+  margin-top: -30px;
+}
+
+.delete-comment {
+  float: right;
+  margin-top: -20px;
+}
+
+.navbar {
+  background-color: $header-color;
+  border-radius: 0;
+}
+
+ul .active {
+  background-color: $active-link;
+}
+
+nav a {
+  color: $white;
+}
+
+body {
+  background-color: $body-color;
+}
