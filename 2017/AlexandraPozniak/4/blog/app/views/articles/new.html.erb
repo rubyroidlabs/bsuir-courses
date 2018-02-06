@@ -1,0 +1,29 @@
+<div class="center jumbotron">
+<h1>Make new Ad</h1>
+<%= form_with scope: :article, url: :articles, local: true do |form| %>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+
+    <p>
+      <%= form.label :information %><br>
+      <%= form.text_area :info %>
+    </p>
+
+    <p>
+      <%= form.label :contact %><br>
+      <%= form.text_field :contact %>
+    </p>
+
+    <p>
+      <%= form.submit %>
+    </p>
+<% end %>
+
+<%= form_with scope: :article, url: articles_path, local: true do |form| %>
+
+<% end %>
+
+<%= link_to 'Back', articles_path, class: 'btn btn-primary' %>
+</div>

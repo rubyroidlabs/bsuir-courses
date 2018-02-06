@@ -1,0 +1,27 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: bonstiks
+  pool: 5
+  username: root
+  password: root
+ 
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: bonstiks
+  pool: 5
+  username: root
+  password: root
+ 
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  database: bonstiks
+  pool: 5
+  username: root
+  password: root
