@@ -1,0 +1,15 @@
+<li>
+  <span class="content"><%= comment.content %></span>
+  <span>
+    Posted <%= time_ago_in_words(comment.created_at) %> ago.
+  </span>
+  <span>
+  	<% user = User.find(comment.user_id) %>
+    Author: <%= "#{user.name} | #{user.email}" %>
+  </span>
+  <% if current_user?(user) %>
+    <%= link_to "| DELETE", comment, method: :delete, class: 'link-style',
+                                     data: { confirm: "You sure?" },
+                                     title: comment.content %>
+  <% end %>
+</li>

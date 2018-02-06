@@ -1,0 +1,19 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "bitbonstick", root_path, class: "logo" %>
+      <nav>
+        <ul class="nav pull-right">
+          <% if signed_in? %>
+            <li id="fat-menu" class="dropdown">
+              <li><%= link_to "Profile", current_user, class: "menu" %></li>
+              <li><%= link_to "Sign out", signout_path, method: "delete", class: "menu" %></li>
+            </li>
+          <% else %>
+            <li><%= link_to "Sign in", signin_path, class: "menu" %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

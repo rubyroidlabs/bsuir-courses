@@ -1,0 +1,29 @@
+<div class="center herounit">
+  <h1>"Bonstick saved is Bitcoin gained..."</h1>
+	<% unless signed_in? %>
+	  <h2>
+	    To create your advertisement you should <%= link_to 'sign in', signin_path, class: "link-style" %>.
+	  </h2>
+	  <%= link_to "Sign up now!", signup_path, class: "btn btn-large bitbutton" %>
+	<% else %>
+		<div class="row">
+      <%= render 'shared/user_info' %>
+      <%= render 'shared/advert_form' %>
+	  </div>
+	<% end %>
+</div>
+<div class="row">
+  <div class="span8">
+  	<% @users = User.all %>
+  	<% @adverts = @users.map { |user| user.adverts } %>
+  	<% @adverts.flatten!; count = @adverts.count %>
+  	<% @adverts = @adverts.sort_by(&:id).reverse %>
+  	<% @adverts = @adverts.paginate(page: params[:page], per_page: 30) %>
+    <% if @adverts.any? %>
+      <h3>Actual adverticements (<%= count %>)</h3>
+      <ol class="adverts"><%= render 'adverts/adverts' %></ol>
+      <h2><%= will_paginate @adverts %></h2>
+    <% end %>
+  </div>
+  <%= render 'layouts/currency_data_saved' %>
+</div>

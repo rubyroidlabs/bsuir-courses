@@ -1,0 +1,14 @@
+<% updating_interval = 1000 %>
+<% time_delta = (Time.now - $time.to_i).to_i %>
+<% if $currency_data.nil? || time_delta > updating_interval %>
+	<% begin %>
+		<% $currency_data = CurrencyData.start %>
+		<% $time = Time.now %>
+		<%= render 'layouts/currency_data' %>
+	<% rescue %>
+		<% $currency_data = nil %>
+		<%= render 'layouts/error_currency_data_updating' %>
+	<% end %>
+<% else %>
+	<%= render 'layouts/currency_data' %>
+<% end %>

@@ -1,0 +1,9 @@
+<%= form_for(@comment) do |f| %>
+	<div class="splitter"></div>
+	<%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area    :content, placeholder: "New comment..." %>
+    <%= f.hidden_field :advert_id, value: @advert.id %>
+  </div>
+  <%= f.submit "Send", class: "btn bitbutton" %>
+<% end %>

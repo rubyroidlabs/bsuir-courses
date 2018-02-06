@@ -1,0 +1,313 @@
+// @import "bootstrap-sprockets";
+@import "bootstrap";
+// @import 'bootstrap/theme';
+
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+$goldDark: #FFD700;
+$black: #000000;
+$white: #FFFFFF;
+$red: #f00;
+$lightGrey: #e8e8e8;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+}
+
+.unit {
+  background-color: $goldDark; /* CHANGE BACKGROUND HERE*/
+  border-radius: 10px;
+  color: $black;
+  font-size: 13px;
+  font-weight: 200;
+  line-height: 30px;
+  margin-bottom: 30px; 
+  padding: 20px;/* CHANGE PADDING HERE*/
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+}
+
+.herounit {
+  background-color: $goldDark; /* CHANGE BACKGROUND HERE*/
+  border-radius: 10px;
+  color: $black;
+  font-size: 13px;
+  font-weight: 200;
+  line-height: 30px;
+  margin-bottom: 30px; 
+  padding: 20px;/* CHANGE PADDING HERE*/
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  color: $black;
+  font-size: 1.5em;
+  font-weight: normal;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* link */
+
+.link-style {
+  color: $black;
+  text-decoration: bold;
+  &:hover {
+    color: $goldDark;
+    text-decoration: blink;
+  }
+}
+
+/* button */
+.bitbutton {
+  color: $black;
+  &:hover {
+    color: $goldDark;
+    text-decoration: blink;
+  }
+}
+
+/* header */
+
+.menu {
+  color: $white;
+  &:hover {
+    color: $goldDark;
+    text-decoration: blink;
+  }
+}
+
+.logo {
+  color: $white;
+  float: left;
+  font-size: 1.7em;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: -1px;
+  margin-right: 10px;
+  padding-top: 9px;  
+  text-transform: uppercase;
+  &:hover {
+    color: $goldDark;
+    text-decoration: blink;
+  }
+}
+
+/* footer */
+
+footer {
+  border-top: 1px solid $grayMediumLight;
+  color: $grayMediumLight;
+  margin-top: 45px;
+  padding-top: 5px;
+  a {
+    color: $white;
+    &:hover {
+      color: $white;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+/* miscellaneous */
+
+.dump {
+  clear: both;
+  float: right;
+  margin-top: 15px;
+  width: 100%;
+  @include box_sizing;
+}
+
+.debug-dump {
+  clear: both;
+  float: left;
+  margin-top: 15px;
+  width: 100%;
+  @include box_sizing;
+}
+
+/* sidebar */
+
+aside {
+  section {
+    border-top: 1px solid $white;
+    padding: 10px 0;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    h1 {
+      font-size: 1.2em;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+      padding-left: 0px;
+      text-align: left;
+    }
+  }
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  background: $white;
+  border: 1px solid $grayMediumLight;
+  box-shadow: inset 0 0 5px 5px $grayMediumLight;
+  margin-bottom: 15px;
+  width: 90%;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+.error-explanation {
+  color: $red;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field-with-errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    border-top: 1px solid $grayLighter;
+    overflow: auto;
+    padding: 10px 0;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
+/* adverts */
+
+.splitter {
+  background-color:$grayLighter;
+  float:left;
+  height:0.15%;
+  position:absolute;
+  width: 620px;
+}
+
+.comments {
+  list-style: none;
+  margin: 10px 0 0 0;
+  li {
+    border-top: 1px solid $lightGrey;
+    padding: 10px 0;
+  }
+}
+
+.adverts {
+  border-top: 2px solid $lightGrey;
+  list-style: none;
+  margin: 0px 0 0 0;
+  li {
+    border-top: 1px solid $lightGrey;
+    padding: 10px 0;
+  }
+}
+.adverts-buy {
+  background-color:$goldDark;
+}
+.adverts-sell {
+  background-color:$red;
+}
+.title {
+  color: $black;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.content {
+  color: $black;
+  display: block;
+}
+.timestamp {
+  color: $black;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}

@@ -1,0 +1,26 @@
+<li>
+	<% @adverts.each do |item| %>
+    <% unless item.nil? %>
+			<div class="debug-dump">
+				<% if item.trade == 'sell' %>
+					<span class="title adverts-sell"><%= link_to "#{item.title}", advert_path(id: item.id), class: "link-style" %></span>
+				<% else %>
+					<span class="title adverts-buy"><%= link_to "#{item.title}", advert_path(id: item.id), class: "link-style" %></span>
+				<% end %>
+			  <span class="content"><%= item.content %></span>
+			  <span>Posted <%= time_ago_in_words(item.created_at) %> ago.</span>
+			  <% if @users.nil? %>
+			  	<span>Contact: <%= @user.email %>.</span>
+			  <% else %>
+			  	<span>Contact: <%= @users[item.user_id - 1].email %>.</span>
+			  <% end %>
+			  <% if current_user?(item.user) %>
+			    <%= link_to "| DELETE", item, method: :delete, class: "link-style",
+	                                     data: { confirm: "You sure?" },
+	                                     title: item.content %>
+			  <% end %>
+			  <div class="splitter"></div>
+			</div>
+		<% end %>
+	<% end %>
+</li>

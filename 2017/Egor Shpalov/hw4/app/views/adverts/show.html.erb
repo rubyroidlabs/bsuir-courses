@@ -1,0 +1,29 @@
+<% provide(:title, "##{@advert.id}") %>
+<div class="row">
+  <div class="span8">
+    <h3><%= @advert.title %></h3>
+    <div class="splitter"></div>
+    <br>
+    <p><%= @advert.content %></p>
+    <div class="splitter"></div>
+    <br>
+    <h4><%= link_to "#{@user.name}  |  #{@user.email}", user_path(id: @user.id), class: "link-style" %></h4>
+    <% if signed_in? %>
+      <div class="row">
+        <aside class="span4">
+          <section>
+            <%= render 'shared/comment_form' %>
+          </section>
+        </aside>
+      </div>
+    <% end %>
+    <% if @advert.comments.any? %>
+      <h3>Comments (<%= @advert.comments.count %>)</h3>
+      <ol class="comments">
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+    <% end %>
+  </div>
+  <%= render 'layouts/currency_data_saved' %>
+</div>
