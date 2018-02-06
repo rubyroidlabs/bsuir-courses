@@ -1,0 +1,35 @@
+<h1>Объявление</h1>
+<%= form_with(model: article, local: true) do |form| %>
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Заголовок" %>
+    <%= form.text_field :title, id: :article_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Текст" %>
+    <%= form.text_field :text, id: :article_text %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Контактные данные" %>
+    <%= form.text_field :contact, id: :article_contact %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Создать" %>
+  </div>
+  <a href="\articles" class="btn btn-info" role="button">Назад</a>
+<% end %>
+
