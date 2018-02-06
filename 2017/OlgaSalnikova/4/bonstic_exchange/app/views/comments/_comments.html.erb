@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h3><%= t('page_headers.show_comment')%>:</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-striped">
+      <tbody>
+      <% @comments.each do |comment| %>
+          <tr>
+            <td>
+              <h5><%= comment.comment %></h5>
+              <p><%= comment.contact %></p>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <p class = "bg-success"><%= paginate @comments, theme: 'twitter-bootstrap-3' %></p>
+  </div>
+</div>

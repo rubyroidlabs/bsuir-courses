@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-lg-9">
+    <h2> <%= t('page_headers.show_poster_details') %></h2>
+  </div>
+</div>
+
+<div class="row top-buffer">
+  <div class="col-lg-9">
+    <p>
+      <strong><%= t('activerecord.attributes.poster.title') %>:</strong>
+      <%= @poster.title %>
+    </p>
+
+    <p>
+      <% if @poster.text.present? %>
+          <strong><%= t('activerecord.attributes.poster.text') %>:</strong>
+          <%= @poster.text %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong><%= t('activerecord.attributes.poster.contact') %>:</strong>
+      <%= @poster.contact %>
+    </p>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <h3> <%= t('page_headers.create_comment')%>:</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <%= render 'comments/form' %>
+  </div>
+</div>
+
+<%= render 'comments/comments' %>
+
+
+
