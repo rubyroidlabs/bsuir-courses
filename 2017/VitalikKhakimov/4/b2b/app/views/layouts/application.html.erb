@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>B2b</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div class="container">
+    <nav class="navbar navbar-light bg-light">
+      <form class="form-inline">
+        <a href="<%= posts_path %>"><button class="btn btn-outline-primary" type="button">Главная</button></a>
+        <a href="<%= new_post_path %>"><button class="btn btn-outline-secondary" type="button"> Новое объявление</button></a>
+      </form>
+    </nav>
+  </div>
+    
+    <div class="container main">
+      <%= yield %>
+    </div>
+    
+  </body>
+</html>

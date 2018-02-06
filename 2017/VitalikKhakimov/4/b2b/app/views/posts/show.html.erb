@@ -1,0 +1,21 @@
+<section class="post-head">
+  <h1><%= @post.title %></h1>
+  <small>
+	<time> <%= @post.created_at.to_date.strftime("%d %B, %Y")%></time>
+	|
+	<%= link_to 'Изменить', edit_post_path(@post) %>
+	|
+	<%= link_to 'Удалить', post_path(@post), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить объявление?'} %>
+  </small>
+</section>
+
+<section class="post-adt">
+  <p>Текст:<br><%= @post.adt %></p>
+</section>
+
+
+<section class="post-contacts">
+  <p>Контактные данные:<br><%= @post.contacts %></p>
+</section>
+
+<%= render 'disqus' %>
