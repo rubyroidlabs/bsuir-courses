@@ -1,0 +1,15 @@
+<h1>Announcements</h1>
+<%= button_to 'New Announcement', new_announcement_path, :method => :get %>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+  </tr>
+ 
+  <% @announcements.each do |announcement| %>
+    <tr>
+      <td><%= link_to announcement.title, announcement_path(announcement) %></td>
+    </tr>
+  <% end %>
+</table>
