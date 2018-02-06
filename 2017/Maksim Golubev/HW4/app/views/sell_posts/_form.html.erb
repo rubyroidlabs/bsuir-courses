@@ -1,0 +1,15 @@
+<%= simple_form_for(@sell_post) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :sell_currency, collection: SellPost.sell_currencies.keys %>
+    <%= f.input :title %>
+    <%= f.input :body %>
+    <%= f.input :name %>
+    <%= f.input :phone %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,63 @@
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="page-header text-center">
+              B2B Sell Posts
+            </h1>
+
+            <% @sell_posts.each do |sell_post| %>
+            <!-- First Blog Post -->
+            <h2>
+                <%= link_to sell_post.title, sell_post %>
+                <small> Sell <%= sell_post.sell_currency %> </small>
+            </h2>
+            <p class="lead">
+                by <%= link_to sell_post.name, sell_post %>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on <%= sell_post.created_at %></p>
+            <br>
+            <p>
+              <%= sell_post.body %>
+            </p>
+            <hr>
+            <%= link_to ('Read More <span class="glyphicon glyphicon-chevron-right"></span>').html_safe, sell_post, :class => "btn btn-primary" %>
+
+            <hr>
+
+            <% end %>
+            <!-- Pager -->
+            <%= will_paginate @sell_posts, renderer: BootstrapPagination::Rails %>
+            <%# <ul class="pager"> %>
+            <%#     <li class="previous"> %>
+            <%#         <a href="#">&larr; Older</a> %>
+            <%#     </li> %>
+            <%#     <li class="next"> %>
+            <%#         <a href="#">Newer &rarr;</a> %>
+            <%#     </li> %>
+            <%# </ul> %>
+
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <%= render 'layouts/currencies_cost_bar' %>
+    </div>
+    <!-- /.row -->
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </footer>
+
+</div>
+<!-- /.container -->

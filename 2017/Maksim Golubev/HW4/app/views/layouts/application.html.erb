@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Rails Bootstrap" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Bootstrap" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+    <%= csrf_meta_tags %>
+    <%= disqus_init %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+      <%= render 'layouts/footer' %>
+    </main>
+  </body>
+</html>
