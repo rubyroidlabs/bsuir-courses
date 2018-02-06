@@ -1,0 +1,6 @@
+require_relative 'comingout/constants'
+require_relative 'comingout/comingout_db'
+require_relative 'comingout/parse_imdb'
+require_relative 'comingout/parse_wikipedia'
+require_relative 'comingout/parse_ru_wikipedia'
+require_relative 'comingout/bot'
