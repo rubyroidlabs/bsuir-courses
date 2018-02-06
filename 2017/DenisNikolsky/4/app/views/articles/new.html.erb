@@ -1,0 +1,19 @@
+<h1>New Article</h1>
+<%= form_with scope: :article, url: articles_path, local: true do |form| %>
+      <h5>
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+      </h5>
+      <h5>
+        <%= form.label :text %><br>
+        <%= form.text_area :text %>
+      </h5>
+      <h5>
+        <%= form.label :contact_details %><br>
+        <%= form.text_area :contact_details %>
+      </h5>
+    <h5>
+      <%= form.submit %>
+    </h5>
+<% end %>
+<h3><%= link_to 'Back', articles_path %></h3>
