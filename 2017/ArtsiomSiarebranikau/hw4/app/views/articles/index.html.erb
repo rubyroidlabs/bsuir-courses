@@ -1,0 +1,32 @@
+<table class="table  " style ="border-style: solid;
+    border-color: #20B2AA; border-width: 5px; width: 92%">
+  <tr>
+    <th class="text-center">offer</th>
+    <th class="text-center">description</th>
+    <th></th>
+  </tr>
+
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Show', article_path(article), class: 'btn btn-primary'  %></td>
+    </tr>
+  <% end %>
+</table>
+
+<div class="card">
+  <% @articles.each do |article| %>
+  <div class="card-block" style ="border-style: solid; border-color: #20B2AA;
+ padding: 9px; border-width: 5px; background-color: #ADD8E6;
+ width: 92%; margin: 0px auto; margin-bottom: 10px; border-radius: 8px">
+    <h3 class="card-title"><%= article.title %></h3>
+    <h6 class="card-subtitle mb-2 text-muted"><%= article.title %></h6>
+    <p class="card-text"><%= article.text %></p>
+    <a><%= link_to 'Show', article_path(article), class: 'btn btn-primary' %> </a>
+  </div>
+  <% end %>
+</div>
+
+
+

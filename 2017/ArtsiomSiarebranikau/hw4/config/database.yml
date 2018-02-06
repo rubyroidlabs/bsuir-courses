@@ -1,0 +1,28 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: blog
+  pool: 5
+  username: root
+  password: artser97
+  
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: blog
+  pool: 5
+  username: root
+  password: artser97
+  
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: blog
+  pool: 5
+  username: root
+  password: artser97
+
+  
