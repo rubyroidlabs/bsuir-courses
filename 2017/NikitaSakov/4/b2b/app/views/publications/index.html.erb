@@ -1,0 +1,33 @@
+<htmp>
+	<body>
+			<header>
+				<table>
+					<tr>
+						<td class="logo"><h1>Bonsticks2Bitcoin</h1></td>
+						<td class="rate"><h5>Бонстиков за биткоин: <%= @rate %></h5></td>
+						<td class="button">
+							<button type="button" class="btn btn-success">
+								<%= link_to 'Разместить объявление', new_publication_path %>	
+							</button>
+						</td>
+					</tr>
+				</table>
+			</header>
+			<div class="publications">
+				<table>
+				  <tr><td><h2>Объявления</h2></td></tr>
+				  <% @publications.each do |publication| %>
+				    <tr>
+				      <td><%= link_to publication.caption, publication %></td>
+				    </tr> 
+				  <% end %>
+				</table>
+			</div>
+			<div class="navigation">
+				<table>
+				  <tr><td><%= will_paginate @publications %></td></tr>
+				</table>
+			</div>
+	</body>
+</htmp>
+

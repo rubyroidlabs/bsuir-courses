@@ -1,0 +1,23 @@
+<%= form_with(model: publication, local: true) do |form| %>
+  <% if publication.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+
+      <ul>
+      <% publication.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form">
+    <table>
+      <tr><td><%= form.label :Заголовок %></td></tr>
+      <tr><td><%= form.text_field :caption, id: :publication_caption %></td></tr>
+      <tr><td><%= form.label :Текст %></td></tr>
+      <tr><td><%= form.text_area :text, id: :publication_text %></td></tr>    
+      <tr><td><%= form.label :Контакты %></td></tr>
+      <tr><td><%= form.text_field :contacts, id: :publication_contacts %><br><%= form.submit value='Сохранить'%></td></tr>
+  </table>
+  </div>
+<% end %>

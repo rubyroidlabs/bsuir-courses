@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<div class="content">
+	<div class="actions">
+		<table>
+		  <tr>
+		  	<td class="button">
+		  		<button type="button" class="btn btn-primary">
+		  			<%= link_to 'Главная страница', publications_path %>
+		  		</button>
+		  	</td>
+		  	<td class="button">
+		  		<button type="button" class="btn btn-success">
+		  			<%= link_to 'Изменить', edit_publication_path(@publication) %>
+		  		</button>
+		  	</td>
+			  <td class="button">
+			  	<button type="button" class="btn btn-danger">
+			  		<%= link_to 'Удалить', @publication, method: :delete, data: { confirm: 'Вы уверены?' } %>
+			  	</button>
+			  </td>
+		  </tr>
+		</table>
+	</div>
+	<div class="publication">
+		<table>
+		  <tr>
+		  	<td><%= @publication.caption %></td>
+			</tr>
+			<tr>
+			  <td><%= @publication.text %></td>
+		  </tr>
+		  <tr>
+			  <td><%= @publication.contacts %></td>
+		  </tr>
+		</table>
+	</div>
+	<div class="comments">
+		<table>
+			<tr><td><h2>Ответить:</h2></td></tr>
+				<%= form_with(model: [ @publication, @publication.comments.build ], local: true) do |form| %>
+				  <tr><td><%= form.label :Имя %></td></tr>
+				  <tr><td><%= form.text_field :commenter %></td></tr>
+				  <tr><td><%= form.label :Комментарий %></td></tr>
+				  <tr><td><%= form.text_area :body %><br><%= form.submit value='Сохранить'%></td></tr>
+				<% end %>
+		</table>
+		<table>
+		<tr><td><h2>Ответы</h2></td></tr>
+		<% @publication.comments.each do |comment| %>
+		  <tr><td><h4><%= comment.commenter %></h4></td></tr>
+		  <tr><td><%= comment.body %></td></tr>
+		<% end %>
+		</table>
+	</div>
+</div>
