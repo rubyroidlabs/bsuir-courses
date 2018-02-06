@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+gem 'colorize'
+gem 'fuzzy_match'
+gem 'json'
+gem 'mechanize'
+gem 'redis'
+gem 'translit'
