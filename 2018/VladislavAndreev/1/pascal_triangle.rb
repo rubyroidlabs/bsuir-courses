@@ -17,7 +17,6 @@ def pascals_triangle(base_num)
   end
 end
 
-
 def pascals_row(row)
   ([0] + row).zip(row + [0]).map { |a, b| a + b }
 end
