@@ -24,6 +24,5 @@ end
 
 pascals_triangle(base_number).with_index.take(depth).each do |elems, i|
   offset = COLS / 2 + elems.join(' ').length / 2
-  puts format("%d:%#{offset}s",  i, elems.join(' '))
+  puts format("%d:%#{offset}s", i, elems.join(' '))
 end
-
