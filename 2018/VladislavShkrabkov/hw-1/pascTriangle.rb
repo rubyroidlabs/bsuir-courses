@@ -24,8 +24,7 @@ size = IO.console.winsize
   (0..i).each do |j|
     str += (pasc_tri[i][j].to_s + (' ' * ((size[1]) / (deep * 2))))
   end
-  print ' ' * (size[1] / 2 - ((str.length - ((size[1]) / (deep * 2))) / 2))
-  puts str
+  puts (' ' * (size[1] / 2 - ((str.length - ((size[1]) / (deep * 2))) / 2))) + str
 end
 
 
