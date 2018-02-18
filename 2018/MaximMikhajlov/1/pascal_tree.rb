@@ -1,15 +1,5 @@
 
-
-
-
-
-
-
-
-
-
-
-w_display = %x`tput cols`.to_i
+w_display = `tput cols`.to_i
 
 puts 'Введите глубиу дерева'
 deep = gets.to_i
@@ -30,7 +20,7 @@ fact = ->(x) { (1..x).inject(:*) || 1 }
   str_elements = arr.join('  ')
   str = ' ' * i.to_s.length + '   '
   str += ' ' * ((w_display - str_elements.length) / 2)
-  str += arr[1..-2].map { |a| a.to_s.length }.map do |k| 
+  str += arr[1..-2].map { |a| a.to_s.length }.map do |k|
     k > 2 ? '\\' + '_' * (k - 2) + '/' : '\\/'
   end.join('  ')
   puts str
