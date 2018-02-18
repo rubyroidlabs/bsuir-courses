@@ -15,7 +15,7 @@ three_len = gets.chomp.to_i
 puts 'Введите базовый номер:'
 first_el = gets.chomp.to_i
 # to output a number with zeros in the beginning if its
-# length is less than the length of the maximum element
+# length is less than the length of the maximum element.
 number_max_len = pascals_row(three_len, first_el).max.to_s.length
 console_len = 160
 gaps = (' ' * number_max_len)
