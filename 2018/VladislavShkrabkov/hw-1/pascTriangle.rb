@@ -3,13 +3,13 @@ deep = gets.chomp.to_i
 puts 'Enter basic value'
 basic_val = gets.chomp.to_i
 pasc_tri = [[basic_val]]
-
-pasc_tri.each do |i|
+ 
+(1..(deep - 1)).each do |i|
   ar = []
-  pasc_tri.each do |j|
+  (0..i).each do |j|
     if i == j || j.zero?
       ar.push(basic_val)
-    else 
+    else
       ar.push(pasc_tri[i - 1][j] + pasc_tri[i - 1][j - 1])
     end
   end
@@ -19,13 +19,12 @@ end
 require 'io/console'
 size = IO.console.winsize
 
-pasc_tri.each do |i|
+(0..(deep - 1)).each do |i|
   str = ''
-  pasc_tri.each do |j|
-    str += (pasc_tri[i][j].to_s + (' ' * ((size[1] - 1) / (deep * 2))))
-    length = str.length
+  (0..i).each do |j|
+    str += (pasc_tri[i][j].to_s + (' ' * ((size[1]) / (deep * 2))))
   end
-  print ' ' * (size[1] / 2 - ((length - ((size[1] - 1) / (deep * 2))) / 2))
+  print ' ' * (size[1] / 2 - ((str.length - ((size[1]) / (deep * 2))) / 2))
   puts str
 end
 
