@@ -14,14 +14,12 @@ puts 'Введите глубину дерева:'
 three_len = gets.chomp.to_i
 puts 'Введите базовый номер:'
 first_el = gets.chomp.to_i
-# to output a number with zeros in the beginning if its
-# length is less than the length of the maximum element.
 number_max_len = pascals_row(three_len, first_el).max.to_s.length
 console_len = 160
 gaps = (' ' * number_max_len)
-help_str = "\/#{gaps}\\#{gaps}" # Specifying a Tree Display Template
+help_str = "\/#{gaps}\\#{gaps}"
 (0..three_len).each do |i|
-  str = '' # to create an output line on the console of each line of the tree
+  str = ''
 pascals_row(i, first_el).each do |elem|
   str += elem.to_s.rjust(number_max_len, '0') + (gaps + '  ')
 end
