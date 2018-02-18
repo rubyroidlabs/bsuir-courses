@@ -23,5 +23,5 @@ fact = ->(x) { (1..x).inject(:*) || 1 }
     k > 2 ? '\\' + '_' * (k - 2) + '/' : '\\/'
   end.join('  ')
   puts str
-  puts "#{i.to_s}" + ' ' * ((w_display - str_elements.length) / 2) + str_elements
+  puts i.to_s + ' ' * ((w_display - str_elements.length) / 2) + str_elements
 end
