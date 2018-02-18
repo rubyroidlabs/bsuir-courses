@@ -3,7 +3,7 @@ deep = gets.chomp.to_i
 puts 'Enter basic value'
 basic_val = gets.chomp.to_i
 pasc_tri = [[basic_val]]
- 
+
 (1..(deep - 1)).each do |i|
   ar = []
   (0..i).each do |j|
@@ -24,5 +24,5 @@ size = IO.console.winsize
   (0..i).each do |j|
     str += (pasc_tri[i][j].to_s + (' ' * (size[1] / (deep * 2))))
   end
-  puts (' ' * (size[1] / 2 - ((str.length - size[1] / (deep * 2)) / 2))) + str
+  puts ' ' * (size[1] / 2 - ((str.length - size[1] / (deep * 2)) / 2)) + str
 end
