@@ -4,14 +4,14 @@ puts 'Enter basic value'
 basic_val = gets.chomp.to_i
 pasc_tri = [[basic_val]]
 
-for i in  1..(deep - 1)
+pasc_tri.each do |i|
   ar = []
-  for j in 0..i
-  	if (i == j || j == 0)
-  	  ar.push(basic_val)
-  	else 
-  	  ar.push(pasc_tri[i - 1][j] + pasc_tri[i - 1][j - 1])
-  	end
+  pasc_tri.each do |j|
+    if i == j || j.zero?
+      ar.push(basic_val)
+    else 
+      ar.push(pasc_tri[i - 1][j] + pasc_tri[i - 1][j - 1])
+    end
   end
   pasc_tri.push(ar)
 end
@@ -19,13 +19,13 @@ end
 require 'io/console'
 size = IO.console.winsize
 
-for i in 0..(deep - 1)
+pasc_tri.each do |i|
   str = ''
-  for j in 0..i
-  	str += (pasc_tri[i][j].to_s + (' ' * ((size[1] - 1) / (deep * 2))))
-  	length = str.length
+  pasc_tri.each do |j|
+    str += (pasc_tri[i][j].to_s + (' ' * ((size[1] - 1) / (deep * 2))))
+    length = str.length
   end
-  print ' ' * (size[1] / 2 - ((length - ((size[1] - 1) / (deep * 2))) /2 ))
+  print ' ' * (size[1] / 2 - ((length - ((size[1] - 1) / (deep * 2))) / 2))
   puts str
 end
 
