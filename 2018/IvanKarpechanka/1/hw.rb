@@ -20,11 +20,11 @@ gaps = (' ' * number_max_len)
 help_str = "\/#{gaps}\\#{gaps}"
 (0..three_len).each do |i|
   str = ''
-pascals_row(i, first_el).each do |elem|
-  str += elem.to_s.rjust(number_max_len, '0') + (gaps + '  ')
-end
-help1 = ' ' * three_len.to_s.length
-puts help1 + (help_str * i).chomp(gaps).center(console_len)
-help2 = i.to_s.rjust(three_len.to_s.length, '0')
-puts help2 + str.chomp(gaps + '  ').center(console_len, ',')
+  pascals_row(i, first_el).each do |elem|
+    str += elem.to_s.rjust(number_max_len, '0') + (gaps + '  ')
+  end
+  help1 = ' ' * three_len.to_s.length
+  puts help1 + (help_str * i).chomp(gaps).center(console_len)
+  help2 = i.to_s.rjust(three_len.to_s.length, '0')
+  puts help2 + str.chomp(gaps + '  ').center(console_len, ',')
 end
