@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
 w_display = %x`tput cols`.to_i
 
 puts 'Введите глубиу дерева'
