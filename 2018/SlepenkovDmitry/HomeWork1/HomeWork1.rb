@@ -19,5 +19,6 @@ strings.each do |line|
 puts line.join.center(strings[-1].join.length)
 end
 end
+
 row = PrintPascalTriangle.new
 row.printTriangle
