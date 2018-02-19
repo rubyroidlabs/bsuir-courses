@@ -22,7 +22,7 @@ def pascals_row(row)
 end
 
 pascals_triangle(base_number).with_index.take(depth).each do |elems, i|
-  centered = elems.map { |e| e.to_s.center(e.to_s.length + 3)}                                           
+  centered = elems.map { |e| e.to_s.center(e.to_s.length + 3) }                                           
   offset = COLS / 2 + centered.join(' ').length / 2
   puts format("%d:%#{offset}s", i, centered.join(' '))
 end
