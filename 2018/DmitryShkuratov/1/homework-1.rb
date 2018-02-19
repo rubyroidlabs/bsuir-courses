@@ -7,9 +7,9 @@ class PascalsTriangle
   def to_pascal
     temp = []
     @rows.times do |row|
-    line = [1]
-    (0..row-1).each { |x| line << (line[x] * (row - x) / (x + 1)) }
-    temp << line
+      line = [1]
+      (0..row-1).each { |x| line << (line[x] * (row - x) / (x + 1)) }
+      temp << line
     end
   end
 temp
