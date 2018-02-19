@@ -15,7 +15,7 @@ three_len = gets.chomp.to_i
 puts 'Введите базовый номер:'
 first_el = gets.chomp.to_i
 number_max_len = pascals_row(three_len, first_el).max.to_s.length
-console_len = 160
+console_len = `tput cols`.to_i
 gaps = (' ' * number_max_len)
 help_str = "\/#{gaps}\\#{gaps}"
 (0..three_len).each do |i|
