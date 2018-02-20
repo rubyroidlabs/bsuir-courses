@@ -6,7 +6,7 @@ left = [z]
 right = z
 c = 1
 k = 1
-  (0..r - 1).step(1) do
+(0..r - 1).step(1) do
 right = right * (r - k + 1) / k
 left.push right
 c += 1
