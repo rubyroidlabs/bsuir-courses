@@ -1,17 +1,17 @@
 class Triangle 
   
   def initialize (base_number,deep) 
-    @base_number = base_number
-    @deep = deep
+    @base_number=base_number
+    @deep=deep
   end
   
-  def fact (a)
+  def fact(a)
     (1..a).reduce(:*)
   end
 
-  def binomial(n, k)
+  def binomial(n,k)
     return @base_number if n-k <= 0 || k <= 0
-    fact(n) / ( fact(k) * fact( n - k ) ) * @base_number
+    fact(n) / (fact(k) * fact(n - k)) * @base_number
   end
 
   def curr_str (n)
@@ -28,15 +28,15 @@ class Triangle
         el.to_s.center(max_el_size)
       end.join(" ").center(width)
       puts "#{i + 1}: #{string}"
+    end
   end
- end
 end
 
-puts "Введите начальное значение:"
+puts 'Введите начальное значение:'
 
 base_number = gets.chomp.to_i
 
-puts "Введите глубину треугольника:"
+puts 'Введите глубину треугольника:'
 
 deep = gets.chomp.to_i
 
