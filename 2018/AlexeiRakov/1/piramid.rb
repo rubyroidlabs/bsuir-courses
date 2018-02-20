@@ -15,7 +15,7 @@ end
 num.to_s
 left.to_s
 puts "#{n.center(130).green} #{m.rjust(13)}"
-end
+  end
 end
 print 'enter the vertex of the triangle:'
 z = gets.to_i
