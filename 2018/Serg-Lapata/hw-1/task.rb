@@ -17,7 +17,7 @@ def triangle(height, start_value)
 end
 
 def check_integer(int)
-  int < 1 ? raise('Got invalid number') : int.positive? ? int : raise('Got invalid number')
+int.positive? ? int : raise('Got invalid number')
 end
 
 def start_value
@@ -31,7 +31,7 @@ def start_value
   check_integer(int.to_i)
 end
 
-def print_triangle(rows)[]
+def print_triangle(rows)
   width_element = rows.last.max.to_s.length + 1
   width_last_row = width_element * rows.last.length
 
