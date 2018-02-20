@@ -19,7 +19,7 @@ def triangle(n, z, c, q)
       c += 1
       k += 1
     end
-    puts "#{left.to_s.center(135).green} #{num.to_s.rjust(8)}"
+    puts "#{left.to_s.center(135).green}  #{num.to_s.rjust(8)}"
     puts "#{mas.to_s.ljust(5).red}"
   end
 end
