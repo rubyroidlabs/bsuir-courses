@@ -6,19 +6,18 @@ left = [z]
 right = z
 c = 1
 k = 1
-(0..r - 1).step(1) do
-|index|
+(0..r - 1).step(1)do|index|
 right = right * (r - k + 1) / k
-left.push right 
+left.push right
 c += 1
 k += 1
 end
 num.to_s
 left.to_s
-puts "#{n.center(130).green}  #{m.rjust(13)}"                
+puts "#{n.center(130).green} #{m.rjust(13)}"
 end
 end
-print 'enter the vertex of the triangle:' 
+print 'enter the vertex of the triangle:'
 z = gets.to_i
 print 'enter the depth of the triangle:'
 n = gets.to_i
