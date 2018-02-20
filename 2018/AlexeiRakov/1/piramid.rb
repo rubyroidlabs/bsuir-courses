@@ -11,7 +11,7 @@ def triangle(n, z, c, q)
       o = right
       right = right * (r - k + 1) / k
       u = right
-      if (o + u == q)
+      if o + u == q
         mas.push o
         mas.push right
       end
