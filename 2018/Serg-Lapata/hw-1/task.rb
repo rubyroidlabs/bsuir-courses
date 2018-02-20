@@ -17,7 +17,7 @@ def triangle(height, start_value)
 end
 
 def check_integer(int)
-int.positive? ? int : raise('Got invalid number')
+ int.positive? ? int : raise('Got invalid number')
 end
 
 def start_value
