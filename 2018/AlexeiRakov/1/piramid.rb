@@ -1,9 +1,5 @@
 def triangle(n, z, c, q)
   (0..n).map do |r|
-    k = [0]
-    y = [0]
-    h = [0]
-    u = []
     mas = []
     n = [0]
     num = [c]
@@ -19,15 +15,12 @@ def triangle(n, z, c, q)
         mas.push o
         mas.push right
       end
-      left.push right 
+      left.push right
       c += 1
       k += 1
     end
-    h = left.to_s
-    y = num.to_s
-    k = mas.to_s
-    puts "#{h.center(140).green} #{y.rjust(3)}"
-    puts "#{k.ljust(10).red}"
+    puts "#{left.to_s.center(135).green} #{num.to_s.rjust(8)}"
+    puts "#{mas.to_s.ljust(5).red}"
   end
 end
 print 'enter the vertex of the triangle:'
