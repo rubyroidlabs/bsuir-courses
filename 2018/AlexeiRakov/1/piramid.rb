@@ -13,7 +13,6 @@ def triangle(n, z, c, q)
       u = right
       if o + u == q
         mas.push o
-        mas.push right
       end
       left.push right
       c += 1
