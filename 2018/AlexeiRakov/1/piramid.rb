@@ -7,10 +7,10 @@ def triangle(n, z, c)
   c = 1
   k = 1
     (0..r - 1).step(1) do
-    right = right * (r - k + 1) / k
-    left.push right
-    c += 1
-    k += 1
+      right = right * (r - k + 1) / k
+      left.push right
+      c += 1
+      k += 1
     end
   num.to_s
   left.to_s
