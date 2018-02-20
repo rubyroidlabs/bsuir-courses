@@ -14,4 +14,3 @@ array[0] = base_number
   end
   puts
 end
-
