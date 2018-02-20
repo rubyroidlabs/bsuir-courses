@@ -11,7 +11,7 @@ right = right * (r - k + 1) / k
 left.push right
 c += 1
 k += 1
-  end
+end
 num.to_s
 left.to_s
 puts "#{n.center(130).green} #{m.rjust(13)}"
