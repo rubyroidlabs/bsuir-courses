@@ -1,17 +1,19 @@
 def triangle(n, z, c, q)
   (0..n).map do |r|
+    k = [0]
+    y = [0]
+    h = [0]
     u = []
     mas = []
     n = [0]
-    t = [0]
     num = [c]
     left = [z]
     right = z
     c = 1
     k = 1
-    (0..r-1).step(1) do
+    (0..r - 1).step(1) do
       o = right
-      right = right*(r-k+1)/k
+      right = right * (r - k + 1) / k
       u = right
       if o + u == q
         mas.push o
@@ -21,8 +23,11 @@ def triangle(n, z, c, q)
       c += 1
       k += 1
     end
-    puts "#{left.to_s.center(140).green} #{num.to_s.rjust(3)}"
-    puts "#{mas.to_s.ljust(10).red}"
+    h = left.to_s
+    y = num.to_s
+    k = mas.to_s
+    puts "#{h.center(140).green} #{y.rjust(3)}"
+    puts "#{k.ljust(10).red}"
   end
 end
 print 'enter the vertex of the triangle:'
@@ -36,4 +41,4 @@ puts "depth triangle = #{n}"
 puts 'parents will be selected from the left'
 c = 0
 require 'colorize'
-triangle(n, z, c ,q)
+triangle(n, z, c, q)
