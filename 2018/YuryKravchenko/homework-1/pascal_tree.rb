@@ -1,4 +1,3 @@
-  # My Homework
   def pascal(n)
     print 'Введите базовый номер: '
     f = gets.chomp.to_i
