@@ -15,9 +15,9 @@ def triangle(n, z, c, q)
         mas.push o
         mas.push right
       end
-      left.push right
-      c += 1
-      k += 1
+    left.push right
+    c += 1
+    k += 1
     end
     puts "#{left.to_s.center(135).green} #{num.to_s.rjust(8)}"
     puts "#{mas.to_s.ljust(5).red}"
