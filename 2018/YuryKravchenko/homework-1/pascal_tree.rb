@@ -9,7 +9,7 @@ def pascal(n)
         (0..r - 1).step(1) { |index|
         base = base * ( r - k + 1 ) / k
         tree.push base
-      k += 1}
+        k += 1}
     p tree}
 end
 print 'Введите глубину дерева: '
