@@ -1,10 +1,8 @@
 def pascal(n, number)
   line = [number]
-  
   for k in 0...n
     line.push (line[k].to_i * (n - k) / (k + 1))
-  end 
-  
+  end
   line
 end
 
