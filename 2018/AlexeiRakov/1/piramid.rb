@@ -3,8 +3,8 @@ def triangle(n, z, c, q)
   	mas = []
     n = [0]
     num = [c]
-    left = [z]
-    right = z
+    left = [3]
+    right = 3
     c = 1
     k = 1
     (0..r - 1).step(1) do
