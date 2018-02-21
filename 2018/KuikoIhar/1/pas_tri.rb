@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 def pas_tri(h, n)
   l = [n]
   [l] + (1..h).map do
