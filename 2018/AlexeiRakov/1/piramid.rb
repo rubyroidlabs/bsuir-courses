@@ -11,15 +11,15 @@ def triangle(n, z, c, q)
       o = right
       right = right * (r - k + 1) / k
       u = right
-        if o + u == q
-          mas.push o
-          mas.push right
-        end
+      if o + u == q
+        mas.push o
+        mas.push right
+      end
       left.push right
       c += 1
       k += 1
     end
-    puts "#{left.to_s.center(135).green}  #{num.to_s.rjust(8)}"
+    puts "#{left.to_s.center(135).green} #{num.to_s.rjust(8)}"
     puts "#{mas.to_s.ljust(5).red}"
   end
 end
@@ -32,6 +32,5 @@ q = gets.to_i
 puts "vertex triangle = #{z}"
 puts "depth triangle = #{n}"
 puts 'parents will be selected from the left'
-c = 0
 require 'colorize'
-triangle(n, z, c, q)
+triangle(n, z, c = 0, q)
