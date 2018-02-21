@@ -17,9 +17,9 @@ def lines(rows)
   rows.map { |row| row.map { |x| pad(x.to_s, n) }.join(' ') }
 end
 
-def center(l)
-  n = l[-1].size
-  l.map { |s| pad(s, n) }
+def center(line)
+  n = line[-1].size
+  line.map { |s| pad(s, n) }
 end
 
 puts 'Введите глубину дерева: '
