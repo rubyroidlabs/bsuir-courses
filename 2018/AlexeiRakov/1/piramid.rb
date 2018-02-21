@@ -1,5 +1,7 @@
 def triangle(n, z, c, q)
   (0..n).map do |r|
+  	mas = []
+    n = [0]
     num = [c]
     left = [z]
     right = z
@@ -17,8 +19,8 @@ def triangle(n, z, c, q)
       c += 1
       k += 1
     end
-    puts "#{left.center(135).green} #{num.rjust(8)}"
-    puts "#{mas.ljust(5).red}"
+    puts "#{left.chomt.to_s.center(135).green} #{num.chomt.to_s.rjust(8)}"
+    puts "#{mas.chomt.to_s.ljust(5).red}"
   end
 end
 print 'enter the vertex of the triangle:'
