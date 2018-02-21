@@ -13,7 +13,7 @@ def pad(s, n)
 end
 
 def lines(rows)
-  n = "#{rows[-1].max}".size
+  n = rows[-1].max.to_s.size
   rows.map do |row|
     row.map { |x| pad(x.to_s, n) }.join(' ')
   end
