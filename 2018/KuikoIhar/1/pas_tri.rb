@@ -15,7 +15,7 @@ end
 def lines(rows)
   n = "#{rows[-1].max}".size
   rows.map do |row|
-    row.map { |x| pad("#{x}", n) }.join(' ')
+    row.map { |x| pad(x.to_s, n) }.join(' ')
   end
 end
 
