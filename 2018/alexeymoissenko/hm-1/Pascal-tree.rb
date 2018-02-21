@@ -41,4 +41,3 @@ deep = gets.chomp.to_i
 triangle = Triangle.new(base_number, deep)
 
 triangle.show
-
