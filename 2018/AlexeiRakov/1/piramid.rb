@@ -32,5 +32,6 @@ q = gets.to_i
 puts "vertex triangle = #{z}"
 puts "depth triangle = #{n}"
 puts 'parents will be selected from the left'
+c = 0
 require 'colorize'
-triangle(n, z, c = 0, q)
+triangle(n, z, c, q)
