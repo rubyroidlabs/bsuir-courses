@@ -19,8 +19,8 @@ def triangle(n, z, c, q)
       c += 1
       k += 1
     end
-    puts "#{left.chomt.to_s.center(135).green} #{num.chomt.to_s.rjust(8)}"
-    puts "#{mas.chomt.to_s.ljust(5).red}"
+    puts "#{left.chomp.to_s.center(135).green} #{num.chomp.to_s.rjust(8)}"
+    puts "#{mas.chomp.to_s.ljust(5).red}"
   end
 end
 print 'enter the vertex of the triangle:'
