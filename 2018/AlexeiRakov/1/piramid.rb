@@ -1,6 +1,6 @@
 def triangle(n, z, c, q)
   (0..n).map do |r|
-   # mas = []
+    mas = []
     n = [0]
     num = [c]
     left = [z]
