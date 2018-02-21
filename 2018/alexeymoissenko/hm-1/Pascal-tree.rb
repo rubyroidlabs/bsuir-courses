@@ -1,5 +1,5 @@
 class Triangle
-  def initialize(base_number, deep) 
+  def initialize(base_number, deep)
     @base_number = base_number
     @deep = deep
   end
@@ -41,4 +41,3 @@ deep = gets.chomp.to_i
 triangle = Triangle.new(base_number, deep)
 
 triangle.show
-
