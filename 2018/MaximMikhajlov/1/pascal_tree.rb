@@ -15,8 +15,8 @@ fact = ->(x) { (1..x).inject(:*) || 1 }
 
 (deep + 1).times do |level|
   arr = (0..level).map do |element_number|
-    base_number * fact.call(level) / 
-    (fact.call(element_number) * fact.call(level - element_number))
+    base_number * fact.call(level) /
+      (fact.call(element_number) * fact.call(level - element_number))
   end
   str_elements = arr.join('  ')
   str = ' ' * level.to_s.length + '   '
@@ -27,5 +27,5 @@ fact = ->(x) { (1..x).inject(:*) || 1 }
   end.join('  ')
   puts str
   puts level.to_s + ' ' * ((display_width - str_elements.length) /
-  CENTRAL_POSITION) + str_elements
+    CENTRAL_POSITION) + str_elements
 end
