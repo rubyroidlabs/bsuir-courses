@@ -35,4 +35,3 @@ puts 'parents will be selected from the left'
 c = 0
 require 'colorize'
 triangle(n, z, c, q)
- 
