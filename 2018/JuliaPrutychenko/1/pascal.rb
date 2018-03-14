@@ -10,8 +10,8 @@ z = depth
 array[0] = base_number
 (1..depth).each do |j|
   (1..j).reverse_each do |i|
-    if(i == j)
-      x = ' '*z
+    if i == j
+      x = ' ' * z
     end
     print "#{x}#{array[i - 1]} "
     array[i] = array[i - 1] + array[i]
