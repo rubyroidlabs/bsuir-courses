@@ -15,7 +15,7 @@ array[0] = base_number
     end
     print "#{x}#{array[i - 1]} "
     array[i] = array[i - 1] + array[i]
-  end
+   end
   z -= 1
   puts
 end
