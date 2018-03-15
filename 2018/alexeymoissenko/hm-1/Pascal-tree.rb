@@ -4,17 +4,17 @@ class Triangle
     @deep = deep
   end
 
-  def fact(a)
-    (1..a).reduce(:*)
+  def fact(any_value)
+    (1..any_value).reduce(:*)
   end
 
-  def binomial(n, k)
-    return @base_number if n - k <= 0 || k <= 0
-    fact(n) / (fact(k) * fact(n - k)) * @base_number
+  def binomial(line_size, number_in_line)
+    return @base_number if line_size - number_in_line <= 0 || number_in_line <= 0
+    fact(line_size) / (fact(number_in_line) * fact(line_size - number_in_line)) * @base_number
   end
 
-  def curr_str(n)
-    (0..n).map { |e| binomial(n, e) }
+  def curr_str(curr_size)
+    (0..curr_size).map { |e| binomial(curr_size, e) }
   end
 
   def show
