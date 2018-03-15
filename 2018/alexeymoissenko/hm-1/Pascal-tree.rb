@@ -8,9 +8,9 @@ class Triangle
     (1..any_value).reduce(:*)
   end
 
-  def binomial(line_size, number_in_line)
-    return @base_number if line_size - number_in_line <= 0 || number_in_line <= 0
-    fact(line_size) / (fact(number_in_line) * fact(line_size - number_in_line)) * @base_number
+  def binomial(ln_s, num_in_ln)
+    return @base_number if ln_s - num_in_ln <= 0 || num_in_ln <= 0
+    fact(ln_s) / (fact(num_in_ln) * fact(ln_s - num_in_ln)) * @base_number
   end
 
   def curr_str(curr_size)
