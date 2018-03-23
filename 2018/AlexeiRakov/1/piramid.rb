@@ -28,9 +28,9 @@ z = gets.to_i
 print 'enter the depth of the triangle:'
 n = gets.to_i
 print 'enter a child:'
-q = gets.to_i    
+q = gets.to_i
 puts "vertex triangle = #{z}"
-puts "depth triangle = #{n}"     
+puts "depth triangle = #{n}"
 puts 'parents will be selected from the left'
 c = 0
 require 'colorize'
