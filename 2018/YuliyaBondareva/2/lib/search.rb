@@ -1,5 +1,9 @@
 require_relative 'base'
 require 'octokit'
+require 'yaml'
+
+SETTINGS = YAML.load(File.open('settings.yml'))
+
 
 class Search < Base
   def get_repo
@@ -8,13 +12,13 @@ class Search < Base
   end
 
   def add_history(query)
-    File.open("./chat_ids/#{@user_id}_history", 'a') { |f|
+    File.open("./chat_ids/#{@user_id}_history", 'a') do |f|
       f.puts query
-    }
+    end
   end
 
   def commits(query)
-    client = Octokit::Client.new(:login => 'YuliyaBond', :password => 'Sharik1109')
+    client = Octokit::Client.new(:login => SETTINGS['login'], :password => SETTINGS['password'])
     repo = get_repo
     if repo.nil?
       telegram_send_message("Your don't set repo!")

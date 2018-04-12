@@ -6,8 +6,11 @@ require_relative 'lib/set_repo'
 require_relative 'lib/show_repo'
 require_relative 'lib/search'
 require_relative 'lib/history'
+require 'yaml'
 
-token = '581093532:AAFnA2apTDoU2WwtL9feOskYXIqA1UCOClk'
+SETTINGS = YAML.load(File.open('settings.yml'))
+
+token = SETTINGS['token']
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
