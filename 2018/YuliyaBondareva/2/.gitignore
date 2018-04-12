@@ -1,4 +1,4 @@
 settings.yml
-.bundle/*
+.bundle/
 chat_ids/*
 1/*
