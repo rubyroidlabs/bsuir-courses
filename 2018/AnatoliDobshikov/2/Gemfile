@@ -1,0 +1,12 @@
+source "https://rubygems.org"
+
+# bot api
+gem 'telegram-bot-ruby'
+# for easier classes requiring
+gem 'require_all'
+# GitHub api
+gem 'octokit'
+# postgresql gem
+gem 'pg'
+# ORM adapter
+gem 'activerecord'
