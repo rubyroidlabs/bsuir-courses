@@ -1,0 +1,51 @@
+# frozen_string_literal: true
+
+require 'yaml'
+require 'active_record'
+require 'pg'
+
+task default: ['execute_all']
+
+namespace 'db' do
+  desc 'Create the database'
+  task :create do
+    connection_details = YAML.safe_load(File.open('config/database.yml'))
+
+    admin_connection = connection_details.merge(
+      'database' => 'postgres',
+      'schema_search_path' => 'public'
+    )
+    ActiveRecord::Base.establish_connection(admin_connection)
+    ActiveRecord::Base.connection.create_database(
+      connection_details.fetch('database')
+    )
+  end
+
+  desc 'Drop the database'
+  task :drop do
+    connection_details = YAML.safe_load(File.open('config/database.yml'))
+    admin_connection = connection_details.merge(
+      'database' => 'postgres',
+      'schema_search_path' => 'public'
+    )
+
+    ActiveRecord::Base.establish_connection(admin_connection)
+    ActiveRecord::Base.connection.drop_database(
+      connection_details.fetch('database')
+    )
+  end
+
+  desc 'Migrate the database'
+  task :migrate do
+    connection_details = YAML.safe_load(File.open('config/database.yml'))
+    ActiveRecord::Base.establish_connection(connection_details)
+    ActiveRecord::Migrator.migrate('db/migrate/')
+  end
+end
+
+desc 'Execute db:drop/create/migrate at once'
+task :execute_all do
+  Rake::Task['db:drop'].invoke
+  Rake::Task['db:create'].invoke
+  Rake::Task['db:migrate'].invoke
+end

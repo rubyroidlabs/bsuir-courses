@@ -1,0 +1,5 @@
+adapter:  'postgresql'
+host:     'localhost'
+username: 'forum'
+password: ''
+database: 'tg_bot'

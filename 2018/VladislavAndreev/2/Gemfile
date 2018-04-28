@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+gem 'activerecord', '~> 5.1', '>= 5.1.6'
+gem 'octokit', git: 'https://github.com/octokit/octokit.rb.git'
+gem 'pg', '~> 0.18.4'
+gem 'rake', '~> 12.3', '>= 12.3.1'
+gem 'telegram-bot-ruby', '~> 0.8.6.1'
+
+gem 'pry'
