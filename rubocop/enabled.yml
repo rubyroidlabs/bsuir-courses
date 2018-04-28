@@ -338,6 +338,18 @@ Layout/TrailingWhitespace:
   StyleGuide: '#no-trailing-whitespace'
   Enabled: true
 
+Layout/BlockAlignment:
+  Description: 'Align block ends correctly.'
+  Enabled: true
+
+Layout/DefEndAlignment:
+  Description: 'Align ends corresponding to defs correctly.'
+  Enabled: true
+
+Layout/EndAlignment:
+  Description: 'Align ends correctly.'
+  Enabled: true
+
 #################### Naming ##############################
 
 Naming/AccessorMethodName:
@@ -995,9 +1007,13 @@ Style/TrailingCommaInArguments:
   StyleGuide: '#no-trailing-params-comma'
   Enabled: true
 
-Style/TrailingCommaInLiteral:
-  Description: 'Checks for trailing comma in array and hash literals.'
+Style/TrailingCommaInArrayLiteral:
+  Description: 'Checks for trailing comma in array literals.'
   StyleGuide: '#no-trailing-array-commas'
+  Enabled: true
+
+Style/TrailingCommaInHashLiteral:
+  Description: 'Checks for trailing comma in hash literals.'
   Enabled: true
 
 Style/TrivialAccessors:
@@ -1146,10 +1162,6 @@ Lint/AssignmentInCondition:
   StyleGuide: '#safe-assignment-in-condition'
   Enabled: true
 
-Lint/BlockAlignment:
-  Description: 'Align block ends correctly.'
-  Enabled: true
-
 Lint/BooleanSymbol:
   Description: 'Check for `:true` and `:false` symbols.'
   Enabled: true
@@ -1167,10 +1179,6 @@ Lint/ConditionPosition:
 
 Lint/Debugger:
   Description: 'Check for debugger calls.'
-  Enabled: true
-
-Lint/DefEndAlignment:
-  Description: 'Align ends corresponding to defs correctly.'
   Enabled: true
 
 Lint/DeprecatedClassMethods:
@@ -1212,10 +1220,6 @@ Lint/EmptyInterpolation:
 
 Lint/EmptyWhen:
   Description: 'Checks for `when` branches with empty bodies.'
-  Enabled: true
-
-Lint/EndAlignment:
-  Description: 'Align ends correctly.'
   Enabled: true
 
 Lint/EndInMethod:
