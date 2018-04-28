@@ -7,9 +7,7 @@ class HistoryResponder < MessageResponder
     if history.empty?
       answer_with_message('История пуста')
     else
-      text = []
-
-      history.each { |row| text << row.query_text }
+      text = history.map { |row| row.query_text }
 
       answer_with_message("🗂 Исторя запросов: \n#{text.join("\n")}")
     end

@@ -5,9 +5,7 @@ require_relative '../../models/user'
 require_relative '../../models/search_request'
 
 class MessageResponder
-  attr_reader :message
-  attr_reader :bot
-  attr_reader :user
+  attr_reader :message, :bot, :user
 
   def initialize(options)
     @bot = options[:bot]
