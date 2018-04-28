@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+gem 'telegram-bot-ruby'
+gem 'github_api'
+gem 'redis'
+gem 'octokit', :git => 'https://github.com/octokit/octokit.rb'
