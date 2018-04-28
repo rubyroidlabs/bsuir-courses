@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class MessageSender
-  attr_reader :bot
-  attr_reader :text
-  attr_reader :chat
+  attr_reader :bot, :text, :chat
 
   def initialize(options)
     @bot = options[:bot]

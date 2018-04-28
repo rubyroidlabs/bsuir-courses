@@ -8,8 +8,7 @@ require_relative 'show_repo'
 require_relative 'message_sender'
 
 class RepliesParser
-  attr_reader :bot
-  attr_reader :message
+  attr_reader :bot, :message
 
   def initialize(options)
     @bot = options[:bot]
